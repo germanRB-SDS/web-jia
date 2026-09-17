@@ -1,0 +1,22 @@
+<!doctype html>
+<meta charset="utf-8">
+<!-- Screenshot harness: headless Chrome cannot open a window narrower than ~500px,
+     so phone captures render the site inside a same-origin iframe of the requested
+     width. Query: ?w=390&h=9000&open=dialog|nav -->
+<body style="margin:0;background:#888">
+<iframe id="f" style="border:0;display:block"></iframe>
+<script>
+  const q = new URLSearchParams(location.search);
+  const w = Number(q.get('w') || 390), h = Number(q.get('h') || 9000);
+  const f = document.getElementById('f');
+  f.style.width = w + 'px'; f.style.height = h + 'px';
+  f.onload = () => {
+    const d = f.contentDocument;
+    const open = q.get('open');
+    if (open === 'dialog') d.querySelector('button[aria-haspopup="dialog"]').click();
+    if (open === 'nav') d.querySelector('nav button[aria-expanded]').click();
+    if (open === 'sub') d.querySelector('nav [aria-controls] ~ ul, nav li:first-child button')?.click();
+    if (q.get('scroll')) f.contentWindow.scrollTo(0, Number(q.get('scroll')));
+  };
+  f.src = '/';
+</script>

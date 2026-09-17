@@ -1,0 +1,127 @@
+/**
+ * "JIA — Tinta de frontera" icon family (JIA_IDENTIDAD_VISUAL.md §7), drawn on a
+ * 64-unit grid. Hat, compass and lantern are linear (stroke 2.5); the cactus is
+ * a filled silhouette. Colour comes from `currentColor`; all are decorative
+ * (aria-hidden) and always accompany a text label.
+ */
+import type { SVGProps } from "react";
+
+type IconProps = SVGProps<SVGSVGElement> & { size?: number };
+
+function base({ size = 40, ...rest }: IconProps) {
+  return {
+    width: size,
+    height: size,
+    viewBox: "0 0 64 64",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2.5,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+    focusable: false,
+    ...rest,
+  };
+}
+
+export function HatIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M21 38V24c0-7 5-11 11-11s11 4 11 11v14" />
+      <path d="M21 31h22" />
+      <path d="M7 39c7 6 16 8 25 8s18-2 25-8c-5 3-12 5-25 5S12 42 7 39Z" />
+      <path d="M28 14c1-2 2.5-3 4-3s3 1 4 3" />
+    </svg>
+  );
+}
+
+export function CactusIcon(props: IconProps) {
+  const p = base(props);
+  return (
+    <svg {...p} stroke="none" fill="currentColor">
+      <path d="M28 8h8a4 4 0 0 1 4 4v44h-16V12a4 4 0 0 1 4-4Z" />
+      <path d="M12 22a3.5 3.5 0 0 1 7 0v10a2 2 0 0 0 2 2h3v7h-5a7 7 0 0 1-7-7V22Z" />
+      <path d="M45 16a3.5 3.5 0 0 1 7 0v14a7 7 0 0 1-7 7h-5v-7h3a2 2 0 0 0 2-2V16Z" />
+      <path d="M18 57h28v3H18z" />
+    </svg>
+  );
+}
+
+export function CompassIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="32" cy="32" r="21" />
+      <circle cx="32" cy="32" r="3" />
+      <path d="M32 6v9M32 49v9M6 32h9M49 32h9" />
+      <path d="M32 14l5 15-5 3-5-3 5-15Z" fill="currentColor" stroke="none" />
+      <path d="M32 50l-5-15 5-3 5 3-5 15Z" />
+      <path d="M14 32l15-5 3 5-3 5-15-5Z" />
+      <path d="M50 32l-15 5-3-5 3-5 15 5Z" />
+    </svg>
+  );
+}
+
+export function LanternIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M27 15v-4a5 5 0 0 1 10 0v4" />
+      <path d="M22 21h20l-2-6H24l-2 6Z" />
+      <path d="M25 21h14v22H25z" />
+      <path d="M25 21l14 22M39 21 25 43" />
+      <path d="M21 43h22l2 7H19l2-7Z" />
+      <path d="M32 50v7" />
+    </svg>
+  );
+}
+
+export function ArrowIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 18, ...props })} strokeWidth={3}>
+      <path d="M10 32h42" />
+      <path d="M38 18l14 14-14 14" />
+    </svg>
+  );
+}
+
+export function MenuIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 24, ...props })} strokeWidth={4}>
+      <path d="M10 18h44M10 32h44M10 46h44" />
+    </svg>
+  );
+}
+
+export function CloseIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 24, ...props })} strokeWidth={4}>
+      <path d="M16 16l32 32M48 16 16 48" />
+    </svg>
+  );
+}
+
+export function ChevronIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 14, ...props })} strokeWidth={4}>
+      <path d="M14 24l18 18 18-18" />
+    </svg>
+  );
+}
+
+export function StarIcon(props: IconProps) {
+  const p = base({ size: 12, ...props });
+  return (
+    <svg {...p} stroke="none" fill="currentColor">
+      <path d="M32 4l7.6 18.6L60 24.4 44.6 37.6 49.2 58 32 47.2 14.8 58l4.6-20.4L4 24.4l20.4-1.8L32 4Z" />
+    </svg>
+  );
+}
+
+export function ExternalIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 16, ...props })} strokeWidth={4}>
+      <path d="M26 12H12v40h40V38" />
+      <path d="M36 10h18v18" />
+      <path d="M54 10 30 34" />
+    </svg>
+  );
+}

@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+tsconfig.tsbuildinfo
+.env
+.env.*
+.DS_Store
+*.log
+.impeccable/config.local.json
+.impeccable/live/
+.check/
+.impeccable/review/
+out/shot.html

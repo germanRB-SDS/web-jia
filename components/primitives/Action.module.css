@@ -1,0 +1,76 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  min-height: 48px;
+  padding: 0.7em 1.35em;
+  border-radius: var(--jia-radius-button);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.1;
+  border: 1.5px solid transparent;
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn svg {
+  flex: none;
+  transition: transform 220ms var(--ease-out);
+}
+.btn:hover svg,
+.btn:focus-visible svg {
+  transform: translateX(3px);
+}
+.primary {
+  background: var(--jia-terracotta);
+  color: var(--jia-ivory);
+  border-color: var(--jia-terracotta);
+}
+.primary:hover,
+.primary:focus-visible {
+  background: var(--jia-terracotta-deep);
+  border-color: var(--jia-terracotta-deep);
+}
+.secondary {
+  background: transparent;
+  color: var(--jia-ink);
+  border-color: var(--jia-ink);
+}
+.secondary:hover,
+.secondary:focus-visible {
+  background: rgb(var(--jia-ink-rgb) / 0.06);
+}
+.quiet {
+  background: transparent;
+  color: var(--jia-terracotta);
+  padding-inline: 0.2em;
+  min-height: 40px;
+}
+.quiet:hover,
+.quiet:focus-visible {
+  color: var(--jia-terracotta-deep);
+}
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  border-style: dashed;
+}
+.disabled:hover svg {
+  transform: none;
+}
+.unavailable {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+.note {
+  margin: 0;
+  font-family: var(--f-ui);
+  font-size: 0.9375rem;
+  color: var(--jia-text-muted);
+  max-width: 34ch;
+}

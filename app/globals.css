@@ -1,0 +1,109 @@
+/* =============================================================================
+   JIA — base styles and layout tokens.
+   Colours: app/theme/palette.css (single source). Fonts: app/layout.tsx.
+   ============================================================================= */
+@import "./theme/palette.css";
+
+:root {
+  color-scheme: light;
+
+  --f-display: var(--font-display), "Rockwell", "Roboto Slab", Georgia, serif;
+  --f-body: var(--font-body), Georgia, "Times New Roman", serif;
+  --f-ui: var(--font-ui), "Helvetica Neue", Arial, sans-serif;
+  --f-script: var(--font-script), "Bradley Hand", "Segoe Script", cursive;
+
+  --container: 80rem;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --measure: 62ch;
+  --space-section: clamp(4rem, 9vw, 7.5rem);
+
+  --t-body: 1.0625rem;
+  --t-lede: clamp(1.125rem, 1.5vw, 1.375rem);
+  --t-h2: clamp(2.125rem, 4.4vw, 3.5rem);
+  --t-h3: clamp(1.375rem, 2.2vw, 1.75rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (min-width: 960px) {
+  :root { --t-body: 1.125rem; }
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--jia-copper) var(--jia-sand);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  position: relative;
+  isolation: isolate;
+  background: var(--jia-paper);
+  color: var(--jia-text);
+  font-family: var(--f-body);
+  font-size: var(--t-body);
+  line-height: var(--jia-body-leading);
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--jia-terracotta);
+  accent-color: var(--jia-terracotta);
+}
+
+/* Paper grain: one independent, subtle layer under the content (identity §12).
+   It never touches text, controls or photographs. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.09 0 0 0 0 0.04 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+::selection {
+  background: var(--jia-terracotta);
+  color: var(--jia-ivory);
+}
+
+:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+a { color: var(--jia-terracotta); text-underline-offset: 0.18em; }
+a:hover { color: var(--jia-terracotta-deep); }
+
+img, svg { max-width: 100%; }
+img { display: block; }
+
+h1, h2, h3, h4 { text-wrap: balance; }
+
+::-webkit-scrollbar { height: 10px; width: 10px; }
+::-webkit-scrollbar-track { background: var(--jia-sand); }
+::-webkit-scrollbar-thumb { background: var(--jia-copper); border-radius: 6px; border: 2px solid var(--jia-sand); }
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--jia-ink);
+  color: var(--jia-ivory);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--jia-radius-button);
+}
+.skip:focus { top: 1rem; }

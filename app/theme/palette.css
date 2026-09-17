@@ -1,0 +1,40 @@
+/* =============================================================================
+   JIA — PALETA CANÓNICA
+   Única fuente de los colores de marca. Valores tomados literalmente de
+   assets/style/JIA_IDENTIDAD_VISUAL.md §4.2 y §12. Los componentes consumen
+   estos tokens; ningún HEX de marca vive fuera de este archivo.
+   ============================================================================= */
+:root {
+  --jia-paper: #f1e7d8;            /* Papel editorial: fondo principal */
+  --jia-ivory: #f6eedf;            /* Marfil de luz: zonas luminosas, texto sobre botón oscuro */
+  --jia-sand: #edddc7;             /* Arena del hero: transición hacia fotografía */
+  --jia-card: #eee3d1;             /* Pergamino de tarjeta: superficies secundarias */
+  --jia-ink: #2f180b;              /* Tinta JIA: lettering, títulos de máxima jerarquía */
+  --jia-text: #443d37;             /* Tinta de lectura: párrafos */
+  --jia-text-muted: #71604d;       /* Tinta secundaria: metadatos (4,93:1 sobre papel) */
+  --jia-terracotta: #89482e;       /* Terracota principal: botón, iconos, acentos */
+  --jia-terracotta-deep: #703923;  /* Terracota profunda: hover y estados activos */
+  --jia-line: #c9b79f;             /* Línea de arena: separadores decorativos */
+  --jia-copper: #ad754d;           /* Cobre mate: detalle gráfico, nunca texto pequeño */
+  --jia-olive: #72715b;            /* Oliva seco: acento muy puntual */
+
+  /* Canales RGB de los tokens que se usan con transparencia (máscaras del hero,
+     velos de tarjeta). Se derivan de los HEX anteriores; no son colores nuevos. */
+  --jia-paper-rgb: 241 231 216;
+  --jia-ink-rgb: 47 24 11;
+  --jia-sand-rgb: 237 221 199;
+
+  /* Superficies de sustitución para imágenes ausentes (config/media.ts referencia
+     estos nombres por token, p. ej. `fallback: "sand"`). */
+  --jia-surface-sand: var(--jia-sand);
+  --jia-surface-card: var(--jia-card);
+  --jia-surface-copper: var(--jia-copper);
+  --jia-surface-olive: var(--jia-olive);
+  --jia-surface-terracotta: var(--jia-terracotta);
+  --jia-surface-ink: var(--jia-ink);
+
+  --jia-radius-button: 4px;
+  --jia-radius-card: 10px;
+  --jia-body-leading: 1.6;
+  --jia-label-tracking: 0.12em;
+}

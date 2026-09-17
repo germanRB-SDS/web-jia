@@ -1,0 +1,163 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--jia-paper) 0%, var(--jia-paper) 38%, var(--jia-sand) 100%);
+}
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  align-content: center;
+}
+.lockup {
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  color: var(--jia-ink);
+}
+.wordmark {
+  height: clamp(6rem, 13vw, 10.5rem);
+  width: auto;
+  aspect-ratio: 1032 / 728;
+  display: block;
+  flex: none;
+}
+.name {
+  display: grid;
+  align-content: center;
+  padding-left: clamp(0.9rem, 1.6vw, 1.4rem);
+  border-left: 2px solid var(--jia-ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 5.2vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.nameLine { display: block; white-space: nowrap; }
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(100%, 26rem);
+  color: var(--jia-terracotta);
+}
+.rule::before,
+.rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--jia-ink);
+}
+.title {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--jia-ink);
+}
+.titleMark { font-style: normal; }
+.dateline {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.8rem;
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-terracotta);
+}
+.lede {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--f-body);
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--jia-text);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* ---- photograph ---- */
+.photo { position: relative; }
+.surface {
+  border-radius: 0;
+}
+.note {
+  position: absolute;
+  z-index: 2;
+  font-family: var(--f-script);
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  color: var(--jia-ink);
+  transform: rotate(-8deg);
+  pointer-events: none;
+  text-shadow: 0 0 12px rgb(var(--jia-paper-rgb) / 0.9);
+  white-space: nowrap;
+}
+
+/* phone/tablet: text first, then the photograph as its own block that
+   dissolves upward into the paper. */
+@media (max-width: 959px) {
+  .photo {
+    order: 2;
+    margin-top: -1rem;
+  }
+  .surface {
+    aspect-ratio: 4 / 3 !important;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 22%);
+  }
+  .surface img { object-position: 70% 45% !important; }
+  .note { top: 18%; right: 6%; }
+  .hero { display: grid; }
+}
+
+/* desktop: the render's split — quiet paper left, photograph right, one continuous surface. */
+@media (min-width: 960px) {
+  .hero {
+    min-height: min(88vh, 900px);
+    display: grid;
+    align-items: center;
+  }
+  .content {
+    padding-right: 56%;
+    min-height: min(88vh, 900px);
+  }
+  .photo {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 66%;
+    height: 100%;
+  }
+  .surface {
+    position: absolute !important;
+    inset: 0;
+    aspect-ratio: auto !important;
+    height: 100%;
+    mask-image: linear-gradient(to right, transparent 0%, black 26%), linear-gradient(to top, transparent 0%, black 14%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+  .note { top: 12%; right: 30%; }
+}
+@media (min-width: 1400px) {
+  .content { padding-right: 52%; }
+}

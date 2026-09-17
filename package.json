@@ -1,0 +1,25 @@
+{
+  "name": "web-jia",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve out",
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint",
+    "check:content": "tsc -p tsconfig.check.json && node .check/scripts/check-content.js",
+    "assets": "bash scripts/build-assets.sh"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.5",
+    "typescript": "^5.9.3"
+  }
+}

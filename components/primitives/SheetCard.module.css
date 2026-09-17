@@ -1,0 +1,198 @@
+.card {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+  scroll-margin-top: 6rem;
+}
+.media {
+  position: relative;
+}
+.surface {
+  box-shadow: 0 10px 28px -16px rgb(var(--jia-ink-rgb) / 0.45);
+  transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
+}
+.card:hover .surface,
+.card:focus-within .surface {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px -18px rgb(var(--jia-ink-rgb) / 0.55);
+}
+/* Pin: a single terracotta dot at the top, the notebook's way of holding a card. */
+.media::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--jia-terracotta);
+  box-shadow: inset 0 -2px 0 rgb(var(--jia-ink-rgb) / 0.35);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.reveal {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.25rem 1rem 1rem;
+  background: linear-gradient(to top, rgb(var(--jia-ink-rgb) / 0.92), rgb(var(--jia-ink-rgb) / 0.75) 70%, transparent);
+  color: var(--jia-ivory);
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.45;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 320ms var(--ease-out), opacity 320ms var(--ease-out);
+}
+.reveal p { margin: 0; }
+.card:hover .reveal,
+.card:focus-within .reveal {
+  transform: none;
+  opacity: 1;
+}
+@media (hover: none) {
+  .reveal { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .surface, .reveal { transition: none; }
+}
+.body {
+  display: grid;
+  gap: 0.35rem;
+}
+.meta {
+  margin: 0;
+  font-family: var(--f-ui);
+  font-size: 0.75rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-terracotta);
+}
+.title {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.1;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
+.subtitle {
+  margin: 0;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: var(--jia-text);
+}
+.people {
+  margin: 0.15rem 0 0;
+  font-family: var(--f-ui);
+  font-size: 0.9375rem;
+  color: var(--jia-text);
+  line-height: 1.35;
+}
+.peopleLabel {
+  font-size: 0.7rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-text-muted);
+  margin-right: 0.25rem;
+}
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.35rem 0.1rem;
+  border: 0;
+  background: none;
+  color: var(--jia-terracotta);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.open svg { transition: transform 220ms var(--ease-out); }
+.open:hover, .open:focus-visible { color: var(--jia-terracotta-deep); }
+.open:hover svg, .open:focus-visible svg { transform: translateX(3px); }
+.pending {
+  font-family: var(--f-ui);
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-text-muted);
+}
+
+/* ---- the sheet inside the dialog ---- */
+.sheet {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+@media (min-width: 900px) {
+  .sheet {
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 2.5rem;
+  }
+}
+.sheetMedia { max-width: 320px; }
+.sheetBody { display: grid; gap: 0.75rem; align-content: start; }
+.sheetMarks { margin-bottom: 0.25rem; }
+.sheetTitle {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
+.sheetSubtitle {
+  margin: 0;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+.fields {
+  margin: 0.5rem 0 0;
+  display: grid;
+  gap: 1rem;
+}
+.field dt {
+  font-family: var(--f-ui);
+  font-size: 0.75rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-terracotta);
+  margin-bottom: 0.25rem;
+}
+.field dd {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+.field ul { margin: 0; padding-left: 1.1em; }
+.related p { margin: 0 0 0.3rem; }
+.related ul { margin: 0; padding-left: 1.1em; font-family: var(--f-body); }
+.related a { color: var(--jia-terracotta); }
+.doc {
+  justify-self: start;
+  font-family: var(--f-ui);
+  font-weight: 600;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  color: var(--jia-terracotta);
+}

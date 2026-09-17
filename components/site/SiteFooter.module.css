@@ -1,0 +1,95 @@
+.footer {
+  background: var(--jia-ink);
+  color: var(--jia-sand);
+}
+.inner {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+  padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem);
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 760px) {
+  .inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; }
+}
+.brand { display: grid; gap: 0.75rem; justify-items: start; align-content: start; }
+.wordmark {
+  height: 4.5rem;
+  width: auto;
+  aspect-ratio: 1032 / 728;
+  color: var(--jia-ivory);
+}
+.name {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jia-ivory);
+}
+.credit {
+  margin: 0;
+  max-width: 30ch;
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--jia-sand);
+}
+.badge { width: 5rem; margin-top: 0.5rem; }
+.badge img { width: 100%; height: auto; display: block; }
+.col { display: grid; gap: 0.75rem; align-content: start; }
+.colTitle {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--jia-copper);
+}
+.links, .orgs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  font-family: var(--f-ui);
+  font-size: 1rem;
+}
+.links a, .orgs a {
+  color: var(--jia-ivory);
+  text-decoration: none;
+}
+.links a:hover, .orgs a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.orgs { color: var(--jia-sand); }
+.bottom { border-top: 1px solid rgb(255 255 255 / 0.12); }
+.bottomInner {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+  padding-block: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.notice {
+  margin: 0;
+  max-width: 70ch;
+  font-family: var(--f-ui);
+  font-size: 0.875rem;
+  color: var(--jia-line);
+}
+.top {
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-ivory);
+}
