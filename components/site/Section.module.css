@@ -2,13 +2,11 @@
   padding-block: var(--space-section);
   scroll-margin-top: 4.5rem;
 }
-.paper { background: var(--jia-paper); }
-.ivory {
-  background: linear-gradient(180deg, var(--jia-paper) 0%, var(--jia-ivory) 18%, var(--jia-ivory) 100%);
-}
-.sand {
-  background: linear-gradient(180deg, var(--jia-sand) 0%, var(--jia-paper) 100%);
-}
+/* Tones consume the page's ground recipes (palette.css, JIA-2026-09-18-15): neighbours share the colour
+   of their seam, so a section never starts with a step. */
+.paper { background: var(--jia-bg-rest); }
+.ivory { background: var(--jia-bg-open); }
+.sand { background: var(--jia-bg-arrive); }
 .ink {
   background: var(--jia-ink);
   color: var(--jia-ivory);

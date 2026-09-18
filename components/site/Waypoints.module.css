@@ -1,5 +1,5 @@
 .strip {
-  background: var(--jia-paper);
+  background: linear-gradient(180deg, var(--jia-vellum-1), var(--jia-vellum-2));
   border-top: 1px solid var(--jia-line);
   border-bottom: 1px solid var(--jia-line);
 }

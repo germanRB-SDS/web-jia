@@ -77,10 +77,11 @@
 }
 
 /* ---- the notebook spreads on paper ---- */
+/* Full width so the ground runs edge to edge («abre», palette.css); the padding keeps the container's measure. */
 .spreads {
-  width: min(100% - 2 * var(--gutter), var(--container));
-  margin-inline: auto;
+  padding-inline: max(var(--gutter), (100% - var(--container)) / 2);
   padding-top: clamp(1rem, 3vw, 2rem);
+  background: var(--jia-bg-open);
 }
 
 /* ---- programme: two ruled pages ---- */

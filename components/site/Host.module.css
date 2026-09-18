@@ -1,7 +1,8 @@
 .band {
   position: relative;
   overflow: clip;
-  background: var(--jia-sand);
+  /* The page's ground arrives here: step 4 of the vellum scale, #ece2d2 (palette.css). */
+  background: var(--jia-vellum-4);
   color: var(--jia-ink);
   scroll-margin-top: 4.5rem;
 }
@@ -17,7 +18,7 @@
   height: 100%;
   border-radius: 0;
 }
-/* Gradients at the two seams: paper above, ink below (the footer). */
+/* Gradients at the two seams: the ground of the section above, ink below (the footer). */
 .photo::before,
 .photo::after {
   content: "";
@@ -27,9 +28,11 @@
   pointer-events: none;
 }
 .photo::before {
+  /* Above the photograph (which follows it in the markup and used to cover it). */
+  z-index: 1;
   top: 0;
   height: 22%;
-  background: linear-gradient(to bottom, var(--jia-paper), transparent);
+  background: linear-gradient(to bottom, var(--jia-vellum-4), transparent);
 }
 .photo::after {
   bottom: 0;
@@ -93,6 +96,6 @@
   .photo::after { display: none; }
   .inner { min-height: 0; padding-top: 1.5rem; }
   .text { justify-self: start; }
-  .band { background: var(--jia-sand); }
+  .band { background: var(--jia-vellum-4); }
   .inner { padding-bottom: clamp(3rem, 8vw, 5rem); }
 }

@@ -1,6 +1,6 @@
 .section {
   padding-block: var(--space-section);
-  background: var(--jia-ivory);
+  background: var(--jia-bg-arrived);
   scroll-margin-top: 4.5rem;
 }
 .inner {
