@@ -27,7 +27,7 @@
   inset: 0;
   background: linear-gradient(to bottom, rgb(var(--jia-dune-rgb) / 0) 0%, rgb(var(--jia-dune-rgb) / 0) 45%, rgb(var(--jia-dune-rgb) / 0.55) 80%, var(--jia-dune) 100%);
 }
-.panel {
+.jornadasMapa {
   position: relative;
   z-index: 1;
   display: grid;
@@ -71,7 +71,7 @@
   .veil {
     background: linear-gradient(90deg, rgb(var(--jia-dune-rgb) / 0) 0%, rgb(var(--jia-dune-rgb) / 0) 38%, rgb(var(--jia-dune-rgb) / 0.55) 76%, var(--jia-dune) 100%);
   }
-  .panel {
+  .jornadasMapa {
     padding-inline: clamp(2rem, 5vw, 4.5rem) var(--gutter);
   }
 }

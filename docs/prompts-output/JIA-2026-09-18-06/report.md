@@ -19,6 +19,8 @@
 
 | Acoge (adenda 4) | Título «Dispara tu centro.» y subtítulo «Acoge las próximas JIA» (misma voz de subtítulo que Propuestas); el resto de la sección sin cambios. | `lib/content/copy/es/sections/acoge.ts`, `components/site/Host.tsx/.module.css` |
 
+| Jornadas (adenda 5) | El cartel deja de mostrarse en el panel de texto de Jornadas; el panel pasa a llamarse `jornadas-mapa` (`id` en HTML, clase `.jornadasMapa` en CSS) y contiene solo título y párrafo. El cartel sigue registrado en medios (`cartel-jia26`) y `PosterCard` queda disponible para otro uso. | `components/site/Jornadas.tsx/.module.css` |
+
 ## Verificación
 
 - `tsc --noEmit`, `check:content` (49 medios), `next build`: OK. Capturas en `evidence/` (Propuestas, socios con enlaces, pie escritorio y móvil).
