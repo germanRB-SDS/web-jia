@@ -1,6 +1,7 @@
 import type { Copy } from "../types";
 import { buttons } from "./buttons";
-import { a11y, footer, metadata, nav, states } from "./common";
+import { a11y, metadata, nav, states } from "./common";
+import { footer } from "./sections/footer";
 import { experiences, resources, workshops } from "./entities";
 import { acoge } from "./sections/acoge";
 import { dosieres } from "./sections/dosieres";

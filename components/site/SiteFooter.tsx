@@ -1,4 +1,5 @@
 import type { LandingModel } from "@/lib/content";
+import { FooterShots } from "./FooterShots";
 import { StudioStrip } from "./tumbleweeds/StudioStrip";
 import styles from "./SiteFooter.module.css";
 
@@ -51,7 +52,8 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
         </div>
       </div>
 
-      <StudioStrip studio={footer.studio} notice={footer.editionTitleNotice} />
+      <StudioStrip studio={footer.studio} tumbleweeds={footer.tumbleweeds} notice={footer.editionTitleNotice} />
+      <FooterShots max={footer.maxShots} />
     </footer>
   );
 }

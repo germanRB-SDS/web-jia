@@ -1,0 +1,42 @@
+/* A bullet hole where the visitor clicked: a black bore with a scorched rim, the torn paper lifted around
+   it and a few cracks running out. The host places it (left/top) and tunes it with custom properties:
+   --hole-size, --hole-turn, --hole-ink-rgb (bore rim and cracks) and --hole-paper-rgb (the lifted paper). */
+.hole {
+  position: absolute;
+  z-index: 2;
+  width: var(--hole-size, 2.5rem);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  rotate: var(--hole-turn, 0deg);
+  pointer-events: none;
+  animation: hole-hit 260ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+.hole::before,
+.hole::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+/* Cracks, then the lifted paper: a jagged ring, lit on one side. */
+.hole::before {
+  background:
+    conic-gradient(from 8deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0) 0 21deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0.75) 21deg 23.5deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0) 23.5deg 118deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0.6) 118deg 120deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0) 120deg 197deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0.7) 197deg 200deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0) 200deg 281deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0.55) 281deg 282.5deg, rgb(var(--hole-ink-rgb, 0 0 0) / 0) 282.5deg 360deg);
+  -webkit-mask: radial-gradient(circle, #000 0 34%, rgb(0 0 0 / 0.5) 58%, transparent 96%);
+  mask: radial-gradient(circle, #000 0 34%, rgb(0 0 0 / 0.5) 58%, transparent 96%);
+}
+.hole::after {
+  inset: 16%;
+  background:
+    radial-gradient(circle, rgb(0 0 0) 0 30%, rgb(var(--hole-ink-rgb, 0 0 0)) 38%, rgb(var(--hole-ink-rgb, 0 0 0) / 0.7) 44%, rgb(var(--hole-ink-rgb, 0 0 0) / 0) 52%),
+    linear-gradient(140deg, rgb(var(--hole-paper-rgb, 255 255 255)) 0%, rgb(var(--hole-paper-rgb, 255 255 255) / 0.85) 50%, rgb(var(--hole-paper-rgb, 255 255 255) / 0.9) 100%);
+  clip-path: polygon(50% 0%, 61% 9%, 74% 5%, 79% 19%, 94% 22%, 90% 37%, 100% 49%, 90% 60%, 95% 76%, 80% 79%, 75% 94%, 61% 89%, 49% 100%, 39% 90%, 24% 95%, 20% 80%, 5% 75%, 10% 61%, 0% 50%, 9% 38%, 4% 24%, 19% 20%, 25% 6%, 39% 10%);
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.45));
+}
+@keyframes hole-hit {
+  from { scale: 1.9; opacity: 0; }
+  55% { scale: 0.94; opacity: 1; }
+  to { scale: 1; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hole { animation: none; }
+}

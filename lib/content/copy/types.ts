@@ -163,6 +163,10 @@ export type Copy = {
     editionTitleNotice: string;
     /** Prefix before the production studio's name in the colophon. */
     studioCreditPrefix: string;
+    /** The small link beside the credit that names what rolls across the strip. */
+    tumbleweedsNote: string;
+    /** Appended to the accessible name of a link that leaves the site. */
+    newTab: string;
   };
   entities: {
     workshops: Record<string, WorkshopCopy>;

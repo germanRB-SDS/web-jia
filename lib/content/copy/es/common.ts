@@ -46,13 +46,3 @@ export const states: Copy["states"] = {
   venueTbc: "Lugar por confirmar",
   hoursTbc: "Horario por confirmar",
 };
-
-export const footer: Copy["footer"] = {
-  organiza: "Organiza",
-  colabora: "Colabora",
-  sections: "Secciones",
-  credit: "Iniciativa de los CEP de la Provincia de Almería",
-  editionTitleNotice:
-    "El título de la edición se muestra según el briefing; los carteles impresos utilizan otra denominación. Pendiente de confirmación.",
-  studioCreditPrefix: "Diseñado por",
-};

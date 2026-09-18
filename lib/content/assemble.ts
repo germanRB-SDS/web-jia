@@ -17,6 +17,7 @@ import { workshops } from "./data/workshops";
 import { LANGUAGE_BY_CODE, type Language, type Locale } from "./languages";
 import { brand, getMedia, type Media } from "./media";
 import { acogeConfig } from "./sections/acoge";
+import { footerConfig } from "./sections/footer";
 import { dosieresConfig } from "./sections/dosieres";
 import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
@@ -173,6 +174,8 @@ export type LandingModel = {
     credit: string;
     editionTitleNotice: string | null;
     studio: { prefix: string; name: string; url: string; mark: { src: string; width: number; height: number } };
+    tumbleweeds: { label: string; href: string; newTab: string };
+    maxShots: number;
     marks: MarkKind[];
   };
 };
@@ -493,6 +496,8 @@ export function getLanding(locale: Locale): LandingModel {
       credit: copy.footer.credit,
       editionTitleNotice: markProvisional && edition.titleStatus === "provisional" ? copy.footer.editionTitleNotice : null,
       studio: { prefix: copy.footer.studioCreditPrefix, name: productionStudio.name, url: productionStudio.url, mark: productionStudio.mark },
+      tumbleweeds: { label: copy.footer.tumbleweedsNote, href: footerConfig.tumbleweedsUrl, newTab: copy.footer.newTab },
+      maxShots: footerConfig.maxShots,
       marks: [],
     },
   };

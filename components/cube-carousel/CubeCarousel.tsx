@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { BulletHole, type Shot } from "@/components/primitives/BulletHole";
 import { CUBE_CONFIG } from "./config";
 import type { CubeEngine } from "./cube-engine";
 import styles from "./CubeCarousel.module.css";
@@ -27,8 +28,7 @@ export type CubeLabels = {
   list: string;
 };
 
-/** A bullet hole: where it hit (percent of the side) and how it is turned, so no two look alike. */
-type Hole = { key: number; x: number; y: number; turn: number };
+type Hole = Shot;
 
 type Props = { items: CubeItem[]; labels: CubeLabels; className?: string };
 
@@ -186,7 +186,7 @@ function Side({ kind, item, holes, sizes, style }: { kind: "turn" | "top" | "bot
           <span className={styles.stickerBlank}>{item.title}</span>
         )}
         {holes?.map((h) => (
-          <span key={h.key} className={styles.hole} style={{ left: `${h.x}%`, top: `${h.y}%`, "--cube-hole-turn": `${h.turn}deg` } as CSSProperties} />
+          <BulletHole key={h.key} shot={h} />
         ))}
         <span className={styles.veil} />
       </div>
