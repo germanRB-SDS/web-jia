@@ -1,4 +1,5 @@
 import type { LandingModel } from "@/lib/content";
+import { StudioStrip } from "./tumbleweeds/StudioStrip";
 import styles from "./SiteFooter.module.css";
 
 type Props = Pick<LandingModel, "footer" | "brand" | "event" | "copy">;
@@ -50,19 +51,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
         </div>
       </div>
 
-      <div className={styles.bottom}>
-        <div className={styles.bottomInner}>
-          {footer.editionTitleNotice ? <p className={styles.notice}>{footer.editionTitleNotice}</p> : null}
-          <a href={footer.studio.url} className={styles.studioCredit} target="_blank" rel="noopener noreferrer">
-            {/* The mark carries no alt: the sentence beside it already names the studio. */}
-            <img src={footer.studio.mark.src} alt="" width={footer.studio.mark.width} height={footer.studio.mark.height} loading="lazy" decoding="async" className={styles.studioMark} />
-            <span className={styles.studioCopy}>
-              <span>{footer.studio.prefix}</span>
-              <span className={styles.studioName}>{footer.studio.name}</span>
-            </span>
-          </a>
-        </div>
-      </div>
+      <StudioStrip studio={footer.studio} notice={footer.editionTitleNotice} />
     </footer>
   );
 }

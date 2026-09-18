@@ -70,8 +70,32 @@
 }
 .links a:hover, .orgs a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .orgs { color: var(--jia-sand); }
-.bottom { position: relative; z-index: 1; border-top: 1px solid rgb(var(--jia-paper-rgb) / 0.12); }
+.bottom { position: relative; z-index: 1; overflow: hidden; border-top: 1px solid rgb(var(--jia-paper-rgb) / 0.12); }
+/* The tumbleweeds' field: the whole strip, behind the credit (tumbleweeds/tumbleweed-field.ts fills it). */
+.weeds {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.weeds :global(.weed) {
+  position: absolute;
+  left: 0;
+  display: block;
+  will-change: transform;
+}
+.weeds :global(.weed) span,
+.weeds :global(.weed) svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.weeds :global(.weed) path[data-tone="0"] { stroke: var(--jia-copper); }
+.weeds :global(.weed) path[data-tone="1"] { stroke: var(--jia-dune); }
+.weeds :global(.weed) path[data-tone="2"] { stroke: var(--jia-line); }
 .bottomInner {
+  position: relative;
+  z-index: 1;
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
   padding-block: 1.25rem;
