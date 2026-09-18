@@ -61,20 +61,23 @@
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
 }
-.split .head { padding-top: var(--space-section); }
-.split > :not(.head):not([data-visual]) { padding-bottom: var(--space-section); }
+.split .head { padding-top: var(--split-y, clamp(2.5rem, 5vw, 4rem)); }
+.split > :not(.head):not([data-visual]) { padding-bottom: var(--split-y, clamp(2.5rem, 5vw, 4rem)); }
 @media (min-width: 900px) {
   .split {
-    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    /* The visual column is 53% (45% raised by 18%); the text column's right
+       padding is half its left one, so the copy sits close to the photograph. */
+    grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
     align-items: center;
   }
   .split .head,
   .split > :not(.head):not([data-visual]) {
+    --split-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
     grid-column: 1;
     width: auto;
     margin-inline: 0;
-    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
-    padding-right: clamp(2rem, 5vw, 4.5rem);
+    padding-left: var(--split-left);
+    padding-right: calc(var(--split-left) / 2);
   }
   .split .head { margin-bottom: 1.5rem; }
   .split > [data-visual] { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }

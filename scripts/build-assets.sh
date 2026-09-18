@@ -30,8 +30,9 @@ magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jorn
 
 # Propuestas visual column (1059x821)
 out public/propuestas/x
-magick assets/images-website/propuestas-camara.png -resize 800x -strip -quality 80 "public/propuestas/camara-800.webp"
-magick assets/images-website/propuestas-camara.png -strip -quality 82 "public/propuestas/camara-1059.webp"
+# Bottom 8% cropped (promoter request); the original stays whole.
+magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -resize 800x -strip -quality 80 "public/propuestas/camara-800.webp"
+magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -strip -quality 82 "public/propuestas/camara-1059.webp"
 
 # Acoge JIA band: the archer supplied by the promoter (1922x818)
 out public/acoge/x

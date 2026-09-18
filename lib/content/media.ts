@@ -118,9 +118,9 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
         { src: "/propuestas/camara-800.webp", width: 800 },
         { src: "/propuestas/camara-1059.webp", width: 1059 },
       ],
-      ratio: 1059 / 821,
+      ratio: 1059 / 755,
       focal: { x: 55, y: 50 },
-      original: "assets/images-website/propuestas-camara.png",
+      original: "assets/images-website/propuestas-camara.png (bottom 8% cropped at build)",
       license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
     },
     {

@@ -18,7 +18,7 @@ export function Proposals({ propuestas, copy, showMarks }: Props) {
         <Action action={propuestas.action} />
       </div>
       <div className={styles.visual} data-visual="" aria-hidden="true">
-        <Surface media={propuestas.media} alt="" fallback="card" ratio={1059 / 821} sizes="(min-width: 900px) 50vw, 100vw" className={styles.visualSurface} />
+        <Surface media={propuestas.media} alt="" fallback="card" ratio={1059 / 755} sizes="(min-width: 900px) 50vw, 100vw" className={styles.visualSurface} />
         <span className={styles.visualVeil} />
       </div>
     </Section>

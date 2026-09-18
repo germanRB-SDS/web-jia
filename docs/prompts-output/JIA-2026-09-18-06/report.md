@@ -13,6 +13,8 @@
 
 | Propuestas (adenda) | La imagen es una columna real como en «Servicios»: sin padding vertical en la sección, el texto lo aporta y la fotografía ocupa toda la altura, a sangre por arriba, derecha y abajo, en el 45 % del ancho. La sección de Socios pasa a fondo Marfil plano. | `Section.module.css` (`.split`), `Proposals.module.css`, `Partners.module.css` |
 
+| Propuestas (adenda 2) | Menos altura (padding vertical de la columna de texto reducido a 2,5–4 rem), columna visual del 45 % al 53 % (+18 %), recorte del 8 % inferior de la imagen en el build (el original queda intacto) y padding derecho del texto igual a la mitad del izquierdo; todo fluido. | `Section.module.css`, `scripts/build-assets.sh`, `media.ts` |
+
 ## Verificación
 
 - `tsc --noEmit`, `check:content` (49 medios), `next build`: OK. Capturas en `evidence/` (Propuestas, socios con enlaces, pie escritorio y móvil).
