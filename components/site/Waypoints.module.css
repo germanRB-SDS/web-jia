@@ -45,7 +45,7 @@
 }
 .item:hover,
 .item:focus-visible {
-  background: var(--jia-card);
+  background: var(--jia-sand-deep);
 }
 .icon {
   color: var(--jia-terracotta);

@@ -51,9 +51,7 @@ export const footer: Copy["footer"] = {
   organiza: "Organiza",
   colabora: "Colabora",
   sections: "Secciones",
-  credit: "Una iniciativa del Centro del Profesorado de Almería para y con la comunidad educativa.",
-  previewNotice:
-    "Boceto de trabajo. Los contenidos marcados como provisionales o de demostración están pendientes de validación por la organización y no constituyen información oficial.",
+  credit: "Una iniciativa del CEP de Almería para y con la comunidad educativa.",
   editionTitleNotice:
     "El título de la edición se muestra según el briefing; los carteles impresos utilizan otra denominación. Pendiente de confirmación.",
 };

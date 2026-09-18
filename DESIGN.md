@@ -11,6 +11,7 @@ colors:
   text-muted: "#71604d"
   terracotta: "#89482e"
   terracotta-deep: "#703923"
+  sand-deep: "#e2cfb2"
   line: "#c9b79f"
   copper: "#ad754d"
   olive: "#72715b"
@@ -195,6 +196,9 @@ components:
      captures in .impeccable/review/. Direction contract: `const CONTRACT` in app/layout.tsx
      (seed 0634789a). The identity guide assets/style/JIA_IDENTIDAD_VISUAL.md is the world's
      source; this file records how the build honoured, extended or deviated from it. -->
+
+
+> Update 2026-09-18 (JIA-2026-09-18-02): hover/active surface token `--jia-sand-deep` `#e2cfb2` added for waypoints, sub-menu links, secondary buttons and the dialog close; the hero photograph now meets the next section rule with no bottom fade and dissolves on the left through an SVG fractal-noise mask (`--hero-dissolve`); a registration-mark cursor (`components/site/CursorMark`) replaces the native pointer on fine pointers; footer column titles are 0.875rem; demo experience surfaces are solid olive/copper with grain and pin.
 
 ## Overview
 

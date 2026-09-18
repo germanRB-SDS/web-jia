@@ -19,6 +19,7 @@ const SHOTS = [
   { name: "desktop", width: 1440, height: 900 },
   { name: "desktop-full", width: 1440, height: 900, full: true },
   { name: "desktop-dialog", width: 1440, height: 900, open: "dialog" },
+  { name: "desktop-hover", width: 1440, height: 900, hover: "main nav a[href='#programa']" },
   { name: "tablet-full", width: 768, height: 1024, full: true, mobile: true },
   { name: "mobile", width: 390, height: 844, mobile: true },
   { name: "mobile-full", width: 390, height: 844, full: true, mobile: true },
@@ -77,6 +78,14 @@ async function main() {
       }
       if (shot.open === "dialog") {
         await evaluate(`document.querySelector('#talleres').scrollIntoView(); new Promise((res) => { const b = document.querySelector('button[aria-haspopup="dialog"]'); const t = setInterval(() => { if (document.querySelector('dialog[open]')) { clearInterval(t); res(true); } else b.click(); }, 250); setTimeout(() => { clearInterval(t); res(false); }, 6000); })`);
+      }
+      if (shot.hover) {
+        // Real pointer move so :hover styles and the custom cursor mark render.
+        await evaluate(`document.querySelector(${JSON.stringify(shot.hover)}).scrollIntoView({ block: "center", behavior: "instant" }); true`);
+        await sleep(300);
+        const rect = await evaluate(`(() => { const r = document.querySelector(${JSON.stringify(shot.hover)}).getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`);
+        await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: rect.x, y: rect.y });
+        await sleep(500);
       }
       // Fonts and every image (lazy ones forced) before capture.
       await evaluate(`(async () => { for (const img of document.images) img.loading = 'eager'; await document.fonts.ready; await Promise.all([...document.images].map((i) => i.decode().catch(() => {}))); return true; })()`);

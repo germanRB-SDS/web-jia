@@ -86,6 +86,8 @@
 .subLink:hover,
 .subLink:focus-visible {
   color: var(--jia-terracotta);
+  background: var(--jia-sand-deep);
+  border-radius: 4px;
 }
 
 /* ---- desktop ---- */

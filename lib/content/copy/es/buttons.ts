@@ -8,5 +8,4 @@ export const buttons: Buttons = {
   proposals: { present: "Presentar una propuesta" },
   host: { host: "Quiero acoger las JIA" },
   nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
-  common: { top: "Volver arriba" },
 };

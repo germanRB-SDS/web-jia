@@ -9,7 +9,7 @@ const CARTEL = "assets/cep/CARTEL #JIA26 (9).png";
  */
 export const organizations: readonly Organization[] = [
   { id: "o-junta", name: "Junta de Andalucía · Consejería de Educación", relation: "organiza", url: null, status: "provisional", provenance: { source: CARTEL } },
-  { id: "o-cep-almeria", name: "Centro del Profesorado de Almería", relation: "organiza", url: null, status: "provisional", provenance: { source: CARTEL, note: "Denominación oficial según JIA_IDENTIDAD_VISUAL.md §2." } },
+  { id: "o-cep-almeria", name: "CEP de Almería", relation: "organiza", url: null, status: "provisional", provenance: { source: CARTEL, note: "Forma corta pedida por el promotor (18-09-2026); la identidad §2 cita «Centro del Profesorado de Almería» como denominación oficial." } },
   { id: "o-cep-ejido", name: "CEP de El Ejido", relation: "organiza", url: null, status: "provisional", provenance: { source: CARTEL } },
   { id: "o-cep-cuevas", name: "CEP de Cuevas Olula", relation: "organiza", url: null, status: "provisional", provenance: { source: CARTEL } },
   { id: "o-minihollywood", name: "Minihollywood Oasys Theme Park", relation: "colabora", url: null, status: "provisional", provenance: { source: CARTEL } },

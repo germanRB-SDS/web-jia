@@ -152,9 +152,16 @@
     inset: 0;
     aspect-ratio: auto !important;
     height: 100%;
-    mask-image: linear-gradient(to right, transparent 0%, black 42%), linear-gradient(to top, transparent 0%, black 14%);
-    mask-composite: intersect;
-    -webkit-mask-composite: source-in;
+    /* The render's left edge is not a straight gradient but a torn, uneven
+       dissolve into the paper. An SVG mask displaces a horizontal gradient
+       with fractal noise to get that edge; the bottom edge is left sharp so the
+       photograph meets the next section's rule (hero-3.png). */
+    -webkit-mask-image: var(--hero-dissolve);
+    mask-image: var(--hero-dissolve);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
   .note { top: 12%; right: 30%; }
 }

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Alegreya, Barlow_Semi_Condensed, Homemade_Apple, Rokkitt } from "next/font/google";
+import { CursorMark } from "@/components/site/CursorMark";
 import { DEFAULT_LOCALE, event, LANGUAGE_BY_CODE, site } from "@/lib/content";
 import { getDictionary } from "@/lib/content/copy/dictionaries";
 import "./globals.css";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ${CONTRACT}
 -->` }} />
         {children}
+        <CursorMark />
       </body>
     </html>
   );

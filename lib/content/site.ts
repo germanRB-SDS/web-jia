@@ -14,7 +14,7 @@ export const event = {
   nameLines: ["Jornadas de", "Innovación de", "Almería"] as const,
   /** Edition hashtag printed on every official asset. */
   hashtag: "#JIA26",
-  organizerName: "Centro del Profesorado de Almería",
+  organizerName: "CEP de Almería",
 } as const;
 
 /**

@@ -47,7 +47,7 @@
   flex-wrap: wrap;
   font-family: var(--f-ui);
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--jia-sand);
@@ -84,12 +84,4 @@
   font-family: var(--f-ui);
   font-size: 0.875rem;
   color: var(--jia-line);
-}
-.top {
-  font-family: var(--f-ui);
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: var(--jia-label-tracking);
-  text-transform: uppercase;
-  color: var(--jia-ivory);
 }

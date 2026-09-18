@@ -12,7 +12,6 @@ export type Buttons = {
   proposals: { present: string };
   host: { host: string };
   nav: { menu: string; close: string; submenu: string };
-  common: { top: string };
 };
 
 export type WorkshopCopy = {
@@ -144,7 +143,6 @@ export type Copy = {
     colabora: string;
     sections: string;
     credit: string;
-    previewNotice: string;
     editionTitleNotice: string;
   };
   entities: {

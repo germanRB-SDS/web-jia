@@ -10,5 +10,5 @@ export const acogeConfig = {
   url: null as string | null,
   external: true,
   mediaIds: ["hero-2-place", null] as (string | null)[],
-  surfaces: ["card", "card"] as SurfaceToken[],
+  surfaces: ["card", "olive"] as SurfaceToken[],
 } as const;

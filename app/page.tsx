@@ -34,7 +34,7 @@ export default function Home() {
         <Proposals propuestas={m.propuestas} copy={m.copy} showMarks={showMarks} />
         <Host acoge={m.acoge} copy={m.copy} showMarks={showMarks} />
       </main>
-      <SiteFooter footer={m.footer} brand={m.brand} event={m.event} copy={m.copy} nav={m.nav} showMarks={showMarks} />
+      <SiteFooter footer={m.footer} brand={m.brand} event={m.event} copy={m.copy} />
     </>
   );
 }

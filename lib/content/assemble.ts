@@ -127,7 +127,6 @@ export type LandingModel = {
     colabora: Organization[];
     sections: { label: string; href: string }[];
     credit: string;
-    previewNotice: string | null;
     editionTitleNotice: string | null;
     marks: MarkKind[];
   };
@@ -417,9 +416,8 @@ export function getLanding(locale: Locale): LandingModel {
       colabora: organizations.filter((o) => o.relation === "colabora"),
       sections: navItems.map((n) => ({ label: n.label, href: n.href })),
       credit: copy.footer.credit,
-      previewNotice: markProvisional ? copy.footer.previewNotice : null,
       editionTitleNotice: markProvisional && edition.titleStatus === "provisional" ? copy.footer.editionTitleNotice : null,
-      marks: organizations.some((o) => o.status === "provisional") ? ["provisional"] : [],
+      marks: [],
     },
   };
 }

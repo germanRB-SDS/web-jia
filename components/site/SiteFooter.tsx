@@ -1,13 +1,11 @@
-import type { LandingModel, MarkKind } from "@/lib/content";
-import { Marks } from "@/components/primitives/Mark";
+import type { LandingModel } from "@/lib/content";
 import { Picture } from "@/components/primitives/Picture";
 import styles from "./SiteFooter.module.css";
 
-type Props = Pick<LandingModel, "footer" | "brand" | "event" | "copy" | "nav"> & { showMarks: boolean };
+type Props = Pick<LandingModel, "footer" | "brand" | "event" | "copy">;
 
 /** Inverted ground (ink) with the ivory mark, section links and the organisations printed on the poster. */
-export function SiteFooter({ footer, brand, event, copy, nav, showMarks }: Props) {
-  const markLabels: Record<MarkKind, string> = { provisional: copy.states.provisional, demo: copy.states.demo, pending: copy.states.pending };
+export function SiteFooter({ footer, brand, event, copy }: Props) {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -36,9 +34,7 @@ export function SiteFooter({ footer, brand, event, copy, nav, showMarks }: Props
         </nav>
 
         <div className={styles.col}>
-          <h2 className={styles.colTitle}>
-            {copy.footer.organiza} <Marks marks={footer.marks} labels={markLabels} show={showMarks} />
-          </h2>
+          <h2 className={styles.colTitle}>{copy.footer.organiza}</h2>
           <ul className={styles.orgs}>
             {footer.organiza.map((o) => (
               <li key={o.id}>{o.url ? <a href={o.url}>{o.name}</a> : o.name}</li>
@@ -47,9 +43,7 @@ export function SiteFooter({ footer, brand, event, copy, nav, showMarks }: Props
         </div>
 
         <div className={styles.col}>
-          <h2 className={styles.colTitle}>
-            {copy.footer.colabora} <Marks marks={footer.marks} labels={markLabels} show={showMarks} />
-          </h2>
+          <h2 className={styles.colTitle}>{copy.footer.colabora}</h2>
           <ul className={styles.orgs}>
             {footer.colabora.map((o) => (
               <li key={o.id}>{o.url ? <a href={o.url}>{o.name}</a> : o.name}</li>
@@ -60,11 +54,7 @@ export function SiteFooter({ footer, brand, event, copy, nav, showMarks }: Props
 
       <div className={styles.bottom}>
         <div className={styles.bottomInner}>
-          {footer.previewNotice ? <p className={styles.notice}>{footer.previewNotice}</p> : null}
           {footer.editionTitleNotice ? <p className={styles.notice}>{footer.editionTitleNotice}</p> : null}
-          <a href={nav.homeHref} className={styles.top}>
-            {copy.buttons.common.top}
-          </a>
         </div>
       </div>
     </footer>
