@@ -3,6 +3,7 @@ import { Experiences } from "@/components/site/Experiences";
 import { Hero } from "@/components/site/Hero";
 import { Host } from "@/components/site/Host";
 import { Jornadas } from "@/components/site/Jornadas";
+import { Partners } from "@/components/site/Partners";
 import { Proposals } from "@/components/site/Proposals";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -32,7 +33,8 @@ export default function Home() {
         <Dossiers dosieres={m.dosieres} copy={m.copy} showMarks={showMarks} />
         <Experiences experiencias={m.experiencias} copy={m.copy} showMarks={showMarks} />
         <Proposals propuestas={m.propuestas} copy={m.copy} showMarks={showMarks} />
-        <Host acoge={m.acoge} copy={m.copy} showMarks={showMarks} />
+        <Partners partners={m.partners} />
+        <Host acoge={m.acoge} copy={m.copy} />
       </main>
       <SiteFooter footer={m.footer} brand={m.brand} event={m.event} copy={m.copy} />
     </>

@@ -67,7 +67,7 @@
 }
 .links a:hover, .orgs a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .orgs { color: var(--jia-sand); }
-.bottom { border-top: 1px solid rgb(255 255 255 / 0.12); }
+.bottom { border-top: 1px solid rgb(var(--jia-paper-rgb) / 0.12); }
 .bottomInner {
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;

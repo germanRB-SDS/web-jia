@@ -106,6 +106,8 @@ export type Organization = {
   name: string;
   relation: "organiza" | "colabora";
   url: string | null;
+  /** Media id of the logotype once supplied; null renders the name in type. */
+  logoMediaId: string | null;
   status: EditorialStatus;
   provenance: Provenance;
 };

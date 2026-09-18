@@ -7,6 +7,7 @@ import { dosieres } from "./sections/dosieres";
 import { experiencias } from "./sections/experiencias";
 import { hero, waypoints } from "./sections/hero";
 import { jornadas } from "./sections/jornadas";
+import { partners } from "./sections/partners";
 import { propuestas } from "./sections/propuestas";
 
 /** The Spanish dictionary, assembled from its section files. */
@@ -23,6 +24,7 @@ export const dictionaryEs: Copy = {
   experiencias,
   propuestas,
   acoge,
+  partners,
   footer,
   entities: { workshops, experiences, resources },
 };

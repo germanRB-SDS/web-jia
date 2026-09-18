@@ -138,6 +138,7 @@ export type Copy = {
   };
   propuestas: { title: string; paragraphs: string[]; unavailable: string; status: EditorialStatus };
   acoge: { title: string; paragraphs: string[]; unavailable: string; status: EditorialStatus };
+  partners: { kicker: string; title: string; text: string; organiza: string; colabora: string; logosPending: string };
   footer: {
     organiza: string;
     colabora: string;

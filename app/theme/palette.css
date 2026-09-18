@@ -24,6 +24,7 @@
   --jia-paper-rgb: 241 231 216;
   --jia-ink-rgb: 47 24 11;
   --jia-sand-rgb: 237 221 199;
+  --jia-ivory-rgb: 246 238 223;
 
   /* Superficies de sustitución para imágenes ausentes (config/media.ts referencia
      estos nombres por token, p. ej. `fallback: "sand"`). */

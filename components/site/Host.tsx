@@ -1,29 +1,38 @@
-import type { LandingModel, MarkKind } from "@/lib/content";
+import type { LandingModel } from "@/lib/content";
 import { Action } from "@/components/primitives/Action";
 import { Surface } from "@/components/primitives/Surface";
-import { Section } from "./Section";
 import styles from "./Host.module.css";
 
-type Props = { acoge: LandingModel["acoge"]; copy: LandingModel["copy"]; showMarks: boolean };
+type Props = { acoge: LandingModel["acoge"]; copy: LandingModel["copy"] };
 
-/** Area 5: host a future edition. Solid palette surfaces stand in for the photographs to come. */
-export function Host({ acoge, copy, showMarks }: Props) {
-  const markLabels: Record<MarkKind, string> = { provisional: copy.states.provisional, demo: copy.states.demo, pending: copy.states.pending };
+/**
+ * Area 5: host a future edition. A full-bleed photographic band: the archer
+ * holds the left, the clear ground on the right carries the call. The band
+ * fades in from paper at the top and into ink at the bottom so it hands over
+ * to the footer without a seam.
+ */
+export function Host({ acoge, copy }: Props) {
   return (
-    <Section id={acoge.id} title={acoge.title} markLabels={markLabels} showMarks={showMarks}>
-      <div className={styles.split}>
-        <div className={styles.panels} aria-hidden="true">
-          {acoge.panels.map((panel, i) => (
-            <Surface key={i} media={panel.media} alt="" fallback={panel.fallback} ratio={i === 0 ? 4 / 5 : 1} className={styles.panel} />
-          ))}
-        </div>
+    <section id={acoge.id} className={styles.band} aria-labelledby={`${acoge.id}-title`}>
+      <div className={styles.photo}>
+        <Surface media={acoge.media} alt={acoge.alt} fallback={acoge.fallback} ratio={1922 / 818} sizes="100vw" className={styles.surface} />
+      </div>
+      <div className={styles.inner}>
         <div className={styles.text}>
+          <h2 id={`${acoge.id}-title`} className={styles.title}>
+            {acoge.title}
+          </h2>
           {acoge.paragraphs.map((p) => (
-            <p key={p}>{p}</p>
+            <p key={p} className={styles.p}>
+              {p}
+            </p>
           ))}
           <Action action={acoge.action} />
         </div>
       </div>
-    </Section>
+      <span className={styles.hint} aria-hidden="true">
+        {copy.nav.areas.acoge}
+      </span>
+    </section>
   );
 }

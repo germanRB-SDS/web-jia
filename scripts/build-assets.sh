@@ -23,6 +23,11 @@ for name in hero-almeria-docentes hero-2-almeria-docentes; do
   magick "$src" -crop 1021x941+300+0 +repage -strip -quality 82 "public/hero/$name-crop-1021.webp"
 done
 
+# Acoge JIA band: the archer supplied by the promoter (1922x818)
+out public/acoge/x
+magick assets/images-website/acoge-arquero.png -resize 960x -strip -quality 80 "public/acoge/arquero-960.webp"
+magick assets/images-website/acoge-arquero.png -strip -quality 82 "public/acoge/arquero-1922.webp"
+
 # Official #JIA26 badge (has alpha). PNG keeps transparency for the header.
 out public/brand/x
 magick "assets/cep/logo-variantes/#jIA26 LOGO.png" -resize 320x -strip "public/brand/jia26-badge-320.png"

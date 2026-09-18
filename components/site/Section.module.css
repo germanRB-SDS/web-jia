@@ -3,6 +3,9 @@
   scroll-margin-top: 4.5rem;
 }
 .paper { background: var(--jia-paper); }
+.ivory {
+  background: linear-gradient(180deg, var(--jia-paper) 0%, var(--jia-ivory) 18%, var(--jia-ivory) 100%);
+}
 .sand {
   background: linear-gradient(180deg, var(--jia-sand) 0%, var(--jia-paper) 100%);
 }

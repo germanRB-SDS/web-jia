@@ -2,7 +2,7 @@ import type { LandingModel, MarkKind } from "@/lib/content";
 import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
-import { Section, SubSection } from "./Section";
+import { SubSection } from "./Section";
 import styles from "./Jornadas.module.css";
 
 type Props = {
@@ -28,16 +28,28 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
   };
 
   return (
-    <Section id={jornadas.id} title={jornadas.title} markLabels={markLabels} showMarks={showMarks}>
-      <div className={styles.intro}>
-        <p className={styles.introText}>{jornadas.intro}</p>
-        {jornadas.poster ? (
-          <figure className={styles.poster}>
-            <Surface media={jornadas.poster} alt={copy.a11y.cartel} fallback="sand" sizes="(min-width: 900px) 320px, 70vw" />
-            <figcaption className={styles.posterCaption}>{jornadas.hashtag}</figcaption>
-          </figure>
-        ) : null}
+    <section id={jornadas.id} aria-labelledby={`${jornadas.id}-title`}>
+      {/* The room: an ink band with one key light, the statement on the left and
+          the poster bleeding off the right edge (maryna-ventura's "Sobre" spread). */}
+      <div className={styles.band}>
+        <span className={styles.key} aria-hidden="true" />
+        <div className={styles.bandInner}>
+          <div className={styles.bandText}>
+            <h2 id={`${jornadas.id}-title`} className={styles.bandTitle}>
+              {jornadas.title}
+            </h2>
+            <p className={styles.statement}>{jornadas.intro}</p>
+          </div>
+          {jornadas.poster ? (
+            <figure className={styles.poster}>
+              <Surface media={jornadas.poster} alt={copy.a11y.cartel} fallback="sand" sizes="(min-width: 900px) 34vw, 80vw" className={styles.posterSurface} />
+              <figcaption className={styles.posterCaption}>{jornadas.hashtag}</figcaption>
+            </figure>
+          ) : null}
+        </div>
       </div>
+
+      <div className={styles.spreads}>
 
       {/* ---- Programa ---- */}
       <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks}>
@@ -143,6 +155,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
           <p className={styles.note}>{copy.states.pending}</p>
         )}
       </SubSection>
-    </Section>
+      </div>
+    </section>
   );
 }

@@ -46,6 +46,6 @@ export const site = {
      * reviewers can tell proposals from confirmed facts. Set to false only
      * after every marked item has been validated or removed (brief §12).
      */
-    markProvisional: true,
+    markProvisional: false,
   },
 } as const;

@@ -2,13 +2,14 @@ import type { SurfaceToken } from "../data/types";
 
 /**
  * ACOGE JIA. `url` is the external hosting form supplied by the organisation.
- * While null, the action renders as unavailable. `surfaces` are the solid
- * colour blocks used until photographs exist; swap for media ids in `mediaIds`.
+ * While null, the action renders as unavailable. The band is a full-bleed
+ * photograph (`mediaId`) whose clear right side carries the text; with no
+ * media it falls back to a solid palette surface.
  */
 export const acogeConfig = {
   id: "acoge",
   url: null as string | null,
   external: true,
-  mediaIds: ["hero-2-place", null] as (string | null)[],
-  surfaces: ["card", "olive"] as SurfaceToken[],
+  mediaId: "acoge-arquero" as string | null,
+  fallbackSurface: "sand" as SurfaceToken,
 } as const;

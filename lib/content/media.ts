@@ -100,6 +100,18 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
     },
     {
+      /** Acoge JIA band. The subject stands on the left; the right two thirds are clear ground for text. */
+      id: "acoge-arquero",
+      variants: [
+        { src: "/acoge/arquero-960.webp", width: 960 },
+        { src: "/acoge/arquero-1922.webp", width: 1922 },
+      ],
+      ratio: 1922 / 818,
+      focal: { x: 22, y: 40 },
+      original: "assets/images-website/acoge-arquero.png",
+      license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       id: "badge-jia26",
       variants: [
         { src: "/brand/jia26-badge-320.png", width: 320 },

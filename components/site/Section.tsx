@@ -10,7 +10,7 @@ type SectionProps = {
   marks?: MarkKind[];
   markLabels: Record<MarkKind, string>;
   showMarks: boolean;
-  tone?: "paper" | "sand" | "ink";
+  tone?: "paper" | "sand" | "ink" | "ivory";
   children: ReactNode;
 };
 

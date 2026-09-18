@@ -200,6 +200,9 @@ components:
 
 > Update 2026-09-18 (JIA-2026-09-18-02): hover/active surface token `--jia-sand-deep` `#e2cfb2` added for waypoints, sub-menu links, secondary buttons and the dialog close; the hero photograph now meets the next section rule with no bottom fade and dissolves on the left through an SVG fractal-noise mask (`--hero-dissolve`); a registration-mark cursor (`components/site/CursorMark`) replaces the native pointer on fine pointers; footer column titles are 0.875rem; demo experience surfaces are solid olive/copper with grain and pin.
 
+
+> Update 2026-09-18 (JIA-2026-09-18-03): ground rhythm now alternates bands — paper (hero, waypoints) → ink band (Jornadas: copper key light, ivory statement ≤22ch, poster bleeding right/bottom) → paper spreads → sand→paper (Dosieres) → paper (Experiencias) → sand (Propuestas) → paper→ivory (Partners strip, `components/site/Partners`) → full-bleed photograph (Acoge: archer, paper fade at the top, ink fade at the bottom) → ink footer. Hero entrance: `focus-in` on the lockup lines and staggered `rise` (350–650 ms) on rule, title, dateline, lede and actions; one-shot warm key light (`.light`, radial + conic mask, `exposure` 2.6 s) and a `develop` filter ramp on the photograph; all off under reduced motion. Provisional/demo chips are switched off (`site.preview.markProvisional=false`). New token `--jia-ivory-rgb`.
+
 ## Overview
 
 **Creative North Star: "The Teacher's Field Notebook"**

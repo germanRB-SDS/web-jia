@@ -121,7 +121,15 @@ export type LandingModel = {
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   experiencias: { id: string; title: string; lede: string; hint: string; empty: string; demoNotice: string | null; items: SheetModel[]; marks: MarkKind[] };
   propuestas: { id: string; title: string; paragraphs: string[]; action: Action; marks: MarkKind[] };
-  acoge: { id: string; title: string; paragraphs: string[]; action: Action; panels: { media: Media | null; fallback: SurfaceToken }[]; marks: MarkKind[] };
+  partners: {
+    id: string;
+    kicker: string;
+    title: string;
+    text: string;
+    logosPending: string | null;
+    groups: { key: "organiza" | "colabora"; label: string; items: { id: string; name: string; url: string | null; logo: Media | null }[] }[];
+  };
+  acoge: { id: string; title: string; paragraphs: string[]; action: Action; media: Media | null; alt: string; fallback: SurfaceToken; marks: MarkKind[] };
   footer: {
     organiza: Organization[];
     colabora: Organization[];
@@ -403,12 +411,26 @@ export function getLanding(locale: Locale): LandingModel {
       action: externalOrUnavailable("proposals-present", copy.buttons.proposals.present, propuestasConfig.url, copy.propuestas.unavailable),
       marks: marksOf(copy.propuestas.status),
     },
+    partners: {
+      id: "socios",
+      kicker: copy.partners.kicker,
+      title: copy.partners.title,
+      text: copy.partners.text,
+      logosPending: organizations.some((o) => !o.logoMediaId) ? copy.partners.logosPending : null,
+      groups: (["organiza", "colabora"] as const).map((key) => ({
+        key,
+        label: copy.partners[key],
+        items: organizations.filter((o) => o.relation === key).map((o) => ({ id: o.id, name: o.name, url: o.url, logo: getMedia(o.logoMediaId) })),
+      })),
+    },
     acoge: {
       id: acogeConfig.id,
       title: copy.acoge.title,
       paragraphs: copy.acoge.paragraphs,
       action: externalOrUnavailable("host-apply", copy.buttons.host.host, acogeConfig.url, copy.acoge.unavailable),
-      panels: acogeConfig.surfaces.map((token, i) => ({ media: getMedia(acogeConfig.mediaIds[i] ?? null), fallback: token })),
+      media: getMedia(acogeConfig.mediaId),
+      alt: "",
+      fallback: acogeConfig.fallbackSurface,
       marks: marksOf(copy.acoge.status),
     },
     footer: {
