@@ -145,10 +145,11 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
       {/* ---- Talleres ---- */}
       <SubSection id={jornadas.anchors.talleres} label={jornadas.workshops.title} markLabels={markLabels} showMarks={showMarks}>
-        <p className={styles.lede}>{jornadas.workshops.lede}</p>
-        <p className={styles.hint}>
-          <Marks marks={jornadas.workshops.marks} labels={markLabels} show={showMarks} /> {jornadas.workshops.hint}
-        </p>
+        {showMarks && jornadas.workshops.marks.length ? (
+          <p className={styles.hint}>
+            <Marks marks={jornadas.workshops.marks} labels={markLabels} show={showMarks} />
+          </p>
+        ) : null}
         {jornadas.workshops.items.length ? (
           <div className={styles.grid}>
             {jornadas.workshops.items.map((sheet) => (

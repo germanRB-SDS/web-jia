@@ -126,6 +126,43 @@
 .open svg { transition: transform 220ms var(--ease-out); }
 .open:hover, .open:focus-visible { color: var(--jia-terracotta-deep); }
 .open:hover svg, .open:focus-visible svg { transform: translateX(3px); }
+/* "Descargar dosier": the same voice as "Ver ficha", one line below it. */
+.download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  margin-top: -0.35rem;
+  padding: 0.35rem 0.1rem;
+  justify-self: start;
+  align-self: start;
+  color: var(--jia-terracotta);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.download svg { flex: none; transition: transform 220ms var(--ease-out); }
+a.download:hover, a.download:focus-visible { color: var(--jia-terracotta-deep); }
+a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px); }
+.downloadPending {
+  color: var(--jia-text-muted);
+  cursor: not-allowed;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .download svg { transition: none; }
+}
 .pending {
   font-family: var(--f-ui);
   font-size: 0.8125rem;

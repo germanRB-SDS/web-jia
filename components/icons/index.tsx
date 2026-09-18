@@ -170,3 +170,13 @@ export function SoundOffIcon(props: IconProps) {
     </svg>
   );
 }
+
+/** "Download": an arrow into a tray, same grid and stroke as the family. */
+export function DownloadIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M32 12v28M21 30l11 11 11-11" />
+      <path d="M14 50h36" />
+    </svg>
+  );
+}

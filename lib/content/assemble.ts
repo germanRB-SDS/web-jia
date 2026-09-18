@@ -22,7 +22,7 @@ import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
 import { jornadasIntroVideo } from "./sections/jornadas-intro-video";
-import { TALLERES } from "./config/talleres";
+import { TALLERES, TALLERES_DOSIERES } from "./config/talleres";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
 import { edition, event, productionStudio, site } from "./site";
@@ -56,6 +56,8 @@ export type SheetModel = {
   sections: SheetSection[];
   related: { label: string; items: { label: string; href: string }[] }[];
   document: { label: string; href: string } | null;
+  /** "Descargar dosier" under the card's open button (workshops only); href null = link not supplied yet. */
+  download?: { label: string; href: string | null; pendingNote: string } | null;
   /** True when no sheet source exists: the card shows "ficha pendiente" and opens nothing. */
   pending: boolean;
 };
@@ -145,7 +147,7 @@ export type LandingModel = {
     program: { title: string; note: string; days: DayModel[] };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
-    workshops: { title: string; lede: string; hint: string; marks: MarkKind[]; items: SheetModel[] };
+    workshops: { title: string; marks: MarkKind[]; items: SheetModel[] };
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   experiencias: { id: string; title: string; lede: string; hint: string; empty: string; demoNotice: string | null; items: SheetModel[]; marks: MarkKind[] };
@@ -245,6 +247,7 @@ function workshopSheet(w: Workshop, copy: Copy): SheetModel {
       ...(relatedResources.length ? [{ label: labels.relatedResources, items: relatedResources }] : []),
     ],
     document: w.sheet && w.sheet.kind !== "text" ? { label: copy.buttons.sheet.viewDocument, href: w.sheet.url } : null,
+    download: { label: copy.buttons.sheet.downloadDossier, href: TALLERES_DOSIERES[workshops.indexOf(w)] ?? null, pendingNote: copy.buttons.sheet.dossierPending },
     pending: w.sheet === null,
   };
 }
@@ -420,8 +423,6 @@ export function getLanding(locale: Locale): LandingModel {
         : null,
       workshops: {
         title: copy.jornadas.workshops.title,
-        lede: copy.jornadas.workshops.lede,
-        hint: copy.states.hoverHint,
         marks: workshops.some((w) => copy.entities.workshops[w.id]?.status === "provisional") ? ["provisional"] : [],
         items: workshops.map((w) => workshopSheet(w, copy)),
       },

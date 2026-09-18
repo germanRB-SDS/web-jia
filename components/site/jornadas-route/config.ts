@@ -146,8 +146,9 @@ export const ROUTE_CONFIG = {
   road: {
     width: 2.4,
     discRadius: 2.0,
-    /** Hand-drawn character (sketch): relative wobble of the road's width and of each disc's outline ("patatas"). */
-    handDrawn: { width: 0.16, disc: 0.17 },
+    /** Hand-drawn character: relative wobble of the road's width and of each disc's outline. Both 0 since
+        JIA-2026-09-18-13 (the promoter wants an even line and round stops); -10 used 0.16 / 0.17. */
+    handDrawn: { width: 0, disc: 0 },
     colors: { road: "--jia-sand-deep", disc: "--jia-line", discActive: "--jia-terracotta" },
     shadowOpacity: 0.22,
     /** Stacking on Y to avoid z-fighting: road, discs, shadow catcher, wagon. */

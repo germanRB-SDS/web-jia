@@ -17,6 +17,21 @@ export const TALLER_4 = "Siete legos para siete planos";
 export const TALLER_5 = "La profe que pintó a Liberty Valance";
 export const TALLER_6 = "La muerte tenía un micro";
 
+/**
+ * DOSIER DE CADA TALLER (JIA-2026-09-18-13): la URL que abre «Descargar dosier» en la tarjeta del
+ * taller, bajo «Ver ficha». `null` = aún sin enlace: la tarjeta lo muestra como pendiente. Basta
+ * pegar aquí la URL (https://…) o una ruta del sitio (/dosieres/archivo.pdf) para activarlo.
+ * Mismo orden que TALLER_N y que data/workshops.ts.
+ */
+export const TALLER_1_DOSIER: string | null = null;
+export const TALLER_2_DOSIER: string | null = null;
+export const TALLER_3_DOSIER: string | null = null;
+export const TALLER_4_DOSIER: string | null = null;
+export const TALLER_5_DOSIER: string | null = null;
+export const TALLER_6_DOSIER: string | null = null;
+
+export const TALLERES_DOSIERES: readonly (string | null)[] = [TALLER_1_DOSIER, TALLER_2_DOSIER, TALLER_3_DOSIER, TALLER_4_DOSIER, TALLER_5_DOSIER, TALLER_6_DOSIER];
+
 /** Todas las constantes en orden; el recorrido usa las `NUMERO_DE_TALLERES` primeras. */
 const TALLERES_DEFINIDOS = [TALLER_1, TALLER_2, TALLER_3, TALLER_4, TALLER_5, TALLER_6] as const;
 

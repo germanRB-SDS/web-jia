@@ -2,7 +2,7 @@
 
 import { useCallback, useId, useState } from "react";
 import type { MarkKind, SheetModel } from "@/lib/content";
-import { ArrowIcon } from "@/components/icons";
+import { ArrowIcon, DownloadIcon } from "@/components/icons";
 import { Marks } from "./Mark";
 import { SheetDialog } from "./SheetDialog";
 import { Surface } from "./Surface";
@@ -78,6 +78,21 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
           )}
           <Marks marks={sheet.marks.filter((m) => m !== "provisional")} labels={labels.marks} show={showMarks} />
         </div>
+        {/* Under "Ver ficha": the workshop's dossier. Without a link yet it is a plain pending label, never a dead button. */}
+        {sheet.download ? (
+          sheet.download.href ? (
+            <a className={styles.download} href={sheet.download.href} target="_blank" rel="noopener noreferrer">
+              <span>{sheet.download.label}</span>
+              <DownloadIcon size={18} />
+            </a>
+          ) : (
+            <span className={`${styles.download} ${styles.downloadPending}`} aria-disabled="true" title={sheet.download.pendingNote}>
+              <span>{sheet.download.label}</span>
+              <DownloadIcon size={18} />
+              <span className={styles.srOnly}>{sheet.download.pendingNote}</span>
+            </span>
+          )
+        ) : null}
       </div>
 
       {sheet.pending ? null : (

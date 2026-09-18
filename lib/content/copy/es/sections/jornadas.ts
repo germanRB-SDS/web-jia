@@ -49,7 +49,6 @@ export const jornadas: Copy["jornadas"] = {
   },
   workshops: {
     title: "Talleres",
-    lede: "Cada taller lleva nombre de película y una propuesta práctica para el aula. Abre la ficha para ver quién lo imparte y de qué trata.",
     peopleLabel: "Imparte",
     themeLabel: "Temática",
     summaryLabel: "De qué trata",
