@@ -1,12 +1,11 @@
 # Checkpoint de continuidad — JIA-2026-09-18-10
 
-- Objetivo activo: ejecutar `docs/prompts/JIA-2026-09-18-10-camino-boceto-intro-video.md` (camino según boceto con lazo
-  y discos irregulares; bloque Intro con vídeo antes de #programa; constante de sección para el vídeo).
-- Estado: prompt guardado y commiteado; NADA implementado aún. Pregunta del vídeo respondida en el prompt.
-- Último módulo tocado (JIA-2026-09-18-09, ya en origin/main c8193e4): `components/site/jornadas-route/`,
-  `lib/content/config/talleres.ts`, `components/site/SiteFooter.*`.
-- Verificaciones vigentes: tsc, check:content, next build en verde; evidencias en docs/prompts-output/JIA-2026-09-18-09/.
-- Restricciones activas: Blender solo por CLI en este repo (MCP admitido solo en el hub); push con
-  `sds-dev-governance/scripts/git-safe-push.sh origin main`; sin Spline; el servidor de :3005 sirve `out/` (hacer
-  `next build` antes de capturar); `http.postBuffer` ampliado en este repo.
-- Comando para continuar: «Ejecuta docs/prompts/JIA-2026-09-18-10-camino-boceto-intro-video.md».
+- Estado: **EJECUTADO Y CERRADO** (2026-09-18). Informe en `../report.md`.
+- Commits: `57258db` prompt ampliado · `dc7c525` camino + Intro + entradilla (rollback previo al cubo) · `7182dcc` Colabora ·
+  `1b2af7f` cubo 3D · informe (commit siguiente).
+- Módulos tocados: `components/site/jornadas-route/`, `components/site/IntroVideo.*`, `components/cube-carousel/`,
+  `lib/content/sections/jornadas-intro-video.ts`, `lib/content/data/organizations.ts`, `scripts/qa-route.mjs`, `scripts/qa-cube.mjs`.
+- Verificaciones vigentes: tsc, check:content, next build en verde; evidencias en `../evidence/`.
+- Pendiente del promotor: alojamiento definitivo del vídeo (constante `JORNADAS_INTRO_VIDEO_URL`), revisión del cubo en iOS/Safari.
+- Restricciones activas: push con `sds-dev-governance/scripts/git-safe-push.sh origin main`; el servidor de :3005 sirve `out/`
+  (hacer `next build` antes de capturar); ffmpeg no está instalado en el sistema (se usó un binario estático temporal).
