@@ -68,7 +68,7 @@ magick assets/images-website/acoge-arquero.png -strip -quality 82 "public/acoge/
 # Collaborators' cards (JIA-2026-09-18-24): each entity's logotype composed on a western still (1448x1086, 4:3,
 # the card's image slot). The slot is ~272 CSS px wide: 420 covers density 1, 840 densities 2-3.
 out public/colaboradores/x
-for name in sds minihollywood leonardo kichi lagata; do
+for name in consejeria-educacion sds minihollywood leonardo kichi lagata; do
   src="assets/images-logo-companies/logo-final-$name.png"
   magick "$src" -resize 420x -strip -quality 80 "public/colaboradores/$name-420.webp"
   magick "$src" -resize 840x -strip -quality 82 "public/colaboradores/$name-840.webp"

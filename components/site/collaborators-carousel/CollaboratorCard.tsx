@@ -13,8 +13,8 @@ type Props = {
 };
 
 /**
- * A collaborator's card: the image (a solid palette surface until its photograph arrives), the name centred
- * in the space under it, and a round arrow that opens the entity's site. Only the arrow is a link, so the
+ * A collaborator's card: the image (a solid palette surface if it is missing), the name under it,
+ * starting on its left edge, and a round arrow that opens the entity's site. Only the arrow is a link, so the
  * rest of the card is free to be dragged.
  */
 export function CollaboratorCard({ item, index, copy }: Props) {

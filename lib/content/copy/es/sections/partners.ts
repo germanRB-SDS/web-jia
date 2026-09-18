@@ -7,7 +7,7 @@ export const partners: Copy["partners"] = {
   /** `{o-…}` placeholders are replaced by the organisation's name (linked when it has a URL). */
   text: "Las Jornadas de Innovación de Almería las organizan el {o-cep-almeria}, el {o-cep-ejido} y el {o-cep-cuevas}, dentro de la Consejería de Educación de la Junta de Andalucía, con la colaboración de las entidades que aparecen a continuación.",
   carousel: {
-    label: "Entidades colaboradoras",
+    label: "Entidades que organizan y colaboran",
     hint: "Arrastra a izquierda o derecha",
     /** `{name}` */
     visit: "Visitar la web de {name} (se abre en una pestaña nueva)",

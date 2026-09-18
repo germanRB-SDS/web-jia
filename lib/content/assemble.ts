@@ -164,7 +164,7 @@ export type LandingModel = {
     title: string;
     /** Text split into plain runs and organisation links, in order. */
     text: ({ kind: "text"; value: string } | { kind: "org"; id: string; name: string; url: string | null })[];
-    /** One card per collaborator, in data order. `link` is null while the entity has no URL. */
+    /** One card per entity listed in sections/socios.ts, in that order. `link` is null while the entity has no URL. */
     carousel: {
       label: string;
       hint: string;
@@ -481,8 +481,9 @@ export function getLanding(locale: Locale): LandingModel {
       carousel: {
         label: copy.partners.carousel.label,
         hint: copy.partners.carousel.hint,
-        items: organizations
-          .filter((o) => o.relation === "colabora")
+        items: sociosConfig.carouselIds
+          .map((id) => organizations.find((o) => o.id === id))
+          .filter((o): o is Organization => Boolean(o))
           .map((o) => ({
             id: o.id,
             name: o.name,

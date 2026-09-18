@@ -6,7 +6,10 @@ import type { SurfaceToken } from "../data/types";
  */
 export const sociosConfig = {
   id: "socios",
+  /** The carousel's cards, in order: the Junta (an organiser, at the promoter's request) and the collaborators. */
+  carouselIds: ["o-junta", "o-south-desert-studio", "o-minihollywood", "o-leonardo", "o-kichigarcia", "o-gata-purpura"],
   cardSurfaces: {
+    "o-junta": "sand",
     "o-south-desert-studio": "terracotta",
     "o-minihollywood": "copper",
     "o-leonardo": "olive",

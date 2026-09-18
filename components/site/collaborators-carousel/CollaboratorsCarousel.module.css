@@ -49,17 +49,17 @@
 .image { border-radius: 8px; overflow: hidden; pointer-events: none; }
 /* A solid colour, as asked, until the photograph arrives: no pin on it (Surface's empty state). */
 .image::before { display: none; }
-/* Name centred on the card's axis: the empty first column mirrors the arrow's. */
+/* The name starts on the image's left edge (the card's padding); the arrow keeps the right one. */
 .foot {
   display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem;
+  grid-template-columns: minmax(0, 1fr) 2.75rem;
   align-items: center;
   gap: 0.5rem;
   min-height: 5.25rem;
   padding-top: 0.75rem;
 }
 .name {
-  grid-column: 2;
+  grid-column: 1;
   margin: 0;
   font-family: var(--f-display);
   font-weight: 700;
@@ -67,12 +67,12 @@
   line-height: 1.2;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   text-wrap: balance;
   color: var(--jia-ivory);
 }
 .go {
-  grid-column: 3;
+  grid-column: 2;
   width: 2.75rem;
   height: 2.75rem;
   display: grid;

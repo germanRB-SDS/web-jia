@@ -7,11 +7,11 @@ const CARTEL = "assets/cep/CARTEL #JIA26 (9).png";
  * the event poster. The organisers go by name only (the poster logos were not supplied as
  * separate files and are not cropped from it); each collaborator has its card image
  * (`logoMediaId`, JIA-2026-09-18-24), matched to it by the original's file name. The collaborators' URLs were given by the promoter
- * (chat, 18-09-2026, JIA-2026-09-18-16); the Junta's is unknown (null). South Desert Studio
+ * (chat, 18-09-2026, JIA-2026-09-18-16), and so was the Junta's (JIA-2026-09-18-25). South Desert Studio
  * is not on the poster: the promoter added it at the head of "Colabora".
  */
 export const organizations: readonly Organization[] = [
-  { id: "o-junta", name: "Junta de Andalucía · Consejería de Educación", relation: "organiza", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
+  { id: "o-junta", name: "Junta de Andalucía · Consejería de Educación", relation: "organiza", url: "https://www.juntadeandalucia.es/organismos/educacion.html", logoMediaId: "colabora-consejeria-educacion", status: "provisional", provenance: { source: CARTEL, note: "URL y tarjeta del carrusel pedidas por el promotor (chat, 18-09-2026, JIA-2026-09-18-25)." } },
   { id: "o-cep-almeria", name: "CEP de Almería", relation: "organiza", url: "https://www.juntadeandalucia.es/educacion/portales/web/cep-almeria", logoMediaId: null, status: "provisional", provenance: { source: CARTEL, note: "Forma corta pedida por el promotor (18-09-2026); la identidad §2 cita «Centro del Profesorado de Almería» como denominación oficial." } },
   { id: "o-cep-ejido", name: "CEP de El Ejido", relation: "organiza", url: "https://www.juntadeandalucia.es/educacion/portales/web/cep-ejido/datos-del-cep", logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
   { id: "o-cep-cuevas", name: "CEP de Cuevas-Olula", relation: "organiza", url: "https://www.juntadeandalucia.es/educacion/portales/web/cep-cuevas-olula", logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },

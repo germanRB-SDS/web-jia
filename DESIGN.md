@@ -218,6 +218,8 @@ components:
 
 > Update 2026-09-18 (JIA-2026-09-18-24): each collaborator card carries its image (the entity's logotype composed on a western still, 1448×1086, 4:3) in the same slot — card and slot sizes unchanged (296×312 / 272×204 at 1440; 264×288 / 240×180 at 390), `object-fit: cover` crops any other proportion, the palette surface stays as fallback. The strip now drifts by itself from right to left at 28 px/s (`config.ts`), easing in and out (450 ms); it stops for a press, a mouse over it, keyboard focus inside, off screen and in a hidden tab, and resumes 1.4 s after a drag, wheel or key. A release keeps its momentum without settling on a card. No drift under reduced motion.
 
+> Update 2026-09-18 (JIA-2026-09-18-25): the carousel's cards come from an ordered list (`sections/socios.ts` `carouselIds`): the Junta de Andalucía first, then the five collaborators. The card name is no longer centred: it starts on the image's left edge (the card's 0.75rem padding), left-aligned, with the round chevron on the right edge.
+
 ## Overview
 
 **Creative North Star: "The Teacher's Field Notebook"**
