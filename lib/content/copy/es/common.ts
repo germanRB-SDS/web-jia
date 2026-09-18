@@ -30,7 +30,7 @@ export const a11y: Copy["a11y"] = {
   cardOf: "Tarjeta de {name}, {role}",
   sheetOf: "Ficha: {title}",
   teamRegion: "Equipo de las jornadas",
-  venueMap: "Abrir {venue} en Google Maps (se abre en una pestaña nueva)",
+  venueMap: "Cómo ir a {venue}: abrir en Google Maps (pestaña nueva)",
   waypointsRegion: "Atajos a las secciones principales",
   mainNav: "Navegación principal",
   provisionalMark: "Contenido provisional",

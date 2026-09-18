@@ -33,7 +33,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgb(var(--jia-sand-rgb) / 0.35) 0%, rgb(var(--jia-sand-rgb) / 0) 30%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--jia-sand-deep) 40%, transparent) 0%, transparent 30%);
 }
 @media (min-width: 900px) {
   .visual {

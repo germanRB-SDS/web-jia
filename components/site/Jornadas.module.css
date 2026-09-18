@@ -136,33 +136,28 @@
   font-size: 1rem;
   color: var(--jia-text);
 }
-/* The venue on a map: a ring like the site's other round controls, the pin inside (44 px target). */
+/* The venue on a map: a text link, an arrow pointing at the words (it nudges towards them on hover). */
 .mapLink {
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-top: 0.2rem;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 1.5px solid var(--jia-terracotta);
+  min-height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
   color: var(--jia-terracotta);
-  --map-ground: var(--jia-copper);
-  --map-dot: var(--jia-ink);
-  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
 }
-.mapLink:hover {
-  background: var(--jia-terracotta);
-  color: var(--jia-ivory);
-  --map-ground: var(--jia-sand-deep);
-  --map-dot: var(--jia-ivory);
-}
-.mapLink:active { transform: scale(0.94); }
+.mapLink:hover { color: var(--jia-terracotta-deep); }
 .mapLink:focus-visible {
   outline: 2px solid var(--jia-terracotta);
   outline-offset: 3px;
+  border-radius: 2px;
 }
+.mapArrow { flex: none; transition: translate 160ms var(--ease-out); }
+.mapLink:hover .mapArrow { translate: 3px 0; }
 @media (prefers-reduced-motion: reduce) {
-  .mapLink { transition: none; }
+  .mapArrow { transition: none; }
 }
 .sessions {
   list-style: none;

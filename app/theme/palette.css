@@ -40,7 +40,7 @@
 
   /* Sistema de fondos (JIA-2026-09-18-15, extensión pedida por el promotor). Una escala de pergamino de cinco
      pasos, de más claro a más denso, y tres recetas que solo combinan esos pasos. Las superficies de papel se
-     suceden compartiendo el color de su junta (2 → 3 → 3 → 4) y la página desemboca en el paso 4, #ece2d2.
+     suceden compartiendo el color de su junta (2 → 3 → 3, banda honda, 4) y la página desemboca en el paso 4, #ece2d2.
      El paso 5 queda en reserva y nunca es fondo de texto: el texto secundario baja de 4,5:1 sobre él. */
   --jia-vellum-1: #f6eee2;
   --jia-vellum-2: #f3eadc;
@@ -50,11 +50,12 @@
   /* La luz de esquina del hero, muy grande y muy tenue. Solo donde la junta superior no es papel (vídeo,
      fotografía): sobre una junta de papel haría un escalón en la esquina. */
   --jia-bg-light: radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--jia-vellum-1) 85%, transparent) 0%, color-mix(in srgb, var(--jia-vellum-1) 40%, transparent) 32%, transparent 70%);
-  /* «Abre»: el papel entra claro y se asienta. «Reposa»: respira hacia el centro y vuelve. «Llega»: baja al
-     paso 4 y se queda en él el último tercio. */
+  /* «Abre»: el papel entra claro y se asienta. «Reposa»: respira hacia el centro y vuelve. «Hondo»: la banda de
+     «Tu propuesta JIA», más densa a propósito (arena profunda, JIA-2026-09-18-16) para que contraste con el
+     paso 4 de la sección que la sigue; va con fotografía, como las otras bandas densas de la página. */
   --jia-bg-open: var(--jia-bg-light), linear-gradient(180deg, var(--jia-vellum-2) 0%, var(--jia-vellum-3) 100%);
   --jia-bg-rest: linear-gradient(180deg, var(--jia-vellum-3) 0%, var(--jia-vellum-2) 46%, var(--jia-vellum-3) 100%);
-  --jia-bg-arrive: linear-gradient(180deg, var(--jia-vellum-3) 0%, var(--jia-vellum-4) 66%, var(--jia-vellum-4) 100%);
+  --jia-bg-deep: linear-gradient(180deg, color-mix(in srgb, var(--jia-sand-deep) 72%, var(--jia-vellum-5)) 0%, var(--jia-sand-deep) 100%);
   --jia-bg-arrived: var(--jia-bg-light), linear-gradient(var(--jia-vellum-4), var(--jia-vellum-4));
 
   /* Superficies de sustitución para imágenes ausentes (config/media.ts referencia

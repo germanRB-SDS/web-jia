@@ -102,7 +102,7 @@ export type Copy = {
       venueLabel: string;
       hoursLabel: string;
       locationLabel: string;
-      note: string;
+      directions: string;
       sessions: Record<string, string>;
     };
     how: { title: string; paragraphs: string[]; status: EditorialStatus };

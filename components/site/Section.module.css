@@ -6,7 +6,7 @@
    of their seam, so a section never starts with a step. */
 .paper { background: var(--jia-bg-rest); }
 .ivory { background: var(--jia-bg-open); }
-.sand { background: var(--jia-bg-arrive); }
+.sand { background: var(--jia-bg-deep); }
 .ink {
   background: var(--jia-ink);
   color: var(--jia-ivory);

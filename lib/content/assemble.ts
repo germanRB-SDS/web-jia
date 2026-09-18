@@ -148,7 +148,7 @@ export type LandingModel = {
     route: RouteModel;
     /** The "Intro" video block before the programme. */
     introVideo: IntroVideoModel;
-    program: { title: string; note: string; days: DayModel[] };
+    program: { title: string; days: DayModel[] };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
     workshops: { title: string; marks: MarkKind[]; items: SheetModel[] };
@@ -421,7 +421,7 @@ export function getLanding(locale: Locale): LandingModel {
       },
       hashtag: event.hashtag,
       introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, controls: copy.buttons.video },
-      program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },
+      program: { title: copy.jornadas.program.title, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length
         ? { title: copy.jornadas.team.title, lede: copy.jornadas.team.lede, cards: teamCards, cube: { region: copy.a11y.teamRegion, ...copy.buttons.cube, ...copy.jornadas.team.cube } }

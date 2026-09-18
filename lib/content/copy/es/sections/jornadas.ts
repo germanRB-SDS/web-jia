@@ -14,7 +14,7 @@ export const jornadas: Copy["jornadas"] = {
     venueLabel: "Lugar",
     hoursLabel: "Horario",
     locationLabel: "Localización",
-    note: "Secuencia orientativa. El programa definitivo concretará horas, espacios, talleres y la dinámica de participación.",
+    directions: "Cómo ir",
     sessions: {
       "s-1-1": "Bienvenida",
       "s-1-2": "Presentación del reto",
