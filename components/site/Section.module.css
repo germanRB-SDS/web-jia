@@ -77,8 +77,15 @@
     width: auto;
     margin-inline: 0;
     padding-left: var(--split-left);
-    padding-right: calc(var(--split-left) / 2);
+    /* A sixth of the left padding: the copy runs almost to the photograph. */
+    padding-right: max(1rem, calc(var(--split-left) / 6));
   }
+  /* Inside a split, the text column's own width is the measure: no inner caps. */
+  .split .head { max-width: none; }
+  .split .lede,
+  .split .subtitle,
+  .split > :not(.head):not([data-visual]),
+  .split > :not(.head):not([data-visual]) > * { max-width: none; }
   .split .head { margin-bottom: 1.5rem; }
   .split > [data-visual] { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
 }

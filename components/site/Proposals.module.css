@@ -8,6 +8,9 @@
   line-height: var(--jia-body-leading);
   color: var(--jia-text);
 }
+@media (min-width: 900px) {
+  .text { max-width: none; }
+}
 .text p { margin: 0; }
 .text > :last-child { margin-top: 0.75rem; }
 

@@ -65,6 +65,9 @@ async function main() {
 
     await send("Page.enable");
     await send("Runtime.enable");
+    // Never reuse a cached page or stylesheet from a previous build.
+    await send("Network.enable");
+    await send("Network.setCacheDisabled", { cacheDisabled: true });
 
     for (const shot of SHOTS) {
       events.length = 0;

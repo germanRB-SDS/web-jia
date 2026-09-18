@@ -15,6 +15,8 @@
 
 | Propuestas (adenda 2) | Menos altura (padding vertical de la columna de texto reducido a 2,5–4 rem), columna visual del 45 % al 53 % (+18 %), recorte del 8 % inferior de la imagen en el build (el original queda intacto) y padding derecho del texto igual a la mitad del izquierdo; todo fluido. | `Section.module.css`, `scripts/build-assets.sh`, `media.ts` |
 
+| Propuestas (adenda 3) | Título, subtítulo y cuerpo llenan la columna de texto sin tope de medida; padding derecho hacia la foto = 1/6 del izquierdo (mín. 16 px), es decir, un tercio del anterior. El script de capturas desactiva la caché del navegador para no revisar builds antiguos. | `Section.module.css` (`.split`), `Proposals.module.css`, `scripts/qa-screenshots.mjs` |
+
 ## Verificación
 
 - `tsc --noEmit`, `check:content` (49 medios), `next build`: OK. Capturas en `evidence/` (Propuestas, socios con enlaces, pie escritorio y móvil).
