@@ -1,14 +1,19 @@
-/* ---- the opening band: photograph under a dune veil ---- */
+/* ---- the opening band: photograph left, dune panel right ----
+   maryna-ventura's "Servicios" spread mirrored: one surface, the photograph
+   bleeding on the left and a solid dune panel carrying the text on the right.
+   The veil starts fully transparent over the rider and reaches the panel's
+   own colour at the seam, so there is no edge between the two. */
 .band {
   position: relative;
   overflow: clip;
   background: var(--jia-dune);
   color: var(--jia-ink);
+  display: grid;
 }
 .bandPhoto {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 0;
+  aspect-ratio: 16 / 10;
 }
 .bandSurface {
   position: absolute !important;
@@ -17,30 +22,24 @@
   height: 100%;
   border-radius: 0;
 }
-/* The veil: the promoter's warm gradient laid over the photograph, opaque
-   enough on the left to carry ink text, open on the right so the valley and
-   the road stay legible; a short fade into paper at the foot. */
 .veil {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to top, var(--jia-paper) 0%, rgb(var(--jia-paper-rgb) / 0) 18%),
-    linear-gradient(90deg, rgb(var(--jia-dune-rgb) / 0.93) 0%, rgb(var(--jia-dune-rgb) / 0.84) 36%, rgb(var(--jia-dune-light-rgb) / 0.5) 62%, rgb(var(--jia-dune-light-rgb) / 0.16) 100%);
+  background: linear-gradient(to bottom, rgb(var(--jia-dune-rgb) / 0) 0%, rgb(var(--jia-dune-rgb) / 0) 45%, rgb(var(--jia-dune-rgb) / 0.55) 80%, var(--jia-dune) 100%);
 }
-.bandInner {
+.panel {
   position: relative;
   z-index: 1;
-  width: min(100% - 2 * var(--gutter), var(--container));
-  margin-inline: auto;
   display: grid;
-  gap: clamp(2.5rem, 5vw, 4rem);
-  padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 7vw, 5.5rem);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem) var(--gutter) clamp(3rem, 7vw, 5rem);
+  background: var(--jia-dune);
 }
 .bandText {
   display: grid;
   gap: 1rem;
-  align-content: center;
-  max-width: 44rem;
+  max-width: 40rem;
 }
 /* Same voice as every other section title (Section.module.css .title). */
 .bandTitle {
@@ -64,21 +63,17 @@
   max-width: var(--measure);
 }
 @media (min-width: 900px) {
-  .bandInner {
-    grid-template-columns: minmax(0, 1fr) 22rem;
-    align-items: center;
-    min-height: min(72vh, 720px);
-    padding-block: clamp(4rem, 9vw, 7rem);
+  .band {
+    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+    min-height: min(78vh, 780px);
   }
-  .bandInner > :last-child { justify-self: end; }
-}
-@media (max-width: 899px) {
+  .bandPhoto { aspect-ratio: auto; }
   .veil {
-    background:
-      linear-gradient(to top, var(--jia-paper) 0%, rgb(var(--jia-paper-rgb) / 0) 14%),
-      linear-gradient(to bottom, rgb(var(--jia-dune-light-rgb) / 0.55) 0%, rgb(var(--jia-dune-rgb) / 0.92) 38%, rgb(var(--jia-dune-rgb) / 0.94) 100%);
+    background: linear-gradient(90deg, rgb(var(--jia-dune-rgb) / 0) 0%, rgb(var(--jia-dune-rgb) / 0) 38%, rgb(var(--jia-dune-rgb) / 0.55) 76%, var(--jia-dune) 100%);
   }
-  .bandInner > :last-child { justify-self: center; }
+  .panel {
+    padding-inline: clamp(2rem, 5vw, 4.5rem) var(--gutter);
+  }
 }
 
 /* ---- the notebook spreads on paper ---- */

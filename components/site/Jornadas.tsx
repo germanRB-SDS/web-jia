@@ -35,10 +35,10 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
           is pinned on the right and opens at full size. */}
       <div className={styles.band}>
         <div className={styles.bandPhoto} aria-hidden="true">
-          <Surface media={jornadas.band} alt={jornadas.bandAlt} fallback="sand" ratio={1916 / 821} sizes="100vw" className={styles.bandSurface} />
+          <Surface media={jornadas.band} alt={jornadas.bandAlt} fallback="sand" ratio={1916 / 821} sizes="(min-width: 900px) 58vw, 100vw" className={styles.bandSurface} />
           <span className={styles.veil} />
         </div>
-        <div className={styles.bandInner}>
+        <div className={styles.panel}>
           <div className={styles.bandText}>
             <h2 id={`${jornadas.id}-title`} className={styles.bandTitle}>
               {jornadas.title}
@@ -46,7 +46,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
             <p className={styles.statement}>{jornadas.intro}</p>
           </div>
           {jornadas.poster ? (
-            <PosterCard media={jornadas.poster} alt={copy.a11y.cartel} caption={jornadas.hashtag} labels={{ open: copy.buttons.sheet.viewPoster, close: copy.buttons.sheet.close }} />
+            <PosterCard media={jornadas.poster} alt={copy.a11y.cartel} caption={jornadas.hashtag} labels={{ open: copy.buttons.sheet.viewPoster, close: copy.buttons.sheet.close }} size="small" />
           ) : null}
         </div>
       </div>

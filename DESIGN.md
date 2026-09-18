@@ -206,6 +206,9 @@ components:
 
 > Update 2026-09-18 (JIA-2026-09-18-04): the Jornadas opening is a photographic band (rider over the valley) under a **dune veil** — two new extension tones sampled from the promoter's swatch, `--jia-dune` `#c0ac94` and `--jia-dune-light` `#ddccb5`, laid as a horizontal gradient at 0.93→0.16 alpha (dense where the ink text sits, open over the landscape) with a short fade to paper at the foot; the band title and lede reuse the Section title/lede voices (Rokkitt `--t-h2` ink, Alegreya `--t-lede` text). The event poster is a pinned lobby card (`components/site/PosterCard`): 2.5° at rest, straightens and lifts on hover/focus, "Ver cartel" opens it at full size in the sheet dialog. Unavailable actions may omit their note (`unavailable: null`).
 
+
+> Update 2026-09-18 (JIA-2026-09-18-05): the Jornadas opening mirrors maryna-ventura's "Servicios" spread — photograph bleeding on the left (58/42 grid at ≥900px), solid `--jia-dune` panel on the right carrying title, lede and a small pinned poster (`PosterCard size="small"`, 10rem, hover label hidden, still opens full size). The veil is transparent over the rider (0% to 38%) and reaches the panel colour at the seam; on phones it runs vertically into the panel below.
+
 ## Overview
 
 **Creative North Star: "The Teacher's Field Notebook"**

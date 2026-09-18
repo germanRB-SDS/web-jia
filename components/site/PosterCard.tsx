@@ -13,6 +13,8 @@ type Props = {
   alt: string;
   caption: string;
   labels: { open: string; close: string };
+  /** "small" sits under a text block (10rem wide); default is the full card. */
+  size?: "default" | "small";
 };
 
 /**
@@ -20,11 +22,11 @@ type Props = {
  * rest, it straightens and lifts under the pointer, and a real button opens it
  * at full size in the same dialog the sheets use (mouse, keyboard and touch).
  */
-export function PosterCard({ media, alt, caption, labels }: Props) {
+export function PosterCard({ media, alt, caption, labels, size = "default" }: Props) {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
   return (
-    <figure className={styles.card}>
+    <figure className={`${styles.card} ${size === "small" ? styles.small : ""}`}>
       <button type="button" className={styles.trigger} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-expanded={open}>
         <Surface media={media} alt={alt} fallback="card" sizes="(min-width: 900px) 22rem, 70vw" className={styles.surface} />
         <span className={styles.label}>
