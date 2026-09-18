@@ -132,7 +132,7 @@ export type LandingModel = {
     logosPending: string | null;
     groups: { key: "organiza" | "colabora"; label: string; items: { id: string; name: string; url: string | null; logo: Media | null }[] }[];
   };
-  acoge: { id: string; title: string; paragraphs: string[]; action: Action; media: Media | null; alt: string; fallback: SurfaceToken; marks: MarkKind[] };
+  acoge: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; alt: string; fallback: SurfaceToken; marks: MarkKind[] };
   footer: {
     organiza: Organization[];
     colabora: Organization[];
@@ -437,6 +437,7 @@ export function getLanding(locale: Locale): LandingModel {
     acoge: {
       id: acogeConfig.id,
       title: copy.acoge.title,
+      subtitle: copy.acoge.subtitle,
       paragraphs: copy.acoge.paragraphs,
       action: externalOrUnavailable("host-apply", copy.buttons.host.host, acogeConfig.url, copy.acoge.unavailable),
       media: getMedia(acogeConfig.mediaId),

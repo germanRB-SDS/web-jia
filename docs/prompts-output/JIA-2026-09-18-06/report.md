@@ -17,6 +17,8 @@
 
 | Propuestas (adenda 3) | Título, subtítulo y cuerpo llenan la columna de texto sin tope de medida; padding derecho hacia la foto = 1/6 del izquierdo (mín. 16 px), es decir, un tercio del anterior. El script de capturas desactiva la caché del navegador para no revisar builds antiguos. | `Section.module.css` (`.split`), `Proposals.module.css`, `scripts/qa-screenshots.mjs` |
 
+| Acoge (adenda 4) | Título «Dispara tu centro.» y subtítulo «Acoge las próximas JIA» (misma voz de subtítulo que Propuestas); el resto de la sección sin cambios. | `lib/content/copy/es/sections/acoge.ts`, `components/site/Host.tsx/.module.css` |
+
 ## Verificación
 
 - `tsc --noEmit`, `check:content` (49 medios), `next build`: OK. Capturas en `evidence/` (Propuestas, socios con enlaces, pie escritorio y móvil).

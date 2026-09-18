@@ -65,6 +65,17 @@
   color: var(--jia-ink);
   text-wrap: balance;
 }
+/* Same subtitle voice as Section .subtitle (Alegreya italic, --t-subtitle). */
+.subtitle {
+  margin: -0.5rem 0 0;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--t-subtitle);
+  line-height: 1.25;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
 .p {
   margin: 0;
   font-family: var(--f-body);

@@ -22,6 +22,7 @@ export function Host({ acoge, copy }: Props) {
           <h2 id={`${acoge.id}-title`} className={styles.title}>
             {acoge.title}
           </h2>
+          <p className={styles.subtitle}>{acoge.subtitle}</p>
           {acoge.paragraphs.map((p) => (
             <p key={p} className={styles.p}>
               {p}
