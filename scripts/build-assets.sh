@@ -23,6 +23,11 @@ for name in hero-almeria-docentes hero-2-almeria-docentes; do
   magick "$src" -crop 1021x941+300+0 +repage -strip -quality 82 "public/hero/$name-crop-1021.webp"
 done
 
+# Jornadas band: the rider over the valley supplied by the promoter (1916x821)
+out public/jornadas/x
+magick assets/images-website/jornadas-jinete.png -resize 960x -strip -quality 80 "public/jornadas/jinete-960.webp"
+magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jornadas/jinete-1916.webp"
+
 # Acoge JIA band: the archer supplied by the promoter (1922x818)
 out public/acoge/x
 magick assets/images-website/acoge-arquero.png -resize 960x -strip -quality 80 "public/acoge/arquero-960.webp"

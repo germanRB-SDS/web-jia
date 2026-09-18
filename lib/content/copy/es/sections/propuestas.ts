@@ -6,6 +6,6 @@ export const propuestas: Copy["propuestas"] = {
     "¿Has desarrollado una propuesta educativa que te gustaría compartir? Las JIA quieren abrir un espacio a ideas, experiencias y nuevas formas de trabajar que puedan inspirar a otros docentes.",
     "Aquí encontrarás la información para presentar tu propuesta cuando se concrete el proceso de participación.",
   ],
-  unavailable: "El canal de presentación todavía no está disponible.",
+  unavailable: null,
   status: "provisional",
 };

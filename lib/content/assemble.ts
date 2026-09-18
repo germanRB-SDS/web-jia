@@ -111,6 +111,8 @@ export type LandingModel = {
     anchors: typeof jornadasConfig.anchors;
     title: string;
     intro: string;
+    band: Media | null;
+    bandAlt: string;
     poster: Media | null;
     hashtag: string;
     program: { title: string; note: string; days: DayModel[] };
@@ -153,7 +155,7 @@ function personById(id: string): Person | undefined {
   return people.find((p) => p.id === id);
 }
 
-function externalOrUnavailable(id: string, label: string, url: string | null, note: string): Action {
+function externalOrUnavailable(id: string, label: string, url: string | null, note: string | null): Action {
   return url
     ? { id, label, href: url, kind: "external", note: null }
     : { id, label, href: null, kind: "unavailable", note };
@@ -371,6 +373,8 @@ export function getLanding(locale: Locale): LandingModel {
       anchors: jornadasConfig.anchors,
       title: copy.jornadas.title,
       intro: copy.jornadas.intro,
+      band: getMedia(jornadasConfig.bandMediaId),
+      bandAlt: "",
       poster: getMedia(jornadasConfig.posterMediaId),
       hashtag: event.hashtag,
       program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },

@@ -14,6 +14,8 @@
   --jia-text-muted: #71604d;       /* Tinta secundaria: metadatos (4,93:1 sobre papel) */
   --jia-terracotta: #89482e;       /* Terracota principal: botón, iconos, acentos */
   --jia-terracotta-deep: #703923;  /* Terracota profunda: hover y estados activos */
+  --jia-dune: #c0ac94;             /* Duna (extensión, muestreada del degradado aportado): velo sobre fotografía, lado denso */
+  --jia-dune-light: #ddccb5;       /* Duna clara (extensión): velo sobre fotografía, lado abierto */
   --jia-sand-deep: #e2cfb2;        /* Arena profunda (extensión): superficie de hover/activo sobre papel; un paso por debajo de arena, sin llegar a línea */
   --jia-line: #c9b79f;             /* Línea de arena: separadores decorativos */
   --jia-copper: #ad754d;           /* Cobre mate: detalle gráfico, nunca texto pequeño */
@@ -25,6 +27,8 @@
   --jia-ink-rgb: 47 24 11;
   --jia-sand-rgb: 237 221 199;
   --jia-ivory-rgb: 246 238 223;
+  --jia-dune-rgb: 192 172 148;
+  --jia-dune-light-rgb: 221 204 181;
 
   /* Superficies de sustitución para imágenes ausentes (config/media.ts referencia
      estos nombres por token, p. ej. `fallback: "sand"`). */

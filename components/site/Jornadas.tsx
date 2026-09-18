@@ -2,6 +2,7 @@ import type { LandingModel, MarkKind } from "@/lib/content";
 import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
+import { PosterCard } from "./PosterCard";
 import { SubSection } from "./Section";
 import styles from "./Jornadas.module.css";
 
@@ -29,10 +30,14 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
   return (
     <section id={jornadas.id} aria-labelledby={`${jornadas.id}-title`}>
-      {/* The room: an ink band with one key light, the statement on the left and
-          the poster bleeding off the right edge (maryna-ventura's "Sobre" spread). */}
+      {/* The opening: the rider over the valley behind a dune-coloured veil that
+          is dense where the text sits and opens toward the landscape; the poster
+          is pinned on the right and opens at full size. */}
       <div className={styles.band}>
-        <span className={styles.key} aria-hidden="true" />
+        <div className={styles.bandPhoto} aria-hidden="true">
+          <Surface media={jornadas.band} alt={jornadas.bandAlt} fallback="sand" ratio={1916 / 821} sizes="100vw" className={styles.bandSurface} />
+          <span className={styles.veil} />
+        </div>
         <div className={styles.bandInner}>
           <div className={styles.bandText}>
             <h2 id={`${jornadas.id}-title`} className={styles.bandTitle}>
@@ -41,10 +46,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
             <p className={styles.statement}>{jornadas.intro}</p>
           </div>
           {jornadas.poster ? (
-            <figure className={styles.poster}>
-              <Surface media={jornadas.poster} alt={copy.a11y.cartel} fallback="sand" sizes="(min-width: 900px) 34vw, 80vw" className={styles.posterSurface} />
-              <figcaption className={styles.posterCaption}>{jornadas.hashtag}</figcaption>
-            </figure>
+            <PosterCard media={jornadas.poster} alt={copy.a11y.cartel} caption={jornadas.hashtag} labels={{ open: copy.buttons.sheet.viewPoster, close: copy.buttons.sheet.close }} />
           ) : null}
         </div>
       </div>

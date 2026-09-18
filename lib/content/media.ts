@@ -100,6 +100,18 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
     },
     {
+      /** Jornadas band. The rider stands on the left; the valley and the road open to the right. */
+      id: "jornadas-jinete",
+      variants: [
+        { src: "/jornadas/jinete-960.webp", width: 960 },
+        { src: "/jornadas/jinete-1916.webp", width: 1916 },
+      ],
+      ratio: 1916 / 821,
+      focal: { x: 30, y: 48 },
+      original: "assets/images-website/jornadas-jinete.png",
+      license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Acoge JIA band. The subject stands on the left; the right two thirds are clear ground for text. */
       id: "acoge-arquero",
       variants: [

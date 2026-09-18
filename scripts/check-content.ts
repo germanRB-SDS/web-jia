@@ -77,7 +77,6 @@ for (const locale of LOCALES) {
   const actions = [...model.hero.actions, model.propuestas.action, model.acoge.action, ...model.dosieres.items.map((i) => i.action)];
   for (const a of actions) {
     if (a.href === "#") fail(`[${locale}] action ${a.id} points at "#"`);
-    if (a.kind === "unavailable" && !a.note) fail(`[${locale}] unavailable action ${a.id} has no visible note`);
     if (a.kind !== "unavailable" && !a.href) fail(`[${locale}] action ${a.id} has no href`);
   }
   for (const w of model.jornadas.workshops.items) if (!w.title) fail(`[${locale}] workshop ${w.id} without title`);

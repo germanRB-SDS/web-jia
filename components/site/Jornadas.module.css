@@ -1,82 +1,84 @@
-/* ---- the ink band ---- */
+/* ---- the opening band: photograph under a dune veil ---- */
 .band {
   position: relative;
   overflow: clip;
-  background: var(--jia-ink);
-  color: var(--jia-ivory);
+  background: var(--jia-dune);
+  color: var(--jia-ink);
 }
-.key {
+.bandPhoto {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  background: radial-gradient(62% 58% at 74% 8%, rgb(173 117 77 / 0.22) 0%, rgb(173 117 77 / 0.07) 42%, transparent 74%);
+  z-index: 0;
+}
+.bandSurface {
+  position: absolute !important;
+  inset: 0;
+  aspect-ratio: auto !important;
+  height: 100%;
+  border-radius: 0;
+}
+/* The veil: the promoter's warm gradient laid over the photograph, opaque
+   enough on the left to carry ink text, open on the right so the valley and
+   the road stay legible; a short fade into paper at the foot. */
+.veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--jia-paper) 0%, rgb(var(--jia-paper-rgb) / 0) 18%),
+    linear-gradient(90deg, rgb(var(--jia-dune-rgb) / 0.93) 0%, rgb(var(--jia-dune-rgb) / 0.84) 36%, rgb(var(--jia-dune-light-rgb) / 0.5) 62%, rgb(var(--jia-dune-light-rgb) / 0.16) 100%);
 }
 .bandInner {
   position: relative;
+  z-index: 1;
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
   display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-  padding-block: clamp(3.5rem, 8vw, 6.5rem) 0;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 7vw, 5.5rem);
 }
 .bandText {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
   align-content: center;
-  padding-bottom: clamp(3rem, 7vw, 6rem);
+  max-width: 44rem;
 }
+/* Same voice as every other section title (Section.module.css .title). */
 .bandTitle {
   margin: 0;
-  font-family: var(--f-ui);
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: 0.18em;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: var(--t-h2);
+  line-height: 1;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--jia-copper);
-}
-.statement {
-  margin: 0;
-  max-width: 22ch;
-  font-family: var(--f-body);
-  font-size: clamp(1.6rem, 3.1vw, 2.9rem);
-  line-height: 1.18;
-  letter-spacing: -0.01em;
-  color: var(--jia-ivory);
+  color: var(--jia-ink);
   text-wrap: balance;
 }
-.poster {
+/* Same voice as every section lede (Section.module.css .lede). */
+.statement {
   margin: 0;
-  position: relative;
-  align-self: end;
-  justify-self: end;
-  width: min(100%, 26rem);
-  margin-right: calc(-1 * var(--gutter));
-}
-.posterSurface {
-  border-radius: var(--jia-radius-card) var(--jia-radius-card) 0 0;
-  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7);
-}
-.posterCaption {
-  position: absolute;
-  left: 0;
-  bottom: 100%;
-  margin-bottom: 0.6rem;
-  font-family: var(--f-ui);
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: var(--jia-label-tracking);
-  text-transform: uppercase;
-  color: var(--jia-copper);
+  font-family: var(--f-body);
+  font-size: var(--t-lede);
+  line-height: 1.5;
+  color: var(--jia-text);
+  max-width: var(--measure);
 }
 @media (min-width: 900px) {
   .bandInner {
-    grid-template-columns: minmax(16rem, 44%) minmax(0, 1fr);
-    align-items: end;
-    padding-block: clamp(4rem, 9vw, 7rem) 0;
-    min-height: min(78vh, 760px);
+    grid-template-columns: minmax(0, 1fr) 22rem;
+    align-items: center;
+    min-height: min(72vh, 720px);
+    padding-block: clamp(4rem, 9vw, 7rem);
   }
-  .bandText { padding-bottom: clamp(4rem, 9vw, 7rem); }
-  .poster { width: min(100%, 30rem); }
+  .bandInner > :last-child { justify-self: end; }
+}
+@media (max-width: 899px) {
+  .veil {
+    background:
+      linear-gradient(to top, var(--jia-paper) 0%, rgb(var(--jia-paper-rgb) / 0) 14%),
+      linear-gradient(to bottom, rgb(var(--jia-dune-light-rgb) / 0.55) 0%, rgb(var(--jia-dune-rgb) / 0.92) 38%, rgb(var(--jia-dune-rgb) / 0.94) 100%);
+  }
+  .bandInner > :last-child { justify-self: center; }
 }
 
 /* ---- the notebook spreads on paper ---- */

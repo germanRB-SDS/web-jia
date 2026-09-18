@@ -20,6 +20,7 @@ const SHOTS = [
   { name: "desktop-full", width: 1440, height: 900, full: true },
   { name: "desktop-dialog", width: 1440, height: 900, open: "dialog" },
   { name: "desktop-hover", width: 1440, height: 900, hover: "main nav a[href='#programa']" },
+  { name: "desktop-poster", width: 1440, height: 900, hover: "#jornadas figure button" },
   { name: "tablet-full", width: 768, height: 1024, full: true, mobile: true },
   { name: "mobile", width: 390, height: 844, mobile: true },
   { name: "mobile-full", width: 390, height: 844, full: true, mobile: true },

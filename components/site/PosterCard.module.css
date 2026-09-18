@@ -1,0 +1,93 @@
+.card {
+  margin: 0;
+  position: relative;
+  width: min(100%, 22rem);
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+}
+.trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transform: rotate(2.5deg);
+  transition: transform 420ms var(--ease-out);
+}
+.trigger:hover,
+.trigger:focus-visible {
+  transform: rotate(0deg) translateY(-8px);
+}
+.trigger:focus-visible { outline-offset: 8px; }
+/* the pin */
+.trigger::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--jia-terracotta);
+  box-shadow: 0 3px 5px rgb(var(--jia-ink-rgb) / 0.4), inset 0 -2px 0 rgb(var(--jia-ink-rgb) / 0.35);
+  transform: translateX(-50%);
+}
+.surface {
+  box-shadow: 0 28px 50px -26px rgb(var(--jia-ink-rgb) / 0.6), 0 2px 0 rgb(var(--jia-ivory-rgb) / 0.4);
+  transition: box-shadow 420ms var(--ease-out);
+}
+.trigger:hover .surface,
+.trigger:focus-visible .surface {
+  box-shadow: 0 40px 70px -28px rgb(var(--jia-ink-rgb) / 0.65), 0 2px 0 rgb(var(--jia-ivory-rgb) / 0.4);
+}
+.label {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--jia-radius-button);
+  background: var(--jia-ink);
+  color: var(--jia-ivory);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  transform: translate(-50%, 6px);
+  opacity: 0;
+  transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out);
+}
+.trigger:hover .label,
+.trigger:focus-visible .label { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: none) {
+  .label { opacity: 1; transform: translate(-50%, 0); }
+  .trigger { transform: none; }
+}
+.caption {
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-text-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .trigger, .surface, .label { transition: none; }
+}
+.full { padding: 1rem; display: grid; justify-items: center; }
+.fullImg {
+  width: min(100%, 640px);
+  height: auto;
+  border-radius: var(--jia-radius-card);
+  box-shadow: 0 24px 60px -30px rgb(var(--jia-ink-rgb) / 0.6);
+}

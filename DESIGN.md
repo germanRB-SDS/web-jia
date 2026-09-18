@@ -203,6 +203,9 @@ components:
 
 > Update 2026-09-18 (JIA-2026-09-18-03): ground rhythm now alternates bands — paper (hero, waypoints) → ink band (Jornadas: copper key light, ivory statement ≤22ch, poster bleeding right/bottom) → paper spreads → sand→paper (Dosieres) → paper (Experiencias) → sand (Propuestas) → paper→ivory (Partners strip, `components/site/Partners`) → full-bleed photograph (Acoge: archer, paper fade at the top, ink fade at the bottom) → ink footer. Hero entrance: `focus-in` on the lockup lines and staggered `rise` (350–650 ms) on rule, title, dateline, lede and actions; one-shot warm key light (`.light`, radial + conic mask, `exposure` 2.6 s) and a `develop` filter ramp on the photograph; all off under reduced motion. Provisional/demo chips are switched off (`site.preview.markProvisional=false`). New token `--jia-ivory-rgb`.
 
+
+> Update 2026-09-18 (JIA-2026-09-18-04): the Jornadas opening is a photographic band (rider over the valley) under a **dune veil** — two new extension tones sampled from the promoter's swatch, `--jia-dune` `#c0ac94` and `--jia-dune-light` `#ddccb5`, laid as a horizontal gradient at 0.93→0.16 alpha (dense where the ink text sits, open over the landscape) with a short fade to paper at the foot; the band title and lede reuse the Section title/lede voices (Rokkitt `--t-h2` ink, Alegreya `--t-lede` text). The event poster is a pinned lobby card (`components/site/PosterCard`): 2.5° at rest, straightens and lifts on hover/focus, "Ver cartel" opens it at full size in the sheet dialog. Unavailable actions may omit their note (`unavailable: null`).
+
 ## Overview
 
 **Creative North Star: "The Teacher's Field Notebook"**

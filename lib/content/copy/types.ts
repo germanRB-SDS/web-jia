@@ -7,7 +7,7 @@ import type { EditorialStatus, PersonRole, Resource } from "../data/types";
 
 export type Buttons = {
   hero: { explore: string; workshops: string };
-  sheet: { open: string; close: string; viewDocument: string };
+  sheet: { open: string; close: string; viewDocument: string; viewPoster: string };
   dossiers: { consult: string; view: string; download: string };
   proposals: { present: string };
   host: { host: string };
@@ -136,8 +136,9 @@ export type Copy = {
     relatedWorkshops: string;
     status: EditorialStatus;
   };
-  propuestas: { title: string; paragraphs: string[]; unavailable: string; status: EditorialStatus };
-  acoge: { title: string; paragraphs: string[]; unavailable: string; status: EditorialStatus };
+  /** `unavailable` is the optional visible note under a disabled action; null shows the label alone. */
+  propuestas: { title: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
+  acoge: { title: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
   partners: { kicker: string; title: string; text: string; organiza: string; colabora: string; logosPending: string };
   footer: {
     organiza: string;
