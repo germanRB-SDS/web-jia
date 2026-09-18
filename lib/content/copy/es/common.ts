@@ -45,7 +45,6 @@ export const states: Copy["states"] = {
   dateTbc: "Fecha por confirmar",
   venueTbc: "Lugar por confirmar",
   hoursTbc: "Horario por confirmar",
-  hoverHint: "Pasa el cursor, toca o usa el teclado para abrir cada ficha.",
 };
 
 export const footer: Copy["footer"] = {

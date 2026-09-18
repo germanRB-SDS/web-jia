@@ -154,7 +154,7 @@ export type LandingModel = {
     workshops: { title: string; marks: MarkKind[]; items: SheetModel[] };
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
-  experiencias: { id: string; title: string; lede: string; hint: string; empty: string; demoNotice: string | null; items: SheetModel[]; marks: MarkKind[] };
+  experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; marks: MarkKind[] };
   propuestas: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; marks: MarkKind[] };
   partners: {
     id: string;
@@ -444,9 +444,7 @@ export function getLanding(locale: Locale): LandingModel {
       id: experienciasConfig.id,
       title: copy.experiencias.title,
       lede: copy.experiencias.lede,
-      hint: copy.states.hoverHint,
       empty: copy.experiencias.empty,
-      demoNotice: experienceItems.some((x) => x.marks.includes("demo")) ? copy.experiencias.demoNotice : null,
       items: experienceItems,
       marks: marksOf(copy.experiencias.status),
     },

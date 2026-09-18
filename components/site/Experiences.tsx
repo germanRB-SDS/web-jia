@@ -1,5 +1,4 @@
 import type { LandingModel, MarkKind } from "@/lib/content";
-import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Section } from "./Section";
 import styles from "./Experiences.module.css";
@@ -21,14 +20,6 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
     <Section id={experiencias.id} title={experiencias.title} lede={experiencias.lede} markLabels={markLabels} showMarks={showMarks}>
       {experiencias.items.length ? (
         <>
-          <p className={styles.hint}>
-            {experiencias.demoNotice ? (
-              <>
-                <Marks marks={["demo"]} labels={markLabels} show={showMarks} /> <span>{experiencias.demoNotice}</span>{" "}
-              </>
-            ) : null}
-            <span>{experiencias.hint}</span>
-          </p>
           <div className={styles.grid}>
             {experiencias.items.map((sheet) => (
               <SheetCard

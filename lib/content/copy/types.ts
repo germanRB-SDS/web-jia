@@ -83,7 +83,6 @@ export type Copy = {
     dateTbc: string;
     venueTbc: string;
     hoursTbc: string;
-    hoverHint: string;
   };
   buttons: Buttons;
   hero: { lede: string; note: string; noteStatus: EditorialStatus };
@@ -139,7 +138,6 @@ export type Copy = {
   experiencias: {
     title: string;
     lede: string;
-    demoNotice: string;
     empty: string;
     fields: {
       presents: string;
