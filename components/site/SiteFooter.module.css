@@ -117,24 +117,20 @@
   gap: 0.75rem 1rem;
   text-align: center;
 }
-/* The credit stays on the page's axis; the note about the tumbleweeds takes the right end of the strip
-   (under the credit on a narrow screen). */
+/* The note about the tumbleweeds: tucked into the strip's bottom right corner, on the line where the
+   strip ends, a hair from the right edge. The credit keeps the page's axis. */
 @media (max-width: 759.98px) {
-  .bottomInner { flex-direction: column; }
-}
-@media (min-width: 760px) {
-  .bottomInner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  }
-  .bottomInner > .notice { grid-column: 1 / -1; justify-self: center; }
-  .bottomInner > .studioCredit { grid-column: 2; }
-  .bottomInner > .weedsNote { grid-column: 3; justify-self: end; }
+  .bottomInner { padding-bottom: 1.75rem; }
 }
 .weedsNote {
-  min-height: 1.5rem;
+  position: absolute;
+  z-index: 1;
+  right: 0.5rem;
+  bottom: 0.125rem;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
+  min-height: 1.5rem;
+  line-height: 1.2;
   font-family: var(--f-ui);
   font-size: 0.6875rem;
   font-weight: 500;

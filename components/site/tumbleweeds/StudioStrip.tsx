@@ -69,10 +69,11 @@ export function StudioStrip({ studio, tumbleweeds, notice }: Props) {
             <span className={styles.studioName}>{studio.name}</span>
           </span>
         </a>
-        <a href={tumbleweeds.href} className={styles.weedsNote} target="_blank" rel="noopener noreferrer" aria-label={`${tumbleweeds.label} (${tumbleweeds.newTab})`}>
-          {tumbleweeds.label}
-        </a>
       </div>
+      {/* Positioned against the strip itself (its bottom right corner), not the centred container. */}
+      <a href={tumbleweeds.href} className={styles.weedsNote} target="_blank" rel="noopener noreferrer" aria-label={`${tumbleweeds.label} (${tumbleweeds.newTab})`}>
+        {tumbleweeds.label}
+      </a>
     </div>
   );
 }

@@ -25,6 +25,13 @@ Ratón en la columna de marca del pie (lejos del crédito): 1 estepicursor a los
 pie, 3 → 3 en 6 s (ningún nacimiento). Dos clics en fondo liso → agujeros en el píxel del clic (±1 px); clic sobre un
 enlace → sin agujero. El cubo sigue marcando sus disparos en el píxel exacto. `tsc`, `check:content`, `next build`: OK.
 
+## Ajuste posterior (mismo encargo)
+
+A petición del promotor, la nota «Sí, son estepicursores» pasa de la rejilla del contenedor a la esquina inferior
+derecha de la franja: pegada a la línea donde termina (2 px) y a 8 px del borde derecho, en 1440 y en 390 px, sin
+solaparse con el crédito, que sigue centrado (720 / 720 y 195 / 195). En < 760 px la franja gana 0,5 rem de pie para
+que quepa bajo el crédito. Capturas `nota-esquina-*.png`.
+
 ## Riesgos
 
 - **Moderado:** los agujeros del pie se colocan en porcentaje del pie; si el pie cambia de alto (giro de pantalla) se
