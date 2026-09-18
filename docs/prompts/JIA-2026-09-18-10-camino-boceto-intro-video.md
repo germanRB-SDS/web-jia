@@ -66,6 +66,59 @@ ffmpeg -i capitulo2corregidofran.mp4 -vf "scale=-2:1080" -c:v libx264 -profile:v
 ffmpeg -i capitulo2corregidofran.mp4 -vf "scale=-2:720" -c:v libvpx-vp9 -b:v 0 -crf 33 -an intro-720.webm
 ```
 
+## Ampliación del promotor (2026-09-18, antes de ejecutar)
+
+### A. Texto de «Quién está detrás»
+
+Sustituir la entradilla actual («Las personas del CEP de Almería y quienes colaboran en esta edición, en sus tarjetas
+de la campaña. Desliza para verlas todas.») por:
+
+> «Todas las personas que lo hacen realidad: Coordinadores, Directores CEP, asesores y colaboradores. Las JIA no
+> esconden su talentos: conoce a quienes lanzan los dados ;)»
+
+El texto solo puede existir en un fichero de constantes (hoy `lib/content/copy/es/sections/jornadas.ts`,
+`team.lede`); comprobar con `grep` que no aparece en ningún componente. *Nota de ejecución:* se corrige la
+concordancia a «sus talentos» (errata evidente del dictado); el resto va literal.
+
+### B. Fase final — tarjetas WANTED en un cubo 3D
+
+«La última fase es cambiar la forma de presentación de las tarjetas WANTED de los participantes. Actualmente están
+[en una tira horizontal `ul.stripList` con `figure.member` + `figcaption`]. Y quiero que las pongas en un cubo 3D.
+Dicho cubo, como cualquier cubo, tiene 6 lados. Pero hay muchos más participantes. ¿Entonces? Vas a analizar la
+animación 3D del cubo [del ejemplo], pero cuando se rota se pasa de la foto 1 a la foto n, mostrando la secuencia
+completa (dado que no es un cubo real y no tiene por qué mostrar solo 6 lados distintos, y podemos hacerlo girar y
+girar). […] que dicho cubo sea un módulo (fichero[s] aparte) independiente para que sea un componente (escríbelo en
+componentes). […] Ejecuta todo; antes de empezar la fase del cubo, commit (por si tenemos que hacer rollback). Las
+fotos de WANTED son rectangulares: dentro de la cara del cubo, el height del cubo determina la altura máxima de la
+foto, que va centrada en cada lado, y a los lados un color oscuro que haga match con el borde de la imagen (mismo
+color de "fondo" del cubo), donde el cartel WANTED es como una "pegatina" pegada encima. Opcionalmente, si el cubo en
+lugar de ángulos rectos perfectos pudiera asemejarse a un cubo usado, con aristas y esquinas redondeadas por el uso
+(elegante, minimalista), bien; si no, déjalo como está.»
+
+Código de ejemplo a aterrizar (GSAP + Draggable; cuatro `.face` rotadas `i*90°` sobre Y con
+`transformOrigin: "50% 50% -150px"`, `z: 150`, `backfaceVisibility: hidden`; una capa `#dragger` invisible cuyo
+arrastre horizontal suma `rotationY` al cubo y, en cada `onUpdate`, ajusta la opacidad de cada cara con
+`1 - wrapYoyo(0, 90, |rotationY + i*90|) / 90` para sugerir una fuente de luz):
+
+```html
+<div class="container"><div id="cube"><div class="face"></div>×4</div></div><div id="dragger"></div>
+```
+```css
+.container { width:300px; height:300px; perspective:1500px; left:50%; top:50%; transform:translate(-50%,-50%); }
+#cube, .face { width:100%; height:100%; transform-style:preserve-3d; user-select:none; position:absolute; }
+```
+```js
+gsap.timeline().set(".face", { rotateY:(i)=>i*90, transformOrigin:"50% 50% -150px", z:150, backfaceVisibility:'hidden' })
+Draggable.create(dragger, { onDrag:(e)=> gsap.to(cube, { rotationY:'+='+((Math.round(e.clientX)-pos.x)%360),
+  onUpdate:()=> gsap.set('.face', { opacity:(i)=> 1-gsap.utils.wrapYoyo(0,90, Math.abs(gsap.getProperty(cube,'rotationY')+i*90))/90 }) }) })
+```
+
+Lectura para la ejecución: un prisma de cuatro caras laterales que gira sobre Y; la cara que queda oculta detrás se
+recarga con la tarjeta siguiente (o anterior) de la secuencia, de modo que girando se recorre 1…n y se vuelve a
+empezar. Componente independiente en `components/` (sin conocer Jornadas: recibe la lista de tarjetas y etiquetas),
+textos desde copy, teclado y lector de pantalla, `prefers-reduced-motion`, y la lista completa de personas sigue
+siendo accesible.
+
 ## Alcance previsto al ejecutar
 
 1. Trazado y paradas según el boceto (con lazo) en `components/site/jornadas-route/config.ts`; discos irregulares.
@@ -73,4 +126,7 @@ ffmpeg -i capitulo2corregidofran.mp4 -vf "scale=-2:720" -c:v libvpx-vp9 -b:v 0 -
    (`copy.jornadas.intro*`), vídeo a ancho completo con altura máxima igual a la banda del jinete, definida en una
    constante propia en `lib/content/sections/jornadas-intro-video.ts` (URL del vídeo + altura máxima + poster).
 3. Botón pausa/play circular discreto arriba a la derecha (referencia adjunta), accesible.
-4. Evidencias con `scripts/qa-route.mjs` ampliado; commit de implementación + informe; push.
+4. Entradilla de «Quién está detrás» (ampliación A), solo en el fichero de copy.
+5. Evidencias con `scripts/qa-route.mjs` ampliado; **commit de implementación de las fases 1–4** (punto de rollback).
+6. Fase final: cubo 3D de tarjetas WANTED (ampliación B) como componente independiente; commit propio.
+7. Informe de fase + commit del informe; push.
