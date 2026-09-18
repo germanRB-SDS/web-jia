@@ -120,13 +120,16 @@
     left: 0;
     right: 0;
     top: 100%;
+    height: calc(100dvh - 100%);
+    overflow: auto;
     flex-direction: column;
     gap: 0;
-    background: var(--jia-ivory);
-    border-bottom: 1px solid var(--jia-line);
-    padding: 0.5rem var(--gutter) 1rem;
-    box-shadow: 0 24px 40px -24px rgb(var(--jia-ink-rgb) / 0.5);
+    background: var(--jia-ivory) var(--paper-grain);
+    background-size: auto, 220px 220px;
+    border-top: 1px solid var(--jia-line);
+    padding: 0.75rem var(--gutter) 2rem;
   }
+
   .list[data-open] { display: flex; }
   .itemRow { display: flex; }
   .link { flex: 1; font-size: 1rem; }

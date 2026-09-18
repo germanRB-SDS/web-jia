@@ -9,6 +9,6 @@ export const acogeConfig = {
   id: "acoge",
   url: null as string | null,
   external: true,
-  mediaIds: [null, null] as (string | null)[],
-  surfaces: ["sand", "olive"] as SurfaceToken[],
+  mediaIds: ["hero-2-place", null] as (string | null)[],
+  surfaces: ["card", "card"] as SurfaceToken[],
 } as const;

@@ -42,7 +42,8 @@ export const viewport: Viewport = {
 
 const CONTRACT = `DIRECTION CONTRACT (Impeccable, seed 0634789a)
 THESIS: a teacher's field notebook of the jornadas — the page is a set of
-ruled spreads with pinned lobby cards, not a stack of event cards.
+notebook spreads (running head in the margin, ruled programme lists, pinned
+lobby cards on parchment), not a stack of event cards.
 OWN-WORLD: warm paper (#f1e7d8) with grain, JIA ink, terracotta accents,
 condensed slab titles, a reading serif, one handwritten note, the
 "Tinta de frontera" line icons, posters held by a terracotta pin.

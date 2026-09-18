@@ -5,7 +5,7 @@ export const heroConfig = {
   id: "inicio",
   mediaId: "hero-1" as string | null,
   /** Other hero crops registered in media.ts; swap `mediaId` to try them. */
-  alternateMediaIds: ["hero-2"],
+  alternateMediaIds: ["hero-1-full", "hero-2"],
   fallbackSurface: "sand" as SurfaceToken,
   actions: {
     primary: { target: "jornadas" },

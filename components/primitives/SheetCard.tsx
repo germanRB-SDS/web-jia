@@ -18,6 +18,7 @@ type Props = {
     sheetOf: string; // pre-formatted accessible name
     pending: string;
     people: string;
+    theme: string;
     marks: Record<MarkKind, string>;
   };
   showMarks: boolean;
@@ -51,7 +52,6 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
         </Surface>
       </div>
       <div className={styles.body}>
-        {sheet.meta ? <p className={styles.meta}>{sheet.meta}</p> : null}
         <Heading id={titleId} className={styles.title}>
           {sheet.title}
         </Heading>
@@ -60,6 +60,11 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
           <p className={styles.people}>
             <span className={styles.peopleLabel}>{labels.people}</span>{" "}
             {sheet.people.map((p) => p.name).join(" · ")}
+          </p>
+        ) : null}
+        {sheet.meta ? (
+          <p className={styles.people}>
+            <span className={styles.peopleLabel}>{labels.theme}</span> {sheet.meta}
           </p>
         ) : null}
         <div className={styles.foot}>
@@ -71,7 +76,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
               <ArrowIcon />
             </button>
           )}
-          <Marks marks={sheet.marks} labels={labels.marks} show={showMarks} />
+          <Marks marks={sheet.marks.filter((m) => m !== "provisional")} labels={labels.marks} show={showMarks} />
         </div>
       </div>
 
@@ -79,11 +84,13 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
         <SheetDialog open={open} onClose={close} label={labels.sheetOf} closeLabel={labels.close}>
           <div className={styles.sheet}>
             <div className={styles.sheetMedia}>
-              <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" />
+              <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" priority={open} />
             </div>
             <div className={styles.sheetBody}>
-              <Marks marks={sheet.marks} labels={labels.marks} show={showMarks} className={styles.sheetMarks} />
-              <h3 className={styles.sheetTitle}>{sheet.title}</h3>
+              <h3 className={styles.sheetTitle}>
+                <span>{sheet.title}</span>
+                <Marks marks={sheet.marks} labels={labels.marks} show={showMarks} className={styles.sheetMarks} />
+              </h3>
               {sheet.subtitle ? <p className={styles.sheetSubtitle}>{sheet.subtitle}</p> : null}
               {sheet.people.length ? (
                 <p className={styles.people}>

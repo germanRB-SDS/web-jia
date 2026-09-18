@@ -30,7 +30,8 @@ export const jornadas: Copy["jornadas"] = {
   },
   team: {
     title: "Quién está detrás",
-    lede: "Las personas del Centro del Profesorado y quienes colaboran en esta edición, en sus tarjetas de la campaña.",
+    lede: "Las personas del Centro del Profesorado y quienes colaboran en esta edición, en sus tarjetas de la campaña. Desliza para verlas todas.",
+    count: "{count} personas",
     roles: {
       tallerista: "Tallerista",
       "asesoria-cep": "Asesoría CEP",

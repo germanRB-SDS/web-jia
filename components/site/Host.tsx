@@ -10,7 +10,7 @@ type Props = { acoge: LandingModel["acoge"]; copy: LandingModel["copy"]; showMar
 export function Host({ acoge, copy, showMarks }: Props) {
   const markLabels: Record<MarkKind, string> = { provisional: copy.states.provisional, demo: copy.states.demo, pending: copy.states.pending };
   return (
-    <Section id={acoge.id} title={acoge.title} marks={acoge.marks} markLabels={markLabels} showMarks={showMarks}>
+    <Section id={acoge.id} title={acoge.title} markLabels={markLabels} showMarks={showMarks}>
       <div className={styles.split}>
         <div className={styles.panels} aria-hidden="true">
           {acoge.panels.map((panel, i) => (

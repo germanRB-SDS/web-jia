@@ -14,10 +14,11 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
     close: copy.buttons.sheet.close,
     pending: copy.states.sheetPending,
     people: copy.experiencias.fields.presents,
+    theme: copy.experiencias.relatedWorkshops,
     marks: markLabels,
   };
   return (
-    <Section id={experiencias.id} title={experiencias.title} lede={experiencias.lede} marks={experiencias.marks} markLabels={markLabels} showMarks={showMarks}>
+    <Section id={experiencias.id} title={experiencias.title} lede={experiencias.lede} markLabels={markLabels} showMarks={showMarks}>
       {experiencias.items.length ? (
         <>
           <p className={styles.hint}>

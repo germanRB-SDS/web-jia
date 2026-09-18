@@ -11,7 +11,7 @@ type Props = { dosieres: LandingModel["dosieres"]; copy: LandingModel["copy"]; s
 export function Dossiers({ dosieres, copy, showMarks }: Props) {
   const markLabels: Record<MarkKind, string> = { provisional: copy.states.provisional, demo: copy.states.demo, pending: copy.states.pending };
   return (
-    <Section id={dosieres.id} title={dosieres.title} lede={dosieres.lede} marks={dosieres.marks} markLabels={markLabels} showMarks={showMarks} tone="sand">
+    <Section id={dosieres.id} title={dosieres.title} lede={dosieres.lede} markLabels={markLabels} showMarks={showMarks} tone="sand">
       {dosieres.items.length ? (
         <ul className={styles.list}>
           {dosieres.items.map((r) => (

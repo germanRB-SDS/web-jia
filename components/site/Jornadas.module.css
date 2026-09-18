@@ -116,7 +116,7 @@
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
-  color: var(--jia-copper);
+  color: var(--jia-terracotta);
   min-width: 2ch;
 }
 .sessionTime {
@@ -165,8 +165,30 @@
   font-size: 1.0625rem;
   color: var(--jia-text);
 }
+.stripWrap {
+  position: relative;
+}
+.stripWrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--gutter));
+  bottom: 0.75rem;
+  width: 4rem;
+  pointer-events: none;
+  background: linear-gradient(to right, rgb(var(--jia-paper-rgb) / 0), var(--jia-paper));
+}
+.teamCount {
+  font-family: var(--f-ui);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  color: var(--jia-text-muted);
+  margin-left: 0.5rem;
+}
 .strip {
   overflow-x: auto;
+  scrollbar-width: thin;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
   padding-bottom: 0.75rem;

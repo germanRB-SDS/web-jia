@@ -10,12 +10,12 @@
 }
 .title {
   margin: 0 0 0.75rem;
-  font-family: var(--f-ui);
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--jia-text-muted);
+  color: var(--jia-ink);
 }
 .list {
   list-style: none;

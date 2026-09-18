@@ -23,6 +23,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
     close: copy.buttons.sheet.close,
     pending: copy.states.sheetPending,
     people: copy.jornadas.workshops.peopleLabel,
+    theme: copy.jornadas.workshops.themeLabel,
     marks: markLabels,
   };
 
@@ -85,7 +86,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
       </SubSection>
 
       {/* ---- Cómo funcionan ---- */}
-      <SubSection id={jornadas.anchors.comoFuncionan} label={jornadas.how.title} marks={jornadas.how.marks} markLabels={markLabels} showMarks={showMarks}>
+      <SubSection id={jornadas.anchors.comoFuncionan} label={jornadas.how.title} markLabels={markLabels} showMarks={showMarks}>
         <div className={styles.prose}>
           {jornadas.how.paragraphs.map((p) => (
             <p key={p}>{p}</p>
@@ -94,14 +95,17 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
         {jornadas.team ? (
           <div className={styles.team}>
-            <h4 className={styles.teamTitle}>{jornadas.team.title}</h4>
+            <h4 className={styles.teamTitle}>
+              {jornadas.team.title} <span className={styles.teamCount}>{jornadas.team.count}</span>
+            </h4>
             <p className={styles.teamLede}>{jornadas.team.lede}</p>
+            <div className={styles.stripWrap}>
             <div className={styles.strip} role="region" aria-label={copy.a11y.teamRegion} tabIndex={0}>
               <ul className={styles.stripList}>
-                {jornadas.team.cards.map((card) => (
+                {jornadas.team.cards.map((card, index) => (
                   <li key={card.id} className={styles.stripItem}>
                     <figure className={styles.member}>
-                      <Surface media={card.media} alt={card.alt} fallback={card.fallback} ratio={1414 / 2000} sizes="180px" className={styles.memberImg} />
+                      <Surface media={card.media} alt={card.alt} fallback={card.fallback} ratio={1414 / 2000} sizes="180px" className={styles.memberImg} priority={index < 8} />
                       <figcaption className={styles.memberCaption}>
                         <span className={styles.memberName}>{card.name}</span>
                         <span className={styles.memberRole}>{card.roleLabel}</span>
@@ -111,6 +115,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
                 ))}
               </ul>
             </div>
+            </div>
           </div>
         ) : null}
       </SubSection>
@@ -118,7 +123,9 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
       {/* ---- Talleres ---- */}
       <SubSection id={jornadas.anchors.talleres} label={jornadas.workshops.title} markLabels={markLabels} showMarks={showMarks}>
         <p className={styles.lede}>{jornadas.workshops.lede}</p>
-        <p className={styles.hint}>{jornadas.workshops.hint}</p>
+        <p className={styles.hint}>
+          <Marks marks={jornadas.workshops.marks} labels={markLabels} show={showMarks} /> {jornadas.workshops.hint}
+        </p>
         {jornadas.workshops.items.length ? (
           <div className={styles.grid}>
             {jornadas.workshops.items.map((sheet) => (

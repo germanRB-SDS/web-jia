@@ -115,8 +115,8 @@ export type LandingModel = {
     hashtag: string;
     program: { title: string; note: string; days: DayModel[] };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
-    team: { title: string; lede: string; cards: TeamCard[] } | null;
-    workshops: { title: string; lede: string; hint: string; items: SheetModel[] };
+    team: { title: string; lede: string; count: string; cards: TeamCard[] } | null;
+    workshops: { title: string; lede: string; hint: string; marks: MarkKind[]; items: SheetModel[] };
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   experiencias: { id: string; title: string; lede: string; hint: string; empty: string; demoNotice: string | null; items: SheetModel[]; marks: MarkKind[] };
@@ -368,11 +368,14 @@ export function getLanding(locale: Locale): LandingModel {
       hashtag: event.hashtag,
       program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
-      team: jornadasConfig.showTeam && teamCards.length ? { title: copy.jornadas.team.title, lede: copy.jornadas.team.lede, cards: teamCards } : null,
+      team: jornadasConfig.showTeam && teamCards.length
+        ? { title: copy.jornadas.team.title, lede: copy.jornadas.team.lede, count: format(copy.jornadas.team.count, { count: teamCards.length }), cards: teamCards }
+        : null,
       workshops: {
         title: copy.jornadas.workshops.title,
         lede: copy.jornadas.workshops.lede,
         hint: copy.states.hoverHint,
+        marks: workshops.some((w) => copy.entities.workshops[w.id]?.status === "provisional") ? ["provisional"] : [],
         items: workshops.map((w) => workshopSheet(w, copy)),
       },
     },

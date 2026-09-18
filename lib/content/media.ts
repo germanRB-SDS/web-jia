@@ -20,6 +20,7 @@ export type Media = {
 };
 
 const HERO_RATIO = 1672 / 941;
+const HERO_CROP_RATIO = 1321 / 941;
 const POSTER_RATIO = 1414 / 2000;
 
 function poster(n: number): Media {
@@ -53,7 +54,19 @@ const CARD_NUMBERS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
 export const MEDIA: Record<string, Media> = Object.fromEntries(
   [
     {
+      /** Hero crop without the signpost (its baked-in words were cut mid-word at 1440). */
       id: "hero-1",
+      variants: [
+        { src: "/hero/hero-almeria-docentes-crop-960.webp", width: 960 },
+        { src: "/hero/hero-almeria-docentes-crop-1321.webp", width: 1321 },
+      ],
+      ratio: HERO_CROP_RATIO,
+      focal: { x: 80, y: 42 },
+      original: "assets/images-website/hero-almeria-docentes.png (crop 79% from the left)",
+      license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
+    },
+    {
+      id: "hero-1-full",
       variants: [
         { src: "/hero/hero-almeria-docentes-960.webp", width: 960 },
         { src: "/hero/hero-almeria-docentes-1672.webp", width: 1672 },
@@ -66,11 +79,23 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
     {
       id: "hero-2",
       variants: [
+        { src: "/hero/hero-2-almeria-docentes-crop-960.webp", width: 960 },
+        { src: "/hero/hero-2-almeria-docentes-crop-1321.webp", width: 1321 },
+      ],
+      ratio: HERO_CROP_RATIO,
+      focal: { x: 58, y: 42 },
+      original: "assets/images-website/hero-2-almeria-docentes.png (crop 79% from the left)",
+      license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
+    },
+    {
+      /** The same second frame framed on the place (castle and town) rather than the people; used by Acoge JIA. */
+      id: "hero-2-place",
+      variants: [
         { src: "/hero/hero-2-almeria-docentes-960.webp", width: 960 },
         { src: "/hero/hero-2-almeria-docentes-1672.webp", width: 1672 },
       ],
       ratio: HERO_RATIO,
-      focal: { x: 62, y: 42 },
+      focal: { x: 66, y: 34 },
       original: "assets/images-website/hero-2-almeria-docentes.png",
       license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
     },

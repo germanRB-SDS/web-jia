@@ -11,7 +11,7 @@ export function Waypoints({ waypoints, title, regionLabel }: Props) {
   return (
     <nav className={styles.strip} aria-label={regionLabel}>
       <div className={styles.inner}>
-        <p className={styles.title}>{title}</p>
+        <h2 className={styles.title}>{title}</h2>
         <ul className={styles.list}>
           {waypoints.map((w) => {
             const Icon = ICONS[w.icon];

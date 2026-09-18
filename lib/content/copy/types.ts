@@ -94,7 +94,8 @@ export type Copy = {
       sessions: Record<string, string>;
     };
     how: { title: string; paragraphs: string[]; status: EditorialStatus };
-    team: { title: string; lede: string; roles: Record<PersonRole, string> };
+    /** `count` takes `{count}`. */
+    team: { title: string; lede: string; count: string; roles: Record<PersonRole, string> };
     workshops: {
       title: string;
       lede: string;
