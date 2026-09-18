@@ -65,6 +65,15 @@ out public/acoge/x
 magick assets/images-website/acoge-arquero.png -resize 960x -strip -quality 80 "public/acoge/arquero-960.webp"
 magick assets/images-website/acoge-arquero.png -strip -quality 82 "public/acoge/arquero-1922.webp"
 
+# Collaborators' cards (JIA-2026-09-18-24): each entity's logotype composed on a western still (1448x1086, 4:3,
+# the card's image slot). The slot is ~272 CSS px wide: 420 covers density 1, 840 densities 2-3.
+out public/colaboradores/x
+for name in sds minihollywood leonardo kichi lagata; do
+  src="assets/images-logo-companies/logo-final-$name.png"
+  magick "$src" -resize 420x -strip -quality 80 "public/colaboradores/$name-420.webp"
+  magick "$src" -resize 840x -strip -quality 82 "public/colaboradores/$name-840.webp"
+done
+
 # Official #JIA26 badge (has alpha). PNG keeps transparency for the header.
 out public/brand/x
 magick "assets/cep/logo-variantes/#jIA26 LOGO.png" -resize 320x -strip "public/brand/jia26-badge-320.png"

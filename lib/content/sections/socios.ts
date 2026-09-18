@@ -1,9 +1,8 @@
 import type { SurfaceToken } from "../data/types";
 
 /**
- * SOCIOS ("Quién hace posible las JIA"). The collaborators' cards show a solid palette surface until
- * the promoter supplies each photograph with its logotype: then `logoMediaId` in data/organizations.ts
- * fills the same slot and the surface stays as its fallback.
+ * SOCIOS ("Quién hace posible las JIA"). Each collaborator's card shows its image (`logoMediaId` in
+ * data/organizations.ts); the solid palette surface below is what the same slot shows if one is missing.
  */
 export const sociosConfig = {
   id: "socios",

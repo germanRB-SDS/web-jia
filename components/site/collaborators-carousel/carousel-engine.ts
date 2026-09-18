@@ -15,8 +15,10 @@ const mod = (n: number, m: number) => ((n % m) + m) % m;
 
 /**
  * An endless, draggable strip: the track is moved with a transform, wrapped every set, so five cards can be
- * dragged either way at any width. A release glides and settles on a card; a drag never clicks the link
- * under it. Reduced motion: no glide and no easing, the track stays where it was left.
+ * dragged either way at any width. Left alone it drifts from right to left; it stops for a press, for a
+ * mouse over it, for keyboard focus inside, off screen and in a hidden tab, and picks up again a moment
+ * after the gesture. A release keeps the throw's momentum; a drag never clicks the link under it.
+ * Reduced motion: no drift, no glide and no easing, the track stays where it was left.
  */
 export function createCarouselEngine({ viewport, track, anchor, count, onCopies }: Options) {
   const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -27,7 +29,14 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
   let target = 0;
   let raf: number | null = null;
   let last = 0;
-  let wheelTimer: number | null = null;
+  /** Easing towards `target` (a throw, a key, a card brought into view); otherwise the strip drifts. */
+  let gliding = false;
+  /** Drift speed right now, in pixels per millisecond: it eases towards the pace, or towards rest. */
+  let pace = 0;
+  let holdUntil = 0;
+  let holdTimer: number | null = null;
+  let hovered = false;
+  let onScreen = true;
 
   let pointer: { id: number; startX: number; startPos: number; dragging: boolean } | null = null;
   let samples: { t: number; x: number }[] = [];
@@ -39,40 +48,69 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
     track.style.transform = `translate3d(${inset - set - mod(x, set)}px,0,0)`;
   };
 
+  const focusedInside = () => viewport.matches(":focus-visible") || viewport.querySelector(":focus-visible") !== null;
+  const mayDrift = () => !calm.matches && onScreen && !document.hidden && !pointer && !hovered && performance.now() >= holdUntil && !focusedInside();
+
   const stop = () => {
     if (raf !== null) window.cancelAnimationFrame(raf);
     raf = null;
   };
 
-  /** Ease towards `target`, exponentially: the same curve as a glide that loses speed. */
-  const run = () => {
-    stop();
+  const frame = (now: number) => {
+    const dt = Math.min(now - last, 64);
+    last = now;
+    if (pointer) {
+      // The hand has it.
+      pace = 0;
+      gliding = false;
+    } else if (gliding) {
+      pace = 0;
+      x = target + (x - target) * Math.exp(-dt / TUNE.glide);
+      if (Math.abs(target - x) < 0.4) {
+        x = target;
+        gliding = false;
+      }
+    } else {
+      const goal = mayDrift() ? TUNE.drift / 1000 : 0;
+      pace += (goal - pace) * (1 - Math.exp(-dt / TUNE.driftEase));
+      if (Math.abs(goal - pace) < 0.0004) pace = goal;
+      x = target = x + pace * dt;
+    }
+    paint();
+    raf = gliding || pace !== 0 || mayDrift() ? window.requestAnimationFrame(frame) : null;
+  };
+
+  /** Start the loop if there is anything to move; it ends by itself when there is not. */
+  const wake = () => {
     if (calm.matches) {
+      stop();
+      gliding = false;
+      pace = 0;
       x = target;
       paint();
       return;
     }
+    if (raf !== null) return;
     last = performance.now();
-    const frame = (now: number) => {
-      const dt = Math.min(now - last, 64);
-      last = now;
-      x = target + (x - target) * Math.exp(-dt / TUNE.glide);
-      if (Math.abs(target - x) < 0.4) {
-        x = target;
-        raf = null;
-        paint();
-        return;
-      }
-      paint();
-      raf = window.requestAnimationFrame(frame);
-    };
     raf = window.requestAnimationFrame(frame);
   };
 
+  /** A gesture just ended: leave the strip alone for a moment, then let it drift again. */
+  const hold = () => {
+    holdUntil = performance.now() + TUNE.driftResume;
+    if (holdTimer !== null) window.clearTimeout(holdTimer);
+    holdTimer = window.setTimeout(wake, TUNE.driftResume + 20);
+  };
+
+  const glideTo = (to: number) => {
+    target = to;
+    gliding = true;
+    hold();
+    wake();
+  };
+
   const settle = (from: number) => {
-    if (!step) return;
-    target = Math.round(from / step) * step;
-    run();
+    if (step) glideTo(Math.round(from / step) * step);
   };
 
   const measure = () => {
@@ -84,8 +122,8 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
     const index = step ? x / step : 0;
     step = next;
     inset = anchor.getBoundingClientRect().left - viewport.getBoundingClientRect().left;
-    stop();
-    x = target = Math.round(index) * step;
+    gliding = false;
+    x = target = index * step;
     onCopies(Math.min(TUNE.maxCopies, Math.max(TUNE.minCopies, Math.ceil(viewport.clientWidth / (step * count)) + 2)));
     paint();
   };
@@ -93,7 +131,7 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
   const onPointerDown = (e: PointerEvent) => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
     swallowClick = false;
-    stop();
+    gliding = false;
     target = x;
     pointer = { id: e.pointerId, startX: e.clientX, startPos: x, dragging: false };
     samples = [{ t: e.timeStamp, x: e.clientX }];
@@ -120,14 +158,15 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
     const wasDragging = pointer.dragging;
     pointer = null;
     delete viewport.dataset.dragging;
-    if (!wasDragging) return;
-    if (calm.matches) return;
+    hold();
+    wake();
+    if (!wasDragging || calm.matches) return;
     const first = samples[0];
     const lastSample = samples[samples.length - 1];
     const dt = lastSample.t - first.t;
     // Stale samples mean the pointer had stopped before letting go: no throw.
     const speed = dt > 0 && e.timeStamp - lastSample.t < TUNE.velocityWindow ? (first.x - lastSample.x) / dt : 0;
-    settle(x + speed * TUNE.glide);
+    glideTo(x + speed * TUNE.glide);
   };
 
   /** A press that turned into a drag must not open the link it started on. */
@@ -141,11 +180,10 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
   const onWheel = (e: WheelEvent) => {
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
     e.preventDefault();
-    stop();
+    gliding = false;
     x = target = x + e.deltaX;
     paint();
-    if (wheelTimer !== null) window.clearTimeout(wheelTimer);
-    if (!calm.matches) wheelTimer = window.setTimeout(() => settle(x), TUNE.wheelSettle);
+    hold();
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -162,9 +200,22 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
     const at = Number(card.dataset.cardIndex) * step;
     const left = mod(at - x, set);
     if (left + step <= viewport.clientWidth - inset) return;
-    target = x + (left > set / 2 ? left - set : left);
-    run();
+    glideTo(x + (left > set / 2 ? left - set : left));
   };
+
+  const onPointerEnter = (e: PointerEvent) => {
+    if (e.pointerType === "mouse") hovered = true;
+  };
+  const onPointerLeave = (e: PointerEvent) => {
+    if (e.pointerType !== "mouse") return;
+    hovered = false;
+    wake();
+  };
+
+  const visibility = new IntersectionObserver(([entry]) => {
+    onScreen = entry.isIntersecting;
+    wake();
+  });
 
   /** `overflow: clip` cannot scroll; where it falls back to `hidden`, focus must not scroll the viewport. */
   const onScroll = () => {
@@ -175,6 +226,7 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
   observer.observe(viewport);
   if (track.firstElementChild) observer.observe(track.firstElementChild);
   measure();
+  visibility.observe(viewport);
 
   viewport.addEventListener("pointerdown", onPointerDown);
   viewport.addEventListener("pointermove", onPointerMove);
@@ -185,11 +237,22 @@ export function createCarouselEngine({ viewport, track, anchor, count, onCopies 
   viewport.addEventListener("keydown", onKeyDown);
   viewport.addEventListener("focusin", onFocusIn);
   viewport.addEventListener("scroll", onScroll);
+  viewport.addEventListener("pointerenter", onPointerEnter);
+  viewport.addEventListener("pointerleave", onPointerLeave);
+  viewport.addEventListener("focusout", wake);
+  document.addEventListener("visibilitychange", wake);
+  calm.addEventListener("change", wake);
 
   return () => {
     stop();
-    if (wheelTimer !== null) window.clearTimeout(wheelTimer);
+    if (holdTimer !== null) window.clearTimeout(holdTimer);
     observer.disconnect();
+    visibility.disconnect();
+    viewport.removeEventListener("pointerenter", onPointerEnter);
+    viewport.removeEventListener("pointerleave", onPointerLeave);
+    viewport.removeEventListener("focusout", wake);
+    document.removeEventListener("visibilitychange", wake);
+    calm.removeEventListener("change", wake);
     viewport.removeEventListener("pointerdown", onPointerDown);
     viewport.removeEventListener("pointermove", onPointerMove);
     viewport.removeEventListener("pointerup", onPointerEnd);

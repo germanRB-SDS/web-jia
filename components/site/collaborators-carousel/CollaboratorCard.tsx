@@ -20,7 +20,7 @@ type Props = {
 export function CollaboratorCard({ item, index, copy }: Props) {
   return (
     <li className={styles.card} data-card-index={copy ? undefined : index} aria-hidden={copy || undefined}>
-      <Surface media={item.logo} alt="" fallback={item.surface} ratio={4 / 3} sizes="320px" className={styles.image} />
+      <Surface media={item.logo} alt="" fallback={item.surface} ratio={4 / 3} sizes="272px" className={styles.image} />
       <div className={styles.foot}>
         <p className={styles.name}>{item.name}</p>
         {item.link ? (

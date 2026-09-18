@@ -49,6 +49,22 @@ function card(n: number): Media {
   };
 }
 
+/** A collaborator's card image: its logotype on a western still, 4:3 like the slot it fills (cropped if it were not). */
+function collaborator(slug: string): Media {
+  return {
+    id: `colabora-${slug}`,
+    variants: [
+      { src: `/colaboradores/${slug}-420.webp`, width: 420 },
+      { src: `/colaboradores/${slug}-840.webp`, width: 840 },
+    ],
+    ratio: 1448 / 1086,
+    original: `assets/images-logo-companies/logo-final-${slug}.png`,
+    license: "Composición aportada por el promotor el 18-09-2026; el logotipo es propiedad de cada entidad",
+  };
+}
+
+const COLLABORATOR_SLUGS = ["sds", "minihollywood", "leonardo", "kichi", "lagata"];
+
 const CARD_NUMBERS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 37, 39, 40, 41, 42, 43, 46];
 
 export const MEDIA: Record<string, Media> = Object.fromEntries(
@@ -169,6 +185,7 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
     },
     ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map(poster),
     ...CARD_NUMBERS.map(card),
+    ...COLLABORATOR_SLUGS.map(collaborator),
   ].map((m) => [m.id, m]),
 );
 
