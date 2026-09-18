@@ -20,7 +20,7 @@ export type Media = {
 };
 
 const HERO_RATIO = 1672 / 941;
-const HERO_CROP_RATIO = 1321 / 941;
+const HERO_CROP_RATIO = 1021 / 941;
 const POSTER_RATIO = 1414 / 2000;
 
 function poster(n: number): Media {
@@ -58,11 +58,11 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       id: "hero-1",
       variants: [
         { src: "/hero/hero-almeria-docentes-crop-960.webp", width: 960 },
-        { src: "/hero/hero-almeria-docentes-crop-1321.webp", width: 1321 },
+        { src: "/hero/hero-almeria-docentes-crop-1021.webp", width: 1021 },
       ],
       ratio: HERO_CROP_RATIO,
-      focal: { x: 80, y: 42 },
-      original: "assets/images-website/hero-almeria-docentes.png (crop 79% from the left)",
+      focal: { x: 50, y: 42 },
+      original: "assets/images-website/hero-almeria-docentes.png (crop 1021x941+300+0)",
       license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
     },
     {
@@ -80,11 +80,11 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       id: "hero-2",
       variants: [
         { src: "/hero/hero-2-almeria-docentes-crop-960.webp", width: 960 },
-        { src: "/hero/hero-2-almeria-docentes-crop-1321.webp", width: 1321 },
+        { src: "/hero/hero-2-almeria-docentes-crop-1021.webp", width: 1021 },
       ],
       ratio: HERO_CROP_RATIO,
-      focal: { x: 58, y: 42 },
-      original: "assets/images-website/hero-2-almeria-docentes.png (crop 79% from the left)",
+      focal: { x: 50, y: 42 },
+      original: "assets/images-website/hero-2-almeria-docentes.png (crop 1021x941+300+0)",
       license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
     },
     {

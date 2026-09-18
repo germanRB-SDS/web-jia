@@ -125,7 +125,7 @@
     aspect-ratio: 4 / 3 !important;
     mask-image: linear-gradient(to bottom, transparent 0%, black 22%);
   }
-  .surface img { object-position: 70% 45% !important; }
+  .surface img { object-position: 55% 45% !important; }
   .note { top: 18%; right: 6%; }
   .hero { display: grid; }
 }

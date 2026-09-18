@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   trailingSlash: true,
   images: { unoptimized: true },
+  // Next 16 writes its own AGENTS.md / CLAUDE.md on `next dev`; the hub governance owns those files.
+  agentRules: false,
   turbopack: { root: import.meta.dirname },
 };
 

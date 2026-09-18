@@ -30,6 +30,8 @@
   transform: translateX(-50%);
   z-index: 2;
 }
+/* An empty parchment surface brings its own pin (Surface.module.css); do not paint two. */
+.media:has([data-empty])::before { display: none; }
 .reveal {
   position: absolute;
   inset: auto 0 0 0;

@@ -17,10 +17,10 @@ for name in hero-almeria-docentes hero-2-almeria-docentes; do
   out "public/hero/x"
   magick "$src" -resize 960x -strip -quality 80 "public/hero/$name-960.webp"
   magick "$src" -resize 1672x -strip -quality 82 "public/hero/$name-1672.webp"
-  # Crop that leaves out the signpost with baked-in words on the right (identity §8.8):
-  # the words would otherwise be cut mid-word at desktop widths.
-  magick "$src" -gravity West -crop 79%x100%+0+0 +repage -resize 960x -strip -quality 80 "public/hero/$name-crop-960.webp"
-  magick "$src" -gravity West -crop 79%x100%+0+0 +repage -strip -quality 82 "public/hero/$name-crop-1321.webp"
+  # Crop that leaves out the baked-in words (identity §8.8): the signpost on the right
+  # and the backpack lettering on the left would otherwise be cut mid-word at desktop widths.
+  magick "$src" -crop 1021x941+300+0 +repage -resize 960x -strip -quality 80 "public/hero/$name-crop-960.webp"
+  magick "$src" -crop 1021x941+300+0 +repage -strip -quality 82 "public/hero/$name-crop-1021.webp"
 done
 
 # Official #JIA26 badge (has alpha). PNG keeps transparency for the header.
