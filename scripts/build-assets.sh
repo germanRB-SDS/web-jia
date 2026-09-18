@@ -28,6 +28,11 @@ out public/jornadas/x
 magick assets/images-website/jornadas-jinete.png -resize 960x -strip -quality 80 "public/jornadas/jinete-960.webp"
 magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jornadas/jinete-1916.webp"
 
+# Propuestas visual column (1059x821)
+out public/propuestas/x
+magick assets/images-website/propuestas-camara.png -resize 800x -strip -quality 80 "public/propuestas/camara-800.webp"
+magick assets/images-website/propuestas-camara.png -strip -quality 82 "public/propuestas/camara-1059.webp"
+
 # Acoge JIA band: the archer supplied by the promoter (1922x818)
 out public/acoge/x
 magick assets/images-website/acoge-arquero.png -resize 960x -strip -quality 80 "public/acoge/arquero-960.webp"

@@ -112,6 +112,18 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
     },
     {
+      /** Propuestas visual column: the vault with the JIA books. */
+      id: "propuestas-camara",
+      variants: [
+        { src: "/propuestas/camara-800.webp", width: 800 },
+        { src: "/propuestas/camara-1059.webp", width: 1059 },
+      ],
+      ratio: 1059 / 821,
+      focal: { x: 55, y: 50 },
+      original: "assets/images-website/propuestas-camara.png",
+      license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Acoge JIA band. The subject stands on the left; the right two thirds are clear ground for text. */
       id: "acoge-arquero",
       variants: [

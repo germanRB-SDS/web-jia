@@ -1,13 +1,42 @@
 .footer {
+  position: relative;
+  overflow: clip;
   background: var(--jia-ink);
   color: var(--jia-sand);
 }
+/* The #JIA26 badge as the footer's ground: five times the old size, anchored
+   to the lower-right corner so about 60% of the disc shows, softened and
+   dissolved into the ink through a radial mask so it reads as a watermark. */
+.ground {
+  position: absolute;
+  right: -10%;
+  bottom: -40%;
+  width: clamp(26rem, 40vw, 40rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.22;
+  filter: blur(1px) saturate(0.7);
+  /* Dissolve toward the columns (up and left) so the ring stays legible at the corner. */
+  -webkit-mask-image: linear-gradient(215deg, #000 35%, transparent 78%);
+  mask-image: linear-gradient(215deg, #000 35%, transparent 78%);
+}
+.groundImg { width: 100%; height: 100%; display: block; }
+@media (max-width: 759px) {
+  .ground { width: 24rem; right: -34%; bottom: -8%; opacity: 0.16; }
+}
 .inner {
+  position: relative;
+  z-index: 1;
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
   padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem);
   display: grid;
   gap: 2.5rem;
+}
+/* Room under the columns for the watermark to surface without crossing text. */
+@media (min-width: 760px) {
+  .inner { padding-bottom: clamp(9rem, 16vw, 14rem); }
 }
 @media (min-width: 760px) {
   .inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; }
@@ -36,8 +65,6 @@
   line-height: 1.5;
   color: var(--jia-sand);
 }
-.badge { width: 5rem; margin-top: 0.5rem; }
-.badge img { width: 100%; height: auto; display: block; }
 .col { display: grid; gap: 0.75rem; align-content: start; }
 .colTitle {
   margin: 0;
@@ -67,7 +94,7 @@
 }
 .links a:hover, .orgs a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .orgs { color: var(--jia-sand); }
-.bottom { border-top: 1px solid rgb(var(--jia-paper-rgb) / 0.12); }
+.bottom { position: relative; z-index: 1; border-top: 1px solid rgb(var(--jia-paper-rgb) / 0.12); }
 .bottomInner {
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;

@@ -9,9 +9,9 @@ const CARTEL = "assets/cep/CARTEL #JIA26 (9).png";
  */
 export const organizations: readonly Organization[] = [
   { id: "o-junta", name: "Junta de Andalucía · Consejería de Educación", relation: "organiza", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
-  { id: "o-cep-almeria", name: "CEP de Almería", relation: "organiza", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL, note: "Forma corta pedida por el promotor (18-09-2026); la identidad §2 cita «Centro del Profesorado de Almería» como denominación oficial." } },
-  { id: "o-cep-ejido", name: "CEP de El Ejido", relation: "organiza", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
-  { id: "o-cep-cuevas", name: "CEP de Cuevas Olula", relation: "organiza", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
+  { id: "o-cep-almeria", name: "CEP de Almería", relation: "organiza", url: "https://www.juntadeandalucia.es/educacion/portales/web/cep-almeria", logoMediaId: null, status: "provisional", provenance: { source: CARTEL, note: "Forma corta pedida por el promotor (18-09-2026); la identidad §2 cita «Centro del Profesorado de Almería» como denominación oficial." } },
+  { id: "o-cep-ejido", name: "CEP de El Ejido", relation: "organiza", url: "https://www.juntadeandalucia.es/educacion/portales/web/cep-ejido/datos-del-cep", logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
+  { id: "o-cep-cuevas", name: "CEP de Cuevas-Olula", relation: "organiza", url: "https://www.juntadeandalucia.es/educacion/portales/web/cep-cuevas-olula", logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
   { id: "o-minihollywood", name: "Minihollywood Oasys Theme Park", relation: "colabora", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
   { id: "o-leonardo", name: "Leonardo Atrezzo", relation: "colabora", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL } },
   { id: "o-kichigarcia", name: "Kichi García Films", relation: "colabora", url: null, logoMediaId: null, status: "provisional", provenance: { source: CARTEL, note: "Impreso como «KICHIGARCIAFILMS»; grafía por confirmar." } },

@@ -137,7 +137,7 @@ export type Copy = {
     status: EditorialStatus;
   };
   /** `unavailable` is the optional visible note under a disabled action; null shows the label alone. */
-  propuestas: { title: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
+  propuestas: { title: string; subtitle: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
   acoge: { title: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
   partners: { kicker: string; title: string; text: string; organiza: string; colabora: string; logosPending: string };
   footer: {

@@ -211,6 +211,9 @@ components:
 
 > Update 2026-09-18 (JIA-2026-09-18-05): the Jornadas opening mirrors maryna-ventura's "Servicios" spread — photograph bleeding on the left (58/42 grid at ≥900px), solid `--jia-dune` panel on the right carrying title, lede and a small pinned poster (`PosterCard size="small"`, 10rem, hover label hidden, still opens full size). The veil is transparent over the rider (0% to 38%) and reaches the panel colour at the seam; on phones it runs vertically into the panel below.
 
+
+> Update 2026-09-18 (JIA-2026-09-18-06): Partners kicker 0.875rem and group labels 0.8125rem (+0.125rem each); organiser names link to their CEP sites from one data source (footer and the Partners paragraph via `{o-id}` placeholders); the footer carries the #JIA26 badge as a watermark (40rem, lower-right, 0.22 opacity, blurred 1px, linear dissolve toward the columns, extra bottom padding at ≥760px); new shared `Section .subtitle` (Alegreya italic, `--t-subtitle` clamp 1.375–1.875rem) and `layout="split"` with a `[data-visual]` column; Propuestas shows the vault photograph as its visual column.
+
 ## Overview
 
 **Creative North Star: "The Teacher's Field Notebook"**

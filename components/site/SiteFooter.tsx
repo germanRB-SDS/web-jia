@@ -8,6 +8,11 @@ type Props = Pick<LandingModel, "footer" | "brand" | "event" | "copy">;
 export function SiteFooter({ footer, brand, event, copy }: Props) {
   return (
     <footer className={styles.footer}>
+      {brand.badge ? (
+        <span className={styles.ground} aria-hidden="true">
+          <Picture media={brand.badge} alt="" sizes="640px" className={styles.groundImg} />
+        </span>
+      ) : null}
       <div className={styles.inner}>
         <div className={styles.brand}>
           <svg className={styles.wordmark} viewBox={`0 0 ${brand.wordmark.width} ${brand.wordmark.height}`} role="img" aria-label={copy.a11y.wordmark}>
@@ -15,11 +20,6 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
           </svg>
           <p className={styles.name}>{event.fullName}</p>
           <p className={styles.credit}>{footer.credit}</p>
-          {brand.badge ? (
-            <span className={styles.badge}>
-              <Picture media={brand.badge} alt={copy.a11y.badge} sizes="96px" />
-            </span>
-          ) : null}
         </div>
 
         <nav className={styles.col} aria-label={copy.footer.sections}>
@@ -37,7 +37,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
           <h2 className={styles.colTitle}>{copy.footer.organiza}</h2>
           <ul className={styles.orgs}>
             {footer.organiza.map((o) => (
-              <li key={o.id}>{o.url ? <a href={o.url}>{o.name}</a> : o.name}</li>
+              <li key={o.id}>{o.url ? <a href={o.url} target="_blank" rel="noopener noreferrer">{o.name}</a> : o.name}</li>
             ))}
           </ul>
         </div>
@@ -46,7 +46,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
           <h2 className={styles.colTitle}>{copy.footer.colabora}</h2>
           <ul className={styles.orgs}>
             {footer.colabora.map((o) => (
-              <li key={o.id}>{o.url ? <a href={o.url}>{o.name}</a> : o.name}</li>
+              <li key={o.id}>{o.url ? <a href={o.url} target="_blank" rel="noopener noreferrer">{o.name}</a> : o.name}</li>
             ))}
           </ul>
         </div>

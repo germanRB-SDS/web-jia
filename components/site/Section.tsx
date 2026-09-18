@@ -6,24 +6,29 @@ import styles from "./Section.module.css";
 type SectionProps = {
   id: string;
   title: string;
+  /** Second line under the title: between title and lede in size (the `subtitle` class). */
+  subtitle?: string | null;
   lede?: string | null;
   marks?: MarkKind[];
   markLabels: Record<MarkKind, string>;
   showMarks: boolean;
   tone?: "paper" | "sand" | "ink" | "ivory";
+  /** "split" keeps the head inside the left column so a visual column can sit beside it. */
+  layout?: "stack" | "split";
   children: ReactNode;
 };
 
 /** A main area: heading, optional lede, then the section's own composition. */
-export function Section({ id, title, lede, marks = [], markLabels, showMarks, tone = "paper", children }: SectionProps) {
+export function Section({ id, title, subtitle, lede, marks = [], markLabels, showMarks, tone = "paper", layout = "stack", children }: SectionProps) {
   const headingId = `${id}-title`;
   return (
     <section id={id} className={`${styles.section} ${styles[tone]}`} aria-labelledby={headingId}>
-      <div className={styles.inner}>
+      <div className={`${styles.inner} ${layout === "split" ? styles.split : ""}`}>
         <header className={styles.head}>
           <h2 id={headingId} className={styles.title}>
             {title}
           </h2>
+          {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
           {lede ? <p className={styles.lede}>{lede}</p> : null}
           <Marks marks={marks} labels={markLabels} show={showMarks} className={styles.marks} />
         </header>

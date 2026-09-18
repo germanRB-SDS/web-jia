@@ -21,6 +21,7 @@
   --t-lede: clamp(1.125rem, 1.5vw, 1.375rem);
   --t-h2: clamp(2.125rem, 4.4vw, 3.5rem);
   --t-h3: clamp(1.375rem, 2.2vw, 1.75rem);
+  --t-subtitle: clamp(1.375rem, 2.4vw, 1.875rem);
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 

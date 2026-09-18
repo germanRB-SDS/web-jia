@@ -24,7 +24,19 @@ export function Partners({ partners }: Props) {
               {partners.title}
             </h2>
           </div>
-          <p className={styles.text}>{partners.text}</p>
+          <p className={styles.text}>
+            {partners.text.map((part, i) =>
+              part.kind === "text" ? (
+                <span key={i}>{part.value}</span>
+              ) : part.url ? (
+                <a key={part.id} href={part.url} target="_blank" rel="noopener noreferrer" className={styles.textLink}>
+                  {part.name}
+                </a>
+              ) : (
+                <span key={part.id}>{part.name}</span>
+              ),
+            )}
+          </p>
         </div>
 
         <div className={styles.colophon}>

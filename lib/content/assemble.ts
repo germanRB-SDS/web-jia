@@ -122,12 +122,13 @@ export type LandingModel = {
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   experiencias: { id: string; title: string; lede: string; hint: string; empty: string; demoNotice: string | null; items: SheetModel[]; marks: MarkKind[] };
-  propuestas: { id: string; title: string; paragraphs: string[]; action: Action; marks: MarkKind[] };
+  propuestas: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; marks: MarkKind[] };
   partners: {
     id: string;
     kicker: string;
     title: string;
-    text: string;
+    /** Text split into plain runs and organisation links, in order. */
+    text: ({ kind: "text"; value: string } | { kind: "org"; id: string; name: string; url: string | null })[];
     logosPending: string | null;
     groups: { key: "organiza" | "colabora"; label: string; items: { id: string; name: string; url: string | null; logo: Media | null }[] }[];
   };
@@ -411,7 +412,9 @@ export function getLanding(locale: Locale): LandingModel {
     propuestas: {
       id: propuestasConfig.id,
       title: copy.propuestas.title,
+      subtitle: copy.propuestas.subtitle,
       paragraphs: copy.propuestas.paragraphs,
+      media: getMedia(propuestasConfig.mediaId),
       action: externalOrUnavailable("proposals-present", copy.buttons.proposals.present, propuestasConfig.url, copy.propuestas.unavailable),
       marks: marksOf(copy.propuestas.status),
     },
@@ -419,7 +422,11 @@ export function getLanding(locale: Locale): LandingModel {
       id: "socios",
       kicker: copy.partners.kicker,
       title: copy.partners.title,
-      text: copy.partners.text,
+      text: copy.partners.text.split(/(\{o-[a-z-]+\})/).filter(Boolean).map((part) => {
+        const m = part.match(/^\{(o-[a-z-]+)\}$/);
+        const org = m ? organizations.find((o) => o.id === m[1]) : undefined;
+        return org ? { kind: "org" as const, id: org.id, name: org.name, url: org.url } : { kind: "text" as const, value: part };
+      }),
       logosPending: organizations.some((o) => !o.logoMediaId) ? copy.partners.logosPending : null,
       groups: (["organiza", "colabora"] as const).map((key) => ({
         key,
