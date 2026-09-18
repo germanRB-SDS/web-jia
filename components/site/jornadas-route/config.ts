@@ -6,67 +6,108 @@
  * units); the scene maps design (x, y) → world (x, 0, y). The box is fitted into the
  * component's width, so every size below scales with the column.
  *
+ * Stops are not authored one by one: each layout lists stop SLOTS (a vertical run of the road
+ * and a screen-y on it), in travel order and each with a distinct y, so labels never share a
+ * line. The scene takes as many slots as there are workshops (config/talleres.ts).
+ *
  * Colours are palette tokens (app/theme/palette.css) resolved at runtime; no brand HEX here.
  */
 
 export type LayoutName = "wide" | "narrow";
+
+export type StopSlot = {
+  /** Control-point index range [from, to] of the straight run this slot sits on. */
+  run: [number, number];
+  /** Screen y (design units) of the disc; unique within the layout and inside the run's y-range. */
+  y: number;
+  /** Which slots are used first: with N workshops the N lowest priorities are taken, then re-sorted by travel order. */
+  priority: number;
+};
 
 export type RouteLayout = {
   /** Design box the camera frames (units). Its aspect ratio is also the CSS aspect-ratio. */
   box: { w: number; h: number };
   /** Control points of the road, in order (CatmullRom, centripetal). */
   points: [number, number][];
-  /** Six stops as indices into `points`, in visiting order. */
-  stopPoints: [number, number, number, number, number, number];
-  /** Road irregularities as indices into `points` (kept away from stops). */
+  /** Candidate stop positions in travel order (see above). More slots than workshops is fine. */
+  slots: StopSlot[];
+  /** Road irregularities as indices into `points` (kept away from the slots). */
   bumpPoints: { point: number; strength: number }[];
-  /** Space kept free to the right of every disc for its label (map units): disc + half the wagon's width. */
+  /** Map units per model unit for this layout (the wagon is 3.04 model units long). */
+  wagonScale: number;
+  /** Space kept free to the right of every disc for its label (units): disc + half the wagon's width. */
   labelOffsetUnits: number;
+  /** Width a label may take (units) before wrapping. */
+  labelMaxUnits: number;
 };
 
 export const ROUTE_LAYOUTS: Record<LayoutName, RouteLayout> = {
-  // Desktop column (~480 px). The road starts bottom-left and ends top-right: three vertical
-  // runs (up, down, up) joined by two wide U-turns (R ≈ 15 units); labels live in the gaps.
+  // Desktop column (~480 px). Bottom-left → top-right as an "N": a run up the left, a wide bend
+  // into a steep diagonal down, a wide bend up the right run. Labels sit right of both runs.
   wide: {
     box: { w: 100, h: 74 },
     points: [
-      [10, 64.5], [9.2, 55], [11, 43], [9.6, 31], [11, 22], [17, 12], [25, 8], [33, 12], [39, 22],
-      [41, 29], [39.4, 41], [40.6, 51], [41, 57], [46, 66], [55, 70], [64, 66], [69, 57],
-      [70.6, 44], [69.4, 30], [70, 16], [70, 8],
+      [5, 71], [5.3, 62], [5.6, 52], [5.4, 42], [5.8, 32],
+      [7.5, 22], [12, 14.5], [19, 10.5], [26, 12], [30.5, 18],
+      [35, 32], [39.5, 46], [43, 56],
+      [46, 63], [51, 68], [57, 70], [63, 67.5], [66.5, 61], [67.5, 54],
+      [67.2, 44], [67.6, 34], [67.1, 22], [67.4, 12], [67.4, 5],
     ],
-    stopPoints: [1, 3, 9, 11, 17, 19],
+    slots: [
+      { run: [0, 4], y: 66, priority: 1 },
+      { run: [0, 4], y: 50, priority: 2 },
+      { run: [0, 4], y: 34, priority: 7 },
+      { run: [18, 23], y: 52, priority: 3 },
+      { run: [18, 23], y: 41, priority: 4 },
+      { run: [18, 23], y: 30, priority: 5 },
+      { run: [18, 23], y: 19, priority: 6 },
+      { run: [18, 23], y: 9, priority: 8 },
+    ],
     bumpPoints: [
-      { point: 6, strength: 1 },
-      { point: 14, strength: 0.8 },
-      { point: 18, strength: 1 },
+      { point: 7, strength: 1 },
+      { point: 11, strength: 0.8 },
+      { point: 15, strength: 1 },
     ],
-    labelOffsetUnits: 7.6,
+    wagonScale: 5.2,
+    labelOffsetUnits: 7.2,
+    labelMaxUnits: 25,
   },
-  // Phone (< 600 px): same road, taller box so the three runs keep their U-turn radius.
+  // Phone (< 600 px): same "N", taller box, smaller wagon so the bends keep a drivable radius.
   narrow: {
     box: { w: 100, h: 104 },
     points: [
-      [10, 96], [9.2, 86], [11, 70], [9.6, 58], [11, 40], [12, 30], [17, 18], [25, 12], [33, 18],
-      [39, 30], [41, 42], [39.4, 56], [40.6, 68], [41, 80], [46, 90], [55, 94], [64, 90], [69, 80],
-      [70.6, 66], [69.4, 48], [70, 30], [70, 20],
+      [6, 100], [6.3, 88], [6.6, 74], [6.4, 60], [6.8, 46],
+      [8.5, 34], [13, 24], [20, 18], [27, 19.5], [31.5, 26],
+      [35.5, 44], [39.5, 62], [42, 74],
+      [44.5, 82], [48.5, 88.5], [54, 91], [58.5, 88], [60.5, 81], [61, 74],
+      [60.7, 62], [61.2, 50], [60.8, 38], [61.1, 26], [61.2, 14], [61.2, 8],
     ],
-    stopPoints: [1, 3, 10, 12, 18, 20],
+    slots: [
+      { run: [0, 4], y: 94, priority: 1 },
+      { run: [0, 4], y: 78, priority: 2 },
+      { run: [0, 4], y: 62, priority: 7 },
+      { run: [18, 24], y: 72, priority: 3 },
+      { run: [18, 24], y: 58, priority: 4 },
+      { run: [18, 24], y: 44, priority: 5 },
+      { run: [18, 24], y: 30, priority: 6 },
+      { run: [18, 24], y: 14, priority: 8 },
+    ],
     bumpPoints: [
       { point: 7, strength: 1 },
-      { point: 15, strength: 0.8 },
-      { point: 19, strength: 1 },
+      { point: 11, strength: 0.8 },
+      { point: 15, strength: 1 },
     ],
-    labelOffsetUnits: 7.2,
+    wagonScale: 4.6,
+    labelOffsetUnits: 6.4,
+    labelMaxUnits: 32,
   },
 };
 
-/** Viewport rule that picks the layout; the CSS aspect-ratio in JornadasRoute.module.css mirrors it. */
+/** Viewport rule that picks the layout; the component's inline aspect-ratio follows it. */
 export const NARROW_MEDIA = "(max-width: 599px)";
 
 export const ROUTE_CONFIG = {
   wagon: {
-    /** Map units per model unit. The model is 3.04 units long → 18.2 map units (~87 px in a 480 px column). */
-    scale: 6.0,
     /** Verified in assets/3d/carruaje/VALIDATION.md (model units, before scale). */
     model: { length: 3.04, width: 1.78, wheelbase: 1.7, frontRadius: 0.35, rearRadius: 0.44 },
     /** glTF axes of the asset (HANDOFF-SPLINE.md §3): forward −Z, up +Y, right +X; wheels spin about local X (−d/r), steer about local Y (+ = left). */
@@ -77,8 +118,8 @@ export const ROUTE_CONFIG = {
       steer: "JIA_FrontSteer",
       wheels: { FL: "JIA_Wheel_FL", FR: "JIA_Wheel_FR", RL: "JIA_Wheel_RL", RR: "JIA_Wheel_RR" },
     },
-    /** Clean geometric range is ±37° (validation); the U-turns need ~34° with this scale and radius. */
-    maxSteerDeg: 34,
+    /** Clean geometric range is ±37° (validation); the bends need ~35° with these scales and radii. */
+    maxSteerDeg: 35,
     /** Look-ahead used to estimate curvature (map units). */
     curvatureStep: 1.0,
   },
@@ -100,7 +141,8 @@ export const ROUTE_CONFIG = {
     speed: 20,
     accel: 0.55,
     decel: 0.65,
-    dwell: 0.85,
+    /** Halved from 0.85 s at the promoter's request (JIA-2026-09-18-09). */
+    dwell: 0.42,
     discActivate: 0.3,
   },
   motion: {

@@ -36,6 +36,13 @@ export const edition = {
   dayCount: 2,
 } as const;
 
+/** Production credit requested by the promoter (JIA-2026-09-18-09); mark copied from the studio's own site kit. */
+export const productionStudio = {
+  name: "South Desert Studio",
+  url: "https://southdesertstudio.com",
+  mark: { src: "/brand/south-desert-studio.png", width: 400, height: 400 },
+} as const;
+
 export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   defaultLocale: DEFAULT_LOCALE,

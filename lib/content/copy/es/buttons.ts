@@ -8,5 +8,5 @@ export const buttons: Buttons = {
   proposals: { present: "Presentar una propuesta" },
   host: { host: "Quiero acoger las JIA" },
   nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
-  route: { replay: "Repetir recorrido", pause: "Pausar", resume: "Reanudar" },
+  route: { replay: "Repetir recorrido" },
 };

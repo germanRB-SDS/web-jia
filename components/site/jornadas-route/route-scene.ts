@@ -81,7 +81,7 @@ export class RouteScene {
   private segments: { start: number; duration: number; from: number; to: number }[] = [];
   private introDuration = 0;
   private anim = { reveal: 0, wagonAlpha: 0, distance: 0 };
-  private visited: boolean[] = [false, false, false, false, false, false];
+  private visited: boolean[];
   private state: PlayState = "loading";
   private raf: number | null = null;
   private lastTime = 0;
@@ -108,9 +108,11 @@ export class RouteScene {
     canvas: HTMLCanvasElement,
     private layoutName: LayoutName,
     private reducedMotion: boolean,
+    private stopCount: number,
     colors: Colors,
     private handlers: SceneHandlers,
   ) {
+    this.visited = Array.from({ length: stopCount }, () => false);
     this.colors = { road: new THREE.Color(colors.road), disc: new THREE.Color(colors.disc), discActive: new THREE.Color(colors.discActive) };
     this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
     this.renderer.setClearColor(0x000000, 0);
@@ -187,7 +189,7 @@ export class RouteScene {
       const f = s - k;
       return (lengths[k] + (lengths[k + 1] - lengths[k]) * f) / length;
     };
-    const stopDistances = layout.stopPoints.map((i) => uOfT(tOfPoint(i)) * length);
+    const stopDistances = this.stopDistancesFor(layout, curve, length, uOfT, tOfPoint);
     const bumps = layout.bumpPoints.map((b) => ({ distance: uOfT(tOfPoint(b.point)) * length, strength: b.strength }));
 
     // Flat ribbon: vertices along the road; the reveal only advances the draw range.
@@ -254,6 +256,51 @@ export class RouteScene {
     this.applyReveal();
   }
 
+  /**
+   * Arc-length positions of the stops: one slot per workshop, taken evenly from the layout's
+   * slot list (travel order, distinct screen y). Each slot is located on its run by searching
+   * the point of the curve closest to the requested y within that run's parameter range.
+   * With more workshops than slots the stops fall back to even spacing along the whole road.
+   */
+  private stopDistancesFor(
+    layout: RouteLayout,
+    curve: THREE.CatmullRomCurve3,
+    length: number,
+    uOfT: (t: number) => number,
+    tOfPoint: (i: number) => number,
+  ): number[] {
+    const n = this.stopCount;
+    const slots = layout.slots;
+    if (n > slots.length) {
+      console.warn(`[JornadasRoute] ${n} paradas pero solo ${slots.length} slots en la disposición: reparto uniforme.`);
+      return Array.from({ length: n }, (_, i) => ((i + 1) / (n + 1)) * length);
+    }
+    const chosen = slots
+      .map((slot, index) => ({ slot, index }))
+      .sort((a, b) => a.slot.priority - b.slot.priority)
+      .slice(0, n)
+      .sort((a, b) => a.index - b.index)
+      .map((s) => s.slot);
+    const p = new THREE.Vector3();
+    return chosen.map((slot) => {
+      const u0 = uOfT(tOfPoint(slot.run[0]));
+      const u1 = uOfT(tOfPoint(slot.run[1]));
+      let best = u0;
+      let bestErr = Infinity;
+      const steps = 200;
+      for (let k = 0; k <= steps; k++) {
+        const u = u0 + ((u1 - u0) * k) / steps;
+        curve.getPointAt(u, p);
+        const err = Math.abs(p.z - slot.y);
+        if (err < bestErr) {
+          bestErr = err;
+          best = u;
+        }
+      }
+      return best * length;
+    });
+  }
+
   private disposeRoad(): void {
     if (!this.road) return;
     const { ribbon, caps, discs } = this.road;
@@ -278,7 +325,8 @@ export class RouteScene {
   // ---------------------------------------------------------------- wagon
 
   private adoptWagon(gltf: GLTF): Wagon | null {
-    const { nodes, model, scale } = ROUTE_CONFIG.wagon;
+    const { nodes, model } = ROUTE_CONFIG.wagon;
+    const scale = ROUTE_LAYOUTS[this.layoutName].wagonScale;
     const find = (name: string) => gltf.scene.getObjectByName(name) ?? null;
     const root = find(nodes.root);
     const body = find(nodes.body);
@@ -352,13 +400,14 @@ export class RouteScene {
     curve.getTangentAt(Math.min(1, u + du), this.vT2);
     const turn = Math.atan2(this.vT2.x * this.vT.z - this.vT2.z * this.vT.x, this.vT.dot(this.vT2));
     const curvature = turn / cfg.wagon.curvatureStep;
-    const wheelbase = cfg.wagon.model.wheelbase * cfg.wagon.scale;
+    const scale = road.layout.wagonScale;
+    const wheelbase = cfg.wagon.model.wheelbase * scale;
     const maxSteer = THREE.MathUtils.degToRad(cfg.wagon.maxSteerDeg);
     const steer = THREE.MathUtils.clamp(Math.atan(wheelbase * curvature), -maxSteer, maxSteer);
     wagon.steer.quaternion.copy(wagon.steerRest).multiply(this.qA.setFromAxisAngle(UP, steer));
 
     // Wheels: angle = −distance / radius in model units, relative to the rest pose (no accumulation).
-    const dModel = d / cfg.wagon.scale;
+    const dModel = d / scale;
     for (const w of wagon.wheels) {
       w.node.quaternion.copy(w.rest).multiply(this.qA.setFromAxisAngle(X, -dModel / w.radius));
     }
@@ -621,6 +670,7 @@ export class RouteScene {
   setLayout(name: LayoutName): void {
     if (name === this.layoutName || !this.road) return;
     this.layoutName = name;
+    if (this.wagon) this.wagon.mover.scale.setScalar(ROUTE_LAYOUTS[name].wagonScale);
     const wasPlaying = this.state === "playing" && !this.autoPaused;
     const t = this.tl ? this.tl.time() : 0;
     let seg = -1;

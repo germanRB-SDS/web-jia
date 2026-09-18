@@ -11,13 +11,14 @@ import { spawn } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const ORIGIN = process.argv[2] ?? "http://localhost:3005";
-const OUT = process.argv[3] ?? "docs/prompts-output/JIA-2026-09-18-08/evidence";
+const OUT = process.argv[3] ?? "docs/prompts-output/JIA-2026-09-18-09/evidence";
 const CHROME = process.env.CHROME_BIN ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PORT = 9334;
 const VIEWPORTS = [
   { name: "desktop", width: 1440, height: 900 },
   { name: "laptop", width: 1180, height: 760 },
-  { name: "tablet", width: 768, height: 1024, mobile: true },
+  // SwiftShader cannot keep the 700 px canvas at speed; the tablet run captures the initial state only.
+  { name: "tablet", width: 768, height: 1024, mobile: true, quick: true },
   { name: "mobile", width: 390, height: 844, mobile: true },
 ];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -88,31 +89,24 @@ async function main() {
       report.timings[`${vp.name}-start-ms`] = t;
       await sleep(1400);
       await shot(`${vp.name}-01-inicio`);
-      const t3 = await waitFor(`[...document.querySelectorAll(${JSON.stringify(ROUTE + ' li[data-visible="true"]')})].length >= 3`, 40000);
+      if (vp.quick) continue;
+      const t3 = await waitFor(`[...document.querySelectorAll(${JSON.stringify(ROUTE + ' li[data-visible="true"]')})].length >= 3`, 120000);
       report.timings[`${vp.name}-stop3-ms`] = t3;
       await sleep(250);
       await shot(`${vp.name}-02-parada-3`);
-      const td = await waitFor(`document.querySelector(${JSON.stringify(ROUTE)})?.dataset.state === "done"`, 60000);
+      const td = await waitFor(`document.querySelector(${JSON.stringify(ROUTE)})?.dataset.state === "done"`, 180000);
       report.timings[`${vp.name}-done-ms`] = td;
       await sleep(500);
       await shot(`${vp.name}-03-final`);
       if (vp.name === "desktop") {
-        // Controls: replay from the end must reset labels; pause must hold the state.
+        // Replay (icon button, only shown when done) must reset labels and play again.
+        report.replayButton = await evaluate(`(() => { const b = document.querySelector(${JSON.stringify(ROUTE + " button")}); return b ? { label: b.getAttribute("aria-label"), text: b.textContent.trim(), hasSvg: Boolean(b.querySelector("svg")) } : null; })()`);
         await evaluate(`document.querySelector(${JSON.stringify(ROUTE + " button")}).click(); true`);
-        await sleep(2500);
-        report.replayLabelsAfter2500ms = await visibleLabels();
+        await sleep(1500);
+        report.replayLabelsAfter1500ms = await visibleLabels();
         report.replayState = await stateOf();
-        await evaluate(`document.querySelector(${JSON.stringify(ROUTE + " button")}).click(); true`);
-        await sleep(300);
-        const paused = await stateOf();
-        const before = await evaluate(`document.querySelector(${JSON.stringify(ROUTE + " canvas")}).toDataURL().length`);
-        await sleep(800);
-        const after = await evaluate(`document.querySelector(${JSON.stringify(ROUTE + " canvas")}).toDataURL().length`);
-        report.pause = { state: paused, canvasUnchangedWhilePaused: before === after };
-        await shot("desktop-04-pausado", "route");
-        await evaluate(`[...document.querySelectorAll(${JSON.stringify(ROUTE + " button")})].pop().click(); true`);
-        await sleep(200);
-        report.replayFromPausedLabels = await visibleLabels();
+        report.stopCount = await evaluate(`document.querySelectorAll(${JSON.stringify(ROUTE + " li")}).length`);
+        report.stopYs = await evaluate(`[...document.querySelectorAll(${JSON.stringify(ROUTE + " li")})].map((l) => Math.round(parseFloat(l.style.top)))`);
         report.canvasBytes = await evaluate(`(() => { const c = document.querySelector(${JSON.stringify(ROUTE + " canvas")}); return { css: [c.clientWidth, c.clientHeight], buffer: [c.width, c.height] }; })()`);
       }
     }
@@ -124,12 +118,22 @@ async function main() {
     await waitFor(`["static","fallback"].includes(document.querySelector(${JSON.stringify(ROUTE)})?.dataset.state)`, 15000);
     await sleep(500);
     await shot("desktop-06-sin-glb");
+    // Footer: no badge, studio colophon present.
+    await open(VIEWPORTS[0]);
+    await evaluate(`document.querySelector('footer').scrollIntoView({ block: "end", behavior: "instant" }); true`);
+    await sleep(600);
+    report.footer = await evaluate(`(() => { const f = document.querySelector('footer'); const a = f.querySelector('a[href="https://southdesertstudio.com"]'); return { badgeImgs: [...f.querySelectorAll('img')].filter((i) => /jia26|badge/i.test(i.getAttribute('src') || '')).length, studioLink: Boolean(a), studioText: a?.textContent.trim() }; })()`);
+    {
+      const rect = await evaluate(`(() => { const r = document.querySelector('footer').getBoundingClientRect(); return { x: r.left + window.scrollX, y: r.top + window.scrollY, width: r.width, height: r.height }; })()`);
+      const { data } = await send("Page.captureScreenshot", { format: "png", clip: { ...rect, scale: 1 }, captureBeyondViewport: true });
+      writeFileSync(`${OUT}/desktop-07-footer.png`, Buffer.from(data, "base64"));
+    }
     ws.close();
   } finally {
     chrome.kill();
   }
   writeFileSync(`${OUT}/qa-route-report.json`, JSON.stringify(report, null, 2));
-  console.log(JSON.stringify({ timings: report.timings, console: report.console, pause: report.pause, replay: report.replayLabelsAfter2500ms, replayState: report.replayState, canvas: report.canvasBytes }, null, 1));
+  console.log(JSON.stringify({ timings: report.timings, console: report.console, replayButton: report.replayButton, replay: report.replayLabelsAfter1500ms, replayState: report.replayState, stopCount: report.stopCount, stopYs: report.stopYs, canvas: report.canvasBytes, footer: report.footer }, null, 1));
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

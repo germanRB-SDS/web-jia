@@ -5,7 +5,8 @@
 .route {
   position: relative;
   width: 100%;
-  max-width: 100%;
+  /* Fills the desktop column; in the single-column band (tablet) it stops growing at 36rem. */
+  max-width: 36rem;
   min-width: 0;
   /* Room for the controls row below the map without growing on state changes. */
   margin-bottom: 2.25rem;
@@ -33,13 +34,13 @@
 .stop {
   position: absolute;
   transform: translate(0, -50%);
-  white-space: nowrap;
   font-family: var(--f-ui);
   font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: var(--jia-label-tracking);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.2;
+  text-wrap: balance;
   color: var(--jia-ink);
   opacity: 0;
   translate: -6px 0;
@@ -53,7 +54,7 @@
   .stop { transition: none; }
 }
 @media (min-width: 900px) and (max-width: 1100px), (max-width: 599px) {
-  .stop { font-size: 0.75rem; }
+  .stop { font-size: 0.6875rem; }
 }
 
 /* Without WebGL or the model: the six stops as a plain tracked row, terracotta dots. */
@@ -100,26 +101,27 @@
   min-height: 2.25rem;
   align-items: center;
 }
-.control {
+/* Replay: a circular arrow, no text (its name is the aria-label). */
+.replay {
   appearance: none;
   background: transparent;
   border: 0;
-  padding: 0.4em 0.2em;
+  padding: 0.35rem;
   margin: 0;
-  font-family: var(--f-ui);
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: var(--jia-label-tracking);
-  text-transform: uppercase;
+  display: inline-flex;
   color: var(--jia-terracotta);
   cursor: pointer;
-  border-radius: var(--jia-radius-button);
-  transition: color 160ms var(--ease-out);
+  border-radius: 50%;
+  transition: color 160ms var(--ease-out), transform 220ms var(--ease-out);
 }
-.control:hover {
+.replay:hover {
   color: var(--jia-terracotta-deep);
+  transform: rotate(-30deg);
 }
-.control:focus-visible {
+.replay:focus-visible {
   outline: 2px solid var(--jia-terracotta);
   outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .replay:hover { transform: none; }
 }

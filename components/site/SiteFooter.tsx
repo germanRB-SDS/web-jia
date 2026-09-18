@@ -1,18 +1,16 @@
 import type { LandingModel } from "@/lib/content";
-import { Picture } from "@/components/primitives/Picture";
 import styles from "./SiteFooter.module.css";
 
 type Props = Pick<LandingModel, "footer" | "brand" | "event" | "copy">;
 
-/** Inverted ground (ink) with the ivory mark, section links and the organisations printed on the poster. */
+/**
+ * Inverted ground (ink) with the ivory mark, section links and the organisations printed on
+ * the poster. The #JIA26 badge no longer sits in the corner (promoter, JIA-2026-09-18-09); the
+ * colophon under the rule credits the production studio.
+ */
 export function SiteFooter({ footer, brand, event, copy }: Props) {
   return (
     <footer className={styles.footer}>
-      {brand.badge ? (
-        <span className={styles.ground} aria-hidden="true">
-          <Picture media={brand.badge} alt="" sizes="640px" className={styles.groundImg} />
-        </span>
-      ) : null}
       <div className={styles.inner}>
         <div className={styles.brand}>
           <svg className={styles.wordmark} viewBox={`0 0 ${brand.wordmark.width} ${brand.wordmark.height}`} role="img" aria-label={copy.a11y.wordmark}>
@@ -55,6 +53,14 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
       <div className={styles.bottom}>
         <div className={styles.bottomInner}>
           {footer.editionTitleNotice ? <p className={styles.notice}>{footer.editionTitleNotice}</p> : null}
+          <a href={footer.studio.url} className={styles.studioCredit} target="_blank" rel="noopener noreferrer">
+            {/* The mark carries no alt: the sentence beside it already names the studio. */}
+            <img src={footer.studio.mark.src} alt="" width={footer.studio.mark.width} height={footer.studio.mark.height} loading="lazy" decoding="async" className={styles.studioMark} />
+            <span className={styles.studioCopy}>
+              <span>{footer.studio.prefix}</span>
+              <span className={styles.studioName}>{footer.studio.name}</span>
+            </span>
+          </a>
         </div>
       </div>
     </footer>

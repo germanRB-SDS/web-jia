@@ -125,3 +125,13 @@ export function ExternalIcon(props: IconProps) {
     </svg>
   );
 }
+
+/** Circular arrow for "play again" controls: one open ring with an arrowhead, same stroke as the family. */
+export function ReplayIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M50 34a18 18 0 1 1-6.5-13.9" />
+      <path d="M45 12v10H35" />
+    </svg>
+  );
+}

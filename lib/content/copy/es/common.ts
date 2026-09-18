@@ -54,4 +54,5 @@ export const footer: Copy["footer"] = {
   credit: "Una iniciativa del CEP de Almería para y con la comunidad educativa.",
   editionTitleNotice:
     "El título de la edición se muestra según el briefing; los carteles impresos utilizan otra denominación. Pendiente de confirmación.",
+  studioCreditPrefix: "Diseñado por",
 };

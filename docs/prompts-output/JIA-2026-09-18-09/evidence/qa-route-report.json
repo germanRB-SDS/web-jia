@@ -1,0 +1,174 @@
+{
+  "origin": "http://localhost:3005",
+  "shots": [
+    {
+      "name": "desktop-01-inicio",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "desktop-02-parada-3",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "desktop-03-final",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "laptop-01-inicio",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 683.28125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "laptop-02-parada-3",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 683.28125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "laptop-03-final",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 683.28125,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "tablet-01-inicio",
+      "x": 0,
+      "y": 1340.8125,
+      "width": 768,
+      "height": 1196.09375,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "mobile-01-inicio",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 945.0625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "mobile-02-parada-3",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 945.0625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "mobile-03-final",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 945.0625,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "desktop-05-movimiento-reducido",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "static",
+      "labels": 6
+    },
+    {
+      "name": "desktop-06-sin-glb",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "static",
+      "labels": 6
+    }
+  ],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[JornadasRoute] GLB unavailable, static road shown: TypeError: Failed to fetch\n    at nN.load (http://localhost:3005/_next/static/chunks/2we2h-27tcl7-.js:1:194626)\n    at sN.load (http://localhost:3005/_next/static/chunks/2we2h-27tcl7-.js:342:59015)\n    at http://localhost:3005/_next/static/chunks/2we2h-27tcl7-.js:1:193432\n    at new Promise (<anonymous>)\n    at sN.loadAsync (http://localhost:3005/_next/static/chunks/2we2h-27tcl7-.js:1:193404)\n    at Object.init (http://localhost:3005/_next/static/chunks/2we2h-27tcl7-.js:342:173541)\n    at http://localhost:3005/_next/static/chunks/1f7snz67najno.js:1:15902"
+    }
+  ],
+  "timings": {
+    "desktop-start-ms": 542.5,
+    "desktop-stop3-ms": 10442.29999999702,
+    "desktop-done-ms": 4141.100000008941,
+    "laptop-start-ms": 60.900000005960464,
+    "laptop-stop3-ms": 10562.29999999702,
+    "laptop-done-ms": 4201.79999999702,
+    "tablet-start-ms": 62.400000005960464,
+    "mobile-start-ms": 63.70000000298023,
+    "mobile-stop3-ms": 12120.40000000596,
+    "mobile-done-ms": 4802.20000000298
+  },
+  "replayButton": {
+    "label": "Repetir recorrido",
+    "text": "",
+    "hasSvg": true
+  },
+  "replayLabelsAfter1500ms": 0,
+  "replayState": "playing",
+  "stopCount": 6,
+  "stopYs": [
+    314,
+    238,
+    248,
+    196,
+    143,
+    90
+  ],
+  "canvasBytes": {
+    "css": [
+      477,
+      353
+    ],
+    "buffer": [
+      477,
+      353
+    ]
+  },
+  "footer": {
+    "badgeImgs": 0,
+    "studioLink": true,
+    "studioText": "Diseñado porSouth Desert Studio"
+  }
+}

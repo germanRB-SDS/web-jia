@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { RouteModel } from "@/lib/content";
 import { NARROW_MEDIA, ROUTE_CONFIG, ROUTE_LAYOUTS, type LayoutName } from "./config";
 import type { LabelLayout, PlayState } from "./route-scene";
+import { ReplayIcon } from "@/components/icons";
 import styles from "./JornadasRoute.module.css";
 
 type Props = { route: RouteModel };
@@ -57,6 +58,7 @@ export function JornadasRoute({ route }: Props) {
           canvas,
           initial,
           calm.matches,
+          route.stops.length,
           { road: token(ROUTE_CONFIG.road.colors.road), disc: token(ROUTE_CONFIG.road.colors.disc), discActive: token(ROUTE_CONFIG.road.colors.discActive) },
           {
             onState: (s) => setState(s),
@@ -106,12 +108,11 @@ export function JornadasRoute({ route }: Props) {
     };
   }, [route.glb, route.stops]);
 
-  const onPause = useCallback(() => sceneRef.current?.pause(), []);
-  const onResume = useCallback(() => sceneRef.current?.resume(), []);
   const onReplay = useCallback(() => sceneRef.current?.replay(), []);
 
   const box = ROUTE_LAYOUTS[layout].box;
   const offsetPx = labels ? ROUTE_LAYOUTS[layout].labelOffsetUnits * labels.unitPx : 0;
+  const maxPx = labels ? ROUTE_LAYOUTS[layout].labelMaxUnits * labels.unitPx : 0;
 
   return (
     <div ref={containerRef} className={styles.route} data-state={state} data-layout={layout} style={{ aspectRatio: `${box.w} / ${box.h}` }}>
@@ -124,7 +125,7 @@ export function JornadasRoute({ route }: Props) {
               key={stop.id}
               className={styles.stop}
               data-visible={showAll || visited[i] ? "true" : "false"}
-              style={pos && state !== "fallback" ? { left: `${pos.x + offsetPx}px`, top: `${pos.y}px` } : undefined}
+              style={pos && state !== "fallback" ? { left: `${pos.x + offsetPx}px`, top: `${pos.y}px`, maxWidth: `${maxPx}px` } : undefined}
             >
               {stop.label}
             </li>
@@ -132,19 +133,9 @@ export function JornadasRoute({ route }: Props) {
         })}
       </ol>
       <div className={styles.controls}>
-        {state === "playing" ? (
-          <button type="button" className={styles.control} onClick={onPause}>
-            {route.controls.pause}
-          </button>
-        ) : null}
-        {state === "paused" ? (
-          <button type="button" className={styles.control} onClick={onResume}>
-            {route.controls.resume}
-          </button>
-        ) : null}
-        {state === "paused" || state === "done" ? (
-          <button type="button" className={styles.control} onClick={onReplay}>
-            {route.controls.replay}
+        {state === "done" ? (
+          <button type="button" className={styles.replay} onClick={onReplay} aria-label={route.controls.replay} title={route.controls.replay}>
+            <ReplayIcon size={22} />
           </button>
         ) : null}
       </div>

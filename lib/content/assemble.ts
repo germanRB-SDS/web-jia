@@ -21,9 +21,10 @@ import { dosieresConfig } from "./sections/dosieres";
 import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
+import { TALLERES } from "./config/talleres";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
-import { edition, event, site } from "./site";
+import { edition, event, productionStudio, site } from "./site";
 
 export type MarkKind = "provisional" | "demo" | "pending";
 
@@ -62,7 +63,7 @@ export type RouteModel = {
   glb: string | null;
   regionLabel: string;
   stops: { id: string; label: string }[];
-  controls: { replay: string; pause: string; resume: string };
+  controls: { replay: string };
 };
 
 export type DayModel = {
@@ -148,6 +149,7 @@ export type LandingModel = {
     sections: { label: string; href: string }[];
     credit: string;
     editionTitleNotice: string | null;
+    studio: { prefix: string; name: string; url: string; mark: { src: string; width: number; height: number } };
     marks: MarkKind[];
   };
 };
@@ -389,7 +391,7 @@ export function getLanding(locale: Locale): LandingModel {
       route: {
         glb: jornadasConfig.routeGlb,
         regionLabel: copy.jornadas.route.regionLabel,
-        stops: copy.jornadas.route.stops.map((label, i) => ({ id: `parada-${i + 1}`, label })),
+        stops: TALLERES.map((label, i) => ({ id: `parada-${i + 1}`, label })),
         controls: copy.buttons.route,
       },
       hashtag: event.hashtag,
@@ -466,6 +468,7 @@ export function getLanding(locale: Locale): LandingModel {
       sections: navItems.map((n) => ({ label: n.label, href: n.href })),
       credit: copy.footer.credit,
       editionTitleNotice: markProvisional && edition.titleStatus === "provisional" ? copy.footer.editionTitleNotice : null,
+      studio: { prefix: copy.footer.studioCreditPrefix, name: productionStudio.name, url: productionStudio.url, mark: productionStudio.mark },
       marks: [],
     },
   };

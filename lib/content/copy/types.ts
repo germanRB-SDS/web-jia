@@ -12,8 +12,8 @@ export type Buttons = {
   proposals: { present: string };
   host: { host: string };
   nav: { menu: string; close: string; submenu: string };
-  /** Controls of the animated road in Jornadas. */
-  route: { replay: string; pause: string; resume: string };
+  /** Control of the animated road in Jornadas (icon button: this is its accessible name). */
+  route: { replay: string };
 };
 
 export type WorkshopCopy = {
@@ -85,8 +85,8 @@ export type Copy = {
   jornadas: {
     title: string;
     intro: string;
-    /** The animated road under the intro: six fixed stop labels and the region name. */
-    route: { regionLabel: string; stops: [string, string, string, string, string, string] };
+    /** The animated road under the intro (stop labels come from config/talleres.ts). */
+    route: { regionLabel: string };
     program: {
       title: string;
       /** `{n}` */
@@ -150,6 +150,8 @@ export type Copy = {
     sections: string;
     credit: string;
     editionTitleNotice: string;
+    /** Prefix before the production studio's name in the colophon. */
+    studioCreditPrefix: string;
   };
   entities: {
     workshops: Record<string, WorkshopCopy>;
