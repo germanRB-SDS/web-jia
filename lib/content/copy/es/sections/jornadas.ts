@@ -5,6 +5,11 @@ export const jornadas: Copy["jornadas"] = {
   title: "Las jornadas",
   intro:
     "Un punto de encuentro para docentes que quieren explorar nuevas maneras de enseñar y compartir lo que sucede en sus aulas. El cine y el universo western almeriense son el hilo conductor.",
+  /** Labels are exactly these six (promoter, JIA-2026-09-18-08); no titles, times or venues are invented. */
+  route: {
+    regionLabel: "Camino de las jornadas: seis paradas",
+    stops: ["Parada 1", "Parada 2", "Parada 3", "Parada 4", "Parada 5", "Parada 6"],
+  },
   program: {
     title: "Programa",
     dayLabel: "Jornada {n}",

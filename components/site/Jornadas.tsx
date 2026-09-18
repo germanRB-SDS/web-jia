@@ -3,6 +3,7 @@ import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
 import { SubSection } from "./Section";
+import { JornadasRoute } from "./jornadas-route/JornadasRoute";
 import styles from "./Jornadas.module.css";
 
 type Props = {
@@ -37,7 +38,8 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
           <Surface media={jornadas.band} alt={jornadas.bandAlt} fallback="sand" ratio={1916 / 821} sizes="(min-width: 900px) 58vw, 100vw" className={styles.bandSurface} />
           <span className={styles.veil} />
         </div>
-        {/* "jornadas-mapa": the text panel beside the photograph (the poster no longer sits here). */}
+        {/* "jornadas-mapa": the text panel beside the photograph; under the text, the wagon
+            travels a six-stop road drawn straight on the dune (JIA-2026-09-18-08). */}
         <div id="jornadas-mapa" className={styles.jornadasMapa}>
           <div className={styles.bandText}>
             <h2 id={`${jornadas.id}-title`} className={styles.bandTitle}>
@@ -45,6 +47,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
             </h2>
             <p className={styles.statement}>{jornadas.intro}</p>
           </div>
+          <JornadasRoute route={jornadas.route} />
         </div>
       </div>
 

@@ -58,6 +58,13 @@ export type SheetModel = {
   pending: boolean;
 };
 
+export type RouteModel = {
+  glb: string | null;
+  regionLabel: string;
+  stops: { id: string; label: string }[];
+  controls: { replay: string; pause: string; resume: string };
+};
+
 export type DayModel = {
   id: string;
   label: string;
@@ -115,6 +122,8 @@ export type LandingModel = {
     bandAlt: string;
     poster: Media | null;
     hashtag: string;
+    /** The animated road under the intro. */
+    route: RouteModel;
     program: { title: string; note: string; days: DayModel[] };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; count: string; cards: TeamCard[] } | null;
@@ -377,6 +386,12 @@ export function getLanding(locale: Locale): LandingModel {
       band: getMedia(jornadasConfig.bandMediaId),
       bandAlt: "",
       poster: getMedia(jornadasConfig.posterMediaId),
+      route: {
+        glb: jornadasConfig.routeGlb,
+        regionLabel: copy.jornadas.route.regionLabel,
+        stops: copy.jornadas.route.stops.map((label, i) => ({ id: `parada-${i + 1}`, label })),
+        controls: copy.buttons.route,
+      },
       hashtag: event.hashtag,
       program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },

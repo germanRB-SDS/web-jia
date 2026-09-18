@@ -28,6 +28,9 @@ out public/jornadas/x
 magick assets/images-website/jornadas-jinete.png -resize 960x -strip -quality 80 "public/jornadas/jinete-960.webp"
 magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jornadas/jinete-1916.webp"
 
+# Jornadas road: the wagon GLB exported from Blender (assets/3d/carruaje, JIA-2026-09-18-07), copied as is.
+cp assets/3d/carruaje/jia-carruaje.glb public/jornadas/jia-carruaje.glb
+
 # Propuestas visual column (1059x821)
 out public/propuestas/x
 # Bottom 8% cropped (promoter request); the original stays whole.

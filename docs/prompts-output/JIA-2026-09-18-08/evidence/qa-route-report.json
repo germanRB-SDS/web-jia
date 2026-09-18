@@ -1,0 +1,187 @@
+{
+  "origin": "http://localhost:3005",
+  "shots": [
+    {
+      "name": "desktop-01-inicio",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "desktop-02-parada-3",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "desktop-03-final",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "desktop-04-pausado",
+      "x": 907.1875,
+      "y": 1332.75,
+      "width": 476.796875,
+      "height": 352.828125,
+      "scale": 1,
+      "state": "paused",
+      "labels": 0
+    },
+    {
+      "name": "laptop-01-inicio",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 683.28125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "laptop-02-parada-3",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 683.28125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "laptop-03-final",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 683.28125,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "tablet-01-inicio",
+      "x": 0,
+      "y": 1340.8125,
+      "width": 768,
+      "height": 1292.703125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "tablet-02-parada-3",
+      "x": 0,
+      "y": 1340.8125,
+      "width": 768,
+      "height": 1292.703125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "tablet-03-final",
+      "x": 0,
+      "y": 1340.8125,
+      "width": 768,
+      "height": 1292.703125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "mobile-01-inicio",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 945.0625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "mobile-02-parada-3",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 945.0625,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "mobile-03-final",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 945.0625,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "desktop-05-movimiento-reducido",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "static",
+      "labels": 6
+    },
+    {
+      "name": "desktop-06-sin-glb",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 774.390625,
+      "scale": 1,
+      "state": "loading",
+      "labels": 0
+    }
+  ],
+  "console": [],
+  "timings": {
+    "desktop-start-ms": 241.3999999910593,
+    "desktop-stop3-ms": 8701.199999988079,
+    "desktop-done-ms": 9241,
+    "laptop-start-ms": 61.400000005960464,
+    "laptop-stop3-ms": 7681.20000000298,
+    "laptop-done-ms": 9421.40000000596,
+    "tablet-start-ms": 61.20000000298023,
+    "tablet-stop3-ms": -1,
+    "tablet-done-ms": -1,
+    "mobile-start-ms": 61,
+    "mobile-stop3-ms": 9541.40000000596,
+    "mobile-done-ms": 10561.29999999702
+  },
+  "replayLabelsAfter2500ms": 0,
+  "replayState": "playing",
+  "pause": {
+    "state": "paused",
+    "canvasUnchangedWhilePaused": true
+  },
+  "replayFromPausedLabels": 0,
+  "canvasBytes": {
+    "css": [
+      477,
+      353
+    ],
+    "buffer": [
+      477,
+      353
+    ]
+  }
+}
