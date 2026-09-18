@@ -19,7 +19,11 @@
    **subtítulo** (más pequeña que el título, mayor que el párrafo) para «Tu propuesta puede formar parte
    de las JIA», debajo del título. La mitad izquierda se mantiene; la mitad derecha pasa a ser una
    columna visual con la fotografía aportada.
-6. Guardar el prompt, commit, ejecutar, commit y push.
+6. **Adenda:** la imagen de Propuestas debe ser una «columna» como en «Servicios» de maryna-ventura:
+   ocupa toda la altura de la sección (definida por el texto más un espacio bajo el botón «Presentar
+   una propuesta»), a sangre por arriba, derecha y abajo, y un 45 % del ancho de la sección. La sección
+   siguiente (Socios) usa de fondo el color más claro de la paleta (Marfil).
+7. Guardar el prompt, commit, ejecutar, commit y push.
 
 ## Decisiones de ejecución
 
