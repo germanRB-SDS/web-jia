@@ -165,9 +165,11 @@
   padding: 0;
   counter-reset: session;
 }
+/* Roman numeral · time slot · activity, on one line. The slot column is as wide as the longest slot
+   (tabular figures), so every activity starts on the same edge; an untimed block leaves its slot empty. */
 .session {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: 2.25rem 5.75rem minmax(0, 1fr);
   gap: 0.25rem 0.9rem;
   align-items: baseline;
   padding: 0.7rem 0;
@@ -188,12 +190,15 @@
   min-width: 2ch;
 }
 .sessionTime {
+  grid-column: 2;
   font-family: var(--f-ui);
   font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
   color: var(--jia-text-muted);
 }
-.sessionText { grid-column: 2; }
-.sessionLink { grid-column: 2; color: var(--jia-terracotta); font-family: var(--f-ui); }
+.sessionText { grid-column: 3; }
+.sessionLink { grid-column: 3; color: var(--jia-terracotta); font-family: var(--f-ui); }
 .provenance,
 .note {
   margin: 0.75rem 0 0;

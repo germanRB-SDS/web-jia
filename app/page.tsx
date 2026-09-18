@@ -12,7 +12,7 @@ import { DEFAULT_LOCALE, getLanding } from "@/lib/content";
 /**
  * The landing, in reading order (brief §3):
  * hero → signpost → Jornadas (programa, cómo funcionan, talleres) →
- * Experiencias → Propuestas → Acoge JIA → footer.
+ * Experiencias → Propuestas → Acoge JIA → Socios (organiza y colabora) → footer.
  * The locale is resolved once here; every section receives its assembled model.
  */
 export default function Home() {
@@ -31,8 +31,8 @@ export default function Home() {
         <Jornadas jornadas={m.jornadas} copy={m.copy} showMarks={showMarks} />
         <Experiences experiencias={m.experiencias} copy={m.copy} showMarks={showMarks} />
         <Proposals propuestas={m.propuestas} copy={m.copy} showMarks={showMarks} />
-        <Partners partners={m.partners} />
         <Host acoge={m.acoge} copy={m.copy} />
+        <Partners partners={m.partners} />
       </main>
       <SiteFooter footer={m.footer} brand={m.brand} event={m.event} copy={m.copy} />
     </>

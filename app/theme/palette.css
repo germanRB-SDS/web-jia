@@ -63,9 +63,11 @@
      estos nombres por token, p. ej. `fallback: "sand"`). */
   --jia-surface-sand: var(--jia-sand);
   --jia-surface-card: var(--jia-card);
+  --jia-surface-dune: var(--jia-dune);
   --jia-surface-copper: var(--jia-copper);
   --jia-surface-olive: var(--jia-olive);
   --jia-surface-terracotta: var(--jia-terracotta);
+  --jia-surface-terracotta-deep: var(--jia-terracotta-deep);
   --jia-surface-ink: var(--jia-ink);
 
   --jia-radius-button: 4px;

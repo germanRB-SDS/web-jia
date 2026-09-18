@@ -26,6 +26,7 @@ import { jornadasIntroVideo } from "./sections/jornadas-intro-video";
 import { TALLERES, TALLERES_DOSIERES } from "./config/talleres";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
+import { sociosConfig } from "./sections/socios";
 import { edition, event, productionStudio, site } from "./site";
 
 export type MarkKind = "provisional" | "demo" | "pending";
@@ -163,8 +164,12 @@ export type LandingModel = {
     title: string;
     /** Text split into plain runs and organisation links, in order. */
     text: ({ kind: "text"; value: string } | { kind: "org"; id: string; name: string; url: string | null })[];
-    logosPending: string | null;
-    groups: { key: "organiza" | "colabora"; label: string; items: { id: string; name: string; url: string | null; logo: Media | null }[] }[];
+    /** One card per collaborator, in data order. `link` is null while the entity has no URL. */
+    carousel: {
+      label: string;
+      hint: string;
+      items: { id: string; name: string; link: { href: string; label: string } | null; logo: Media | null; surface: SurfaceToken }[];
+    };
   };
   acoge: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; alt: string; fallback: SurfaceToken; marks: MarkKind[] };
   footer: {
@@ -176,6 +181,8 @@ export type LandingModel = {
     studio: { prefix: string; name: string; url: string; mark: { src: string; width: number; height: number } };
     tumbleweeds: { label: string; href: string; newTab: string };
     maxShots: number;
+    shotLifeMs: number;
+    shotFadeMs: number;
     marks: MarkKind[];
   };
 };
@@ -337,7 +344,7 @@ export function getLanding(locale: Locale): LandingModel {
             : x && s.experienceId
               ? { label: x.title, href: anchor(`${experienciasConfig.id}-${s.experienceId}`) }
               : null;
-          return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time, link };
+          return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time ? format(copy.jornadas.program.timeFormat, { time: s.time }) : null, link };
         }),
     }));
 
@@ -463,7 +470,7 @@ export function getLanding(locale: Locale): LandingModel {
       marks: marksOf(copy.propuestas.status),
     },
     partners: {
-      id: "socios",
+      id: sociosConfig.id,
       kicker: copy.partners.kicker,
       title: copy.partners.title,
       text: copy.partners.text.split(/(\{o-[a-z-]+\})/).filter(Boolean).map((part) => {
@@ -471,12 +478,19 @@ export function getLanding(locale: Locale): LandingModel {
         const org = m ? organizations.find((o) => o.id === m[1]) : undefined;
         return org ? { kind: "org" as const, id: org.id, name: org.name, url: org.url } : { kind: "text" as const, value: part };
       }),
-      logosPending: organizations.some((o) => !o.logoMediaId) ? copy.partners.logosPending : null,
-      groups: (["organiza", "colabora"] as const).map((key) => ({
-        key,
-        label: copy.partners[key],
-        items: organizations.filter((o) => o.relation === key).map((o) => ({ id: o.id, name: o.name, url: o.url, logo: getMedia(o.logoMediaId) })),
-      })),
+      carousel: {
+        label: copy.partners.carousel.label,
+        hint: copy.partners.carousel.hint,
+        items: organizations
+          .filter((o) => o.relation === "colabora")
+          .map((o) => ({
+            id: o.id,
+            name: o.name,
+            link: o.url ? { href: o.url, label: format(copy.partners.carousel.visit, { name: o.name }) } : null,
+            logo: getMedia(o.logoMediaId),
+            surface: sociosConfig.cardSurfaces[o.id] ?? sociosConfig.fallbackSurface,
+          })),
+      },
     },
     acoge: {
       id: acogeConfig.id,
@@ -498,6 +512,8 @@ export function getLanding(locale: Locale): LandingModel {
       studio: { prefix: copy.footer.studioCreditPrefix, name: productionStudio.name, url: productionStudio.url, mark: productionStudio.mark },
       tumbleweeds: { label: copy.footer.tumbleweedsNote, href: footerConfig.tumbleweedsUrl, newTab: copy.footer.newTab },
       maxShots: footerConfig.maxShots,
+      shotLifeMs: footerConfig.shotLifeMs,
+      shotFadeMs: footerConfig.shotFadeMs,
       marks: [],
     },
   };

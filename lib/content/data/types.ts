@@ -17,7 +17,7 @@ export type Provenance = {
 };
 
 /** Palette token used as a solid surface when an image is missing (see app/theme/palette.css). */
-export type SurfaceToken = "sand" | "card" | "copper" | "olive" | "terracotta" | "ink";
+export type SurfaceToken = "sand" | "card" | "dune" | "copper" | "olive" | "terracotta" | "terracotta-deep" | "ink";
 
 export type PersonRole =
   | "tallerista"

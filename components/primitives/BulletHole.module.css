@@ -1,6 +1,7 @@
 /* A bullet hole where the visitor clicked: a black bore with a scorched rim, the torn paper lifted around
    it and a few cracks running out. The host places it (left/top) and tunes it with custom properties:
-   --hole-size, --hole-turn, --hole-ink-rgb (bore rim and cracks) and --hole-paper-rgb (the lifted paper). */
+   --hole-size, --hole-turn, --hole-ink-rgb (bore rim and cracks), --hole-paper-rgb (the lifted paper) and
+   --hole-fade (how long a hole that does not last takes to go). */
 .hole {
   position: absolute;
   z-index: 2;
@@ -37,6 +38,13 @@
   55% { scale: 0.94; opacity: 1; }
   to { scale: 1; opacity: 1; }
 }
+/* Replaces the hit animation (whose fill would otherwise hold the hole at full opacity). */
+.leaving { animation: hole-out var(--hole-fade, 700ms) ease-in both; }
+@keyframes hole-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   .hole { animation: none; }
+  .leaving { opacity: 0; }
 }

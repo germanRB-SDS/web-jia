@@ -53,7 +53,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
       </div>
 
       <StudioStrip studio={footer.studio} tumbleweeds={footer.tumbleweeds} notice={footer.editionTitleNotice} />
-      <FooterShots max={footer.maxShots} />
+      <FooterShots max={footer.maxShots} lifeMs={footer.shotLifeMs} fadeMs={footer.shotFadeMs} />
     </footer>
   );
 }

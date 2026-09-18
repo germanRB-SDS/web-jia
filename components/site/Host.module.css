@@ -18,7 +18,7 @@
   height: 100%;
   border-radius: 0;
 }
-/* Gradients at the two seams: the ground of the section above, ink below (the footer). */
+/* Gradients at the two seams: the ground of the section above and, below, that of Socios (the same vellum). */
 .photo::before,
 .photo::after {
   content: "";
@@ -36,8 +36,8 @@
 }
 .photo::after {
   bottom: 0;
-  height: 14%;
-  background: linear-gradient(to top, rgb(var(--jia-ink-rgb) / 0.85), transparent);
+  height: 22%;
+  background: linear-gradient(to top, var(--jia-vellum-4), transparent);
 }
 .inner {
   position: relative;
