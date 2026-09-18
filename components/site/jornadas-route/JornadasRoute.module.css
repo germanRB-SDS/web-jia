@@ -46,6 +46,11 @@
   translate: -6px 0;
   transition: opacity 360ms var(--ease-out), translate 360ms var(--ease-out);
 }
+/* A label on the left of its disc (stop 2, beside the loop) grows leftwards from its edge. */
+.stop[data-side="left"] {
+  transform: translate(-100%, -50%);
+  text-align: right;
+}
 .stop[data-visible="true"] {
   opacity: 1;
   translate: 0 0;

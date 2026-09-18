@@ -14,6 +14,8 @@ export type Buttons = {
   nav: { menu: string; close: string; submenu: string };
   /** Control of the animated road in Jornadas (icon button: this is its accessible name). */
   route: { replay: string };
+  /** Controls over the Jornadas intro video (icon buttons: these are their accessible names). */
+  video: { play: string; pause: string; mute: string; unmute: string };
 };
 
 export type WorkshopCopy = {
@@ -87,6 +89,8 @@ export type Copy = {
     intro: string;
     /** The animated road under the intro (stop labels come from config/talleres.ts). */
     route: { regionLabel: string };
+    /** The "Intro" block with the video, before the programme. */
+    introVideo: { title: string; videoLabel: string };
     program: {
       title: string;
       /** `{n}` */

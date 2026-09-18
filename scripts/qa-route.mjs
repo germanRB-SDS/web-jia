@@ -11,7 +11,7 @@ import { spawn } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const ORIGIN = process.argv[2] ?? "http://localhost:3005";
-const OUT = process.argv[3] ?? "docs/prompts-output/JIA-2026-09-18-09/evidence";
+const OUT = process.argv[3] ?? "docs/prompts-output/JIA-2026-09-18-10/evidence";
 const CHROME = process.env.CHROME_BIN ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PORT = 9334;
 const VIEWPORTS = [
@@ -118,6 +118,25 @@ async function main() {
     await waitFor(`["static","fallback"].includes(document.querySelector(${JSON.stringify(ROUTE)})?.dataset.state)`, 15000);
     await sleep(500);
     await shot("desktop-06-sin-glb");
+    // Intro video (JIA-2026-09-18-10): sits right before #programa, never taller than the rider band, round controls work.
+    for (const vp of [VIEWPORTS[0], VIEWPORTS[3]]) {
+      await open(vp);
+      await evaluate(`document.querySelector('#intro').scrollIntoView({ block: "center", behavior: "instant" }); true`);
+      await waitFor(`document.querySelector('#intro video')?.readyState >= 2`, 20000);
+      await sleep(1200);
+      report[`intro-${vp.name}`] = await evaluate(`(() => { const i = document.querySelector('#intro'); const v = i.querySelector('video'); const band = document.querySelector('#jornadas').firstElementChild.firstElementChild; const next = i.nextElementSibling?.querySelector('#programa') ?? i.nextElementSibling; return { title: i.querySelector('h3')?.textContent, beforePrograma: Boolean(i.compareDocumentPosition(document.querySelector('#programa')) & Node.DOCUMENT_POSITION_FOLLOWING), nextHasPrograma: Boolean(next && (next.id === 'programa' || next.querySelector?.('#programa'))), width: Math.round(i.getBoundingClientRect().width), viewport: innerWidth, height: Math.round(i.getBoundingClientRect().height), veilHeight: Math.round(band.getBoundingClientRect().height), playing: !v.paused, muted: v.muted, src: v.currentSrc.replace(location.origin, ''), buttons: [...i.querySelectorAll('button')].map((b) => b.getAttribute('aria-label')) }; })()`);
+      if (vp.name === "desktop") {
+        await evaluate(`[...document.querySelectorAll('#intro button')].at(-1).click(); true`);
+        await sleep(400);
+        report.introAfterPause = await evaluate(`(() => { const i = document.querySelector('#intro'); return { paused: i.querySelector('video').paused, label: [...i.querySelectorAll('button')].at(-1).getAttribute('aria-label') }; })()`);
+        await evaluate(`[...document.querySelectorAll('#intro button')].at(-1).click(); true`);
+        await sleep(600);
+      }
+      const rect = await evaluate(`(() => { const r = document.querySelector('#intro').getBoundingClientRect(); return { x: r.left + window.scrollX, y: r.top + window.scrollY, width: r.width, height: r.height }; })()`);
+      const { data } = await send("Page.captureScreenshot", { format: "png", clip: { ...rect, scale: 1 }, captureBeyondViewport: true });
+      writeFileSync(`${OUT}/${vp.name}-08-intro-video.png`, Buffer.from(data, "base64"));
+    }
+    report.teamLede = await evaluate(`document.querySelector('#como-funcionan h4 + p')?.textContent`);
     // Footer: no badge, studio colophon present.
     await open(VIEWPORTS[0]);
     await evaluate(`document.querySelector('footer').scrollIntoView({ block: "end", behavior: "instant" }); true`);
@@ -133,7 +152,7 @@ async function main() {
     chrome.kill();
   }
   writeFileSync(`${OUT}/qa-route-report.json`, JSON.stringify(report, null, 2));
-  console.log(JSON.stringify({ timings: report.timings, console: report.console, replayButton: report.replayButton, replay: report.replayLabelsAfter1500ms, replayState: report.replayState, stopCount: report.stopCount, stopYs: report.stopYs, canvas: report.canvasBytes, footer: report.footer }, null, 1));
+  console.log(JSON.stringify({ timings: report.timings, console: report.console, replayButton: report.replayButton, replay: report.replayLabelsAfter1500ms, replayState: report.replayState, stopCount: report.stopCount, stopYs: report.stopYs, canvas: report.canvasBytes, footer: report.footer, introDesktop: report["intro-desktop"], introMobile: report["intro-mobile"], introAfterPause: report.introAfterPause, teamLede: report.teamLede }, null, 1));
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

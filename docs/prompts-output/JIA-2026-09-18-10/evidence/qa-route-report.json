@@ -1,0 +1,211 @@
+{
+  "origin": "http://localhost:3005",
+  "shots": [
+    {
+      "name": "desktop-01-inicio",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 788.6875,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "desktop-02-parada-3",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 788.6875,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "desktop-03-final",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 788.6875,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "laptop-01-inicio",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 694.953125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "laptop-02-parada-3",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 694.953125,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "laptop-03-final",
+      "x": 0,
+      "y": 903.984375,
+      "width": 1180,
+      "height": 694.953125,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "tablet-01-inicio",
+      "x": 0,
+      "y": 1340.8125,
+      "width": 768,
+      "height": 1213.375,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "mobile-01-inicio",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 984.4375,
+      "scale": 1,
+      "state": "playing",
+      "labels": 0
+    },
+    {
+      "name": "mobile-02-parada-3",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 984.4375,
+      "scale": 1,
+      "state": "playing",
+      "labels": 3
+    },
+    {
+      "name": "mobile-03-final",
+      "x": 0,
+      "y": 1266.3125,
+      "width": 390,
+      "height": 984.4375,
+      "scale": 1,
+      "state": "done",
+      "labels": 6
+    },
+    {
+      "name": "desktop-05-movimiento-reducido",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 788.6875,
+      "scale": 1,
+      "state": "static",
+      "labels": 6
+    },
+    {
+      "name": "desktop-06-sin-glb",
+      "x": 0,
+      "y": 1027.1875,
+      "width": 1440,
+      "height": 788.6875,
+      "scale": 1,
+      "state": "static",
+      "labels": 6
+    }
+  ],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[JornadasRoute] GLB unavailable, static road shown: TypeError: Failed to fetch\n    at nN.load (http://localhost:3005/_next/static/chunks/25g6twvr8jjtf.js:1:194626)\n    at sN.load (http://localhost:3005/_next/static/chunks/25g6twvr8jjtf.js:342:59015)\n    at http://localhost:3005/_next/static/chunks/25g6twvr8jjtf.js:1:193432\n    at new Promise (<anonymous>)\n    at sN.loadAsync (http://localhost:3005/_next/static/chunks/25g6twvr8jjtf.js:1:193404)\n    at Object.init (http://localhost:3005/_next/static/chunks/25g6twvr8jjtf.js:342:173651)\n    at http://localhost:3005/_next/static/chunks/0w-vp9kcq51em.js:1:19224"
+    }
+  ],
+  "timings": {
+    "desktop-start-ms": 300.79999999701977,
+    "desktop-stop3-ms": 9001.199999988079,
+    "desktop-done-ms": 5581.300000011921,
+    "laptop-start-ms": 61.79999999701977,
+    "laptop-stop3-ms": 8041.100000008941,
+    "laptop-done-ms": 5701.0999999940395,
+    "tablet-start-ms": 60.29999999701977,
+    "mobile-start-ms": 62.70000000298023,
+    "mobile-stop3-ms": 9180.89999999106,
+    "mobile-done-ms": 7020.70000000298
+  },
+  "replayButton": {
+    "label": "Repetir recorrido",
+    "text": "",
+    "hasSvg": true
+  },
+  "replayLabelsAfter1500ms": 0,
+  "replayState": "playing",
+  "stopCount": 6,
+  "stopYs": [
+    315,
+    210,
+    326,
+    200,
+    129,
+    62
+  ],
+  "canvasBytes": {
+    "css": [
+      477,
+      367
+    ],
+    "buffer": [
+      477,
+      367
+    ]
+  },
+  "intro-desktop": {
+    "title": "Intro",
+    "beforePrograma": true,
+    "nextHasPrograma": true,
+    "width": 1440,
+    "viewport": 1440,
+    "height": 702,
+    "veilHeight": 789,
+    "playing": true,
+    "muted": true,
+    "src": "/jornadas/intro/intro-720.mp4",
+    "buttons": [
+      "Activar el sonido",
+      "Pausar el vídeo"
+    ]
+  },
+  "introAfterPause": {
+    "paused": true,
+    "label": "Reproducir el vídeo"
+  },
+  "intro-mobile": {
+    "title": "Intro",
+    "beforePrograma": true,
+    "nextHasPrograma": true,
+    "width": 390,
+    "viewport": 390,
+    "height": 219,
+    "veilHeight": 244,
+    "playing": true,
+    "muted": true,
+    "src": "/jornadas/intro/intro-720.mp4",
+    "buttons": [
+      "Activar el sonido",
+      "Pausar el vídeo"
+    ]
+  },
+  "teamLede": "Todas las personas que lo hacen realidad: Coordinadores, Directores CEP, asesores y colaboradores. Las JIA no esconden sus talentos: conoce a quienes lanzan los dados ;)",
+  "footer": {
+    "badgeImgs": 0,
+    "studioLink": true,
+    "studioText": "Diseñado porSouth Desert Studio"
+  }
+}

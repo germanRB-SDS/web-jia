@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Derives the web-ready images under public/ from the untouched originals in assets/.
 # Originals are never renamed, moved or overwritten. Re-run after replacing an original.
-# Requires: magick (ImageMagick 7) and cwebp. Widths are chosen per use (see lib/content/media.ts).
+# Requires: magick (ImageMagick 7) and cwebp; ffmpeg only for the intro video (optional). Widths are chosen per use (see lib/content/media.ts).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -30,6 +30,23 @@ magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jorn
 
 # Jornadas road: the wagon GLB exported from Blender (assets/3d/carruaje, JIA-2026-09-18-07), copied as is.
 cp assets/3d/carruaje/jia-carruaje.glb public/jornadas/jia-carruaje.glb
+
+# Jornadas intro video (JIA-2026-09-18-10): web version of the 4K original (2.1 GB, not in git) + its poster.
+# Needs ffmpeg (brew install ffmpeg, or FFMPEG=/path/to/ffmpeg); skipped when the tool or the original is missing,
+# so the committed derivatives stay as they are. URL/poster are wired in lib/content/sections/jornadas-intro-video.ts.
+FFMPEG="${FFMPEG:-$(command -v ffmpeg || true)}"
+intro_src="assets/videos-website/capitulo2corregidofran.mp4"
+if [ -n "$FFMPEG" ] && [ -f "$intro_src" ]; then
+  out public/jornadas/intro/x
+  "$FFMPEG" -y -v error -i "$intro_src" -vf "scale=-2:720" -c:v libx264 -profile:v high -pix_fmt yuv420p \
+    -crf 27 -maxrate 1800k -bufsize 3600k -preset medium -movflags +faststart -c:a aac -b:a 96k -ac 2 \
+    public/jornadas/intro/intro-720.mp4
+  "$FFMPEG" -y -v error -ss 8 -i "$intro_src" -frames:v 1 -vf "scale=1600:-2" /tmp/jia-intro-poster.png
+  magick /tmp/jia-intro-poster.png -strip -quality 80 public/jornadas/intro/intro-poster.webp
+  rm -f /tmp/jia-intro-poster.png
+else
+  echo "skip: intro video (ffmpeg or $intro_src missing)"
+fi
 
 # Propuestas visual column (1059x821)
 out public/propuestas/x

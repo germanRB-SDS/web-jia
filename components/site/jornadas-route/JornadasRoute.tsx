@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RouteModel } from "@/lib/content";
-import { NARROW_MEDIA, ROUTE_CONFIG, ROUTE_LAYOUTS, type LayoutName } from "./config";
+import { NARROW_MEDIA, ROUTE_CONFIG, ROUTE_LAYOUTS, chooseSlots, type LayoutName } from "./config";
 import type { LabelLayout, PlayState } from "./route-scene";
 import { ReplayIcon } from "@/components/icons";
 import styles from "./JornadasRoute.module.css";
@@ -113,6 +113,21 @@ export function JornadasRoute({ route }: Props) {
   const box = ROUTE_LAYOUTS[layout].box;
   const offsetPx = labels ? ROUTE_LAYOUTS[layout].labelOffsetUnits * labels.unitPx : 0;
   const maxPx = labels ? ROUTE_LAYOUTS[layout].labelMaxUnits * labels.unitPx : 0;
+  const widthPx = labels ? box.w * labels.unitPx : 0;
+  const slots = chooseSlots(ROUTE_LAYOUTS[layout], route.stops.length);
+  /** Each label hangs off its disc on the side its slot asks for, never wider than the room left on that side. */
+  const labelStyle = (i: number, pos: { x: number; y: number }) => {
+    const place = slots?.[i]?.label;
+    const unit = labels?.unitPx ?? 0;
+    const top = pos.y + (place?.dy ?? 0) * unit;
+    const gap = offsetPx + (place?.dx ?? 0) * unit;
+    if (place?.side === "left") {
+      const edge = pos.x - gap;
+      return { left: `${edge}px`, top: `${top}px`, maxWidth: `${Math.max(0, Math.min(maxPx, edge))}px` };
+    }
+    const edge = pos.x + gap;
+    return { left: `${edge}px`, top: `${top}px`, maxWidth: `${Math.max(0, Math.min(maxPx, widthPx - edge))}px` };
+  };
 
   return (
     <div ref={containerRef} className={styles.route} data-state={state} data-layout={layout} style={{ aspectRatio: `${box.w} / ${box.h}` }}>
@@ -125,7 +140,8 @@ export function JornadasRoute({ route }: Props) {
               key={stop.id}
               className={styles.stop}
               data-visible={showAll || visited[i] ? "true" : "false"}
-              style={pos && state !== "fallback" ? { left: `${pos.x + offsetPx}px`, top: `${pos.y}px`, maxWidth: `${maxPx}px` } : undefined}
+              data-side={slots?.[i]?.label?.side ?? "right"}
+              style={pos && state !== "fallback" ? labelStyle(i, pos) : undefined}
             >
               {stop.label}
             </li>

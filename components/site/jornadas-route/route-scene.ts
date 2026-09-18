@@ -10,7 +10,7 @@
 import * as THREE from "three";
 import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import gsap from "gsap";
-import { ROUTE_CONFIG, ROUTE_LAYOUTS, type LayoutName, type RouteLayout } from "./config";
+import { ROUTE_CONFIG, ROUTE_LAYOUTS, chooseSlots, type LayoutName, type RouteLayout } from "./config";
 
 export type PlayState = "loading" | "idle" | "playing" | "paused" | "done" | "static";
 export type LabelLayout = { positions: { x: number; y: number }[]; unitPx: number };
@@ -48,6 +48,34 @@ function trapezoidEase(a: number, b: number): (t: number) => number {
   };
 }
 
+/** Relative width of the road at arc-length `d` (units): two slow sines, like a marker pressed unevenly. */
+function roadWobble(d: number): number {
+  return 1 + ROUTE_CONFIG.road.handDrawn.width * (0.65 * Math.sin(d / 5.3 + 1.7) + 0.35 * Math.sin(d / 2.1 + 0.4));
+}
+
+/** A stop disc with an irregular outline ("patata"): a fan whose radius wobbles with low harmonics seeded per stop. */
+function potatoGeometry(radius: number, seed: number): THREE.BufferGeometry {
+  const amount = ROUTE_CONFIG.road.handDrawn.disc;
+  const rand = (k: number) => {
+    const v = Math.sin(seed * 127.1 + k * 311.7) * 43758.5453;
+    return v - Math.floor(v);
+  };
+  const phases = [rand(1), rand(2), rand(3)].map((v) => v * Math.PI * 2);
+  const segments = 40;
+  const positions = new Float32Array((segments + 2) * 3);
+  for (let i = 0; i <= segments; i++) {
+    const a = (i / segments) * Math.PI * 2;
+    const r = radius * (1 + amount * (0.55 * Math.sin(2 * a + phases[0]) + 0.3 * Math.sin(3 * a + phases[1]) + 0.15 * Math.sin(5 * a + phases[2])));
+    positions.set([Math.cos(a) * r, 0, Math.sin(a) * r], (i + 1) * 3);
+  }
+  const index: number[] = [];
+  for (let i = 1; i <= segments; i++) index.push(0, i + 1, i);
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  geo.setIndex(index);
+  return geo;
+}
+
 type Wagon = {
   mover: THREE.Group;
   body: THREE.Object3D;
@@ -63,7 +91,7 @@ type Road = {
   length: number;
   ribbon: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>;
   caps: THREE.Mesh[];
-  discs: THREE.Mesh<THREE.CircleGeometry, THREE.MeshBasicMaterial>[];
+  discs: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>[];
   stopDistances: number[];
   bumps: { distance: number; strength: number }[];
   layout: RouteLayout;
@@ -194,7 +222,7 @@ export class RouteScene {
 
     // Flat ribbon: vertices along the road; the reveal only advances the draw range.
     const N = ROUTE_CONFIG.road.ribbonSegments;
-    const half = ROUTE_CONFIG.road.width / 2;
+    const baseHalf = ROUTE_CONFIG.road.width / 2;
     const y = ROUTE_CONFIG.road.y.road;
     const positions = new Float32Array((N + 1) * 2 * 3);
     const p = new THREE.Vector3();
@@ -205,6 +233,7 @@ export class RouteScene {
       curve.getTangentAt(u, t);
       const nx = t.z;
       const nz = -t.x; // in-plane normal
+      const half = baseHalf * roadWobble(u * length);
       positions.set([p.x + nx * half, y, p.z + nz * half, p.x - nx * half, y, p.z - nz * half], i * 6);
     }
     const index: number[] = [];
@@ -220,21 +249,21 @@ export class RouteScene {
     ribbon.renderOrder = 1;
     this.scene.add(ribbon);
 
-    const capGeo = new THREE.CircleGeometry(half, 24).rotateX(-Math.PI / 2);
+    const capGeo = new THREE.CircleGeometry(baseHalf, 24).rotateX(-Math.PI / 2);
     const caps = [0, 1].map((u) => {
       const m = new THREE.Mesh(capGeo, roadMat);
       curve.getPointAt(u, p);
       m.position.set(p.x, y, p.z);
+      m.scale.setScalar(roadWobble(u * length));
       m.renderOrder = 1;
       m.visible = false;
       this.scene.add(m);
       return m;
     });
 
-    const discGeo = new THREE.CircleGeometry(ROUTE_CONFIG.road.discRadius, 40).rotateX(-Math.PI / 2);
-    const discs = stopDistances.map((d) => {
+    const discs = stopDistances.map((d, i) => {
       const mat = new THREE.MeshBasicMaterial({ color: this.colors.disc, transparent: true, opacity: 0 });
-      const m = new THREE.Mesh(discGeo, mat);
+      const m = new THREE.Mesh(potatoGeometry(ROUTE_CONFIG.road.discRadius, i + 1), mat);
       curve.getPointAt(d / length, p);
       m.position.set(p.x, ROUTE_CONFIG.road.y.disc, p.z);
       m.renderOrder = 2;
@@ -257,10 +286,10 @@ export class RouteScene {
   }
 
   /**
-   * Arc-length positions of the stops: one slot per workshop, taken evenly from the layout's
-   * slot list (travel order, distinct screen y). Each slot is located on its run by searching
-   * the point of the curve closest to the requested y within that run's parameter range.
-   * With more workshops than slots the stops fall back to even spacing along the whole road.
+   * Arc-length positions of the stops: one slot per workshop (config `chooseSlots`). Each slot is
+   * snapped to the point of the curve closest to its design point, searched only inside the slot's
+   * run so the loop's crossing can never capture a stop. With more workshops than slots the stops
+   * fall back to even spacing along the whole road.
    */
   private stopDistancesFor(
     layout: RouteLayout,
@@ -270,17 +299,11 @@ export class RouteScene {
     tOfPoint: (i: number) => number,
   ): number[] {
     const n = this.stopCount;
-    const slots = layout.slots;
-    if (n > slots.length) {
-      console.warn(`[JornadasRoute] ${n} paradas pero solo ${slots.length} slots en la disposición: reparto uniforme.`);
+    const chosen = chooseSlots(layout, n);
+    if (!chosen) {
+      console.warn(`[JornadasRoute] ${n} paradas pero solo ${layout.slots.length} slots en la disposición: reparto uniforme.`);
       return Array.from({ length: n }, (_, i) => ((i + 1) / (n + 1)) * length);
     }
-    const chosen = slots
-      .map((slot, index) => ({ slot, index }))
-      .sort((a, b) => a.slot.priority - b.slot.priority)
-      .slice(0, n)
-      .sort((a, b) => a.index - b.index)
-      .map((s) => s.slot);
     const p = new THREE.Vector3();
     return chosen.map((slot) => {
       const u0 = uOfT(tOfPoint(slot.run[0]));
@@ -291,7 +314,7 @@ export class RouteScene {
       for (let k = 0; k <= steps; k++) {
         const u = u0 + ((u1 - u0) * k) / steps;
         curve.getPointAt(u, p);
-        const err = Math.abs(p.z - slot.y);
+        const err = Math.hypot(p.x - slot.at[0], p.z - slot.at[1]);
         if (err < bestErr) {
           bestErr = err;
           best = u;
@@ -308,8 +331,10 @@ export class RouteScene {
     ribbon.geometry.dispose();
     ribbon.material.dispose();
     caps[0].geometry.dispose();
-    discs[0]?.geometry.dispose();
-    discs.forEach((d) => d.material.dispose());
+    discs.forEach((d) => {
+      d.geometry.dispose();
+      d.material.dispose();
+    });
     this.road = null;
   }
 

@@ -1,0 +1,88 @@
+/* ---- "Intro": the video that opens the jornadas, before the programme ----
+   Full width, edge to edge; its height never passes --intro-max-height (set inline from
+   lib/content/sections/jornadas-intro-video.ts, the same limit as the rider band). The
+   frame keeps the video's proportion until that limit and then crops (cover). */
+.intro {
+  position: relative;
+  background: var(--jia-ink);
+  color: var(--jia-ivory);
+}
+.title {
+  position: absolute;
+  z-index: 2;
+  top: clamp(1rem, 2.4vw, 1.75rem);
+  left: var(--gutter);
+  margin: 0;
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 12px rgb(var(--jia-ink-rgb) / 0.55);
+  pointer-events: none;
+}
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--intro-aspect);
+  max-height: var(--intro-max-height);
+  overflow: hidden;
+  background-color: var(--jia-ink);
+  background-size: cover;
+  background-position: center;
+}
+/* A soft top shade so the label and the controls stay legible on any frame. */
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 7rem;
+  background: linear-gradient(to bottom, rgb(var(--jia-ink-rgb) / 0.6), rgb(var(--jia-ink-rgb) / 0));
+  pointer-events: none;
+}
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.controls {
+  position: absolute;
+  z-index: 2;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: var(--gutter);
+  display: flex;
+  gap: 0.625rem;
+}
+/* Round, quiet, ring only: the reference's pause button. */
+.control {
+  appearance: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid rgb(var(--jia-ivory-rgb) / 0.85);
+  background: rgb(var(--jia-ink-rgb) / 0.45);
+  color: var(--jia-ivory);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.control:hover {
+  background: rgb(var(--jia-ink-rgb) / 0.5);
+}
+.control:active {
+  transform: scale(0.95);
+}
+.control:focus-visible {
+  outline: 2px solid var(--jia-ivory);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .control { transition: none; }
+}

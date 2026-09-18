@@ -21,6 +21,7 @@ import { dosieresConfig } from "./sections/dosieres";
 import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
+import { jornadasIntroVideo } from "./sections/jornadas-intro-video";
 import { TALLERES } from "./config/talleres";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
@@ -64,6 +65,20 @@ export type RouteModel = {
   regionLabel: string;
   stops: { id: string; label: string }[];
   controls: { replay: string };
+};
+
+export type IntroVideoModel = {
+  anchor: string;
+  title: string;
+  videoLabel: string;
+  src: string | null;
+  type: string;
+  poster: string | null;
+  maxHeight: string;
+  aspect: number;
+  autoplay: boolean;
+  loop: boolean;
+  controls: { play: string; pause: string; mute: string; unmute: string };
 };
 
 export type DayModel = {
@@ -125,6 +140,8 @@ export type LandingModel = {
     hashtag: string;
     /** The animated road under the intro. */
     route: RouteModel;
+    /** The "Intro" video block before the programme. */
+    introVideo: IntroVideoModel;
     program: { title: string; note: string; days: DayModel[] };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; count: string; cards: TeamCard[] } | null;
@@ -395,6 +412,7 @@ export function getLanding(locale: Locale): LandingModel {
         controls: copy.buttons.route,
       },
       hashtag: event.hashtag,
+      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, videoLabel: copy.jornadas.introVideo.videoLabel, controls: copy.buttons.video },
       program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length

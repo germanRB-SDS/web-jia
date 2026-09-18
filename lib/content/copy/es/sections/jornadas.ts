@@ -7,6 +7,7 @@ export const jornadas: Copy["jornadas"] = {
     "Un punto de encuentro para docentes que quieren explorar nuevas maneras de enseñar y compartir lo que sucede en sus aulas. El cine y el universo western almeriense son el hilo conductor.",
   /** Stop labels are the workshop names from config/talleres.ts (promoter, JIA-2026-09-18-09). */
   route: { regionLabel: "Camino de las jornadas: los talleres" },
+  introVideo: { title: "Intro", videoLabel: "Vídeo de presentación de las jornadas" },
   program: {
     title: "Programa",
     dayLabel: "Jornada {n}",
@@ -32,7 +33,7 @@ export const jornadas: Copy["jornadas"] = {
   },
   team: {
     title: "Quién está detrás",
-    lede: "Las personas del CEP de Almería y quienes colaboran en esta edición, en sus tarjetas de la campaña. Desliza para verlas todas.",
+    lede: "Todas las personas que lo hacen realidad: Coordinadores, Directores CEP, asesores y colaboradores. Las JIA no esconden sus talentos: conoce a quienes lanzan los dados ;)",
     count: "{count} personas",
     roles: {
       tallerista: "Tallerista",

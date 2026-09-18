@@ -3,6 +3,7 @@ import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
 import { SubSection } from "./Section";
+import { IntroVideo } from "./IntroVideo";
 import { JornadasRoute } from "./jornadas-route/JornadasRoute";
 import styles from "./Jornadas.module.css";
 
@@ -50,6 +51,9 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
           <JornadasRoute route={jornadas.route} />
         </div>
       </div>
+
+      {/* ---- Intro: the video, edge to edge, before the programme ---- */}
+      <IntroVideo intro={jornadas.introVideo} />
 
       <div className={styles.spreads}>
 

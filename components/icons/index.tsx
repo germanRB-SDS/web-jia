@@ -135,3 +135,38 @@ export function ReplayIcon(props: IconProps) {
     </svg>
   );
 }
+
+/** Media controls of the intro video: same grid and stroke as the family. */
+export function PauseIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={5}>
+      <path d="M24 18v28M40 18v28" />
+    </svg>
+  );
+}
+
+export function PlayIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} fill="currentColor" strokeWidth={3}>
+      <path d="M24 16l26 16-26 16z" />
+    </svg>
+  );
+}
+
+export function SoundOnIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M10 26v12h9l13 10V16L19 26z" fill="currentColor" />
+      <path d="M41 24a11 11 0 0 1 0 16M47 17a20 20 0 0 1 0 30" />
+    </svg>
+  );
+}
+
+export function SoundOffIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M10 26v12h9l13 10V16L19 26z" fill="currentColor" />
+      <path d="M42 25l13 14M55 25L42 39" />
+    </svg>
+  );
+}
