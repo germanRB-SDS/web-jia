@@ -25,6 +25,8 @@ type Props = {
   /** Sizes hint for the card image. */
   sizes?: string;
   variant?: "poster" | "wide";
+  /** Proportion of the card's picture (width / height); defaults to the variant's own. */
+  mediaRatio?: number;
   /** Heading level of the card title, so the outline stays in order. */
   heading?: "h3" | "h4";
 };
@@ -34,7 +36,7 @@ type Props = {
  * through a real button that opens the full sheet in a dialog. Hover is an
  * enhancement; keyboard and touch reach everything (brief §7).
  */
-export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4" }: Props) {
+export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio }: Props) {
   const Heading = heading;
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
@@ -43,7 +45,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
   return (
     <article id={anchorId} className={`${styles.card} ${styles[variant]}`} aria-labelledby={titleId} data-cursor="open">
       <div className={styles.media}>
-        <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes={sizes} className={styles.surface}>
+        <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={mediaRatio ?? (variant === "poster" ? 1414 / 2000 : 4 / 3)} sizes={sizes} className={styles.surface}>
           {sheet.summary ? (
             <div className={styles.reveal} aria-hidden="true">
               <p>{sheet.summary}</p>

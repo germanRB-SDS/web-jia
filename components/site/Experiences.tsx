@@ -44,6 +44,7 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
                 labels={{ ...cardLabels, sheetOf: copy.a11y.sheetOf.replace("{title}", sheet.title) }}
                 showMarks={showMarks}
                 variant="wide"
+                mediaRatio={16 / 9}
                 heading="h3"
                 sizes="(min-width: 900px) 420px, 90vw"
               />

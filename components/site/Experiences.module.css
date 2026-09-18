@@ -1,19 +1,20 @@
 /* ---- the ground: the teacher in her classroom, full bleed ----
-   The photograph runs whole from the left edge to the right one, at its own proportion, seated on the
-   section's floor. Its left half is clear paper (#f0e3d3, a level from vellum 3), so the text sits on it
-   and the teacher keeps the right; its top melts into vellum 3, the colour the neighbours meet at
-   (palette.css, The Vellum Ground Rule). The section is never shorter than the photograph. */
+   The photograph runs whole from the left edge to the right one. She keeps the left; the right half is clear
+   paper (#f0e3d3, a level from vellum 3) and carries the heading and the cards. On a wide screen the section
+   is exactly as tall as the photograph, so nothing ever sits above it; the type and the cards tighten to fit.
+   Narrower, the photograph is a band of its own above the heading, cropped to her. */
 .section {
   --aula-ratio: 1916 / 821;
+  /* Where the clear paper starts, as a share of the photograph's width. */
+  --aula-clear: 56%;
   background: var(--jia-vellum-3);
+  padding-top: 0;
 }
 .photo {
-  position: absolute;
+  position: relative;
   z-index: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  aspect-ratio: var(--aula-ratio);
+  aspect-ratio: 16 / 10;
+  margin-bottom: clamp(2rem, 6vw, 3rem);
 }
 .surface {
   position: absolute !important;
@@ -22,43 +23,42 @@
   height: 100%;
   border-radius: 0;
 }
+/* The band's floor melts into the ground the heading stands on. */
 .photo::before {
   content: "";
   position: absolute;
   z-index: 1;
   left: 0;
   right: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(to top, var(--jia-vellum-3), transparent);
   pointer-events: none;
 }
-.photo::before {
-  top: 0;
-  height: 34%;
-  background: linear-gradient(to bottom, var(--jia-vellum-3) 0%, color-mix(in srgb, var(--jia-vellum-3) 55%, transparent) 45%, transparent 100%);
-}
-@media (min-width: 900px) {
-  .section { min-height: calc(100vw / (var(--aula-ratio))); }
-}
-/* Wide screens: the cards stop short of the teacher. */
-@media (min-width: 1100px) {
-  .grid { max-width: min(100%, 46rem); }
-}
-/* Below the desktop the photograph would zoom into a sliver behind the text: it becomes a band of its own
-   above the heading, cropped to the classroom. */
-@media (max-width: 899px) {
-  .section { padding-top: 0; }
+@media (min-width: 1280px) {
+  .section {
+    --t-h2: clamp(2rem, 2.7vw, 3.25rem);
+    --t-lede: clamp(1rem, 1.25vw, 1.375rem);
+    height: calc(100vw / (var(--aula-ratio)));
+    padding-block: 0;
+    display: grid;
+    align-items: center;
+  }
   .photo {
-    position: relative;
-    inset: auto;
-    aspect-ratio: 16 / 10;
-    margin-bottom: clamp(2rem, 6vw, 3rem);
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    margin: 0;
   }
-  /* The band's floor melts into the ground the heading stands on. */
-  .photo::before {
-    top: auto;
-    bottom: 0;
-    height: 30%;
-    background: linear-gradient(to top, var(--jia-vellum-3), transparent);
+  .photo::before { display: none; }
+  /* The content column: from where the paper clears to the container's right edge. */
+  .section > :not(.photo) {
+    width: auto;
+    margin-inline: var(--aula-clear) max(var(--gutter), (100% - var(--container)) / 2);
   }
+  .section header { margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }
+  .section header p { text-wrap: pretty; }
+  .section .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); }
 }
 .grid {
   display: grid;
