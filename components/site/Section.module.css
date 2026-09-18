@@ -105,9 +105,12 @@
   display: grid;
   gap: 1rem;
   padding-block: clamp(2rem, 4vw, 3.5rem);
-  border-top: 1px solid var(--jia-line);
+  /* border-top: 1px solid var(--jia-line); */
+  /* ↑ Hidden at the promoter's request (JIA-2026-09-18-11): it drew a rule above the first
+     spread ("Programa"). The spreads that follow keep theirs through the rule below. */
   scroll-margin-top: 4.5rem;
 }
+.sub + .sub { border-top: 1px solid var(--jia-line); }
 @media (min-width: 900px) {
   .sub {
     grid-template-columns: 200px minmax(0, 1fr);

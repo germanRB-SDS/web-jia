@@ -30,13 +30,12 @@ export type CubeLabels = {
 type Props = { items: CubeItem[]; labels: CubeLabels; className?: string };
 
 const FACES = Array.from({ length: CUBE_CONFIG.faces }, (_, i) => i);
-const STRIPS = Array.from({ length: CUBE_CONFIG.edgeStrips }, (_, i) => i);
-const STRIP_STEP = 90 / CUBE_CONFIG.edgeStrips;
 const mod = (a: number, n: number) => ((a % n) + n) % n;
 
 /**
- * A cube that shows a whole sequence: drag it (or use the arrows / arrow keys) and every quarter
- * turn brings the next item, n items on four sides, round and round. Knows nothing about what it
+ * A cube that shows a whole sequence: drag it, click it or use the arrows / arrow keys and every
+ * quarter turn brings the next item (every fourth one rolls vertically), n items on six sides,
+ * round and round. Knows nothing about what it
  * shows: items and every label come from the caller. The cube itself is decoration for assistive
  * technology, which gets the complete list and the prev/next buttons with a live caption.
  */
@@ -47,6 +46,7 @@ export function CubeCarousel({ items, labels, className }: Props) {
   const engineRef = useRef<CubeEngine | null>(null);
   const count = items.length;
   const [assigned, setAssigned] = useState<number[]>(() => FACES.map((f) => (count ? mod(f <= 2 ? f : -1, count) : 0)));
+  const [cap, setCap] = useState({ top: 0, bottom: 0 });
   const [front, setFront] = useState(0);
   const [announce, setAnnounce] = useState(false);
 
@@ -60,14 +60,17 @@ export function CubeCarousel({ items, labels, className }: Props) {
     (async () => {
       const { CubeEngine } = await import("./cube-engine");
       if (disposed) return;
-      const surfaces = [...cube.querySelectorAll<HTMLElement>("[data-cube-angle]")].map((el) => ({ el, angle: Number(el.dataset.cubeAngle) }));
+      const pick = (name: string) => [...cube.querySelectorAll<HTMLElement>(`[data-cube-side="${name}"]`)];
       const engine = new CubeEngine({
         stage,
         cube,
-        surfaces,
+        sides: pick("turn"),
+        top: pick("top")[0],
+        bottom: pick("bottom")[0],
         count,
         reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
         onAssign: setAssigned,
+        onCap: setCap,
         onFront: setFront,
         onInteract: () => setAnnounce(true),
       });
@@ -125,28 +128,11 @@ export function CubeCarousel({ items, labels, className }: Props) {
       <div ref={stageRef} className={styles.stage} aria-hidden="true" data-cursor="open">
         <div className={styles.scene}>
           <div ref={cubeRef} className={styles.cube}>
-            {FACES.map((f) => {
-              const item = items[assigned[f] ?? 0];
-              return (
-                <div key={f} className={styles.face} data-cube-angle={f * 90} style={{ "--cube-i": f } as CSSProperties}>
-                  <div className={styles.faceBody}>
-                    {item.image ? (
-                      <img className={styles.sticker} src={item.image.src} srcSet={item.image.srcSet} sizes={sizes} width={item.image.width} height={item.image.height} alt="" draggable={false} decoding="async" />
-                    ) : (
-                      <span className={styles.stickerBlank}>{item.title}</span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
             {FACES.map((f) => (
-              <span key={`core-${f}`} className={styles.core} style={{ "--cube-i": f } as CSSProperties} />
+              <Side key={f} kind="turn" item={items[assigned[f] ?? 0]} sizes={sizes} style={{ "--cube-i": f } as CSSProperties} />
             ))}
-            {FACES.map((f) =>
-              STRIPS.map((m) => (
-                <span key={`${f}-${m}`} className={styles.edge} data-cube-angle={f * 90 + (m + 0.5) * STRIP_STEP} data-strip={m} style={{ "--cube-i": f, "--cube-theta": `${(m + 0.5) * STRIP_STEP}deg` } as CSSProperties} />
-              )),
-            )}
+            <Side kind="top" item={items[cap.top] ?? items[0]} sizes={sizes} />
+            <Side kind="bottom" item={items[cap.bottom] ?? items[0]} sizes={sizes} />
           </div>
         </div>
         <span className={styles.shadow} />
@@ -175,6 +161,21 @@ export function CubeCarousel({ items, labels, className }: Props) {
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+/** One side of the cube: its varnished ground, the item as a sticker, and the light over both. */
+function Side({ kind, item, sizes, style }: { kind: "turn" | "top" | "bottom"; item: CubeItem; sizes: string; style?: CSSProperties }) {
+  return (
+    <div className={`${styles.face} ${kind === "turn" ? "" : styles[kind]}`} data-cube-side={kind} style={style}>
+      <div className={styles.faceBody}>
+        {item.image ? (
+          <img className={styles.sticker} src={item.image.src} srcSet={item.image.srcSet} sizes={sizes} width={item.image.width} height={item.image.height} alt="" draggable={false} decoding="async" />
+        ) : (
+          <span className={styles.stickerBlank}>{item.title}</span>
+        )}
+      </div>
     </div>
   );
 }

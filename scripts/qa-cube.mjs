@@ -1,8 +1,9 @@
 /**
  * Evidence for the team cube (JIA-2026-09-18-10, components/cube-carousel) via the Chrome DevTools
  * Protocol: real pointer events for the drag, the whole sequence walked with the "next" button
- * (every front image must be loaded, all items distinct, and the order must wrap), arrow keys,
- * idle autoplay and horizontal overflow.
+ * (every front image must be loaded, all items distinct, the order must wrap, and every fourth
+ * step must be a vertical roll, reversed when going back), a click on the cube, arrow keys, idle
+ * autoplay and horizontal overflow.
  *
  * Usage: node scripts/qa-cube.mjs [url] [outPrefix] [width] [height]
  */
@@ -26,13 +27,14 @@ try {
   await send("Page.enable"); await send("Runtime.enable");
   const mobile = +W < 800;
   await send("Emulation.setDeviceMetricsOverride", { width: +W, height: +H, deviceScaleFactor: mobile ? 2 : 1, mobile });
+  if (mobile) await send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 1 });
   await send("Page.navigate", { url });
   await sleep(3000);
   const STAGE = '[class*="CubeCarousel-module"][class*="stage"]';
   const ROOT = '[aria-roledescription="carousel"]';
   await evaluate(`document.querySelector('${ROOT}').scrollIntoView({ block: "center", behavior: "instant" }); true`);
   await sleep(800);
-  const state = () => evaluate(`(() => { const r = document.querySelector('${ROOT}'); const cube = r.querySelector('[class*="cube"]'); const rot = parseFloat(cube.style.getPropertyValue('--cube-rot')) || 0; const faces = [...r.querySelectorAll('[class*="face__"], [class*="__face"]')].filter((f) => f.dataset.cubeAngle !== undefined && !/faceBody/.test(f.className)); const p = -rot / 90; const fi = ((Math.round(p) % 4) + 4) % 4; const img = faces[fi]?.querySelector('img'); return { rot, caption: r.querySelector('p[aria-live]').innerText.replace(/\\n/g, ' | '), frontSrc: img?.currentSrc.split('/').pop(), loaded: img?.complete && img.naturalWidth > 0, live: r.querySelector('p[aria-live]').getAttribute('aria-live') }; })()`);
+  const state = () => evaluate(`(() => { const r = document.querySelector('${ROOT}'); const cube = r.querySelector('[class*="cube"]'); const rot = parseFloat(cube.style.getPropertyValue('--cube-rot')) || 0; const tilt = parseFloat(cube.style.getPropertyValue('--cube-tilt')) || 0; const faces = [...r.querySelectorAll('[data-cube-side="turn"]')]; const fi = ((Math.round(-rot / 90) % 4) + 4) % 4; const img = faces[fi]?.querySelector('img'); return { rot, tilt, caption: r.querySelector('p[aria-live]').innerText.replace(/\\n/g, ' | '), frontSrc: img?.currentSrc.split('/').pop(), loaded: img?.complete && img.naturalWidth > 0, live: r.querySelector('p[aria-live]').getAttribute('aria-live') }; })()`);
   const shot = async (name) => { const rect = await evaluate(`(() => { const r = document.querySelector('${ROOT}').getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; })()`); const { data } = await send("Page.captureScreenshot", { format: "png", clip: { ...rect, scale: 1 }, captureBeyondViewport: true }); writeFileSync(`${prefix}-${name}.png`, Buffer.from(data, "base64")); };
   out.initial = await state();
   await shot("01-reposo");
@@ -42,28 +44,58 @@ try {
   // Drag left by ~0.5 cube widths, capture mid-drag, release.
   const box = await evaluate(`(() => { const r = document.querySelector('${STAGE}').getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width }; })()`);
   const mouse = (type, x, y, buttons = 1) => send("Input.dispatchMouseEvent", { type, x, y, button: "left", buttons, clickCount: 1 });
-  await mouse("mouseMoved", box.x + 80, box.y, 0);
-  await mouse("mousePressed", box.x + 80, box.y);
-  for (let i = 1; i <= 12; i++) { await mouse("mouseMoved", box.x + 80 - i * 12, box.y); await sleep(16); }
+  // Phones are driven with touch events from the start (mixing mouse and touch in one page confuses the tap test).
+  const touch = (type, x, y) => send("Input.dispatchTouchEvent", { type, touchPoints: type === "touchEnd" ? [] : [{ x, y }] });
+  if (mobile) {
+    await touch("touchStart", box.x + 80, box.y);
+    for (let i = 1; i <= 12; i++) { await touch("touchMove", box.x + 80 - i * 12, box.y); await sleep(16); }
+  } else {
+    await mouse("mouseMoved", box.x + 80, box.y, 0);
+    await mouse("mousePressed", box.x + 80, box.y);
+    for (let i = 1; i <= 12; i++) { await mouse("mouseMoved", box.x + 80 - i * 12, box.y); await sleep(16); }
+  }
   await sleep(450);
   out.midDrag = await state();
   await shot("02-arrastre");
-  await mouse("mouseReleased", box.x + 80 - 144, box.y, 0);
+  if (mobile) await touch("touchEnd"); else await mouse("mouseReleased", box.x + 80 - 144, box.y, 0);
   await sleep(1300);
   out.afterDrag = await state();
   await shot("03-tras-soltar");
   // Walk the whole sequence with the next button: every front image must match its caption and wrap to the start.
   const total = await evaluate(`document.querySelectorAll('${ROOT} ul li').length`);
   const names = await evaluate(`[...document.querySelectorAll('${ROOT} ul li')].map((l) => l.textContent.split(',')[0].trim())`);
-  const seen = []; let mismatches = 0; let notLoaded = 0;
+  const seen = []; let notLoaded = 0; const rollsAt = []; const srcMismatch = [];
   for (let i = 0; i < total + 2; i++) {
     await evaluate(`document.querySelector('${ROOT} button:last-of-type').click(); true`);
-    await sleep(1150);
+    await sleep(480);
+    const mid = await state();
+    if (Math.abs(mid.tilt) > 5) rollsAt.push({ into: mid.caption.split(' | ').pop(), tilt: Math.round(mid.tilt) });
+    await sleep(950);
     const s = await state();
     seen.push(s.caption.split(' | ')[0]);
     if (!s.loaded) notLoaded++;
+    if (s.tilt !== 0) srcMismatch.push({ step: i, tilt: s.tilt });
   }
-  out.total = total; out.walk = { distinct: new Set(seen).size, wrapsToSameOrder: seen.slice(0, 2).join() === seen.slice(total, total + 2).join(), orderMatchesList: seen.slice(0, total).every((n, i) => names.includes(n)), notLoaded };
+  out.total = total; out.walk = { distinct: new Set(seen).size, wrapsToSameOrder: seen.slice(0, 2).join() === seen.slice(total, total + 2).join(), orderMatchesList: seen.slice(0, total).every((n) => names.includes(n)), notLoaded, notUpright: srcMismatch, rollsAt };
+  // A click on the cube itself brings the next item.
+  const before = (await state()).caption;
+  await evaluate(`document.querySelector('${STAGE}').scrollIntoView({ block: "center", behavior: "instant" }); true`);
+  await sleep(400);
+  const fresh = await evaluate(`(() => { const r = document.querySelector('${STAGE}').getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`);
+  if (mobile) { await touch("touchStart", fresh.x, fresh.y); await sleep(60); await touch("touchEnd"); }
+  else { await mouse("mousePressed", fresh.x, fresh.y); await mouse("mouseReleased", fresh.x, fresh.y, 0); }
+  await sleep(1500);
+  out.clickAdvances = { before, after: (await state()).caption };
+  // Going back over a vertical boundary rolls the other way.
+  const back = [];
+  for (let i = 0; i < 5; i++) {
+    await evaluate(`document.querySelector('${ROOT} button').click(); true`);
+    await sleep(480);
+    const mid = await state();
+    if (Math.abs(mid.tilt) > 5) back.push({ into: mid.caption.split(' | ').pop(), tilt: Math.round(mid.tilt) });
+    await sleep(950);
+  }
+  out.backRolls = back;
   out.final = await state();
   // Keyboard: ArrowLeft goes back.
   await evaluate(`document.querySelector('${ROOT} button').focus(); true`);

@@ -120,23 +120,27 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
       {/* ---- Cómo funcionan ---- */}
       <SubSection id={jornadas.anchors.comoFuncionan} label={jornadas.how.title} markLabels={markLabels} showMarks={showMarks}>
-        <div className={styles.prose}>
-          {jornadas.how.paragraphs.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
-
-        {jornadas.team ? (
-          <div className={styles.team}>
-            <div className={styles.teamHead}>
-              <h4 className={styles.teamTitle}>
-                {jornadas.team.title} <span className={styles.teamCount}>{jornadas.team.count}</span>
-              </h4>
-              <p className={styles.teamLede}>{jornadas.team.lede}</p>
+        {/* One reading column (prose, then who is behind it) and the cube beside it: no gap between the two texts. */}
+        <div className={styles.how} data-team={jornadas.team ? "true" : "false"}>
+          <div className={styles.howText}>
+            <div className={styles.prose}>
+              {jornadas.how.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </div>
-            <CubeCarousel items={teamItems} labels={jornadas.team.cube} className={styles.teamCube} />
+            {jornadas.team ? (
+              <div className={styles.teamHead}>
+                <h4 className={styles.teamTitle}>{jornadas.team.title}</h4>
+                <p className={styles.teamLede}>{jornadas.team.lede}</p>
+              </div>
+            ) : null}
           </div>
-        ) : null}
+          {jornadas.team ? (
+            <div className={styles.teamCube}>
+              <CubeCarousel items={teamItems} labels={jornadas.team.cube} />
+            </div>
+          ) : null}
+        </div>
       </SubSection>
 
       {/* ---- Talleres ---- */}

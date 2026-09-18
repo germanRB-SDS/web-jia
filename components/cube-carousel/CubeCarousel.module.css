@@ -1,20 +1,16 @@
 /* ---- Cube carousel ----
-   A four-sided prism turning about Y. Everything is relative to --cube-size, so it scales with
-   the viewport without any script. The engine only writes --cube-rot (on .cube) and --cube-shade
-   (on every lit surface). Override the custom properties on .root (or from a parent) to retune.
-
-   A used cube, not a razor-edged one: each vertical edge is a quarter cylinder of radius
-   --cube-edge made of three facets, and the corners of the silhouette are worn to --cube-corner.
-   The sides stop short of the edge (--cube-edge) and their corner arc is cut there; the facets
-   carry the arc on, each a little shorter than the last. */
+   A true cube: six sides, sharp edges. It turns about Y and, every fourth step, rolls about X.
+   Everything is relative to --cube-size, so it scales with the viewport without any script. The
+   engine only writes custom properties: --cube-rot, --cube-tilt, --cube-spin and --cube-scale on
+   .cube, --cube-shade and --cube-sheen on each side. Override the properties on .root (or from a
+   parent) to retune. */
 .root {
   --cube-size: min(58vw, 340px);
-  --cube-edge: calc(var(--cube-size) * 0.024);
-  --cube-corner: calc(var(--cube-size) * 0.062);
   --cube-perspective: 1500px;
-  /* The cube's own colour: the darkest tone of the cards' burnt rim, so a card reads as a sticker on it. */
-  --cube-color: var(--jia-ink);
-  --cube-color-rgb: var(--jia-ink-rgb);
+  /* The cube's ground: a dark varnish of the brand's ink and terracotta, so a card reads as a sticker on it. */
+  --cube-ground: var(--jia-gradient-cube, var(--jia-ink));
+  --cube-glint-rgb: var(--jia-ivory-rgb, 255 255 255);
+  --cube-shadow-rgb: var(--jia-ink-rgb, 0 0 0);
   /* Breathing room between the sticker and the top/bottom of its side. */
   --cube-sticker-inset: 2.5%;
   --cube-half: calc(var(--cube-size) / 2);
@@ -26,11 +22,11 @@
   min-width: 0;
 }
 
-/* The stage takes the drag. It is wider than the cube: turned 45° the prism spans ~1.5 sides. */
+/* The stage takes the drag (and the click). Wider and taller than the cube: turned 45° it spans ~1.5 sides. */
 .stage {
   position: relative;
   width: min(100%, calc(var(--cube-size) * 1.56));
-  height: calc(var(--cube-size) * 1.2);
+  height: calc(var(--cube-size) * 1.24);
   display: grid;
   place-items: center;
   cursor: grab;
@@ -53,116 +49,80 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: translateZ(calc(var(--cube-half) * -1)) rotateY(var(--cube-rot, 0deg));
+  transform: translateZ(calc(var(--cube-half) * -1)) scale3d(var(--cube-scale, 1), var(--cube-scale, 1), var(--cube-scale, 1)) rotateX(var(--cube-tilt, 0deg)) rotateY(var(--cube-rot, 0deg));
   will-change: transform;
 }
 
-/* A side: the flat part between two rounded edges. */
+/* A side. The cube is closed, so nothing hides its back: through the hairline the antialiasing
+   leaves along an edge you see the inside of the far wall, never the page. Half a pixel of
+   overlap closes the edges themselves. */
 .face {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  /* One pixel under the first facet on each side, so their antialiased rims blend into the cube, not the page. */
-  left: calc(var(--cube-edge) - 1px);
-  right: calc(var(--cube-edge) - 1px);
+  inset: -0.5px;
   overflow: hidden;
-  backface-visibility: hidden;
   transform: rotateY(calc(var(--cube-i) * 90deg)) translateZ(var(--cube-half));
 }
-/* The side's body is as wide as the whole cube, so its corner arc is cut where the facets begin. */
+/* Top and bottom only show during a vertical roll; --cube-spin keeps their card upright whatever the heading. */
+.top {
+  transform: rotateX(90deg) translateZ(var(--cube-half)) rotateZ(var(--cube-spin, 0deg));
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(var(--cube-half)) rotateZ(calc(var(--cube-spin, 0deg) * -1));
+}
 .faceBody {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(var(--cube-edge) * -1 + 1px);
-  right: calc(var(--cube-edge) * -1 + 1px);
-  border-radius: var(--cube-corner);
-  background: var(--cube-color);
+  inset: 0;
+  background: var(--cube-ground);
   display: grid;
   place-items: center;
   overflow: hidden;
 }
-/* The "light": a tint that deepens as the surface turns away (the example used opacity on black). */
-.faceBody::after,
-.edge::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgb(0 0 0);
-  opacity: var(--cube-shade, 0);
-  pointer-events: none;
-}
-/* A faint sheen across the top of the side: a worn, handled surface rather than flat paint. */
+/* Reflections: a soft glint in the upper corner and a diagonal sheen that slides across the side
+   as it turns (--cube-sheen), over the varnish and the card alike. */
 .faceBody::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0) 32%, rgb(0 0 0 / 0.12));
+  z-index: 2;
+  background:
+    linear-gradient(112deg, rgb(var(--cube-glint-rgb) / 0) 36%, rgb(var(--cube-glint-rgb) / 0.2) 47%, rgb(var(--cube-glint-rgb) / 0.05) 53%, rgb(var(--cube-glint-rgb) / 0) 64%) var(--cube-sheen, 50%) 0 / 280% 100% no-repeat,
+    radial-gradient(120% 90% at 8% 0%, rgb(var(--cube-glint-rgb) / 0.16), rgb(var(--cube-glint-rgb) / 0) 55%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+/* The "light": a tint that deepens as the side turns away (the example used opacity on black). */
+.faceBody::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: rgb(0 0 0);
+  opacity: var(--cube-shade, 0);
   pointer-events: none;
 }
 
-/* The card: as tall as the side allows, centred, the cube's colour showing on both sides of it. */
+/* The card: as tall as the side allows, centred, the cube's ground showing on both sides of it. */
 .sticker {
   position: relative;
+  z-index: 1;
   display: block;
   height: calc(100% - 2 * var(--cube-sticker-inset));
   width: auto;
   max-width: 100%;
   object-fit: contain;
   border-radius: 2px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(0 0 0 / 0.18);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(0 0 0 / 0.18);
   -webkit-user-drag: none;
   pointer-events: none;
 }
 .stickerBlank {
+  position: relative;
+  z-index: 1;
   padding: 1rem;
   font-family: var(--f-ui);
   font-weight: 600;
   text-align: center;
-  color: var(--jia-ivory);
-}
-
-/* A plain dark core just under the skin: whatever hairline the antialiasing leaves between two
-   surfaces shows the cube's colour, not the page (seen from both sides: through a seam you look at the inside
-   of the far wall). It stops short of the worn corners. */
-.core {
-  position: absolute;
-  top: calc(var(--cube-size) * 0.03);
-  bottom: calc(var(--cube-size) * 0.03);
-  left: calc(var(--cube-edge) * 1.4);
-  right: calc(var(--cube-edge) * 1.4);
-  background: var(--cube-color);
-  filter: brightness(0.7);
-  transform: rotateY(calc(var(--cube-i) * 90deg)) translateZ(calc(var(--cube-half) - var(--cube-edge) * 1.4));
-}
-
-/* Edge facets: tangent to the quarter cylinder whose axis runs down the corner. */
-.edge {
-  position: absolute;
-  left: 50%;
-  width: calc(var(--cube-edge) * 0.536 + 1.5px);
-  margin-left: calc((var(--cube-edge) * 0.536 + 0.75px) / -2);
-  top: var(--cube-edge-inset);
-  bottom: var(--cube-edge-inset);
-  background: var(--cube-color);
-  border-radius: 1px;
-  backface-visibility: hidden;
-  overflow: hidden;
-  transform:
-    rotateY(calc(var(--cube-i) * 90deg))
-    translateX(calc(var(--cube-half) - var(--cube-edge)))
-    translateZ(calc(var(--cube-half) - var(--cube-edge)))
-    rotateY(var(--cube-theta))
-    translateZ(var(--cube-edge));
-}
-/* How far each facet stops from the top and bottom: the corner arc, continued (outer facets
-   match the arc where the side was cut, the middle one is the corner itself). */
-.edge[data-strip="0"],
-.edge[data-strip="2"] {
-  --cube-edge-inset: calc(var(--cube-size) * 0.019);
-}
-.edge[data-strip="1"] {
-  --cube-edge-inset: calc(var(--cube-size) * 0.025);
+  color: rgb(var(--cube-glint-rgb));
 }
 
 /* Contact shadow: keeps the cube on the page. */
@@ -174,7 +134,7 @@
   height: calc(var(--cube-size) * 0.11);
   translate: -50% 0;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(var(--cube-color-rgb) / 0.34), rgb(var(--cube-color-rgb) / 0));
+  background: radial-gradient(closest-side, rgb(var(--cube-shadow-rgb) / 0.36), rgb(var(--cube-shadow-rgb) / 0));
   pointer-events: none;
 }
 
@@ -241,8 +201,14 @@
 }
 .hint {
   margin: -0.5rem 0 0;
+  max-width: 26rem;
   font-family: var(--f-ui);
-  font-size: 0.8125rem;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-wrap: balance;
   color: var(--jia-text-muted);
   text-align: center;
 }

@@ -103,11 +103,9 @@ export type Copy = {
       sessions: Record<string, string>;
     };
     how: { title: string; paragraphs: string[]; status: EditorialStatus };
-    /** `count` takes `{count}`. */
     team: {
       title: string;
       lede: string;
-      count: string;
       roles: Record<PersonRole, string>;
       /** The cube that shows the cards: `position` takes `{current}` and `{total}`. */
       cube: { hint: string; position: string; list: string };

@@ -22,11 +22,12 @@ export const JORNADAS_INTRO_VIDEO_TYPE = "video/mp4";
 export const JORNADAS_INTRO_VIDEO_POSTER: string | null = "/jornadas/intro/intro-poster.webp";
 
 /**
- * Altura máxima del bloque: la misma que la banda del jinete (el velo de «Las jornadas»,
- * `min-height: min(78vh, 780px)` en Jornadas.module.css). El vídeo ocupa todo el ancho y se
- * recorta (cover) para no pasar de aquí.
+ * Altura máxima del bloque. Partía de la banda del jinete (el velo de «Las jornadas»,
+ * `min(78vh, 780px)` en Jornadas.module.css); el promotor pidió un 10 % más de vertical para
+ * que se vea más fotograma (JIA-2026-09-18-11). El vídeo ocupa todo el ancho y se recorta
+ * (cover) para no pasar de aquí.
  */
-export const JORNADAS_INTRO_VIDEO_MAX_HEIGHT = "min(78vh, 780px)";
+export const JORNADAS_INTRO_VIDEO_MAX_HEIGHT = "min(86vh, 858px)";
 
 /** Proporción del vídeo (ancho / alto): reserva el hueco antes de que cargue. */
 export const JORNADAS_INTRO_VIDEO_ASPECT = 16 / 9;

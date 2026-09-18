@@ -1,0 +1,104 @@
+{
+  "logs": [],
+  "initial": {
+    "rot": 0,
+    "tilt": 0,
+    "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 29",
+    "frontSrc": "card-46-420.webp",
+    "loaded": true,
+    "live": "off"
+  },
+  "afterAutoplay": {
+    "rot": -90,
+    "tilt": 0,
+    "caption": "Alberto Romero | COORDINACIÓN | 2 DE 29",
+    "frontSrc": "card-39-420.webp",
+    "loaded": true,
+    "live": "off"
+  },
+  "midDrag": {
+    "rot": -134.844,
+    "tilt": 0,
+    "caption": "Alberto Romero | COORDINACIÓN | 2 DE 29",
+    "frontSrc": "card-39-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "afterDrag": {
+    "rot": -180,
+    "tilt": 0,
+    "caption": "Adolfo Ariño | COORDINACIÓN | 3 DE 29",
+    "frontSrc": "card-40-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "total": 29,
+  "walk": {
+    "distinct": 29,
+    "wrapsToSameOrder": true,
+    "orderMatchesList": true,
+    "notLoaded": 0,
+    "notUpright": [],
+    "rollsAt": [
+      {
+        "into": "4 DE 29",
+        "tilt": -35
+      },
+      {
+        "into": "8 DE 29",
+        "tilt": -35
+      },
+      {
+        "into": "12 DE 29",
+        "tilt": -35
+      },
+      {
+        "into": "16 DE 29",
+        "tilt": -35
+      },
+      {
+        "into": "20 DE 29",
+        "tilt": -33
+      },
+      {
+        "into": "24 DE 29",
+        "tilt": -35
+      },
+      {
+        "into": "28 DE 29",
+        "tilt": -35
+      },
+      {
+        "into": "3 DE 29",
+        "tilt": -34
+      }
+    ]
+  },
+  "clickAdvances": {
+    "before": "Irene Castañeda | ASESORA CEP | 5 DE 29",
+    "after": "Antonio Orellana | ASESOR CEP | 6 DE 29"
+  },
+  "backRolls": [
+    {
+      "into": "4 DE 29",
+      "tilt": 35
+    }
+  ],
+  "final": {
+    "rot": -1980,
+    "tilt": 0,
+    "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 29",
+    "frontSrc": "card-46-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "afterArrowLeft": {
+    "rot": -1890,
+    "tilt": 0,
+    "caption": "María Hernández | COLABORADORA | 29 DE 29",
+    "frontSrc": "card-43-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "overflowX": false
+}

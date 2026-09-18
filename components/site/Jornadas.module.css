@@ -190,10 +190,23 @@
 }
 .prose p { margin: 0; }
 
-/* ---- team strip ---- */
-.team { margin-top: clamp(2rem, 4vw, 3rem); }
+/* ---- how it works + the team cube ----
+   One reading column: the prose and, right under it, who is behind the jornadas. The cube leads
+   on the right for the whole height, lit by a warm spotlight (palette gradients). Stacked below
+   900 px, in the same order. */
+.how {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+.howText {
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  align-content: start;
+  min-width: 0;
+}
+.teamHead { display: grid; gap: 0.5rem; }
 .teamTitle {
-  margin: 0 0 0.35rem;
+  margin: 0;
   font-family: var(--f-display);
   font-weight: 700;
   font-size: 1.375rem;
@@ -202,30 +215,48 @@
   color: var(--jia-ink);
 }
 .teamLede {
-  margin: 0 0 1.25rem;
+  margin: 0;
   max-width: var(--measure);
   font-family: var(--f-body);
-  font-size: 1.0625rem;
+  font-size: var(--t-lede);
+  line-height: 1.5;
   color: var(--jia-text);
+  text-wrap: pretty;
 }
-.teamCount {
-  font-family: var(--f-ui);
-  font-weight: 500;
-  font-size: 0.8125rem;
-  letter-spacing: var(--jia-label-tracking);
-  color: var(--jia-text-muted);
-  margin-left: 0.5rem;
+.teamCube {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  min-width: 0;
 }
-/* The cards live on a cube (components/cube-carousel). From 900 px the words sit beside it. */
-.teamCube { margin-top: 0.5rem; }
+/* The spotlight and the warm floor under the cube: both fade to nothing, so they have no edge. */
+.teamCube::before,
+.teamCube::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.teamCube::before {
+  inset: -14% -18% 6%;
+  background: var(--jia-gradient-spotlight);
+}
+.teamCube::after {
+  left: 4%;
+  right: 4%;
+  bottom: 18%;
+  height: 26%;
+  background: var(--jia-gradient-floor);
+}
 @media (min-width: 900px) {
-  .team {
-    display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    align-items: center;
-    gap: clamp(2rem, 4vw, 4rem);
+  .how[data-team="true"] {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
   }
-  .teamCube { margin-top: 0; }
+  /* The cube's stage keeps air above for its vertical turn; pull it up so the card starts on the first line. */
+  .teamCube { margin-top: calc(var(--team-cube-lift, 2.25rem) * -1); }
 }
 
 /* ---- workshops ---- */
