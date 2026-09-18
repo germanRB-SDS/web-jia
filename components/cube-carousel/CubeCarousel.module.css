@@ -143,8 +143,9 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 1rem;
-  width: min(100%, 26rem);
+  gap: clamp(0.5rem, 2vw, 1rem);
+  /* Exactly as wide as the cube: the arrows never stick out past its sides. */
+  width: var(--cube-size);
 }
 .caption {
   margin: 0;
@@ -153,6 +154,7 @@
   text-align: center;
   min-height: 3.9rem;
   align-content: center;
+  text-wrap: balance;
 }
 .captionTitle {
   font-family: var(--f-ui);
@@ -201,7 +203,7 @@
 }
 .hint {
   margin: -0.5rem 0 0;
-  max-width: 26rem;
+  max-width: var(--cube-size);
   font-family: var(--f-ui);
   font-weight: 500;
   font-size: 0.6875rem;
