@@ -1,6 +1,6 @@
 .section {
   padding-block: var(--space-section);
-  background: linear-gradient(180deg, var(--jia-paper) 0%, var(--jia-ivory) 16%, var(--jia-ivory) 100%);
+  background: var(--jia-ivory);
   scroll-margin-top: 4.5rem;
 }
 .inner {

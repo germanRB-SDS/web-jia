@@ -48,15 +48,35 @@
 }
 .ink .subtitle { color: var(--jia-ivory); }
 /* Split: head and content in the left column, a visual column on the right. */
+/* Split: the section has no vertical padding of its own; the text column carries
+   it, so the visual column (45% of the section) runs the full height, bleeding
+   top, right and bottom — maryna-ventura's "Servicios" spread. */
+.section:has(> .split) { padding-block: 0; }
+.split {
+  width: 100%;
+  display: grid;
+}
+.split .head,
+.split > :not(.head):not([data-visual]) {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+.split .head { padding-top: var(--space-section); }
+.split > :not(.head):not([data-visual]) { padding-bottom: var(--space-section); }
 @media (min-width: 900px) {
   .split {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: clamp(2rem, 6vw, 5rem);
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
     align-items: center;
   }
-  .split .head { grid-column: 1; margin-bottom: 1.5rem; }
-  .split > :not(.head) { grid-column: 1; }
+  .split .head,
+  .split > :not(.head):not([data-visual]) {
+    grid-column: 1;
+    width: auto;
+    margin-inline: 0;
+    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    padding-right: clamp(2rem, 5vw, 4.5rem);
+  }
+  .split .head { margin-bottom: 1.5rem; }
   .split > [data-visual] { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
 }
 .lede {

@@ -15,10 +15,7 @@
    the right edge; a soft sand veil on its inner edge lets the text side breathe. */
 .visual {
   position: relative;
-  margin-top: 2rem;
   overflow: clip;
-  border-radius: var(--jia-radius-card);
-  box-shadow: 0 30px 60px -30px rgb(var(--jia-ink-rgb) / 0.55);
 }
 .visualSurface { border-radius: 0; }
 .visualVeil {
@@ -29,11 +26,8 @@
 }
 @media (min-width: 900px) {
   .visual {
-    margin-top: 0;
     height: 100%;
     min-height: 32rem;
-    margin-right: calc(-1 * var(--gutter));
-    border-radius: var(--jia-radius-card) 0 0 var(--jia-radius-card);
   }
   .visualSurface {
     position: absolute !important;
