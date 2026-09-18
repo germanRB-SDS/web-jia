@@ -48,7 +48,7 @@ export function CursorMark() {
       if (raf === null) raf = window.requestAnimationFrame(frame);
     };
 
-    const TARGETS = 'a, button, input, select, textarea, summary, [role="menuitem"], [tabindex]:not([tabindex="-1"])';
+    const TARGETS = 'a, button, input, select, textarea, summary, label, [role="button"], [role="menuitem"], [tabindex]:not([tabindex="-1"]), [data-cursor="open"]';
     const closest = (t: EventTarget | null) => (t instanceof Element ? t.closest(TARGETS) : null);
 
     const onMove = (e: PointerEvent) => {

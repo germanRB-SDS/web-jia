@@ -105,7 +105,8 @@ h1, h2, h3, h4 { text-wrap: balance; }
   html.has-mark a,
   html.has-mark button,
   html.has-mark input,
-  html.has-mark [tabindex] {
+  html.has-mark [tabindex],
+  html.has-mark [data-cursor="open"] {
     cursor: none;
   }
 }

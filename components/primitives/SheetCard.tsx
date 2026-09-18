@@ -41,7 +41,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
   const titleId = useId();
 
   return (
-    <article id={anchorId} className={`${styles.card} ${styles[variant]}`} aria-labelledby={titleId}>
+    <article id={anchorId} className={`${styles.card} ${styles[variant]}`} aria-labelledby={titleId} data-cursor="open">
       <div className={styles.media}>
         <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes={sizes} className={styles.surface}>
           {sheet.summary ? (

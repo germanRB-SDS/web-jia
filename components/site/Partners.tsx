@@ -27,14 +27,14 @@ export function Partners({ partners }: Props) {
           <p className={styles.text}>{partners.text}</p>
         </div>
 
-        <div className={styles.plate}>
+        <div className={styles.colophon}>
           {partners.groups.map((group) => (
             <div key={group.key} className={styles.group}>
               <p className={styles.groupLabel}>{group.label}</p>
-              <ul className={styles.logos}>
+              <ul className={styles.names}>
                 {group.items.map((item) => {
                   const content = item.logo ? (
-                    <Picture media={item.logo} alt={item.name} sizes="160px" className={styles.logo} />
+                    <Picture media={item.logo} alt={item.name} sizes="120px" className={styles.logo} />
                   ) : (
                     <span className={styles.name}>{item.name}</span>
                   );

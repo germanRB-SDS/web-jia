@@ -118,7 +118,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
               <ul className={styles.stripList}>
                 {jornadas.team.cards.map((card, index) => (
                   <li key={card.id} className={styles.stripItem}>
-                    <figure className={styles.member}>
+                    <figure className={styles.member} data-cursor="open">
                       <Surface media={card.media} alt={card.alt} fallback={card.fallback} ratio={1414 / 2000} sizes="180px" className={styles.memberImg} priority={index < 8} />
                       <figcaption className={styles.memberCaption}>
                         <span className={styles.memberName}>{card.name}</span>

@@ -57,8 +57,8 @@
 .disabled {
   cursor: not-allowed;
   background: transparent;
-  color: var(--jia-text-muted);
-  border: 1.5px dashed var(--jia-line);
+  color: var(--jia-text);
+  border: 1.5px solid var(--jia-copper);
 }
 .disabled:hover svg {
   transform: none;
