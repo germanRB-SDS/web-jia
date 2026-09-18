@@ -122,4 +122,22 @@ página completa pueden no haberse cargado dentro del presupuesto de tiempo.
 
 ## 8. Revisión final (Impeccable) y análisis de riesgo
 
-_(se completa al cierre)_
+**Revisión final** (subagente fresco con `reference/degraded/finish-reviewer.md`; sin navegador, solo capturas y código).
+Primera ronda: disposición **fix** con 8 hallazgos materiales (superficies planas en vez de material, categoría como *eyebrow* sobre el título, exceso de chips «Provisional», texto horneado cortado en el hero, diálogo plano, menú móvil sin altura completa, tesis del contrato no renderizada, tira del equipo sin pista de scroll).
+Veredicto 1: 7 resueltos, 1 parcial (letras de la mochila) + 1 regresión (doble chincheta) + 1 detalle (espaciado del chip).
+Veredicto 2: los tres restantes **resueltos**, sin regresiones. Disposición final: **ship** (alcance: las correcciones puntuadas, no una nueva revisión completa).
+Documentación: `DESIGN.md` y `.impeccable/design.json` escritos por el documentador (`degraded/documenter.md`) desde el mundo construido y actualizados tras la ronda de correcciones. El detector mecánico de Impeccable no devuelve hallazgos bloqueantes; quedan avisos *advisory* de tamaños de fuente fuera de la escala documentada (valores `clamp` responsivos), no corregidos por diseño.
+Procedencia de rasters: no se han creado sidecars `embed-prompt`; todos los archivos de `public/` derivan de originales de `assets/` y su origen y licencia constan por id en `lib/content/media.ts`.
+
+### Análisis de riesgo (estado tras la implementación)
+
+| Nivel | Riesgo | Propuesta | Destino |
+|---|---|---|---|
+| **Severo** | Publicar el título de edición, fechas o sedes del cartel sin confirmación oficial (hoy marcados provisionales). | Confirmar con la organización antes de apagar `markProvisional`; el aviso del pie lo recuerda. | Decisión humana |
+| **Severo** | Tarjetas «WANTED» y sus textos humorísticos publicados sin consentimiento explícito de cada persona. | Confirmar autorización de uso de imagen y de los textos; `showTeam: false` en `lib/content/sections/jornadas.ts` las oculta de inmediato. | Decisión humana |
+| **Moderado** | Fuentes OFL elegidas por el agente y wordmark trazado del render: identidad no aprobada formalmente. | Aprobar o sustituir en `app/layout.tsx` y `public/brand/`; el registro `fonts` en `media.ts` documenta el cambio. | Decisión humana |
+| **Moderado** | Asociaciones tarjeta ↔ tallerista por coincidencia de nombre (2 casos) y errata asumida «FRRANCISCO». | Confirmar; cada entrada lleva `provenance.note`. | Decisión humana |
+| **Moderado** | Sin pruebas automatizadas de interfaz (solo tipos, integridad de contenido y capturas manuales revisadas). | Añadir pruebas de accesibilidad (axe) y de navegación con teclado en una fase posterior. | Fase futura |
+| **Moderado** | `hero-3.png` añadido durante la sesión contiene interfaz horneada; si alguien lo integra como asset repetirá el problema resuelto en el hero. | Mantenerlo como referencia; pedir la fotografía sin texto (identidad §8.8). | Organización |
+| **Crítico** | **No se han detectado riesgos críticos nuevos.** No hay backend, formularios, secretos ni despliegue; la exportación es HTML estático sin dependencias de runtime. | — | — |
+
