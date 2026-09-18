@@ -16,6 +16,8 @@ export type Buttons = {
   route: { replay: string };
   /** Controls over the Jornadas intro video (icon buttons: these are their accessible names). */
   video: { play: string; pause: string; mute: string; unmute: string };
+  /** Arrows of the team cube (icon buttons: these are their accessible names). */
+  cube: { prev: string; next: string };
 };
 
 export type WorkshopCopy = {
@@ -102,7 +104,14 @@ export type Copy = {
     };
     how: { title: string; paragraphs: string[]; status: EditorialStatus };
     /** `count` takes `{count}`. */
-    team: { title: string; lede: string; count: string; roles: Record<PersonRole, string> };
+    team: {
+      title: string;
+      lede: string;
+      count: string;
+      roles: Record<PersonRole, string>;
+      /** The cube that shows the cards: `position` takes `{current}` and `{total}`. */
+      cube: { hint: string; position: string; list: string };
+    };
     workshops: {
       title: string;
       lede: string;

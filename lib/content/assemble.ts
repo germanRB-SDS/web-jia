@@ -144,7 +144,7 @@ export type LandingModel = {
     introVideo: IntroVideoModel;
     program: { title: string; note: string; days: DayModel[] };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
-    team: { title: string; lede: string; count: string; cards: TeamCard[] } | null;
+    team: { title: string; lede: string; count: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
     workshops: { title: string; lede: string; hint: string; marks: MarkKind[]; items: SheetModel[] };
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
@@ -416,7 +416,7 @@ export function getLanding(locale: Locale): LandingModel {
       program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length
-        ? { title: copy.jornadas.team.title, lede: copy.jornadas.team.lede, count: format(copy.jornadas.team.count, { count: teamCards.length }), cards: teamCards }
+        ? { title: copy.jornadas.team.title, lede: copy.jornadas.team.lede, count: format(copy.jornadas.team.count, { count: teamCards.length }), cards: teamCards, cube: { region: copy.a11y.teamRegion, ...copy.buttons.cube, ...copy.jornadas.team.cube } }
         : null,
       workshops: {
         title: copy.jornadas.workshops.title,

@@ -9,5 +9,6 @@ export const buttons: Buttons = {
   host: { host: "Quiero acoger las JIA" },
   nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
   route: { replay: "Repetir recorrido" },
+  cube: { prev: "Tarjeta anterior", next: "Tarjeta siguiente" },
   video: { play: "Reproducir el vídeo", pause: "Pausar el vídeo", mute: "Quitar el sonido", unmute: "Activar el sonido" },
 };

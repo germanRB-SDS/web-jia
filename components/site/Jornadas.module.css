@@ -208,19 +208,6 @@
   font-size: 1.0625rem;
   color: var(--jia-text);
 }
-.stripWrap {
-  position: relative;
-}
-.stripWrap::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: calc(-1 * var(--gutter));
-  bottom: 0.75rem;
-  width: 4rem;
-  pointer-events: none;
-  background: linear-gradient(to right, rgb(var(--jia-paper-rgb) / 0), var(--jia-paper));
-}
 .teamCount {
   font-family: var(--f-ui);
   font-weight: 500;
@@ -229,41 +216,16 @@
   color: var(--jia-text-muted);
   margin-left: 0.5rem;
 }
-.strip {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  padding-bottom: 0.75rem;
-  margin-inline: calc(-1 * var(--gutter));
-  padding-inline: var(--gutter);
-  border-radius: 4px;
-}
-.stripList {
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 0 0;
-  display: flex;
-  gap: 1rem;
-  width: max-content;
-}
-.stripItem { scroll-snap-align: start; width: 168px; }
-.member { margin: 0; display: grid; gap: 0.5rem; }
-.memberImg { box-shadow: 0 8px 20px -12px rgb(var(--jia-ink-rgb) / 0.5); }
-.memberCaption { display: grid; gap: 0.1rem; }
-.memberName {
-  font-family: var(--f-ui);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--jia-ink);
-  line-height: 1.2;
-}
-.memberRole {
-  font-family: var(--f-ui);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--jia-text-muted);
+/* The cards live on a cube (components/cube-carousel). From 900 px the words sit beside it. */
+.teamCube { margin-top: 0.5rem; }
+@media (min-width: 900px) {
+  .team {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+  .teamCube { margin-top: 0; }
 }
 
 /* ---- workshops ---- */

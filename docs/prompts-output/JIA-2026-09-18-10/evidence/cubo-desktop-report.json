@@ -1,0 +1,53 @@
+{
+  "logs": [],
+  "initial": {
+    "rot": 0,
+    "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 29",
+    "frontSrc": "card-46-420.webp",
+    "loaded": true,
+    "live": "off"
+  },
+  "afterAutoplay": {
+    "rot": -90,
+    "caption": "Alberto Romero | COORDINACIÓN | 2 DE 29",
+    "frontSrc": "card-39-420.webp",
+    "loaded": true,
+    "live": "off"
+  },
+  "midDrag": {
+    "rot": -134.844,
+    "caption": "Alberto Romero | COORDINACIÓN | 2 DE 29",
+    "frontSrc": "card-39-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "afterDrag": {
+    "rot": -180,
+    "caption": "Adolfo Ariño | COORDINACIÓN | 3 DE 29",
+    "frontSrc": "card-40-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "total": 29,
+  "walk": {
+    "distinct": 29,
+    "wrapsToSameOrder": true,
+    "orderMatchesList": true,
+    "notLoaded": 0
+  },
+  "final": {
+    "rot": -2970,
+    "caption": "Irene Castañeda | ASESORA CEP | 5 DE 29",
+    "frontSrc": "card-7-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "afterArrowLeft": {
+    "rot": -2880,
+    "caption": "José Luis Herrador | ASESOR CEP | 4 DE 29",
+    "frontSrc": "card-6-420.webp",
+    "loaded": true,
+    "live": "polite"
+  },
+  "overflowX": false
+}

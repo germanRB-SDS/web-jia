@@ -2,6 +2,7 @@ import type { LandingModel, MarkKind } from "@/lib/content";
 import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
+import { CubeCarousel, type CubeItem } from "@/components/cube-carousel";
 import { SubSection } from "./Section";
 import { IntroVideo } from "./IntroVideo";
 import { JornadasRoute } from "./jornadas-route/JornadasRoute";
@@ -15,7 +16,7 @@ type Props = {
 
 /**
  * Area 1: the jornadas. One section, three notebook spreads (programme, how
- * it works, workshops) plus the team strip. Workshops stay a distinct entity
+ * it works, workshops) plus the team cube. Workshops stay a distinct entity
  * from experiences even though both use SheetCard.
  */
 export function Jornadas({ jornadas, copy, showMarks }: Props) {
@@ -28,6 +29,20 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
     theme: copy.jornadas.workshops.themeLabel,
     marks: markLabels,
   };
+
+  // The WANTED cards as items of the cube (the cube knows nothing about people or media).
+  const teamItems: CubeItem[] = (jornadas.team?.cards ?? []).map((card) => {
+    const largest = card.media?.variants[card.media.variants.length - 1];
+    return {
+      id: card.id,
+      title: card.name,
+      subtitle: card.roleLabel,
+      alt: card.alt,
+      image: card.media && largest
+        ? { src: largest.src, srcSet: card.media.variants.map((v) => `${v.src} ${v.width}w`).join(", "), width: largest.width, height: Math.round(largest.width / card.media.ratio) }
+        : null,
+    };
+  });
 
   return (
     <section id={jornadas.id} aria-labelledby={`${jornadas.id}-title`}>
@@ -113,27 +128,13 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
         {jornadas.team ? (
           <div className={styles.team}>
-            <h4 className={styles.teamTitle}>
-              {jornadas.team.title} <span className={styles.teamCount}>{jornadas.team.count}</span>
-            </h4>
-            <p className={styles.teamLede}>{jornadas.team.lede}</p>
-            <div className={styles.stripWrap}>
-            <div className={styles.strip} role="region" aria-label={copy.a11y.teamRegion} tabIndex={0}>
-              <ul className={styles.stripList}>
-                {jornadas.team.cards.map((card, index) => (
-                  <li key={card.id} className={styles.stripItem}>
-                    <figure className={styles.member} data-cursor="open">
-                      <Surface media={card.media} alt={card.alt} fallback={card.fallback} ratio={1414 / 2000} sizes="180px" className={styles.memberImg} priority={index < 8} />
-                      <figcaption className={styles.memberCaption}>
-                        <span className={styles.memberName}>{card.name}</span>
-                        <span className={styles.memberRole}>{card.roleLabel}</span>
-                      </figcaption>
-                    </figure>
-                  </li>
-                ))}
-              </ul>
+            <div className={styles.teamHead}>
+              <h4 className={styles.teamTitle}>
+                {jornadas.team.title} <span className={styles.teamCount}>{jornadas.team.count}</span>
+              </h4>
+              <p className={styles.teamLede}>{jornadas.team.lede}</p>
             </div>
-            </div>
+            <CubeCarousel items={teamItems} labels={jornadas.team.cube} className={styles.teamCube} />
           </div>
         ) : null}
       </SubSection>
