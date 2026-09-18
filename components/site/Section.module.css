@@ -11,6 +11,9 @@
   background: var(--jia-ink);
   color: var(--jia-ivory);
 }
+/* With a backdrop the content rides above it. */
+.backed { position: relative; overflow: clip; }
+.backed > .inner { position: relative; z-index: 1; }
 .inner {
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;

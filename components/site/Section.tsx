@@ -15,14 +15,18 @@ type SectionProps = {
   tone?: "paper" | "sand" | "ink" | "ivory";
   /** "split" keeps the head inside the left column so a visual column can sit beside it. */
   layout?: "stack" | "split";
+  /** A full-bleed layer behind the content (a photograph); the section then sizes and stacks around it. */
+  backdrop?: ReactNode;
+  className?: string;
   children: ReactNode;
 };
 
 /** A main area: heading, optional lede, then the section's own composition. */
-export function Section({ id, title, subtitle, lede, marks = [], markLabels, showMarks, tone = "paper", layout = "stack", children }: SectionProps) {
+export function Section({ id, title, subtitle, lede, marks = [], markLabels, showMarks, tone = "paper", layout = "stack", backdrop, className, children }: SectionProps) {
   const headingId = `${id}-title`;
   return (
-    <section id={id} className={`${styles.section} ${styles[tone]}`} aria-labelledby={headingId}>
+    <section id={id} className={[styles.section, styles[tone], backdrop ? styles.backed : "", className].filter(Boolean).join(" ")} aria-labelledby={headingId}>
+      {backdrop}
       <div className={`${styles.inner} ${layout === "split" ? styles.split : ""}`}>
         <header className={styles.head}>
           <h2 id={headingId} className={styles.title}>

@@ -1,3 +1,65 @@
+/* ---- the ground: the teacher in her classroom, full bleed ----
+   The photograph runs whole from the left edge to the right one, at its own proportion, seated on the
+   section's floor. Its left half is clear paper (#f0e3d3, a level from vellum 3), so the text sits on it
+   and the teacher keeps the right; its top melts into vellum 3, the colour the neighbours meet at
+   (palette.css, The Vellum Ground Rule). The section is never shorter than the photograph. */
+.section {
+  --aula-ratio: 1916 / 821;
+  background: var(--jia-vellum-3);
+}
+.photo {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  aspect-ratio: var(--aula-ratio);
+}
+.surface {
+  position: absolute !important;
+  inset: 0;
+  aspect-ratio: auto !important;
+  height: 100%;
+  border-radius: 0;
+}
+.photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.photo::before {
+  top: 0;
+  height: 34%;
+  background: linear-gradient(to bottom, var(--jia-vellum-3) 0%, color-mix(in srgb, var(--jia-vellum-3) 55%, transparent) 45%, transparent 100%);
+}
+@media (min-width: 900px) {
+  .section { min-height: calc(100vw / (var(--aula-ratio))); }
+}
+/* Wide screens: the cards stop short of the teacher. */
+@media (min-width: 1100px) {
+  .grid { max-width: min(100%, 46rem); }
+}
+/* Below the desktop the photograph would zoom into a sliver behind the text: it becomes a band of its own
+   above the heading, cropped to the classroom. */
+@media (max-width: 899px) {
+  .section { padding-top: 0; }
+  .photo {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 16 / 10;
+    margin-bottom: clamp(2rem, 6vw, 3rem);
+  }
+  /* The band's floor melts into the ground the heading stands on. */
+  .photo::before {
+    top: auto;
+    bottom: 0;
+    height: 30%;
+    background: linear-gradient(to top, var(--jia-vellum-3), transparent);
+  }
+}
 .grid {
   display: grid;
   gap: clamp(1.5rem, 3vw, 2.5rem);

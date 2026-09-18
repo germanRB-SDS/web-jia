@@ -1,4 +1,5 @@
 import type { LandingModel, MarkKind } from "@/lib/content";
+import { Surface } from "@/components/primitives/Surface";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Section } from "./Section";
 import styles from "./Experiences.module.css";
@@ -17,7 +18,21 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
     marks: markLabels,
   };
   return (
-    <Section id={experiencias.id} title={experiencias.title} lede={experiencias.lede} markLabels={markLabels} showMarks={showMarks}>
+    <Section
+      id={experiencias.id}
+      title={experiencias.title}
+      lede={experiencias.lede}
+      markLabels={markLabels}
+      showMarks={showMarks}
+      className={styles.section}
+      backdrop={
+        experiencias.media ? (
+          <div className={styles.photo} aria-hidden="true">
+            <Surface media={experiencias.media} alt="" fallback={experiencias.fallback} ratio={1916 / 821} sizes="100vw" className={styles.surface} />
+          </div>
+        ) : null
+      }
+    >
       {experiencias.items.length ? (
         <>
           <div className={styles.grid}>

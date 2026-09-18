@@ -124,6 +124,18 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
     },
     {
+      /** Experiencias ground. The teacher stands on the right; the left half is clear paper for the text. */
+      id: "experiencias-aula",
+      variants: [
+        { src: "/experiencias/aula-960.webp", width: 960 },
+        { src: "/experiencias/aula-1916.webp", width: 1916 },
+      ],
+      ratio: 1916 / 821,
+      focal: { x: 100, y: 50 },
+      original: "assets/images-website/aula-maestra-clase.png",
+      license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Acoge JIA band. The subject stands on the left; the right two thirds are clear ground for text. */
       id: "acoge-arquero",
       variants: [
