@@ -1,0 +1,528 @@
+{
+  "blender": "5.2.1 LTS",
+  "blend": {
+    "active_camera": "JIA_Camera_Top",
+    "active_camera_is_top": true,
+    "top_camera_ortho_straight_down": true,
+    "unique_names": true,
+    "hierarchy": {
+      "JIA_Wagon_ROOT": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "EMPTY",
+        "scale_uniform_positive": true
+      },
+      "JIA_Chassis": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_BodyMotion": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "EMPTY",
+        "scale_uniform_positive": true
+      },
+      "JIA_Body": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_Canvas": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_DriverSeat": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_Details": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_FrontSteer": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "EMPTY",
+        "scale_uniform_positive": true
+      },
+      "JIA_FrontAxle": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_Wheel_FL": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_Wheel_FR": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_Wheel_RL": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      },
+      "JIA_Wheel_RR": {
+        "exists": true,
+        "parent_ok": true,
+        "type": "MESH",
+        "scale_uniform_positive": true
+      }
+    },
+    "hierarchy_ok": true,
+    "root_at_origin": true,
+    "wheels": {
+      "JIA_Wheel_FL": {
+        "world_hub": [
+          -0.76,
+          0.85,
+          0.35
+        ],
+        "bbox_center": [
+          -0.7825,
+          0.85,
+          0.35
+        ],
+        "hub_centered_yz": true,
+        "radius_from_mesh": 0.35,
+        "ground_contact_z": 0.0,
+        "touches_ground": true
+      },
+      "JIA_Wheel_FR": {
+        "world_hub": [
+          0.76,
+          0.85,
+          0.35
+        ],
+        "bbox_center": [
+          0.7825,
+          0.85,
+          0.35
+        ],
+        "hub_centered_yz": true,
+        "radius_from_mesh": 0.35,
+        "ground_contact_z": 0.0,
+        "touches_ground": true
+      },
+      "JIA_Wheel_RL": {
+        "world_hub": [
+          -0.76,
+          -0.85,
+          0.44
+        ],
+        "bbox_center": [
+          -0.7825,
+          -0.85,
+          0.44
+        ],
+        "hub_centered_yz": true,
+        "radius_from_mesh": 0.44,
+        "ground_contact_z": 0.0,
+        "touches_ground": true
+      },
+      "JIA_Wheel_RR": {
+        "world_hub": [
+          0.76,
+          -0.85,
+          0.44
+        ],
+        "bbox_center": [
+          0.7825,
+          -0.85,
+          0.44
+        ],
+        "hub_centered_yz": true,
+        "radius_from_mesh": 0.44,
+        "ground_contact_z": 0.0,
+        "touches_ground": true
+      }
+    },
+    "all_wheels_same_plane": true,
+    "wheel_spin_360": {
+      "JIA_Wheel_FL": {
+        "max_center_drift": 0.0,
+        "max_ground_deviation": 0.0,
+        "ok": true
+      },
+      "JIA_Wheel_FR": {
+        "max_center_drift": 0.0,
+        "max_ground_deviation": 0.0,
+        "ok": true
+      },
+      "JIA_Wheel_RL": {
+        "max_center_drift": 0.0,
+        "max_ground_deviation": 0.0,
+        "ok": true
+      },
+      "JIA_Wheel_RR": {
+        "max_center_drift": 0.0,
+        "max_ground_deviation": 0.0,
+        "ok": true
+      }
+    },
+    "steering": {
+      "baseline_overlaps_at_rest": [
+        [
+          "JIA_FrontAxle",
+          "JIA_Body"
+        ],
+        [
+          "JIA_FrontAxle",
+          "JIA_Chassis"
+        ]
+      ],
+      "first_new_overlap_deg": {
+        "left_positive_z": {
+          "deg": 38,
+          "pairs": [
+            [
+              "JIA_Wheel_FL",
+              "JIA_Body"
+            ]
+          ]
+        },
+        "right_negative_z": {
+          "deg": 38,
+          "pairs": [
+            [
+              "JIA_Wheel_FR",
+              "JIA_Body"
+            ]
+          ]
+        }
+      },
+      "clean_range_deg": 37
+    },
+    "body_roll_keeps_wheels_grounded": true,
+    "root_rotation": {
+      "dims_0": [
+        1.78,
+        3.04,
+        2.2588
+      ],
+      "dims_90": [
+        3.04,
+        1.78,
+        2.2588
+      ],
+      "dims_360": [
+        1.78,
+        3.04,
+        2.2588
+      ],
+      "ok": true,
+      "z_min_at_rest": 0.0
+    },
+    "topology": {
+      "JIA_Chassis": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Body": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Honey",
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Canvas": {
+        "non_manifold_edges": 97,
+        "boundary_edges": 97,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Canvas_Cream",
+          "JIA_Canvas_Shade"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_DriverSeat": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Honey",
+          "JIA_Wood_Brown"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Details": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Honey",
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_FrontAxle": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Wheel_FL": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Wheel_FR": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Wheel_RL": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      },
+      "JIA_Wheel_RR": {
+        "non_manifold_edges": 0,
+        "boundary_edges": 0,
+        "loose_verts": 0,
+        "faces_without_material": 0,
+        "material_slots": [
+          "JIA_Wood_Brown",
+          "JIA_Iron_Dark"
+        ],
+        "validate_reported_issues": false
+      }
+    },
+    "faces_without_material_total": 0,
+    "objects_outside_root": [
+      "JIA_Camera_Top",
+      "JIA_Camera_TopTilt",
+      "JIA_Camera_Review",
+      "JIA_Sun_Warm",
+      "JIA_Fill_Warm",
+      "JIA_Sun_Neutral",
+      "JIA_TestGround"
+    ]
+  },
+  "evidence": [
+    "steer-25deg-roll-review.png",
+    "steer-25deg-roll-top.png",
+    "steer-minus25deg-top.png",
+    "underside.png"
+  ],
+  "glb": {
+    "bytes": 313516,
+    "version": 2,
+    "nodes": 13,
+    "meshes": 10,
+    "primitives": 21,
+    "materials": 5,
+    "material_names": [
+      "JIA_Wood_Honey",
+      "JIA_Wood_Brown",
+      "JIA_Canvas_Cream",
+      "JIA_Canvas_Shade",
+      "JIA_Iron_Dark"
+    ],
+    "images": 0,
+    "textures": 0,
+    "animations": 0,
+    "cameras": 0,
+    "skins": 0,
+    "extensionsUsed": [],
+    "extensionsRequired": [],
+    "node_names": [
+      "JIA_Body",
+      "JIA_Canvas",
+      "JIA_Details",
+      "JIA_DriverSeat",
+      "JIA_BodyMotion",
+      "JIA_Chassis",
+      "JIA_FrontAxle",
+      "JIA_Wheel_FL",
+      "JIA_Wheel_FR",
+      "JIA_FrontSteer",
+      "JIA_Wheel_RL",
+      "JIA_Wheel_RR",
+      "JIA_Wagon_ROOT"
+    ],
+    "node_translations": {
+      "JIA_Body": [
+        0,
+        -0.7200000286102295,
+        0
+      ],
+      "JIA_Canvas": [
+        0,
+        -0.7200000286102295,
+        0
+      ],
+      "JIA_Details": [
+        0,
+        -0.7200000286102295,
+        0
+      ],
+      "JIA_DriverSeat": [
+        0,
+        -0.7200000286102295,
+        0
+      ],
+      "JIA_BodyMotion": [
+        0,
+        0.7200000286102295,
+        0
+      ],
+      "JIA_Chassis": [
+        0,
+        0,
+        0
+      ],
+      "JIA_FrontAxle": [
+        0,
+        0,
+        0
+      ],
+      "JIA_Wheel_FL": [
+        -0.7599999904632568,
+        0,
+        0
+      ],
+      "JIA_Wheel_FR": [
+        0.7599999904632568,
+        0,
+        0
+      ],
+      "JIA_FrontSteer": [
+        0,
+        0.3499999940395355,
+        -0.8500000238418579
+      ],
+      "JIA_Wheel_RL": [
+        -0.7599999904632568,
+        0.4399999976158142,
+        0.8500000238418579
+      ],
+      "JIA_Wheel_RR": [
+        0.7599999904632568,
+        0.4399999976158142,
+        0.8500000238418579
+      ],
+      "JIA_Wagon_ROOT": [
+        0,
+        0,
+        0
+      ]
+    },
+    "generator": "Khronos glTF Blender I/O v5.2.40",
+    "triangles_from_indices": 8112,
+    "node_names_match_contract": true,
+    "unexpected_nodes": [],
+    "missing_nodes": [],
+    "no_presentation_elements": true
+  },
+  "reimport": {
+    "objects": 13,
+    "meshes": 10,
+    "materials": 5,
+    "material_names": [
+      "JIA_Canvas_Cream",
+      "JIA_Canvas_Shade",
+      "JIA_Iron_Dark",
+      "JIA_Wood_Brown",
+      "JIA_Wood_Honey"
+    ],
+    "hierarchy_matches": true,
+    "triangles": 8112,
+    "wheels": {
+      "JIA_Wheel_FL": {
+        "world_hub": [
+          -0.76,
+          0.85,
+          0.35
+        ],
+        "ground_z": 0.0
+      },
+      "JIA_Wheel_FR": {
+        "world_hub": [
+          0.76,
+          0.85,
+          0.35
+        ],
+        "ground_z": 0.0
+      },
+      "JIA_Wheel_RL": {
+        "world_hub": [
+          -0.76,
+          -0.85,
+          0.44
+        ],
+        "ground_z": 0.0
+      },
+      "JIA_Wheel_RR": {
+        "world_hub": [
+          0.76,
+          -0.85,
+          0.44
+        ],
+        "ground_z": 0.0
+      }
+    },
+    "all_wheels_on_ground": true,
+    "dimensions_blender_axes": [
+      1.78,
+      3.04,
+      2.2588
+    ],
+    "front_is_plus_y": true
+  }
+}

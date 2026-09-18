@@ -1,0 +1,134 @@
+{
+  "objects": {
+    "JIA_Body": {
+      "triangles": 1496,
+      "vertices": 816,
+      "materials": [
+        "JIA_Wood_Honey",
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_Canvas": {
+      "triangles": 2784,
+      "vertices": 1394,
+      "materials": [
+        "JIA_Canvas_Cream",
+        "JIA_Canvas_Shade"
+      ]
+    },
+    "JIA_Details": {
+      "triangles": 616,
+      "vertices": 336,
+      "materials": [
+        "JIA_Wood_Honey",
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_DriverSeat": {
+      "triangles": 264,
+      "vertices": 144,
+      "materials": [
+        "JIA_Wood_Honey",
+        "JIA_Wood_Brown"
+      ]
+    },
+    "JIA_Chassis": {
+      "triangles": 284,
+      "vertices": 152,
+      "materials": [
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_FrontAxle": {
+      "triangles": 332,
+      "vertices": 176,
+      "materials": [
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_Wheel_FL": {
+      "triangles": 584,
+      "vertices": 320,
+      "materials": [
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_Wheel_FR": {
+      "triangles": 584,
+      "vertices": 320,
+      "materials": [
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_Wheel_RL": {
+      "triangles": 584,
+      "vertices": 320,
+      "materials": [
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    },
+    "JIA_Wheel_RR": {
+      "triangles": 584,
+      "vertices": 320,
+      "materials": [
+        "JIA_Wood_Brown",
+        "JIA_Iron_Dark"
+      ]
+    }
+  },
+  "total_triangles": 8112,
+  "total_vertices": 4298,
+  "bbox_min": [
+    -0.8899999856948853,
+    -1.4199999570846558,
+    0.0
+  ],
+  "bbox_max": [
+    0.8899999856948853,
+    1.6200000047683716,
+    2.2588274478912354
+  ],
+  "dimensions": [
+    1.7799999713897705,
+    3.0399999618530273,
+    2.2588274478912354
+  ],
+  "materials_used": [
+    "JIA_Canvas_Cream",
+    "JIA_Canvas_Shade",
+    "JIA_Iron_Dark",
+    "JIA_Wood_Brown",
+    "JIA_Wood_Honey"
+  ],
+  "wheelbase": 1.7,
+  "track": 1.52,
+  "front_radius": 0.35,
+  "rear_radius": 0.44,
+  "canvas": {
+    "y_front_open": 1.48,
+    "y_rear": -1.42
+  },
+  "blender_version": "5.2.1 LTS",
+  "render_engine": "BLENDER_EEVEE",
+  "previews": [
+    "top.png",
+    "top-tilt.png",
+    "review-3-4.png",
+    "review-3-4-neutral.png",
+    "top-neutral.png",
+    "legibility/top-96px.png",
+    "legibility/top-160px.png",
+    "legibility/top-256px.png",
+    "orientations-160px.png",
+    "legibility-96-160-256.png"
+  ],
+  "glb_bytes": 313516,
+  "blend_bytes": 133054
+}
