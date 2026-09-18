@@ -16,6 +16,5 @@ export const heroConfig = {
     { id: "programa", icon: "compass", target: "programa" },
     { id: "talleres", icon: "hat", target: "talleres" },
     { id: "experiencias", icon: "lantern", target: "experiencias" },
-    { id: "dosieres", icon: "cactus", target: "dosieres" },
   ] as const,
 } as const;

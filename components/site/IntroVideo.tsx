@@ -87,9 +87,13 @@ export function IntroVideo({ intro }: Props) {
       aria-labelledby={`${intro.anchor}-title`}
       style={{ "--intro-max-height": intro.maxHeight, "--intro-aspect": String(intro.aspect) } as CSSProperties}
     >
-      <h3 id={`${intro.anchor}-title`} className={styles.title}>
-        {intro.title}
-      </h3>
+      {/* The cinema bar: the rider's dune always meets solid ink, never a random frame. */}
+      <div className={styles.bar}>
+        <h3 id={`${intro.anchor}-title`} className={styles.title}>
+          {intro.title}
+        </h3>
+        <p className={styles.barText}>{intro.barText}</p>
+      </div>
       <div className={styles.frame} style={intro.poster ? { backgroundImage: `url(${intro.poster})` } : undefined}>
         {intro.src && !failed ? (
           <video

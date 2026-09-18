@@ -59,8 +59,9 @@ language. [brief]
 
 ## Capabilities and Constraints
 
-- Five main areas in this order: Jornadas (programa, cómo funcionan, talleres), Dosieres,
-  Experiencias (third, central), Propuestas, Acoge JIA. [brief]
+- Main areas in this order: Jornadas (programa, cómo funcionan, talleres), Experiencias,
+  Propuestas, Acoge JIA. [brief] The brief's second area, Dosieres, was removed from the page by
+  the promoter on 18-09-2026 (JIA-2026-09-18-14); each workshop keeps its own «Descargar dosier».
 - No backend, database, auth, CMS, registrations, form submission, analytics or production
   publishing in this delivery. [brief]
 - Nothing hardcoded: palette, button labels, copy, media paths and URLs live in
@@ -69,8 +70,8 @@ language. [brief]
 - Missing data is represented as `null` and rendered as an honest pending state; no invented
   people, schedules, results, forms or URLs. [brief]
 - Detail sheets (fichas) must open by keyboard and touch, not only hover. [brief]
-- Undecided: the edition title. The brief states «Aula de cine: El reto»; every poster prints
-  «Aulas de cine: El duelo». Recorded as an open decision in `lib/content/site.ts`. [brief vs asset]
+- Decided (promoter, 18-09-2026): the edition title is «Aulas de cine: el duelo», the posters'
+  wording. The brief's «Aula de cine: El reto» is superseded; history in `lib/content/site.ts`.
 - Undecided: proposal channel URL, hosting form URL, dossier documents, experience cases.
 - Undecided: whether the humorous "REWARD" lines on the team cards may be published. [inferred]
 

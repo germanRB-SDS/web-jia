@@ -1,6 +1,6 @@
 # WEB-JIA · Jornadas de Innovación de Almería
 
-Landing de las JIA («Aula de cine: El reto», edición #JIA26) construida a partir del boceto
+Landing de las JIA («Aulas de cine: el duelo», edición #JIA26) construida a partir del boceto
 `assets/requirements/JIA-boceto-requisitos-y-metaprompt.md` y de la identidad
 `assets/style/JIA_IDENTIDAD_VISUAL.md`. Primera aproximación funcional y responsive: sin backend,
 sin formularios, sin CMS. Todo el contenido visible se edita desde `lib/content/`.

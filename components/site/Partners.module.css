@@ -47,11 +47,12 @@
   text-underline-offset: 0.2em;
 }
 .textLink:hover { color: var(--jia-terracotta-deep); }
+/* Set like the proposals paragraphs above it (Proposals.module.css .text): the page's body voice. */
 .text {
   margin: 0;
   font-family: var(--f-body);
-  font-size: var(--t-lede);
-  line-height: 1.5;
+  font-size: var(--t-body);
+  line-height: var(--jia-body-leading);
   color: var(--jia-text);
   max-width: var(--measure);
 }

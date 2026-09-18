@@ -30,6 +30,7 @@ export const a11y: Copy["a11y"] = {
   cardOf: "Tarjeta de {name}, {role}",
   sheetOf: "Ficha: {title}",
   teamRegion: "Equipo de las jornadas",
+  venueMap: "Abrir {venue} en Google Maps (se abre en una pestaña nueva)",
   waypointsRegion: "Atajos a las secciones principales",
   mainNav: "Navegación principal",
   provisionalMark: "Contenido provisional",
@@ -51,7 +52,7 @@ export const footer: Copy["footer"] = {
   organiza: "Organiza",
   colabora: "Colabora",
   sections: "Secciones",
-  credit: "Una iniciativa del CEP de Almería para y con la comunidad educativa.",
+  credit: "Iniciativa de los CEP de la Provincia de Almería",
   editionTitleNotice:
     "El título de la edición se muestra según el briefing; los carteles impresos utilizan otra denominación. Pendiente de confirmación.",
   studioCreditPrefix: "Diseñado por",

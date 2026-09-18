@@ -1,4 +1,5 @@
 import type { LandingModel, MarkKind } from "@/lib/content";
+import { MapPinIcon } from "@/components/icons";
 import { Marks } from "@/components/primitives/Mark";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
@@ -97,6 +98,17 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
                   <dt>{copy.jornadas.program.hoursLabel}</dt>
                   <dd>{day.hours.length ? day.hours.join(" · ") : copy.states.hoursTbc}</dd>
                 </div>
+                {day.map ? (
+                  <div>
+                    <dt>{copy.jornadas.program.locationLabel}</dt>
+                    <dd>
+                      {/* A maps.app.goo.gl link: a new tab on a computer, the maps app on a phone. */}
+                      <a href={day.map.href} className={styles.mapLink} target="_blank" rel="noopener noreferrer" aria-label={day.map.label} title={day.map.label}>
+                        <MapPinIcon size={26} />
+                      </a>
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
               <ol className={styles.sessions}>
                 {day.sessions.map((s) => (

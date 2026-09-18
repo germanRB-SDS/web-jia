@@ -4,6 +4,7 @@
  * (not translated); interface wording lives in ./copy.
  */
 import { DEFAULT_LOCALE, LOCALES } from "./languages";
+import type { EditorialStatus } from "./data/types";
 
 export const event = {
   /** Public short name. Always JIA, never GIA. */
@@ -18,18 +19,17 @@ export const event = {
 } as const;
 
 /**
- * EDITION TITLE — OPEN DECISION.
- * The brief (17-09-2026) states «Aula de cine: El reto». Every printed asset
- * (event poster + 9 workshop posters, 15-09-2026) prints «Almería, aulas de
- * cine: El duelo». The brief is the later, explicit statement of the promoter,
- * so it is displayed; the poster wording is kept here so switching is a
- * one-line change. Status stays provisional until the organisation confirms.
+ * EDITION TITLE — decided by the promoter on 18-09-2026 (JIA-2026-09-18-14): «Aulas de cine: el duelo»,
+ * the wording of every printed asset (event poster + 9 workshop posters, 15-09-2026, which print
+ * «Almería, aulas de cine: El duelo»). The brief of 17-09-2026 said «Aula de cine: El reto»; it is
+ * kept below as an alternate so the history stays readable.
  */
 export const edition = {
-  title: "Aula de cine: El reto",
-  titleStatus: "provisional" as const,
+  title: "Aulas de cine: el duelo",
+  titleStatus: "confirmed" as EditorialStatus,
   titleAlternates: [
     { value: "Almería, aulas de cine: El duelo", source: "assets/cep/CARTEL #JIA26 (9).png and talleres-carteles/*.png" },
+    { value: "Aula de cine: El reto", source: "assets/requirements/JIA-boceto-requisitos-y-metaprompt.md (brief, 17-09-2026), superseded" },
   ],
   year: 2026,
   /** Confirmed by the brief: two days. Dates live in data/program.ts. */

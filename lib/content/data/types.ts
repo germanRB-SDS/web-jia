@@ -64,6 +64,8 @@ export type ProgramDay = {
   /** ISO date or null while unconfirmed. */
   date: string | null;
   venue: string | null;
+  /** Link to the venue on a map (opens the maps app on a phone), or null while there is none. */
+  mapUrl: string | null;
   /** Time ranges as printed, e.g. "16:30–20:30". Empty while unknown. */
   hours: string[];
   sessionIds: string[];

@@ -180,3 +180,17 @@ export function DownloadIcon(props: IconProps) {
     </svg>
   );
 }
+
+/**
+ * The map pin of assets/icons/map.svg (its own 24-unit grid, same paths), in three palette tones:
+ * the pin takes `currentColor`, the ground under it `--map-ground` and the dot `--map-dot`.
+ */
+export function MapPinIcon({ size = 24, ...rest }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable={false} {...rest}>
+      <path d="M5.7 15C4.03 15.64 3 16.52 3 17.5 3 19.43 7.03 21 12 21s9-1.57 9-3.5c0-.98-1.03-1.86-2.7-2.5" stroke="var(--map-ground, currentColor)" />
+      <path d="M18 9c0 4.06-4.5 6-6 9-1.5-3-6-4.94-6-9a6 6 0 0 1 12 0Z" stroke="currentColor" />
+      <circle cx="12" cy="9" r="1" fill="var(--map-dot, currentColor)" stroke="var(--map-dot, currentColor)" />
+    </svg>
+  );
+}

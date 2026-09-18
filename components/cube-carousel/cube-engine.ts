@@ -11,7 +11,9 @@
  * when it lands, `rolls` absorbs the step, the front side takes that same item unseen, and the
  * tilt returns to 0 — the picture does not change, the cube is simply upright again.
  *
- * The component renders what `onAssign` / `onCap` / `onFront` report; this class only writes
+ * A click on the front side is reported as a shot (`onShot`); turning is left to drag, arrows and keys.
+ *
+ * The component renders what `onAssign` / `onCap` / `onFront` / `onShot` report; this class only writes
  * custom properties: --cube-rot, --cube-tilt, --cube-spin, --cube-scale on the cube and
  * --cube-shade / --cube-sheen on every side.
  */
@@ -38,6 +40,8 @@ export type CubeEngineOptions = {
   onFront: (index: number) => void;
   /** First pointer/keyboard/button interaction (autoplay is over; announcements may start). */
   onInteract: () => void;
+  /** A click or tap landed on the side facing the visitor while the cube stood square: item hit, point in 0..1 of the side. */
+  onShot: (shot: { item: number; x: number; y: number }) => void;
 };
 
 const mod = (a: number, n: number) => ((a % n) + n) % n;
@@ -46,6 +50,8 @@ const nextFrame = () => new Promise<void>((r) => requestAnimationFrame(() => r()
 export class CubeEngine {
   private state = { rot: 0, tilt: 0 };
   private target = 0;
+  /** Still in the page-load pose (CUBE_CONFIG.initialTurn): rot is off its target with no tween running. */
+  private askew = false;
   private rolls = 0;
   private rolling = false;
   /** Between a roll landing and the cube standing upright again: `rolls` already counts the step. */
@@ -70,6 +76,10 @@ export class CubeEngine {
   private degPerPx = 0.3;
 
   constructor(private o: CubeEngineOptions) {
+    if (o.count > 1) {
+      this.state.rot = -CUBE_CONFIG.initialTurn;
+      this.askew = true;
+    }
     this.apply();
     const cfg = CUBE_CONFIG.drag;
     const engine = this;
@@ -100,13 +110,19 @@ export class CubeEngine {
         this.update();
       },
     })[0];
-    // A plain click or tap on the cube brings the next item (Draggable swallows the click that ends a drag).
+    // A plain click or tap on the cube shoots it (Draggable swallows the click that ends a drag).
     o.stage.addEventListener("click", this.onStageClick);
   }
 
-  private onStageClick = (): void => {
-    if (this.dragging) return;
-    this.step(1);
+  /** Only a cube standing square is hit: its front side then lies in the scene's plane at its true size, so the scene's box is the side's. */
+  private onStageClick = (e: MouseEvent): void => {
+    if (this.dragging || this.rolling || this.state.tilt !== 0 || Math.abs(this.state.rot - this.target) > 1) return;
+    const box = this.o.cube.parentElement?.getBoundingClientRect();
+    if (!box || !box.width || !box.height) return;
+    const x = (e.clientX - box.left) / box.width;
+    const y = (e.clientY - box.top) / box.height;
+    if (x < 0 || x > 1 || y < 0 || y > 1) return;
+    this.o.onShot({ item: this.front, x, y });
   };
 
   // ---------------------------------------------------------------- pose
@@ -229,6 +245,7 @@ export class CubeEngine {
 
   private drag(x: number): void {
     const cfg = CUBE_CONFIG.drag;
+    this.askew = false; // the release always rests the cube on a side
     const dx = x - this.lastX;
     this.lastX = x;
     const now = performance.now();
@@ -313,12 +330,19 @@ export class CubeEngine {
     while (this.queue.length) {
       const dir = this.queue[0];
       if (this.isRoll(this.restItem(), dir)) {
+        if (this.askew) {
+          // Nothing is turning yet: square the cube first, its onComplete pumps the roll.
+          this.askew = false;
+          this.tweenRot(this.target, this.o.reducedMotion ? 0 : 0.4, "power2.out");
+          return;
+        }
         if (Math.abs(this.state.rot - this.target) > 0.05) return; // the turn's onComplete pumps again
         this.queue.shift();
         this.roll(dir);
         return;
       }
       this.queue.shift();
+      this.askew = false;
       this.target = Math.round(this.target / 90) * 90 - dir * 90;
       this.tweenRot(this.target, this.o.reducedMotion ? 0 : CUBE_CONFIG.step.duration, CUBE_CONFIG.step.ease);
       if (this.o.reducedMotion) return;

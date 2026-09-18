@@ -7,19 +7,51 @@
   background: var(--jia-ink);
   color: var(--jia-ivory);
 }
+/* The region's label sits in the bar, on the left hairline (its ink ground interrupts the line). */
 .title {
   position: absolute;
   z-index: 2;
-  top: clamp(1rem, 2.4vw, 1.75rem);
-  left: var(--gutter);
+  top: 50%;
+  left: 0;
+  translate: 0 -50%;
   margin: 0;
+  padding: 0 1rem 0 var(--gutter);
+  background: var(--jia-ink);
   font-family: var(--f-ui);
   font-weight: 600;
   font-size: 0.8125rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  text-shadow: 0 1px 12px rgb(var(--jia-ink-rgb) / 0.55);
   pointer-events: none;
+}
+/* The cinema bar: a letterbox of the video's own ink with the edition title in the edition's
+   italic voice (DESIGN.md), a hairline running out to each side. */
+.bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr);
+  align-items: center;
+  gap: clamp(0.875rem, 2.5vw, 1.75rem);
+  padding: clamp(0.875rem, 1.6vw, 1.125rem) var(--gutter);
+  background: var(--jia-ink);
+}
+.bar::before,
+.bar::after {
+  content: "";
+  height: 1px;
+  background: rgb(var(--jia-ivory-rgb) / 0.28);
+}
+.barText {
+  margin: 0;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--jia-ivory);
 }
 .frame {
   position: relative;

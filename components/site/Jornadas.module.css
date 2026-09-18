@@ -117,9 +117,10 @@
 .dayDate::first-letter { text-transform: uppercase; }
 .dayMeta {
   margin: 0.25rem 0 0.75rem;
-  display: grid;
-  gap: 0.5rem 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
+  /* Place, hours and location on one line while they fit; each keeps its own width. */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem clamp(1.25rem, 2.5vw, 2rem);
 }
 .dayMeta dt {
   font-family: var(--f-ui);
@@ -133,6 +134,34 @@
   font-family: var(--f-ui);
   font-size: 1rem;
   color: var(--jia-text);
+}
+/* The venue on a map: a ring like the site's other round controls, the pin inside (44 px target). */
+.mapLink {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: 0.2rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--jia-terracotta);
+  color: var(--jia-terracotta);
+  --map-ground: var(--jia-copper);
+  --map-dot: var(--jia-ink);
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.mapLink:hover {
+  background: var(--jia-terracotta);
+  color: var(--jia-ivory);
+  --map-ground: var(--jia-sand-deep);
+  --map-dot: var(--jia-ivory);
+}
+.mapLink:active { transform: scale(0.94); }
+.mapLink:focus-visible {
+  outline: 2px solid var(--jia-terracotta);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mapLink { transition: none; }
 }
 .sessions {
   list-style: none;
@@ -178,17 +207,18 @@
   max-width: var(--measure);
 }
 
-/* ---- prose ---- */
+/* ---- prose ----
+   Set like the team lede right under it (.teamLede): one voice for the whole reading column. */
 .prose {
   display: grid;
   gap: 1rem;
   max-width: var(--measure);
   font-family: var(--f-body);
-  font-size: var(--t-body);
-  line-height: var(--jia-body-leading);
+  font-size: var(--t-lede);
+  line-height: 1.5;
   color: var(--jia-text);
 }
-.prose p { margin: 0; }
+.prose p { margin: 0; text-wrap: pretty; }
 
 /* ---- how it works + the team cube ----
    One reading column: the prose and, right under it, who is behind the jornadas. The cube leads

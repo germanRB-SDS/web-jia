@@ -27,6 +27,9 @@ export type CubeLabels = {
   list: string;
 };
 
+/** A bullet hole: where it hit (percent of the side) and how it is turned, so no two look alike. */
+type Hole = { key: number; x: number; y: number; turn: number };
+
 type Props = { items: CubeItem[]; labels: CubeLabels; className?: string };
 
 const FACES = Array.from({ length: CUBE_CONFIG.faces }, (_, i) => i);
@@ -35,7 +38,7 @@ const mod = (a: number, n: number) => ((a % n) + n) % n;
 /**
  * A cube that shows a whole sequence: drag it, click it or use the arrows / arrow keys and every
  * quarter turn brings the next item (every fourth one rolls vertically), n items on six sides,
- * round and round. Knows nothing about what it
+ * round and round. A click on the side facing you shoots it: the hole stays on that item. Knows nothing about what it
  * shows: items and every label come from the caller. The cube itself is decoration for assistive
  * technology, which gets the complete list and the prev/next buttons with a live caption.
  */
@@ -49,6 +52,8 @@ export function CubeCarousel({ items, labels, className }: Props) {
   const [cap, setCap] = useState({ top: 0, bottom: 0 });
   const [front, setFront] = useState(0);
   const [announce, setAnnounce] = useState(false);
+  const [holes, setHoles] = useState<Record<number, Hole[]>>({});
+  const shots = useRef(0);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -73,6 +78,10 @@ export function CubeCarousel({ items, labels, className }: Props) {
         onCap: setCap,
         onFront: setFront,
         onInteract: () => setAnnounce(true),
+        onShot: ({ item, x, y }) => {
+          const hole: Hole = { key: ++shots.current, x: x * 100, y: y * 100, turn: Math.round(Math.random() * 360) };
+          setHoles((all) => ({ ...all, [item]: [...(all[item] ?? []), hole].slice(-CUBE_CONFIG.shot.maxPerItem) }));
+        },
       });
       engineRef.current = engine;
       io = new IntersectionObserver((entries) => engine.setVisible(entries[0]?.isIntersecting ?? false), { threshold: 0.5 });
@@ -127,12 +136,13 @@ export function CubeCarousel({ items, labels, className }: Props) {
     >
       <div ref={stageRef} className={styles.stage} aria-hidden="true" data-cursor="open">
         <div className={styles.scene}>
-          <div ref={cubeRef} className={styles.cube}>
+          {/* The page-load pose is in the markup too, so the cube does not jump when the engine arrives (it writes --cube-rot from then on). */}
+          <div ref={cubeRef} className={styles.cube} style={count > 1 ? ({ "--cube-rot": `${-CUBE_CONFIG.initialTurn}deg` } as CSSProperties) : undefined}>
             {FACES.map((f) => (
-              <Side key={f} kind="turn" item={items[assigned[f] ?? 0]} sizes={sizes} style={{ "--cube-i": f } as CSSProperties} />
+              <Side key={f} kind="turn" item={items[assigned[f] ?? 0]} holes={holes[assigned[f] ?? 0]} sizes={sizes} style={{ "--cube-i": f } as CSSProperties} />
             ))}
-            <Side kind="top" item={items[cap.top] ?? items[0]} sizes={sizes} />
-            <Side kind="bottom" item={items[cap.bottom] ?? items[0]} sizes={sizes} />
+            <Side kind="top" item={items[cap.top] ?? items[0]} holes={holes[items[cap.top] ? cap.top : 0]} sizes={sizes} />
+            <Side kind="bottom" item={items[cap.bottom] ?? items[0]} holes={holes[items[cap.bottom] ? cap.bottom : 0]} sizes={sizes} />
           </div>
         </div>
         <span className={styles.shadow} />
@@ -165,8 +175,8 @@ export function CubeCarousel({ items, labels, className }: Props) {
   );
 }
 
-/** One side of the cube: its varnished ground, the item as a sticker, and the light over both. */
-function Side({ kind, item, sizes, style }: { kind: "turn" | "top" | "bottom"; item: CubeItem; sizes: string; style?: CSSProperties }) {
+/** One side of the cube: its varnished ground, the item as a sticker, the holes shot into it, the veil and the light over all. */
+function Side({ kind, item, holes, sizes, style }: { kind: "turn" | "top" | "bottom"; item: CubeItem; holes?: Hole[]; sizes: string; style?: CSSProperties }) {
   return (
     <div className={`${styles.face} ${kind === "turn" ? "" : styles[kind]}`} data-cube-side={kind} style={style}>
       <div className={styles.faceBody}>
@@ -175,6 +185,10 @@ function Side({ kind, item, sizes, style }: { kind: "turn" | "top" | "bottom"; i
         ) : (
           <span className={styles.stickerBlank}>{item.title}</span>
         )}
+        {holes?.map((h) => (
+          <span key={h.key} className={styles.hole} style={{ left: `${h.x}%`, top: `${h.y}%`, "--cube-hole-turn": `${h.turn}deg` } as CSSProperties} />
+        ))}
+        <span className={styles.veil} />
       </div>
     </div>
   );

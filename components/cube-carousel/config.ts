@@ -10,6 +10,9 @@
  * Geometry and colour live in CubeCarousel.module.css as custom properties, all relative to
  * --cube-size, so there is no resize code.
  */
+/** Seconds a step takes, whichever way the cube goes: a vertical roll lasts exactly as long as a horizontal turn. */
+const STEP_SECONDS = 0.9;
+
 export const CUBE_CONFIG = {
   /** Sides around the vertical axis (the CSS places them every 90°). */
   faces: 4,
@@ -30,12 +33,16 @@ export const CUBE_CONFIG = {
     overshoot: 0.12,
     settle: 0.8,
   },
-  step: { duration: 0.9, ease: "power2.inOut" },
-  roll: { duration: 1.05, ease: "power2.inOut", /** The cube shrinks this much mid-roll, so its diagonal clears the caption. */ dip: 0.14 },
+  /** Pose on page load only: turned this many degrees towards the next item, so two sides show. The first move of any kind squares the cube for good. */
+  initialTurn: 14,
+  step: { duration: STEP_SECONDS, ease: "power2.inOut" },
+  roll: { duration: STEP_SECONDS, ease: "power2.inOut", /** The cube shrinks this much mid-roll, so its diagonal clears the caption. */ dip: 0.14 },
   /** Idle turning: only while on screen, never with reduced motion, and it stops for good at the first interaction. */
   autoplay: { enabled: true, interval: 3.4, firstDelay: 1.6 },
   /** "Light source" (the example dims with opacity; here a tint, so the page never shows through). 0..1 at 90°. */
   shade: { towardsRight: 0.6, towardsLeft: 0.4, vertical: 0.5 },
+  /** Bullet holes a single item keeps (the oldest goes first). A hole stays on its item, whichever side shows it. */
+  shot: { maxPerItem: 6 },
   /** How many items ahead/behind are fetched before they can come into view. */
   preloadRadius: 4,
 } as const;

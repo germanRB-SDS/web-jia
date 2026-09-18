@@ -72,6 +72,8 @@ export type RouteModel = {
 export type IntroVideoModel = {
   anchor: string;
   title: string;
+  /** The line in the cinema bar above the video: the edition title. */
+  barText: string;
   videoLabel: string;
   src: string | null;
   type: string;
@@ -89,6 +91,8 @@ export type DayModel = {
   dateText: string | null;
   dateIso: string | null;
   venue: string | null;
+  /** The venue on a map: its href and the link's accessible name. */
+  map: { href: string; label: string } | null;
   hours: string[];
   marks: MarkKind[];
   provenanceNote: string | null;
@@ -314,6 +318,7 @@ export function getLanding(locale: Locale): LandingModel {
       dateText: formatDate(d.date, language),
       dateIso: d.date,
       venue: d.venue,
+      map: d.mapUrl && d.venue ? { href: d.mapUrl, label: format(copy.a11y.venueMap, { venue: d.venue }) } : null,
       hours: d.hours,
       marks: marksOf(d.status),
       provenanceNote: d.status === "provisional" ? copy.states.fromPoster : null,
@@ -415,7 +420,7 @@ export function getLanding(locale: Locale): LandingModel {
         controls: copy.buttons.route,
       },
       hashtag: event.hashtag,
-      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, videoLabel: copy.jornadas.introVideo.videoLabel, controls: copy.buttons.video },
+      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, controls: copy.buttons.video },
       program: { title: copy.jornadas.program.title, note: copy.jornadas.program.note, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length

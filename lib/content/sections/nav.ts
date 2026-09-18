@@ -4,7 +4,6 @@
  * section's config, so a renamed anchor changes in one place.
  */
 import { acogeConfig } from "./acoge";
-import { dosieresConfig } from "./dosieres";
 import { experienciasConfig } from "./experiencias";
 import { jornadasConfig } from "./jornadas";
 import { propuestasConfig } from "./propuestas";
@@ -22,7 +21,6 @@ export const navStructure: readonly { key: NavKey; anchor: string; children?: re
       { key: "talleres", anchor: jornadasConfig.anchors.talleres },
     ],
   },
-  { key: "dosieres", anchor: dosieresConfig.id },
   { key: "experiencias", anchor: experienciasConfig.id },
   { key: "propuestas", anchor: propuestasConfig.id },
   { key: "acoge", anchor: acogeConfig.id },

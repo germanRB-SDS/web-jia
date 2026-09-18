@@ -68,6 +68,8 @@ export type Copy = {
     /** `{title}` */
     sheetOf: string;
     teamRegion: string;
+    /** `{venue}` */
+    venueMap: string;
     waypointsRegion: string;
     mainNav: string;
     provisionalMark: string;
@@ -99,6 +101,7 @@ export type Copy = {
       dayLabel: string;
       venueLabel: string;
       hoursLabel: string;
+      locationLabel: string;
       note: string;
       sessions: Record<string, string>;
     };

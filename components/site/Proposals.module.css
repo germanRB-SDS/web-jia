@@ -13,6 +13,14 @@
 }
 .text p { margin: 0; }
 .text > :last-child { margin-top: 0.75rem; }
+/* The shared arrow, turned to point at the action below the paragraph. */
+.pointer {
+  display: inline-block;
+  margin-left: 0.4em;
+  vertical-align: -0.3em;
+  rotate: 90deg;
+  color: var(--jia-terracotta);
+}
 
 /* The visual column: the photograph fills the column's height and bleeds to
    the right edge; a soft sand veil on its inner edge lets the text side breathe. */
