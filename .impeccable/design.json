@@ -1,0 +1,734 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T06:42:57.930Z",
+  "title": "Design System: JIA — Jornadas de Innovación de Almería",
+  "source": {
+    "tokens": [
+      "app/theme/palette.css",
+      "app/globals.css"
+    ],
+    "fonts": "app/layout.tsx (next/font: Rokkitt, Alegreya, Barlow Semi Condensed, Homemade Apple)",
+    "identityGuide": "assets/style/JIA_IDENTIDAD_VISUAL.md",
+    "directionContract": "const CONTRACT in app/layout.tsx (seed 0634789a)"
+  },
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Editorial Paper",
+        "canonical": "oklch(93.2% 0.023 78.2)",
+        "hex": "#f1e7d8",
+        "tonalRamp": [
+          "oklch(15% 0.023 78.2)",
+          "oklch(27% 0.023 78.2)",
+          "oklch(39% 0.023 78.2)",
+          "oklch(51% 0.023 78.2)",
+          "oklch(63% 0.023 78.2)",
+          "oklch(75% 0.023 78.2)",
+          "oklch(86% 0.023 78.2)",
+          "oklch(95% 0.023 78.2)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "canonical": "oklch(95.1% 0.022 83.3)",
+        "hex": "#f6eedf",
+        "tonalRamp": [
+          "oklch(15% 0.022 83.3)",
+          "oklch(27% 0.022 83.3)",
+          "oklch(39% 0.022 83.3)",
+          "oklch(51% 0.022 83.3)",
+          "oklch(63% 0.022 83.3)",
+          "oklch(75% 0.022 83.3)",
+          "oklch(86% 0.022 83.3)",
+          "oklch(95% 0.022 83.3)"
+        ]
+      },
+      "sand": {
+        "role": "neutral",
+        "displayName": "Sand",
+        "canonical": "oklch(90.5% 0.034 76.0)",
+        "hex": "#edddc7",
+        "tonalRamp": [
+          "oklch(15% 0.034 76.0)",
+          "oklch(27% 0.034 76.0)",
+          "oklch(39% 0.034 76.0)",
+          "oklch(51% 0.034 76.0)",
+          "oklch(63% 0.034 76.0)",
+          "oklch(75% 0.034 76.0)",
+          "oklch(86% 0.034 76.0)",
+          "oklch(95% 0.034 76.0)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card Parchment",
+        "canonical": "oklch(92.0% 0.027 80.2)",
+        "hex": "#eee3d1",
+        "tonalRamp": [
+          "oklch(15% 0.027 80.2)",
+          "oklch(27% 0.027 80.2)",
+          "oklch(39% 0.027 80.2)",
+          "oklch(51% 0.027 80.2)",
+          "oklch(63% 0.027 80.2)",
+          "oklch(75% 0.027 80.2)",
+          "oklch(86% 0.027 80.2)",
+          "oklch(95% 0.027 80.2)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "JIA Ink",
+        "canonical": "oklch(23.8% 0.043 49.1)",
+        "hex": "#2f180b",
+        "tonalRamp": [
+          "oklch(15% 0.043 49.1)",
+          "oklch(27% 0.043 49.1)",
+          "oklch(39% 0.043 49.1)",
+          "oklch(51% 0.043 49.1)",
+          "oklch(63% 0.043 49.1)",
+          "oklch(75% 0.043 49.1)",
+          "oklch(86% 0.043 49.1)",
+          "oklch(95% 0.027 49.1)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Reading Ink",
+        "canonical": "oklch(36.5% 0.014 63.0)",
+        "hex": "#443d37",
+        "tonalRamp": [
+          "oklch(15% 0.014 63.0)",
+          "oklch(27% 0.014 63.0)",
+          "oklch(39% 0.014 63.0)",
+          "oklch(51% 0.014 63.0)",
+          "oklch(63% 0.014 63.0)",
+          "oklch(75% 0.014 63.0)",
+          "oklch(86% 0.014 63.0)",
+          "oklch(95% 0.014 63.0)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "oklch(50.0% 0.036 70.0)",
+        "hex": "#71604d",
+        "tonalRamp": [
+          "oklch(15% 0.036 70.0)",
+          "oklch(27% 0.036 70.0)",
+          "oklch(39% 0.036 70.0)",
+          "oklch(51% 0.036 70.0)",
+          "oklch(63% 0.036 70.0)",
+          "oklch(75% 0.036 70.0)",
+          "oklch(86% 0.036 70.0)",
+          "oklch(95% 0.036 70.0)"
+        ]
+      },
+      "terracotta": {
+        "role": "primary",
+        "displayName": "Terracotta",
+        "canonical": "oklch(47.6% 0.097 42.0)",
+        "hex": "#89482e",
+        "tonalRamp": [
+          "oklch(15% 0.055 42.0)",
+          "oklch(27% 0.085 42.0)",
+          "oklch(39% 0.097 42.0)",
+          "oklch(51% 0.097 42.0)",
+          "oklch(63% 0.097 42.0)",
+          "oklch(75% 0.097 42.0)",
+          "oklch(86% 0.079 42.0)",
+          "oklch(95% 0.025 42.0)"
+        ]
+      },
+      "terracotta-deep": {
+        "role": "primary",
+        "displayName": "Deep Terracotta",
+        "canonical": "oklch(41.0% 0.085 41.9)",
+        "hex": "#703923",
+        "tonalRamp": [
+          "oklch(15% 0.055 41.9)",
+          "oklch(27% 0.083 41.9)",
+          "oklch(39% 0.085 41.9)",
+          "oklch(51% 0.085 41.9)",
+          "oklch(63% 0.085 41.9)",
+          "oklch(75% 0.085 41.9)",
+          "oklch(86% 0.079 41.9)",
+          "oklch(95% 0.025 41.9)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Sand Line",
+        "canonical": "oklch(78.8% 0.039 75.1)",
+        "hex": "#c9b79f",
+        "tonalRamp": [
+          "oklch(15% 0.039 75.1)",
+          "oklch(27% 0.039 75.1)",
+          "oklch(39% 0.039 75.1)",
+          "oklch(51% 0.039 75.1)",
+          "oklch(63% 0.039 75.1)",
+          "oklch(75% 0.039 75.1)",
+          "oklch(86% 0.039 75.1)",
+          "oklch(95% 0.039 75.1)"
+        ]
+      },
+      "copper": {
+        "role": "neutral",
+        "displayName": "Matte Copper",
+        "canonical": "oklch(61.2% 0.090 55.7)",
+        "hex": "#ad754d",
+        "tonalRamp": [
+          "oklch(15% 0.046 55.7)",
+          "oklch(27% 0.068 55.7)",
+          "oklch(39% 0.090 55.7)",
+          "oklch(51% 0.090 55.7)",
+          "oklch(63% 0.090 55.7)",
+          "oklch(75% 0.090 55.7)",
+          "oklch(86% 0.088 55.7)",
+          "oklch(95% 0.030 55.7)"
+        ]
+      },
+      "olive": {
+        "role": "neutral",
+        "displayName": "Dry Olive",
+        "canonical": "oklch(54.3% 0.033 105.3)",
+        "hex": "#72715b",
+        "tonalRamp": [
+          "oklch(15% 0.033 105.3)",
+          "oklch(27% 0.033 105.3)",
+          "oklch(39% 0.033 105.3)",
+          "oklch(51% 0.033 105.3)",
+          "oklch(63% 0.033 105.3)",
+          "oklch(75% 0.033 105.3)",
+          "oklch(86% 0.033 105.3)",
+          "oklch(95% 0.033 105.3)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Section titles (h2) in Rokkitt 700 uppercase, ink; the hero event name at 0.1em beside the wordmark."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Running heads of notebook spreads (h3) in terracotta, ruled above with 3px terracotta; programme day labels."
+      },
+      "edition": {
+        "displayName": "Edition title",
+        "purpose": "Alegreya italic 500 for the edition title in the hero; the same italic voice sets subtitles and programme dates at 1.0625–1.25rem."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Section ledes and the Jornadas intro, capped at 62ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs, sheet fields and session lines; 1.0625rem stepping to 1.125rem at ≥960px, leading 1.6, measure 62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, navigation, datelines, open-sheet actions and the skip link in Barlow 600 uppercase at 0.12em."
+      },
+      "field-label": {
+        "displayName": "Field label",
+        "purpose": "dt labels, dossier format, member roles and the «Imparte» / «Temática» prefixes on card lines: a tracked 0.75rem label that always carries a real datum and never sits above a title. No weight set in CSS; renders at the lightest loaded cut (500)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card, dossier and team titles in sentence case; the waypoints h2 at 1rem / 0.08em uppercase; grows to clamp(1.75rem, 3vw, 2.5rem) inside the sheet dialog as a flex row with its chip inline."
+      },
+      "script": {
+        "displayName": "Script",
+        "purpose": "One handwritten note over the hero photograph, rotated -8°, aria-hidden, never information."
+      }
+    },
+    "shadows": [
+      {
+        "name": "pinned-rest",
+        "value": "0 10px 28px -16px rgb(47 24 11 / 0.45)",
+        "purpose": "Every SheetCard surface at rest."
+      },
+      {
+        "name": "pinned-lift",
+        "value": "0 18px 36px -18px rgb(47 24 11 / 0.55)",
+        "purpose": "SheetCard on hover / focus-within, with translateY(-3px)."
+      },
+      {
+        "name": "event-poster",
+        "value": "0 18px 40px -22px rgb(47 24 11 / 0.5)",
+        "purpose": "The tilted cartel in the Jornadas intro and the Propuestas parchment panel."
+      },
+      {
+        "name": "team-card",
+        "value": "0 8px 20px -12px rgb(47 24 11 / 0.5)",
+        "purpose": "Items in the team strip."
+      },
+      {
+        "name": "floating-panel",
+        "value": "0 24px 60px -20px rgb(47 24 11 / 0.45)",
+        "purpose": "The sheet dialog panel; backdrop rgb(47 24 11 / 0.55) + blur(2px)."
+      },
+      {
+        "name": "menu-desktop",
+        "value": "0 16px 32px -18px rgb(47 24 11 / 0.45)",
+        "purpose": "Desktop submenu panel. The phone navigation panel is full-height and has no shadow."
+      },
+      {
+        "name": "parchment-edge",
+        "value": "inset 0 0 0 1px rgb(47 24 11 / 0.08)",
+        "purpose": "Hairline edge of every parchment material (empty surfaces, Propuestas panel)."
+      },
+      {
+        "name": "parchment-foot",
+        "value": "inset 0 -40px 60px -50px rgb(47 24 11 / 0.25)",
+        "purpose": "Soft inset foot shadow on empty image surfaces."
+      },
+      {
+        "name": "pin-cast",
+        "value": "0 2px 4px rgb(47 24 11 / 0.35)",
+        "purpose": "Cast shadow of the pin on parchment surfaces and the Propuestas panel."
+      },
+      {
+        "name": "pin-inset",
+        "value": "inset 0 -2px 0 rgb(47 24 11 / 0.35)",
+        "purpose": "Underside shading of every terracotta pin dot (the SheetCard pin carries only this)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing curve; every transition and the dialog rise use it."
+      },
+      {
+        "name": "duration-control",
+        "value": "160ms",
+        "purpose": "Button background, border, colour and transform."
+      },
+      {
+        "name": "duration-surface",
+        "value": "180ms",
+        "purpose": "Waypoint row background on hover."
+      },
+      {
+        "name": "duration-glyph",
+        "value": "220ms",
+        "purpose": "Arrow nudge (3px; 4px on waypoints), nav underline scale, chevron rotate (200ms)."
+      },
+      {
+        "name": "duration-rise",
+        "value": "280ms",
+        "purpose": "Dialog entrance: 12px up, fade in. Removed under prefers-reduced-motion."
+      },
+      {
+        "name": "duration-lift",
+        "value": "320ms",
+        "purpose": "Card lift and reveal, poster straightening. Removed under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "header-name",
+        "value": "420px",
+        "purpose": "Below: the three-line event name beside the header wordmark hides."
+      },
+      {
+        "name": "header-badge",
+        "value": "480px",
+        "purpose": "Below: the #JIA26 badge hides from the header."
+      },
+      {
+        "name": "waypoints-2",
+        "value": "640px",
+        "purpose": "Waypoints two-up."
+      },
+      {
+        "name": "columns",
+        "value": "760px",
+        "purpose": "Programme days side by side, dossier rows two-column, footer four columns."
+      },
+      {
+        "name": "spread",
+        "value": "900px",
+        "purpose": "Notebook spread 200px | 1fr with sticky margin; split panels; two-column sheet dialog."
+      },
+      {
+        "name": "desktop",
+        "value": "960px",
+        "purpose": "Desktop navigation, hero split (photo right, 66%), body 1.125rem."
+      },
+      {
+        "name": "waypoints-4",
+        "value": "1100px",
+        "purpose": "Waypoints four-up with sand-line dividers."
+      },
+      {
+        "name": "wide",
+        "value": "1400px",
+        "purpose": "Hero content padding-right 52%."
+      }
+    ],
+    "surfaces": {
+      "grain": {
+        "token": "--paper-grain (app/globals.css)",
+        "tile": "220px inline SVG feTurbulence (baseFrequency 0.9, 3 octaves) tinted toward ink at 9% alpha",
+        "pageLayer": "body::before, position: fixed, z-index: -1, opacity 0.07",
+        "materials": "painted directly on empty image surfaces, the dialog panel, the Propuestas panel and the phone navigation panel",
+        "rule": "Never touches text, controls or photographs."
+      },
+      "parchment": {
+        "background": "card + --paper-grain (220px)",
+        "edge": "inset 0 0 0 1px rgb(47 24 11 / 0.08)",
+        "foot": "inset 0 -40px 60px -50px rgb(47 24 11 / 0.25) on empty image surfaces",
+        "pin": "12px terracotta at top 10px (surfaces) / 12px (Propuestas panel) with pin-cast + pin-inset",
+        "usedBy": [
+          "Surface[data-empty]",
+          "SheetDialog .panel (no pin)",
+          "Proposals .panel",
+          "SiteNav phone panel (ivory ground, no pin)"
+        ]
+      },
+      "hero": {
+        "media": "hero-1 (crop 1021:941, original columns 300-1321, no baked-in words)",
+        "ground": "linear-gradient(90deg, paper 0%, paper 38%, sand 100%)",
+        "maskDesktop": "linear-gradient(to right, transparent 0%, black 42%) ∩ linear-gradient(to top, transparent 0%, black 14%)",
+        "maskMobile": "linear-gradient(to bottom, transparent 0%, black 22%)",
+        "focal": "80% 42% (70% 45% below 960px)"
+      },
+      "teamStrip": {
+        "fade": "4rem linear-gradient(to right, rgb(241 231 216 / 0), paper) over the right edge",
+        "scrollbar": "scrollbar-width: thin",
+        "count": "muted 0.8125rem label beside the heading"
+      },
+      "phoneNav": {
+        "panel": "ivory + --paper-grain, height calc(100dvh - 100%), border-top 1px line, no shadow",
+        "bodyScroll": "locked while open"
+      },
+      "sectionTones": {
+        "paper": "flat paper",
+        "sand": "linear-gradient(180deg, sand 0%, paper 100%) — used by Dosieres and Propuestas",
+        "ink": "defined on Section but unused by any section; ink is a ground only in the footer"
+      },
+      "header": {
+        "background": "rgb(241 231 216 / 0.92)",
+        "backdropFilter": "blur(10px)",
+        "borderBottom": "1px solid line",
+        "themeColor": "#f1e7d8"
+      },
+      "focus": {
+        "outline": "3px solid terracotta",
+        "offset": "3px",
+        "radius": "2px"
+      },
+      "selection": {
+        "background": "terracotta",
+        "color": "ivory"
+      },
+      "scrollbar": {
+        "thumb": "copper",
+        "track": "sand"
+      },
+      "fallbackSurfaces": {
+        "tokens": [
+          "sand",
+          "card",
+          "copper",
+          "olive",
+          "terracotta",
+          "ink"
+        ],
+        "inUse": {
+          "sand": "hero only",
+          "card": "every empty image surface (workshops, experiences, Acoge)"
+        },
+        "unused": [
+          "copper",
+          "olive",
+          "terracotta",
+          "ink"
+        ]
+      },
+      "radiusScale": {
+        "focus": "2px",
+        "chip": "3px",
+        "button": "4px",
+        "menu": "6px (desktop submenu, scrollbar thumb)",
+        "tile": "8px (waypoint rows)",
+        "card": "10px (surfaces, dialog panel, Propuestas panel, empty state)"
+      }
+    },
+    "brand": {
+      "wordmark": {
+        "src": "/brand/jia-wordmark-derived.svg",
+        "use": "<use href=\"…#mark\">, painted with currentColor",
+        "viewBox": "0 0 1032 728",
+        "provisional": true,
+        "provenance": "Traced with potrace from assets/images-website/JIA-render-base.png; replace with the vector master (identity guide §5.5)."
+      },
+      "badge": {
+        "id": "badge-jia26",
+        "src": "/brand/jia26-badge-320.png | -640.png",
+        "sizes": "2.75rem header, 5rem footer"
+      },
+      "icons": {
+        "family": "JIA — Tinta de frontera",
+        "file": "components/icons/index.tsx",
+        "grid": 64,
+        "linear": [
+          "hat",
+          "compass",
+          "lantern"
+        ],
+        "filled": [
+          "cactus",
+          "star"
+        ],
+        "stroke": 2.5,
+        "functional": {
+          "arrow": "18px / stroke 3",
+          "external": "16px / stroke 4",
+          "menu": "24px / stroke 4",
+          "close": "24px / stroke 4",
+          "chevron": "14px / stroke 4"
+        }
+      }
+    },
+    "identityGuideReconciliation": [
+      {
+        "topic": "Palette (§4.2, §12)",
+        "status": "honoured",
+        "note": "All twelve HEX values are taken literally into app/theme/palette.css; RGB channel tokens and six fallback surfaces are derived, not new colours."
+      },
+      {
+        "topic": "Fonts (§6)",
+        "status": "extended",
+        "note": "assets/fonts/ was empty; four SIL-OFL Google families are self-hosted via next/font. Rokkitt (condensed slab) stands in for the guide's 'tall narrow editorial serif'."
+      },
+      {
+        "topic": "Uppercase tracking (§6)",
+        "status": "deviation",
+        "note": "Guide suggests 0.08–0.16em for short uppercase headlines; section titles use 0.02em and running heads 0.04em because Rokkitt is condensed and set large. Labels use 0.12em (in range)."
+      },
+      {
+        "topic": "Lettering (§5)",
+        "status": "provisional",
+        "note": "The wordmark is an SVG traced from the approved render, flagged provisional in lib/content/media.ts pending the vector master."
+      },
+      {
+        "topic": "Icons (§7)",
+        "status": "honoured",
+        "note": "64-unit grid, stroke 2.5 linear hat/compass/lantern, filled cactus, terracotta, currentColor, aria-hidden, always with a text label, no weapons."
+      },
+      {
+        "topic": "Cards (§11.3)",
+        "status": "honoured",
+        "note": "10px radius (guide 8–12); shadows are ink-tinted with negative spread, not pronounced floating shadows."
+      },
+      {
+        "topic": "Hero star rule (§11.2)",
+        "status": "honoured",
+        "note": "Used once, in the hero; not repeated as a pattern."
+      },
+      {
+        "topic": "Grain (§12)",
+        "status": "honoured",
+        "note": "Independent fixed layer at 0.07 opacity; never applied to text, controls or photographs."
+      },
+      {
+        "topic": "Copper on small text (§4.4)",
+        "status": "honoured (fixed in the fix round)",
+        "note": "Footer column titles are now sand on ink and session numerals terracotta; copper sets no text and remains decorative (scrollbar thumb only)."
+      },
+      {
+        "topic": "Cards without flat colour blocks (§11.3)",
+        "status": "honoured",
+        "note": "Empty surfaces are parchment (card + grain + inset edge + pin); no olive/copper/terracotta blocks remain on the page."
+      },
+      {
+        "topic": "Chip placement",
+        "status": "policy recorded",
+        "note": "Provisional chips mark only unconfirmed facts (edition title, dateline, jornadas, Organiza/Colabora, Talleres hint, sheet titles); never on section headings or card feet."
+      },
+      {
+        "topic": "Dialog panel inset edge",
+        "status": "dead declaration, not canonized",
+        "note": "SheetDialog.module.css .panel declares `box-shadow: inset 0 0 0 1px …` and then a second `box-shadow` (the floating shadow) which overrides it, so the built dialog has no inset edge. Recorded as a code note; the floating shadow alone is the rule."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one terracotta action per composition; ivory label, deep terracotta on hover/focus, arrow nudges 3px.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><span>Explorar las jornadas</span><svg width=\"18\" height=\"18\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 32h42\"/><path d=\"M38 18l14 14-14 14\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.75em; min-height: 48px; padding: 0.7em 1.35em; border-radius: 4px; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; line-height: 1.1; border: 1.5px solid transparent; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; white-space: nowrap; } .ds-btn-primary svg { flex: none; transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover svg, .ds-btn-primary:focus-visible svg { transform: translateX(3px); } .ds-btn-primary:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; } .ds-btn-primary { background: var(--jia-terracotta, #89482e); color: var(--jia-ivory, #f6eedf); border-color: var(--jia-terracotta, #89482e); } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: var(--jia-terracotta-deep, #703923); border-color: var(--jia-terracotta-deep, #703923); }"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ink outline on paper; hover paints a 6% ink veil.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\"><span>Ver talleres</span><svg width=\"18\" height=\"18\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 32h42\"/><path d=\"M38 18l14 14-14 14\"/></svg></a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 0.75em; min-height: 48px; padding: 0.7em 1.35em; border-radius: 4px; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; line-height: 1.1; border: 1.5px solid transparent; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; white-space: nowrap; } .ds-btn-secondary svg { flex: none; transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-secondary:hover svg, .ds-btn-secondary:focus-visible svg { transform: translateX(3px); } .ds-btn-secondary:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; } .ds-btn-secondary { background: transparent; color: var(--jia-ink, #2f180b); border-color: var(--jia-ink, #2f180b); } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background: rgb(47 24 11 / 0.06); }"
+    },
+    {
+      "name": "Unavailable Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "An action with no real URL: static, aria-disabled, transparent with a dashed sand-line border and muted text, followed by its visible note. Never href=\"#\".",
+      "html": "<div class=\"ds-unavailable\"><span class=\"ds-btn-disabled\" aria-disabled=\"true\">Enviar propuesta</span><p class=\"ds-unavailable-note\">El canal de propuestas se publicará cuando la organización lo confirme.</p></div>",
+      "css": ".ds-btn-disabled { display: inline-flex; align-items: center; gap: 0.75em; min-height: 48px; padding: 0.7em 1.35em; border-radius: 4px; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; line-height: 1.1; border: 1.5px solid transparent; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; white-space: nowrap; } .ds-btn-disabled svg { flex: none; transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-disabled:hover svg, .ds-btn-disabled:focus-visible svg { transform: translateX(3px); } .ds-btn-disabled:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; } .ds-unavailable { display: grid; gap: 0.5rem; justify-items: start; } .ds-btn-disabled { cursor: not-allowed; background: transparent; color: var(--jia-text-muted, #71604d); border: 1.5px dashed var(--jia-line, #c9b79f); } .ds-btn-disabled:hover svg { transform: none; } .ds-unavailable-note { margin: 0; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-size: 0.9375rem; color: var(--jia-text-muted, #71604d); max-width: 34ch; }"
+    },
+    {
+      "name": "Editorial-state Chip",
+      "kind": "chip",
+      "refersTo": "chip-provisional",
+      "description": "Preview-only marks telling reviewers a datum is provisional (terracotta), demo (olive) or pending (muted); 1px currentColor border, 3px radius.",
+      "html": "<span class=\"ds-marks\"><span class=\"ds-mark ds-mark-provisional\">Provisional</span><span class=\"ds-mark ds-mark-demo\">Demostración</span><span class=\"ds-mark ds-mark-pending\">Pendiente</span></span>",
+      "css": ".ds-marks { display: inline-flex; flex-wrap: wrap; gap: 0.35rem; vertical-align: middle; } .ds-mark { display: inline-block; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; padding: 0.35em 0.55em 0.3em; border-radius: 3px; border: 1px solid currentColor; } .ds-mark-provisional { color: var(--jia-terracotta, #89482e); } .ds-mark-demo { color: var(--jia-olive, #72715b); } .ds-mark-pending { color: var(--jia-text-muted, #71604d); }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header links: Barlow 600 uppercase in ink, 44px tall; hover/focus draws a 2px terracotta underline scaling from the left.",
+      "html": "<ul class=\"ds-nav\"><li><a class=\"ds-nav-link\" href=\"#\">Jornadas</a></li><li><a class=\"ds-nav-link\" href=\"#\">Dosieres</a></li><li><a class=\"ds-nav-link\" href=\"#\">Experiencias</a></li><li><a class=\"ds-nav-link\" href=\"#\">Propuestas</a></li></ul>",
+      "css": ".ds-nav { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.25rem; background: var(--jia-paper, #f1e7d8); } .ds-nav-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.8rem; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jia-ink, #2f180b); text-decoration: none; position: relative; } .ds-nav-link::after { content: \"\"; position: absolute; left: 0.8rem; right: 0.8rem; bottom: 8px; height: 2px; background: var(--jia-terracotta, #89482e); transform: scaleX(0); transform-origin: left; transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-link:hover::after, .ds-nav-link:focus-visible::after { transform: scaleX(1); } .ds-nav-link:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Waypoint Row",
+      "kind": "nav",
+      "refersTo": "waypoint",
+      "description": "The signpost under the hero: a family icon in terracotta, a Rokkitt label over an Alegreya line, an arrow that nudges 4px; hover paints card parchment.",
+      "html": "<a class=\"ds-waypoint\" href=\"#\"><span class=\"ds-waypoint-icon\"><svg width=\"44\" height=\"44\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 38V24c0-7 5-11 11-11s11 4 11 11v14\"/><path d=\"M21 31h22\"/><path d=\"M7 39c7 6 16 8 25 8s18-2 25-8c-5 3-12 5-25 5S12 42 7 39Z\"/><path d=\"M28 14c1-2 2.5-3 4-3s3 1 4 3\"/></svg></span><span class=\"ds-waypoint-text\"><span class=\"ds-waypoint-label\">Jornadas</span><span class=\"ds-waypoint-line\">Programa, cómo funcionan y talleres.</span></span><span class=\"ds-waypoint-arrow\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 32h42\"/><path d=\"M38 18l14 14-14 14\"/></svg></span></a>",
+      "css": ".ds-waypoint { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.9rem; min-height: 72px; padding: 0.75rem 1rem 0.75rem 0.5rem; text-decoration: none; color: var(--jia-ink, #2f180b); border-radius: 8px; background: var(--jia-paper, #f1e7d8); transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-waypoint:hover, .ds-waypoint:focus-visible { background: var(--jia-card, #eee3d1); } .ds-waypoint:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; } .ds-waypoint-icon, .ds-waypoint-arrow { color: var(--jia-terracotta, #89482e); display: inline-flex; } .ds-waypoint-arrow { transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-waypoint:hover .ds-waypoint-arrow, .ds-waypoint:focus-visible .ds-waypoint-arrow { transform: translateX(4px); } .ds-waypoint-text { display: grid; gap: 0.1rem; } .ds-waypoint-label { font-family: var(--f-display, Rokkitt, Rockwell, 'Roboto Slab', Georgia, serif); font-weight: 700; font-size: 1.125rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1; } .ds-waypoint-line { font-family: var(--f-body, Alegreya, Georgia, 'Times New Roman', serif); font-size: 0.9375rem; color: var(--jia-text, #443d37); line-height: 1.3; }"
+    },
+    {
+      "name": "Pinned Sheet Card",
+      "kind": "card",
+      "refersTo": "parchment-surface",
+      "description": "The signature lobby card: a 1414:2000 surface (parchment when no image: card colour, grain, 8% inset edge) held by a terracotta pin, ink-cast shadow that deepens and lifts 3px on hover, then title, italic subtitle, the «Imparte» and «Temática» lines and a real open button.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"><div class=\"ds-card-surface\" data-empty></div></div><div class=\"ds-card-body\"><h4 class=\"ds-card-title\">Por un puñado de bloques</h4><p class=\"ds-card-subtitle\">Animación con Scratch</p><p class=\"ds-card-line\"><span class=\"ds-card-field\">Imparte</span> Manuel Salmerón Águila</p><p class=\"ds-card-line\"><span class=\"ds-card-field\">Temática</span> Programación creativa</p><div class=\"ds-card-foot\"><button type=\"button\" class=\"ds-card-open\"><span>Ver ficha</span><svg width=\"18\" height=\"18\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 32h42\"/><path d=\"M38 18l14 14-14 14\"/></svg></button></div></div></article>",
+      "css": ".ds-card { display: grid; gap: 0.9rem; align-content: start; max-width: 260px; } .ds-card-media { position: relative; } .ds-card-media::before { content: \"\"; position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--jia-terracotta, #89482e); box-shadow: inset 0 -2px 0 rgb(47 24 11 / 0.35); transform: translateX(-50%); z-index: 2; } .ds-card-surface { aspect-ratio: 1414 / 2000; border-radius: 10px; background-color: var(--jia-card, #eee3d1); background-image: var(--paper-grain, url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.09 0 0 0 0 0.04 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")); background-size: 220px 220px; overflow: hidden; box-shadow: 0 10px 28px -16px rgb(47 24 11 / 0.45), inset 0 0 0 1px rgb(47 24 11 / 0.08), inset 0 -40px 60px -50px rgb(47 24 11 / 0.25); transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-card:hover .ds-card-surface, .ds-card:focus-within .ds-card-surface { transform: translateY(-3px); box-shadow: 0 18px 36px -18px rgb(47 24 11 / 0.55), inset 0 0 0 1px rgb(47 24 11 / 0.08), inset 0 -40px 60px -50px rgb(47 24 11 / 0.25); } .ds-card-body { display: grid; gap: 0.35rem; } .ds-card-line { margin: 0.15rem 0 0; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-size: 0.9375rem; color: var(--jia-text, #443d37); line-height: 1.35; } .ds-card-field { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jia-text-muted, #71604d); margin-right: 0.25rem; } .ds-card-title { margin: 0; font-family: var(--f-display, Rokkitt, Rockwell, 'Roboto Slab', Georgia, serif); font-weight: 700; font-size: 1.375rem; line-height: 1.1; color: var(--jia-ink, #2f180b); } .ds-card-subtitle { margin: 0; font-family: var(--f-body, Alegreya, Georgia, 'Times New Roman', serif); font-style: italic; font-size: 1.0625rem; line-height: 1.35; color: var(--jia-text, #443d37); } .ds-card-foot { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.35rem; } .ds-card-open { display: inline-flex; align-items: center; gap: 0.6rem; min-height: 44px; padding: 0.35rem 0.1rem; border: 0; background: none; color: var(--jia-terracotta, #89482e); font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; } .ds-card-open svg { transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-card-open:hover, .ds-card-open:focus-visible { color: var(--jia-terracotta-deep, #703923); } .ds-card-open:hover svg, .ds-card-open:focus-visible svg { transform: translateX(3px); } .ds-card-open:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; border-radius: 2px; } @media (prefers-reduced-motion: reduce) { .ds-card-surface { transition: none; } }"
+    },
+    {
+      "name": "Sheet Dialog Panel",
+      "kind": "custom",
+      "refersTo": "dialog-panel",
+      "description": "The floating panel of the native <dialog>: card parchment under the grain, 10px radius, the only true floating shadow, a sticky secondary-style close button, the title as a flex row with its chip inline, terracotta field labels over Alegreya values.",
+      "html": "<div class=\"ds-dialog-panel\"><button type=\"button\" class=\"ds-dialog-close\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M16 16l32 32M48 16 16 48\"/></svg><span>Cerrar</span></button><div class=\"ds-sheet\"><h3 class=\"ds-sheet-title\"><span>Por un puñado de bloques</span><span class=\"ds-sheet-mark\">Provisional</span></h3><p class=\"ds-sheet-subtitle\">Animación con Scratch</p><dl class=\"ds-sheet-fields\"><div><dt>De qué trata</dt><dd>Crear animaciones con bloques de programación y pensar cómo convertirlas en una actividad de aula.</dd></div></dl></div></div>",
+      "css": ".ds-dialog-panel { position: relative; background-color: var(--jia-card, #eee3d1); background-image: var(--paper-grain, url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.09 0 0 0 0 0.04 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")); background-size: 220px 220px; color: var(--jia-text, #443d37); border-radius: 10px; box-shadow: 0 24px 60px -20px rgb(47 24 11 / 0.45); max-width: 36rem; overflow: auto; } .ds-sheet-title { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.9rem; } .ds-sheet-mark { display: inline-block; font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; padding: 0.35em 0.55em 0.3em; border-radius: 3px; border: 1px solid currentColor; color: var(--jia-terracotta, #89482e); } .ds-dialog-close { position: sticky; top: 0.75rem; float: right; margin: 0.75rem 0.75rem 0 0; display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 0.9rem; border: 1.5px solid var(--jia-ink, #2f180b); border-radius: 4px; background: var(--jia-ivory, #f6eedf); color: var(--jia-ink, #2f180b); font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; } .ds-dialog-close:hover { background: var(--jia-paper, #f1e7d8); } .ds-dialog-close:focus-visible { outline: 3px solid var(--jia-terracotta, #89482e); outline-offset: 3px; } .ds-sheet { display: grid; gap: 0.75rem; padding: 1.5rem; } .ds-sheet-title { margin: 0; font-family: var(--f-display, Rokkitt, Rockwell, 'Roboto Slab', Georgia, serif); font-weight: 700; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.05; color: var(--jia-ink, #2f180b); } .ds-sheet-subtitle { margin: 0; font-family: var(--f-body, Alegreya, Georgia, 'Times New Roman', serif); font-style: italic; font-size: 1.25rem; line-height: 1.35; } .ds-sheet-fields { margin: 0.5rem 0 0; display: grid; gap: 1rem; } .ds-sheet-fields dt { font-family: var(--f-ui, 'Barlow Semi Condensed', 'Helvetica Neue', Arial, sans-serif); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jia-terracotta, #89482e); margin-bottom: 0.25rem; } .ds-sheet-fields dd { margin: 0; font-family: var(--f-body, Alegreya, Georgia, 'Times New Roman', serif); font-size: 1.0625rem; line-height: 1.55; }"
+    },
+    {
+      "name": "Notebook Spread Head",
+      "kind": "custom",
+      "refersTo": "header",
+      "description": "The running head of a Jornadas spread: Rokkitt uppercase in terracotta, ruled above with 3px terracotta, opening on a 1px sand line.",
+      "html": "<div class=\"ds-spread\"><div class=\"ds-spread-margin\"><h3 class=\"ds-spread-title\">Programa</h3></div><div class=\"ds-spread-content\"><p class=\"ds-spread-lede\">Dos jornadas para explorar nuevas formas de enseñar, compartir experiencias y llevar la creatividad del cine al aula.</p></div></div>",
+      "css": ".ds-spread { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 2rem; padding-block: 2rem; border-top: 1px solid var(--jia-line, #c9b79f); background: var(--jia-paper, #f1e7d8); } .ds-spread-margin { display: grid; gap: 0.6rem; justify-items: start; align-self: start; } .ds-spread-title { margin: 0; font-family: var(--f-display, Rokkitt, Rockwell, 'Roboto Slab', Georgia, serif); font-weight: 700; font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; color: var(--jia-terracotta, #89482e); padding-top: 0.35rem; border-top: 3px solid var(--jia-terracotta, #89482e); } .ds-spread-lede { margin: 0; max-width: 62ch; font-family: var(--f-body, Alegreya, Georgia, 'Times New Roman', serif); font-size: clamp(1.125rem, 1.5vw, 1.375rem); line-height: 1.5; color: var(--jia-text, #443d37); }"
+    },
+    {
+      "name": "Propuestas Parchment Panel",
+      "kind": "custom",
+      "refersTo": "proposals-panel",
+      "description": "A 4:3 sheet of card parchment under the grain, tilted -1.5°, pinned with a cast shadow, event-poster shadow plus the 8% inset edge, with the 160px compass in terracotta.",
+      "html": "<div class=\"ds-parchment-panel\" aria-hidden=\"true\"><svg width=\"160\" height=\"160\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"21\"/><circle cx=\"32\" cy=\"32\" r=\"3\"/><path d=\"M32 6v9M32 49v9M6 32h9M49 32h9\"/><path d=\"M32 14l5 15-5 3-5-3 5-15Z\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M32 50l-5-15 5-3 5 3-5 15Z\"/><path d=\"M14 32l15-5 3 5-3 5-15-5Z\"/><path d=\"M50 32l-15 5-3-5 3-5 15 5Z\"/></svg></div>",
+      "css": ".ds-parchment-panel { position: relative; aspect-ratio: 4 / 3; max-width: 320px; border-radius: 10px; background-color: var(--jia-card, #eee3d1); background-image: var(--paper-grain, url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.09 0 0 0 0 0.04 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")); background-size: 220px 220px; color: var(--jia-terracotta, #89482e); display: grid; place-items: center; box-shadow: 0 18px 40px -22px rgb(47 24 11 / 0.5), inset 0 0 0 1px rgb(47 24 11 / 0.08); transform: rotate(-1.5deg); } .ds-parchment-panel::before { content: \"\"; position: absolute; top: 12px; left: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--jia-terracotta, #89482e); box-shadow: 0 2px 4px rgb(47 24 11 / 0.35), inset 0 -2px 0 rgb(47 24 11 / 0.35); transform: translateX(-50%); }"
+    },
+    {
+      "name": "Empty State",
+      "kind": "card",
+      "refersTo": "empty-state",
+      "description": "The honest pending state for an absent collection: dashed sand-line panel on card parchment, a 56px terracotta lantern and one Alegreya line.",
+      "html": "<div class=\"ds-empty\"><span class=\"ds-empty-icon\"><svg width=\"56\" height=\"56\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M27 15v-4a5 5 0 0 1 10 0v4\"/><path d=\"M22 21h20l-2-6H24l-2 6Z\"/><path d=\"M25 21h14v22H25z\"/><path d=\"M25 21l14 22M39 21 25 43\"/><path d=\"M21 43h22l2 7H19l2-7Z\"/><path d=\"M32 50v7\"/></svg></span><p class=\"ds-empty-text\">Los dosieres se publicarán cuando la organización los facilite.</p></div>",
+      "css": ".ds-empty { display: grid; justify-items: center; gap: 1rem; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 3.5rem); border: 1.5px dashed var(--jia-line, #c9b79f); border-radius: 10px; background: var(--jia-card, #eee3d1); text-align: center; } .ds-empty-icon { color: var(--jia-terracotta, #89482e); display: inline-flex; } .ds-empty-text { margin: 0; max-width: 34ch; font-family: var(--f-body, Alegreya, Georgia, 'Times New Roman', serif); font-size: 1.125rem; color: var(--jia-text, #443d37); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Teacher's Field Notebook",
+    "overview": "The page is a set of ruled spreads on warm paper with lobby cards pinned to them, not a\nstack of event cards. One continuous paper ground carries everything; a fixed, faintly\nink-tinted grain sits under the content and never touches text, controls or photographs.\nThe only inverted ground is the footer, printed in JIA ink. Western cinema is the language\nof the page (a hand-drawn line-icon family, a wood-type slab for titles, a terracotta pin\nholding each poster, one handwritten note across the hero photograph) while education is\nthe content, so the western never becomes a costume: no weapons, no \"Se busca\" posters,\nno distressed textures on interface elements.\n\nDensity is editorial and unhurried. Sections breathe with a `clamp(4rem, 9vw, 7.5rem)`\nblock rhythm, the reading column is capped at 62ch, and each Jornadas block is a notebook\nspread: a running head in the left margin (sticky on desktop, ruled with a 3px terracotta\nline) and the content filling the page to its right. Photographs never sit in boxes; they\nbleed to the edge and dissolve into paper through masks.\n\nConfirmed visual rejections, from the identity guide and honoured by the build: pure black\nand pure white are never dominant colours; no bevels, 3D, drop-shadowed or \"burnt\" lettering;\nno grey or hard-offset shadows; the JIA lettering is never typeset from a font.",
+    "keyCharacteristics": [
+      "One paper ground (`paper`, with `sand` and `ivory` as its warmer and lighter siblings) and one accent (`terracotta`) that owns every action, pin, icon and running head.",
+      "Four self-hosted open-licence faces with strict roles: Rokkitt (titles), Alegreya (reading and the italic edition title), Barlow Semi Condensed (labels, navigation, buttons), Homemade Apple (exactly one note).",
+      "Shadows are always JIA ink at partial alpha with a negative spread; they lift pinned cards and float the dialog, and nothing else.",
+      "Flat surfaces, small radii (4px controls, 10px cards) and 1px `line` rules do the structural work; posters get a terracotta pin instead of a frame.",
+      "Every image has a guaranteed footprint: a missing photograph becomes a sheet of parchment (card parchment, the paper grain, a hairline inset edge and a terracotta pin) at the same proportion, never a flat colour block and never a broken file."
+    ],
+    "rules": [
+      {
+        "name": "The Single Accent Rule",
+        "body": "Terracotta is the only colour that means \"act here\" or \"this is the notebook's own mark\". Copper and olive are decorative extensions; if a new element needs an accent, it is terracotta or it is ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink-Alpha Rule",
+        "body": "Transparency is never a new colour. Shadows, veils, inset edges, the hero reveal, the team-strip fade and the header blur all derive from the three channel tokens (`--jia-ink-rgb`, `--jia-paper-rgb`, `--jia-sand-rgb`); no `rgba()` of any other value exists in the build.",
+        "section": "colors"
+      },
+      {
+        "name": "The Parchment Rule",
+        "body": "An empty surface is a sheet of parchment, not a colour block: card parchment, the shared `--paper-grain` tile, a 1px ink edge at 8% with a soft inset foot shadow, and a terracotta pin. Copper, olive, terracotta and ink remain valid surface tokens in the content model, but no page surface uses them.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Inverted Ground Rule",
+        "body": "Ink is a ground exactly once, in the footer, where the wordmark and links go ivory and body text goes sand. The Section component exposes an `ink` tone, but no section on the page uses it; the page body stays light.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wordmark Is Not Type Rule",
+        "body": "«JIA» is always the SVG mark (`public/brand/jia-wordmark-derived.svg`, `<use href=\"…#mark\">`, painted with `currentColor`), never three letters set in Rokkitt. The mark was traced with potrace from the approved render and is flagged `provisional: true` in `lib/content/media.ts` until the organisation produces the vector master (guide §5.5).",
+        "section": "typography"
+      },
+      {
+        "name": "The One Note Rule",
+        "body": "Homemade Apple appears exactly once, in the hero, decorative and hidden from assistive technology. It never carries information and never appears in a second component.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracked Caps Rule",
+        "body": "Uppercase belongs to Rokkitt titles (0.02–0.10em) and Barlow labels (0.12em, up to 0.18em on the footer column titles). Alegreya is never uppercased and never tracked; it owns every italic. Note the deviation from guide §6, which suggests starting short uppercase headlines at 0.08–0.16em: the build tracks section titles at 0.02em because Rokkitt is already condensed and set large.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ink Shadow Rule",
+        "body": "A cast shadow is always `rgb(47 24 11 / a)` with `a` between 0.35 and 0.55, blur ≥ 20px and a negative spread; the only small hard cast is the 12px pin (`0 2px 4px`). Inset shadows are the parchment edge (8%) and foot (25%). No grey shadows, no shadows on buttons, chips, inputs or the header.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Pinned, Not Floating Rule",
+        "body": "Cards lift by 3px on hover and nowhere else; the only element that truly floats is the dialog.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do put every brand colour through `app/theme/palette.css`; components consume `--jia-*` tokens and no brand hex lives anywhere else.",
+      "Do make terracotta (`#89482e`) the only action colour and deep terracotta (`#703923`) its only hover; use ink for structure and reading inks for text.",
+      "Do build shadows from `rgb(47 24 11 / 0.35–0.55)` with a negative spread, and only under pinned images, the dialog and menu panels.",
+      "Do keep radii on the six-step scale: 2px focus corner, 3px chips, 4px controls, 6px menus and scrollbar thumb, 8px waypoint tiles, 10px surfaces and panels.",
+      "Do give every interactive element a 44px (buttons 48px) minimum height, a 3px terracotta focus ring offset 3px, and a keyboard and touch path to anything hover reveals.",
+      "Do render an unavailable action as a transparent, dashed-`line`, muted, `aria-disabled` label with its note, and a missing image as pinned parchment (card + `--paper-grain` + 8% inset edge) at the same ratio.",
+      "Do put a provisional chip only beside an unconfirmed fact (edition title, dateline, a jornada, Organiza / Colabora, the Talleres hint, a sheet title), never on a section heading or a card foot.",
+      "Do set uppercase only in Rokkitt (0.02–0.10em) and Barlow (0.12em); keep every italic in Alegreya.",
+      "Do carry a small tracked label only when it holds a real datum (venue, hours, format, theme, role, pending state); it is a field label, not a decoration.",
+      "Do honour `prefers-reduced-motion` by removing the card lift, the reveal, the dialog rise and smooth scrolling; keep transitions at 160–320ms on `cubic-bezier(0.16, 1, 0.3, 1)`.",
+      "Do use the SVG wordmark via `<use href=\"/brand/jia-wordmark-derived.svg#mark\">` and the family icons from `components/icons` with a visible text label."
+    ],
+    "donts": [
+      "Don't typeset «JIA» in any font, add a bevel, 3D, thick outline or dramatic shadow to the lettering, or track its letters apart.",
+      "Don't use pure black or pure white as a ground or text colour; ink `#2f180b` and ivory `#f6eedf` are the extremes.",
+      "Don't set small reading text in copper (3.16:1) or olive (4.06:1); muted ink (4.93:1) is the floor.",
+      "Don't introduce grey shadows, shadows on buttons, chips or the header, or frames around posters; a card is held by its terracotta pin and a parchment sheet by its 8% inset edge.",
+      "Don't paint an empty surface as a flat copper, olive, terracotta or ink block, and don't put a label, kicker or category line above a card title; the theme is a «Temática» line after it.",
+      "Don't repeat the hero's star rule, the handwritten note or the tilted poster as a pattern in other components.",
+      "Don't use weapons, \"Se busca / Wanted\" framing, distressed or \"burnt\" textures on interface elements, or western props as controls; the family icons and functional glyphs are the whole vocabulary.",
+      "Don't put text or controls under the paper grain layer's influence; the grain is a fixed layer at 0.07 opacity behind everything.",
+      "Don't condense or horizontally scale a font; Rokkitt and Barlow Semi Condensed are already the narrow voices.",
+      "Don't rely on hover: the sheet reveal is `aria-hidden` and removed on touch, and the sheet always opens from a real button."
+    ]
+  }
+}

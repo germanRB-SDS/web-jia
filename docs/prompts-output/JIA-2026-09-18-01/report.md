@@ -26,6 +26,7 @@ El repositorio se ha inicializado y sincronizado con GitHub. El servidor local q
 | Render | `assets/images-website/JIA-render-base.png` (1672×941) | El MD de identidad lo cita como `jia_almería_siempre_inspira.png`; es el mismo concepto con otro nombre. |
 | Hero | `assets/images-website/hero-almeria-docentes.png` y `hero-2-almeria-docentes.png` (1672×941) | Dos encuadres. Se integra `hero-1` (luz más parecida al render); `hero-2` queda registrado como alternativa. Ambos llevan texto horneado (mochila, señales). |
 | Identidad | `assets/style/JIA_IDENTIDAD_VISUAL.md` | Leído completo: paleta HEX, tipografía por niveles, lettering, iconos, fotografía, tokens CSS. |
+| (nuevo durante la sesión) | `assets/images-website/hero-3.png` (1554×508, añadido el 18-09 a las 08:40) | Segundo render de presentación en formato banner, con interfaz, textos y botones horneados. Se trata como **referencia de estilo**, no como asset publicable (identidad §8.8). Sus frases («Ideas sin fronteras…», «Próximamente», «La educación también deja huella») no se incorporan como contenido oficial. |
 
 Inventario operativo implementado como código: `lib/content/media.ts` (registro de medios con origen
 y licencia), `lib/content/data/people.ts`, `workshops.ts`, `program.ts`, `organizations.ts` (cada
