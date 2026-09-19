@@ -68,26 +68,10 @@
     pointer-events: none;
   }
   /* The content column: from where the paper clears to the container's right edge. */
-  /* The tree of knowledge (tree-3d): as tall as the section, standing on its floor by the window's right edge.
-     Above the photograph, below the content (.inner rides at z-index 1): its crown passes behind the cards and the
-     text (the promoter's call, JIA-2026-09-19-35). The box is wider than the tree, to the left: that is where the
-     leaves the breeze takes fade in (experienciasTree › camera.air). */
-  .tree {
-    position: absolute;
-    z-index: 0;
-    /* Tied to the column, not to the window: the crown starts a little inside the column's right edge at every
-       width, and whatever does not fit runs off the window's edge, as in the reference. */
-    right: calc((100vw - var(--container)) / 2 - 34.2vw);
-    /* Taller than the section, hanging below it: the crown stays where it was and the rocks come down to the
-       photograph of the section that follows (JIA-2026-09-19-36); the section clips what is left over. */
-    bottom: -5.6%;
-    height: 108%;
-    aspect-ratio: 1.45;
-  }
-  .section > :not(.photo):not(.tree) {
+  .section > :not(.photo) {
     width: auto;
     /* The whole column sits --aula-shift further left than the clear paper and the container would put it
-       (promoter, JIA-2026-09-19-36): same width, moved, so it also stands clear of the tree. */
+       (promoter, JIA-2026-09-19-36): same width, moved. */
     margin-inline: calc(var(--aula-clear) - var(--aula-shift)) calc(max(var(--gutter), (100% - var(--container)) / 2) + var(--aula-shift));
   }
   .section header { margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }

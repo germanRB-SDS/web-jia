@@ -19,7 +19,7 @@ import { brand, getMedia, type Media } from "./media";
 import { acogeConfig } from "./sections/acoge";
 import { footerConfig } from "./sections/footer";
 import { dosieresConfig } from "./sections/dosieres";
-import { experienciasConfig, experienciasTree } from "./sections/experiencias";
+import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
 import { jornadasIntroVideo } from "./sections/jornadas-intro-video";
@@ -163,18 +163,7 @@ export type LandingModel = {
     workshops: { title: string; marks: MarkKind[]; items: SheetModel[] };
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
-  experiencias: {
-    id: string;
-    title: string;
-    lede: string;
-    empty: string;
-    items: SheetModel[];
-    media: Media | null;
-    fallback: SurfaceToken;
-    marks: MarkKind[];
-    /** The 3D tree behind the content (sections/experiencias.ts › experienciasTree); null when it is switched off. */
-    tree: typeof experienciasTree | null;
-  };
+  experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; media: Media | null; fallback: SurfaceToken; marks: MarkKind[] };
   propuestas: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; marks: MarkKind[] };
   partners: {
     id: string;
@@ -481,7 +470,6 @@ export function getLanding(locale: Locale): LandingModel {
       empty: copy.experiencias.empty,
       items: experienceItems,
       marks: marksOf(copy.experiencias.status),
-      tree: experienciasTree.enabled ? experienciasTree : null,
     },
     propuestas: {
       id: propuestasConfig.id,

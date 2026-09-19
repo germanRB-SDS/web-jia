@@ -2,7 +2,6 @@ import type { LandingModel, MarkKind } from "@/lib/content";
 import { Surface } from "@/components/primitives/Surface";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Section } from "./Section";
-import { ExperiencesTree } from "./ExperiencesTree";
 import styles from "./Experiences.module.css";
 
 type Props = { experiencias: LandingModel["experiencias"]; copy: LandingModel["copy"]; showMarks: boolean };
@@ -28,13 +27,9 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
       className={styles.section}
       backdrop={
         experiencias.media ? (
-          <>
-            <div className={styles.photo} aria-hidden="true">
-              <Surface media={experiencias.media} alt="" fallback={experiencias.fallback} ratio={1916 / 821} sizes="100vw" className={styles.surface} />
-            </div>
-            {/* The tree of knowledge: over the photograph and the ground, behind everything else (wide layout only). */}
-            {experiencias.tree ? <ExperiencesTree tree={experiencias.tree} className={styles.tree} /> : null}
-          </>
+          <div className={styles.photo} aria-hidden="true">
+            <Surface media={experiencias.media} alt="" fallback={experiencias.fallback} ratio={1916 / 821} sizes="100vw" className={styles.surface} />
+          </div>
         ) : null
       }
     >
