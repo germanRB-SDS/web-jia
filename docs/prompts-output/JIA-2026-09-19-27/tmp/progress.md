@@ -8,8 +8,8 @@
 | 3 | 5 | hecho | f495444 |
 | 4 | 8 herradura Blender + colgada | hecho | 50528fa |
 | 5 | 9 inclinada −14° + reubicada a la derecha, solo ≥ 1600 px (promotor) | hecho | 0caaf05 |
-| 6 | 10 clic → cae (balanceo, caída con giro, dos rebotes sobre la línea, 3,6 s tumbada, vuelve al clavo) + hotfix hero | hecho | (commits fase 6) |
-| 7 | 11 luz, sombra, reflejos | pendiente | — |
+| 6 | 10 clic → cae + hotfix hero | hecho | bc79132 · 19b832d |
+| 7 | 11 luz, sombra, reflejos (RoomEnvironment/PMREM 0,5; sol 2,3 desde arriba-izquierda; sombra 0,42 sobre pared a 10 px; ACES 0,92) | hecho | (commit fase 7) |
 | 8 | informe | pendiente | — |
 
 Notas:

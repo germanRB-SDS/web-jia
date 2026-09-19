@@ -8,6 +8,7 @@
  */
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import gsap from "gsap";
 import { HORSESHOE as CFG } from "./config";
 
@@ -38,6 +39,9 @@ export class HorseshoeScene {
   private readonly box = new THREE.Box3();
   private nailAt = new THREE.Vector2();
   private timeline: gsap.core.Timeline | null = null;
+  private sun: THREE.DirectionalLight;
+  private wall: THREE.Mesh;
+  private env: THREE.Texture | null = null;
 
   constructor(
     private stage: HTMLElement,
@@ -48,13 +52,34 @@ export class HorseshoeScene {
     this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = CFG.render.exposure;
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.camera.position.set(0, 0, 1000);
     this.camera.lookAt(0, 0, 0);
 
+    // Light: a soft sky and a warm key from high left, in front of the wall, that throws the shadow.
     const sky = new THREE.HemisphereLight(0xfff6e6, 0x3a2a1c, CFG.render.light.sky);
-    const sun = new THREE.DirectionalLight(0xfff1dc, CFG.render.light.sun);
-    sun.position.set(-0.45, 0.8, 1).multiplyScalar(600);
-    this.scene.add(sky, sun, this.pivot, this.nail);
+    this.sun = new THREE.DirectionalLight(0xfff1dc, CFG.render.light.sun);
+    this.sun.castShadow = true;
+    this.sun.shadow.mapSize.set(CFG.render.shadow.mapSize, CFG.render.shadow.mapSize);
+    this.sun.shadow.bias = -0.0005;
+    this.sun.shadow.normalBias = 0.6;
+    this.scene.add(sky, this.sun, this.sun.target, this.pivot, this.nail);
+
+    // Reflections: a room environment baked by PMREM, on the metal only (the wall has no material of its own).
+    const pmrem = new THREE.PMREMGenerator(this.renderer);
+    this.env = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmrem.dispose();
+    this.scene.environment = this.env;
+    this.scene.environmentIntensity = CFG.render.envIntensity;
+
+    // The wall: invisible except where the shadow falls (the footer's ink shows through).
+    const shadowMat = new THREE.ShadowMaterial({ opacity: CFG.render.shadow.opacity, transparent: true, depthWrite: false });
+    this.wall = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), shadowMat);
+    this.wall.receiveShadow = true;
+    this.scene.add(this.wall);
   }
 
   async init(glbUrl: string): Promise<void> {
@@ -62,7 +87,10 @@ export class HorseshoeScene {
     if (this.disposed) return;
     const model = gltf.scene;
     model.traverse((o) => {
-      if (o instanceof THREE.Mesh && o.material instanceof THREE.MeshStandardMaterial) o.material.needsUpdate = true;
+      if (o instanceof THREE.Mesh) {
+        o.castShadow = true;
+        if (o.material instanceof THREE.MeshStandardMaterial) o.material.needsUpdate = true;
+      }
     });
     this.modelBox.setFromObject(model);
     this.model = model;
@@ -80,6 +108,8 @@ export class HorseshoeScene {
     const head = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 24), mat);
     head.rotation.x = Math.PI / 2;
     head.name = "head";
+    shank.castShadow = true;
+    head.castShadow = true;
     this.nail.add(shank, head);
   }
 
@@ -97,6 +127,23 @@ export class HorseshoeScene {
     this.camera.right = this.width;
     this.camera.bottom = -this.height;
     this.camera.updateProjectionMatrix();
+
+    // The wall spans the stage, a little behind the shoe; the key light frames the whole stage in its shadow camera.
+    this.wall.scale.set(this.width, this.height, 1);
+    this.wall.position.set(this.width / 2, -this.height / 2, -CFG.render.shadow.wallDepthPx);
+    const [sx, sy, sz] = CFG.render.light.sunFrom;
+    const reach = Math.max(this.width, this.height);
+    this.sun.position.set(sx, sy, sz).normalize().multiplyScalar(reach * 2);
+    this.sun.position.add(new THREE.Vector3(this.width / 2, -this.height / 2, 0));
+    this.sun.target.position.set(this.width / 2, -this.height / 2, 0);
+    const cam = this.sun.shadow.camera;
+    cam.left = -reach * 0.75;
+    cam.right = reach * 0.75;
+    cam.top = reach * 0.75;
+    cam.bottom = -reach * 0.75;
+    cam.near = 1;
+    cam.far = reach * 4;
+    cam.updateProjectionMatrix();
     if (!this.model) return;
 
     const size = CFG.size;
@@ -218,6 +265,7 @@ export class HorseshoeScene {
         (Array.isArray(m) ? m : [m]).forEach((x) => x.dispose());
       }
     });
+    this.env?.dispose();
     this.renderer.dispose();
   }
 }

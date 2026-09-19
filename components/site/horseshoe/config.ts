@@ -37,8 +37,16 @@ export const HORSESHOE = {
     /** The climb back to its nail. */
     riseMs: 1200,
   },
+  /** Point 11: light, shadow and reflections. */
   render: {
     maxPixelRatio: 2,
-    light: { sun: 3.4, sky: 1.5 },
+    /** A warm key from high left in front of the wall, and a soft sky. */
+    light: { sun: 2.3, sky: 0.8, sunFrom: [-0.55, 0.85, 1.0] as const },
+    /** Reflections: a room environment (PMREM) on the metal, scaled by this. */
+    envIntensity: 0.5,
+    /** Tone mapping exposure (ACES filmic). */
+    exposure: 0.92,
+    /** The shadow on the footer's wall: how dark, and how far behind the shoe the wall is (px). */
+    shadow: { opacity: 0.42, wallDepthPx: 10, mapSize: 1024 },
   },
 } as const;
