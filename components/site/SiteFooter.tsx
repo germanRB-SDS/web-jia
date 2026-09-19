@@ -1,5 +1,6 @@
 import type { LandingModel } from "@/lib/content";
 import { FooterShots } from "./FooterShots";
+import { Horseshoe } from "./horseshoe/Horseshoe";
 import { StudioStrip } from "./tumbleweeds/StudioStrip";
 import styles from "./SiteFooter.module.css";
 
@@ -14,7 +15,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <div className={styles.brand}>
+        <div className={styles.brand} data-hang-anchor="">
           <svg className={styles.wordmark} viewBox={`0 0 ${brand.wordmark.width} ${brand.wordmark.height}`} role="img" aria-label={copy.a11y.wordmark}>
             <use href={`${brand.wordmark.src}#mark`} />
           </svg>
@@ -50,6 +51,9 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
             ))}
           </ul>
         </div>
+
+        {/* The horseshoe hangs from the footer's top edge (horseshoe/), over this block and never over the strip. */}
+        <Horseshoe glb={footer.horseshoe.glb} label={footer.horseshoe.label} />
       </div>
 
       <StudioStrip studio={footer.studio} tumbleweeds={footer.tumbleweeds} notice={footer.editionTitleNotice} />

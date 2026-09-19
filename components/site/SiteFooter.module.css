@@ -41,6 +41,32 @@
   text-wrap: balance;
   color: var(--jia-sand);
 }
+/* The horseshoe's stage: the whole block above the rule, drawn over the columns but never in the pointer's way;
+   only the button that follows the shoe takes the pointer (horseshoe/Horseshoe.tsx places it every frame). */
+.shoeStage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.shoeStage canvas { display: block; width: 100%; height: 100%; }
+.shoeHit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 40%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.shoeHit:focus-visible { outline: 2px solid var(--jia-ivory); outline-offset: 4px; }
 .col { display: grid; gap: 0.75rem; align-content: start; }
 .colTitle {
   margin: 0;

@@ -31,6 +31,10 @@ magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jorn
 # Jornadas road: the wagon GLB exported from Blender (assets/3d/carruaje, JIA-2026-09-18-07), copied as is.
 cp assets/3d/carruaje/jia-carruaje.glb public/jornadas/jia-carruaje.glb
 
+# Footer: the worn horseshoe built by Blender headless (assets/3d/herradura/make-herradura.py, JIA-2026-09-19-27), copied as is.
+out public/footer/x
+cp assets/3d/herradura/herradura.glb public/footer/herradura.glb
+
 # Jornadas intro video (JIA-2026-09-18-10): web version of the 4K original (2.1 GB, not in git) + its poster.
 # Needs ffmpeg (brew install ffmpeg, or FFMPEG=/path/to/ffmpeg); skipped when the tool or the original is missing,
 # so the committed derivatives stay as they are. URL/poster are wired in lib/content/sections/jornadas-intro-video.ts.

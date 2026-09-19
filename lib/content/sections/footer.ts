@@ -9,4 +9,6 @@ export const footerConfig = {
   /** Each hole, on its own: milliseconds it stays before it starts to fade, and how long the fade takes. */
   shotLifeMs: 3000,
   shotFadeMs: 700,
+  /** The horseshoe's model, built by Blender headless (assets/3d/herradura) and copied by build-assets.sh. */
+  horseshoeGlb: "/footer/herradura.glb",
 } as const;

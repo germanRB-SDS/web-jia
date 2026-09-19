@@ -186,6 +186,8 @@ export type LandingModel = {
     maxShots: number;
     shotLifeMs: number;
     shotFadeMs: number;
+    /** The horseshoe hanging on the footer: its model and the accessible name of its button. */
+    horseshoe: { glb: string; label: string };
     marks: MarkKind[];
   };
 };
@@ -519,6 +521,7 @@ export function getLanding(locale: Locale): LandingModel {
       maxShots: footerConfig.maxShots,
       shotLifeMs: footerConfig.shotLifeMs,
       shotFadeMs: footerConfig.shotFadeMs,
+      horseshoe: { glb: footerConfig.horseshoeGlb, label: copy.footer.horseshoe },
       marks: [],
     },
   };
