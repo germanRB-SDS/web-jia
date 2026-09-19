@@ -9,14 +9,14 @@ type Props = {
   front: ReactNode;
   /** The face seen as it turns (decoration: hidden from assistive technology). */
   back: ReactNode;
-  /** Each time this turns true the card turns twice, from its front to its front; when it turns false it stops. */
+  /** Each time this turns true the card turns once, from its front to its front; when it turns false it stops. */
   open: boolean;
   className?: string;
 };
 
 /**
- * A card with two faces that turns twice about its vertical axis when `open` becomes true and ends exactly where its
- * front would be without it (the front is in the flow; the back lies behind it). After the turns it leans softly towards a
+ * A card with two faces that turns once about its vertical axis when `open` becomes true and ends exactly where its
+ * front would be without it (the front is in the flow; the back lies behind it). After the turn it leans softly towards a
  * fine pointer. With reduced motion the engine is never started: the front stands still. Engine: flip-card.ts.
  */
 export function FlipCard({ front, back, open, className }: Props) {
@@ -43,7 +43,7 @@ export function FlipCard({ front, back, open, className }: Props) {
     };
   }, []);
 
-  // Before the paint, so the turns start with the dialog's first frame.
+  // Before the paint, so the turn starts with the dialog's first frame.
   useLayoutEffect(() => {
     openRef.current = open;
     if (open) flipRef.current?.open();

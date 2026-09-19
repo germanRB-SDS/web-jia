@@ -59,6 +59,22 @@ completándose en 2,0 s**.»
   ≈ 3,6 s. Velocidad (°/s, ventanas de 200 ms): 299 → 280 → **230 (freno)** → 279 → 277 → 270 │ 260 → 226 → 170 → 97 →
   13 → **0** → 92 → 229 → 278 → 221 → 80 → 0. Caja final y `transform` como antes; consola limpia; `tsc`,
   `check:content` y `next build` en verde.
-- Evidencia: `docs/prompts-output/JIA-2026-09-19-31/evidence/ficha-taller-dos-vueltas-con-parada-en-el-reverso-1440.png`.
+- Evidencia: sustituida por la de la segunda corrección, abajo.
 - Supuesto: los 2,0 s de la segunda vuelta son de giro y la parada de 0,3 s va aparte. Si debe caber todo en 2,0 s,
   bajar `toBackMs`/`toFrontMs` a 850.
+
+## Segunda corrección del promotor (2026-09-19, por chat) y resultado — ESTADO FINAL
+
+«¿Puedes hacerlo con **1 vuelta**? ¿Mantenemos **solo la vuelta lenta**, con **parada ease-in de 0,4** y **ease-out al
+salir**, en efecto movimiento? En la imagen, cuando se abre la ventana de los talleres.»
+
+- Queda **una sola vuelta** (la lenta), del frontal al frontal: 1,0 s hasta el reverso perdiendo velocidad desde
+  270 °/s hasta **pararse** (la entrada suave a la parada), **0,4 s quieta** con el sello a la vista, y 1,0 s hasta el
+  frontal con `sine.inOut` (sale suave y se posa suave). **2,4 s en total.** Fuera la primera vuelta y su freno.
+- `config.ts` → `turn: { toBackMs: 1000, slowdown: 2, holdMs: 400, toFrontMs: 1000, toFrontEase: "sine.inOut" }`
+  (sustituye a `turns`). `flip-card.ts` se simplifica: la tabla de ángulos ya solo tiene esos tres tramos.
+- Medido en Chrome (CDP, 1440): 90° a 350 ms; **quieta en el reverso ≈ 0,94–1,41 s**; 270° a 1893 ms; frontal a
+  ≈ 2,35 s. Velocidad (°/s, ventanas de 200 ms): 237 → 191 → 124 → 35 → **0 → 2** → 114 → 240 → 277 → 207 → 61 → 0.
+  Caja final 264 / 223,69 / 320 / 452,61 y `transform` identidad; consola limpia; `tsc`, `check:content` y
+  `next build` en verde.
+- Evidencia: `docs/prompts-output/JIA-2026-09-19-31/evidence/ficha-taller-una-vuelta-lenta-con-parada-en-el-reverso-1440.png`.
