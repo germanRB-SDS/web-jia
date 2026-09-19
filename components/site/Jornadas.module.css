@@ -57,11 +57,11 @@
   text-wrap: balance;
 }
 /* Same voice as every section lede (Section.module.css .lede). */
-/* The statement and, beside it, the seal, hanging from the row's top (it grows downwards, never up). Its width is its
-   own: a share of the row, capped at 10 % more than the 165 px it had on a large window (promoter,
-   JIA-2026-09-19-30). Until then it took the paragraph's height, which depends on the seal's own width: that loop
-   pushed it out of the window at 1440 px. It shows only where the column leaves the paragraph room to read:
-   never on a phone (below 760 px), nor in a column narrower than 22rem. */
+/* The statement and, beside it, the seal, hanging from the row's top: it grows downwards and is never moved down
+   nor up (promoter, 19-09-2026). Its width is its own: a share of the row, capped. Until JIA-2026-09-19-30 it took
+   the paragraph's height, which depends on the seal's own width: that loop pushed it out of the window at 1440 px.
+   It shows only where the column leaves the paragraph room to read: never on a phone (below 760 px), nor in a
+   column narrower than 22rem. */
 .statementRow {
   display: flex;
   align-items: flex-start;
@@ -88,6 +88,11 @@
 @container (max-width: 21.99rem) {
   .seal { display: none; }
 }
+/* 20 % larger again (promoter, 19-09-2026), still hanging from the top: where the column has room for it without
+   choking the paragraph (windows from about 1360 px); narrower columns keep the size above. */
+@container (min-width: 28rem) {
+  .seal { width: clamp(7.8rem, 38.4%, 13.62rem); }
+}
 .statement {
   flex: 1 1 auto;
   min-width: 0;
@@ -98,6 +103,9 @@
   color: var(--jia-text);
   max-width: var(--measure);
 }
+/* Its paragraphs: one blank line between them (the line height). */
+.statement p { margin: 0; }
+.statement p + p { margin-top: 1.5em; }
 @media (min-width: 900px) {
   .band {
     grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);

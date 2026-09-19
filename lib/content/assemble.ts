@@ -145,7 +145,8 @@ export type LandingModel = {
     id: string;
     anchors: typeof jornadasConfig.anchors;
     title: string;
-    intro: string;
+    /** The statement, one string per paragraph. */
+    intro: readonly string[];
     /** The seal beside the statement (decorative). */
     seal: Media | null;
     band: Media | null;

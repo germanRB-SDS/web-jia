@@ -65,7 +65,11 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
             </h2>
             {/* The seal stands to the right of the statement, exactly as tall as it (its width follows); phones skip it. */}
             <div className={styles.statementRow}>
-              <p className={styles.statement}>{jornadas.intro}</p>
+              <div className={styles.statement}>
+                {jornadas.intro.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
               {jornadas.seal ? (
                 <div className={styles.seal} aria-hidden="true">
                   <Picture media={jornadas.seal} alt="" sizes="240px" className={styles.sealImg} />

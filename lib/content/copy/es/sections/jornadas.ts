@@ -3,8 +3,11 @@ import type { Copy } from "../../types";
 /** JORNADAS: programme, how it works, team and workshops. Editorial text is a proposal (brief §5), pending validation. */
 export const jornadas: Copy["jornadas"] = {
   title: "Las jornadas",
-  intro:
-    "Un punto de encuentro para docentes que quieran realizar un viaje de exploración hacia nuevas maneras de enseñar y de compartir lo que sucede en sus aulas. El cine y el universo western almeriense son el hilo conductor de esta edición. Esperamos que disfrutes de los talleres que te listamos a continuación:",
+  /** Two paragraphs, a blank line between them (promoter, 19-09-2026). */
+  intro: [
+    "Un punto de encuentro para docentes que quieran realizar un viaje de exploración hacia nuevas maneras de enseñar y de compartir lo que sucede en sus aulas. El cine y el universo western almeriense son el hilo conductor de esta edición.",
+    "Esperamos que disfrutes de los talleres que te listamos a continuación:",
+  ],
   /** Stop labels are the workshop names from config/talleres.ts (promoter, JIA-2026-09-18-09). */
   route: { regionLabel: "Camino de las jornadas: los talleres" },
   introVideo: {

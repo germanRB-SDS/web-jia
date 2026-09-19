@@ -89,7 +89,8 @@ export type Copy = {
   waypoints: { title: string; items: Record<string, { label: string; line: string }> };
   jornadas: {
     title: string;
-    intro: string;
+    /** One string per paragraph; a blank line separates them. */
+    intro: readonly string[];
     /** The animated road under the intro (stop labels come from config/talleres.ts). */
     route: { regionLabel: string };
     /** The "Intro" block with the video, before the programme. */
