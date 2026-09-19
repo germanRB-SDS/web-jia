@@ -46,6 +46,12 @@ Añadidos por el promotor en chat durante la ejecución:
   rodando, apoyada en el borde y entera sobre la línea, vuelta al clavo), 1440 (sello y tarjeta 3D) y 390 (sello
   oculto). Capturas en `docs/prompts-output/JIA-2026-09-19-29/evidence/`.
 
+### Hotfix posterior (promotor, chat): la sombra del hover no se corta
+
+La franja del carrusel recorta (`overflow: clip`) y dejaba 1,75 rem bajo las tarjetas: la sombra larga de la tarjeta
+girada se cortaba por abajo. El hueco pasa a 1,5 rem arriba y 4,5 rem abajo (relleno y margen negativo iguales, así
+el carrusel no se mueve). Verificado a 1440: la sombra completa cabe dentro del recorte.
+
 ## Riesgos
 
 - **Menor:** el trayecto de rodadura depende de dónde cuelgue (a 1600 px es corto, ~150 px); la vuelta de giro se

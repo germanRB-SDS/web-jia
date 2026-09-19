@@ -33,6 +33,10 @@
   caída, así que la tumbada muestra su cara superior y el grosor). No rueda, no se desplaza a la derecha. Regla de
   signo aprendida en JIA-29: `landTipDeg` **positivo** vuelca hacia la pared (hacia atrás), negativo hacia el ojo.
 - **Entera sobre la línea** (JIA-28) y a los **5 s** vuelve sola al clavo, como ahora. Movimiento reducido: nada.
+- **Importante (promotor): el clavo que la fija a la pared no se mueve.** Se queda exactamente como está durante toda
+  la secuencia (caída, rebote, vuelco, descanso y vuelta): es un objeto aparte del pivote (`this.nail`, colocado en
+  `nailAt` en `place()`) y ninguna línea de tiempo lo toca; la herradura se desengancha de él y vuelve a él. Verificar
+  en las capturas que el clavo y su sombra siguen en su sitio con la herradura en el suelo.
 - Código: `config.fall` pierde `roll` (o queda `roll.enabled: false` si se prefiere conservar el camino; mejor
   quitarlo y simplificar `drop()`), gana `trigger: "dblclick"`, `bounce` único (`share`, `ms`) y `landTipDeg`
   positivo (≈ +70°) con `forwardPx` pequeño (la herradura cae al pie de la pared). `Horseshoe.tsx`: `onDoubleClick`
