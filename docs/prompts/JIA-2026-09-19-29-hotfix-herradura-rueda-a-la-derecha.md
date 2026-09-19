@@ -55,7 +55,8 @@ el carrusel no se mueve). Verificado a 1440: la sombra completa cabe dentro del 
 ### Hotfix posterior (promotor, chat): el hero un 10 % más bajo
 
 El tope vertical del hero a ≥ 960 px pasa de `min(88vh, 900px)` a `min(79vh, 810px)` (en `.hero` y en
-`.content`), un 10 % menos en ambos límites. Medido a 1440×900: de 792 px a 711 px de alto.
+`.content`), un 10 % menos en ambos límites (medido a 1440×900: de 792 px a 711 px), y después, a petición del
+promotor, un 5 % más: **`min(75vh, 770px)`** (a 1440×900: 675 px; a 1920×1080: 770 px).
 
 ## Riesgos
 
