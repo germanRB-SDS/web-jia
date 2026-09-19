@@ -188,6 +188,16 @@ export function FullscreenExitIcon(props: IconProps) {
   );
 }
 
+/** Share: an arrow rising out of an open tray (the phone's own sign), same grid and stroke as the controls. */
+export function ShareIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M32 38V10M21 21l11-11 11 11" />
+      <path d="M22 30h-8v24h36V30h-8" />
+    </svg>
+  );
+}
+
 /** "Download": an arrow into a tray, same grid and stroke as the family. */
 export function DownloadIcon(props: IconProps) {
   return (

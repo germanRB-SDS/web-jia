@@ -84,7 +84,9 @@ export type IntroVideoModel = {
   aspect: number;
   autoplay: boolean;
   loop: boolean;
-  controls: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string };
+  controls: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; share: string };
+  /** Text sent with the page link by the share control (phones only). */
+  shareText: string;
 };
 
 export type DayModel = {
@@ -431,7 +433,7 @@ export function getLanding(locale: Locale): LandingModel {
         controls: copy.buttons.route,
       },
       hashtag: event.hashtag,
-      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, controls: copy.buttons.video },
+      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, shareText: copy.jornadas.introVideo.shareText, controls: copy.buttons.video },
       program: { title: copy.jornadas.program.title, days },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length

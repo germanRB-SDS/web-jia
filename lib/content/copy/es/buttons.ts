@@ -17,5 +17,6 @@ export const buttons: Buttons = {
     unmute: "Activar el sonido",
     fullscreen: "Ver el vídeo a pantalla completa",
     exitFullscreen: "Salir de pantalla completa",
+    share: "Compartir el enlace de las jornadas",
   },
 };

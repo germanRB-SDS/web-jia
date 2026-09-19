@@ -15,7 +15,7 @@ export type Buttons = {
   /** Control of the animated road in Jornadas (icon button: this is its accessible name). */
   route: { replay: string };
   /** Controls over the Jornadas intro video (icon buttons: these are their accessible names). */
-  video: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string };
+  video: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; share: string };
   /** Arrows of the team cube (icon buttons: these are their accessible names). */
   cube: { prev: string; next: string };
 };
@@ -93,7 +93,7 @@ export type Copy = {
     /** The animated road under the intro (stop labels come from config/talleres.ts). */
     route: { regionLabel: string };
     /** The "Intro" block with the video, before the programme. */
-    introVideo: { title: string; videoLabel: string };
+    introVideo: { title: string; videoLabel: string; /** Text that goes with the link when the video is shared from a phone. */ shareText: string };
     program: {
       title: string;
       /** `{n}` */

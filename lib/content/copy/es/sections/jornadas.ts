@@ -7,7 +7,11 @@ export const jornadas: Copy["jornadas"] = {
     "Un punto de encuentro para docentes que quieran realizar un viaje de exploración hacia nuevas maneras de enseñar y de compartir lo que sucede en sus aulas. El cine y el universo western almeriense son el hilo conductor de esta edición.",
   /** Stop labels are the workshop names from config/talleres.ts (promoter, JIA-2026-09-18-09). */
   route: { regionLabel: "Camino de las jornadas: los talleres" },
-  introVideo: { title: "Intro", videoLabel: "Vídeo de presentación de las jornadas" },
+  introVideo: {
+    title: "Intro",
+    videoLabel: "Vídeo de presentación de las jornadas",
+    shareText: "Jornadas de Innovación de Almería: vídeo de presentación",
+  },
   program: {
     title: "Programa",
     dayLabel: "Jornada {n}",

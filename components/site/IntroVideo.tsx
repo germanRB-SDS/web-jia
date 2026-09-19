@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { IntroVideoModel } from "@/lib/content";
-import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PlayIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
+import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
 import styles from "./IntroVideo.module.css";
 
 type Props = { intro: IntroVideoModel };
@@ -15,7 +15,8 @@ type IOSVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void; webkitD
  * (its limit comes from lib/content/sections/jornadas-intro-video.ts). The file is only
  * requested when the block nears the viewport; it then plays muted, pauses when it leaves the
  * screen and never autoplays under prefers-reduced-motion. Round controls sit top-right:
- * fullscreen (the frame goes full screen so the controls stay; iOS uses the player's own), sound, play/pause.
+ * share (phones only: the Web Share API with a coarse pointer), fullscreen (the frame goes full screen so the
+ * controls stay; iOS uses the player's own), sound, play/pause.
  */
 export function IntroVideo({ intro }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -28,6 +29,7 @@ export function IntroVideo({ intro }: Props) {
   const [failed, setFailed] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [canFullscreen, setCanFullscreen] = useState(false);
+  const [canShare, setCanShare] = useState(false);
 
   // Ask for the file shortly before the block shows up.
   useEffect(() => {
@@ -84,6 +86,16 @@ export function IntroVideo({ intro }: Props) {
     document.addEventListener("fullscreenchange", sync);
     return () => document.removeEventListener("fullscreenchange", sync);
   }, [load]);
+
+  // Share: only where the system share sheet exists and the pointer is a finger (a phone or a tablet).
+  useEffect(() => {
+    setCanShare(typeof navigator.share === "function" && window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  const share = useCallback(() => {
+    const url = `${location.origin}${location.pathname}#${intro.anchor}`;
+    navigator.share({ title: document.title, text: intro.shareText, url }).catch(() => {});
+  }, [intro.anchor, intro.shareText]);
 
   const toggleFullscreen = useCallback(() => {
     const frame = frameRef.current;
@@ -143,6 +155,11 @@ export function IntroVideo({ intro }: Props) {
         ) : null}
         {showControls ? (
           <div className={styles.controls}>
+            {canShare ? (
+              <button type="button" className={styles.control} onClick={share} aria-label={intro.controls.share} title={intro.controls.share}>
+                <ShareIcon size={24} />
+              </button>
+            ) : null}
             {canFullscreen ? (
               <button type="button" className={styles.control} onClick={toggleFullscreen} aria-label={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} title={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} aria-pressed={fullscreen}>
                 {fullscreen ? <FullscreenExitIcon size={24} /> : <FullscreenIcon size={24} />}
