@@ -98,8 +98,11 @@ por tokens (`--jia-ink-rgb`), y no toca la sombra propia del cartel (que sigue d
 
 - El párrafo actual se acorta: «Las Jornadas de Innovación de Almería las organizan el CEP de Almería, el CEP de El
   Ejido y el CEP de Cuevas-Olula, dentro de la Consejería de Educación de la Junta de Andalucía.»
-- Debajo, **otro párrafo** (línea en blanco entre ambos): «Queremos agradecer muy especialmente a todas las empresas
-  colaboradoras pues su altruista ayuda ha sido clave para esta edición de las jornadas».
+- Debajo, **otro párrafo** (línea en blanco entre ambos). Redacción final (hotfix del promotor en chat, tras la
+  fase 1): «Agradecemos muy especialmente la valiosa y altruista colaboración de todas las empresas participantes; su
+  compromiso ha sido una pieza clave en esta edición de las jornadas.» (sustituye a «Queremos agradecer muy
+  especialmente a todas las empresas colaboradoras pues su altruista ayuda ha sido clave para esta edición de las
+  jornadas»).
 - Copy: `partners.text` (con los enlaces a los CEP) y nuevo `partners.thanks`; modelo con ambos; el componente pinta
   dos `<p>` con la separación de párrafo del cuerpo.
 
