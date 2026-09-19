@@ -1,4 +1,4 @@
-/* The strip runs from one edge of the window to the other; the rule and the hint keep to the page's container. */
+/* The strip runs from one edge of the window to the other; the anchor and the hint keep to the page's container. */
 .carousel {
   --card-w: clamp(16.5rem, 23vw, 18.5rem);
   --card-gap: clamp(1rem, 1.8vw, 1.5rem);
@@ -7,12 +7,13 @@
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.5rem, 3vw, 2.25rem);
 }
-.rule,
+.anchor,
 .hint {
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
 }
-.rule { height: 1px; background: var(--jia-line); }
+/* No line above the cards (promoter, JIA-2026-09-19-30): the anchor only marks the page's left edge for the engine. */
+.anchor { height: 0; }
 .viewport {
   overflow: hidden;
   overflow: clip;

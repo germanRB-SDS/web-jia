@@ -6,7 +6,7 @@ type Props = { partners: LandingModel["partners"] };
 
 /**
  * Organiza / colabora, the last band before the footer: kicker with a rule, title, the framing text
- * (organisers linked) on the right, then a hairline and the collaborators' carousel, which runs the
+ * (organisers linked) on the right, then the collaborators' carousel, which runs the
  * whole width of the window.
  */
 export function Partners({ partners }: Props) {
