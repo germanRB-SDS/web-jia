@@ -1,0 +1,6 @@
+/* The tree fills the box its caller gives it and never takes the pointer. Size and place are the caller's. */
+.tree {
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
