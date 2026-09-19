@@ -45,7 +45,12 @@ export const HORSESHOE = {
     landTiltDeg: 20,
     rockDeg: 4,
     standMs: 180,
-    /** Then it falls over backwards about the point it stands on: tipped until it lies on the floor (degrees from
+    /** Promoter's last word (JIA-2026-09-19-30): the animation ends there, standing on the rule — it does not fall
+        over. `tipOver: true` brings the fall backwards back (below). `returns`: whether, after `restMs`, it
+        climbs back to its nail (false leaves it standing on the rule until the page is loaded again). */
+    tipOver: false,
+    returns: true,
+    /** With `tipOver`: it falls over backwards about the point it stands on: tipped until it lies on the floor (degrees from
         the vertical, −90 would be flat; negative sends the ends of the U away from the eye, positive would show
         it edge-on). Slow at first and a little faster as it goes; it does not bounce. The eye rises meanwhile. */
     landTipDeg: -74,

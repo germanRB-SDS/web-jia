@@ -5,7 +5,7 @@
  * when asked (placement, resize, each step of an animation) — no loop while nothing moves. The hit button
  * is placed over the shoe's projected box after every render so the click and the accessible name live in
  * real HTML. A double click (`drop`) and the shoe lets go of its nail, which stays on the wall: it falls straight
- * down to the rule, bounces twice, falls over backwards, lies there a while and climbs back to its nail
+ * down to the rule, bounces twice, stands there a while and climbs back to its nail
  * (GSAP timeline, config.fall); nothing moves under reduced motion.
  */
 import * as THREE from "three";
@@ -47,6 +47,8 @@ export class HorseshoeScene {
   private readonly box = new THREE.Box3();
   private nailAt = new THREE.Vector2();
   private timeline: gsap.core.Timeline | null = null;
+  /** Down for good (config.fall.returns false): it does not let go twice; a resize hangs it again. */
+  private fallen = false;
   private sun: THREE.DirectionalLight;
   private wall: THREE.Mesh;
   private floor: THREE.Mesh;
@@ -182,6 +184,7 @@ export class HorseshoeScene {
     const nailY = CFG.nail.topPx + this.modelBox.max.y * scale;
     this.nailAt.set(nailX, -nailY);
     // A resize mid-fall puts the shoe back on its nail.
+    this.fallen = false;
     if (this.timeline) {
       this.timeline.kill();
       this.timeline = null;
@@ -224,14 +227,15 @@ export class HorseshoeScene {
 
   /** Whether the shoe is hanging still (it only lets go then). */
   get hung(): boolean {
-    return Boolean(this.model) && !this.timeline;
+    return Boolean(this.model) && !this.timeline && !this.fallen;
   }
 
-  /** The shoe lets go of its nail (which never moves): it drops straight down, bounces twice, stands, falls over
-      backwards, rests there and climbs back. */
+  /** The shoe lets go of its nail (which never moves): it drops straight down, bounces twice and stands on the
+      rule (config: it may then fall over backwards), rests there and climbs back. */
   drop() {
-    if (!this.model || this.timeline || this.reducedMotion) return;
+    if (!this.model || this.timeline || this.fallen || this.reducedMotion) return;
     const F = CFG.fall;
+    this.fallen = !F.returns;
     const rad = THREE.MathUtils.degToRad;
     const rest = rad(CFG.restTiltDeg);
     const tip = rad(F.landTipDeg);
@@ -299,19 +303,23 @@ export class HorseshoeScene {
         .to(l, { z: tilt + rock, duration: up * 2, ease: "sine.inOut", onUpdate: keepX }, `fall+=${at}`);
       at += up * 2;
     });
-    // Standing on the rule; then over backwards, slowly at first and a little faster as it goes, while the eye
-    // rises to see it lie there.
-    at += F.standMs / 1000;
-    const tipS = F.tipMs / 1000;
-    tl.set(p, { x: landX, y: landY }, `fall+=${at}`)
-      .to(l, { x: tip, duration: tipS, ease: F.tipEase, onUpdate: topple }, `fall+=${at}`)
-      .to(this, { camElev: CFG.camera.elevationPx, duration: tipS, ease: "sine.inOut" }, `fall+=${at}`)
-      .to({}, { duration: F.restMs / 1000 })
-      // Back to the wall and its nail.
-      .to(p, { x: this.nailAt.x, y: this.nailAt.y, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
-      .to(l, { x: 0, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
-      .to(r, { z: rest, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
-      .to(this, { camElev: 0, duration: F.riseMs / 1000, ease: "power2.inOut", onUpdate: () => this.setCamera(this.camElev) }, "rise");
+    // Standing on the rule: there the animation ends. With `tipOver`, after a short pause it goes over backwards,
+    // slowly at first and a little faster as it goes, while the eye rises to see it lie there.
+    tl.set(p, { x: landX, y: landY }, `fall+=${at}`);
+    if (F.tipOver) {
+      at += F.standMs / 1000;
+      const tipS = F.tipMs / 1000;
+      tl.to(l, { x: tip, duration: tipS, ease: F.tipEase, onUpdate: topple }, `fall+=${at}`)
+        .to(this, { camElev: CFG.camera.elevationPx, duration: tipS, ease: "sine.inOut" }, `fall+=${at}`);
+    }
+    if (F.returns) {
+      tl.to({}, { duration: F.restMs / 1000 })
+        // Back to the wall and its nail.
+        .to(p, { x: this.nailAt.x, y: this.nailAt.y, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
+        .to(l, { x: 0, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
+        .to(r, { z: rest, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
+        .to(this, { camElev: 0, duration: F.riseMs / 1000, ease: "power2.inOut", onUpdate: () => this.setCamera(this.camElev) }, "rise");
+    }
     this.timeline = tl;
   }
 
