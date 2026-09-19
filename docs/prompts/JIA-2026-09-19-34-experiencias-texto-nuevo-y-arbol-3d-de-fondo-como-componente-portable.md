@@ -7,7 +7,7 @@ pre-renderizado con alfa, lila, servido desde `cdn.zajno.com`) y (b) una captura
 de tierra** (la mancha de abajo), que marca dónde va el árbol.
 **Nivel:** LEVEL 2 (un cambio de texto + un componente nuevo con WebGL + su integración) · tmp/scratch: **aplica** →
 `docs/prompts-output/JIA-2026-09-19-34/tmp/progress.md` (una línea por fase) y `evidence/` (capturas).
-**Estado:** SIN EJECUTAR
+**Estado:** EJECUTADO (2026-09-19) — informe en `docs/prompts-output/JIA-2026-09-19-34/report.md`. Decisión de ejecución: el árbol se monta desde **1680 px** (no 1280) y su caja es el margen libre × 1,22, para que la copa no quede detrás del título de la tarjeta. Sin push (no se pidió).
 
 ## Reglas de ejecución
 
