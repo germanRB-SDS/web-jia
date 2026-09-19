@@ -40,6 +40,9 @@
   display: grid;
   gap: 1rem;
   max-width: 40rem;
+  /* The panel's column sets the width (the seal's row must not widen it), and the row asks it how wide it is. */
+  min-width: 0;
+  container-type: inline-size;
 }
 /* Same voice as every other section title (Section.module.css .title). */
 .bandTitle {
@@ -54,28 +57,35 @@
   text-wrap: balance;
 }
 /* Same voice as every section lede (Section.module.css .lede). */
-/* The statement and, beside it, the seal: the row is as tall as the paragraph and the seal takes that height
-   (a square, so its width follows). Below 760 px the seal is not shown at all. */
+/* The statement and, beside it, the seal, hanging from the row's top (it grows downwards, never up). Its width is its
+   own: a share of the row, capped at 10 % more than the 165 px it had on a large window (promoter,
+   JIA-2026-09-19-30). Until then it took the paragraph's height, which depends on the seal's own width: that loop
+   pushed it out of the window at 1440 px. It shows only where the column leaves the paragraph room to read:
+   never on a phone (below 760 px), nor in a column narrower than 22rem. */
 .statementRow {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   gap: clamp(1rem, 2.5vw, 2rem);
 }
 .seal {
-  position: relative;
   flex: none;
-  align-self: stretch;
+  width: clamp(6.5rem, 32%, 11.35rem);
   aspect-ratio: 1;
 }
+/* The PNG is round and transparent, so the shadow is a drop-shadow (a box-shadow would draw a square): a short
+   contact shadow and a long, warm, diffuse one, both in the palette's ink — the seal stays stuck to the paper,
+   barely lifted. Static: no hover. */
 .sealImg {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+  filter: drop-shadow(0 2px 3px rgb(var(--jia-ink-rgb) / 0.25)) drop-shadow(0 18px 28px rgb(var(--jia-ink-rgb) / 0.28));
 }
 @media (max-width: 759.98px) {
+  .seal { display: none; }
+}
+@container (max-width: 21.99rem) {
   .seal { display: none; }
 }
 .statement {
