@@ -183,14 +183,15 @@
 
 /* desktop: the render's split — quiet paper left, photograph right, one continuous surface. */
 @media (min-width: 960px) {
+  /* The band's height cap, 10 % under the original min(88vh, 900px) (promoter, JIA-2026-09-19-29 hotfix). */
   .hero {
-    min-height: min(88vh, 900px);
+    min-height: min(79vh, 810px);
     display: grid;
     align-items: center;
   }
   .content {
     padding-right: 56%;
-    min-height: min(88vh, 900px);
+    min-height: min(79vh, 810px);
   }
   .photo {
     position: absolute;

@@ -52,6 +52,11 @@ La franja del carrusel recorta (`overflow: clip`) y dejaba 1,75 rem bajo las tar
 girada se cortaba por abajo. El hueco pasa a 1,5 rem arriba y 4,5 rem abajo (relleno y margen negativo iguales, así
 el carrusel no se mueve). Verificado a 1440: la sombra completa cabe dentro del recorte.
 
+### Hotfix posterior (promotor, chat): el hero un 10 % más bajo
+
+El tope vertical del hero a ≥ 960 px pasa de `min(88vh, 900px)` a `min(79vh, 810px)` (en `.hero` y en
+`.content`), un 10 % menos en ambos límites. Medido a 1440×900: de 792 px a 711 px de alto.
+
 ## Riesgos
 
 - **Menor:** el trayecto de rodadura depende de dónde cuelgue (a 1600 px es corto, ~150 px); la vuelta de giro se
