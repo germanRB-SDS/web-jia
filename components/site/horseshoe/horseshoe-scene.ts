@@ -1,10 +1,12 @@
 /**
- * The horseshoe's Three.js scene: one transparent canvas over the footer's upper block, an orthographic
- * camera in CSS pixels (1 unit = 1 px, y down = −y), the GLB from Blender hung on a nail. It only renders
+ * The horseshoe's Three.js scene: one transparent canvas over the footer's upper block, a narrow perspective
+ * camera set so the wall (z = 0) is in CSS pixels (1 unit = 1 px, y down = −y), the GLB from Blender hung on
+ * a nail, and a floor along the rule that only shows the shadow. It only renders
  * when asked (placement, resize, each step of an animation) — no loop while nothing moves. The hit button
  * is placed over the shoe's projected box after every render so the click and the accessible name live in
  * real HTML. A click (`drop`) lets the nail give: the shoe wobbles, falls to the rule, bounces, lies there a
- * while and climbs back to its nail (GSAP timeline, config.fall); nothing moves under reduced motion.
+ * while lying on the floor, seen from a little above, and climbs back to its nail (GSAP timeline,
+ * config.fall); nothing moves under reduced motion.
  */
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -27,8 +29,11 @@ const HOLE_RADIUS_M = 0.0032;
 export class HorseshoeScene {
   private renderer: THREE.WebGLRenderer;
   private scene = new THREE.Scene();
-  private camera = new THREE.OrthographicCamera(0, 1, 0, -1, -2000, 2000);
+  private camera = new THREE.PerspectiveCamera(CFG.camera.fovDeg, 1, 1, 8000);
+  /** The nail: position and the swing in the wall's plane. */
   private pivot = new THREE.Group();
+  /** Inside the pivot: how the shoe lies (tipped over, turned) once it has fallen. */
+  private lay = new THREE.Group();
   private model: THREE.Object3D | null = null;
   private modelBox = new THREE.Box3();
   private nail = new THREE.Group();
@@ -41,6 +46,8 @@ export class HorseshoeScene {
   private timeline: gsap.core.Timeline | null = null;
   private sun: THREE.DirectionalLight;
   private wall: THREE.Mesh;
+  private floor: THREE.Mesh;
+  private readonly corner = new THREE.Vector3();
   private env: THREE.Texture | null = null;
 
   constructor(
@@ -56,8 +63,7 @@ export class HorseshoeScene {
     this.renderer.toneMappingExposure = CFG.render.exposure;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.camera.position.set(0, 0, 1000);
-    this.camera.lookAt(0, 0, 0);
+    this.pivot.add(this.lay);
 
     // Light: a soft sky and a warm key from high left, in front of the wall, that throws the shadow.
     const sky = new THREE.HemisphereLight(0xfff6e6, 0x3a2a1c, CFG.render.light.sky);
@@ -79,7 +85,11 @@ export class HorseshoeScene {
     const shadowMat = new THREE.ShadowMaterial({ opacity: CFG.render.shadow.opacity, transparent: true, depthWrite: false });
     this.wall = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), shadowMat);
     this.wall.receiveShadow = true;
-    this.scene.add(this.wall);
+    // The floor, along the rule, from the wall towards the eye: the same invisible shadow catcher.
+    this.floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), shadowMat);
+    this.floor.rotation.x = -Math.PI / 2;
+    this.floor.receiveShadow = true;
+    this.scene.add(this.wall, this.floor);
   }
 
   async init(glbUrl: string): Promise<void> {
@@ -94,7 +104,7 @@ export class HorseshoeScene {
     });
     this.modelBox.setFromObject(model);
     this.model = model;
-    this.pivot.add(model);
+    this.lay.add(model);
     this.buildNail();
     this.place();
   }
@@ -124,13 +134,19 @@ export class HorseshoeScene {
     this.height = Math.max(1, rect.height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, CFG.render.maxPixelRatio));
     this.renderer.setSize(this.width, this.height, false);
-    this.camera.right = this.width;
-    this.camera.bottom = -this.height;
+    // At this distance the wall's plane is 1 px per unit; the eye sits a little above the centre, looking at it.
+    this.camera.aspect = this.width / this.height;
+    const distance = this.height / 2 / Math.tan(THREE.MathUtils.degToRad(CFG.camera.fovDeg) / 2);
+    this.camera.position.set(this.width / 2, -this.height / 2 + CFG.camera.elevationPx, distance);
+    this.camera.lookAt(this.width / 2, -this.height / 2, 0);
     this.camera.updateProjectionMatrix();
 
-    // The wall spans the stage, a little behind the shoe; the key light frames the whole stage in its shadow camera.
+    // The wall spans the stage, a little behind the shoe; the floor runs along the rule towards the eye;
+    // the key light frames the whole stage in its shadow camera.
     this.wall.scale.set(this.width, this.height, 1);
     this.wall.position.set(this.width / 2, -this.height / 2, -CFG.render.shadow.wallDepthPx);
+    this.floor.scale.set(this.width, CFG.floor.depthPx, 1);
+    this.floor.position.set(this.width / 2, -this.height, CFG.floor.depthPx / 2 - CFG.render.shadow.wallDepthPx);
     const [sx, sy, sz] = CFG.render.light.sunFrom;
     const reach = Math.max(this.width, this.height);
     this.sun.position.set(sx, sy, sz).normalize().multiplyScalar(reach * 2);
@@ -164,6 +180,7 @@ export class HorseshoeScene {
     }
     this.pivot.position.set(nailX, -nailY, 0);
     this.pivot.rotation.z = THREE.MathUtils.degToRad(CFG.restTiltDeg);
+    this.lay.rotation.set(0, 0, 0);
 
     const holeR = HOLE_RADIUS_M * scale;
     const thickness = (this.modelBox.max.z - this.modelBox.min.z) * scale;
@@ -182,25 +199,29 @@ export class HorseshoeScene {
     return Boolean(this.model) && !this.timeline;
   }
 
-  /** The nail gives: wobble, drop to the rule, bounce, rest, climb back. */
+  /** The nail gives: wobble, drop, tip over onto the floor, bounce, rest, climb back to the wall. */
   drop() {
     if (!this.model || this.timeline || this.reducedMotion) return;
     const F = CFG.fall;
-    const rest = THREE.MathUtils.degToRad(CFG.restTiltDeg);
-    const land = THREE.MathUtils.degToRad(F.landTiltDeg);
-    // Where the hole ends up so the shoe, turned as it lands, lies on the floor (the stage's bottom edge).
-    const rot = this.pivot.rotation.z;
-    const pos = this.pivot.position.clone();
-    this.pivot.rotation.z = land;
-    this.pivot.position.set(this.nailAt.x, 0, 0);
+    const rad = THREE.MathUtils.degToRad;
+    const rest = rad(CFG.restTiltDeg);
+    // Where the hole ends up so the shoe, tipped over and turned as it lands, lies on the floor (the rule).
+    const savedRot = this.pivot.rotation.z;
+    const savedPos = this.pivot.position.clone();
+    this.pivot.rotation.z = 0;
+    this.lay.rotation.set(rad(F.landTipDeg), 0, rad(F.landTiltDeg));
+    this.pivot.position.set(this.nailAt.x, 0, F.forwardPx);
     this.box.setFromObject(this.pivot);
     const floorY = -this.height - this.box.min.y;
-    this.pivot.rotation.z = rot;
-    this.pivot.position.copy(pos);
+    this.lay.rotation.set(0, 0, 0);
+    this.pivot.rotation.z = savedRot;
+    this.pivot.position.copy(savedPos);
 
     const p = this.pivot.position;
     const r = this.pivot.rotation;
+    const l = this.lay.rotation;
     const dropH = this.nailAt.y - floorY;
+    const fall = F.fallMs / 1000;
     const tl = gsap.timeline({
       onUpdate: () => this.requestRender(),
       onComplete: () => {
@@ -209,22 +230,25 @@ export class HorseshoeScene {
       },
     });
     const s = F.swingMs / 1000;
-    tl.to(r, { z: rest - THREE.MathUtils.degToRad(F.swingDeg), duration: s * 0.4, ease: "power2.out" })
-      .to(r, { z: rest + THREE.MathUtils.degToRad(F.swingDeg * 0.6), duration: s * 0.35, ease: "power1.inOut" })
+    tl.to(r, { z: rest - rad(F.swingDeg), duration: s * 0.4, ease: "power2.out" })
+      .to(r, { z: rest + rad(F.swingDeg * 0.6), duration: s * 0.35, ease: "power1.inOut" })
       .to(r, { z: rest, duration: s * 0.25, ease: "power1.in" })
-      // The drop, turning as it goes; a little drift sideways.
-      .to(p, { y: floorY, duration: F.fallMs / 1000, ease: "power2.in" }, "fall")
-      .to(p, { x: this.nailAt.x - dropH * 0.06, duration: F.fallMs / 1000, ease: "none" }, "fall")
-      .to(r, { z: rest + THREE.MathUtils.degToRad(F.spinDeg), duration: F.fallMs / 1000, ease: "power1.in" }, "fall");
+      // The drop: down and out from the wall, tipping over and turning; the swing's angle moves into the lie.
+      .to(p, { y: floorY, duration: fall, ease: "power2.in" }, "fall")
+      .to(p, { x: this.nailAt.x - dropH * 0.06, z: F.forwardPx, duration: fall, ease: "power1.in" }, "fall")
+      .to(r, { z: 0, duration: fall, ease: "power1.in" }, "fall")
+      .to(l, { x: rad(F.landTipDeg) * 0.8, z: rad(F.landTiltDeg) * 0.7, duration: fall, ease: "power1.in" }, "fall");
     F.bounces.forEach((b, i) => {
       const up = b.ms / 2000;
       const last = i === F.bounces.length - 1;
       tl.to(p, { y: floorY + dropH * b.share, duration: up, ease: "power2.out" })
-        .to(r, { z: last ? land : rest + THREE.MathUtils.degToRad(F.spinDeg + (F.landTiltDeg - F.spinDeg) * 0.6), duration: up * 2, ease: "power1.inOut" }, "<")
+        .to(l, { x: rad(F.landTipDeg) * (last ? 1 : 0.92), z: rad(F.landTiltDeg) * (last ? 1 : 0.88), duration: up * 2, ease: "power1.inOut" }, "<")
         .to(p, { y: floorY, duration: up, ease: "power2.in" });
     });
     tl.to({}, { duration: F.restMs / 1000 })
-      .to(p, { x: this.nailAt.x, y: this.nailAt.y, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
+      // Back to the wall and its nail.
+      .to(p, { x: this.nailAt.x, y: this.nailAt.y, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
+      .to(l, { x: 0, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
       .to(r, { z: rest, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise");
     this.timeline = tl;
   }
@@ -242,15 +266,22 @@ export class HorseshoeScene {
     this.placeHit();
   }
 
-  /** The real button follows the shoe's projected box (CSS px of the stage). */
+  /** The real button follows the shoe's projected box: its eight world corners through the camera (CSS px). */
   private placeHit() {
     if (!this.model) return;
     this.box.setFromObject(this.pivot);
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (let i = 0; i < 8; i++) {
+      this.corner.set(i & 1 ? this.box.max.x : this.box.min.x, i & 2 ? this.box.max.y : this.box.min.y, i & 4 ? this.box.max.z : this.box.min.z).project(this.camera);
+      const x = ((this.corner.x + 1) / 2) * this.width;
+      const y = ((1 - this.corner.y) / 2) * this.height;
+      x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+    }
     const s = this.hit.style;
-    s.left = `${this.box.min.x.toFixed(1)}px`;
-    s.top = `${(-this.box.max.y).toFixed(1)}px`;
-    s.width = `${(this.box.max.x - this.box.min.x).toFixed(1)}px`;
-    s.height = `${(this.box.max.y - this.box.min.y).toFixed(1)}px`;
+    s.left = `${x0.toFixed(1)}px`;
+    s.top = `${y0.toFixed(1)}px`;
+    s.width = `${(x1 - x0).toFixed(1)}px`;
+    s.height = `${(y1 - y0).toFixed(1)}px`;
   }
 
   dispose() {

@@ -134,31 +134,33 @@
   z-index: 3;
   pointer-events: none;
 }
+/* One row: the credit on the page's axis (middle column), the tumbleweeds' note at the row's right end,
+   both on the same line. An optional notice takes a row of its own above. */
 .bottomInner {
   position: relative;
   z-index: 1;
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
   padding-block: 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
   gap: 0.75rem 1rem;
   text-align: center;
 }
-/* The note about the tumbleweeds: tucked into the strip's bottom right corner, on the line where the
-   strip ends, a hair from the right edge. The credit keeps the page's axis. */
+.studioCredit { grid-column: 2; justify-self: center; }
+.notice { grid-column: 1 / -1; justify-self: center; }
+/* Narrow: one column, the credit centred and the note under it, to the right. */
 @media (max-width: 759.98px) {
-  .bottomInner { padding-bottom: 1.75rem; }
+  .bottomInner { grid-template-columns: 1fr; }
+  .bottomInner .studioCredit { grid-column: 1; }
+  .bottomInner .weedsNote { grid-column: 1; }
 }
 .weedsNote {
-  position: absolute;
-  z-index: 1;
-  right: 0.5rem;
-  bottom: 0.125rem;
+  grid-column: 3;
+  justify-self: end;
   display: inline-flex;
-  align-items: flex-end;
+  align-items: center;
   min-height: 1.5rem;
   line-height: 1.2;
   font-family: var(--f-ui);

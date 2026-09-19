@@ -17,14 +17,19 @@
 Además, visto en las capturas: tras pulsar con el ratón, el botón que sigue a la herradura deja un **anillo blanco**
 de foco alrededor; se quita para el ratón y se conserva para el teclado.
 
+4. **Texto de «Las jornadas»** (añadido por el promotor en chat durante la ejecución): al párrafo de introducción se
+   le añade al final «Esperamos que disfrutes de los talleres que te listamos a continuación:» (con los dos puntos,
+   tal como se pidió). Copy en `lib/content/copy/es/sections/jornadas.ts` (`intro`).
+
 ## Resultado
 
-- **Cámara en perspectiva** (`config.camera`: 20° de campo, elevada 150 px sobre el centro del bloque): a la
-  distancia que deja la pared a escala 1:1, la herradura colgada se ve igual que antes y aparece un **suelo**
-  (plano receptor de sombra en la línea del pie, 420 px hacia la cámara). La caída pasa a ser en tres dimensiones:
-  balanceo en la pared, caída con giro, el vuelco hacia delante (`lay.rotation.x` → −80°, «inclinada», no plana) con
-  un cuarto de vuelta de guiñada, dos rebotes y descanso **sobre el suelo, con el grosor y la sombra a la vista**; a
-  los **5 s** sube de nuevo a su clavo y recupera el plano de la pared. Grupo anidado `lay` para la tumbada; el
+- **Cámara en perspectiva** (`config.camera`: 20° de campo, elevada 380 px sobre el centro del bloque, mirando a
+  él): a la distancia que deja la pared a escala 1:1, la herradura colgada se ve desde un poco por encima (asoma su
+  canto superior) y aparece un **suelo** (plano receptor de sombra en la línea del pie, 420 px hacia la cámara). La
+  caída pasa a ser en tres dimensiones: balanceo en la pared, caída con giro, el vuelco hacia la cámara
+  (`landTipDeg` −66°: «inclinada», no plana; con 150 px de elevación y el vuelco hacia la pared se veía de canto, de
+  ahí los valores finales), dos rebotes y descanso **sobre el suelo, con el grosor y la sombra a la vista**; a los
+  **5 s** sube de nuevo a su clavo y recupera el plano de la pared. Grupo anidado `lay` para la tumbada; el
   giro en el plano se reparte entre el pivote (colgada) y `lay` (tumbada) sin salto visual. El botón que la sigue
   proyecta las ocho esquinas de su caja con la cámara nueva.
 - **5 s** en `config.fall.restMs`.
@@ -32,13 +37,15 @@ de foco alrededor; se quita para el ratón y se conserva para el teclado.
   (`1fr auto 1fr`) con el crédito centrado y la nota al final de la tercera columna, a la misma altura; por debajo
   de 760 px (una sola columna) la nota queda bajo el crédito, alineada a la derecha.
 - Sin anillo tras un clic de ratón (`onMouseDown` evita el foco por puntero); con teclado sigue el contorno marfil.
-- Verificación: `tsc`, `check:content`, `next build`; Chrome por CDP a 1920 (colgada, tumbada en el suelo con
-  sombra, vuelta a los 5 s) y 1440/390 (franja del crédito). Capturas en
+- Texto de «Las jornadas» ampliado con la frase pedida (verificado en pantalla).
+- Verificación: `tsc`, `check:content` (56 medios) y `next build` OK; Chrome por CDP a 1920 (colgada; tumbada en el
+  suelo, caja proyectada 346×184 px; de vuelta al clavo tras los 5 s) y 1440/390 (crédito y nota centrados a la
+  misma altura, 864 px, a 1440; nota bajo el crédito a 390; sin anillo de foco tras el clic). Capturas en
   `docs/prompts-output/JIA-2026-09-19-28/evidence/`.
 
 ## Riesgos
 
-- **Menor:** con la cámara elevada la pared sufre un ligero trapecio (≈ 9°) que en la herradura colgada apenas se
-  nota; si molestara, bajar `camera.elevationPx`.
+- **Menor:** con la cámara elevada (≈ 22° de picado) la pared sufre un ligero trapecio; en la herradura colgada se
+  traduce en que asoma su canto superior. Si molestara, bajar `camera.elevationPx` (a costa de ver menos la tumbada).
 - **Menor:** el suelo es invisible salvo por la sombra; en pantallas muy anchas la herradura tumbada puede acercarse
   a la columna «Colabora» (a 1600 px queda a unos 20 px).

@@ -71,7 +71,8 @@ function Stage({ glb, label }: Props) {
   return (
     <div ref={stageRef} className={styles.shoeStage}>
       <canvas ref={canvasRef} aria-hidden="true" />
-      <button ref={hitRef} type="button" className={styles.shoeHit} aria-label={label} title={label} onClick={onClick} />
+      {/* A pointer click must not leave the focus ring on the shoe; the keyboard keeps it. */}
+      <button ref={hitRef} type="button" className={styles.shoeHit} aria-label={label} title={label} onClick={onClick} onMouseDown={(e) => e.preventDefault()} />
     </div>
   );
 }

@@ -18,6 +18,11 @@ export const HORSESHOE = {
   },
   /** How the shoe hangs at rest: turned this much about its nail (degrees, clockwise negative). Point 9. */
   restTiltDeg: -14,
+  /** The eye (JIA-2026-09-19-28): a narrow perspective, a little above the block's centre, so the wall stays
+      almost 1:1 and the floor (the rule) is seen from above once the shoe lies on it. */
+  camera: { fovDeg: 20, elevationPx: 380 },
+  /** The floor: from the wall towards the eye (px). Invisible but for the shadow. */
+  floor: { depthPx: 420 },
   /** Point 10: a click and the nail gives. Times in ms; angles in degrees about the nail hole. */
   fall: {
     /** The wobble before it lets go. */
@@ -31,9 +36,12 @@ export const HORSESHOE = {
       { share: 0.16, ms: 360 },
       { share: 0.05, ms: 220 },
     ],
-    /** How it lies once down (about the hole), and how long it stays there. */
+    /** How it lies once down: turned in its own plane (about the hole), tipped over onto the floor (degrees from
+        the wall, negative leans it towards the eye; −90 would be flat) and this far out from the wall (px); and how long it stays there. */
     landTiltDeg: -96,
-    restMs: 3600,
+    landTipDeg: -66,
+    forwardPx: 70,
+    restMs: 5000,
     /** The climb back to its nail. */
     riseMs: 1200,
   },
