@@ -186,16 +186,24 @@ export class TreeScene {
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, size, size);
         const tex = keep(new THREE.CanvasTexture(c));
-        const mat = keep(new THREE.MeshBasicMaterial({ color: shadowColor, alphaMap: tex, transparent: true, opacity: so.opacity, depthWrite: false }));
-        const blot = new THREE.Mesh(keep(new THREE.PlaneGeometry(2, 2)), mat);
-        blot.rotation.x = -Math.PI / 2;
+        const plane = keep(new THREE.PlaneGeometry(2, 2));
         const away = Math.sign(-this.options.light.sunFrom[0]) || 1;
         const rx = so.radius * so.stretch;
-        blot.scale.set(rx, so.radius * 0.8, 1);
-        blot.position.set(away * (rx - so.radius) * 0.6, 0.004, 0);
-        blot.renderOrder = -1;
-        this.scene.add(blot);
-        this.bounds.expandByPoint(new THREE.Vector3(blot.position.x - rx, 0, 0)).expandByPoint(new THREE.Vector3(blot.position.x + rx, 0, 0));
+        const rz = so.radius * so.depth;
+        const offset = away * (rx - so.radius) * 0.6;
+        // The halo first, then the core over it, both under everything else.
+        for (const [scale, opacity, order] of [[1, so.opacity, -2], [so.core.scale, so.core.opacity, -1]] as const) {
+          if (opacity <= 0) continue;
+          const mat = keep(new THREE.MeshBasicMaterial({ color: shadowColor, alphaMap: tex, transparent: true, opacity, depthWrite: false }));
+          const blot = new THREE.Mesh(plane, mat);
+          blot.rotation.x = -Math.PI / 2;
+          blot.scale.set(rx * scale, rz * scale, 1);
+          blot.position.set(offset * scale, 0.004, 0);
+          blot.renderOrder = order;
+          this.scene.add(blot);
+        }
+        // Only its dark heart counts for the framing: the halo's rim is next to nothing and may run off the box.
+        this.bounds.expandByPoint(new THREE.Vector3(0, 0, rz * so.core.scale));
       }
     }
   }

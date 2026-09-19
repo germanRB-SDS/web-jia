@@ -124,7 +124,9 @@ export const TREE_DEFAULTS = {
     /** Where the sun stands, from the tree. The foliage's run of tones starts on this side. */
     sunFrom: [-3, 5, 4] as [number, number, number],
   },
-  shadow: { opacity: 0.26, radius: 1.9, stretch: 1.25 },
+  /** The shade on the ground, without a shadow map: a wide soft halo (its radius across, drawn out away from the
+      sun by `stretch`, and `depth` times that towards the eye) and a darker core close under the rocks. */
+  shadow: { opacity: 0.26, radius: 1.9, stretch: 1.25, depth: 0.8, core: { scale: 0.62, opacity: 0.3 } },
   render: { maxPixelRatio: 2, maxFps: 0 },
 };
 

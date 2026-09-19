@@ -7,6 +7,8 @@
   --aula-ratio: 1916 / 821;
   /* Where the clear paper starts, as a share of the photograph's width. */
   --aula-clear: 56%;
+  /* How far left of that the content column is moved, as a share of the section's width. */
+  --aula-shift: 5%;
   background: var(--jia-vellum-3);
   padding-top: 0;
 }
@@ -75,14 +77,18 @@
     z-index: 0;
     /* Tied to the column, not to the window: the crown starts a little inside the column's right edge at every
        width, and whatever does not fit runs off the window's edge, as in the reference. */
-    right: calc((100vw - var(--container)) / 2 - 29.7vw);
-    bottom: 0;
-    height: 100%;
+    right: calc((100vw - var(--container)) / 2 - 34.2vw);
+    /* Taller than the section, hanging below it: the crown stays where it was and the rocks come down to the
+       photograph of the section that follows (JIA-2026-09-19-36); the section clips what is left over. */
+    bottom: -5.6%;
+    height: 108%;
     aspect-ratio: 1.45;
   }
   .section > :not(.photo):not(.tree) {
     width: auto;
-    margin-inline: var(--aula-clear) max(var(--gutter), (100% - var(--container)) / 2);
+    /* The whole column sits --aula-shift further left than the clear paper and the container would put it
+       (promoter, JIA-2026-09-19-36): same width, moved, so it also stands clear of the tree. */
+    margin-inline: calc(var(--aula-clear) - var(--aula-shift)) calc(max(var(--gutter), (100% - var(--container)) / 2) + var(--aula-shift));
   }
   .section header { margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }
   .section header p { text-wrap: pretty; }

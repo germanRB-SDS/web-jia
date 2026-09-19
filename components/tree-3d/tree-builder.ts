@@ -416,8 +416,9 @@ export function buildTree(options: TreeOptions, palette: ResolvedPalette, seed: 
   woodGeometry.computeBoundingBox();
   const bounds = new THREE.Box3();
   const groundReach = options.mound.radius * (options.mound.rocks ? options.mound.rockReach : 1) + options.mound.rockSize[1];
-  bounds.expandByPoint(new THREE.Vector3(-groundReach, 0, -groundReach));
-  bounds.expandByPoint(new THREE.Vector3(groundReach, 0, groundReach));
+  // The rocks' ring is a little flat towards the eye (rocksGeometry).
+  bounds.expandByPoint(new THREE.Vector3(-groundReach, 0, -groundReach * 0.85));
+  bounds.expandByPoint(new THREE.Vector3(groundReach, 0, groundReach * 0.85));
   bounds.union(woodGeometry.boundingBox!.clone().translate(new THREE.Vector3(0, footY, 0)));
   const pad = lo.lobeRadius + lo.size * 0.5;
   bounds.union(crown.clone().expandByScalar(pad).translate(new THREE.Vector3(0, footY, 0)));

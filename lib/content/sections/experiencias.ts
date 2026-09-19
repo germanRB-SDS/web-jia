@@ -23,11 +23,12 @@ const treePalettes = {
     leaves: ["var(--jia-tree-cream)", "var(--jia-tree-rose)", "var(--jia-tree-lilac)", "var(--jia-tree-lilac-deep)"],
     trunk: "var(--jia-tree-bark)",
     trunkDark: "var(--jia-tree-bark-deep)",
-    ground: "var(--jia-tree-rock)",
-    groundDark: "var(--jia-tree-rock-deep)",
+    /** The rocks are the site's own ochre (JIA-2026-09-19-36); the shade under them, its ink. */
+    ground: "color-mix(in srgb, var(--jia-copper) 50%, var(--jia-dune-light))",
+    groundDark: "color-mix(in srgb, var(--jia-copper) 72%, var(--jia-terracotta-deep))",
     moss: "var(--jia-tree-moss)",
     mossDark: "var(--jia-tree-moss-deep)",
-    shadow: "var(--jia-tree-shadow)",
+    shadow: "var(--jia-ink)",
   },
   sepia: {
     leaves: ["var(--jia-ivory)", "var(--jia-dune-light)", "var(--jia-copper)", "var(--jia-olive)"],
@@ -45,8 +46,8 @@ const treePalette: keyof typeof treePalettes = "cicada";
 
 export const experienciasTree = {
   enabled: true,
-  /** Narrower than this the column reaches so far right that the crown would sit on the cards' titles. */
-  media: "(min-width: 1680px)",
+  /** With the column moved left (JIA-2026-09-19-36) the crown clears every text from here up; narrower, the tree would be mostly off the window. */
+  media: "(min-width: 1440px)",
   seed: 7,
   palette: treePalettes[treePalette],
   options: {
@@ -56,5 +57,7 @@ export const experienciasTree = {
     /** Its best side for this place: the crown leans towards the window's edge, away from the text. */
     shape: { turnDeg: 180 },
     camera: { air: { left: 0.5, right: 0, top: 0, bottom: 0 } },
+    /** A shade that shows under the rocks: wide, deep towards the eye, with a dark core. */
+    shadow: { opacity: 0.4, radius: 2.4, stretch: 1.15, depth: 1.25, core: { scale: 0.66, opacity: 0.5 } },
   },
 };

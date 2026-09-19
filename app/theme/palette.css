@@ -71,8 +71,8 @@
   --jia-surface-ink: var(--jia-ink);
 
   /* Árbol del saber (JIA-2026-09-19-35, extensión pedida por el promotor). Colores muestreados del árbol de la
-     referencia «Cicada»: copa de crema rosado en la luz a lila en la sombra, corteza parda rosada, roca gris lila y
-     musgo amarillo verdoso. Uso exclusivo del árbol 3D de «Experiencias» (components/tree-3d vía
+     referencia «Cicada»: copa de crema rosado en la luz a lila en la sombra, corteza parda rosada y musgo
+     amarillo verdoso (las rocas y su sombra usan el ocre y la tinta de la casa, JIA-2026-09-19-36). Uso exclusivo del árbol 3D de «Experiencias» (components/tree-3d vía
      lib/content/sections/experiencias.ts): no son colores de interfaz ni de texto. */
   --jia-tree-cream: #f6ece4;
   --jia-tree-rose: #e6d2d8;
@@ -80,11 +80,8 @@
   --jia-tree-lilac-deep: #9286b8;
   --jia-tree-bark: #a9837a;
   --jia-tree-bark-deep: #5e4552;
-  --jia-tree-rock: #d8d2e3;
-  --jia-tree-rock-deep: #9d96b4;
   --jia-tree-moss: #d2cc7c;
   --jia-tree-moss-deep: #929755;
-  --jia-tree-shadow: #6d6390;
 
   --jia-radius-button: 4px;
   --jia-radius-card: 10px;
