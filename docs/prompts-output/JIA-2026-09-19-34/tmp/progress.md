@@ -1,2 +1,4 @@
 - fase 0: prompt commiteado (a34ae14)
 - fase 1: lede de Experiencias cambiado (copy/es/sections/experiencias.ts); check:content ok
+- fase 2: components/tree-3d/ (Tree3D.tsx, tree-scene.ts, tree-builder.ts, wind.ts, config.ts, css, index, README); solo importa react/three; tsc ok
+- fase 3: integrado en Experiencias (ExperiencesTree.tsx, backdrop, .tree en el CSS, experienciasTree en sections/experiencias.ts, modelo en assemble.ts); umbral 1680 px y caja = margen × 1,22 para no tapar el título de la tarjeta; tsc, check:content y next build ok; evidencias 1920/1680/1440/390, crecimiento, viento y movimiento reducido
