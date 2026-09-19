@@ -54,18 +54,23 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
         </Surface>
       </div>
       <div className={styles.body}>
-        <Heading id={titleId} className={styles.title}>
+        {/* Each line is clamped to two; `title` carries the whole text for a pointer that rests on it. */}
+        <Heading id={titleId} className={`${styles.title} ${styles.clamp}`} title={sheet.title}>
           {sheet.title}
         </Heading>
-        {sheet.subtitle ? <p className={styles.subtitle}>{sheet.subtitle}</p> : null}
+        {sheet.subtitle ? (
+          <p className={`${styles.subtitle} ${styles.clamp}`} title={sheet.subtitle}>
+            {sheet.subtitle}
+          </p>
+        ) : null}
         {sheet.people.length ? (
-          <p className={styles.people}>
+          <p className={`${styles.people} ${styles.who} ${styles.clamp}`} title={sheet.people.map((p) => p.name).join(" · ")}>
             <span className={styles.peopleLabel}>{labels.people}</span>{" "}
             {sheet.people.map((p) => p.name).join(" · ")}
           </p>
         ) : null}
         {sheet.meta ? (
-          <p className={styles.people}>
+          <p className={`${styles.people} ${styles.theme} ${styles.clamp}`} title={sheet.meta}>
             <span className={styles.peopleLabel}>{labels.theme}</span> {sheet.meta}
           </p>
         ) : null}

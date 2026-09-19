@@ -48,7 +48,8 @@
   text-underline-offset: 0.2em;
 }
 .textLink:hover { color: var(--jia-terracotta-deep); }
-/* Set like the proposals paragraphs above it (Proposals.module.css .text): the page's body voice. */
+/* Two paragraphs, a blank line apart, set like the proposals paragraphs (Proposals.module.css .text). */
+.texts { display: grid; gap: 1em; }
 .text {
   margin: 0;
   font-family: var(--f-body);

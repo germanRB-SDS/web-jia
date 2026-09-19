@@ -113,7 +113,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
               </dl>
               <ol className={styles.sessions}>
                 {day.sessions.map((s) => (
-                  <li key={s.id} className={styles.session}>
+                  <li key={s.id} className={styles.session} data-unnumbered={s.numbered ? undefined : ""}>
                     {s.time ? <span className={styles.sessionTime}>{s.time}</span> : null}
                     <span className={styles.sessionText}>{s.text}</span>
                     {s.link ? (

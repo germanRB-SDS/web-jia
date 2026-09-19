@@ -189,6 +189,8 @@
   color: var(--jia-terracotta);
   min-width: 2ch;
 }
+/* A line that belongs to the previous slot (the closing video, the farewell): in the list, no numeral. */
+.session[data-unnumbered]::before { counter-increment: none; content: ""; }
 .sessionTime {
   grid-column: 2;
   font-family: var(--f-ui);

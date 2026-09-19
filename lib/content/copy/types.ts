@@ -156,7 +156,7 @@ export type Copy = {
   /** `unavailable` is the optional visible note under a disabled action; null shows the label alone. */
   propuestas: { title: string; subtitle: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
   acoge: { title: string; subtitle: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
-  partners: { kicker: string; title: string; text: string; carousel: { label: string; hint: string; /** `{name}` */ visit: string } };
+  partners: { kicker: string; title: string; text: string; /** Second paragraph: the thanks to the collaborating companies. */ thanks: string; carousel: { label: string; hint: string; /** `{name}` */ visit: string } };
   footer: {
     organiza: string;
     colabora: string;

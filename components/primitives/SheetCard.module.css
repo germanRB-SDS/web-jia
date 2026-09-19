@@ -1,11 +1,21 @@
+/* One card = seven rows of the section's grid (picture, title, subtitle, who, theme, "Ver ficha", dossier), so
+   every card in a row of cards lines its rows up with its neighbours' and the two actions sit at one height.
+   Without subgrid support the card lays its own rows out (the two-line minimums below keep them level anyway). */
 .card {
   display: grid;
-  gap: 0.9rem;
+  grid-template-rows: subgrid;
+  grid-row: span 7;
+  row-gap: 0.35rem;
   align-content: start;
   scroll-margin-top: 6rem;
 }
+@supports not (grid-template-rows: subgrid) {
+  .card { grid-template-rows: auto; }
+}
 .media {
   position: relative;
+  grid-row: 1;
+  margin-bottom: 0.55rem;
 }
 .surface {
   box-shadow: 0 10px 28px -16px rgb(var(--jia-ink-rgb) / 0.45);
@@ -32,14 +42,17 @@
 }
 /* An empty parchment surface brings its own pin (Surface.module.css); do not paint two. */
 .media:has([data-empty])::before { display: none; }
+/* The summary rises over the lower half of the picture, on the same ink gradient, at every width. */
 .reveal {
   position: absolute;
-  inset: auto 0 0 0;
+  inset: 50% 0 0 0;
+  display: grid;
+  align-content: end;
   padding: 1.25rem 1rem 1rem;
   background: linear-gradient(to top, rgb(var(--jia-ink-rgb) / 0.92), rgb(var(--jia-ink-rgb) / 0.75) 70%, transparent);
   color: var(--jia-ivory);
   font-family: var(--f-body);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.45;
   transform: translateY(100%);
   opacity: 0;
@@ -57,10 +70,17 @@
 @media (prefers-reduced-motion: reduce) {
   .surface, .reveal { transition: none; }
 }
-.body {
-  display: grid;
-  gap: 0.35rem;
+/* The body's children are the card's own rows (2–7). */
+.body { display: contents; }
+/* Two lines at most, and always room for two, so the actions below never move; the whole text shows on hover/focus. */
+.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
+.clamp:hover,
+.clamp:focus-within { -webkit-line-clamp: unset; overflow: visible; }
 .meta {
   margin: 0;
   font-family: var(--f-ui);
@@ -70,7 +90,9 @@
   color: var(--jia-terracotta);
 }
 .title {
+  grid-row: 2;
   margin: 0;
+  min-height: calc(2 * 1.1 * 1.375rem);
   font-family: var(--f-display);
   font-weight: 700;
   font-size: 1.375rem;
@@ -79,7 +101,9 @@
   text-wrap: balance;
 }
 .subtitle {
+  grid-row: 3;
   margin: 0;
+  min-height: calc(2 * 1.35 * 1.0625rem);
   font-family: var(--f-body);
   font-style: italic;
   font-size: 1.0625rem;
@@ -93,6 +117,8 @@
   color: var(--jia-text);
   line-height: 1.35;
 }
+.who { grid-row: 4; min-height: calc(2 * 1.35 * 0.9375rem); }
+.theme { grid-row: 5; min-height: calc(2 * 1.35 * 0.9375rem); }
 .peopleLabel {
   font-size: 0.7rem;
   letter-spacing: var(--jia-label-tracking);
@@ -101,6 +127,7 @@
   margin-right: 0.25rem;
 }
 .foot {
+  grid-row: 6;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -128,6 +155,7 @@
 .open:hover svg, .open:focus-visible svg { transform: translateX(3px); }
 /* "Descargar dosier": the same voice as "Ver ficha", one line below it. */
 .download {
+  grid-row: 7;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;

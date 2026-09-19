@@ -98,7 +98,7 @@ export type DayModel = {
   hours: string[];
   marks: MarkKind[];
   provenanceNote: string | null;
-  sessions: { id: string; text: string; time: string | null; link: { label: string; href: string } | null }[];
+  sessions: { id: string; text: string; time: string | null; numbered: boolean; link: { label: string; href: string } | null }[];
 };
 
 export type TeamCard = { id: string; name: string; roleLabel: string; media: Media | null; alt: string; fallback: SurfaceToken };
@@ -164,6 +164,7 @@ export type LandingModel = {
     title: string;
     /** Text split into plain runs and organisation links, in order. */
     text: ({ kind: "text"; value: string } | { kind: "org"; id: string; name: string; url: string | null })[];
+    thanks: string;
     /** One card per entity listed in sections/socios.ts, in that order. `link` is null while the entity has no URL. */
     carousel: {
       label: string;
@@ -344,7 +345,7 @@ export function getLanding(locale: Locale): LandingModel {
             : x && s.experienceId
               ? { label: x.title, href: anchor(`${experienciasConfig.id}-${s.experienceId}`) }
               : null;
-          return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time ? format(copy.jornadas.program.timeFormat, { time: s.time }) : null, link };
+          return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time ? format(copy.jornadas.program.timeFormat, { time: s.time }) : null, numbered: s.numbered ?? true, link };
         }),
     }));
 
@@ -478,6 +479,7 @@ export function getLanding(locale: Locale): LandingModel {
         const org = m ? organizations.find((o) => o.id === m[1]) : undefined;
         return org ? { kind: "org" as const, id: org.id, name: org.name, url: org.url } : { kind: "text" as const, value: part };
       }),
+      thanks: copy.partners.thanks,
       carousel: {
         label: copy.partners.carousel.label,
         hint: copy.partners.carousel.hint,

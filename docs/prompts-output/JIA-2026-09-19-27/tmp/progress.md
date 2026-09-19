@@ -2,8 +2,8 @@
 
 | Fase | Puntos | Estado | Commit |
 |---|---|---|---|
-| 0 | prompt + estructura | en curso | — |
-| 1 | 1, 2, 3, 7 | pendiente | — |
+| 0 | prompt + estructura | hecho | 8876512 |
+| 1 | 1, 2, 3, 7 | hecho (verificado 1440/390: Ver ficha a 861/1660 px por fila, reveal 50 %, 17 px) | (este commit) |
 | 2 | 4, 6 | pendiente | — |
 | 3 | 5 | pendiente | — |
 | 4 | 8 herradura Blender + colgada | pendiente | — |

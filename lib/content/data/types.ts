@@ -81,6 +81,8 @@ export type Session = {
   workshopId: string | null;
   experienceId: string | null;
   status: EditorialStatus;
+  /** false: the line keeps its place in the list but shows no Roman numeral (promoter, JIA-2026-09-19-27). */
+  numbered?: boolean;
 };
 
 export type Experience = {

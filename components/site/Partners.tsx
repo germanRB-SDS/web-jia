@@ -23,6 +23,7 @@ export function Partners({ partners }: Props) {
               {partners.title}
             </h2>
           </div>
+          <div className={styles.texts}>
           <p className={styles.text}>
             {partners.text.map((part, i) =>
               part.kind === "text" ? (
@@ -36,6 +37,8 @@ export function Partners({ partners }: Props) {
               ),
             )}
           </p>
+          <p className={styles.text}>{partners.thanks}</p>
+          </div>
         </div>
       </div>
       <CollaboratorsCarousel carousel={partners.carousel} />

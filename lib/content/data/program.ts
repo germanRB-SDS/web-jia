@@ -51,6 +51,6 @@ export const sessions: readonly Session[] = [
   { id: "s-2-5", order: 5, time: "16:00–17:30", kind: "workshop", workshopId: null, experienceId: null, status: "provisional" },
   { id: "s-2-6", order: 6, time: "19:00–20:00", kind: "block", workshopId: null, experienceId: null, status: "provisional" },
   { id: "s-2-7", order: 7, time: "20:00–20:30", kind: "block", workshopId: null, experienceId: null, status: "provisional" },
-  { id: "s-2-8", order: 8, time: null, kind: "block", workshopId: null, experienceId: null, status: "provisional" },
-  { id: "s-2-9", order: 9, time: null, kind: "block", workshopId: null, experienceId: null, status: "provisional" },
+  { id: "s-2-8", order: 8, time: null, kind: "block", workshopId: null, experienceId: null, status: "provisional", numbered: false },
+  { id: "s-2-9", order: 9, time: null, kind: "block", workshopId: null, experienceId: null, status: "provisional", numbered: false },
 ];
