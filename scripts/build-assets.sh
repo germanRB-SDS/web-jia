@@ -28,6 +28,10 @@ out public/jornadas/x
 magick assets/images-website/jornadas-jinete.png -resize 960x -strip -quality 80 "public/jornadas/jinete-960.webp"
 magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jornadas/jinete-1916.webp"
 
+# Jornadas intro: the #JIA26 seal beside the statement (1080x1080, transparent; JIA-2026-09-19-29). Two widths.
+webp assets/images-website/sello-jia26.png public/jornadas/sello-jia26-240.webp 240 84
+webp assets/images-website/sello-jia26.png public/jornadas/sello-jia26-480.webp 480 84
+
 # Jornadas road: the wagon GLB exported from Blender (assets/3d/carruaje, JIA-2026-09-18-07), copied as is.
 cp assets/3d/carruaje/jia-carruaje.glb public/jornadas/jia-carruaje.glb
 

@@ -18,8 +18,9 @@ export const HORSESHOE = {
   },
   /** How the shoe hangs at rest: turned this much about its nail (degrees, clockwise negative). Point 9. */
   restTiltDeg: -14,
-  /** The eye (JIA-2026-09-19-28): a narrow perspective, a little above the block's centre, so the wall stays
-      almost 1:1 and the floor (the rule) is seen from above once the shoe lies on it. */
+  /** The eye (JIA-2026-09-19-28/29): a narrow perspective. While the shoe hangs the eye is level with the block's
+      centre (the shoe is seen head-on, the wall 1:1); as the shoe falls the eye rises to `elevationPx`, so the floor
+      (the rule) is seen from above, and it comes back down when the shoe climbs back. */
   camera: { fovDeg: 20, elevationPx: 380 },
   /** The floor: from the wall towards the eye (px). Invisible but for the shadow. */
   floor: { depthPx: 420 },
@@ -39,8 +40,13 @@ export const HORSESHOE = {
     /** How it lies once down: turned in its own plane (about the hole), tipped over onto the floor (degrees from
         the wall, negative leans it towards the eye; −90 would be flat) and this far out from the wall (px); and how long it stays there. */
     landTiltDeg: -96,
-    landTipDeg: -66,
+    landTipDeg: -18,
     forwardPx: 70,
+    /** After the bounces it rolls to the right along the floor (clockwise), slowing down, and stops with its
+        rightmost point this far from the window's edge (JIA-2026-09-19-29). */
+    roll: { turns: 1.5, ms: 1700, edgeInsetPx: 4 },
+    /** The shoe at rest stays whole above the rule: its lowest point on screen this far above the block's bottom. */
+    floorMarginPx: 2,
     restMs: 5000,
     /** The climb back to its nail. */
     riseMs: 1200,

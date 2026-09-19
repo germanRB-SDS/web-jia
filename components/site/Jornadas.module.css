@@ -54,7 +54,33 @@
   text-wrap: balance;
 }
 /* Same voice as every section lede (Section.module.css .lede). */
+/* The statement and, beside it, the seal: the row is as tall as the paragraph and the seal takes that height
+   (a square, so its width follows). Below 760 px the seal is not shown at all. */
+.statementRow {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+.seal {
+  position: relative;
+  flex: none;
+  align-self: stretch;
+  aspect-ratio: 1;
+}
+.sealImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 759.98px) {
+  .seal { display: none; }
+}
 .statement {
+  flex: 1 1 auto;
+  min-width: 0;
   margin: 0;
   font-family: var(--f-body);
   font-size: var(--t-lede);

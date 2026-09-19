@@ -1,6 +1,7 @@
 import type { LandingModel, MarkKind } from "@/lib/content";
 import { ArrowIcon } from "@/components/icons";
 import { Marks } from "@/components/primitives/Mark";
+import { Picture } from "@/components/primitives/Picture";
 import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
 import { CubeCarousel, type CubeItem } from "@/components/cube-carousel";
@@ -62,7 +63,15 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
             <h2 id={`${jornadas.id}-title`} className={styles.bandTitle}>
               {jornadas.title}
             </h2>
-            <p className={styles.statement}>{jornadas.intro}</p>
+            {/* The seal stands to the right of the statement, exactly as tall as it (its width follows); phones skip it. */}
+            <div className={styles.statementRow}>
+              <p className={styles.statement}>{jornadas.intro}</p>
+              {jornadas.seal ? (
+                <div className={styles.seal} aria-hidden="true">
+                  <Picture media={jornadas.seal} alt="" sizes="240px" className={styles.sealImg} />
+                </div>
+              ) : null}
+            </div>
           </div>
           <JornadasRoute route={jornadas.route} />
         </div>

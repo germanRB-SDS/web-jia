@@ -144,6 +144,8 @@ export type LandingModel = {
     anchors: typeof jornadasConfig.anchors;
     title: string;
     intro: string;
+    /** The seal beside the statement (decorative). */
+    seal: Media | null;
     band: Media | null;
     bandAlt: string;
     poster: Media | null;
@@ -425,6 +427,7 @@ export function getLanding(locale: Locale): LandingModel {
       anchors: jornadasConfig.anchors,
       title: copy.jornadas.title,
       intro: copy.jornadas.intro,
+      seal: getMedia(jornadasConfig.sealMediaId),
       band: getMedia(jornadasConfig.bandMediaId),
       bandAlt: "",
       poster: getMedia(jornadasConfig.posterMediaId),

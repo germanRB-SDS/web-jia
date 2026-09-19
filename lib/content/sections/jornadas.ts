@@ -3,6 +3,8 @@ export const jornadasConfig = {
   id: "jornadas",
   anchors: { programa: "programa", comoFuncionan: "como-funcionan", talleres: "talleres" },
   posterMediaId: "cartel-jia26" as string | null,
+  /** The #JIA26 seal to the right of the statement, as tall as the paragraph (not on phones); null hides it. */
+  sealMediaId: "sello-jia26" as string | null,
   /** Full-bleed photograph behind the section opening; null falls back to the dune veil alone. */
   bandMediaId: "jornadas-jinete" as string | null,
   showTeam: true,
