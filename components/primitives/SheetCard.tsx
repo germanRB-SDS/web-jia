@@ -3,6 +3,7 @@
 import { useCallback, useId, useState } from "react";
 import type { MarkKind, SheetModel } from "@/lib/content";
 import { ArrowIcon, DownloadIcon } from "@/components/icons";
+import { TiltCard } from "@/components/tilt-card/TiltCard";
 import { Marks } from "./Mark";
 import { SheetDialog } from "./SheetDialog";
 import { Surface } from "./Surface";
@@ -44,14 +45,18 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
 
   return (
     <article id={anchorId} className={`${styles.card} ${styles[variant]}`} aria-labelledby={titleId} data-cursor="open">
-      <div className={styles.media}>
-        <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={mediaRatio ?? (variant === "poster" ? 1414 / 2000 : 4 / 3)} sizes={sizes} className={styles.surface}>
-          {sheet.summary ? (
-            <div className={styles.reveal} aria-hidden="true">
-              <p>{sheet.summary}</p>
-            </div>
-          ) : null}
-        </Surface>
+      {/* A click on the picture opens the sheet, like "Ver ficha" (the button below is the keyboard's way in). */}
+      <div className={styles.media} onClick={sheet.pending ? undefined : () => setOpen(true)} data-opens={sheet.pending ? undefined : ""}>
+        {/* The picture turns towards a fine pointer (tilt-card); the pin stays where it is, on the card's frame. */}
+        <TiltCard>
+          <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={mediaRatio ?? (variant === "poster" ? 1414 / 2000 : 4 / 3)} sizes={sizes} className={styles.surface}>
+            {sheet.summary ? (
+              <div className={styles.reveal} aria-hidden="true">
+                <p>{sheet.summary}</p>
+              </div>
+            ) : null}
+          </Surface>
+        </TiltCard>
       </div>
       <div className={styles.body}>
         {/* Each line is clamped to two; `title` carries the whole text for a pointer that rests on it. */}

@@ -1,0 +1,38 @@
+/* The stage: the perspective the card turns in. */
+.tilt {
+  perspective: var(--tilt-perspective, 1500px);
+}
+/* The card itself. The engine only writes custom properties; the transform, the glow and their timing live here.
+   At rest: a short contact shadow. Under the pointer: it lifts on a long, soft, warm shadow (the palette's ink). */
+.inner {
+  position: relative;
+  border-radius: var(--jia-radius-card);
+  transform: scale3d(var(--tilt-scale, 1), var(--tilt-scale, 1), var(--tilt-scale, 1)) rotate3d(var(--tilt-ax, 0), var(--tilt-ay, 0), 0, var(--tilt-deg, 0deg));
+  transform-style: preserve-3d;
+  box-shadow: 0 1px 4px rgb(var(--jia-ink-rgb) / 0.28);
+  transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+  will-change: transform;
+}
+.tilt[data-active] .inner {
+  transition-duration: 150ms;
+  box-shadow:
+    0 2px 6px rgb(var(--jia-ink-rgb) / 0.18),
+    0 18px 40px -10px rgb(var(--jia-ink-rgb) / 0.42),
+    0 40px 80px -30px rgb(var(--jia-ink-rgb) / 0.35);
+}
+/* The glow: a soft light whose centre follows the pointer, blended so the artwork and any text under it stay legible. */
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--tilt-x, 50%) var(--tilt-y, -20%), rgb(var(--jia-ivory-rgb) / 0.55), rgb(var(--jia-ink-rgb) / 0.06) 70%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+  pointer-events: none;
+}
+.tilt[data-active] .glow { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .inner, .glow { transition: none; }
+}

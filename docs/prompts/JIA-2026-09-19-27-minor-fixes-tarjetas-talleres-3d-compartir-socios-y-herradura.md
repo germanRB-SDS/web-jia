@@ -79,6 +79,16 @@ duraciones). Reglas:
 - La perspectiva (1500 px) la pone el envoltorio; el brillo es un `span` decorativo (`aria-hidden`, sin puntero).
 - El cartel conserva su pin, su sombra y su hover actuales; el botón «Ver ficha» y el diálogo no cambian.
 
+### 4 bis. Hotfixes del promotor durante la fase 2 (chat)
+
+- **El cursor por delante del diálogo.** Al abrir «Ver ficha» la marca del cursor quedaba tras el fondo desenfocado del
+  diálogo: el `<dialog>` modal vive en la capa superior del navegador, por encima de cualquier `z-index`. Sin tocar su
+  estilo, la marca pasa a ser un *popover* manual (también en la capa superior) y, cada vez que se abre un diálogo, se
+  vuelve a mostrar en el fotograma siguiente para quedar la última de esa capa (Chrome no la saca de la capa de forma
+  síncrona al ocultarla). Sin soporte de *popover* queda como estaba.
+- **Clic en la tarjeta = «Ver ficha».** Pulsar sobre el cartel abre la misma ficha que el botón; el botón sigue siendo
+  el camino de teclado. Con la ficha pendiente, el cartel no abre nada.
+
 ### 5. Vídeo: botón «compartir» a la izquierda de pantalla completa, solo en móvil
 
 En los controles del vídeo de intro, **a la izquierda del botón de pantalla completa**, un botón redondo igual a los

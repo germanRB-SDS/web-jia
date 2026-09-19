@@ -9,6 +9,10 @@ import styles from "./CursorMark.module.css";
  * south-desert-main-web (assets/js/cursor.js) with JIA colours. It only
  * replaces the native cursor on a fine pointer with motion allowed; touch,
  * coarse pointers and reduced-motion users keep their own.
+ *
+ * It lives in the browser's top layer as a manual popover: a modal <dialog> is in that layer too, above
+ * any z-index, and would otherwise leave the mark behind its blurred backdrop. Whenever a dialog opens
+ * the mark is shown again, so it is the topmost element of the layer (promoter, JIA-2026-09-19-27).
  */
 export function CursorMark() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,6 +26,27 @@ export function CursorMark() {
     if (!fine.matches || calm.matches) return;
 
     root.classList.add("has-mark");
+
+    // Hiding leaves the top layer only at the next rendering step, so the re-show waits one frame.
+    const toTop = () => {
+      try {
+        if (mark.matches(":popover-open")) mark.hidePopover();
+        requestAnimationFrame(() => {
+          try {
+            if (!mark.matches(":popover-open")) mark.showPopover();
+          } catch {
+            /* see below */
+          }
+        });
+      } catch {
+        /* no popover support: the mark stays a fixed element, under a modal dialog */
+      }
+    };
+    toTop();
+    const dialogs = new MutationObserver((records) => {
+      if (records.some((r) => r.target instanceof HTMLDialogElement && r.target.open)) toTop();
+    });
+    dialogs.observe(document.body, { attributes: true, attributeFilter: ["open"], subtree: true });
 
     let x = window.innerWidth / 2;
     let y = window.innerHeight / 2;
@@ -105,12 +130,13 @@ export function CursorMark() {
       window.removeEventListener("blur", hide);
       fine.removeEventListener("change", reassess);
       calm.removeEventListener("change", reassess);
+      dialogs.disconnect();
       root.classList.remove("has-mark");
     };
   }, []);
 
   return (
-    <div ref={ref} className={styles.mark} aria-hidden="true">
+    <div ref={ref} className={styles.mark} aria-hidden="true" popover="manual">
       <div className={styles.ring} />
       <div className={styles.cross} />
       <div className={styles.dot} />

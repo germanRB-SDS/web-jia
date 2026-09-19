@@ -2,6 +2,13 @@
    Colours: ring in reading ink, dot in JIA ink, crosshair in terracotta. */
 @media (pointer: fine) {
   .mark {
+    /* Undo the popover's own box (it is only in the top layer to sit over modal dialogs). */
+    inset: auto;
+    border: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+    overflow: visible;
     position: fixed;
     top: 0;
     left: 0;
