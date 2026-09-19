@@ -57,20 +57,17 @@
   text-wrap: balance;
 }
 /* Same voice as every section lede (Section.module.css .lede). */
-/* The statement and, beside it, the seal, hanging from the row's top: it grows downwards and is never moved down
-   nor up (promoter, 19-09-2026). Its width is its own: a share of the row, capped. Until JIA-2026-09-19-30 it took
-   the paragraph's height, which depends on the seal's own width: that loop pushed it out of the window at 1440 px.
-   It shows only where the column leaves the paragraph room to read: never on a phone (below 760 px), nor in a
-   column narrower than 22rem. */
-.statementRow {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(1rem, 2.5vw, 2rem);
-}
+/* The statement with the seal floated at its top right: the text runs beside it while it lasts and takes the whole
+   width under it, up to the seal's own right edge (promoter, 19-09-2026). The seal hangs from the top (it is never
+   moved down nor up) and its width is its own: a share of the statement, capped. Until JIA-2026-09-19-30 it took the
+   paragraph's height, which depends on the seal's own width: that loop pushed it out of the window at 1440 px. It
+   shows only where the column leaves the text room to read: never on a phone (below 760 px), nor in a column
+   narrower than 22rem. */
 .seal {
-  flex: none;
+  float: right;
   width: clamp(6.5rem, 32%, 11.35rem);
   aspect-ratio: 1;
+  margin: 0 0 0.5rem clamp(1rem, 2.5vw, 2rem);
 }
 /* The PNG is round and transparent, so the shadow is a drop-shadow (a box-shadow would draw a square): a short
    contact shadow and a long, warm, diffuse one, both in the palette's ink — the seal stays stuck to the paper,
@@ -94,14 +91,12 @@
   .seal { width: clamp(7.8rem, 38.4%, 13.62rem); }
 }
 .statement {
-  flex: 1 1 auto;
-  min-width: 0;
+  display: flow-root;
   margin: 0;
   font-family: var(--f-body);
   font-size: var(--t-lede);
   line-height: 1.5;
   color: var(--jia-text);
-  max-width: var(--measure);
 }
 /* Its paragraphs: one blank line between them (the line height). */
 .statement p { margin: 0; }

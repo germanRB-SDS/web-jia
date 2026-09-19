@@ -63,18 +63,17 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
             <h2 id={`${jornadas.id}-title`} className={styles.bandTitle}>
               {jornadas.title}
             </h2>
-            {/* The seal stands to the right of the statement, exactly as tall as it (its width follows); phones skip it. */}
-            <div className={styles.statementRow}>
-              <div className={styles.statement}>
-                {jornadas.intro.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
+            {/* The seal floats at the statement's top right and the text runs round it: beside it while it lasts, the
+                whole width under it (its right edge is the text's right edge); phones skip it. */}
+            <div className={styles.statement}>
               {jornadas.seal ? (
                 <div className={styles.seal} aria-hidden="true">
                   <Picture media={jornadas.seal} alt="" sizes="240px" className={styles.sealImg} />
                 </div>
               ) : null}
+              {jornadas.intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </div>
           <JornadasRoute route={jornadas.route} />

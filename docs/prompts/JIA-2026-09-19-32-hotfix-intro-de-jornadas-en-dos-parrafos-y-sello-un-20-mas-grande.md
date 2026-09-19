@@ -27,3 +27,17 @@
   si se ve apretado, bajar el 38.4 % o subir el umbral de 28rem en `Jornadas.module.css`.
 - Nota: `copy/es/sections/jornadas.ts` tenía además un cambio local del promotor sin subir («Desliza el dado…»); este
   commit lleva solo el cambio de la intro y ese otro sigue en el árbol, sin tocar.
+
+## Corrección posterior del promotor (2026-09-19, por chat) y resultado
+
+«¿El párrafo de "Esperamos que disfrutes…" podría continuar **por debajo de la imagen circular**? Que continúe, no que
+se corte, hasta el borde (con el mismo padding derecho que tiene la imagen de las JIA que está justo encima).»
+
+- El sello pasa de columna aparte (flex) a **flotar arriba a la derecha dentro del texto** (`float: right`, mismo ancho
+  y mismo borde superior): el texto va a su lado mientras dura y **ocupa todo el ancho por debajo**, hasta el mismo
+  borde derecho que el sello. Desaparece `.statementRow`; `.statement` es el contenedor (`display: flow-root`, sin
+  `max-width`, para que su borde derecho sea el del sello).
+- Medido en Chrome (CDP): a 1920 el sello acaba en y = 1341 y el segundo párrafo empieza en 1354, a todo el ancho
+  (su línea llega a x = 1814 de 1826); a 1440 ya las últimas líneas del primer párrafo pasan por debajo (x = 1372 de
+  1384). A 800 px el sello es más alto que el texto y el segundo párrafo queda a su lado (comportamiento natural del
+  contorneo). < 760 px y columnas < 22rem: sin sello, como antes. Evidencias a 1920 y 1440 en la misma carpeta.
