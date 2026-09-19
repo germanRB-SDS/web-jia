@@ -3,13 +3,18 @@
  * (JIA-2026-09-19-30, from the promoter's reference "Immersive 3D Tilt Card Modal"). Colours are palette tokens.
  */
 export const FLIP = {
-  /** The turn on opening: from the back (180°) to the front (0°), fast at first and slower as it arrives. */
-  turn: { fromDeg: 180, ms: 900, ease: "power3.out" },
-  /** Then a second, whole turn the same way, 1.2 s in all (promoter, JIA-2026-09-19-30): to the back, where it
-      stops for `holdMs`, and on to the front, again from faster to slower. `null` leaves the first turn alone. */
-  again: { toBackMs: 500, toBackEase: "power2.inOut", holdMs: 100, toFrontMs: 700, toFrontEase: "power3.out" } as {
-    toBackMs: number; toBackEase: string; holdMs: number; toFrontMs: number; toFrontEase: string;
-  } | null,
+  /** The turns on opening (JIA-2026-09-19-31): two whole turns from the front to the front, the same way round, from
+      faster to slower without a jolt between them, arriving softly. */
+  turns: {
+    /** The first turn, and the little extra it slows down by as its back goes by: `depth` is the share of its
+        speed it loses right on the back, `spread` how long that lasts, as a share of the turn. */
+    firstMs: 1300,
+    backDip: { depth: 0.3, spread: 0.13 },
+    /** The second, slower turn. Its speed holds at first and falls away to nothing: the higher `hold`, the longer
+        it holds (and the slower it starts: 3 → 240°/s, where the first turn ends). */
+    secondMs: 2000,
+    secondHold: 3,
+  },
   /** Depth of the perspective the card turns in (px), as in the reference. */
   perspectivePx: 3000,
   /** After the turn the card leans towards the pointer: only a fine pointer that can hover gets it. */

@@ -32,8 +32,8 @@ type Props = {
   mediaRatio?: number;
   /** Heading level of the card title, so the outline stays in order. */
   heading?: "h3" | "h4";
-  /** With it, the sheet's picture is a card that turns from this image (its back) to the picture each time the
-      sheet opens (flip-card); without it the picture stands as always. */
+  /** With it, the sheet's picture is a card with this image on its back that turns twice each time the sheet opens
+      (flip-card); without it the picture stands as always. */
   flipBack?: Media | null;
 };
 

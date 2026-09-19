@@ -1,15 +1,61 @@
 /**
- * The flip engine: plain DOM, no React. `open()` puts the card on its back and turns it about its vertical axis to
- * its front, then once more all the way round with a short stop on its back (GSAP timeline); once there, with a fine pointer, the card leans softly towards the pointer (quick setters fed
- * from GSAP's ticker, easing a share of the way each frame). `close()` stops everything and leaves the card on its
- * back without animating, ready for the next opening. The pointer is listened to on the surface given (the dialog),
- * only between the end of the turn and `close()`.
+ * The flip engine: plain DOM, no React. `open()` turns the card twice about its vertical axis, from its front to its
+ * front, from faster to slower (a little slower still as its back goes by in the first turn); once there, with a fine
+ * pointer, the card leans softly towards the pointer (quick setters fed from GSAP's ticker, easing a share of the way
+ * each frame). `close()` stops everything and leaves the card on its front without animating, ready for the next
+ * opening. The pointer is listened to on the surface given (the dialog), only between the end of the turns and `close()`.
  */
 import gsap from "gsap";
 import { FLIP } from "./config";
 
+const STEP_S = 0.005;
+
+/**
+ * The angle turned (degrees, 0 → 720) every STEP_S seconds. Speeds in degrees per second. The second turn's speed is
+ * V·(1 − u^hold), which starts at V = 360·(hold + 1) / hold / seconds and ends at nothing. The first turn's speed
+ * falls in a straight line to that V, less the dip around the moment its back faces the eye; where it starts from
+ * is whatever makes the turn exactly 360° (found by bisection, the dip's moment by iteration).
+ */
+function buildAngles(): number[] {
+  const T = FLIP.turns;
+  const t1 = T.firstMs / 1000;
+  const t2 = T.secondMs / 1000;
+  const v2 = (360 * (T.secondHold + 1)) / T.secondHold / t2;
+  const first = (v0: number, dipAt: number) => {
+    const out = [0];
+    for (let t = STEP_S; t < t1 + STEP_S / 2; t += STEP_S) {
+      const u = (t - STEP_S / 2) / t1;
+      const dip = 1 - T.backDip.depth * Math.exp(-(((u - dipAt) / T.backDip.spread) ** 2));
+      out.push(out[out.length - 1] + (v0 + (v2 - v0) * u) * dip * STEP_S);
+    }
+    return out;
+  };
+  let dipAt = 0.5;
+  let turn = first(v2, dipAt);
+  for (let pass = 0; pass < 4; pass++) {
+    let lo = v2;
+    let hi = v2 * 4;
+    for (let i = 0; i < 40; i++) {
+      const mid = (lo + hi) / 2;
+      turn = first(mid, dipAt);
+      if (turn[turn.length - 1] < 360) lo = mid;
+      else hi = mid;
+    }
+    dipAt = turn.findIndex((a) => a >= 180) / (turn.length - 1);
+  }
+  const angles = turn.map((a) => (a * 360) / turn[turn.length - 1]);
+  for (let t = STEP_S; t < t2 + STEP_S / 2; t += STEP_S) {
+    const u = t / t2;
+    angles.push(360 + v2 * t2 * (u - u ** (T.secondHold + 1) / (T.secondHold + 1)));
+  }
+  angles[angles.length - 1] = 720;
+  return angles;
+}
+
+let angles: number[] | null = null;
+
 export class Flip {
-  private turn: gsap.core.Timeline | null = null;
+  private turn: gsap.core.Tween | null = null;
   private setX: ((value: number) => void) | null = null;
   private setY: ((value: number) => void) | null = null;
   private x = 0;
@@ -19,27 +65,35 @@ export class Flip {
   private leaning = false;
 
   constructor(private card: HTMLElement, private surface: HTMLElement | Document) {
-    gsap.set(card, { rotationY: FLIP.turn.fromDeg, rotationX: 0 });
+    gsap.set(card, { rotationY: 0, rotationX: 0 });
   }
 
   open() {
     this.stop();
-    const from = FLIP.turn.fromDeg;
-    const again = FLIP.again;
-    const tl = gsap.timeline({ onComplete: this.lean });
-    tl.fromTo(this.card, { rotationY: from, rotationX: 0 }, { rotationY: 0, duration: FLIP.turn.ms / 1000, ease: FLIP.turn.ease });
-    if (again) {
-      // The same way round: on to the back, a short stop there, and on to the front (a whole turn from 0°).
-      tl.to(this.card, { rotationY: -from, duration: again.toBackMs / 1000, ease: again.toBackEase })
-        .to(this.card, { rotationY: -360, duration: again.toFrontMs / 1000, ease: again.toFrontEase }, `+=${again.holdMs / 1000}`)
-        .set(this.card, { rotationY: 0 });
-    }
-    this.turn = tl;
+    const table = (angles ??= buildAngles());
+    const total = (table.length - 1) * STEP_S;
+    const clock = { t: 0 };
+    const setY = gsap.quickSetter(this.card, "rotationY", "deg") as (value: number) => void;
+    gsap.set(this.card, { rotationY: 0, rotationX: 0 });
+    this.turn = gsap.to(clock, {
+      t: total,
+      duration: total,
+      ease: "none",
+      onUpdate: () => {
+        const at = clock.t / STEP_S;
+        const i = Math.min(table.length - 2, Math.floor(at));
+        setY(-(table[i] + (table[i + 1] - table[i]) * (at - i)));
+      },
+      onComplete: () => {
+        setY(0);
+        this.lean();
+      },
+    });
   }
 
   close() {
     this.stop();
-    gsap.set(this.card, { rotationY: FLIP.turn.fromDeg, rotationX: 0 });
+    gsap.set(this.card, { rotationY: 0, rotationX: 0 });
   }
 
   private lean = () => {
