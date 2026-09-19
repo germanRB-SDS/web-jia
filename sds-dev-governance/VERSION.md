@@ -1,10 +1,17 @@
 # SDS Dev Governance Version
 
-Version: `v1.28.0`
+Version: `v1.29.0`
 
-Date: `2026-09-17`
+Date: `2026-09-19`
 
 Highlights:
+
+- New resource category `resources/web-components/`: complete validated components promoted from real
+  projects (working source + validated site-side integration + agent procedure). First leaf `tree-3d`: a
+  procedural animated Three.js tree with a React wrapper, a framework-free `mountTree` and a no-build HTML
+  demo. `knowledge/` is now published, and the Android/Google Play release guide moved from
+  `resources/how-to/` to `knowledge/android/how-to-release-an-app/`. Checker fix: routing references no longer
+  fail by SIGPIPE on large copies.
 
 - pstack skills integrated declaratively: one lazy node `skills/pstack.md` and one router row select
   `how`/`architect`/`blast-radius`/`interrogate`/verification/`tdd`/TypeScript per task, phase and

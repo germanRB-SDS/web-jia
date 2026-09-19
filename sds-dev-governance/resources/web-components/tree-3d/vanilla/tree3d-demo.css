@@ -1,0 +1,31 @@
+/* Demo page for tree-3d. The tokens below are the validated colours; rename them to your project's palette. */
+:root {
+  --page-ground: #efe5d6;
+  --page-ground-deep: #ddccb5;
+  --page-ink: #2f180b;
+  /* Crown: near white on top … dry olive below (the validated, final look). */
+  --tree-cream: #f6ece4;
+  --tree-olive: #72715b;
+  /* Crown, original look (soft lilac of the reference it was modelled on): cream → rose → lilac → deep lilac. */
+  --tree-rose: #e6d2d8;
+  --tree-lilac: #c0b3da;
+  --tree-lilac-deep: #9286b8;
+  /* Bark. */
+  --tree-bark: #a9837a;
+  --tree-bark-deep: #5e4552;
+  /* Rocks: ochres and browns, no green. Tops (sunlit faces), sides, undersides, knoll at the foot. */
+  --tree-rock-top: #d9bfa0;
+  --tree-rock: #c5a181;
+  --tree-rock-deep: #8c5436;
+  --tree-knoll: #b79374;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page-ground); color: var(--page-ink); font: 18px/1.5 Georgia, serif; }
+.stage { position: relative; height: 100vh; min-height: 560px; overflow: clip; }
+.copy { position: relative; z-index: 1; max-width: 34rem; padding: 12vh 6vw; }
+.copy h1 { margin: 0 0 1rem; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; }
+.hint button { font: inherit; font-size: 0.85em; padding: 0.2em 0.7em; border: 1px solid currentColor; border-radius: 99px; background: none; color: inherit; cursor: pointer; }
+/* The tree's box: as tall as the stage, by the right edge, wider than the tree towards the left (camera.air.left)
+   so the leaves the breeze takes have room to fade in. Below the copy (z-index), never in the pointer's way. */
+.tree { position: absolute; z-index: 0; right: -6%; bottom: -5.6%; height: 108%; aspect-ratio: 1.45; pointer-events: none; overflow: hidden; }
+@media (max-width: 900px) { .tree { display: none; } }

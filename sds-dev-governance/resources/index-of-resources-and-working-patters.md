@@ -7,14 +7,14 @@ opening folder by folder (which wastes context and cost). Find the resource you 
 only that one leaf folder and its `INDEX-AND-HOW-TO-USE-THEM.md`.
 
 These resources are **optional** and **lazy-loaded**: load one only when the user or active prompt
-explicitly asks for a frontend pattern, component, animation, palette, nomenclature, naming help,
+explicitly asks for a frontend pattern, component, web component, animation, palette, nomenclature, naming help,
 release know-how, or names a path. They are portable references, not runtime source of truth.
 
 ## Operational How-To
 
 | Resource | Path | Load only when |
 |---|---|---|
-| Android / Google Play release | [How-to](how-to/android-google-play-release.md); [prompts P00–P13](prompts/android-google-play-agent-prompts.md) | Preparing or recovering an Android/Google Play release, AAB, Play App Signing, upload key or keystore. Canonical guide and prompt catalog; verified 2026-09-01. |
+| Android / Google Play release | [How-to](../knowledge/android/how-to-release-an-app/android-google-play-release.md) (lives in `knowledge/android/` since v1.29.0); [prompts P00–P13](prompts/android-google-play-agent-prompts.md) | Preparing or recovering an Android/Google Play release, AAB, Play App Signing, upload key or keystore. Canonical guide and prompt catalog; verified 2026-09-01. |
 
 ## Mobile Sample Code
 
@@ -49,6 +49,15 @@ with an `INDEX-AND-HOW-TO-USE-THEM.md` that is not listed here makes the check f
 
 When adding a row: include category, name, path (relative to `resources/`), a one-line description,
 and the path to its how-to index.
+
+## web-components
+
+Complete, validated components with working source, the site-side integration that was validated and an agent
+procedure to rebuild the same result in another project. Heavier than a pattern: open the leaf only when asked for it.
+
+| Resource | Path | What it is | How-to |
+|---|---|---|---|
+| tree-3d | `web-components/tree-3d` | Procedural animated 3D tree (Three.js, no model, no video): slender stems, dense lobed crown, hanging roots, flat-faced rocks, breeze sway and leaves torn off that drift towards the viewer; palette by CSS tokens; React wrapper, framework-free `mountTree` and a no-build HTML demo. Decoration behind a section's content. Aliases: `arbol 3d`, `árbol del saber`, `falling leaves`. | `web-components/tree-3d/INDEX-AND-HOW-TO-USE-THEM.md` |
 
 ## frontend-patterns / ui-animations
 
@@ -103,6 +112,7 @@ and the path to its how-to index.
 - `frontend-patterns/README.md` — scope and rules for the whole catalog.
 - `frontend-patterns/ui-components/README.md`, `ui-animations/README.md`, `color-palettes/README.md`,
   `site-compositions/README.md`.
+- `web-components/README.md` — what a promoted web component must carry and what it must not.
 - `frontend-external-sample-code/README.md` — provenance rules for external references and the
   owner-requested clean-room sample leaf.
 - `mobile-sample-code/README.md` — runnable native-mobile references and their distribution-policy

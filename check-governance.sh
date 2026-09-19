@@ -893,8 +893,10 @@ routing_ref_resolves() {
   if [ -z "$SDS_KIT_FILES" ]; then
     SDS_KIT_FILES="$(cd "$TARGET_DIR/sds-dev-governance" && find . -type f | sed 's|^\./||')"
   fi
-  printf '%s\n' "$SDS_KIT_FILES" | grep -Fxq "$ref" && return 0
-  printf '%s\n' "$SDS_KIT_FILES" | grep -Fq "/$ref" && return 0
+  # Here-strings, not pipes: `grep -q` exits at the first match and a `printf |` writer then dies of SIGPIPE,
+  # which `pipefail` reports as "not found" once the kit's file list outgrows the pipe buffer.
+  grep -Fxq "$ref" <<<"$SDS_KIT_FILES" && return 0
+  grep -Fq "/$ref" <<<"$SDS_KIT_FILES" && return 0
   return 1
 }
 

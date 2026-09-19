@@ -1,0 +1,1 @@
+PASS: GitHub deletion guardrails deny destructive modes and apply idempotently

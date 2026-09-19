@@ -1,0 +1,17 @@
+test_existing_different_kit_and_self (__main__.Safety) ... ok
+test_existing_files_and_sds_new (__main__.Safety) ... ok
+test_explicit_monorepo (__main__.Safety) ... ok
+test_hub_git_children_worktree_and_custody (__main__.Safety) ... ok
+test_installer_failure_is_nonzero (__main__.Safety) ... ok
+test_interruption_and_concurrent_creation (__main__.Safety) ... ok
+test_invalid_modules_fail_before_writes (__main__.Safety) ... ok
+test_missing_python_and_modified_skill_preservation (__main__.Safety) ... ok
+test_new_project_rerun_and_dry_plan (__main__.Safety) ... ok
+test_permissions_missing_source_and_global_flags (__main__.Safety) ... ok
+test_physical_aliases_and_hub_without_git (__main__.Safety) ... ok
+test_symlinks_and_directory_conflicts (__main__.Safety) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.936s
+
+OK

@@ -1,0 +1,22 @@
+test_ancestry_ahead_behind_diverged (__main__.Freshness) ... ok
+test_current_offline_dirty_and_pin (__main__.Freshness) ... ok
+test_tag_and_worktree (__main__.Freshness) ... ok
+test_timeout_and_invalid_inputs (__main__.Freshness) ... FAIL
+test_unknown_remote_object_and_unavailable (__main__.Freshness) ... ok
+test_vendored_provenance_and_incubation (__main__.Freshness) ... ok
+
+======================================================================
+FAIL: test_timeout_and_invalid_inputs (__main__.Freshness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test-governance-freshness.py", line 61, in test_timeout_and_invalid_inputs
+    self.assertEqual(self.call('--timeout','0.2',env=env)['relation'],'REMOTE_TIMEOUT')
+  File "tests/test-governance-freshness.py", line 26, in call
+    self.assertEqual(p.returncode,code,p.stderr)
+AssertionError: 2 != 1 : governance-freshness: Git query timed out; no state updated
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.718s
+
+FAILED (failures=1)

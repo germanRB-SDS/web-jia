@@ -1,0 +1,19 @@
+/* The section that carries the tree. Layer order, bottom to top: the section's ground → its photograph (if any) →
+   the tree → the content. The tree is a sibling of the content, placed before it in the DOM. */
+.section { position: relative; overflow: clip; }
+.section > .content { position: relative; z-index: 1; }
+
+/* The tree's box. As tall as the section and a little more, hanging below it (the section clips what is left over):
+   the crown starts under the section's top edge and the rocks come down to its floor. Wider than the tree, to the
+   left: that is where the leaves the breeze takes fade in (`camera.air.left`). `aspect-ratio` 1.45 ≈ tree (0.87) ×
+   (1 + air.left 0.5 + padding), so the HEIGHT decides the tree's size.
+   `right` ties the tree to the content column, not to the window: the crown starts a little inside the column's
+   right edge at every width and whatever does not fit runs off the window. `--container` is the content's max width. */
+.tree {
+  position: absolute;
+  z-index: 0;
+  right: calc((100vw - var(--container)) / 2 - 34.2vw);
+  bottom: -5.6%;
+  height: 108%;
+  aspect-ratio: 1.45;
+}

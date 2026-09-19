@@ -1,0 +1,21 @@
+=== Permanent layer: one router row, nothing in kernel or practice INDEX ===
+OK: always-read set within budget (2986 words); pstack costs one router row
+OK: node pins plugin 1.1.0 @ 04830a98367e
+=== No skill bodies, no runtime dependency, no bridge propagation ===
+OK: no pstack SKILL.md body inside the Kit
+OK: bootstrap, installers and install catalogs are untouched
+OK: cross-agent bridge does not propagate plugin skills
+OK: install-skills.sh dry run unchanged (no pstack)
+OK: ordered skill index and portability policy unchanged
+=== Node references resolve; priority skills and exclusion variants are named ===
+OK: every kit path named by the node resolves
+OK: priority skills described: how architect blast-radius interrogate create-verification-skill maintain-verification-skill tdd typescript-best-practices poteto-mode
+OK: exclusion variants and inherited scope declared
+OK: exclusion survives checkpoint (03/11) and delegation (13)
+OK: proportionality, non-recursion, read/implement boundary and failure classes declared
+=== Adapters: real per-agent differences ===
+OK: Claude/Codex invoke, Gemini falls back, every adapter carries the exclusion
+=== Interface check against a plugin tree (fixture, then local install if present) ===
+OK: interface check accepts a complete tree and names a missing skill
+OK: local install 1.1.0 exposes every priority skill (observation, not admission)
+All pstack integration invariants passed.

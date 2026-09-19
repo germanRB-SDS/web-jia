@@ -1,0 +1,11 @@
+test_empty_discovery_and_manifest_tail (__main__.Copies) ... ok
+test_invalid_request_has_no_rows (__main__.Copies) ... ok
+test_missing_and_split_across_old_versions (__main__.Copies) ... ok
+test_old_known_file_edit_never_safe (__main__.Copies) ... ok
+test_symlink_and_executable_identity (__main__.Copies) ... ok
+test_transport_path_rejection_and_complete_validation (__main__.Copies) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.702s
+
+OK

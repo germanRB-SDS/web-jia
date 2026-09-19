@@ -1,0 +1,11 @@
+=== A copy identical to canonical is a match, not a split ===
+OK: an identical distributed copy classifies as CANONICAL_MATCH and exits clean
+=== A copy reusing the canonical version with a different tree is a split ===
+OK: one version number claimed by canonical and a different tree fails the gate
+=== Two copies sharing a version older than canonical are still a split ===
+OK: two trees claiming one older version fail the gate
+=== A copy simply behind canonical is not a split ===
+OK: an older copy without provenance requires baseline inspection, not a split
+=== Tree identity ignores the .git pointer file ===
+OK: a .git pointer file does not change tree identity
+OK: governance copy classifier tests passed

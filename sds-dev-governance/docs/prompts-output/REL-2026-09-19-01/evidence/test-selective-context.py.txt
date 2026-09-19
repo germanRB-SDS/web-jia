@@ -1,0 +1,14 @@
+test_closure_and_preamble (__main__.Selective) ... ok
+test_crlf_unicode_and_fences (__main__.Selective) ... ok
+test_declared_and_caller_dependencies (__main__.Selective) ... ok
+test_errors_atomic (__main__.Selective) ... ok
+test_file_boundaries (__main__.Selective) ... ok
+test_index_and_repin_after_title_line_change (__main__.Selective) ... ok
+test_invalid_documents (__main__.Selective) ... ok
+test_physical_line_ranges (__main__.Selective) ... ok
+test_preface_h2_is_always_retained (__main__.Selective) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.186s
+
+OK

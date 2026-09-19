@@ -1,7 +1,7 @@
 # Android / Google Play — catálogo de prompts para agentes
 
 Fuente canónica de edición de los prompts Android/Google Play de SDS. La guía
-[`../how-to/android-google-play-release.md`](../how-to/android-google-play-release.md) incluye una
+[`../../knowledge/android/how-to-release-an-app/android-google-play-release.md`](../../knowledge/android/how-to-release-an-app/android-google-play-release.md) incluye una
 copia íntegra para uso contextual. Edite primero este fichero y verifique después que el bloque
 comprendido entre los marcadores `SDS_ANDROID_PLAY_PROMPTS_BEGIN/END` sea idéntico en ambos destinos.
 

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tree-3d — no-build demo</title>
+    <link rel="stylesheet" href="./tree3d-demo.css" />
+    <!-- The engine imports the bare specifier "three": map it. Pin the version the component was validated with.
+         Offline or behind a CSP: point it at your own copy of three.module.js instead. -->
+    <script type="importmap">
+      { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <main class="stage">
+      <div class="copy">
+        <h1>A tree behind your content</h1>
+        <p>Decoration only: it sits under the text, never takes the pointer, stops drawing off screen and stands still under reduced motion.</p>
+        <p class="hint">Palette: <button data-palette="olive">white → olive</button> <button data-palette="lilac">lilac (original)</button> <button data-palette="green">component default</button></p>
+      </div>
+      <!-- The box is yours: the tree fills it, standing on its floor. -->
+      <div id="tree" class="tree" aria-hidden="true"></div>
+    </main>
+
+    <script type="module">
+      import { mountTree } from "./js/mount-tree.js";
+
+      // Colours are CSS: values, custom properties of this page or color-mix(). See tree3d-demo.css for the tokens.
+      const rocks = { ground: "var(--tree-rock)", groundDark: "var(--tree-rock-deep)", moss: "var(--tree-rock-top)", mossDark: "var(--tree-knoll)", shadow: "var(--page-ink)" };
+      const bark = { trunk: "var(--tree-bark)", trunkDark: "var(--tree-bark-deep)" };
+      const palettes = {
+        olive: { leaves: ["var(--tree-cream)", "color-mix(in srgb, var(--tree-cream) 58%, var(--tree-olive))", "color-mix(in srgb, var(--tree-cream) 24%, var(--tree-olive))", "var(--tree-olive)"], ...bark, ...rocks },
+        lilac: { leaves: ["var(--tree-cream)", "var(--tree-rose)", "var(--tree-lilac)", "var(--tree-lilac-deep)"], ...bark, ...rocks },
+        green: undefined, // TREE_DEFAULT_PALETTE
+      };
+      // The validated look: set back into the page (open angle, haze of the page's ground, leaves coming to the eye).
+      const options = {
+        light: { sky: "var(--tree-cream)", bounce: "var(--page-ground-deep)", sun: "var(--page-ground)", skyIntensity: 2.1, sunIntensity: 1.6, sunFrom: [4, 5, 3] },
+        shape: { turnDeg: 180 },
+        camera: { fovDeg: 36, elevationDeg: 9, air: { left: 0.5, right: 0, top: 0, bottom: 0 } },
+        haze: { color: "var(--page-ground)", amount: 0.3 },
+        leaves: { heightTone: 0.5, depthShade: 0.16 },
+        fall: { direction: [-0.75, -0.5, 1], distance: 6.5 },
+        shadow: { opacity: 0.4, radius: 2.4, stretch: 1.15, depth: 1.9, core: { scale: 0.66, opacity: 0.5 } },
+      };
+
+      const host = document.getElementById("tree");
+      let tree = mountTree(host, { palette: palettes.olive, options, seed: 7 });
+      for (const b of document.querySelectorAll("[data-palette]")) {
+        b.addEventListener("click", () => {
+          tree?.dispose();
+          tree = mountTree(host, { palette: palettes[b.dataset.palette], options, seed: 7 });
+        });
+      }
+    </script>
+  </body>
+</html>

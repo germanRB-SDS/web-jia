@@ -69,6 +69,7 @@ sds-dev-governance/
 │   ├── prompts/
 │   ├── outputs/
 │   └── memory/
+├── knowledge/                   ← recetas y experiencias reutilizables (ios/, android/…), bajo demanda
 ├── resources/                   ← recursos opcionales bajo demanda
 │   ├── nomenclature-explanation.md ← know-how bilingue de nomenclatura SDS
 │   ├── frontend-patterns/       ← componentes, animaciones, paletas y composiciones exportables
@@ -78,6 +79,8 @@ sds-dev-governance/
 │   │   │   └── procedural-horizon-hero/        ← hero fallback-first + Three.js opcional
 │   │   └── site-compositions/
 │   │       └── grounded-editorial-studio/      ← ritmo y secuencia de landing editorial
+│   └── web-components/          ← componentes completos y validados, promocionados desde proyectos
+│       └── tree-3d/             ← arbol 3D procedural animado (Three.js): fuente, integracion, demo sin build
 │   └── frontend-external-sample-code/
 │       └── grounded-studio-reference/          ← sample clean-room neutral y ejecutable
 ├── practices/                   ← reglas de gobernanza documentadas
@@ -376,6 +379,12 @@ explicitamente.
   corredor de copy estable, relevo determinista y Three.js diferido opcional.
 - `frontend-patterns/site-compositions/grounded-editorial-studio/`: secuencia y ritmo completos de
   una landing de estudio editorial basada en hairlines, evidencia y contexto.
+- `web-components/`: componentes completos y validados promocionados desde un proyecto (fuente en
+  `component/`, integracion validada en `integration/`, procedimiento para el agente). Cargar solo si se
+  pide ese componente.
+- `web-components/tree-3d/`: arbol 3D procedural animado con Three.js (sin modelos ni video): copa en
+  lobulos, hojas que la brisa arranca hacia el espectador, rocas, paleta por tokens CSS; wrapper React,
+  `mountTree` sin framework y demo HTML sin build. Alias: `arbol 3d`, `árbol del saber`.
 - `frontend-external-sample-code/grounded-studio-reference/`: implementacion neutral generada desde
   configuracion que demuestra ambos patrones y permanece completa sin JavaScript/WebGL/CDN.
 

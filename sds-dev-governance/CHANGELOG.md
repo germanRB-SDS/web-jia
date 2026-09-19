@@ -1,5 +1,28 @@
 # SDS Dev Governance — Changelog
 
+## v1.29.0 — 2026-09-19
+
+Change ID: `REL-2026-09-19-01`
+
+- Add `resources/web-components/` (category README + index section): complete, validated components promoted from
+  a project, heavier than a pattern. Each leaf carries the working source in `component/` (copied unchanged, no
+  project imports, no site colours), the validated site side in `integration/` (to map, not to paste) and an
+  `INDEX-AND-HOW-TO-USE-THEM.md` with an agent procedure and acceptance list.
+- Add `resources/web-components/tree-3d`: procedural animated 3D tree (Three.js 0.186, WebGL 2; no model, video or
+  GSAP): stems, lobed crown of 22 000 instanced leaves, hanging roots, flat-faced rocks, shader wind, leaves torn
+  off that drift towards the viewer, haze, two-step ground shade, exact camera fit by projection, CSS-token palette.
+  React wrapper, framework-free `mount-tree.ts`, no-build `vanilla/` demo (rendered and checked), `AUDIT.md` with
+  every origin file, colour constant, option and decision, and three previews. The reference it was modelled after
+  is a third-party video: not used, not linked.
+- Publish `knowledge/` (README, image→SVG, iOS HealthKit chart) and restructure: the Android/Google Play release
+  guide moves from `resources/how-to/` to `knowledge/android/how-to-release-an-app/` (content unchanged) with a new
+  `knowledge/android/README.md`; the resources index and the P00–P13 prompt catalog point at the new path.
+  `resources/how-to/` no longer exists.
+- Checker: `routing_ref_resolves` used `printf … | grep -q` under `pipefail`; on a copy whose file list outgrows the
+  pipe buffer the writer died of SIGPIPE and four valid references were reported as missing ("routing surfaces
+  reference governance paths that do not exist"). Here-strings fix it (Bash 3.2 compatible).
+- No rule, adapter, practice, installer or always-read change.
+
 ## v1.28.0 — 2026-09-17
 
 Change ID: `REL-2026-09-17-01`

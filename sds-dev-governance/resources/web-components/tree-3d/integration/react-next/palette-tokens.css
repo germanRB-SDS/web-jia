@@ -1,0 +1,20 @@
+/* Tokens the tree needs that a brand palette rarely has. Everything else in tree.config.ts points at brand tokens
+   (--brand-olive #72715b, --brand-copper #ad754d, --brand-dune #c0ac94, --brand-dune-light #ddccb5,
+   --brand-sand-deep #e2cfb2, --brand-terracotta-deep #703923, --brand-ink #2f180b, --brand-ivory #f6eedf,
+   --section-ground #efe5d6 in the project it was built for). For the tree only: never UI or text colours. */
+:root {
+  --tree-cream: #f6ece4;      /* the light on the crown; first tone of both looks */
+  --tree-bark: #a9837a;       /* rosy brown bark */
+  --tree-bark-deep: #5e4552;
+
+  /* ORIGINAL LOOK ("lilac" palette): the soft lilac / purple crown, mossy grey-lilac rocks, lilac shade.
+  --tree-rose: #e6d2d8;
+  --tree-lilac: #c0b3da;
+  --tree-lilac-deep: #9286b8;
+  --tree-rock: #d8d2e3;
+  --tree-rock-deep: #9d96b4;
+  --tree-moss: #d2cc7c;
+  --tree-moss-deep: #929755;
+  --tree-shadow: #6d6390;
+  */
+}

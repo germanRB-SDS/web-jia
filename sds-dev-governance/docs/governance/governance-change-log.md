@@ -140,3 +140,32 @@ N/A: `GOVERNANCE.md`/`practices/INDEX.md` (router row suffices; budget); `instal
 `plugins/base-catalog.tsv`, `install-*.sh`, `init.sh`, `bootstrap.py` (no bootstrap install);
 `cross-agent-portability.tsv`/`INDEX.md` (plugin distributed per host, not bridged); Cursor adapters
 (upstream plugin, router row already applies); scaffold ledger (stays empty); project copies.
+
+## GOV-2026-09-19-01 — web-components category, tree-3d, knowledge restructure
+
+- Prompt base: owner request in a project session: audit and export the validated 3D tree into the kit's
+  resources under a new `web-components` category with a how-to, move the Android release how-to under
+  `knowledge/android/how-to-release-an-app`, document, release as a new version.
+- Incorporation / last modified: 2026-09-19. GOV-STRUCTURE, GOV-KNOWLEDGE, GOV-AUTOMATION.
+- Discovery: `resources/index-of-resources-and-working-patters.md` → `## web-components` → the leaf's
+  `INDEX-AND-HOW-TO-USE-THEM.md`; `knowledge/README.md` → `android/README.md`. Lazy: nothing joins the always-read set.
+- Promotion (module 11): material incubated in a project copy (`LOCAL_GOVERNANCE_DELTA`), promoted to canonical
+  before redistribution. `component/` was checked to import only `react`, `three` and its own files.
+- Verification: `check-governance.sh` on a `--files-only` project fixture and inherited suites; the vanilla demo
+  rendered in real Chrome; evidence in `docs/prompts-output/REL-2026-09-19-01/`.
+- Residual risk / recovery: the leaf is source that can age with Three.js majors (pinned 0.186 in the demo's import
+  map); remove the leaf and its index row to retire it. The checker fix only changes how a match is searched.
+
+| File | Action |
+|---|---|
+| `resources/web-components/README.md` | new category contract |
+| `resources/web-components/tree-3d/**` | new leaf: `component/`, `integration/react-next/`, `vanilla/`, `AUDIT.md`, `preview/`, how-to |
+| `resources/index-of-resources-and-working-patters.md` | `## web-components` section, category README, Android how-to path |
+| `knowledge/**` | published; `android/README.md` new; Android release guide moved in from `resources/how-to/` |
+| `resources/prompts/android-google-play-agent-prompts.md` | link to the guide's new path |
+| `check-governance.sh` | `routing_ref_resolves`: here-strings instead of pipes (SIGPIPE under `pipefail`) |
+| `README.md`, `VERSION.md`, `CHANGELOG.md` | release documentation v1.29.0 |
+
+N/A: `GOVERNANCE.md`, `practices/**`, adapters, skills router, installers, bootstrap, scaffold, tests (no rule,
+routing or install behaviour changed; the resources-index gate already covers the new leaf).
+

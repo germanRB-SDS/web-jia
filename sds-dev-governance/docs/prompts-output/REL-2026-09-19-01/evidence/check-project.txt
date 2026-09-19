@@ -1,0 +1,678 @@
+=== SDS Dev Governance Check ===
+Target: .
+
+OK: sds-dev-governance/GOVERNANCE.md exists
+OK: sds-dev-governance/VERSION.md exists
+OK: sds-dev-governance/practices/INDEX.md exists
+OK: sds-dev-governance/practices/modules/01-selective-text.md exists
+OK: sds-dev-governance/scripts/sds-text exists
+OK: sds-dev-governance/scripts/sds-mcp exists
+OK: sds-dev-governance/mcp/README.md exists
+OK: sds-dev-governance/mcp/cli.py exists
+OK: sds-dev-governance/mcp/control.py exists
+OK: sds-dev-governance/mcp/configure.py exists
+OK: sds-dev-governance/mcp/install-local.py exists
+OK: sds-dev-governance/mcp/inventory.py exists
+OK: sds-dev-governance/mcp/gateway.py exists
+OK: sds-dev-governance/mcp/hostinger.json exists
+OK: sds-dev-governance/mcp/hostinger-provenance.json exists
+OK: sds-dev-governance/mcp/tooling/package.json exists
+OK: sds-dev-governance/mcp/tooling/package-lock.json exists
+OK: sds-dev-governance/mcp/tooling/.nvmrc exists
+OK: sds-dev-governance/scripts/sds_text.py exists
+OK: sds-dev-governance/scripts/governance-freshness.sh exists
+OK: sds-dev-governance/scripts/governance_freshness.py exists
+OK: sds-dev-governance/examples/prompts/selective-context.md exists
+OK: sds-dev-governance/practices/RULE-COVERAGE.md exists
+OK: sds-dev-governance/skills/README.md exists
+OK: sds-dev-governance/skills/catalog-authority.md exists
+OK: sds-dev-governance/skills/bootstrap-and-agents.md exists
+OK: sds-dev-governance/skills/impeccable.md exists
+OK: sds-dev-governance/skills/gstack.md exists
+OK: sds-dev-governance/skills/skillui.md exists
+OK: sds-dev-governance/skills/design-references.md exists
+OK: sds-dev-governance/skills/graphify.md exists
+OK: sds-dev-governance/skills/vercel-skills.md exists
+OK: sds-dev-governance/skills/r8-analyzer.md exists
+OK: sds-dev-governance/skills/runtime/sds-r8-analyzer/SKILL.md exists
+OK: sds-dev-governance/skills/runtime/sds-r8-analyzer/LICENSE.txt exists
+OK: sds-dev-governance/skills/runtime/sds-r8-analyzer/NOTICE.md exists
+OK: sds-dev-governance/skills/runtime/sds-r8-analyzer/agents/openai.yaml exists
+OK: sds-dev-governance/skills/runtime/sds-r8-analyzer/references/analysis-workflow.md exists
+OK: sds-dev-governance/skills/runtime/sds-r8-analyzer/references/report-format.md exists
+OK: sds-dev-governance/scripts/install-skills.sh exists
+OK: sds-dev-governance/skills/threejs.md exists
+OK: sds-dev-governance/skills/install-catalog.tsv exists
+OK: sds-dev-governance/plugins/README.md exists
+OK: sds-dev-governance/plugins/base-catalog.tsv exists
+OK: sds-dev-governance/scripts/install-plugins.sh exists
+OK: sds-dev-governance/scripts/plugin-status.sh exists
+OK: sds-dev-governance/skills/spline.md exists
+OK: sds-dev-governance/skills/pstack.md exists
+OK: sds-dev-governance/skills/cross-agent-availability.md exists
+OK: sds-dev-governance/skills/INDEX.md exists
+OK: sds-dev-governance/skills/cross-agent-portability.tsv exists
+OK: sds-dev-governance/scripts/sync-agent-skills.sh exists
+OK: sds-dev-governance/scripts/generate-skills-index.sh exists
+OK: sds-dev-governance/scripts/install-graphify.sh exists
+OK: sds-dev-governance/scripts/governance-copies.sh exists
+OK: sds-dev-governance/scripts/gh-safe.sh exists
+OK: sds-dev-governance/scripts/git-safe-push.sh exists
+OK: sds-dev-governance/scripts/install-git-guardrails.sh exists
+OK: sds-dev-governance/scripts/apply-github-guardrails.sh exists
+OK: sds-dev-governance/github/ruleset-anti-deletion.json exists
+OK: sds-dev-governance/hooks/pre-push exists
+OK: sds-dev-governance/tests/test-github-guardrails.sh exists
+OK: sds-dev-governance/tests/test-skill-bootstrap.sh exists
+OK: sds-dev-governance/tests/test-plugin-bootstrap.sh exists
+OK: sds-dev-governance/tests/test-governance-copies.sh exists
+OK: sds-dev-governance/tests/fixtures/fake-gh.sh exists
+OK: sds-dev-governance/tests/fixtures/fake-git.sh exists
+OK: sds-dev-governance/resources/index-of-resources-and-working-patters.md exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/expandable-search-filter-panel/INDEX-AND-HOW-TO-USE-THEM.md exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/expandable-search-filter-panel/html/expandable-search-filter-panel.html exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/expandable-search-filter-panel/css/expandable-search-filter-panel.css exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/expandable-search-filter-panel/javascript/expandable-search-filter-panel.js exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/notification-toast-stack/INDEX-AND-HOW-TO-USE-THEM.md exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/notification-toast-stack/html/notification-toast-stack.html exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/notification-toast-stack/css/notification-toast-stack.css exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/notification-toast-stack/javascript/notification-toast-stack.js exists
+OK: sds-dev-governance/resources/frontend-patterns/ui-components/procedural-horizon-hero/INDEX-AND-HOW-TO-USE-THEM.md exists
+OK: sds-dev-governance/resources/frontend-patterns/site-compositions/grounded-editorial-studio/INDEX-AND-HOW-TO-USE-THEM.md exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/INDEX-AND-HOW-TO-USE-THEM.md exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/README.md exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/index.template.html exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/build.mjs exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/package.json exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/index.html exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/site-content.js exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/app.js exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/styles.css exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/hero-boot.js exists
+OK: sds-dev-governance/resources/frontend-external-sample-code/grounded-studio-reference/demo/hero-scene.js exists
+OK: sds-dev-governance/scaffold/docs/governance/capability-registry.md exists
+OK: sds-dev-governance/scaffold/docs/governance/governance-change-log.md exists
+OK: sds-dev-governance/practices/13-multi-agent.md exists
+OK: sds-dev-governance/practices/14-phase-commit-report.md exists
+OK: sds-dev-governance/practices/15-contract-authority.md exists
+OK: sds-dev-governance/practices/modules/11-capability-admission.md exists
+OK: sds-dev-governance/practices/modules/07-mcp-control.md exists
+OK: sds-dev-governance/practices/modules/11-governance-distribution.md exists
+OK: sds-dev-governance/adapters/nested/CLAUDE.md exists
+OK: sds-dev-governance/adapters/nested/AGENTS.md exists
+OK: sds-dev-governance/adapters/nested/GEMINI.md exists
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc exists
+OK: CLAUDE.md exists
+OK: AGENTS.md exists
+OK: GEMINI.md exists
+OK: .cursor/rules/sds-governance.mdc exists
+OK: check-governance.sh exists
+OK: docs/governance/README.md exists
+OK: docs/governance/capability-registry.md exists
+OK: docs/governance/governance-change-log.md exists
+OK: docs/governance/evaluation/README.md exists
+OK: docs/governance/evaluation/output-review-template.md exists
+OK: docs/governance/evaluation/improvement-backlog.md exists
+OK: docs/memory/README.md exists
+OK: docs/memory/frontend.md exists
+OK: docs/memory/backend.md exists
+OK: docs/memory/api-openapi.md exists
+OK: docs/memory/database.md exists
+OK: docs/memory/security.md exists
+OK: docs/memory/deployment.md exists
+OK: sds-dev-governance/scaffold/docs/memory/index-area.md.template exists
+OK: sds-dev-governance/scaffold/docs/prompts/preface-template.md exists
+OK: sds-dev-governance/scaffold/docs/prompts/prompt-revision-preflight.md exists
+OK: sds-dev-governance/scaffold/docs/prompts/preflight-module-index.md exists
+OK: sds-dev-governance/scaffold/docs/prompts/preflight-frontend-ui.md exists
+OK: sds-dev-governance/scaffold/docs/prompts/preflight-frontend-security.md exists
+OK: docs/prompts/prompt-revision-preflight.md exists
+OK: docs/prompts/preflight-module-index.md exists
+OK: docs/prompts/preflight-frontend-ui.md exists
+OK: docs/prompts/preflight-frontend-security.md exists
+OK: sds-dev-governance/examples/prompts/level-2-feature.md exists
+OK: sds-dev-governance/examples/prompts/level-3-cross-layer-change.md exists
+OK: docs/prompts-output-template/output-template.md exists
+OK: docs/prompts-output/README.md exists
+OK: docs/features/features-index.md exists
+OK: docs/contracts/README.md exists
+OK: docs/runbooks/README.md exists
+OK: docs/decisions/DEC-000-template.md exists
+OK: sds-dev-governance/agentic-engineering/README.md exists
+OK: sds-dev-governance/agentic-engineering/ai-code-assurance.md exists
+OK: sds-dev-governance/agentic-engineering/check-ai-pr-assurance.sh exists
+OK: sds-dev-governance/scaffold/.github/PULL_REQUEST_TEMPLATE.md exists
+OK: sds-dev-governance/scaffold/.gitlab/merge_request_templates/Default.md exists
+OK: .github/PULL_REQUEST_TEMPLATE.md exists
+OK: .gitlab/merge_request_templates/Default.md exists
+
+=== Project Policies ===
+OK: docs/fixture-policies/fixture-cookies-policy.md exists
+OK: docs/fixture-policies/fixture-privacy-policy.md exists
+OK: docs/fixture-policies/fixture-terms-of-service.md exists
+OK: project policy folder naming checked
+
+=== Required Rules ===
+OK: GOVERNANCE.md has SDS title
+OK: GOVERNANCE.md has proportional governance
+OK: GOVERNANCE.md has non-regression premise
+OK: GOVERNANCE.md has prompt and contract discipline
+OK: GOVERNANCE.md has contract gate router
+OK: contract gate router is explicitly lazy-loaded
+OK: GOVERNANCE.md has bootstrap equivalence
+OK: GOVERNANCE.md has frontend constants/business portability
+OK: GOVERNANCE.md routes practice loading through INDEX
+OK: practice INDEX is the sole loading entrypoint
+OK: practice INDEX includes no-load semantics
+OK: practice INDEX defines future/fail-closed routing
+OK: rule coverage ledger is excluded from default context
+OK: practice router lists 01-agent-memory.md exactly once
+OK: practice router lists 02-prompt-system.md exactly once
+OK: practice router lists 03-output-traceability.md exactly once
+OK: practice router lists 04-feature-tracking.md exactly once
+OK: practice router lists 05-git-branching.md exactly once
+OK: practice router lists 06-non-regression.md exactly once
+OK: practice router lists 07-security-baseline.md exactly once
+OK: practice router lists 08-role-system.md exactly once
+OK: practice router lists 09-docs-structure.md exactly once
+OK: practice router lists 10-pre-pr-checklist.md exactly once
+OK: practice router lists 11-governance-evolution.md exactly once
+OK: practice router lists 12-governance-proportionality.md exactly once
+OK: practice router lists 13-multi-agent.md exactly once
+OK: practice router lists 14-phase-commit-report.md exactly once
+OK: practice router lists 15-contract-authority.md exactly once
+OK: practice router lists 16-verification-proportionality.md exactly once
+OK: practice router covers 16 numbered practices
+OK: docs/governance/capability-registry.md has one ordered capability ledger block
+OK: docs/governance/capability-registry.md uses the canonical capability ledger columns
+OK: docs/governance/capability-registry.md uses the closed capability status enum and explicit admission constraints
+OK: sds-dev-governance/scaffold/docs/governance/capability-registry.md has one ordered capability ledger block
+OK: sds-dev-governance/scaffold/docs/governance/capability-registry.md uses the canonical capability ledger columns
+OK: sds-dev-governance/scaffold/docs/governance/capability-registry.md uses the closed capability status enum and explicit admission constraints
+OK: portable capability ledger scaffold has no environment admissions
+OK: always-read skills router has no environment fingerprints
+OK: capability admission module retains gates, states and closure
+OK: practice 11 root does not embed the full capability gate
+OK: sds-dev-governance/practices/11-governance-evolution.md routes the capability admission module
+OK: sds-dev-governance/practices/INDEX.md routes the capability admission module
+OK: sds-dev-governance/skills/README.md routes the capability admission module
+OK: INDEX and skills router preserve routine exact-match lazy loading
+OK: kernel makes GitHub remote deletion manual-owner-only
+OK: Git practice routes safe push
+OK: security practice makes deletion non-delegable
+OK: security practice forbids delete_repo scope
+OK: security practice fails closed on unsupported plans
+OK: CLAUDE.md carries GitHub deletion guardrail trigger
+OK: CLAUDE.md routes GitHub CLI through safe wrapper
+OK: AGENTS.md carries GitHub deletion guardrail trigger
+OK: AGENTS.md routes GitHub CLI through safe wrapper
+OK: GEMINI.md carries GitHub deletion guardrail trigger
+OK: GEMINI.md routes GitHub CLI through safe wrapper
+OK: .cursor/rules/sds-governance.mdc carries GitHub deletion guardrail trigger
+OK: .cursor/rules/sds-governance.mdc routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/CLAUDE.md carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/CLAUDE.md routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/AGENTS.md carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/AGENTS.md routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/GEMINI.md carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/GEMINI.md routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/cursor-rules/sds-governance.mdc carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/cursor-rules/sds-governance.mdc routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/nested/CLAUDE.md carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/nested/CLAUDE.md routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/nested/AGENTS.md carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/nested/AGENTS.md routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/nested/GEMINI.md carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/nested/GEMINI.md routes GitHub CLI through safe wrapper
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc carries GitHub deletion guardrail trigger
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc routes GitHub CLI through safe wrapper
+OK: canonical GitHub ruleset is active, global and bypass-free
+OK: sds-dev-governance/scripts/gh-safe.sh is executable
+OK: sds-dev-governance/scripts/git-safe-push.sh is executable
+OK: sds-dev-governance/scripts/install-git-guardrails.sh is executable
+OK: sds-dev-governance/scripts/apply-github-guardrails.sh is executable
+OK: sds-dev-governance/hooks/pre-push is executable
+OK: sds-dev-governance/tests/test-github-guardrails.sh is executable
+OK: sds-dev-governance/tests/test-skill-bootstrap.sh is executable
+OK: sds-dev-governance/tests/test-plugin-bootstrap.sh is executable
+PASS: GitHub deletion guardrails deny destructive modes and apply idempotently
+OK: GitHub guardrail negative/idempotence tests pass
+OK: practice 16 root within ratified word budget (633 <= 633)
+OK: practice 16 root keeps V0/V4 scale and no-change-no-rerun anchors
+OK: practice 16 defines no second LEVEL scale
+OK: sds-dev-governance/practices/16-verification-proportionality.md routes the verification scope module
+OK: sds-dev-governance/practices/INDEX.md routes the verification scope module
+OK: GOVERNANCE.md context budget (1449 <= 1700 words)
+OK: practice INDEX context budget (947 <= 1000 words)
+OK: always-read SDS context budget (2986 <= 3000 words)
+OK: GOVERNANCE.md has one Agentic Engineering section
+OK: prompt practice has delta discipline
+OK: prompt practice has context-driven extensibility
+OK: prompt practice has contract artifact co-review
+OK: prompt practice has frontend constants gate
+OK: prompt practice has pre-execution suffix naming
+OK: prompt practice has planned-iteration insertion naming
+OK: resources index lists nomenclature explanation
+OK: resources index lists expandable search/filter panel
+OK: expandable filter pattern keeps autocomplete in filter scope
+OK: init prompt preserves expandable search/filter resource
+OK: resources index lists notification toast stack
+OK: notification toast pattern keeps its discovery tag
+OK: notification toast pattern documents readable duration
+OK: init prompt preserves notification toast resource
+OK: resources index lists procedural horizon hero
+OK: procedural hero preserves fallback acceptance
+OK: resources index lists grounded editorial composition
+OK: studio composition preserves empirical gate
+OK: resources index lists grounded studio sample
+OK: grounded studio generator rejects unresolved slots
+OK: grounded studio generator rejects unsupported link destinations
+OK: grounded studio enhancement respects reduced motion
+OK: grounded studio teardown removes visibility listener
+OK: grounded studio teardown cancels hand-over frame
+OK: init prompt preserves grounded studio sample
+OK: sds-dev-governance/adapters/CLAUDE.md preserves project-name placeholder
+OK: sds-dev-governance/adapters/CLAUDE.md preserves project-root placeholder
+OK: sds-dev-governance/adapters/AGENTS.md preserves project-name placeholder
+OK: sds-dev-governance/adapters/AGENTS.md preserves project-root placeholder
+OK: sds-dev-governance/adapters/GEMINI.md preserves project-name placeholder
+OK: sds-dev-governance/adapters/GEMINI.md preserves project-root placeholder
+OK: portable adapters contain no leaked project identity/path
+OK: agentic-engineering has the Golden Rule
+OK: PR template carries the AI-assurance machine marker
+OK: nomenclature explanation documents planned-iteration insertions
+OK: prompt practice documents non-executable preface
+OK: prompt practice documents pre-execution review
+OK: prompt practice routes contract authority conditionally
+OK: contract authority practice forbids static preload
+OK: contract authority practice defines owner-decision verdict
+OK: contract authority practice defines ERROR
+OK: contract authority practice defines CLARIFICATION
+OK: contract authority practice defines ADDITION
+OK: contract authority practice defines MODIFICATION
+OK: contract authority practice defines IMPROVEMENT
+OK: GOVERNANCE.md documents prompt tmp memory location
+OK: agent memory practice documents prompt tmp memory
+OK: output traceability practice documents tmp/evidence
+OK: docs structure practice routes prompt tmp memory
+OK: governance evolution practice documents tmp consolidation
+OK: phase report practice links tmp memory
+OK: init.sh surfaces prompt tmp/evidence continuity
+OK: init prompt surfaces prompt tmp/evidence continuity
+OK: governance evolution practice documents detailed change log
+OK: project governance log tracks prompt base
+OK: project governance log tracks usage system
+OK: project governance log tracks incorporation date
+OK: scaffold governance log tracks touched files
+OK: preface template has non-executable marker
+OK: preflight prompt has review mode
+OK: preflight prompt forbids execution
+OK: preflight prompt documents selective add-ons
+OK: preflight prompt references module index
+OK: preflight module index has graph
+OK: preflight module index has routing table
+OK: preflight module index covers future modules
+OK: preflight module index forbids loading all modules
+OK: preflight prompt references frontend UI add-on
+OK: preflight prompt references frontend security add-on
+OK: preflight template loads contract authority gate
+OK: preflight template defines owner-decision verdict
+OK: project preflight prompt has review mode
+OK: project preflight prompt documents selective add-ons
+OK: project preflight loads contract authority gate
+OK: project preflight defines owner-decision verdict
+OK: project preflight module index has graph
+OK: project preflight module index forbids loading all modules
+OK: frontend UI preflight covers constants/config/i18n
+OK: frontend UI preflight covers hardcoded rendered information
+OK: frontend security preflight covers OWASP
+OK: frontend security preflight covers CSRF
+OK: frontend security preflight covers XSS
+OK: frontend security preflight covers CSP
+OK: Claude adapter has development preflight trigger
+OK: Codex adapter has development preflight trigger
+OK: Gemini adapter has development preflight trigger
+OK: Claude adapter template has development preflight trigger
+OK: Codex adapter template has development preflight trigger
+OK: Gemini adapter template has development preflight trigger
+OK: Cursor root adapter has development preflight trigger
+OK: Cursor adapter template has development preflight trigger
+OK: Claude root adapter references preflight module index
+OK: Codex root adapter references preflight module index
+OK: Gemini root adapter references preflight module index
+OK: Cursor root adapter references preflight module index
+OK: Claude adapter template references preflight module index
+OK: Codex adapter template references preflight module index
+OK: Gemini adapter template references preflight module index
+OK: Cursor adapter template references preflight module index
+OK: nested Claude adapter references preflight module index
+OK: nested Codex adapter references preflight module index
+OK: nested Gemini adapter references preflight module index
+OK: nested Cursor adapter references preflight module index
+OK: CLAUDE.md carries contract gate trigger
+OK: CLAUDE.md points to conditional contract authority practice
+OK: CLAUDE.md forbids conditional-practice preload
+OK: CLAUDE.md points to selective practice router
+OK: AGENTS.md carries contract gate trigger
+OK: AGENTS.md points to conditional contract authority practice
+OK: AGENTS.md forbids conditional-practice preload
+OK: AGENTS.md points to selective practice router
+OK: GEMINI.md carries contract gate trigger
+OK: GEMINI.md points to conditional contract authority practice
+OK: GEMINI.md forbids conditional-practice preload
+OK: GEMINI.md points to selective practice router
+OK: .cursor/rules/sds-governance.mdc carries contract gate trigger
+OK: .cursor/rules/sds-governance.mdc points to conditional contract authority practice
+OK: .cursor/rules/sds-governance.mdc forbids conditional-practice preload
+OK: .cursor/rules/sds-governance.mdc points to selective practice router
+OK: sds-dev-governance/adapters/CLAUDE.md carries contract gate trigger
+OK: sds-dev-governance/adapters/CLAUDE.md points to conditional contract authority practice
+OK: sds-dev-governance/adapters/CLAUDE.md forbids conditional-practice preload
+OK: sds-dev-governance/adapters/CLAUDE.md points to selective practice router
+OK: sds-dev-governance/adapters/AGENTS.md carries contract gate trigger
+OK: sds-dev-governance/adapters/AGENTS.md points to conditional contract authority practice
+OK: sds-dev-governance/adapters/AGENTS.md forbids conditional-practice preload
+OK: sds-dev-governance/adapters/AGENTS.md points to selective practice router
+OK: sds-dev-governance/adapters/GEMINI.md carries contract gate trigger
+OK: sds-dev-governance/adapters/GEMINI.md points to conditional contract authority practice
+OK: sds-dev-governance/adapters/GEMINI.md forbids conditional-practice preload
+OK: sds-dev-governance/adapters/GEMINI.md points to selective practice router
+OK: sds-dev-governance/adapters/cursor-rules/sds-governance.mdc carries contract gate trigger
+OK: sds-dev-governance/adapters/cursor-rules/sds-governance.mdc points to conditional contract authority practice
+OK: sds-dev-governance/adapters/cursor-rules/sds-governance.mdc forbids conditional-practice preload
+OK: sds-dev-governance/adapters/cursor-rules/sds-governance.mdc points to selective practice router
+OK: sds-dev-governance/adapters/nested/CLAUDE.md carries contract gate trigger
+OK: sds-dev-governance/adapters/nested/CLAUDE.md points to conditional contract authority practice
+OK: sds-dev-governance/adapters/nested/CLAUDE.md forbids conditional-practice preload
+OK: sds-dev-governance/adapters/nested/CLAUDE.md points to selective practice router
+OK: sds-dev-governance/adapters/nested/AGENTS.md carries contract gate trigger
+OK: sds-dev-governance/adapters/nested/AGENTS.md points to conditional contract authority practice
+OK: sds-dev-governance/adapters/nested/AGENTS.md forbids conditional-practice preload
+OK: sds-dev-governance/adapters/nested/AGENTS.md points to selective practice router
+OK: sds-dev-governance/adapters/nested/GEMINI.md carries contract gate trigger
+OK: sds-dev-governance/adapters/nested/GEMINI.md points to conditional contract authority practice
+OK: sds-dev-governance/adapters/nested/GEMINI.md forbids conditional-practice preload
+OK: sds-dev-governance/adapters/nested/GEMINI.md points to selective practice router
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc carries contract gate trigger
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc points to conditional contract authority practice
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc forbids conditional-practice preload
+OK: sds-dev-governance/adapters/nested/cursor-rules/sds-governance.mdc points to selective practice router
+
+=== Selective Practice Loading Drift ===
+OK: obsolete blanket practice preload instruction absent
+OK: level-2 example has non-executable preface
+OK: level-3 example has non-executable preface
+OK: non-regression practice has discovery before hardcoding
+OK: non-regression practice has cross-layer matrix
+OK: non-regression practice has UI-to-data lineage
+OK: non-regression practice has frontend constants/assets portability
+OK: non-regression practice has persistence race safety
+OK: non-regression practice has state mutation resilience
+OK: security practice has no-hardcoded-secrets rule
+OK: security practice has degraded-operation rule
+OK: pre-PR checklist covers frontend constants and assets
+OK: CLAUDE.md points to SDS governance
+OK: AGENTS.md points to SDS governance
+OK: GEMINI.md points to SDS governance
+OK: Cursor adapter points to SDS governance
+OK: CLAUDE.md includes frontend constants guidance
+OK: AGENTS.md includes frontend constants guidance
+OK: GEMINI.md includes frontend constants guidance
+OK: Cursor adapter includes frontend constants guidance
+OK: skills index includes Impeccable
+OK: skills index includes gstack
+OK: skills index includes skillui
+OK: skills index includes Graphify
+OK: skills index includes Vercel Agent Skills
+OK: skills index includes r8-analyzer
+OK: skills index includes Three.js
+OK: skill catalog includes Impeccable
+OK: skill catalog includes gstack
+OK: skill catalog includes skillui
+OK: skill catalog includes Three.js
+OK: skill catalog includes Graphify
+OK: 2026-08-20 Impeccable pin is preserved
+OK: 2026-08-20 skillui pin is preserved
+OK: 2026-08-20 gstack pin is preserved
+OK: 2026-08-20 Three.js pin is preserved
+OK: plugin router is explicitly lazy
+OK: base plugin catalog includes official Figma Design+Make for Claude and Codex
+OK: project ignores local base-plugin tracking
+OK: init prompt ignores local base-plugin tracking
+OK: skills index includes Spline
+OK: skills index includes the cross-agent bridge
+OK: skills index points to the ordered skill index
+OK: skills router points to project capability ledger
+OK: project capability ledger is fail-closed
+OK: active adapters do not imperatively invoke graphify update
+OK: Graphify skill documents package
+OK: Vercel skill documents upstream source
+OK: Vercel skill defers to project capability ledger
+OK: r8-analyzer documents official upstream source
+OK: r8-analyzer documents the verified upstream limitation
+OK: r8-analyzer defers to project capability ledger
+OK: bundled r8-analyzer has the custom non-colliding name
+OK: bundled r8-analyzer excludes unavailable scripts
+OK: skills installer supports bootstrap-safe bundled mode
+OK: skills installer targets Claude Code globally
+OK: skills installer targets Codex globally
+OK: init.sh documents bundled-only opt-out
+OK: init.sh requires the r8-analyzer guide
+OK: init prompt preserves the r8-analyzer guide
+OK: Spline skill documents the bundled MCP entrypoint
+OK: Spline skill defers to project capability ledger
+OK: cross-agent doc names its policy file
+OK: cross-agent policy is fail-closed
+OK: ordered skill index declares it is generated
+OK: init.sh installs Graphify
+OK: init.sh enables the catalog by default
+OK: init.sh exposes an explicit catalog opt-out
+OK: init.sh installs the declared catalog
+OK: init.sh enables base plugins by default
+OK: init.sh exposes an explicit plugin opt-out
+OK: init.sh installs the lazy base-plugin catalog
+OK: init prompt installs Graphify
+OK: init prompt installs base plugins
+OK: skill files use stable semantic slugs
+OK: no runtime reference to pre-slug skill filenames outside the changelog
+OK: skill install catalog rows are complete, unique and routed (6 capabilities)
+OK: cross-agent portability policy owns propagation only
+OK: skills router routes to the catalog authority node
+OK: practice 11 routes the distribution/promotion module
+OK: practice INDEX routes distribution/promotion work
+OK: distribution module defines the project-copy state model
+OK: distribution module defines split-version detection
+OK: distribution module requires a split to fail, not merely to be reported
+OK: distribution module defines the regression/preservation classes
+OK: distribution module is written for an arbitrary number of projects
+OK: practice 05 owns concurrent-writer isolation and staging
+OK: practice 05 names the prohibited broad staging commands
+OK: kernel states the minimum-sufficient-subgraph rule
+OK: practice 12 owns the sharding criteria
+OK: catalog authority node declares its load trigger
+OK: catalog authority node owns the ownership table
+OK: skill bootstrap node declares its load trigger
+OK: every governance path named by a routing surface resolves (101 references)
+OK: every skill, practice and practice module is reachable from its entrypoint
+OK: routing selectivity: 'Android R8 shrinking review' -> skills/r8-analyzer.md
+OK: routing selectivity: 'authored 3D or 2D asset work' -> skills/spline.md
+OK: routing selectivity: 'schema or data migration' -> practices/14-phase-commit-report.md
+OK: routing selectivity: 'frontend visual work' -> skills/impeccable.md
+OK: routing selectivity: 'secrets and permissions work' -> practices/07-security-baseline.md
+OK: routing selectivity: 'knowledge-graph discovery' -> skills/graphify.md
+OK: routing selectivity: 'unknown subsystem investigation' -> skills/pstack.md
+OK: pstack node pins its source and revision
+OK: pstack node defers to project capability ledger
+OK: pstack node defines the user exclusion
+OK: skills router carries the pstack exclusion trigger
+OK: continuity checkpoint keeps active user restrictions
+OK: delegation brief carries user restrictions
+OK: adapters/CLAUDE.md routes pstack through the skills node
+OK: adapters/AGENTS.md routes pstack through the skills node
+OK: adapters/GEMINI.md routes pstack through the skills node
+OK: adapters/nested/CLAUDE.md routes pstack through the skills node
+OK: adapters/nested/AGENTS.md routes pstack through the skills node
+OK: adapters/nested/GEMINI.md routes pstack through the skills node
+OK: no pstack skill body is embedded in governance or project memory
+OK: no kit script, bootstrap or plugin catalog depends on pstack
+OK: governance copy discovery is project-agnostic (0..N copies)
+OK: generated skill index matches the cross-agent portability policy
+=== Skill catalog dry run ===
+OK: catalog includes Impeccable
+OK: catalog includes gstack
+OK: catalog includes skillui
+OK: catalog includes Three.js
+OK: Graphify has an independent opt-out
+=== Isolated Three.js sharing ===
+OK: Three.js provenance records the verified package
+OK: Three.js install is idempotent
+=== Isolated bundled-only mode ===
+OK: --bundled-only installs only rows with bundled scope
+OK: catalog rows must name an existing skill document
+=== Isolated init defaults ===
+OK: init installs the catalog by default
+OK: init exposes an explicit catalog opt-out
+OK: --skip-skills performs no catalog install
+OK: skill bootstrap tests passed
+OK: skill catalog and bootstrap tests pass
+=== First install ===
+OK: Claude uses the official plugin reference
+OK: Codex uses the official Figma endpoint
+OK: Claude install state is timestamped
+OK: Codex install state is timestamped
+=== Idempotent verify ===
+OK: Claude plugin installs only once
+OK: Codex MCP registers only once
+OK: Claude verify preserves change timestamps
+OK: Codex verify preserves change timestamps
+OK: tracking has one Claude row
+OK: tracking has one Codex row
+=== Dry run ===
+OK: dry-run declares both Figma capabilities
+=== Conflict is preserved ===
+OK: conflicting Codex endpoint is preserved
+OK: conflict updates check status only
+=== CLI unavailable ===
+OK: missing Claude CLI is tracked
+OK: missing Codex CLI is tracked
+=== Init default and opt-out ===
+OK: 2026-08-20 skill baseline remains default
+OK: base plugins are default-on
+OK: init exposes explicit plugin opt-out
+OK: plugin bootstrap tests passed
+OK: base-plugin catalog and bootstrap tests pass
+OK: practice INDEX routes multi-agent practice
+OK: README.md lists multi-agent practice
+OK: multi-agent practice points to governance
+OK: multi-agent practice documents nested memory
+OK: practice INDEX routes phase commit report practice
+OK: Claude adapter carries phase report trigger
+OK: Codex adapter carries phase report trigger
+OK: Gemini adapter carries phase report trigger
+OK: Claude root adapter carries prompt continuity trigger
+OK: Codex root adapter carries prompt continuity trigger
+OK: Gemini root adapter carries prompt continuity trigger
+OK: Cursor root adapter carries prompt continuity trigger
+OK: Claude adapter template carries prompt continuity trigger
+OK: Codex adapter template carries prompt continuity trigger
+OK: Gemini adapter template carries prompt continuity trigger
+OK: Cursor adapter template carries prompt continuity trigger
+OK: nested Claude adapter carries prompt continuity trigger
+OK: nested Codex adapter carries prompt continuity trigger
+OK: nested Gemini adapter carries prompt continuity trigger
+OK: nested Cursor adapter carries prompt continuity trigger
+OK: phase report practice points to governance
+OK: GOVERNANCE.md documents nested project memory
+OK: nested Claude template uses relative governance placeholder
+OK: nested Codex template uses relative governance placeholder
+OK: governance evaluation has objective metrics
+OK: output template tracks affected areas
+OK: output template tracks governance level
+OK: output template has continuity checkpoint
+OK: output template tracks cross-layer matrix
+OK: output template tracks UI-to-data lineage
+OK: output template tracks mutation resilience
+OK: output template tracks prompt tmp/evidence consolidation
+OK: output template tracks contract resolutions
+OK: scaffold output template tracks contract resolutions
+OK: init prompt installs contract gate routing
+OK: init script surfaces lazy contract gate
+OK: prompts-output README documents tmp location
+
+=== Contract Authority Drift ===
+OK: obsolete repository-always-wins contract rule absent
+
+=== Placeholders ===
+OK: no unresolved project placeholders
+
+=== Governance Template Portability ===
+OK: sds-dev-governance/adapters/CLAUDE.md keeps the project-name placeholder
+OK: sds-dev-governance/adapters/CLAUDE.md keeps the project-root placeholder
+OK: sds-dev-governance/adapters/CLAUDE.md points to the installed GitHub wrapper
+OK: sds-dev-governance/adapters/AGENTS.md keeps the project-name placeholder
+OK: sds-dev-governance/adapters/AGENTS.md keeps the project-root placeholder
+OK: sds-dev-governance/adapters/AGENTS.md points to the installed GitHub wrapper
+OK: sds-dev-governance/adapters/GEMINI.md keeps the project-name placeholder
+OK: sds-dev-governance/adapters/GEMINI.md keeps the project-root placeholder
+OK: sds-dev-governance/adapters/GEMINI.md points to the installed GitHub wrapper
+OK: Cursor adapter template points to the installed GitHub wrapper
+OK: init prompt documents the project-name placeholder
+OK: init prompt documents the project-root placeholder
+OK: governance templates contain no machine-specific absolute path
+
+=== Obsolete References ===
+OK: no obsolete memory references
+
+=== Governance Kit Consistency ===
+OK: no obsolete canonical-governance references in governance kit
+
+=== Resources Index ===
+OK: resources index exists
+OK: resource indexed: swiftui-paypal-donation-link
+OK: resource indexed: grounded-studio-reference
+OK: resource indexed: ivancidev-gta6-landing-clone
+OK: resource indexed: midu-gta-vi-hero
+OK: resource indexed: tree-3d
+OK: resource indexed: teragenda-colors-palette
+OK: resource indexed: svg-path-glow-trace
+OK: resource indexed: wordmark-mask-beams
+OK: resource indexed: border-glow
+OK: resource indexed: carousel-motion
+OK: resource indexed: text-shimmer
+OK: resource indexed: account-two-column-layout
+OK: resource indexed: frosted-arrow-buttons
+OK: resource indexed: drag-relocate-button
+OK: resource indexed: frosted-alert-modal
+OK: resource indexed: frosted-confirm-modal
+OK: resource indexed: standard-form
+OK: resource indexed: weekday-chip-toggle
+OK: resource indexed: consult-source-button
+OK: resource indexed: carousel
+OK: resource indexed: procedural-horizon-hero
+OK: resource indexed: notification-toast-stack
+OK: resource indexed: expandable-search-filter-panel
+OK: resource indexed: gradient-flow-button
+OK: resource indexed: grounded-editorial-studio
+
+=== Nested Adapters ===
+
+=== Memory Size ===
+OK: docs/memory/README.md is memory index
+OK: docs/memory/README.md has 64 lines
+OK: docs/memory/api-openapi.md has Contexto minimo
+OK: docs/memory/api-openapi.md has 36 lines
+OK: docs/memory/backend.md has Contexto minimo
+OK: docs/memory/backend.md has 36 lines
+OK: docs/memory/database.md has Contexto minimo
+OK: docs/memory/database.md has 38 lines
+OK: docs/memory/deployment.md has Contexto minimo
+OK: docs/memory/deployment.md has 39 lines
+OK: docs/memory/frontend.md has Contexto minimo
+OK: docs/memory/frontend.md has 66 lines
+OK: docs/memory/security.md has Contexto minimo
+OK: docs/memory/security.md has 36 lines
+
+=== Sensitive Value Patterns ===
+OK: no common sensitive value patterns found
+
+SDS Dev Governance check passed.

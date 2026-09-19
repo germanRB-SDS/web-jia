@@ -1,0 +1,26 @@
+test_all_gateway_channels_are_closed (__main__.ControlTests.test_all_gateway_channels_are_closed) ... ok
+test_changed_preconditions_stop_batch (__main__.ControlTests.test_changed_preconditions_stop_batch) ... ok
+test_config_revision_and_corruption_block (__main__.ControlTests.test_config_revision_and_corruption_block) ... ok
+test_custody_format_permissions_and_links (__main__.ControlTests.test_custody_format_permissions_and_links) ... ok
+test_forged_request_approval_and_external_injection_fail (__main__.ControlTests.test_forged_request_approval_and_external_injection_fail) ... ok
+test_github_manual_owner_rule_survives_two_events (__main__.ControlTests.test_github_manual_owner_rule_survives_two_events) ... ok
+test_global_stage_idempotence_preservation_and_recovery (__main__.ControlTests.test_global_stage_idempotence_preservation_and_recovery) ... ok
+test_global_visibility_in_two_projects_and_override_detection (__main__.ControlTests.test_global_visibility_in_two_projects_and_override_detection) ... ok
+test_instruction_staging_preserves_existing_and_recovers (__main__.ControlTests.test_instruction_staging_preserves_existing_and_recovers) ... ok
+test_inventory_unknown_dates_no_secret_or_execution (__main__.ControlTests.test_inventory_unknown_dates_no_secret_or_execution) ... ok
+test_missing_control_and_linked_config_fail_closed (__main__.ControlTests.test_missing_control_and_linked_config_fail_closed) ... ok
+test_mixed_server_classifies_arguments (__main__.ControlTests.test_mixed_server_classifies_arguments) ... ok
+test_replay_into_new_batch_and_changed_resource_fail (__main__.ControlTests.test_replay_into_new_batch_and_changed_resource_fail) ... ok
+test_revision_target_executor_and_expiry_invalidated (__main__.ControlTests.test_revision_target_executor_and_expiry_invalidated) ... ok
+test_same_event_or_same_timestamp_is_not_two_events (__main__.ControlTests.test_same_event_or_same_timestamp_is_not_two_events) ... ok
+test_stage_conflict_and_recovery_concurrent_edit_preserved (__main__.ControlTests.test_stage_conflict_and_recovery_concurrent_edit_preserved) ... ok
+test_stdio_safe_errors_protocol_and_no_canary_exposure (__main__.ControlTests.test_stdio_safe_errors_protocol_and_no_canary_exposure) ... ok
+test_timeout_reconciles_and_concurrent_retries_deduplicate (__main__.ControlTests.test_timeout_reconciles_and_concurrent_retries_deduplicate) ... ok
+test_unknown_timeout_outcome_never_retries (__main__.ControlTests.test_unknown_timeout_outcome_never_retries) ... ok
+test_unknown_tool_schema_and_arguments_blocked (__main__.ControlTests.test_unknown_tool_schema_and_arguments_blocked) ... ok
+test_zero_one_two_separate_events (__main__.ControlTests.test_zero_one_two_separate_events) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.081s
+
+OK

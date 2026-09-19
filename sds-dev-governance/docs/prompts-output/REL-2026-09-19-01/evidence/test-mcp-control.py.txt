@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "tests/test-mcp-control.py", line 16, in <module>
+    from configure import stage, restore, instructions, instruction_path
+  File "/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance/mcp/configure.py", line 6, in <module>
+    import tomllib
+ModuleNotFoundError: No module named 'tomllib'
