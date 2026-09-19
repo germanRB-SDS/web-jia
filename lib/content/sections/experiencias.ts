@@ -23,11 +23,12 @@ const treePalettes = {
     leaves: ["var(--jia-tree-cream)", "var(--jia-tree-rose)", "var(--jia-tree-lilac)", "var(--jia-tree-lilac-deep)"],
     trunk: "var(--jia-tree-bark)",
     trunkDark: "var(--jia-tree-bark-deep)",
-    /** The rocks are the site's own ochre (JIA-2026-09-19-36); the shade under them, its ink. */
+    /** The rocks are the site's own ochres and browns (JIA-2026-09-19-36); the shade under them, its ink. */
     ground: "color-mix(in srgb, var(--jia-copper) 50%, var(--jia-dune-light))",
-    groundDark: "color-mix(in srgb, var(--jia-copper) 72%, var(--jia-terracotta-deep))",
-    moss: "var(--jia-tree-moss)",
-    mossDark: "var(--jia-tree-moss-deep)",
+    groundDark: "color-mix(in srgb, var(--jia-copper) 45%, var(--jia-terracotta-deep))",
+    /** No green on them (JIA-2026-09-19-37): the faces the sun reaches are a sandy ochre, the knoll a dune ochre; the sides run from copper to a deep brown. */
+    moss: "color-mix(in srgb, var(--jia-sand-deep) 82%, var(--jia-copper))",
+    mossDark: "color-mix(in srgb, var(--jia-dune) 55%, var(--jia-copper))",
     shadow: "var(--jia-ink)",
   },
   sepia: {
