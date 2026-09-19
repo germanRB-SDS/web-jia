@@ -5,7 +5,7 @@ imagen `assets/images-website/footer-caballo-poste.png` (2172 × 724, 3:1: estab
 contraluz en la puerta, y a la derecha un **poste de madera** iluminado; los bordes se funden a marrón oscuro).
 **Nivel:** LEVEL 2 (imagen nueva en el pie + cambio del anclaje de un componente WebGL + maquetación) · tmp/scratch:
 **aplica** → `docs/prompts-output/JIA-2026-09-19-40/tmp/progress.md` y `evidence/`.
-**Estado:** SIN EJECUTAR
+**Estado:** EJECUTADO (2026-09-19/20) — informe en `docs/prompts-output/JIA-2026-09-19-40/report.md`. Decisiones de ejecución: herradura al 78 % de la cara del poste (≈ 124 px), umbral de montaje 1100 px y segunda versión de la imagen del establo (enviada el 20-09).
 
 ## Texto del promotor
 

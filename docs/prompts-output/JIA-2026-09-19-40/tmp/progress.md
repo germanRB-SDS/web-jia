@@ -1,3 +1,5 @@
 - fase 0: prompt commiteado (8e9c116)
 - fase 1: columnas del pie en un grupo centrado (rejilla de tres zonas ≥ 1100 px), huecos iguales 44–64 px; centro del grupo = centro de la ventana a 1920/1440/1280/1100
 - fase 2: imagen del establo (public/footer/establo-{1200,2172}.webp, media footer-establo, stableMediaId/stablePost, footer.stable en el modelo); capa anclada por el poste con máscara y velos; texto legible a 1788
+- fase 3: herradura anclada al marcador del poste (config.post, Horseshoe pasa el elemento, place() lee su caja); tamaño por el ancho del poste; umbral 1600 → 1100; segunda versión de la imagen del establo (20-09); caída verificada por doble clic
+- fase 4: informe y estado del prompt

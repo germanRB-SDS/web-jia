@@ -3,9 +3,15 @@
  * Sizes are CSS pixels of the footer's block above the rule; the model is in metres and is scaled to fit.
  */
 export const HORSESHOE = {
-  /** Only large desktop windows get the shoe (promoter): below this it is not even mounted. From 1600 px the
-      window's margin beside the container holds it without covering the "Colabora" column. */
-  largeMedia: "(min-width: 1600px)",
+  /** From this window width the shoe is mounted. It used to need a very wide window (it hung in the margin beside
+      the lists); since JIA-2026-09-19-40 it hangs on the stable's post, which stands on the free ground right of
+      the centred lists from a laptop up. Below it the post is out of sight and nothing is mounted. */
+  largeMedia: "(min-width: 1100px)",
+  /** The post it hangs on: the footer marks the post's lit face with an element (`[data-horseshoe-post]`) and the
+      scene reads its box at every placement — the nail goes to the middle of that face, at the marker's height,
+      and the shoe is as wide as this share of the face. With no marker the shoe hangs by the window's right edge
+      (`size`, `nail.insetRightPx`, `nail.topPx` below). */
+  post: { selector: "[data-horseshoe-post]", widthShare: 0.78 },
   /** Height of the shoe as a share of the block above the rule, then clamped. */
   size: { share: 0.5, minPx: 96, maxPx: 240 },
   nail: {

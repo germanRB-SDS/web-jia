@@ -148,8 +148,8 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
         { src: "/footer/establo-2172.webp", width: 2172 },
       ],
       ratio: 2172 / 724,
-      original: "assets/images-website/footer-caballo-poste.png",
-      license: "Imagen aportada por el promotor el 19-09-2026 (origen y licencia por confirmar)",
+      original: "assets/images-website/footer-caballo-poste-2.png",
+      license: "Imagen aportada por el promotor el 20-09-2026, segunda versión del establo (origen y licencia por confirmar)",
     },
     {
       /** Experiencias ground. The teacher stands on the left; the right half is clear paper for the text. */

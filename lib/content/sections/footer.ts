@@ -15,5 +15,5 @@ export const footerConfig = {
   stableMediaId: "footer-establo" as string | null,
   /** Where the lit face of the post is in that image, as percentages of its box: the face's left edge and width,
       and how far down the nail goes. The footer lays an invisible marker there and the horseshoe reads it. */
-  stablePost: { leftPct: 74.4, widthPct: 9.4, nailTopPct: 21 },
+  stablePost: { leftPct: 74.4, widthPct: 10.3, nailTopPct: 28 },
 } as const;

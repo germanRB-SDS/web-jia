@@ -40,9 +40,11 @@ cp assets/3d/carruaje/jia-carruaje.glb public/jornadas/jia-carruaje.glb
 # Footer: the worn horseshoe built by Blender headless (assets/3d/herradura/make-herradura.py, JIA-2026-09-19-27), copied as is.
 out public/footer/x
 cp assets/3d/herradura/herradura.glb public/footer/herradura.glb
-# Footer ground: the stable supplied by the promoter (2172x724, JIA-2026-09-19-40). The horseshoe hangs on its post.
-magick assets/images-website/footer-caballo-poste.png -resize 1200x -strip -quality 80 "public/footer/establo-1200.webp"
-magick assets/images-website/footer-caballo-poste.png -strip -quality 82 "public/footer/establo-2172.webp"
+# Footer ground: the stable supplied by the promoter (2172x724, JIA-2026-09-19-40; second version, supplied on
+# 2026-09-20 — the first one stays beside it, unused: originals are never overwritten). The shoe hangs on its post.
+stable_src="assets/images-website/footer-caballo-poste-2.png"
+magick "$stable_src" -resize 1200x -strip -quality 80 "public/footer/establo-1200.webp"
+magick "$stable_src" -strip -quality 82 "public/footer/establo-2172.webp"
 
 # Jornadas intro video (JIA-2026-09-18-10): web version of the 4K original (2.1 GB, not in git) + its poster.
 # Needs ffmpeg (brew install ffmpeg, or FFMPEG=/path/to/ffmpeg); skipped when the tool or the original is missing,

@@ -65,6 +65,8 @@ export class HorseshoeScene {
     canvas: HTMLCanvasElement,
     private hit: HTMLElement,
     private reducedMotion: boolean,
+    /** The marker on the post the shoe hangs on (config.post); null hangs it by the window's right edge. */
+    private post: HTMLElement | null = null,
   ) {
     this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
     this.renderer.setClearColor(0x000000, 0);
@@ -174,14 +176,26 @@ export class HorseshoeScene {
 
     const size = CFG.size;
     const modelH = this.modelBox.max.y - this.modelBox.min.y;
+    const modelW = this.modelBox.max.x - this.modelBox.min.x;
+    // On the post: as wide as its share of the post's lit face. Otherwise, by the block's height.
+    const postBox = this.post?.getBoundingClientRect();
+    const onPost = postBox && postBox.width > 0 ? postBox : null;
     const targetH = Math.min(size.maxPx, Math.max(size.minPx, this.height * size.share));
-    const scale = targetH / modelH;
+    const scale = onPost ? (onPost.width * CFG.post.widthShare) / modelW : targetH / modelH;
     this.model.scale.setScalar(scale);
     // Model z runs through the shoe's thickness; keep it centred on the nail's plane.
     this.model.position.z = -(this.modelBox.max.z + this.modelBox.min.z) * scale * 0.5;
 
-    const nailX = this.width - CFG.nail.insetRightPx - this.modelBox.max.x * scale;
-    const nailY = CFG.nail.topPx + this.modelBox.max.y * scale;
+    let nailX = this.width - CFG.nail.insetRightPx - this.modelBox.max.x * scale;
+    let nailY = CFG.nail.topPx + this.modelBox.max.y * scale;
+    if (onPost) {
+      // The hanging shoe's centre, turned about its nail as it rests, goes to the middle of the post's face.
+      const rest = THREE.MathUtils.degToRad(CFG.restTiltDeg);
+      const cx = (this.modelBox.min.x + this.modelBox.max.x) / 2;
+      const cy = (this.modelBox.min.y + this.modelBox.max.y) / 2;
+      nailX = onPost.left - rect.left + onPost.width / 2 - (cx * Math.cos(rest) - cy * Math.sin(rest)) * scale;
+      nailY = onPost.top - rect.top;
+    }
     this.nailAt.set(nailX, -nailY);
     // A resize mid-fall puts the shoe back on its nail.
     this.fallen = false;

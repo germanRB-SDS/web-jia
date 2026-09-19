@@ -14,9 +14,9 @@ const subscribeLarge = (cb: () => void) => {
 const isLarge = () => window.matchMedia(CFG.largeMedia).matches;
 
 /**
- * A worn horseshoe hanging from a nail on the footer's top edge, by the window's right margin, drawn with
- * Three.js on a transparent canvas over the block above the rule (horseshoe-scene.ts). Large desktop
- * windows only: elsewhere nothing is mounted. Decoration with a real button over it: the button carries
+ * A worn horseshoe hanging from a nail on the post of the footer's stable (config.post), drawn with
+ * Three.js on a transparent canvas over the block above the rule (horseshoe-scene.ts). Not on small
+ * windows: there nothing is mounted. Decoration with a real button over it: the button carries
  * the accessible name and the double click (Enter or Space with the keyboard), which makes the shoe fall (and climb back). Without WebGL or the
  * model nothing is drawn.
  */
@@ -52,7 +52,8 @@ function Stage({ glb, label }: Props) {
       if (disposed || !mod.webglAvailable()) return;
       let scene: import("./horseshoe-scene").HorseshoeScene;
       try {
-        scene = new mod.HorseshoeScene(stage, canvas, hit, window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+        const post = stage.closest("footer")?.querySelector<HTMLElement>(CFG.post.selector) ?? null;
+        scene = new mod.HorseshoeScene(stage, canvas, hit, window.matchMedia("(prefers-reduced-motion: reduce)").matches, post);
       } catch (err) {
         console.warn("[Horseshoe] WebGL renderer unavailable:", err);
         return;
