@@ -1,13 +1,14 @@
 /**
  * The tree's Three.js scene, without React: it owns a transparent canvas inside the host element, fills the host's
  * box, frames the whole tree standing on the box's floor, and draws only while the host is on screen and the tab is
- * visible. The first time it is seen the tree rises from the ground and its leaves open; after that the wind
- * (wind.ts) is all that moves. With reduced motion there is no loop: one still frame of the grown tree.
+ * visible. The tree is there, whole, from its first frame (it can rise from the ground instead: options.grow); the
+ * wind (wind.ts) sways it and tears leaves off its crown. With reduced motion there is no loop and no falling
+ * leaf: one still frame.
  * Colours arrive as CSS (values or custom properties) and are resolved against the host, so they follow the page.
  */
 import * as THREE from "three";
 import { buildTree, type BuiltTree, type ResolvedPalette } from "./tree-builder";
-import { applyWind, windUniforms, type WindUniforms } from "./wind";
+import { applyFall, applyWind, windUniforms, type WindUniforms } from "./wind";
 import type { CssColor, TreeOptions, TreePalette } from "./config";
 
 export function webglAvailable(): boolean {
@@ -85,6 +86,8 @@ export class TreeScene {
       trunkDark: css.color(palette.trunkDark),
       ground: css.color(palette.ground),
       groundDark: css.color(palette.groundDark),
+      moss: css.color(palette.moss),
+      mossDark: css.color(palette.mossDark),
     };
     const shadowColor = css.color(palette.shadow);
     const light = options.light;
@@ -106,6 +109,11 @@ export class TreeScene {
     u.uHeight.value = this.built.height;
     u.uNormalBlend.value = options.leaves.normalBlend;
     u.uGrow.value = reducedMotion || !options.grow.enabled ? 1 : 0;
+    u.uFall.value = reducedMotion ? 0 : 1;
+    u.uFallDir.value.set(...options.fall.direction).normalize();
+    u.uFallDist.value = options.fall.distance;
+    u.uTumble.value = options.fall.tumble;
+    u.uDrift.value = options.fall.drift;
     this.applyGrow();
 
     this.io = new IntersectionObserver((entries) => {
@@ -129,6 +137,7 @@ export class TreeScene {
     const wood = new THREE.Mesh(keep(b.wood), woodMat);
     wood.frustumCulled = false;
 
+    const fallShape = b.falling.count > 0 ? b.leafShape.clone() : null;
     const leafGeo = keep(b.leafShape);
     leafGeo.setAttribute("aOutward", new THREE.InstancedBufferAttribute(b.leaves.outward, 3));
     leafGeo.setAttribute("aLeaf", new THREE.InstancedBufferAttribute(b.leaves.leaf, 2));
@@ -143,12 +152,23 @@ export class TreeScene {
     this.tree.position.y = b.footY;
     this.tree.add(wood, leaves);
 
+    // The leaves the breeze takes: the same leaf, a few dozen instances, placed by the shader alone.
+    if (fallShape) {
+      const fallGeo = keep(fallShape);
+      fallGeo.setAttribute("aStart", new THREE.InstancedBufferAttribute(b.falling.start, 3));
+      fallGeo.setAttribute("aFall", new THREE.InstancedBufferAttribute(b.falling.fall, 4));
+      const fallMat = keep(new THREE.MeshLambertMaterial({ side: THREE.DoubleSide }));
+      applyFall(fallMat, this.uniforms);
+      const falling = new THREE.InstancedMesh(fallGeo, fallMat, b.falling.count);
+      falling.instanceColor = new THREE.InstancedBufferAttribute(b.falling.colors, 3);
+      falling.frustumCulled = false;
+      keep(falling);
+      this.tree.add(falling);
+    }
+
     const groundMat = keep(new THREE.MeshLambertMaterial({ vertexColors: true }));
     this.scene.add(this.tree, new THREE.Mesh(keep(b.mound), groundMat));
-    if (b.pebbles) {
-      const pebbleMat = keep(new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
-      this.scene.add(new THREE.Mesh(keep(b.pebbles), pebbleMat));
-    }
+    if (b.rocks) this.scene.add(new THREE.Mesh(keep(b.rocks), groundMat));
 
     // Contact shadow: a soft blot on the ground, drawn out away from the sun. No shadow map.
     const so = this.options.shadow;
@@ -207,12 +227,18 @@ export class TreeScene {
       zMax = Math.max(zMax, v.dot(toEye));
     }
     const tan = Math.tan(THREE.MathUtils.degToRad(o.fovDeg) / 2);
-    const boxH = (yMax - yMin) * (1 + o.padding);
-    const boxW = 2 * hx * (1 + o.padding);
+    // The tree's own box, then the air asked for on each side (room for the falling leaves to fade in).
+    const treeH = yMax - yMin;
+    const treeW = 2 * hx;
+    const boxH = treeH * (1 + o.padding + o.air.top + o.air.bottom);
+    const boxW = treeW * (1 + o.padding + o.air.left + o.air.right);
     const d = Math.max(boxH / (2 * tan), boxW / (2 * tan * aspect));
-    // When the width decides, the spare height goes above the tree: it keeps its feet on the box's floor.
+    // Spare height goes above the tree (it keeps its feet on the box's floor); spare width goes to both sides.
     const spare = 2 * d * tan - boxH;
-    const target = centre.clone().addScaledVector(up, (yMax + yMin) / 2 + spare / 2);
+    const target = centre
+      .clone()
+      .addScaledVector(up, (yMax + yMin) / 2 + spare / 2 + (treeH * (o.air.top - o.air.bottom)) / 2)
+      .addScaledVector(right, (treeW * (o.air.right - o.air.left)) / 2);
     cam.position.copy(target).addScaledVector(toEye, d + zMax * 0.5);
     cam.lookAt(target);
     cam.updateProjectionMatrix();
