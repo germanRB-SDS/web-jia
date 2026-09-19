@@ -1,4 +1,4 @@
-/* The strip runs from one edge of the window to the other; the anchor and the hint keep to the page's container. */
+/* The strip runs from one edge of the window to the other; the anchor keeps to the page's container. */
 .carousel {
   --card-w: clamp(16.5rem, 23vw, 18.5rem);
   --card-gap: clamp(1rem, 1.8vw, 1.5rem);
@@ -7,8 +7,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.5rem, 3vw, 2.25rem);
 }
-.anchor,
-.hint {
+.anchor {
   width: min(100% - 2 * var(--gutter), var(--container));
   margin-inline: auto;
 }
@@ -117,17 +116,6 @@
 .go:focus-visible .goIcon { translate: 2px 0; }
 .go:focus-visible { outline: 2px solid var(--jia-ivory); outline-offset: 2px; }
 .viewport[data-dragging] .go { pointer-events: none; }
-.hint {
-  /* Above the viewport's (invisible) shadow room, so the pointer over the hint is not a drag handle. */
-  position: relative;
-  z-index: 1;
-  margin-block: 0;
-  font-family: var(--f-ui);
-  font-size: 0.8125rem;
-  letter-spacing: var(--jia-label-tracking);
-  text-transform: uppercase;
-  color: var(--jia-text-muted);
-}
 @media (max-width: 599px) {
   .name { font-size: 0.875rem; letter-spacing: 0.02em; }
 }

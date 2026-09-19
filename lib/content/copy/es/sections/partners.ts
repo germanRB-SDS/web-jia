@@ -9,7 +9,6 @@ export const partners: Copy["partners"] = {
   thanks: "Agradecemos muy especialmente la valiosa y altruista colaboración de todas las empresas participantes; su compromiso ha sido una pieza clave en esta edición de las jornadas.",
   carousel: {
     label: "Entidades que organizan y colaboran",
-    hint: "Arrastra a izquierda o derecha",
     /** `{name}` */
     visit: "Visitar la web de {name} (se abre en una pestaña nueva)",
   },

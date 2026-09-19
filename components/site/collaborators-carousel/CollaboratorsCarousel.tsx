@@ -41,7 +41,6 @@ export function CollaboratorsCarousel({ carousel }: Props) {
           )}
         </ul>
       </div>
-      <p className={styles.hint}>{carousel.hint}</p>
     </div>
   );
 }

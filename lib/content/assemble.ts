@@ -174,7 +174,6 @@ export type LandingModel = {
     /** One card per entity listed in sections/socios.ts, in that order. `link` is null while the entity has no URL. */
     carousel: {
       label: string;
-      hint: string;
       items: { id: string; name: string; link: { href: string; label: string } | null; logo: Media | null; surface: SurfaceToken }[];
     };
   };
@@ -492,7 +491,6 @@ export function getLanding(locale: Locale): LandingModel {
       thanks: copy.partners.thanks,
       carousel: {
         label: copy.partners.carousel.label,
-        hint: copy.partners.carousel.hint,
         items: sociosConfig.carouselIds
           .map((id) => organizations.find((o) => o.id === id))
           .filter((o): o is Organization => Boolean(o))
