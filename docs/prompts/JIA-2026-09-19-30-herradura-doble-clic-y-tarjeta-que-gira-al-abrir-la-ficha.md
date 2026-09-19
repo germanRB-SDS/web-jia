@@ -4,7 +4,7 @@
 (freefrontend.com/javascript-cards, CodePen: HTML + SCSS + JS con GSAP) y la imagen del sello #JIA26.
 **Nivel:** LEVEL 2 (tres encargos independientes; uno crea un componente nuevo con animación) · tmp/scratch: **aplica**
 → `docs/prompts-output/JIA-2026-09-19-30/tmp/progress.md` (una línea por fase) y `evidence/` (capturas).
-**Estado:** EN EJECUCIÓN (2026-09-19); ver «Correcciones del promotor durante la ejecución» al final.
+**Estado:** EJECUTADO (2026-09-19) — informe en `docs/prompts-output/JIA-2026-09-19-30/report.md`; ver «Correcciones del promotor durante la ejecución» al final.
 
 ## Reglas de ejecución
 
@@ -121,3 +121,9 @@ un **sombreado elegante**:
    enseña la cara superior al ojo elevado (con +70° la herradura se veía de canto: comprobado en Chrome).
 2. **Colaboradores:** quitar la línea horizontal que hay encima de las tarjetas (hotfix aparte, tras la fase 1).
 3. **Sello de «Las jornadas» (encargo 3):** un 10 % más grande, creciendo **hacia abajo** (anclado arriba, no centrado).
+4. **Hero:** el rótulo «Jornadas de Innovación de Almería» junto a «JIA» se sustituye por el sello #JIA26, con la
+   altura de las letras «JIA», adaptativo.
+5. **Tarjeta de la ficha (encargo 2):** tras el giro actual (de más a menos velocidad), un **segundo giro de 1,2 s**
+   con **parada de 0,1 s** cuando se ve el reverso.
+6. **Colaboradores:** quitar la pista «Arrastra a izquierda o derecha».
+7. **Herradura, lo último:** la animación se corta cuando, tras caer y rebotar, se apoya en el suelo (sin vuelco).
