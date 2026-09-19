@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useId, useState } from "react";
-import type { MarkKind, SheetModel } from "@/lib/content";
+import type { MarkKind, Media, SheetModel } from "@/lib/content";
 import { ArrowIcon, DownloadIcon } from "@/components/icons";
+import { FlipCard } from "@/components/flip-card/FlipCard";
 import { TiltCard } from "@/components/tilt-card/TiltCard";
 import { Marks } from "./Mark";
+import { Picture } from "./Picture";
 import { SheetDialog } from "./SheetDialog";
 import { Surface } from "./Surface";
 import styles from "./SheetCard.module.css";
@@ -30,6 +32,9 @@ type Props = {
   mediaRatio?: number;
   /** Heading level of the card title, so the outline stays in order. */
   heading?: "h3" | "h4";
+  /** With it, the sheet's picture is a card that turns from this image (its back) to the picture each time the
+      sheet opens (flip-card); without it the picture stands as always. */
+  flipBack?: Media | null;
 };
 
 /**
@@ -37,11 +42,12 @@ type Props = {
  * through a real button that opens the full sheet in a dialog. Hover is an
  * enhancement; keyboard and touch reach everything (brief §7).
  */
-export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio }: Props) {
+export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio, flipBack }: Props) {
   const Heading = heading;
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
   const titleId = useId();
+  const sheetPicture = <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" priority={open} />;
 
   return (
     <article id={anchorId} className={`${styles.card} ${styles[variant]}`} aria-labelledby={titleId} data-cursor="open">
@@ -111,7 +117,11 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
         <SheetDialog open={open} onClose={close} label={labels.sheetOf} closeLabel={labels.close}>
           <div className={styles.sheet}>
             <div className={styles.sheetMedia}>
-              <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" priority={open} />
+              {flipBack ? (
+                <FlipCard open={open} front={sheetPicture} back={<Picture media={flipBack} alt="" sizes="(min-width: 900px) 282px, 53vw" />} />
+              ) : (
+                sheetPicture
+              )}
             </div>
             <div className={styles.sheetBody}>
               <h3 className={styles.sheetTitle}>

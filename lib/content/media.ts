@@ -184,11 +184,13 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Cartel oficial #JIA26 del CEP de Almería",
     },
     {
-      /** The #JIA26 seal beside the Jornadas statement (JIA-2026-09-19-29); as tall as the paragraph, never on a phone. */
+      /** The #JIA26 seal beside the Jornadas statement (JIA-2026-09-19-29); as tall as the paragraph, never on a phone.
+          Also the back of the workshop sheets' flip card (JIA-2026-09-19-30). */
       id: "sello-jia26",
       variants: [
         { src: "/jornadas/sello-jia26-240.webp", width: 240 },
         { src: "/jornadas/sello-jia26-480.webp", width: 480 },
+        { src: "/jornadas/sello-jia26-640.webp", width: 640 },
       ],
       ratio: 1,
       original: "assets/images-website/sello-jia26.png",

@@ -1,0 +1,40 @@
+/* The stage: the perspective the card turns in. It takes the front's size; nothing is clipped while it turns. */
+.flip {
+  perspective: var(--flip-perspective, 3000px);
+  overflow: visible;
+}
+/* The card: the engine (flip-card.ts) writes its rotation; at rest, and without the engine, it shows its front. */
+.card {
+  position: relative;
+  border-radius: var(--jia-radius-card);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.front,
+.back {
+  border-radius: inherit;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* The front is whatever was passed (the poster): it gives the card its size. A short contact shadow and a long warm
+   one, in the palette's ink, as on the workshop cards. */
+.front {
+  position: relative;
+  box-shadow: 0 2px 6px rgb(var(--jia-ink-rgb) / 0.18), 0 18px 40px -14px rgb(var(--jia-ink-rgb) / 0.4);
+}
+/* The back: just behind the front and facing the other way; its content centred on a palette surface. */
+.back {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--flip-back, var(--jia-ink));
+  box-shadow: inset 0 0 0 1px rgb(var(--jia-ivory-rgb) / 0.08), 0 18px 40px -14px rgb(var(--jia-ink-rgb) / 0.4);
+  transform: translateZ(-1px) rotateY(180deg);
+}
+.back > img {
+  width: calc(var(--flip-seal-share, 0.88) * 100%);
+  height: auto;
+  display: block;
+}

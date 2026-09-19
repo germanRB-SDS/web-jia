@@ -181,6 +181,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
                 labels={{ ...cardLabels, sheetOf: copy.a11y.sheetOf.replace("{title}", sheet.title) }}
                 showMarks={showMarks}
                 sizes="(min-width: 1100px) 300px, (min-width: 640px) 45vw, 90vw"
+                flipBack={jornadas.seal}
               />
             ))}
           </div>
