@@ -1,8 +1,8 @@
-# JIA-2026-09-19-30 — Herradura: doble clic con caída simplificada hacia atrás · Ficha de taller: el cartel gira sobre su eje vertical al abrirse (tarjeta 3D con el sello detrás)
+# JIA-2026-09-19-30 — Herradura: doble clic con caída simplificada hacia atrás · Ficha de taller: el cartel gira sobre su eje vertical al abrirse (tarjeta 3D con el sello detrás) · Sombra elegante del sello en «Las jornadas»
 
 **Fecha:** 2026-09-19 · **Origen:** mensaje del promotor en chat, con la referencia «Immersive 3D Tilt Card Modal»
 (freefrontend.com/javascript-cards, CodePen: HTML + SCSS + JS con GSAP) y la imagen del sello #JIA26.
-**Nivel:** LEVEL 2 (dos encargos independientes; uno crea un componente nuevo con animación) · tmp/scratch: **aplica**
+**Nivel:** LEVEL 2 (tres encargos independientes; uno crea un componente nuevo con animación) · tmp/scratch: **aplica**
 → `docs/prompts-output/JIA-2026-09-19-30/tmp/progress.md` (una línea por fase) y `evidence/` (capturas).
 **Estado:** PROMPT GUARDADO, **sin ejecutar** (el promotor pidió generarlo y ejecutarlo tras limpiar contexto).
 
@@ -10,8 +10,8 @@
 
 - Este prompt ya está **commiteado y subido antes de ejecutarse** (commit del prompt). Al terminar: **commit + push**
   de la ejecución (y del informe, si el nivel lo pide: aquí basta el resultado dentro de cada fase + `report.md` corto).
-- Dos fases, **un commit + push por fase**: fase 1 herradura, fase 2 tarjeta que gira. Antes de la fase 2, commit de
-  la fase 1 (rollback limpio).
+- Tres fases, **un commit + push por fase**: fase 1 herradura, fase 2 tarjeta que gira, fase 3 sombra del sello.
+  Antes de cada fase, commit de la anterior (rollback limpio).
 - Textos en `lib/content/copy/`; medidas, tiempos y colores en `config.ts` de cada componente; colores solo por
   tokens de `app/theme/palette.css`. Verificación habitual: `tsc`, `check:content`, `next build`, Chrome real por
   CDP (1920 para el pie; 1440 y 390 para la ficha), capturas en `evidence/`.
@@ -72,6 +72,23 @@ cartel** dentro de la ficha (mismo hueco, mismo tamaño: 320 px a ≥ 900 px, 60
 - Evidencias: fotogramas del giro a 1440 (inicio con el reverso, medio giro, final en su sitio) y 390; medir que la
   posición y el tamaño finales coinciden con los actuales (caja del cartel antes/después, misma `left/top/width`).
 
+## Encargo 3 — Sombra elegante del sello #JIA26 en «Las jornadas»
+
+La imagen del sello que está a la derecha del texto de introducción de la sección «Las jornadas» (JIA-29:
+`Jornadas.tsx` › `.statementRow` › `.seal` › `.sealImg`, medio `sello-jia26`, un PNG con fondo transparente) recibe
+un **sombreado elegante**:
+
+- Como el sello es redondo y el PNG es transparente, la sombra va con **`filter: drop-shadow(...)`** sobre la imagen
+  (una `box-shadow` dibujaría un cuadrado). Dos capas: una **sombra de contacto** corta y otra **larga, cálida y
+  difusa**, ambas con la tinta de la paleta a baja opacidad (`rgb(var(--jia-ink-rgb) / …)`), en la línea de las
+  sombras de JIA-27 (tarjetas de talleres y de colaboradores): p. ej. `drop-shadow(0 2px 3px ink/0.25)
+  drop-shadow(0 18px 28px ink/0.28)`. Nada de negro puro ni de HEX.
+- Sutil: el sello sigue pareciendo pegado al papel del fondo, con un ligero levantamiento; sin brillo ni borde.
+- Estático (sin hover): es decoración junto a un párrafo. Opcional y solo si queda bien: una transición de 320 ms si
+  en el futuro se le da hover; por ahora, no.
+- Sigue oculto por debajo de 760 px (no cambia). Tokens y valores en el CSS del módulo, no en el componente.
+- Evidencia: captura a 1440 del bloque, antes y después.
+
 ## Fases y commits
 
 | Fase | Contenido | Cierre |
@@ -79,7 +96,8 @@ cartel** dentro de la ficha (mismo hueco, mismo tamaño: 320 px a ≥ 900 px, 60
 | 0 | prompt + estructura | commit + push **(hecho al guardar este prompt)** |
 | 1 | Encargo 1 (herradura) | commit + push |
 | 2 | Encargo 2 (flip-card + integración) | commit + push |
-| 3 | `report.md` breve (resumen + riesgos) | commit + push |
+| 3 | Encargo 3 (sombra del sello) | commit + push |
+| 4 | `report.md` breve (resumen + riesgos) | commit + push |
 
 ## Riesgos previstos
 
