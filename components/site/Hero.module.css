@@ -215,6 +215,9 @@
     mask-repeat: no-repeat;
   }
   .note { top: 12%; right: 30%; }
+  /* Both actions on one line (promoter, JIA-2026-09-19-27): the pair may run past the text column's padding
+     onto the photograph's dissolved edge rather than stack. Below 960 px they still wrap. */
+  .actions { flex-wrap: nowrap; width: max-content; max-width: none; }
 }
 @media (min-width: 1400px) {
   .content { padding-right: 52%; }

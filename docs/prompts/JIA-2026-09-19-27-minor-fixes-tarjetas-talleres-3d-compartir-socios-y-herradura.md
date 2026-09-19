@@ -89,6 +89,13 @@ duraciones). Reglas:
 - **Clic en la tarjeta = «Ver ficha».** Pulsar sobre el cartel abre la misma ficha que el botón; el botón sigue siendo
   el camino de teclado. Con la ficha pendiente, el cartel no abre nada.
 
+### 4 ter. Hotfix del promotor durante el punto 9 (chat): botones del hero en una línea
+
+«Ver talleres» a la derecha de «Explorar las jornadas», en la misma línea. Entre 960 y ~1250 px la columna de
+texto del hero (el relleno derecho deja sitio a la fotografía) mide menos que los dos botones juntos y el segundo
+saltaba. Desde 960 px los dos van en una sola línea y el par puede asomar sobre el borde difuminado de la foto;
+por debajo de 960 px siguen apilados (no caben).
+
 ### 5. Vídeo: botón «compartir» a la izquierda de pantalla completa, solo en móvil
 
 En los controles del vídeo de intro, **a la izquierda del botón de pantalla completa**, un botón redondo igual a los
