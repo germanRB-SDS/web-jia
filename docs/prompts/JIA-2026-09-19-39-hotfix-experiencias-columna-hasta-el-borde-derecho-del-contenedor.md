@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-09-19 · **Origen:** mensaje del promotor en chat (con el texto de la sección y el HTML del título y la
 entradilla). **Nivel:** LEVEL 1 (hotfix; resultado al final de este prompt, sin `report.md`). tmp/scratch: N/A.
-**Estado:** SIN EJECUTAR
+**Estado:** EJECUTADO (2026-09-19) — ver «Resultado» al final.
 
 ## Encargo
 
@@ -38,3 +38,23 @@ derecho del contenedor: `max(var(--gutter), (100% - var(--container)) / 2)`.
 Prompt commiteado antes de ejecutar; commit al terminar; sin push salvo que se pida. `git add` solo de ficheros
 propios. Verificación: medir de nuevo los huecos (deben coincidir con los de Talleres), `tsc`, `check:content`,
 `next build`, capturas a 1920, 1440 y 1280, `scrollWidth`.
+
+## Resultado (2026-09-19)
+
+| Ventana | Hueco a la derecha (Talleres = Experiencias) | Tarjeta: antes → ahora | Aire arriba/abajo del contenido |
+|---|---|---|---|
+| 1920 | 320 px = 320 px | 243 × 392 → 291 × 419 px | 89 px |
+| 1440 | 80 px = 80 px | 262 × 369 → 298 × 389 px | 24 px |
+| 1280 | 51 px = 51 px | 243 × 347 → 275 × 365 px | 11 px |
+
+- `Experiences.module.css`: el margen derecho de la columna vuelve a ser el del contenedor (la columna empieza donde
+  empezaba y es un 5 % del ancho de la sección más ancha); cabecera y entradilla con `max-width: none`. A 1920 el
+  título pasa de tres líneas a dos y la entradilla de tres a dos.
+- Título y entradilla van ahora de borde a borde de la columna (979–1600 px a 1920), igual que la fila de tarjetas.
+- `tsc`, `check:content` y `next build` ok; `scrollWidth = clientWidth` a 1920 y 1440 (a 1280 siguen los 1290 px
+  previos y ajenos). Capturas en `docs/prompts-output/JIA-2026-09-19-39/evidence/`.
+- **Riesgo menor:** a 1280 px el contenido llena casi todo el alto de la sección (11 px de aire arriba y abajo;
+  antes 20). Cabe, pero una entradilla más larga o un título de tarjeta de tres líneas desbordaría a ese ancho.
+- **Nota de proceso:** el commit de este prompt falló en el primer intento por un `index.lock` del cliente Fork
+  (`git add -A` del promotor, en curso); el cambio de CSS se aplicó antes de poder commitear el prompt. Se esperó a que
+  Fork terminara y se commiteó con rutas explícitas, sin arrastrar lo que Fork dejó preparado. Sin push (no se pidió).

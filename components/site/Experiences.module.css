@@ -7,7 +7,7 @@
   --aula-ratio: 1916 / 821;
   /* Where the clear paper starts, as a share of the photograph's width. */
   --aula-clear: 56%;
-  /* How far left of that the content column is moved, as a share of the section's width. */
+  /* How far left of that the content column starts, as a share of the section's width. */
   --aula-shift: 5%;
   background: var(--jia-vellum-3);
   padding-top: 0;
@@ -70,12 +70,13 @@
   /* The content column: from where the paper clears to the container's right edge. */
   .section > :not(.photo) {
     width: auto;
-    /* The whole column sits --aula-shift further left than the clear paper and the container would put it
-       (promoter, JIA-2026-09-19-36): same width, moved. */
-    margin-inline: calc(var(--aula-clear) - var(--aula-shift)) calc(max(var(--gutter), (100% - var(--container)) / 2) + var(--aula-shift));
+    /* The column starts --aula-shift further left than the clear paper (promoter, JIA-2026-09-19-36) and runs to
+       the container's right edge, where the cards of the section above end (JIA-2026-09-19-39): that much wider. */
+    margin-inline: calc(var(--aula-clear) - var(--aula-shift)) max(var(--gutter), (100% - var(--container)) / 2);
   }
-  .section header { margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }
-  .section header p { text-wrap: pretty; }
+  /* The heading and the lede take the column's width: no measure of their own here. */
+  .section header { max-width: none; margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }
+  .section header p { max-width: none; text-wrap: pretty; }
   .section .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); }
 }
 .grid {
