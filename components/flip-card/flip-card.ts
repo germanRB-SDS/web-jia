@@ -1,6 +1,6 @@
 /**
  * The flip engine: plain DOM, no React. `open()` puts the card on its back and turns it about its vertical axis to
- * its front (GSAP); once there, with a fine pointer, the card leans softly towards the pointer (quick setters fed
+ * its front, then once more all the way round with a short stop on its back (GSAP timeline); once there, with a fine pointer, the card leans softly towards the pointer (quick setters fed
  * from GSAP's ticker, easing a share of the way each frame). `close()` stops everything and leaves the card on its
  * back without animating, ready for the next opening. The pointer is listened to on the surface given (the dialog),
  * only between the end of the turn and `close()`.
@@ -9,7 +9,7 @@ import gsap from "gsap";
 import { FLIP } from "./config";
 
 export class Flip {
-  private turn: gsap.core.Tween | null = null;
+  private turn: gsap.core.Timeline | null = null;
   private setX: ((value: number) => void) | null = null;
   private setY: ((value: number) => void) | null = null;
   private x = 0;
@@ -24,11 +24,17 @@ export class Flip {
 
   open() {
     this.stop();
-    this.turn = gsap.fromTo(
-      this.card,
-      { rotationY: FLIP.turn.fromDeg, rotationX: 0 },
-      { rotationY: 0, duration: FLIP.turn.ms / 1000, ease: FLIP.turn.ease, onComplete: this.lean },
-    );
+    const from = FLIP.turn.fromDeg;
+    const again = FLIP.again;
+    const tl = gsap.timeline({ onComplete: this.lean });
+    tl.fromTo(this.card, { rotationY: from, rotationX: 0 }, { rotationY: 0, duration: FLIP.turn.ms / 1000, ease: FLIP.turn.ease });
+    if (again) {
+      // The same way round: on to the back, a short stop there, and on to the front (a whole turn from 0°).
+      tl.to(this.card, { rotationY: -from, duration: again.toBackMs / 1000, ease: again.toBackEase })
+        .to(this.card, { rotationY: -360, duration: again.toFrontMs / 1000, ease: again.toFrontEase }, `+=${again.holdMs / 1000}`)
+        .set(this.card, { rotationY: 0 });
+    }
+    this.turn = tl;
   }
 
   close() {
