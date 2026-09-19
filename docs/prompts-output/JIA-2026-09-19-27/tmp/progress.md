@@ -9,8 +9,8 @@
 | 4 | 8 herradura Blender + colgada | hecho | 50528fa |
 | 5 | 9 inclinada −14° + reubicada a la derecha, solo ≥ 1600 px (promotor) | hecho | 0caaf05 |
 | 6 | 10 clic → cae + hotfix hero | hecho | bc79132 · 19b832d |
-| 7 | 11 luz, sombra, reflejos (RoomEnvironment/PMREM 0,5; sol 2,3 desde arriba-izquierda; sombra 0,42 sobre pared a 10 px; ACES 0,92) | hecho | (commit fase 7) |
-| 8 | informe | pendiente | — |
+| 7 | 11 luz, sombra, reflejos | hecho | ba25a38 |
+| 8 | informe | hecho | (commit del informe) |
 
 Notas:
 - Dev server del repo en :3000 (no arrancar otro). Blender 5.2.1 LTS en /Applications/Blender.app (headless).
