@@ -4,9 +4,9 @@
  * a nail, and a floor along the rule that only shows the shadow. It only renders
  * when asked (placement, resize, each step of an animation) — no loop while nothing moves. The hit button
  * is placed over the shoe's projected box after every render so the click and the accessible name live in
- * real HTML. A click (`drop`) lets the nail give: the shoe wobbles, falls to the rule, bounces, lies there a
- * on the floor, rolls to the right until it leans on the window's edge, rests a while and climbs back to
- * its nail (GSAP timeline, config.fall); nothing moves under reduced motion.
+ * real HTML. A double click (`drop`) and the shoe lets go of its nail, which stays on the wall: it falls straight
+ * down to the rule, bounces twice, falls over backwards, lies there a while and climbs back to its nail
+ * (GSAP timeline, config.fall); nothing moves under reduced motion.
  */
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -30,11 +30,14 @@ export class HorseshoeScene {
   private renderer: THREE.WebGLRenderer;
   private scene = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(CFG.camera.fovDeg, 1, 1, 8000);
+  /** The eye that never rises: the nail is always drawn from it, so it stays exactly where it is on the wall. */
+  private nailCamera = new THREE.PerspectiveCamera(CFG.camera.fovDeg, 1, 1, 8000);
   /** The nail: position and the swing in the wall's plane. */
   private pivot = new THREE.Group();
   /** Inside the pivot: how the shoe lies (tipped over, turned) once it has fallen. */
   private lay = new THREE.Group();
   private model: THREE.Object3D | null = null;
+  private meshes: THREE.Mesh[] = [];
   private modelBox = new THREE.Box3();
   private nail = new THREE.Group();
   private frame = 0;
@@ -49,6 +52,8 @@ export class HorseshoeScene {
   private floor: THREE.Mesh;
   /** The eye's height above the block's centre (0 while the shoe hangs) and its distance to the wall. */
   private camElev = 0;
+  /** Where the hanging shoe's centre is across the stage (the eye moves in front of it as it rises). */
+  private shoeX = 0;
   private camDistance = 1000;
   private readonly corner = new THREE.Vector3();
   private env: THREE.Texture | null = null;
@@ -101,6 +106,7 @@ export class HorseshoeScene {
     const model = gltf.scene;
     model.traverse((o) => {
       if (o instanceof THREE.Mesh) {
+        this.meshes.push(o);
         o.castShadow = true;
         if (o.material instanceof THREE.MeshStandardMaterial) o.material.needsUpdate = true;
       }
@@ -138,17 +144,17 @@ export class HorseshoeScene {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, CFG.render.maxPixelRatio));
     this.renderer.setSize(this.width, this.height, false);
     // At this distance the wall's plane is 1 px per unit; the eye looks at the block's centre from its current height.
-    this.camera.aspect = this.width / this.height;
     this.camDistance = this.height / 2 / Math.tan(THREE.MathUtils.degToRad(CFG.camera.fovDeg) / 2);
-    this.camera.updateProjectionMatrix();
     this.setCamera(0);
+    this.aim(this.nailCamera, 0);
 
-    // The wall spans the stage, a little behind the shoe; the floor runs along the rule towards the eye;
+    // The wall spans the stage, a little behind the shoe; the floor runs along the rule, to both sides of the wall's foot
+    // (the shoe falls over backwards, past the wall's plane: the wall is only there to catch the shadow);
     // the key light frames the whole stage in its shadow camera.
     this.wall.scale.set(this.width, this.height, 1);
     this.wall.position.set(this.width / 2, -this.height / 2, -CFG.render.shadow.wallDepthPx);
-    this.floor.scale.set(this.width, CFG.floor.depthPx, 1);
-    this.floor.position.set(this.width / 2, -this.height, CFG.floor.depthPx / 2 - CFG.render.shadow.wallDepthPx);
+    this.floor.scale.set(this.width, CFG.floor.depthPx * 2, 1);
+    this.floor.position.set(this.width / 2, -this.height, 0);
     const [sx, sy, sz] = CFG.render.light.sunFrom;
     const reach = Math.max(this.width, this.height);
     this.sun.position.set(sx, sy, sz).normalize().multiplyScalar(reach * 2);
@@ -193,93 +199,80 @@ export class HorseshoeScene {
     head.scale.set(holeR * CFG.nail.headShare, holeR * 0.9, holeR * CFG.nail.headShare);
     head.position.set(0, 0, thickness * 1.3);
     this.nail.position.copy(this.pivot.position);
+    this.poseBox();
+    this.shoeX = (this.box.min.x + this.box.max.x) / 2;
     this.requestRender();
   }
 
-  /** Places the eye at `elev` px above the block's centre, looking at it. */
+  /** Places the eye at `elev` px above the block's centre, looking at it. As it rises it also moves across, from
+      the block's centre to right in front of the shoe, so the shoe falls over towards its own vanishing point
+      and keeps its place across the window; the view is offset to match, so the wall stays 1:1 where it was. */
   private setCamera(elev: number) {
     this.camElev = elev;
-    this.camera.position.set(this.width / 2, -this.height / 2 + elev, this.camDistance);
-    this.camera.lookAt(this.width / 2, -this.height / 2, 0);
-    // Projections outside a render (screenBox) need the eye's matrices current.
-    this.camera.updateMatrixWorld(true);
+    this.aim(this.camera, elev);
   }
 
-  /** Whether the shoe is hanging still (a click only counts then). */
+  private aim(camera: THREE.PerspectiveCamera, elev: number) {
+    const x = THREE.MathUtils.lerp(this.width / 2, this.shoeX, elev / CFG.camera.elevationPx);
+    camera.aspect = (this.width * 2) / this.height;
+    camera.setViewOffset(this.width * 2, this.height, this.width - x, 0, this.width, this.height);
+    camera.position.set(x, -this.height / 2 + elev, this.camDistance);
+    camera.lookAt(x, -this.height / 2, 0);
+    // Projections outside a render (screenBox) need the eye's matrices current.
+    camera.updateMatrixWorld(true);
+  }
+
+  /** Whether the shoe is hanging still (it only lets go then). */
   get hung(): boolean {
     return Boolean(this.model) && !this.timeline;
   }
 
-  /** The nail gives: wobble, drop, tip over onto the floor, bounce, rest, climb back to the wall. */
+  /** The shoe lets go of its nail (which never moves): it drops straight down, bounces twice, stands, falls over
+      backwards, rests there and climbs back. */
   drop() {
     if (!this.model || this.timeline || this.reducedMotion) return;
     const F = CFG.fall;
     const rad = THREE.MathUtils.degToRad;
     const rest = rad(CFG.restTiltDeg);
-    // The poses are measured with the eye where it will be once the shoe is down (screen x and y are linear in
-    // world x and y at one depth, so two samples give each answer).
-    const savedRot = this.pivot.rotation.z;
-    const savedPos = this.pivot.position.clone();
-    const savedElev = this.camElev;
-    this.setCamera(CFG.camera.elevationPx);
-    const rollRad = -Math.PI * 2 * F.roll.turns;
-
-    // The floor: the world level at which the shoe, in its final pose, shows whole above the rule.
-    this.pivot.rotation.z = 0;
-    this.lay.rotation.set(rad(F.landTipDeg), 0, rad(F.landTiltDeg) + rollRad);
-    this.pivot.position.set(this.width / 2, 0, F.forwardPx);
-    this.poseBox();
-    this.pivot.position.y = -this.height - this.box.min.y;
-    const y0 = this.screenBox().y1;
-    this.pivot.position.y += 50;
-    const ky = (this.screenBox().y1 - y0) / 50;
-    const lift = (this.height - F.floorMarginPx - y0) / ky;
-    const floorLevel = -this.height + lift;
-    this.floor.position.y = floorLevel;
-
-
-    // Where it stops rolling: its rightmost point at the window's edge, in that final pose, measured at its
-    // resting height (the eye is pitched down, so screen x also depends on the height of a point).
-    this.pivot.position.set(0, 0, F.forwardPx);
-    this.poseBox();
-    this.pivot.position.y = floorLevel - this.box.min.y;
-    const target = this.width - F.roll.edgeInsetPx;
-    const at0 = this.screenBox().x1;
-    this.pivot.position.x = 100;
-    const k = (this.screenBox().x1 - at0) / 100;
-    const endX = (target - at0) / k;
-
-    // Where the hole ends up as it lands (before rolling), on that floor.
-    this.lay.rotation.set(rad(F.landTipDeg), 0, rad(F.landTiltDeg));
-    this.pivot.position.set(this.nailAt.x, 0, F.forwardPx);
-    this.poseBox();
-    const floorY = floorLevel - this.box.min.y;
-
-    this.lay.rotation.set(0, 0, 0);
-    this.pivot.rotation.z = savedRot;
-    this.pivot.position.copy(savedPos);
-    this.setCamera(savedElev);
-
+    const tip = rad(F.landTipDeg);
+    const tilt = rad(F.landTiltDeg);
     const p = this.pivot.position;
     const r = this.pivot.rotation;
     const l = this.lay.rotation;
-    const dropH = this.nailAt.y - floorY;
-    const fall = F.fallMs / 1000;
-    // While rolling, whatever the turn, the lowest point of the shoe stays on the floor.
-    const settle = () => {
+
+    // Hanging: where its centre is across the wall (it keeps it all the way down).
+    this.poseBox();
+    const centreX = (this.box.min.x + this.box.max.x) / 2;
+    const keepX = () => {
       this.poseBox();
-      p.y += floorLevel - this.box.min.y;
+      p.x += centreX - (this.box.min.x + this.box.max.x) / 2;
     };
-    // Rolling: on the floor, and never past the window's edge (the prediction is checked against the eye's view).
-    const rollStep = () => {
-      settle();
-      for (let i = 0; i < 3; i++) {
-        const over = this.screenBox().x1 - target;
-        if (over <= 0) break;
-        p.x -= over;
-      }
+    // Standing as it lands, seen head-on: on the rule, and the foremost point it stands on.
+    const savedRot = r.z;
+    const savedPos = p.clone();
+    r.z = 0;
+    l.set(0, 0, tilt);
+    keepX();
+    this.ground();
+    const landX = p.x;
+    const landY = p.y;
+    const frontZ = this.box.max.z;
+    this.floor.position.y = this.poseBox().min.y;
+    l.set(0, 0, 0);
+    r.z = savedRot;
+    p.copy(savedPos);
+
+    const dropH = this.nailAt.y - landY;
+    const fall = F.fallMs / 1000;
+    // Falling over, whatever the angle and wherever the eye: the point it stands on stays put, its lowest point
+    // on screen stays on the rule, and the floor (the shadow) under it.
+    const topple = () => {
+      this.setCamera(this.camElev);
+      this.poseBox();
+      p.z += frontZ - this.box.max.z;
+      this.ground();
+      this.floor.position.y = this.poseBox().min.y;
     };
-    const eye = () => this.setCamera(this.camElev);
     const tl = gsap.timeline({
       onUpdate: () => this.requestRender(),
       onComplete: () => {
@@ -287,33 +280,45 @@ export class HorseshoeScene {
         this.requestRender();
       },
     });
-    const s = F.swingMs / 1000;
-    tl.to(r, { z: rest - rad(F.swingDeg), duration: s * 0.4, ease: "power2.out" })
-      .to(r, { z: rest + rad(F.swingDeg * 0.6), duration: s * 0.35, ease: "power1.inOut" })
-      .to(r, { z: rest, duration: s * 0.25, ease: "power1.in" })
-      // The drop: down and out from the wall, tipping over and turning; the swing's angle moves into the lie.
-      .to(p, { y: floorY, duration: fall, ease: "power2.in" }, "fall")
-      .to(p, { x: this.nailAt.x - dropH * 0.06, z: F.forwardPx, duration: fall, ease: "power1.in" }, "fall")
-      .to(r, { z: 0, duration: fall, ease: "power1.in" }, "fall")
-      .to(l, { x: rad(F.landTipDeg) * 0.8, z: rad(F.landTiltDeg) * 0.7, duration: fall, ease: "power1.in" }, "fall")
-      // The eye rises with the fall, to see the floor from above.
-      .to(this, { camElev: CFG.camera.elevationPx, duration: fall * 1.4, ease: "power1.inOut", onUpdate: eye }, "fall");
-    F.bounces.forEach((b, i) => {
-      const up = b.ms / 2000;
-      const last = i === F.bounces.length - 1;
-      tl.to(p, { y: floorY + dropH * b.share, duration: up, ease: "power2.out" })
-        .to(l, { x: rad(F.landTipDeg) * (last ? 1 : 0.92), z: rad(F.landTiltDeg) * (last ? 1 : 0.88), duration: up * 2, ease: "power1.inOut" }, "<")
-        .to(p, { y: floorY, duration: up, ease: "power2.in" });
+    if (F.swingMs > 0) {
+      const s = F.swingMs / 1000;
+      tl.to(r, { z: rest - rad(F.swingDeg), duration: s * 0.5, ease: "power2.out" })
+        .to(r, { z: rest, duration: s * 0.5, ease: "power1.in" });
+    }
+    // The drop: straight down under gravity (x and z stay), turning about its own centre towards its arch.
+    tl.to(p, { y: landY, duration: fall, ease: "power1.in" }, "fall")
+      .to(r, { z: 0, duration: fall, ease: "sine.in" }, "fall")
+      .to(l, { z: tilt - rad(F.rockDeg), duration: fall, ease: "sine.in", onUpdate: keepX }, "fall");
+    // The bounces: parabolas whose duration follows from their height; the shoe rocks on its arch and settles.
+    let at = fall;
+    F.bounces.forEach((share, i) => {
+      const up = fall * Math.sqrt(share);
+      const rock = i === 0 ? rad(F.rockDeg) * 0.5 : 0;
+      tl.to(p, { y: landY + dropH * share, duration: up, ease: "power1.out" }, `fall+=${at}`)
+        .to(p, { y: landY, duration: up, ease: "power1.in" }, `fall+=${at + up}`)
+        .to(l, { z: tilt + rock, duration: up * 2, ease: "sine.inOut", onUpdate: keepX }, `fall+=${at}`);
+      at += up * 2;
     });
-    tl.to(p, { x: endX + 40, duration: F.roll.ms / 1000, ease: "power2.out", onUpdate: rollStep }, "roll")
-      .to(l, { z: rad(F.landTiltDeg) + rollRad, duration: F.roll.ms / 1000, ease: "power2.out" }, "roll")
+    // Standing on the rule; then over backwards, slowly at first and a little faster as it goes, while the eye
+    // rises to see it lie there.
+    at += F.standMs / 1000;
+    const tipS = F.tipMs / 1000;
+    tl.set(p, { x: landX, y: landY }, `fall+=${at}`)
+      .to(l, { x: tip, duration: tipS, ease: F.tipEase, onUpdate: topple }, `fall+=${at}`)
+      .to(this, { camElev: CFG.camera.elevationPx, duration: tipS, ease: "sine.inOut" }, `fall+=${at}`)
       .to({}, { duration: F.restMs / 1000 })
       // Back to the wall and its nail.
       .to(p, { x: this.nailAt.x, y: this.nailAt.y, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
       .to(l, { x: 0, z: 0, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
       .to(r, { z: rest, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
-      .to(this, { camElev: 0, duration: F.riseMs / 1000, ease: "power2.inOut", onUpdate: eye }, "rise");
+      .to(this, { camElev: 0, duration: F.riseMs / 1000, ease: "power2.inOut", onUpdate: () => this.setCamera(this.camElev) }, "rise");
     this.timeline = tl;
+  }
+
+  /** Moves the shoe up or down until its lowest point on screen sits on the rule (for the eye as it is now). */
+  private ground() {
+    const target = this.height - CFG.fall.floorMarginPx;
+    for (let i = 0; i < 3; i++) this.pivot.position.y += this.screenBox().y1 - target;
   }
 
   requestRender() {
@@ -325,27 +330,47 @@ export class HorseshoeScene {
   }
 
   private render() {
-    this.renderer.render(this.scene, this.camera);
+    if (this.camElev === 0) {
+      this.renderer.render(this.scene, this.camera);
+    } else {
+      // The eye is up: the shoe and its floor from there, then the nail (and its shadow) on top from the level
+      // eye, as it is drawn while the shoe hangs — the nail does not move whatever the shoe does.
+      this.nail.visible = false;
+      this.renderer.render(this.scene, this.camera);
+      this.nail.visible = true;
+      this.pivot.visible = false;
+      this.floor.visible = false;
+      this.renderer.autoClear = false;
+      this.renderer.clearDepth();
+      this.renderer.render(this.scene, this.nailCamera);
+      this.renderer.autoClear = true;
+      this.pivot.visible = true;
+      this.floor.visible = true;
+    }
     this.placeHit();
   }
 
-  /** The shoe's world box for the pose set right now (the children's matrices are brought up to date first:
-      Box3.setFromObject alone would measure the pose of the last render). */
+  /** The shoe's world box for the pose set right now, from its vertices (the box of a turned bounding box would
+      overstate it). The children's matrices are brought up to date first: Box3.setFromObject alone would measure
+      the pose of the last render. */
   private poseBox() {
     this.pivot.updateMatrixWorld(true);
-    this.box.setFromObject(this.pivot);
+    this.box.setFromObject(this.pivot, true);
     return this.box;
   }
 
-  /** The shoe's box on screen (CSS px of the stage): its eight world corners through the camera. */
+  /** The shoe's box on screen (CSS px of the stage): its vertices through the camera. */
   private screenBox() {
-    this.poseBox();
+    this.pivot.updateMatrixWorld(true);
     let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-    for (let i = 0; i < 8; i++) {
-      this.corner.set(i & 1 ? this.box.max.x : this.box.min.x, i & 2 ? this.box.max.y : this.box.min.y, i & 4 ? this.box.max.z : this.box.min.z).project(this.camera);
-      const x = ((this.corner.x + 1) / 2) * this.width;
-      const y = ((1 - this.corner.y) / 2) * this.height;
-      x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+    for (const mesh of this.meshes) {
+      const at = mesh.geometry.getAttribute("position");
+      for (let i = 0; i < at.count; i++) {
+        this.corner.fromBufferAttribute(at, i).applyMatrix4(mesh.matrixWorld).project(this.camera);
+        const x = ((this.corner.x + 1) / 2) * this.width;
+        const y = ((1 - this.corner.y) / 2) * this.height;
+        x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+      }
     }
     return { x0, y0, x1, y1 };
   }

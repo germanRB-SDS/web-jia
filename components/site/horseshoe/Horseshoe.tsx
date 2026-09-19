@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore, type KeyboardEvent } from "react";
 import { HORSESHOE as CFG } from "./config";
 import styles from "../SiteFooter.module.css";
 
@@ -17,7 +17,7 @@ const isLarge = () => window.matchMedia(CFG.largeMedia).matches;
  * A worn horseshoe hanging from a nail on the footer's top edge, by the window's right margin, drawn with
  * Three.js on a transparent canvas over the block above the rule (horseshoe-scene.ts). Large desktop
  * windows only: elsewhere nothing is mounted. Decoration with a real button over it: the button carries
- * the accessible name and the click, which makes the shoe fall (and climb back). Without WebGL or the
+ * the accessible name and the double click (Enter or Space with the keyboard), which makes the shoe fall (and climb back). Without WebGL or the
  * model nothing is drawn.
  */
 export function Horseshoe({ glb, label }: Props) {
@@ -30,7 +30,14 @@ function Stage({ glb, label }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hitRef = useRef<HTMLButtonElement>(null);
   const sceneRef = useRef<import("./horseshoe-scene").HorseshoeScene | null>(null);
-  const onClick = useCallback(() => sceneRef.current?.drop(), []);
+  const drop = useCallback(() => sceneRef.current?.drop(), []);
+  // The keyboard has no double click: Enter or Space on the button lets the shoe go.
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    if (!e.repeat) sceneRef.current?.drop();
+  }, []);
+  const byDoubleClick = CFG.fall.trigger === "dblclick";
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -71,8 +78,18 @@ function Stage({ glb, label }: Props) {
   return (
     <div ref={stageRef} className={styles.shoeStage}>
       <canvas ref={canvasRef} aria-hidden="true" />
-      {/* A pointer click must not leave the focus ring on the shoe; the keyboard keeps it. */}
-      <button ref={hitRef} type="button" className={styles.shoeHit} aria-label={label} title={label} onClick={onClick} onMouseDown={(e) => e.preventDefault()} />
+      {/* A pointer click must not leave the focus ring on the shoe (nor a double click select text); the keyboard keeps it. */}
+      <button
+        ref={hitRef}
+        type="button"
+        className={styles.shoeHit}
+        aria-label={label}
+        title={label}
+        onClick={byDoubleClick ? undefined : drop}
+        onDoubleClick={byDoubleClick ? drop : undefined}
+        onKeyDown={byDoubleClick ? onKeyDown : undefined}
+        onMouseDown={(e) => e.preventDefault()}
+      />
     </div>
   );
 }

@@ -10,5 +10,5 @@ export const footer: Copy["footer"] = {
   studioCreditPrefix: "Diseñado por",
   tumbleweedsNote: "Sí, son estepicursores",
   newTab: "se abre en una pestaña nueva",
-  horseshoe: "Herradura de la suerte: púlsala",
+  horseshoe: "Herradura de la suerte: haz doble clic",
 };

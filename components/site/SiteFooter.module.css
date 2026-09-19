@@ -69,6 +69,8 @@
   color: inherit;
   cursor: pointer;
   pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .shoeHit:focus-visible { outline: 2px solid var(--jia-ivory); outline-offset: 4px; }
 .col { display: grid; gap: 0.75rem; align-content: start; }

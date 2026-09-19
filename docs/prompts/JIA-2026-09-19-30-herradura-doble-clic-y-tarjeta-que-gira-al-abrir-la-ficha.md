@@ -4,7 +4,7 @@
 (freefrontend.com/javascript-cards, CodePen: HTML + SCSS + JS con GSAP) y la imagen del sello #JIA26.
 **Nivel:** LEVEL 2 (tres encargos independientes; uno crea un componente nuevo con animación) · tmp/scratch: **aplica**
 → `docs/prompts-output/JIA-2026-09-19-30/tmp/progress.md` (una línea por fase) y `evidence/` (capturas).
-**Estado:** PROMPT GUARDADO, **sin ejecutar** (el promotor pidió generarlo y ejecutarlo tras limpiar contexto).
+**Estado:** EN EJECUCIÓN (2026-09-19); ver «Correcciones del promotor durante la ejecución» al final.
 
 ## Reglas de ejecución
 
@@ -110,3 +110,14 @@ un **sombreado elegante**:
 - **Menor:** el doble clic tarda ~300 ms en resolverse; el clic simple no debe dejar la herradura «a medias».
 - **Menor:** el sello (1080×1080) al 88 % del ancho de una tarjeta de 320 px se sirve de la variante de 480 px, que
   a densidad 2 puede verse algo blanda; si molesta, añadir una variante de 640 px en `build-assets.sh` y `media.ts`.
+
+## Correcciones del promotor durante la ejecución (2026-09-19, por chat, «hotfix on the fly»)
+
+1. **Herradura (encargo 1), prevalece sobre el texto de arriba.** Con ejes x = ancho, y = alto, z = profundidad: en la
+   caída **solo cambia la y** (x y z fijas); **rebota dos veces** (solo cambia la y) y queda apoyada en el suelo; **después**
+   «cae hacia atrás»: los extremos de la U se alejan de la cámara. Ese vuelco es **más lento al principio y acelera un
+   poquito**, y **no rebota**. Movimiento orgánico. Consecuencias: `bounces` vuelve a ser una lista de dos; se descarta
+   `forwardPx`; y el signo: en este montaje **`landTipDeg` negativo** es el que manda los extremos de la U hacia atrás y
+   enseña la cara superior al ojo elevado (con +70° la herradura se veía de canto: comprobado en Chrome).
+2. **Colaboradores:** quitar la línea horizontal que hay encima de las tarjetas (hotfix aparte, tras la fase 1).
+3. **Sello de «Las jornadas» (encargo 3):** un 10 % más grande, creciendo **hacia abajo** (anclado arriba, no centrado).

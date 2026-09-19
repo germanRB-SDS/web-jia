@@ -18,34 +18,40 @@ export const HORSESHOE = {
   },
   /** How the shoe hangs at rest: turned this much about its nail (degrees, clockwise negative). Point 9. */
   restTiltDeg: -14,
-  /** The eye (JIA-2026-09-19-28/29): a narrow perspective. While the shoe hangs the eye is level with the block's
-      centre (the shoe is seen head-on, the wall 1:1); as the shoe falls the eye rises to `elevationPx`, so the floor
-      (the rule) is seen from above, and it comes back down when the shoe climbs back. */
+  /** The eye (JIA-2026-09-19-28…30): a narrow perspective. While the shoe hangs, drops and bounces the eye is level
+      with the block's centre (the shoe is seen head-on, the wall 1:1); as the shoe falls over the eye rises to
+      `elevationPx`, so the floor (the rule) is seen from above, and it comes back down when the shoe climbs back. */
   camera: { fovDeg: 20, elevationPx: 380 },
-  /** The floor: from the wall towards the eye (px). Invisible but for the shadow. */
+  /** The floor: this far from the wall's foot towards the eye and away from it (px). Invisible but for the shadow. */
   floor: { depthPx: 420 },
-  /** Point 10: a click and the nail gives. Times in ms; angles in degrees about the nail hole. */
+  /** Point 10, simplified in JIA-2026-09-19-30: a double click and the shoe lets go of its nail (which stays where
+      it is). With x across, y up and z towards the eye: it drops straight down (only y changes), bounces twice on
+      the rule (only y), comes to rest standing, and only then falls over backwards — the ends of the U away from
+      the eye — until it lies on the floor. Times in ms; angles in degrees. */
   fall: {
-    /** The wobble before it lets go. */
-    swingMs: 420,
-    swingDeg: 9,
-    /** The drop to the rule (the floor), and how it turns on the way down. */
-    fallMs: 720,
-    spinDeg: -82,
-    /** Two bounces, as a share of the drop height, and their durations (up + down each). */
-    bounces: [
-      { share: 0.16, ms: 360 },
-      { share: 0.05, ms: 220 },
-    ],
-    /** How it lies once down: turned in its own plane (about the hole), tipped over onto the floor (degrees from
-        the wall, negative leans it towards the eye; −90 would be flat) and this far out from the wall (px); and how long it stays there. */
-    landTiltDeg: -96,
-    landTipDeg: -18,
-    forwardPx: 70,
-    /** After the bounces it rolls to the right along the floor (clockwise), slowing down, and stops with its
-        rightmost point this far from the window's edge (JIA-2026-09-19-29). */
-    roll: { turns: 1.5, ms: 1700, edgeInsetPx: 4 },
-    /** The shoe at rest stays whole above the rule: its lowest point on screen this far above the block's bottom. */
+    /** What lets it go: a double click on the button over the shoe (a single click does nothing); with the
+        keyboard, Enter or Space on that button. */
+    trigger: "dblclick" as "click" | "dblclick",
+    /** A minimal wobble before it lets go (0 ms: none). */
+    swingMs: 140,
+    swingDeg: 3,
+    /** The drop to the rule (the floor), under gravity (a quadratic ease). */
+    fallMs: 600,
+    /** Two bounces, each as a share of the drop height; gravity sets how long each one lasts
+        (2 × fallMs × √share). */
+    bounces: [0.13, 0.035],
+    /** How it lands: turned in its own plane, about its own centre (it does not move sideways), to stand on its
+        arch with the ends of the U up; it rocks this much about that as it bounces. Then a short pause, standing. */
+    landTiltDeg: 20,
+    rockDeg: 4,
+    standMs: 180,
+    /** Then it falls over backwards about the point it stands on: tipped until it lies on the floor (degrees from
+        the vertical, −90 would be flat; negative sends the ends of the U away from the eye, positive would show
+        it edge-on). Slow at first and a little faster as it goes; it does not bounce. The eye rises meanwhile. */
+    landTipDeg: -74,
+    tipMs: 900,
+    tipEase: "power1.in",
+    /** The shoe on the floor stays whole above the rule: its lowest point on screen this far above the block's bottom. */
     floorMarginPx: 2,
     restMs: 5000,
     /** The climb back to its nail. */

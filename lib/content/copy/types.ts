@@ -169,7 +169,7 @@ export type Copy = {
     tumbleweedsNote: string;
     /** Appended to the accessible name of a link that leaves the site. */
     newTab: string;
-    /** Accessible name of the horseshoe hanging on the footer (a button: a click makes it fall). */
+    /** Accessible name of the horseshoe hanging on the footer (a button: a double click makes it fall). */
     horseshoe: string;
   };
   entities: {
