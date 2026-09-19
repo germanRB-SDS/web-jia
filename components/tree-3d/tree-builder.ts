@@ -386,14 +386,14 @@ export function buildTree(options: TreeOptions, palette: ResolvedPalette, seed: 
       m.toArray(matrices, n * 16);
 
       const facesSun = dirOut.dot(sun);
-      const tone = rng() < lo.toneScatter ? rng() : lobeTone - facesSun * 0.3 + (rng() - 0.5) * 0.14;
+      const reach = THREE.MathUtils.clamp((at.y - crown.min.y + lo.lobeRadius) / Math.max(0.001, crown.max.y - crown.min.y + 2 * lo.lobeRadius), 0, 1);
+      const tone = rng() < lo.toneScatter ? rng() : lobeTone - facesSun * 0.3 - (reach - 0.5) * 2 * lo.heightTone + (rng() - 0.5) * 0.14;
       toneAt(palette.leaves, tone, col);
       // Darker inside the lobe and under it.
       const lit = 1 - lo.depthShade * (1 - depth) * 1.2 - lo.depthShade * Math.max(0, -dirOut.y) * 0.75;
       col.multiplyScalar(THREE.MathUtils.clamp(lit * (0.94 + rng() * 0.12), 0.25, 1.15));
       colors.set([col.r, col.g, col.b], n * 3);
       outward.set([out.x, out.y, out.z], n * 3);
-      const reach = THREE.MathUtils.clamp((at.y - crown.min.y) / Math.max(0.001, crown.max.y - crown.min.y), 0, 1);
       leaf.set([rng() * Math.PI * 2, THREE.MathUtils.clamp(reach * 0.8 + rng() * 0.2, 0, 1)], n * 2);
     }
   });

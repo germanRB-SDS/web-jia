@@ -55,6 +55,13 @@ objetos literales sin `useMemo`).
   giran sobre sí mismas y se desvanecen antes de posarse. `camera.air` reserva aire en el encuadre (a la izquierda, por
   ejemplo) para que no se corten en el borde del canvas. Viento y caída van en el *vertex shader* (`wind.ts`): la CPU
   no mueve nada.
+- **Profundidad** (opcional): las señales que hacen que el árbol se sienta *al fondo* y no pegado a la página.
+  `fall.direction` con z positiva (las hojas vienen hacia el espectador y crecen al acercarse), `camera.fovDeg` abierto
+  y `camera.elevationDeg` algo alto (el suelo se ve alejarse), `haze` (velo del color del fondo, más en el lado lejano;
+  apagado con `amount: 0`) y `shadow.depth` (sombra alargada hacia el espectador). Ojo: alejar el árbol y agrandarlo
+  a la vez daría la misma imagen; la profundidad está en estas señales, no en la coordenada.
+- **Tono por altura** (`leaves.heightTone`): lo alto de la copa tira al primer tono de `palette.leaves` y lo bajo al
+  último, además del lado del sol.
 - **Rendimiento:** las hojas son un `InstancedMesh` (una llamada de dibujo; 22.000 por defecto, más otra malla con las que caen), sin `shadowMap` (la
   sombra es un disco con degradado), sin posprocesado, DPR limitado (`render.maxPixelRatio`). **Solo dibuja mientras
   está en pantalla** (`IntersectionObserver`) y con la pestaña visible. `render.maxFps` limita los fotogramas si se quiere.
@@ -62,7 +69,8 @@ objetos literales sin `useMemo`).
 - **Accesibilidad:** decoración pura → `aria-hidden`, sin foco, `pointer-events: none`.
 - **Sin WebGL 2:** no dibuja nada y no lanza errores (la caja queda vacía).
 - **Encaje:** la cámara encuadra el árbol entero dentro de la caja, **apoyado en su borde inferior**; si sobra alto,
-  el aire queda arriba.
+  el aire queda arriba. El ajuste se hace sobre la proyección real de la caja del árbol (unas rondas de medir y
+  corregir), así que vale igual para un teleobjetivo que para un ángulo abierto.
 - **Montaje condicional** (p. ej. solo en escritorio): es cosa del que lo llama; no montar `<Tree3D />` evita crear el
   contexto WebGL. Ver `components/site/ExperiencesTree.tsx` en este proyecto.
 
@@ -79,5 +87,5 @@ objetos literales sin `useMemo`).
 
 ## Origen
 
-JIA-2026-09-19-34 y -35 (web-jia). Inspirado en el árbol de la referencia «Cicada» (CodePen de Zajno), que es un vídeo
+JIA-2026-09-19-34, -35, -36 y -38 (web-jia). Inspirado en el árbol de la referencia «Cicada» (CodePen de Zajno), que es un vídeo
 pre-renderizado de terceros: aquí **no se usa ni se enlaza** ese vídeo; el árbol se genera en tiempo real.

@@ -61,6 +61,7 @@ export class TreeScene {
   private time = 0;
   private growStart = -1;
   private disposed = false;
+  private hazeColor: THREE.Color | null = null;
 
   constructor(
     private host: HTMLElement,
@@ -90,6 +91,7 @@ export class TreeScene {
       mossDark: css.color(palette.mossDark),
     };
     const shadowColor = css.color(palette.shadow);
+    this.hazeColor = options.haze.amount > 0 ? css.color(options.haze.color) : null;
     const light = options.light;
     const sky = new THREE.HemisphereLight(css.color(light.sky), css.color(light.bounce), light.skyIntensity);
     const sun = new THREE.DirectionalLight(css.color(light.sun), light.sunIntensity);
@@ -194,7 +196,7 @@ export class TreeScene {
         // The halo first, then the core over it, both under everything else.
         for (const [scale, opacity, order] of [[1, so.opacity, -2], [so.core.scale, so.core.opacity, -1]] as const) {
           if (opacity <= 0) continue;
-          const mat = keep(new THREE.MeshBasicMaterial({ color: shadowColor, alphaMap: tex, transparent: true, opacity, depthWrite: false }));
+          const mat = keep(new THREE.MeshBasicMaterial({ color: shadowColor, alphaMap: tex, transparent: true, opacity, depthWrite: false, fog: false }));
           const blot = new THREE.Mesh(plane, mat);
           blot.rotation.x = -Math.PI / 2;
           blot.scale.set(rx * scale, rz * scale, 1);
@@ -208,48 +210,70 @@ export class TreeScene {
     }
   }
 
-  /** The whole tree stands in the box, on its floor. */
+  /**
+   * The whole tree stands in the box, on its floor, with the air asked for on each side. The fit is made on the
+   * real projection of the tree's box (a few rounds of measure and correct), so it holds for a wide angle as well
+   * as for a long lens. Then the haze is laid between the near and the far side of the tree.
+   */
   private frameCamera(aspect: number) {
     const o = this.options.camera;
     const cam = this.camera;
     const e = THREE.MathUtils.degToRad(o.elevationDeg);
-    const centre = this.bounds.getCenter(new THREE.Vector3());
     const toEye = new THREE.Vector3(0, Math.sin(e), Math.cos(e));
+    const target = this.bounds.getCenter(new THREE.Vector3());
+    const size = this.bounds.getSize(new THREE.Vector3());
+    const tan = Math.tan(THREE.MathUtils.degToRad(o.fovDeg) / 2);
     cam.aspect = aspect;
-    cam.position.copy(centre).addScaledVector(toEye, 10);
-    cam.lookAt(centre);
-    cam.updateMatrixWorld();
-    const right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
-    const up = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
-    let hx = 0;
-    let yMin = Infinity;
-    let yMax = -Infinity;
-    let zMax = 0;
+    cam.updateProjectionMatrix();
+
+    // Where the tree's box must sit in the canvas (NDC, −1…1): its share of the width and height, and its place.
+    const wide = 1 + o.padding + o.air.left + o.air.right;
+    const tall = 1 + o.padding + o.air.top + o.air.bottom;
+    const wantCx = -1 + (2 * (o.padding / 2 + o.air.left + 0.5)) / wide;
+    const wantFloor = -1 + (2 * (o.padding / 2 + o.air.bottom)) / tall;
+
+    const right = new THREE.Vector3();
+    const up = new THREE.Vector3();
     const v = new THREE.Vector3();
     const { min, max } = this.bounds;
-    for (const x of [min.x, max.x]) for (const y of [min.y, max.y]) for (const z of [min.z, max.z]) {
-      v.set(x, y, z).sub(centre);
-      hx = Math.max(hx, Math.abs(v.dot(right)));
-      yMin = Math.min(yMin, v.dot(up));
-      yMax = Math.max(yMax, v.dot(up));
-      zMax = Math.max(zMax, v.dot(toEye));
+    let d = Math.max(size.y, size.x / aspect) / (2 * tan) + size.z / 2;
+    let near = d;
+    let far = d;
+    for (let round = 0; round < 8; round++) {
+      cam.position.copy(target).addScaledVector(toEye, d);
+      cam.lookAt(target);
+      cam.updateMatrixWorld();
+      let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+      near = Infinity;
+      far = 0;
+      for (const x of [min.x, max.x]) for (const y of [min.y, max.y]) for (const z of [min.z, max.z]) {
+        const depth = cam.position.distanceTo(v.set(x, y, z));
+        near = Math.min(near, depth);
+        far = Math.max(far, depth);
+        v.project(cam);
+        x0 = Math.min(x0, v.x);
+        x1 = Math.max(x1, v.x);
+        y0 = Math.min(y0, v.y);
+        y1 = Math.max(y1, v.y);
+      }
+      // Too big or too small for its share: step back or come closer. Then slide it into place.
+      const fit = Math.max(((x1 - x0) / 2) * wide, ((y1 - y0) / 2) * tall);
+      d *= fit;
+      right.setFromMatrixColumn(cam.matrixWorld, 0);
+      up.setFromMatrixColumn(cam.matrixWorld, 1);
+      target.addScaledVector(right, (((x0 + x1) / 2) / fit - wantCx) * d * tan * aspect);
+      target.addScaledVector(up, (y0 / fit - wantFloor) * d * tan);
     }
-    const tan = Math.tan(THREE.MathUtils.degToRad(o.fovDeg) / 2);
-    // The tree's own box, then the air asked for on each side (room for the falling leaves to fade in).
-    const treeH = yMax - yMin;
-    const treeW = 2 * hx;
-    const boxH = treeH * (1 + o.padding + o.air.top + o.air.bottom);
-    const boxW = treeW * (1 + o.padding + o.air.left + o.air.right);
-    const d = Math.max(boxH / (2 * tan), boxW / (2 * tan * aspect));
-    // Spare height goes above the tree (it keeps its feet on the box's floor); spare width goes to both sides.
-    const spare = 2 * d * tan - boxH;
-    const target = centre
-      .clone()
-      .addScaledVector(up, (yMax + yMin) / 2 + spare / 2 + (treeH * (o.air.top - o.air.bottom)) / 2)
-      .addScaledVector(right, (treeW * (o.air.right - o.air.left)) / 2);
-    cam.position.copy(target).addScaledVector(toEye, d + zMax * 0.5);
+    cam.position.copy(target).addScaledVector(toEye, d);
     cam.lookAt(target);
     cam.updateProjectionMatrix();
+
+    const haze = this.options.haze.amount;
+    if (this.hazeColor && haze > 0) {
+      // A third of the veil already on the near side, all of it on the far one.
+      const span = Math.max(0.001, far - near) / (haze * (1 - 0.35));
+      this.scene.fog = new THREE.Fog(this.hazeColor, near - 0.35 * haze * span, near - 0.35 * haze * span + span);
+    }
   }
 
   resize() {

@@ -77,6 +77,9 @@ export const TREE_DEFAULTS = {
     depthShade: 0.22,
     /** How much each leaf's normal gives way to its lobe's (0: flat cards, 1: smooth balls of foliage). */
     normalBlend: 0.88,
+    /** How much the height in the crown moves a leaf along the run of tones: the top towards the first, the
+        bottom towards the last (0: height does not count). */
+    heightTone: 0.25,
     /** Share of leaves that ignore the tone of their lobe. */
     toneScatter: 0.03,
   },
@@ -104,6 +107,9 @@ export const TREE_DEFAULTS = {
     /** Against the size of the leaves on the tree. */
     size: 1,
   },
+  /** Air between the eye and the tree, off by default (`amount: 0`): everything is veiled a little by `color` (the
+      page's ground), the far side of the tree more than the near one, up to `amount` (0–1). Distance, not fog. */
+  haze: { color: "#ffffff" as CssColor, amount: 0 },
   /** Off by default: the tree is there, whole, from the first frame. On, it rises from the ground the first time it is seen. */
   grow: { enabled: false, ms: 1600 },
   camera: {
