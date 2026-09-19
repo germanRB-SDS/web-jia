@@ -1,11 +1,14 @@
 /**
  * The horseshoe's Three.js scene: one transparent canvas over the footer's upper block, an orthographic
  * camera in CSS pixels (1 unit = 1 px, y down = −y), the GLB from Blender hung on a nail. It only renders
- * when asked (placement, resize) — no loop while nothing moves. The hit button is placed over the shoe's
- * projected box after every render so the click and the accessible name live in real HTML.
+ * when asked (placement, resize, each step of an animation) — no loop while nothing moves. The hit button
+ * is placed over the shoe's projected box after every render so the click and the accessible name live in
+ * real HTML. A click (`drop`) lets the nail give: the shoe wobbles, falls to the rule, bounces, lies there a
+ * while and climbs back to its nail (GSAP timeline, config.fall); nothing moves under reduced motion.
  */
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import gsap from "gsap";
 import { HORSESHOE as CFG } from "./config";
 
 export function webglAvailable(): boolean {
@@ -33,11 +36,14 @@ export class HorseshoeScene {
   private height = 1;
   private disposed = false;
   private readonly box = new THREE.Box3();
+  private nailAt = new THREE.Vector2();
+  private timeline: gsap.core.Timeline | null = null;
 
   constructor(
     private stage: HTMLElement,
     canvas: HTMLCanvasElement,
     private hit: HTMLElement,
+    private reducedMotion: boolean,
   ) {
     this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
     this.renderer.setClearColor(0x000000, 0);
@@ -103,6 +109,12 @@ export class HorseshoeScene {
 
     const nailX = this.width - CFG.nail.insetRightPx - this.modelBox.max.x * scale;
     const nailY = CFG.nail.topPx + this.modelBox.max.y * scale;
+    this.nailAt.set(nailX, -nailY);
+    // A resize mid-fall puts the shoe back on its nail.
+    if (this.timeline) {
+      this.timeline.kill();
+      this.timeline = null;
+    }
     this.pivot.position.set(nailX, -nailY, 0);
     this.pivot.rotation.z = THREE.MathUtils.degToRad(CFG.restTiltDeg);
 
@@ -116,6 +128,58 @@ export class HorseshoeScene {
     head.position.set(0, 0, thickness * 1.3);
     this.nail.position.copy(this.pivot.position);
     this.requestRender();
+  }
+
+  /** Whether the shoe is hanging still (a click only counts then). */
+  get hung(): boolean {
+    return Boolean(this.model) && !this.timeline;
+  }
+
+  /** The nail gives: wobble, drop to the rule, bounce, rest, climb back. */
+  drop() {
+    if (!this.model || this.timeline || this.reducedMotion) return;
+    const F = CFG.fall;
+    const rest = THREE.MathUtils.degToRad(CFG.restTiltDeg);
+    const land = THREE.MathUtils.degToRad(F.landTiltDeg);
+    // Where the hole ends up so the shoe, turned as it lands, lies on the floor (the stage's bottom edge).
+    const rot = this.pivot.rotation.z;
+    const pos = this.pivot.position.clone();
+    this.pivot.rotation.z = land;
+    this.pivot.position.set(this.nailAt.x, 0, 0);
+    this.box.setFromObject(this.pivot);
+    const floorY = -this.height - this.box.min.y;
+    this.pivot.rotation.z = rot;
+    this.pivot.position.copy(pos);
+
+    const p = this.pivot.position;
+    const r = this.pivot.rotation;
+    const dropH = this.nailAt.y - floorY;
+    const tl = gsap.timeline({
+      onUpdate: () => this.requestRender(),
+      onComplete: () => {
+        this.timeline = null;
+        this.requestRender();
+      },
+    });
+    const s = F.swingMs / 1000;
+    tl.to(r, { z: rest - THREE.MathUtils.degToRad(F.swingDeg), duration: s * 0.4, ease: "power2.out" })
+      .to(r, { z: rest + THREE.MathUtils.degToRad(F.swingDeg * 0.6), duration: s * 0.35, ease: "power1.inOut" })
+      .to(r, { z: rest, duration: s * 0.25, ease: "power1.in" })
+      // The drop, turning as it goes; a little drift sideways.
+      .to(p, { y: floorY, duration: F.fallMs / 1000, ease: "power2.in" }, "fall")
+      .to(p, { x: this.nailAt.x - dropH * 0.06, duration: F.fallMs / 1000, ease: "none" }, "fall")
+      .to(r, { z: rest + THREE.MathUtils.degToRad(F.spinDeg), duration: F.fallMs / 1000, ease: "power1.in" }, "fall");
+    F.bounces.forEach((b, i) => {
+      const up = b.ms / 2000;
+      const last = i === F.bounces.length - 1;
+      tl.to(p, { y: floorY + dropH * b.share, duration: up, ease: "power2.out" })
+        .to(r, { z: last ? land : rest + THREE.MathUtils.degToRad(F.spinDeg + (F.landTiltDeg - F.spinDeg) * 0.6), duration: up * 2, ease: "power1.inOut" }, "<")
+        .to(p, { y: floorY, duration: up, ease: "power2.in" });
+    });
+    tl.to({}, { duration: F.restMs / 1000 })
+      .to(p, { x: this.nailAt.x, y: this.nailAt.y, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise")
+      .to(r, { z: rest, duration: F.riseMs / 1000, ease: "power2.inOut" }, "rise");
+    this.timeline = tl;
   }
 
   requestRender() {
@@ -144,6 +208,8 @@ export class HorseshoeScene {
 
   dispose() {
     this.disposed = true;
+    this.timeline?.kill();
+    this.timeline = null;
     if (this.frame) cancelAnimationFrame(this.frame);
     this.scene.traverse((o) => {
       if (o instanceof THREE.Mesh) {

@@ -7,11 +7,13 @@
 | 2 | 4, 6 + hotfixes cursor/clic | hecho | 644797c |
 | 3 | 5 | hecho | f495444 |
 | 4 | 8 herradura Blender + colgada | hecho | 50528fa |
-| 5 | 9 inclinada −14° + reubicada a la derecha, solo ≥ 1600 px (promotor) | hecho | (commit fase 5) |
-| 6 | 10 clic → cae | pendiente | — |
+| 5 | 9 inclinada −14° + reubicada a la derecha, solo ≥ 1600 px (promotor) | hecho | 0caaf05 |
+| 6 | 10 clic → cae (balanceo, caída con giro, dos rebotes sobre la línea, 3,6 s tumbada, vuelve al clavo) + hotfix hero | hecho | (commits fase 6) |
 | 7 | 11 luz, sombra, reflejos | pendiente | — |
 | 8 | informe | pendiente | — |
 
 Notas:
 - Dev server del repo en :3000 (no arrancar otro). Blender 5.2.1 LTS en /Applications/Blender.app (headless).
 - Push por `../sds-dev-governance/scripts/git-safe-push.sh origin main`.
+
+Hallazgo ajeno al prompt: scroll horizontal previo (983 px a 960; 438 a 390) causado por «Cómo funcionan» / cubo del equipo. Se anota como riesgo en el informe.

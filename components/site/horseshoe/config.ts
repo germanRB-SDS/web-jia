@@ -18,6 +18,25 @@ export const HORSESHOE = {
   },
   /** How the shoe hangs at rest: turned this much about its nail (degrees, clockwise negative). Point 9. */
   restTiltDeg: -14,
+  /** Point 10: a click and the nail gives. Times in ms; angles in degrees about the nail hole. */
+  fall: {
+    /** The wobble before it lets go. */
+    swingMs: 420,
+    swingDeg: 9,
+    /** The drop to the rule (the floor), and how it turns on the way down. */
+    fallMs: 720,
+    spinDeg: -82,
+    /** Two bounces, as a share of the drop height, and their durations (up + down each). */
+    bounces: [
+      { share: 0.16, ms: 360 },
+      { share: 0.05, ms: 220 },
+    ],
+    /** How it lies once down (about the hole), and how long it stays there. */
+    landTiltDeg: -96,
+    restMs: 3600,
+    /** The climb back to its nail. */
+    riseMs: 1200,
+  },
   render: {
     maxPixelRatio: 2,
     light: { sun: 3.4, sky: 1.5 },

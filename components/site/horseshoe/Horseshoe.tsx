@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { HORSESHOE as CFG } from "./config";
 import styles from "../SiteFooter.module.css";
 
@@ -17,7 +17,8 @@ const isLarge = () => window.matchMedia(CFG.largeMedia).matches;
  * A worn horseshoe hanging from a nail on the footer's top edge, by the window's right margin, drawn with
  * Three.js on a transparent canvas over the block above the rule (horseshoe-scene.ts). Large desktop
  * windows only: elsewhere nothing is mounted. Decoration with a real button over it: the button carries
- * the accessible name and the click. Without WebGL or the model nothing is drawn.
+ * the accessible name and the click, which makes the shoe fall (and climb back). Without WebGL or the
+ * model nothing is drawn.
  */
 export function Horseshoe({ glb, label }: Props) {
   const large = useSyncExternalStore(subscribeLarge, isLarge, () => false);
@@ -29,6 +30,7 @@ function Stage({ glb, label }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hitRef = useRef<HTMLButtonElement>(null);
   const sceneRef = useRef<import("./horseshoe-scene").HorseshoeScene | null>(null);
+  const onClick = useCallback(() => sceneRef.current?.drop(), []);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -43,7 +45,7 @@ function Stage({ glb, label }: Props) {
       if (disposed || !mod.webglAvailable()) return;
       let scene: import("./horseshoe-scene").HorseshoeScene;
       try {
-        scene = new mod.HorseshoeScene(stage, canvas, hit);
+        scene = new mod.HorseshoeScene(stage, canvas, hit, window.matchMedia("(prefers-reduced-motion: reduce)").matches);
       } catch (err) {
         console.warn("[Horseshoe] WebGL renderer unavailable:", err);
         return;
@@ -69,7 +71,7 @@ function Stage({ glb, label }: Props) {
   return (
     <div ref={stageRef} className={styles.shoeStage}>
       <canvas ref={canvasRef} aria-hidden="true" />
-      <button ref={hitRef} type="button" className={styles.shoeHit} aria-label={label} title={label} />
+      <button ref={hitRef} type="button" className={styles.shoeHit} aria-label={label} title={label} onClick={onClick} />
     </div>
   );
 }
