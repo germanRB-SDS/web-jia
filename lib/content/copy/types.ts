@@ -15,7 +15,7 @@ export type Buttons = {
   /** Control of the animated road in Jornadas (icon button: this is its accessible name). */
   route: { replay: string };
   /** Controls over the Jornadas intro video (icon buttons: these are their accessible names). */
-  video: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; share: string };
+  video: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; /** Picture in picture: the video in a small floating window. */ minimize: string; exitMinimize: string; share: string };
   /** Arrows of the team cube (icon buttons: these are their accessible names). */
   cube: { prev: string; next: string };
 };

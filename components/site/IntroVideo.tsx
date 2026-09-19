@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { IntroVideoModel } from "@/lib/content";
-import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
+import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PictureInPictureExitIcon, PictureInPictureIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
 import styles from "./IntroVideo.module.css";
 
 type Props = { intro: IntroVideoModel };
@@ -16,7 +16,8 @@ type IOSVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void; webkitD
  * requested when the block nears the viewport; it then plays muted, pauses when it leaves the
  * screen and never autoplays under prefers-reduced-motion. Round controls sit top-right:
  * share (phones only: the Web Share API with a coarse pointer), fullscreen (the frame goes full screen so the
- * controls stay; iOS uses the player's own), sound, play/pause.
+ * controls stay; iOS uses the player's own), minimise (picture in picture, where the browser has it: the video
+ * goes on playing in a floating window while the page is read), sound, play/pause.
  */
 export function IntroVideo({ intro }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -30,6 +31,9 @@ export function IntroVideo({ intro }: Props) {
   const [fullscreen, setFullscreen] = useState(false);
   const [canFullscreen, setCanFullscreen] = useState(false);
   const [canShare, setCanShare] = useState(false);
+  const [minimized, setMinimized] = useState(false);
+  const [canMinimize, setCanMinimize] = useState(false);
+  const onScreen = useRef(false);
 
   // Ask for the file shortly before the block shows up.
   useEffect(() => {
@@ -57,6 +61,9 @@ export function IntroVideo({ intro }: Props) {
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries[0]?.isIntersecting ?? false;
+        onScreen.current = visible;
+        // Minimised (picture in picture) it goes on playing while the visitor reads the rest of the page.
+        if (!visible && document.pictureInPictureElement === video) return;
         if (!visible) video.pause();
         else if (intro.autoplay && !calm && !userPaused.current) video.play().catch(() => {});
       },
@@ -96,6 +103,42 @@ export function IntroVideo({ intro }: Props) {
     const url = `${location.origin}${location.pathname}#${intro.anchor}`;
     navigator.share({ title: document.title, text: intro.shareText, url }).catch(() => {});
   }, [intro.anchor, intro.shareText]);
+
+  // Picture in picture: offered only where the browser has it; the state follows the video's own events (the
+  // floating window has its own close button). Back in the page and off screen, it rests as usual.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    setCanMinimize(Boolean(document.pictureInPictureEnabled && typeof video.requestPictureInPicture === "function"));
+    const enter = () => setMinimized(true);
+    const leave = () => {
+      setMinimized(false);
+      if (!onScreen.current) video.pause();
+    };
+    video.addEventListener("enterpictureinpicture", enter);
+    video.addEventListener("leavepictureinpicture", leave);
+    return () => {
+      video.removeEventListener("enterpictureinpicture", enter);
+      video.removeEventListener("leavepictureinpicture", leave);
+    };
+  }, []);
+
+  const toggleMinimized = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture().catch(() => {});
+      return;
+    }
+    // The floating window needs the file: ask for it now if the block had not yet.
+    setLoad(true);
+    const open = () => {
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      video.requestPictureInPicture().then(() => video.play().catch(() => {})).catch(() => {});
+    };
+    if (video.readyState >= 1) open();
+    else video.addEventListener("loadedmetadata", open, { once: true });
+  }, []);
 
   const toggleFullscreen = useCallback(() => {
     const frame = frameRef.current;
@@ -163,6 +206,11 @@ export function IntroVideo({ intro }: Props) {
             {canFullscreen ? (
               <button type="button" className={styles.control} onClick={toggleFullscreen} aria-label={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} title={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} aria-pressed={fullscreen}>
                 {fullscreen ? <FullscreenExitIcon size={24} /> : <FullscreenIcon size={24} />}
+              </button>
+            ) : null}
+            {canMinimize ? (
+              <button type="button" className={styles.control} onClick={toggleMinimized} aria-label={minimized ? intro.controls.exitMinimize : intro.controls.minimize} title={minimized ? intro.controls.exitMinimize : intro.controls.minimize} aria-pressed={minimized}>
+                {minimized ? <PictureInPictureExitIcon size={24} /> : <PictureInPictureIcon size={24} />}
               </button>
             ) : null}
             <button type="button" className={styles.control} onClick={toggleSound} aria-label={muted ? intro.controls.unmute : intro.controls.mute} title={muted ? intro.controls.unmute : intro.controls.mute} aria-pressed={!muted}>

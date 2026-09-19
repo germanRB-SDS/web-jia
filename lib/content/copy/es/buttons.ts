@@ -17,6 +17,8 @@ export const buttons: Buttons = {
     unmute: "Activar el sonido",
     fullscreen: "Ver el vídeo a pantalla completa",
     exitFullscreen: "Salir de pantalla completa",
+    minimize: "Ver el vídeo minimizado, en una ventana flotante",
+    exitMinimize: "Devolver el vídeo a la página",
     share: "Compartir el enlace de las jornadas",
   },
 };

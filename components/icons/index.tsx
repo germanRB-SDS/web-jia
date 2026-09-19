@@ -188,6 +188,27 @@ export function FullscreenExitIcon(props: IconProps) {
   );
 }
 
+/** Picture in picture: the screen with a small one set into its corner; and, to leave it, the small one's arrow
+    back into the screen. Same grid and stroke as the controls. */
+export function PictureInPictureIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M54 30V14H10v36h18" />
+      <path d="M36 38h18v14H36z" />
+    </svg>
+  );
+}
+
+export function PictureInPictureExitIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M54 30V14H10v36h18" />
+      <path d="M36 38h18v14H36z" />
+      <path d="M30 34 18 22M18 32V22h10" />
+    </svg>
+  );
+}
+
 /** Share: an arrow rising out of an open tray (the phone's own sign), same grid and stroke as the controls. */
 export function ShareIcon(props: IconProps) {
   return (
