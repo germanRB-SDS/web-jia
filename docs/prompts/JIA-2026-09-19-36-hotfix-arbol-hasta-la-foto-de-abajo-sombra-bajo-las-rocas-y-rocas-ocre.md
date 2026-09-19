@@ -57,5 +57,5 @@ medir el hueco entre el pie de las rocas y la foto de «Propuestas»; `scrollWid
 - **Riesgos (moderados):** (1) el título de la sección arranca ahora sobre la zona ya desvanecida de la fotografía
   (51 % del ancho): se lee bien en las capturas, pero conviene que el promotor lo mire en su pantalla; (2) rendimiento
   aún sin medir en su equipo: la caja del árbol es un 8 % más alta. Sin graves ni críticos.
-- Evidencias en `docs/prompts-output/JIA-2026-09-19-36/evidence/`. Sin push (no se pidió): 12 commits por delante de
+- Evidencias en `docs/prompts-output/JIA-2026-09-19-36/evidence/`. Sin push (no se pidió): 11 commits (12 con esta corrección) por delante de
   `origin/main` (JIA-34, -35 y -36).
