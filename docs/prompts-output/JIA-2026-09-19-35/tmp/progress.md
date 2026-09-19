@@ -1,3 +1,4 @@
 - fase 0: prompt commiteado (152b431)
 - fase 1: tree-3d — tallos, lóbulos en cáscara (22.000 hojas), lianas, rocas con musgo, hojas que caen (shader), grow apagado, camera.air, README; portable (solo react/three)
 - fase 2: tokens --jia-tree-* en palette.css; experienciasTree con palettes cicada/sepia, luz desde la derecha, turnDeg 180; caja a todo el alto anclada a la columna; umbral 1680; tsc, check:content, build ok; evidencias
+- fase 3: report.md y estado del prompt

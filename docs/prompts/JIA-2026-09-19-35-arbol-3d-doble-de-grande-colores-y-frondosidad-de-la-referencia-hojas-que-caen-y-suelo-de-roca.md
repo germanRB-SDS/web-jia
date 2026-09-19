@@ -5,7 +5,7 @@ cuatro capturas** de la referencia «Cicada» (freefrontend.com/javascript-revea
 aprecia el movimiento del árbol.
 **Nivel:** LEVEL 2 (evolución de un componente con WebGL + su integración) · tmp/scratch: **aplica** →
 `docs/prompts-output/JIA-2026-09-19-35/tmp/progress.md` y `evidence/`.
-**Estado:** SIN EJECUTAR
+**Estado:** EJECUTADO (2026-09-19) — informe en `docs/prompts-output/JIA-2026-09-19-35/report.md`. Decisiones de ejecución: árbol girado 180°, posición anclada a la columna y montaje desde **1680 px** (a 1440 tapaba el título de la tarjeta). Sin push (no se pidió).
 
 ## Contexto (lo anterior: JIA-2026-09-19-34, ejecutado, sin push)
 
