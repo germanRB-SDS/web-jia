@@ -1,0 +1,2 @@
+- fase 0: prompt commiteado (8e9c116)
+- fase 1: columnas del pie en un grupo centrado (rejilla de tres zonas ≥ 1100 px), huecos iguales 44–64 px; centro del grupo = centro de la ventana a 1920/1440/1280/1100

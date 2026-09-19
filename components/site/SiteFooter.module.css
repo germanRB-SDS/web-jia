@@ -13,8 +13,24 @@
   display: grid;
   gap: 2.5rem;
 }
+/* The three lists. Stacked on a phone; four even columns with the mark on a tablet (the group dissolves into the
+   grid); from a laptop up, one group in the middle of three zones — mark · lists · free ground — whose sides are
+   equal, so the lists sit centred on the window whatever its width, each as wide as its content, evenly spaced. */
+.cols { display: grid; gap: 2.5rem; }
 @media (min-width: 760px) {
   .inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; }
+  .cols { display: contents; }
+}
+@media (min-width: 1100px) {
+  .inner { grid-template-columns: minmax(min-content, 1fr) auto minmax(0, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
+  .cols {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, max-content);
+    gap: clamp(2.25rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .cols .col { max-width: 15rem; }
 }
 .brand { display: grid; gap: 0.75rem; justify-items: start; align-content: start; }
 .wordmark {

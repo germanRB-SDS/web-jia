@@ -23,24 +23,26 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
           <p className={styles.credit}>{footer.credit}</p>
         </div>
 
-        <nav className={styles.col} aria-label={copy.footer.sections}>
-          <h2 className={styles.colTitle}>{copy.footer.sections}</h2>
-          <ul className={styles.links}>
-            {footer.sections.map((s) => (
-              <li key={s.href}>
-                <a href={s.href}>{s.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* The three lists travel together: one group, centred on the window, evenly spaced (JIA-2026-09-19-40). */}
+        <div className={styles.cols}>
+          <nav className={styles.col} aria-label={copy.footer.sections}>
+            <h2 className={styles.colTitle}>{copy.footer.sections}</h2>
+            <ul className={styles.links}>
+              {footer.sections.map((s) => (
+                <li key={s.href}>
+                  <a href={s.href}>{s.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className={styles.col}>
-          <h2 className={styles.colTitle}>{copy.footer.organiza}</h2>
-          <ul className={styles.orgs}>
-            {footer.organiza.map((o) => (
-              <li key={o.id}>{o.url ? <a href={o.url} target="_blank" rel="noopener noreferrer">{o.name}</a> : o.name}</li>
-            ))}
-          </ul>
+          <div className={styles.col}>
+            <h2 className={styles.colTitle}>{copy.footer.organiza}</h2>
+            <ul className={styles.orgs}>
+              {footer.organiza.map((o) => (
+                <li key={o.id}>{o.url ? <a href={o.url} target="_blank" rel="noopener noreferrer">{o.name}</a> : o.name}</li>
+              ))}
+            </ul>
         </div>
 
         <div className={styles.col}>
@@ -50,6 +52,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
               <li key={o.id}>{o.url ? <a href={o.url} target="_blank" rel="noopener noreferrer">{o.name}</a> : o.name}</li>
             ))}
           </ul>
+        </div>
         </div>
 
         {/* The horseshoe hangs from the footer's top edge by the window's right margin (horseshoe/), large windows only. */}
