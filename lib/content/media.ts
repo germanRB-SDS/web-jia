@@ -140,6 +140,18 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
     },
     {
+      /** Footer ground (JIA-2026-09-19-40): a stable in half light, a horse's legs against the door and, on the right,
+          the lit wooden post the 3D horseshoe hangs on (where that post is: sections/footer.ts › stablePost). */
+      id: "footer-establo",
+      variants: [
+        { src: "/footer/establo-1200.webp", width: 1200 },
+        { src: "/footer/establo-2172.webp", width: 2172 },
+      ],
+      ratio: 2172 / 724,
+      original: "assets/images-website/footer-caballo-poste.png",
+      license: "Imagen aportada por el promotor el 19-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Experiencias ground. The teacher stands on the left; the right half is clear paper for the text. */
       id: "experiencias-aula",
       variants: [

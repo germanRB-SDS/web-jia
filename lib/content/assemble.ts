@@ -192,6 +192,8 @@ export type LandingModel = {
     shotFadeMs: number;
     /** The horseshoe hanging on the footer: its model and the accessible name of its button. */
     horseshoe: { glb: string; label: string };
+    /** The stable behind the block above the rule, and where its post is (percentages of the image's box). */
+    stable: { media: Media; post: { leftPct: number; widthPct: number; nailTopPct: number } } | null;
     marks: MarkKind[];
   };
 };
@@ -527,6 +529,10 @@ export function getLanding(locale: Locale): LandingModel {
       shotLifeMs: footerConfig.shotLifeMs,
       shotFadeMs: footerConfig.shotFadeMs,
       horseshoe: { glb: footerConfig.horseshoeGlb, label: copy.footer.horseshoe },
+      stable: (() => {
+        const media = getMedia(footerConfig.stableMediaId);
+        return media ? { media, post: footerConfig.stablePost } : null;
+      })(),
       marks: [],
     },
   };

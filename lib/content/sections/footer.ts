@@ -11,4 +11,9 @@ export const footerConfig = {
   shotFadeMs: 700,
   /** The horseshoe's model, built by Blender headless (assets/3d/herradura) and copied by build-assets.sh. */
   horseshoeGlb: "/footer/herradura.glb",
+  /** The footer's ground above the rule: the stable (media.ts). `null` leaves plain ink and the shoe by the window's edge. */
+  stableMediaId: "footer-establo" as string | null,
+  /** Where the lit face of the post is in that image, as percentages of its box: the face's left edge and width,
+      and how far down the nail goes. The footer lays an invisible marker there and the horseshoe reads it. */
+  stablePost: { leftPct: 74.4, widthPct: 9.4, nailTopPct: 21 },
 } as const;

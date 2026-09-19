@@ -57,6 +57,60 @@
   text-wrap: balance;
   color: var(--jia-sand);
 }
+/* ---- the ground above the rule: the stable (JIA-2026-09-19-40) ----
+   A full-bleed layer under the text. The photograph is sized by the block's HEIGHT (1.5 × it: the band from a fifth
+   of the way down is what shows) and placed by its POST, not by its edges: --post-x is where the post's centre goes,
+   the middle of the free ground right of the lists. The picture's own edges melt into ink (mask), a veil keeps the
+   lists readable over the light of the door and thins out to nothing over the post. */
+.stableGround {
+  position: absolute;
+  inset-block: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+  --stable-scale: 1.5;
+  --stable-top: 0.2;
+  /* A phone: the lists are stacked over the whole block; the post stays out and the door's light comes in. */
+  --post-x: calc(100cqw + 38cqh);
+}
+@media (min-width: 760px) {
+  .stableGround { --post-x: calc(100cqw - 12cqh); }
+}
+@media (min-width: 1100px) {
+  .stableGround { --post-x: calc(75cqw + 10rem); }
+}
+.stable {
+  position: absolute;
+  top: calc(var(--stable-top) * var(--stable-scale) * -100cqh);
+  height: calc(var(--stable-scale) * 100cqh);
+  aspect-ratio: var(--stable-ratio);
+  left: calc(var(--post-x) - var(--post-centre) * var(--stable-scale) * var(--stable-ratio) * 100cqh);
+}
+.stableImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 90%, transparent 100%);
+}
+/* The marker on the post's lit face: no box of its own, only a place and a width for the horseshoe to read. */
+.post { position: absolute; height: 0; }
+.stableGround::before,
+.stableGround::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+/* Top and bottom of the band melt into the ink above and the rule below. */
+.stableGround::before {
+  background: linear-gradient(180deg, var(--jia-ink) 0%, rgb(var(--jia-ink-rgb) / 0) 24%, rgb(var(--jia-ink-rgb) / 0) 72%, var(--jia-ink) 100%);
+}
+.stableGround::after {
+  background: linear-gradient(90deg, rgb(var(--jia-ink-rgb) / 0.9) 0%, rgb(var(--jia-ink-rgb) / 0.78) 55%, rgb(var(--jia-ink-rgb) / 0) calc(var(--post-x) - 26cqh));
+}
+
 /* The horseshoe's stage: as tall as the block above the rule and as wide as the window (it bleeds out of the
    container so the shoe can hang by the window's right edge), never in the pointer's way; only the button that
    follows the shoe takes the pointer (horseshoe/Horseshoe.tsx places it every frame). Large windows only. */

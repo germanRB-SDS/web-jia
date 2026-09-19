@@ -1,2 +1,3 @@
 - fase 0: prompt commiteado (8e9c116)
 - fase 1: columnas del pie en un grupo centrado (rejilla de tres zonas ≥ 1100 px), huecos iguales 44–64 px; centro del grupo = centro de la ventana a 1920/1440/1280/1100
+- fase 2: imagen del establo (public/footer/establo-{1200,2172}.webp, media footer-establo, stableMediaId/stablePost, footer.stable en el modelo); capa anclada por el poste con máscara y velos; texto legible a 1788
