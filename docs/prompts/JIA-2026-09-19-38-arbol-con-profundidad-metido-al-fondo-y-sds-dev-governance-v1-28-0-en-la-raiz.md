@@ -4,7 +4,7 @@
 («el input lo guardas como prompt, elaborando un prompt a partir del input»).
 **Nivel:** LEVEL 2 (dos encargos independientes: uno instala el kit de gobernanza en el repositorio; otro evoluciona un
 componente WebGL) · tmp/scratch: **aplica** → `docs/prompts-output/JIA-2026-09-19-38/tmp/progress.md` y `evidence/`.
-**Estado:** SIN EJECUTAR
+**Estado:** EJECUTADO (2026-09-19) — informe en `docs/prompts-output/JIA-2026-09-19-38/report.md`; ver «Corrección del promotor durante la ejecución» al final. Sin push (no se ha pedido).
 
 ## Texto del promotor
 
@@ -100,3 +100,17 @@ quede donde está** y el texto siga libre.
 - **Moderado — que la profundidad «no se note» o se pase:** las señales son perceptivas; iterar con capturas. Hojas
   grandes en primer plano pueden molestar sobre el texto: limitar tamaño máximo y opacidad al acercarse.
 - **Menor — coste:** la neblina es gratis (uniforme de escena); hojas más grandes en primer plano, algo más de relleno.
+
+## Corrección del promotor durante la ejecución (por chat, «hotfix on the fly»)
+
+> «Y un detalle del árbol: guarda (comentándolo) el color lila/púrpura/morado suave que tiene en las hojas. Guarda esa
+> tonalidad como comentario explicando que era el color original, pero utilizas en las hojas, del blanco que
+> prácticamente tienen arriba al verde oliva #72715b.»
+
+- Las hojas pasan a un degradado **del casi blanco de arriba (`--jia-tree-cream`) al oliva seco de la casa
+  (`--jia-olive`, #72715b)**, con dos pasos intermedios por `color-mix`. Para que el blanco quede **arriba**, el
+  componente gana `leaves.heightTone` (la altura en la copa mueve el tono); el sitio lo pone a 0,5.
+- **El lila original queda guardado como comentario**, explicando que era el color original y cómo recuperarlo, en los
+  dos sitios donde vivía: la línea `leaves` de la paleta en `lib/content/sections/experiencias.ts` y los tres tokens
+  (`--jia-tree-rose`, `--jia-tree-lilac`, `--jia-tree-lilac-deep`) en `app/theme/palette.css`.
+- El rebote de la luz deja de ser rosado (`--jia-tree-rose`) y pasa a `--jia-dune-light`, para no teñir de rosa el oliva.
