@@ -1,6 +1,7 @@
 /**
  * The flip engine: plain DOM, no React. `open()` turns the card twice about its vertical axis, from its front to its
- * front, from faster to slower (a little slower still as its back goes by in the first turn); once there, with a fine
+ * front, from faster to slower (a little slower still as its back goes by in the first turn, and a stop on its back
+ * in the second); once there, with a fine
  * pointer, the card leans softly towards the pointer (quick setters fed from GSAP's ticker, easing a share of the way
  * each frame). `close()` stops everything and leaves the card on its front without animating, ready for the next
  * opening. The pointer is listened to on the surface given (the dialog), only between the end of the turns and `close()`.
@@ -11,16 +12,19 @@ import { FLIP } from "./config";
 const STEP_S = 0.005;
 
 /**
- * The angle turned (degrees, 0 → 720) every STEP_S seconds. Speeds in degrees per second. The second turn's speed is
- * V·(1 − u^hold), which starts at V = 360·(hold + 1) / hold / seconds and ends at nothing. The first turn's speed
- * falls in a straight line to that V, less the dip around the moment its back faces the eye; where it starts from
- * is whatever makes the turn exactly 360° (found by bisection, the dip's moment by iteration).
+ * The angle turned (degrees, 0 → 720) every STEP_S seconds. Speeds in degrees per second. The second turn goes to
+ * its back at V·(1 − u^slowdown), which starts at V = 180·(slowdown + 1) / slowdown / seconds and ends at nothing;
+ * it stays there, and goes on to its front along an ease. The first turn's speed falls in a straight line to that V,
+ * less the dip around the moment its back faces the eye; where it starts from is whatever makes the turn exactly
+ * 360° (found by bisection, the dip's moment by iteration).
  */
 function buildAngles(): number[] {
   const T = FLIP.turns;
   const t1 = T.firstMs / 1000;
-  const t2 = T.secondMs / 1000;
-  const v2 = (360 * (T.secondHold + 1)) / T.secondHold / t2;
+  const S = T.second;
+  const toBack = S.toBackMs / 1000;
+  const toFront = S.toFrontMs / 1000;
+  const v2 = (180 * (S.slowdown + 1)) / S.slowdown / toBack;
   const first = (v0: number, dipAt: number) => {
     const out = [0];
     for (let t = STEP_S; t < t1 + STEP_S / 2; t += STEP_S) {
@@ -44,10 +48,13 @@ function buildAngles(): number[] {
     dipAt = turn.findIndex((a) => a >= 180) / (turn.length - 1);
   }
   const angles = turn.map((a) => (a * 360) / turn[turn.length - 1]);
-  for (let t = STEP_S; t < t2 + STEP_S / 2; t += STEP_S) {
-    const u = t / t2;
-    angles.push(360 + v2 * t2 * (u - u ** (T.secondHold + 1) / (T.secondHold + 1)));
+  for (let t = STEP_S; t < toBack + STEP_S / 2; t += STEP_S) {
+    const u = t / toBack;
+    angles.push(360 + v2 * toBack * (u - u ** (S.slowdown + 1) / (S.slowdown + 1)));
   }
+  for (let t = STEP_S; t < S.holdMs / 1000 + STEP_S / 2; t += STEP_S) angles.push(540);
+  const ease = gsap.parseEase(S.toFrontEase);
+  for (let t = STEP_S; t < toFront + STEP_S / 2; t += STEP_S) angles.push(540 + 180 * ease(t / toFront));
   angles[angles.length - 1] = 720;
   return angles;
 }
