@@ -130,6 +130,8 @@ export type LandingModel = {
     alt: string;
     nameLines: readonly string[];
     fullName: string;
+    /** The seal that stands for the lettering beside the wordmark; null keeps the lettering. */
+    seal: Media | null;
     title: string;
     titleMarks: MarkKind[];
     lede: string;
@@ -404,6 +406,7 @@ export function getLanding(locale: Locale): LandingModel {
       alt: copy.a11y.heroImage,
       nameLines: event.nameLines,
       fullName: event.fullName,
+      seal: getMedia(heroConfig.sealMediaId),
       title: edition.title,
       titleMarks: marksOf(edition.titleStatus),
       lede: copy.hero.lede,

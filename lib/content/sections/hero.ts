@@ -7,6 +7,9 @@ export const heroConfig = {
   /** Other hero crops registered in media.ts; swap `mediaId` to try them. */
   alternateMediaIds: ["hero-1-full", "hero-2"],
   fallbackSurface: "sand" as SurfaceToken,
+  /** The #JIA26 seal to the right of the "JIA" wordmark, as tall as it, in place of the lettering (promoter,
+      JIA-2026-09-19-30: the edition's title under it already says the name); null brings the lettering back. */
+  sealMediaId: "sello-jia26" as string | null,
   actions: {
     primary: { target: "jornadas" },
     secondary: { target: "talleres" },

@@ -2,6 +2,7 @@ import type { LandingModel } from "@/lib/content";
 import { StarIcon } from "@/components/icons";
 import { Action } from "@/components/primitives/Action";
 import { Marks } from "@/components/primitives/Mark";
+import { Picture } from "@/components/primitives/Picture";
 import { Surface } from "@/components/primitives/Surface";
 import styles from "./Hero.module.css";
 
@@ -31,13 +32,21 @@ export function Hero({ hero, brand, markLabels, showMarks }: Props) {
           <svg className={styles.wordmark} viewBox={`0 0 ${brand.wordmark.width} ${brand.wordmark.height}`} aria-hidden="true" focusable="false">
             <use href={`${brand.wordmark.src}#mark`} />
           </svg>
-          <span className={styles.name}>
-            {hero.nameLines.map((line) => (
-              <span key={line} className={styles.nameLine}>
-                {line}
-              </span>
-            ))}
-          </span>
+          {/* The seal stands for the lettering (it carries the same words); the heading keeps its name for everyone. */}
+          {hero.seal ? (
+            <>
+              <span className={styles.srOnly}>{hero.nameLines.join(" ")}</span>
+              <Picture media={hero.seal} alt="" sizes="(min-width: 1300px) 186px, (min-width: 740px) 14.4vw, 107px" className={styles.seal} priority />
+            </>
+          ) : (
+            <span className={styles.name}>
+              {hero.nameLines.map((line) => (
+                <span key={line} className={styles.nameLine}>
+                  {line}
+                </span>
+              ))}
+            </span>
+          )}
         </h1>
 
         <div className={styles.rule} aria-hidden="true">
