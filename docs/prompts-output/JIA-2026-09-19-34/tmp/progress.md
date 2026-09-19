@@ -1,0 +1,2 @@
+- fase 0: prompt commiteado (a34ae14)
+- fase 1: lede de Experiencias cambiado (copy/es/sections/experiencias.ts); check:content ok
