@@ -15,7 +15,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <div className={styles.brand} data-hang-anchor="">
+        <div className={styles.brand}>
           <svg className={styles.wordmark} viewBox={`0 0 ${brand.wordmark.width} ${brand.wordmark.height}`} role="img" aria-label={copy.a11y.wordmark}>
             <use href={`${brand.wordmark.src}#mark`} />
           </svg>
@@ -52,7 +52,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
           </ul>
         </div>
 
-        {/* The horseshoe hangs from the footer's top edge (horseshoe/), over this block and never over the strip. */}
+        {/* The horseshoe hangs from the footer's top edge by the window's right margin (horseshoe/), large windows only. */}
         <Horseshoe glb={footer.horseshoe.glb} label={footer.horseshoe.label} />
       </div>
 

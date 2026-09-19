@@ -123,8 +123,11 @@ por tokens (`--jia-ink-rgb`), y no toca la sombra propia del cartel (que sigue d
   `herradura.glb` en esa misma carpeta; `build-assets.sh` copia el GLB a `public/footer/`). Herradura **usada, no
   nueva**: U con talones, barra de sección rectangular con bisel, siete agujeros de clavo, ligera irregularidad de
   desgaste (ruido de desplazamiento), material PBR de hierro oscuro con tono oxidado (metálico 0,8 · rugosidad 0,55).
-- **Cuelga en el pie**, de un clavo en el borde superior del footer, en el tercio derecho de la columna de la marca
-  (a ≥ 760 px), donde no pisa la marca ni el nombre; en móvil, en la esquina superior derecha, más pequeña.
+- **Cuelga en el pie**, de un clavo en el borde superior del footer. Ubicación final (indicación del promotor en
+  chat durante el punto 9): **a la derecha del pie**, junto al margen derecho de la ventana, y **solo en ventanas
+  grandes de escritorio** (≥ 1600 px, donde el margen junto al contenedor la aloja sin pisar la columna «Colabora»);
+  **en móvil y pantallas medianas no se monta**. (Primera versión, sustituida: tercio derecho de la columna de la
+  marca a ≥ 760 px y esquina superior derecha en móvil.)
 - **Tamaño:** alto ≈ **50 % de la altura del pie contada hasta la línea horizontal** (la del colofón), no hasta el
   final de la página; con tope (`config.ts`) para pantallas muy altas.
 - Se pinta con **three.js** en un canvas transparente sobre el pie (mismo patrón que `jornadas-route`: WebGL

@@ -41,11 +41,15 @@
   text-wrap: balance;
   color: var(--jia-sand);
 }
-/* The horseshoe's stage: the whole block above the rule, drawn over the columns but never in the pointer's way;
-   only the button that follows the shoe takes the pointer (horseshoe/Horseshoe.tsx places it every frame). */
+/* The horseshoe's stage: as tall as the block above the rule and as wide as the window (it bleeds out of the
+   container so the shoe can hang by the window's right edge), never in the pointer's way; only the button that
+   follows the shoe takes the pointer (horseshoe/Horseshoe.tsx places it every frame). Large windows only. */
 .shoeStage {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
   z-index: 2;
   overflow: hidden;
   pointer-events: none;

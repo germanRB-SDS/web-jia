@@ -8,8 +8,6 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { HORSESHOE as CFG } from "./config";
 
-export type Layout = "wide" | "narrow";
-
 export function webglAvailable(): boolean {
   try {
     const c = document.createElement("canvas");
@@ -33,7 +31,6 @@ export class HorseshoeScene {
   private frame = 0;
   private width = 1;
   private height = 1;
-  private layout: Layout = "wide";
   private disposed = false;
   private readonly box = new THREE.Box3();
 
@@ -41,7 +38,6 @@ export class HorseshoeScene {
     private stage: HTMLElement,
     canvas: HTMLCanvasElement,
     private hit: HTMLElement,
-    private anchor: HTMLElement | null,
   ) {
     this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
     this.renderer.setClearColor(0x000000, 0);
@@ -81,11 +77,6 @@ export class HorseshoeScene {
     this.nail.add(shank, head);
   }
 
-  setLayout(layout: Layout) {
-    this.layout = layout;
-    this.place();
-  }
-
   resize() {
     this.place();
   }
@@ -102,7 +93,7 @@ export class HorseshoeScene {
     this.camera.updateProjectionMatrix();
     if (!this.model) return;
 
-    const size = CFG.size[this.layout];
+    const size = CFG.size;
     const modelH = this.modelBox.max.y - this.modelBox.min.y;
     const targetH = Math.min(size.maxPx, Math.max(size.minPx, this.height * size.share));
     const scale = targetH / modelH;
@@ -110,10 +101,8 @@ export class HorseshoeScene {
     // Model z runs through the shoe's thickness; keep it centred on the nail's plane.
     this.model.position.z = -(this.modelBox.max.z + this.modelBox.min.z) * scale * 0.5;
 
-    const nail = CFG.nail[this.layout];
-    const rightEdge = this.layout === "wide" && this.anchor ? this.anchor.getBoundingClientRect().right - rect.left : this.width;
-    const nailX = rightEdge - nail.insetRightPx - this.modelBox.max.x * scale;
-    const nailY = nail.topPx + this.modelBox.max.y * scale;
+    const nailX = this.width - CFG.nail.insetRightPx - this.modelBox.max.x * scale;
+    const nailY = CFG.nail.topPx + this.modelBox.max.y * scale;
     this.pivot.position.set(nailX, -nailY, 0);
     this.pivot.rotation.z = THREE.MathUtils.degToRad(CFG.restTiltDeg);
 
