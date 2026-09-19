@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "provider": "Hostinger",
+  "package": "@hostinger/mcp",
+  "version": "1.58.0",
+  "runtime": "BLOCKED_SECRET_ISOLATION",
+  "real_operations": [],
+  "credential_reference": "hostinger-primary",
+  "credential_expiry": "POR_CONFIRMAR",
+  "modules": {
+    "hostinger-hosting": "hostinger-hosting-mcp",
+    "hostinger-domains": "hostinger-domains-mcp",
+    "hostinger-dns": "hostinger-dns-mcp",
+    "hostinger-reach": "hostinger-reach-mcp",
+    "hostinger-vps": "hostinger-vps-mcp"
+  }
+}

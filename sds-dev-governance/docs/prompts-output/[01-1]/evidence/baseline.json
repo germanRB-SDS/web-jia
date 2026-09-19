@@ -1,0 +1,94 @@
+{
+  "evidence_id": "E01-baseline",
+  "head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "branch": "main",
+  "git_status": [
+    "?? .DS_Store",
+    "?? docs/.DS_Store",
+    "?? docs/prompts-output/.DS_Store",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/observations.json",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/reproduce.md",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/source-manifest.json",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/tool-metadata.json",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/validation.json",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/report.md",
+    "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/tmp/checkpoint.md",
+    "?? docs/prompts-output/[01-0]/evidence/verificacion-documental.json",
+    "?? docs/prompts-output/[01-0]/tmp/continuidad.md",
+    "?? docs/prompts-output/[01-0]sentinel-revision-aterrizada.md",
+    "?? docs/prompts-output/[01-1]/evidence/baseline-governance_tree.py.txt",
+    "?? docs/prompts-output/[01-1]/tmp/continuidad.md",
+    "?? docs/prompts/README.md",
+    "?? docs/prompts/SDS-REVISION-sentinel-perimetro-local-2026-09-12.md",
+    "?? docs/prompts/[01-0-alpha]sentinel-perimetro-local.md",
+    "?? docs/prompts/[01-1]sentinel-implementacion-verificable.md"
+  ],
+  "scope": "selected governance files; not complete active config or full repository snapshot",
+  "files": {
+    "scripts/governance_tree.py": {
+      "sha256": "51b8137a866952a44d281cf9b67faa4bf9504b2de78455ae5889cf389db5f6d2",
+      "bytes": 2856,
+      "mode": "0o644"
+    },
+    "scripts/bootstrap.py": {
+      "sha256": "b0be94c87e06411c5134a508ce3d3314345c90d5d80c4d7d4eb5dfb9aa6def6b",
+      "bytes": 12233,
+      "mode": "0o644"
+    },
+    "scripts/governance_copies.py": {
+      "sha256": "9b48976f392c64699b4428f0cd5786c3ae5702a42508f4e08bb1f845782b2b8f",
+      "bytes": 5938,
+      "mode": "0o644"
+    },
+    "scripts/governance_freshness.py": {
+      "sha256": "48f2c0153fa3ffa2350de8a7128b9fb27551776ed140ced6e0565da722f2b25c",
+      "bytes": 6456,
+      "mode": "0o644"
+    },
+    ".gitignore": {
+      "sha256": "759e1b7f91f35d4eb6fe99af0049b9742bde9fcf4fed8b663110fbfea601f4cf",
+      "bytes": 77,
+      "mode": "0o644"
+    },
+    "GOVERNANCE.md": {
+      "sha256": "c72eef5e8cf2cf37b21770296704cc2c87d43c32cdc2c2e7b429b2bd0903675f",
+      "bytes": 11176,
+      "mode": "0o644"
+    },
+    "VERSION.md": {
+      "sha256": "63ae4bb8b9cc2f21d439f4b820e907dc6a8d12731608be4f6402cbd50d355d14",
+      "bytes": 6985,
+      "mode": "0o644"
+    },
+    "practices/07-security-baseline.md": {
+      "sha256": "8d31fa00aa6d5145178c748229e0a2be75429194f796643724cc62816ecebbbd",
+      "bytes": 5063,
+      "mode": "0o644"
+    },
+    "adapters/AGENTS.md": {
+      "sha256": "75c745c10a56c92ed7e14e44de44be9455080d64791b265a5be6268ecbabb899",
+      "bytes": 7219,
+      "mode": "0o644"
+    },
+    "adapters/CLAUDE.md": {
+      "sha256": "2f40fc7b0d6d081f130d4067e5049c28a62449d00e84b3ca3218dca875a9598d",
+      "bytes": 7239,
+      "mode": "0o644"
+    },
+    "adapters/GEMINI.md": {
+      "sha256": "2784e2651a4013b557cee65d160122b025de7b67600a4135dbe3212a4714d4f6",
+      "bytes": 6588,
+      "mode": "0o644"
+    },
+    "docs/prompts/[01-0-alpha]sentinel-perimetro-local.md": {
+      "sha256": "d326df61528f54f67e09aab07ff8afd34ecfab5e104ac0406a930d0e7ac38000",
+      "bytes": 24292,
+      "mode": "0o644"
+    },
+    "docs/prompts-output/[01-0]sentinel-revision-aterrizada.md": {
+      "sha256": "847b1377552a46012a5f44eff5ec6bf944ed73e940db4fda68656b615ae0e25c",
+      "bytes": 22939,
+      "mode": "0o644"
+    }
+  }
+}

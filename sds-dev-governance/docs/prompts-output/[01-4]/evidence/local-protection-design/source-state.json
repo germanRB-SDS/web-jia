@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-09-13T20:23:38.322571+00:00",
+  "branch": "main",
+  "head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "sha256": {
+    "init.sh": "13e663510a5a6bacf14877ad3b8038cf1ceeffbd55bc7b3f3037fef56efac53b",
+    "init-project-prompt.md": "35435d6d150c36867eaf0435c9e60ff44bf3264b4ef2e8918d849e0c672b7740",
+    "scripts/bootstrap.py": "99ebab86b8b41f81216115f9de3ce75bcfd1d152e6962b303735140162d13a55",
+    "sentinel/core.py": "c4d0b03f79a3a07db7270763ccbf1aa98d9a59a0052fdeb035323a830134ca93",
+    "sentinel/contract.md": "67d85bfe8df7d96d1befe55389d009c093304be8d9bcb185c303c6cb176a79a8",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/SHA256SUMS": "cced050282a81e5f5da521780fb5b5e6388c163d9d858ca883b1fb05b86b00ee",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/catalogue.json": "7b5217cb17384198030bfdc7999c9ae6fb740b2b73e4fce40321350984400ec1"
+  },
+  "scope": "read-only inspection and new documentary definitions only"
+}

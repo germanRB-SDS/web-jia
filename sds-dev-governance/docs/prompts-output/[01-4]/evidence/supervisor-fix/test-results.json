@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-W",
+    "error::ResourceWarning",
+    "tests/test-sentinel-tart-host.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.9728134169999976,
+  "stdout": "{\"pid\": 8255, \"process_group\": 8255}\n{\"pid\": 8260, \"process_group\": 8260}\n{\"pid\": 8263, \"process_group\": 8263}\n{\"pid\": 8264, \"process_group\": 8264}\n{\"pid\": 8267, \"process_group\": 8267}\n",
+  "stderr": "test_child_ignoring_term_is_closed_after_parent_exits (__main__.CaptureTests.test_child_ignoring_term_is_closed_after_parent_exits) ... ok\ntest_environment_has_no_home_or_ambient_values (__main__.CaptureTests.test_environment_has_no_home_or_ambient_values) ... ok\ntest_exited_unreaped_child_is_collected (__main__.CaptureTests.test_exited_unreaped_child_is_collected) ... ok\ntest_nonzero_exit_is_preserved (__main__.CaptureTests.test_nonzero_exit_is_preserved) ... ok\ntest_normal_exit_and_bytes (__main__.CaptureTests.test_normal_exit_and_bytes) ... ok\ntest_output_is_bounded (__main__.CaptureTests.test_output_is_bounded) ... ok\ntest_timeout_terminates_parent_and_child_group (__main__.CaptureTests.test_timeout_terminates_parent_and_child_group) ... ok\ntest_denied_probe_does_not_establish_exit (__main__.GroupFailureTests.test_denied_probe_does_not_establish_exit) ... ok\ntest_denied_signal_with_live_group_is_not_ignored_or_retried (__main__.GroupFailureTests.test_denied_signal_with_live_group_is_not_ignored_or_retried) ... ok\ntest_exit_race_requires_group_absence (__main__.GroupFailureTests.test_exit_race_requires_group_absence) ... ok\ntest_surviving_group_after_kill_is_failure (__main__.GroupFailureTests.test_surviving_group_after_kill_is_failure) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 2.842s\n\nOK\n",
+  "scope": "synthetic processes only, no VM; same managed context and permissions"
+}

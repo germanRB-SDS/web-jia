@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-09-13T16:38:12.250014+00:00",
+  "source": "owner chat: Entro a Codex con mi cuenta ChatGPT",
+  "auth_route": "chatgpt",
+  "client_candidate": "Codex CLI0.154.0 / gpt-6-astra / high",
+  "plan_type": null,
+  "included_allowance": null,
+  "purchased_credits_balance": null,
+  "api_billing_configured": false,
+  "credits_purchased": false,
+  "credential_values_accessed": false,
+  "new_lab_login_performed": false,
+  "new_VM_runs": 0,
+  "AB_runs": 0,
+  "cost_outcome": "COSTE_INCONCLUSO",
+  "verification": "V0 documentation and native help; existing42 test results reused, no executable change",
+  "local_help_observations": [
+    "exec --json supported",
+    "exec --ephemeral concerns session files, not evidence of auth isolation",
+    "exec --ignore-user-config retains CODEX_HOME auth",
+    "app-server generate-json-schema is a separate protocol, not proof of CLI event schema"
+  ],
+  "help_warning": "PATH alias creation denied; no workaround or repeated effect attempted",
+  "sources": [
+    "https://learn.chatgpt.com/docs/auth",
+    "https://learn.chatgpt.com/docs/non-interactive-mode",
+    "https://learn.chatgpt.com/docs/enterprise/usage-limits"
+  ],
+  "next_step": "prepare credential custody and admitted connectivity before login; no further user data required for this preparation"
+}

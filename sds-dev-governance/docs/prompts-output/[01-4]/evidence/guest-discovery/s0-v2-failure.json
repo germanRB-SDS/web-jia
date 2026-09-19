@@ -1,0 +1,27 @@
+{
+  "outcome": "FAIL",
+  "root": "/private/tmp/sds-sentinel-s0.qigsPs",
+  "positive": {
+    "X": true,
+    "Y": true,
+    "W": true,
+    "inheritedFD": true
+  },
+  "subject": {
+    "P_status": 0,
+    "X_status": 0,
+    "Y_status": 1,
+    "W_status": 1,
+    "FD9_status": 0
+  },
+  "effects": {
+    "P": "allowed",
+    "X": "allowed",
+    "Y": "forbidden\nANARY\n",
+    "W": "CONTROL\n"
+  },
+  "finding": "Existing writable descriptor survives application of filesystem sandbox",
+  "scope": "Synthetic guest canary only; no real targets",
+  "decision": "Do not admit bare Seatbelt for this inherited-FD guarantee; evaluate closing inherited descriptors before subject start separately",
+  "AB_executed": false
+}

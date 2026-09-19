@@ -1,0 +1,17 @@
+{
+  "mode": "sensor-discovery",
+  "boot_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789369236463903000-sensor-discovery-boot.log",
+  "guest_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789369236463905000-sensor-discovery-guest.log",
+  "guest_exit": 0,
+  "boot_exit": 124,
+  "stopped_observed": true,
+  "boot_pid": 93200,
+  "tart_pid": 93203,
+  "guest_pid": 93317,
+  "guest_reason": null,
+  "inspect_pid": 93881,
+  "inspect_exit": 0,
+  "inspect_reason": null,
+  "inspect_raw": "[\n  {\n    \"Size\" : 31,\n    \"Accessed\" : \"2026-09-14T07:00:44Z\",\n    \"Source\" : \"local\",\n    \"Name\" : \"sentinel-lab\",\n    \"State\" : \"stopped\",\n    \"Disk\" : 50,\n    \"Running\" : false\n  },\n  {\n    \"Size\" : 33,\n    \"Accessed\" : \"2026-09-13T12:00:19Z\",\n    \"Source\" : \"OCI\",\n    \"Name\" : \"127.0.0.1:59957\\/cirruslabs\\/macos-tahoe-base@sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e\",\n    \"State\" : \"stopped\",\n    \"Disk\" : 50,\n    \"Running\" : false\n  }\n]\n",
+  "elapsed_seconds": 46.050341457972536
+}

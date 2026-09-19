@@ -1,0 +1,70 @@
+{
+  "paths": {
+    "/private/tmp/sds-sentinel-tart-KoUNwE": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o700",
+      "nlink": 8
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o755",
+      "nlink": 3
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o700",
+      "nlink": 1
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/storage": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o700",
+      "nlink": 5
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o755",
+      "nlink": 3
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o755",
+      "nlink": 5
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/disk.img": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o644",
+      "nlink": 1
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/config.json": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o644",
+      "nlink": 1
+    },
+    "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/nvram.bin": {
+      "canonical": true,
+      "symlink": false,
+      "uid": 501,
+      "mode": "0o644",
+      "nlink": 1
+    }
+  },
+  "disk_free_bytes": 128378134528,
+  "tart_sha256": "4bb842d1c9284c1c9cb56f017dde916dfce6995ef9844913d5af89ea54126df7",
+  "config_sha256": "7151683924275892344c9e63cc82af02397aacc4e36ec4887bbdf385bb5980ff"
+}

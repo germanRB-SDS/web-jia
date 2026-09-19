@@ -1,0 +1,102 @@
+[
+  {
+    "type": "identity",
+    "repo": "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance",
+    "work": "/Users/Shared/sds-sentinel-deletion-zBkXDu",
+    "uid": 501,
+    "client_sha256": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+    "node_sha256": "c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd",
+    "git_sha256": "b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9",
+    "template_sha256": "81ee2e108b7c98af642908c46cd5a4b6ddd4e3c0cafe2404af136c02b2a03e3f",
+    "scope": "native-template-only-no-model",
+    "git_version": "git version 2.50.1 (Apple Git-155)"
+  },
+  {
+    "type": "preimages",
+    "commit": "57fc6007fc5e2e0e310813ee063d7d13253e1786",
+    "files": {
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/round-1": {
+        "rm-file.txt": "SYNTHETIC ORIGINAL rm-file.txt\n",
+        "rm-tree/one.txt": "SYNTHETIC ORIGINAL rm-tree/one.txt\n",
+        "rm-tree/two.txt": "SYNTHETIC ORIGINAL rm-tree/two.txt\n",
+        "unlink.txt": "SYNTHETIC ORIGINAL unlink.txt\n",
+        "truncate.txt": "SYNTHETIC ORIGINAL truncate.txt\n",
+        "overwrite.txt": "SYNTHETIC ORIGINAL overwrite.txt\n",
+        "rename-over.txt": "SYNTHETIC ORIGINAL rename-over.txt\n",
+        "symlink-truncate.txt": "SYNTHETIC ORIGINAL symlink-truncate.txt\n",
+        "hardlink-overwrite.txt": "SYNTHETIC ORIGINAL hardlink-overwrite.txt\n",
+        "shell-redirection.txt": "SYNTHETIC ORIGINAL shell-redirection.txt\n",
+        "child-shell-rm.txt": "SYNTHETIC ORIGINAL child-shell-rm.txt\n"
+      },
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/round-2": {
+        "rm-file.txt": "SYNTHETIC ORIGINAL rm-file.txt\n",
+        "rm-tree/one.txt": "SYNTHETIC ORIGINAL rm-tree/one.txt\n",
+        "rm-tree/two.txt": "SYNTHETIC ORIGINAL rm-tree/two.txt\n",
+        "unlink.txt": "SYNTHETIC ORIGINAL unlink.txt\n",
+        "truncate.txt": "SYNTHETIC ORIGINAL truncate.txt\n",
+        "overwrite.txt": "SYNTHETIC ORIGINAL overwrite.txt\n",
+        "rename-over.txt": "SYNTHETIC ORIGINAL rename-over.txt\n",
+        "symlink-truncate.txt": "SYNTHETIC ORIGINAL symlink-truncate.txt\n",
+        "hardlink-overwrite.txt": "SYNTHETIC ORIGINAL hardlink-overwrite.txt\n",
+        "shell-redirection.txt": "SYNTHETIC ORIGINAL shell-redirection.txt\n",
+        "child-shell-rm.txt": "SYNTHETIC ORIGINAL child-shell-rm.txt\n"
+      },
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/round-1": {
+        "rm-file.txt": "SYNTHETIC ORIGINAL rm-file.txt\n",
+        "rm-tree/one.txt": "SYNTHETIC ORIGINAL rm-tree/one.txt\n",
+        "rm-tree/two.txt": "SYNTHETIC ORIGINAL rm-tree/two.txt\n",
+        "unlink.txt": "SYNTHETIC ORIGINAL unlink.txt\n",
+        "truncate.txt": "SYNTHETIC ORIGINAL truncate.txt\n",
+        "overwrite.txt": "SYNTHETIC ORIGINAL overwrite.txt\n",
+        "rename-over.txt": "SYNTHETIC ORIGINAL rename-over.txt\n",
+        "symlink-truncate.txt": "SYNTHETIC ORIGINAL symlink-truncate.txt\n",
+        "hardlink-overwrite.txt": "SYNTHETIC ORIGINAL hardlink-overwrite.txt\n",
+        "shell-redirection.txt": "SYNTHETIC ORIGINAL shell-redirection.txt\n",
+        "child-shell-rm.txt": "SYNTHETIC ORIGINAL child-shell-rm.txt\n"
+      },
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/round-2": {
+        "rm-file.txt": "SYNTHETIC ORIGINAL rm-file.txt\n",
+        "rm-tree/one.txt": "SYNTHETIC ORIGINAL rm-tree/one.txt\n",
+        "rm-tree/two.txt": "SYNTHETIC ORIGINAL rm-tree/two.txt\n",
+        "unlink.txt": "SYNTHETIC ORIGINAL unlink.txt\n",
+        "truncate.txt": "SYNTHETIC ORIGINAL truncate.txt\n",
+        "overwrite.txt": "SYNTHETIC ORIGINAL overwrite.txt\n",
+        "rename-over.txt": "SYNTHETIC ORIGINAL rename-over.txt\n",
+        "symlink-truncate.txt": "SYNTHETIC ORIGINAL symlink-truncate.txt\n",
+        "hardlink-overwrite.txt": "SYNTHETIC ORIGINAL hardlink-overwrite.txt\n",
+        "shell-redirection.txt": "SYNTHETIC ORIGINAL shell-redirection.txt\n",
+        "child-shell-rm.txt": "SYNTHETIC ORIGINAL child-shell-rm.txt\n"
+      }
+    },
+    "hardlinks_note": "Git preserves content, not hardlink identity; runtime fixture is linked before execution."
+  },
+  {
+    "type": "commit",
+    "phase": "A1",
+    "commit": "0daed8ab82d55f9a9ff23b17a88fe59bd861b500"
+  },
+  {
+    "type": "commit",
+    "phase": "B1",
+    "commit": "71479946f6c591890dfeaccfd5a8dd81b1db5e07"
+  },
+  {
+    "type": "commit",
+    "phase": "A2",
+    "commit": "cafb1d472031c1b0ea7c41900ba69bf3e9e568e0"
+  },
+  {
+    "type": "commit",
+    "phase": "B2",
+    "commit": "0fc13659f92e4a8ff61597481c5c6812c8c2fd7f"
+  },
+  {
+    "type": "closure",
+    "phases": 4,
+    "branch": "lab-clean",
+    "test_a_absent": true,
+    "test_b_absent": true,
+    "clean": true,
+    "kind": "synthetic branch switch, not Sentinel recovery nor full S7"
+  }
+]

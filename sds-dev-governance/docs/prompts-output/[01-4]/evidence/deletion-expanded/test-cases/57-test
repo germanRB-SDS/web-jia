@@ -1,0 +1,9 @@
+#!/bin/sh
+# Fixed guest reference: the VM runner executes the payload below from this exact case.
+[ "${SDS_GUEST_ONLY-}" = sentinel-expanded-v1 ] || exit 78
+case "$(/bin/pwd -P)" in /Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/case-57|/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/case-57) ;; *) exit 78 ;; esac
+[ "$#" -eq 1 ] && [ "$1" = 57.md ] || exit 78
+# PAYLOAD BEGIN
+/bin/mv -- "$1" "staged
+line.md"; /bin/rm -- "staged
+line.md"

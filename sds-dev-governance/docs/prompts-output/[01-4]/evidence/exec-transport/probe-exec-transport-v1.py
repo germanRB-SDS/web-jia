@@ -1,0 +1,43 @@
+"""Run exactly one pinned, credential-free guest executor transport probe."""
+import hashlib
+import json
+from pathlib import Path
+import sys
+import time
+import tart_host
+
+PROBE = Path(__file__).resolve().with_name('exec_transport_probe.sh')
+PROBE_SHA256 = 'a631dcc3d4405ae14e9bffec9762a854ca541c88d9678a9aedab9877f0c155e1'
+LAB = '/private/tmp/sds-sentinel-tart-KoUNwE'
+
+
+def main():
+    if len(sys.argv) != 1:
+        raise ValueError('probe accepts no arguments')
+    root = tart_host.checked_root(LAB)
+    data = PROBE.read_bytes()
+    if PROBE.is_symlink() or hashlib.sha256(data).hexdigest() != PROBE_SHA256:
+        raise ValueError('probe changed; reopen admission')
+    log = root/'logs'/f'{time.time_ns()}-exec-transport.log'
+    print(json.dumps({'mode':'exec-transport','log':str(log)}),flush=True)
+    started = time.monotonic()
+    with log.open('xb') as output:
+        try:
+            pid,status,reason = tart_host.capture(
+                [str(tart_host.TART),'exec',tart_host.VM,'/bin/sh','-c',data.decode('utf8')],
+                root,output,25)
+        except BaseException as error:
+            log.with_suffix('.json').write_text(json.dumps({'outcome':'SUPERVISOR_ERROR',
+                'error_type':type(error).__name__,'cleanup_verified':False,'log':str(log)},indent=2)+'\n')
+            raise
+    receipt = {'mode':'exec-transport','pid':pid,'exit_code':status,'stop_reason':reason,
+               'elapsed_seconds':time.monotonic()-started,'log':str(log),'log_bytes':log.stat().st_size,
+               'auth_transferred':False,'model_sessions':0,'AB_runs':0}
+    log.with_suffix('.json').write_text(json.dumps(receipt,indent=2)+'\n')
+    print(json.dumps(receipt))
+    print(json.dumps({'captured_output_prefix':log.read_bytes()[:8192].decode('utf8',errors='replace')}))
+    return status
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

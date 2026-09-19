@@ -1,0 +1,15 @@
+{
+  "vm_state": "stopped",
+  "inspect_exit": 0,
+  "boot_exit": 124,
+  "boot_seconds": 45.105067374999635,
+  "pids": [
+    47781,
+    47782,
+    47835
+  ],
+  "ps_exit": 1,
+  "ps_output": "",
+  "lsof_exit": 1,
+  "lsof_output": ""
+}

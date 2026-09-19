@@ -1,0 +1,10 @@
+{
+  "scripts/sds-text": "dc5ed550f28506f073f4430ecf281522d7e301ea634a0ce8ed6726ef4027e8ad",
+  "scripts/sds_text.py": "dd0470076111c6c239d327f64b9be74372ed93eecbfbca8e532ad03e41530de2",
+  "scripts/governance-freshness.sh": "74a5956daad61611c0bab0f9ddc788f993ee54d4aa8201ad4523f811f534f773",
+  "scripts/governance_freshness.py": "48f2c0153fa3ffa2350de8a7128b9fb27551776ed140ced6e0565da722f2b25c",
+  "scripts/governance_tree.py": "51b8137a866952a44d281cf9b67faa4bf9504b2de78455ae5889cf389db5f6d2",
+  "check-governance.sh": "ff6c94552a5e03bce8192d3c60e9c1644a71d6ee8715bcd1ceaae429ae9dbe53",
+  "tests/test-selective-context.py": "75136e633ba49d5f620573c40c1bc2449a71750fb0003362f6fb97b1517d7977",
+  "tests/test-governance-freshness.py": "c55e0387c58a323f3a8de6544fd73bfeda1a5f2676d2d95a51d3afefeeaf4c05"
+}

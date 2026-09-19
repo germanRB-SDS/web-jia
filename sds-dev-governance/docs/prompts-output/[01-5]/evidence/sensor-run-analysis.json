@@ -1,0 +1,57 @@
+{
+  "observed_at_utc": "2026-09-14T07:02:43.594164+00:00",
+  "exports": [
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789369236463903000-sensor-discovery-boot.log",
+      "copy": "docs/prompts-output/[01-5]/evidence/sensor-run-1789369236463903000-sensor-discovery-boot.log",
+      "bytes": 543,
+      "sha256": "0c2dabf70b4e9eb01f151ac8759d3ce360f5b44c67c25b4013da7ce7e2c982fe"
+    },
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789369236463903000-sensor-discovery-boot.json",
+      "copy": "docs/prompts-output/[01-5]/evidence/sensor-run-1789369236463903000-sensor-discovery-boot.json",
+      "bytes": 1074,
+      "sha256": "5ceeb64b3b9ce8e603d8f90151a92932eace2f848f3b03c115d153d5eeb29401"
+    },
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789369236463905000-sensor-discovery-guest.log",
+      "copy": "docs/prompts-output/[01-5]/evidence/sensor-run-1789369236463905000-sensor-discovery-guest.log",
+      "bytes": 311041,
+      "sha256": "060897e546fd06bf092dcf0e9ae754948963862446acb6743380be9955d87d57"
+    },
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789369237329170000-boot-smoke.log",
+      "copy": "docs/prompts-output/[01-5]/evidence/sensor-run-1789369237329170000-boot-smoke.log",
+      "bytes": 86,
+      "sha256": "b84358f4c785e0cfc2681cd315428e6e8b037e78cabfc82e8b7b8c1936388f64"
+    }
+  ],
+  "events": 83,
+  "bytes": 227996,
+  "sha256": "a44ece40f7c5278d480031eae121c9d821c7e5e1c6517464597acfbb7978a78b",
+  "types": {
+    "32:unlink": 37,
+    "11:fork": 14,
+    "9:exec": 27,
+    "15:exit": 5
+  },
+  "schema_versions": [
+    1
+  ],
+  "message_versions": [
+    10
+  ],
+  "global_first": 0,
+  "global_last": 82,
+  "gaps": [],
+  "max_line_bytes": 3864,
+  "first_event_time": "2026-09-14T07:00:59.310882725Z",
+  "last_event_time": "2026-09-14T07:01:02.396492979Z",
+  "stderr_bytes": 0,
+  "service_absent": true,
+  "sensor_errors": [],
+  "fda_operational_observation": "SUBSCRIPTION_SUCCEEDED_IN_EXACT_GUEST_CONTEXT",
+  "fda_setting_inspected": false,
+  "canary_verified": false,
+  "protected_admitted": false
+}

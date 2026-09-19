@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-09-13T14:31:19.512472+00:00",
+  "scope": "synthetic evaluation of interruption cleanup and bounded boot-smoke candidate; no Tart invocation yet",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "sha256": {
+    "sentinel/tart_host.py": "ca409fabcb880fd880989d74f080fdf090ba4d0231374ede259f92ce8f38d1b0",
+    "sentinel/net_sink.py": "d69ab46e999dedb8e7fef0fdc7b65315eae08805637f7d8aa0765f3443eae09d",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "tests/test-sentinel-tart-host.py": "82e5e2759194cd67b3c5b8ebe7215e4a48889a7228003fdbc00fbc4cfeb7c1e3",
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": "a12a38fa3af38356edce28a404f1e1b388e070a4169bc1cd7d07eab19a53d321",
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf",
+    "tests/test-sentinel-net-sink.py": "f466cfd438984e5a5ca5473dca26839f1d986f01ac69b081a7ddbeb1d8c935d9"
+  }
+}

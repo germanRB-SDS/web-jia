@@ -1,0 +1,11 @@
+# capability|handler|scope|compatible-harnesses|doc
+# Single owner of installation identity: what the bootstrap installs, how, where, and which
+# governance document describes it. Portability of individual installed skill directories is owned
+# by cross-agent-portability.tsv; observed reachability is generated into INDEX.md. Neither of those
+# may restate the columns below.
+impeccable|impeccable|project|claude,codex,cursor,copilot|impeccable.md
+gstack|gstack|user|claude,codex|gstack.md
+skillui|skillui|user-cli|claude,codex,gemini,cursor|skillui.md
+threejs|threejs|user|claude,codex|threejs.md
+graphify|graphify|project-cli|claude,codex,gemini,cursor|graphify.md
+sds-r8-analyzer|sds-r8-analyzer|bundled|claude,codex|r8-analyzer.md

@@ -1,0 +1,2538 @@
+{
+  "schema": "sds-context-benchmark-v1",
+  "tokenizer": "tiktoken==0.12.0",
+  "encodings": [
+    "o200k_base",
+    "cl100k_base"
+  ],
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "repetitions": 21,
+  "corpus_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+  "corpus_bytes": 50900,
+  "fixed_paths": [
+    "GOVERNANCE.md",
+    "practices/INDEX.md",
+    "skills/README.md",
+    "adapters/AGENTS.md"
+  ],
+  "routed_paths": [
+    "practices/01-agent-memory.md",
+    "practices/02-prompt-system.md",
+    "practices/03-output-traceability.md",
+    "practices/12-governance-proportionality.md",
+    "practices/15-contract-authority.md"
+  ],
+  "fixed_hashes": {
+    "GOVERNANCE.md": "c72eef5e8cf2cf37b21770296704cc2c87d43c32cdc2c2e7b429b2bd0903675f",
+    "practices/INDEX.md": "748fe8ac76b2580c0547f516a5d3fc0394712e444aa205d23835edfe0854bab5",
+    "skills/README.md": "ec9622a1bac4447ba4532a07e4d57c7e9ae264e39a358a058de329d956f48783",
+    "adapters/AGENTS.md": "f5c146963cc7a6782e85a0d5b2ee5cd1e1aaedf0bac18bdfcd291a8f4a251e46",
+    "practices/01-agent-memory.md": "53619c99a4a3e9a991c65a094257945aa9d1d0cd4277fe1f0bd8b431740c3a87",
+    "practices/02-prompt-system.md": "7b6cd5d4f35883efab80e603805aaacd4bfa5c0d145c9f7504e4d1d2820f9d44",
+    "practices/03-output-traceability.md": "d46c968182d67bbe29af6669038739cd106c558484536f0e829021b6e88a760e",
+    "practices/12-governance-proportionality.md": "79fb46468750fd75c8cbdde24defd6fdaac7478adc5dc09a910d2147b8ce0ab6",
+    "practices/15-contract-authority.md": "866c13df70535123e8e3624e1ce77bb5b36010644edabb3bde7e3b26e74c4d7f"
+  },
+  "optional_guide_sha256": "fbc9ed8c6c193e134dfc6e72d6268da7a294110c7bdaf1b85df3eae5cc472660",
+  "rows": [
+    {
+      "case": "startup",
+      "method": "cat_reuse",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 50900,
+      "commands": [
+        [
+          "cat",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "document"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 36,
+          "retrieved": 12051,
+          "one_pass_input": 27126,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 27126,
+          "normalized_one_pass_cost_units": 0.027141
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 35,
+          "retrieved": 13580,
+          "one_pass_input": 29328,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 29328,
+          "normalized_one_pass_cost_units": 0.029343
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        2.676667,
+        2.525375,
+        2.387625,
+        2.351291,
+        2.442208,
+        2.498709,
+        2.313833,
+        2.245125,
+        2.389458,
+        2.298458,
+        2.310583,
+        2.18075,
+        2.260875,
+        2.342167,
+        2.348542,
+        2.131958,
+        2.332833,
+        2.329708,
+        2.3075,
+        2.228,
+        2.213292
+      ],
+      "median_ms": 2.329708,
+      "p95_ms": 2.525375,
+      "output_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66"
+    },
+    {
+      "case": "startup",
+      "method": "native_awk",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 15420,
+      "commands": [
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 185,
+          "retrieved": 3765,
+          "one_pass_input": 18989,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 18989,
+          "normalized_one_pass_cost_units": 0.019004
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 181,
+          "retrieved": 4239,
+          "one_pass_input": 20133,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 20133,
+          "normalized_one_pass_cost_units": 0.020148
+        }
+      },
+      "required_spans": 5,
+      "matched_spans": 5,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        3.892625,
+        3.843125,
+        3.812333,
+        3.836333,
+        3.889334,
+        3.7555,
+        3.847625,
+        3.797209,
+        3.726667,
+        3.72675,
+        3.666958,
+        3.654584,
+        3.707666,
+        3.781916,
+        3.896083,
+        3.67425,
+        3.750833,
+        3.735084,
+        3.653042,
+        3.6905,
+        3.708917
+      ],
+      "median_ms": 3.750833,
+      "p95_ms": 3.892625,
+      "output_sha256": "3a1c14502b4789c5625a69c7b7b418cf00b8306af400be6b4f7d2833899c5895"
+    },
+    {
+      "case": "startup",
+      "method": "native_rg_awk_discovery",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 16707,
+      "commands": [
+        [
+          "rg",
+          "-n",
+          "^## \\[",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 2,
+      "top_level_processes": 2,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "discovery",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 228,
+          "retrieved": 4174,
+          "one_pass_input": 19441,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 34930,
+          "normalized_one_pass_cost_units": 0.019456
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 223,
+          "retrieved": 4676,
+          "one_pass_input": 20612,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 36802,
+          "normalized_one_pass_cost_units": 0.020627
+        }
+      },
+      "required_spans": 5,
+      "matched_spans": 5,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        7.83575,
+        7.557167,
+        7.5765,
+        7.620667,
+        7.682875,
+        7.599291,
+        7.483458,
+        10.228125,
+        7.830125,
+        7.500708,
+        7.516708,
+        7.786625,
+        7.647334,
+        7.591667,
+        7.504083,
+        8.008125,
+        7.899416,
+        7.670833,
+        7.647334,
+        7.422917,
+        7.458583
+      ],
+      "median_ms": 7.620667,
+      "p95_ms": 8.008125,
+      "output_sha256": "e6fdb532be661adf7d1c2ca66fec5113376639bfa390cddb0c7ba93b90fd205b"
+    },
+    {
+      "case": "startup",
+      "method": "wrapper",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 16890,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "get",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08",
+          "--max-lines",
+          "10000",
+          "--max-bytes",
+          "2097152"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 87,
+          "retrieved": 4361,
+          "one_pass_input": 20955,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 20955,
+          "normalized_one_pass_cost_units": 0.02097
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 86,
+          "retrieved": 4843,
+          "one_pass_input": 22104,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 22104,
+          "normalized_one_pass_cost_units": 0.022119
+        }
+      },
+      "required_spans": 5,
+      "matched_spans": 5,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        45.861542,
+        45.902,
+        44.470458,
+        44.107625,
+        44.566875,
+        44.267,
+        44.434875,
+        44.422333,
+        45.898,
+        46.864417,
+        45.445375,
+        44.560458,
+        44.28675,
+        44.432084,
+        44.337958,
+        44.128,
+        44.478666,
+        73.0375,
+        44.856375,
+        45.867666,
+        44.740875
+      ],
+      "median_ms": 44.560458,
+      "p95_ms": 46.864417,
+      "output_sha256": "8907b67c6a9599cc04858112cb5549963ba1fc789241195664d9c4ad9b80f934"
+    },
+    {
+      "case": "startup",
+      "method": "derived_index_cold",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 17616,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "index",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--max-lines",
+          "10000"
+        ],
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "check",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--index-file",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/startup.index.md"
+        ],
+        [
+          "sed",
+          "-n",
+          "-e",
+          "1,35p",
+          "-e",
+          "36,56p",
+          "-e",
+          "57,79p",
+          "-e",
+          "101,129p",
+          "-e",
+          "272,302p",
+          "-e",
+          "350,410p",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 3,
+      "top_level_processes": 3,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "index",
+        "index_validation",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 249,
+          "retrieved": 4532,
+          "one_pass_input": 21288,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 55948,
+          "normalized_one_pass_cost_units": 0.021303
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 247,
+          "retrieved": 5034,
+          "one_pass_input": 22456,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 58507,
+          "normalized_one_pass_cost_units": 0.022471
+        }
+      },
+      "required_spans": 5,
+      "matched_spans": 5,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        91.551833,
+        92.897167,
+        93.716917,
+        92.886792,
+        93.428542,
+        91.41675,
+        91.802125,
+        93.164208,
+        91.933708,
+        94.071542,
+        91.723875,
+        91.546667,
+        92.308083,
+        91.623333,
+        91.443958,
+        92.902666,
+        93.254166,
+        90.97725,
+        92.796917,
+        91.075,
+        94.35275
+      ],
+      "median_ms": 92.308083,
+      "p95_ms": 94.071542,
+      "output_sha256": "fdcbfeb316d89b0f54759d0322a577390dc71a7146ebae2d902e33d632fa745d"
+    },
+    {
+      "case": "focal_with_requirements",
+      "method": "cat_reuse",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 50900,
+      "commands": [
+        [
+          "cat",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "document"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 36,
+          "retrieved": 12051,
+          "one_pass_input": 27126,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 27126,
+          "normalized_one_pass_cost_units": 0.027141
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 35,
+          "retrieved": 13580,
+          "one_pass_input": 29328,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 29328,
+          "normalized_one_pass_cost_units": 0.029343
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        2.555625,
+        2.409334,
+        2.565375,
+        2.548833,
+        2.655333,
+        2.5505,
+        2.528583,
+        2.341208,
+        2.331583,
+        2.246584,
+        2.387583,
+        2.280125,
+        2.281084,
+        2.275875,
+        2.264375,
+        2.426917,
+        2.38575,
+        2.350584,
+        2.332791,
+        2.319916,
+        2.209208
+      ],
+      "median_ms": 2.350584,
+      "p95_ms": 2.565375,
+      "output_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66"
+    },
+    {
+      "case": "focal_with_requirements",
+      "method": "native_awk",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 18023,
+      "commands": [
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-05 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 188,
+          "retrieved": 4354,
+          "one_pass_input": 19581,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 19581,
+          "normalized_one_pass_cost_units": 0.019596
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 184,
+          "retrieved": 4908,
+          "one_pass_input": 20805,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 20805,
+          "normalized_one_pass_cost_units": 0.02082
+        }
+      },
+      "required_spans": 6,
+      "matched_spans": 6,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        3.828916,
+        3.742959,
+        3.812708,
+        3.975958,
+        3.86075,
+        3.884542,
+        3.909292,
+        3.8035,
+        3.910958,
+        3.722,
+        3.818709,
+        3.819375,
+        3.909791,
+        3.902625,
+        3.89925,
+        3.803125,
+        3.910833,
+        3.852208,
+        3.955875,
+        3.975375,
+        3.709666
+      ],
+      "median_ms": 3.86075,
+      "p95_ms": 3.975375,
+      "output_sha256": "2df0d4eed064c8197a2c82b8b78705c3f2514f1fac0d55c230e4cb2bad4182a4"
+    },
+    {
+      "case": "focal_with_requirements",
+      "method": "native_rg_awk_discovery",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 19310,
+      "commands": [
+        [
+          "rg",
+          "-n",
+          "^## \\[",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-05 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 2,
+      "top_level_processes": 2,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "discovery",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 231,
+          "retrieved": 4763,
+          "one_pass_input": 20033,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 35522,
+          "normalized_one_pass_cost_units": 0.020048
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 226,
+          "retrieved": 5345,
+          "one_pass_input": 21284,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 37474,
+          "normalized_one_pass_cost_units": 0.021299
+        }
+      },
+      "required_spans": 6,
+      "matched_spans": 6,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        8.088166,
+        7.736958,
+        7.548667,
+        7.686959,
+        7.846708,
+        7.73725,
+        7.636291,
+        7.707459,
+        7.614,
+        7.466875,
+        7.487625,
+        7.727,
+        7.852125,
+        7.735333,
+        7.521791,
+        7.508042,
+        7.781125,
+        7.562709,
+        7.51125,
+        7.546084,
+        7.696083
+      ],
+      "median_ms": 7.686959,
+      "p95_ms": 7.852125,
+      "output_sha256": "28c03234930f557cb109d3122655db75f0c538e5f453ef4c838b2871b20d3981"
+    },
+    {
+      "case": "focal_with_requirements",
+      "method": "wrapper",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 19740,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "get",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08",
+          "--max-lines",
+          "10000",
+          "--max-bytes",
+          "2097152"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 90,
+          "retrieved": 5052,
+          "one_pass_input": 21649,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 21649,
+          "normalized_one_pass_cost_units": 0.021664
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 89,
+          "retrieved": 5617,
+          "one_pass_input": 22881,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 22881,
+          "normalized_one_pass_cost_units": 0.022896
+        }
+      },
+      "required_spans": 6,
+      "matched_spans": 6,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        44.460708,
+        44.650291,
+        44.361667,
+        45.44975,
+        44.424167,
+        45.540917,
+        44.400917,
+        44.686708,
+        44.40475,
+        45.84175,
+        44.22875,
+        44.278667,
+        46.051167,
+        46.062125,
+        44.566791,
+        44.349375,
+        45.98775,
+        45.784208,
+        44.395583,
+        44.67275,
+        44.515958
+      ],
+      "median_ms": 44.566791,
+      "p95_ms": 46.051167,
+      "output_sha256": "ad81158eb0a00b31d63353f888db3dd53d619f8a46d17fd498ad7a1ee464aeb9"
+    },
+    {
+      "case": "focal_with_requirements",
+      "method": "derived_index_cold",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 20219,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "index",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--max-lines",
+          "10000"
+        ],
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "check",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--index-file",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/focal_with_requirements.index.md"
+        ],
+        [
+          "sed",
+          "-n",
+          "-e",
+          "1,35p",
+          "-e",
+          "36,56p",
+          "-e",
+          "57,79p",
+          "-e",
+          "101,129p",
+          "-e",
+          "237,271p",
+          "-e",
+          "272,302p",
+          "-e",
+          "350,410p",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 3,
+      "top_level_processes": 3,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "index",
+        "index_validation",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 259,
+          "retrieved": 5121,
+          "one_pass_input": 21887,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 56550,
+          "normalized_one_pass_cost_units": 0.021902
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 256,
+          "retrieved": 5703,
+          "one_pass_input": 23134,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 59187,
+          "normalized_one_pass_cost_units": 0.023149
+        }
+      },
+      "required_spans": 6,
+      "matched_spans": 6,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        92.00775,
+        91.777792,
+        91.164333,
+        93.654959,
+        91.194042,
+        92.989541,
+        93.624959,
+        91.127458,
+        91.556709,
+        93.46725,
+        91.768417,
+        91.149333,
+        93.885375,
+        93.22775,
+        94.621708,
+        91.396292,
+        92.992459,
+        91.775625,
+        91.917417,
+        92.908584,
+        93.420083
+      ],
+      "median_ms": 92.00775,
+      "p95_ms": 93.885375,
+      "output_sha256": "5f270a85bddf020e2ef5170185c007e99c71bb49d736073f165bee5686800926"
+    },
+    {
+      "case": "startup_then_followup",
+      "method": "cat_reuse",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ],
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 50900,
+      "commands": [
+        [
+          "cat",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "document"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 36,
+          "retrieved": 12051,
+          "one_pass_input": 27126,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 27126,
+          "normalized_one_pass_cost_units": 0.027141
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 35,
+          "retrieved": 13580,
+          "one_pass_input": 29328,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 29328,
+          "normalized_one_pass_cost_units": 0.029343
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        2.545292,
+        2.515666,
+        2.344417,
+        2.408333,
+        2.390917,
+        2.318708,
+        2.411166,
+        2.264,
+        2.333042,
+        2.372375,
+        2.515709,
+        2.1985,
+        2.339708,
+        2.369167,
+        2.267333,
+        2.275667,
+        2.295,
+        2.399083,
+        2.389708,
+        2.316583,
+        2.161792
+      ],
+      "median_ms": 2.344417,
+      "p95_ms": 2.515709,
+      "output_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66"
+    },
+    {
+      "case": "startup_then_followup",
+      "method": "native_awk",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ],
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 33444,
+      "commands": [
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-05 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 2,
+      "top_level_processes": 2,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 374,
+          "retrieved": 8119,
+          "one_pass_input": 23532,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 42520,
+          "normalized_one_pass_cost_units": 0.023547
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 366,
+          "retrieved": 9147,
+          "one_pass_input": 25226,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 45358,
+          "normalized_one_pass_cost_units": 0.025241
+        }
+      },
+      "required_spans": 11,
+      "matched_spans": 11,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        7.548417,
+        7.4125,
+        7.582417,
+        7.647,
+        7.50275,
+        7.616916,
+        9.1565,
+        11.485958,
+        11.644584,
+        11.103333,
+        11.297166,
+        10.966292,
+        10.89225,
+        11.054334,
+        11.087916,
+        10.634083,
+        10.499458,
+        9.681875,
+        9.008334,
+        8.992375,
+        9.309833
+      ],
+      "median_ms": 9.681875,
+      "p95_ms": 11.485958,
+      "output_sha256": "2c3e3c08dbbfc63db8ea656c6bfb8f7253ba267f2fd03225d9799c6adb01a63e"
+    },
+    {
+      "case": "startup_then_followup",
+      "method": "native_rg_awk_discovery",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ],
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 34731,
+      "commands": [
+        [
+          "rg",
+          "-n",
+          "^## \\[",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-01 MAIL-05 MAIL-06 MAIL-08",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 3,
+      "top_level_processes": 3,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "discovery",
+        "selection",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 417,
+          "retrieved": 8528,
+          "one_pass_input": 23984,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 58912,
+          "normalized_one_pass_cost_units": 0.023999
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 408,
+          "retrieved": 9584,
+          "one_pass_input": 25705,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 62505,
+          "normalized_one_pass_cost_units": 0.02572
+        }
+      },
+      "required_spans": 11,
+      "matched_spans": 11,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        14.114792,
+        14.111709,
+        13.967209,
+        13.960459,
+        14.012416,
+        15.359375,
+        15.225209,
+        14.407292,
+        14.145209,
+        14.265334,
+        15.741917,
+        14.723167,
+        14.8945,
+        15.269292,
+        15.66775,
+        15.284709,
+        15.265542,
+        15.324333,
+        15.577708,
+        15.458458,
+        14.169208
+      ],
+      "median_ms": 14.8945,
+      "p95_ms": 15.66775,
+      "output_sha256": "9da8c4c95bdea6c28f714271a41d47cd728bcf89d50b5a97d3f6e0647f9f25ab"
+    },
+    {
+      "case": "startup_then_followup",
+      "method": "wrapper",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ],
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 36631,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "get",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08",
+          "--max-lines",
+          "10000",
+          "--max-bytes",
+          "2097152"
+        ],
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "get",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08",
+          "--max-lines",
+          "10000",
+          "--max-bytes",
+          "2097152"
+        ]
+      ],
+      "logical_retrieval_calls": 2,
+      "top_level_processes": 2,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 178,
+          "retrieved": 9413,
+          "one_pass_input": 26098,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 47052,
+          "normalized_one_pass_cost_units": 0.026113
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 176,
+          "retrieved": 10460,
+          "one_pass_input": 27811,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 49914,
+          "normalized_one_pass_cost_units": 0.027826
+        }
+      },
+      "required_spans": 11,
+      "matched_spans": 11,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        99.332416,
+        97.288291,
+        91.609459,
+        104.611167,
+        118.691667,
+        100.13575,
+        97.78125,
+        102.2,
+        106.190375,
+        100.259708,
+        99.618417,
+        100.337791,
+        96.359333,
+        97.38175,
+        93.495625,
+        101.04475,
+        93.131083,
+        96.647167,
+        99.055041,
+        96.892583,
+        92.8085
+      ],
+      "median_ms": 99.055041,
+      "p95_ms": 106.190375,
+      "output_sha256": "0fbc89a39aa42acf60cc6985e2e4c1d090230fb7d22467563aec0fc239f373d9"
+    },
+    {
+      "case": "startup_then_followup",
+      "method": "derived_index_cold",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-06",
+          "MAIL-08"
+        ],
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-01",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-08"
+        ]
+      ],
+      "bytes_returned": 35640,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "index",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--max-lines",
+          "10000"
+        ],
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "check",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--index-file",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/startup_then_followup.index.md"
+        ],
+        [
+          "sed",
+          "-n",
+          "-e",
+          "1,35p",
+          "-e",
+          "36,56p",
+          "-e",
+          "57,79p",
+          "-e",
+          "101,129p",
+          "-e",
+          "272,302p",
+          "-e",
+          "350,410p",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "sed",
+          "-n",
+          "-e",
+          "1,35p",
+          "-e",
+          "36,56p",
+          "-e",
+          "57,79p",
+          "-e",
+          "101,129p",
+          "-e",
+          "237,271p",
+          "-e",
+          "272,302p",
+          "-e",
+          "350,410p",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 4,
+      "top_level_processes": 4,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "index",
+        "index_validation",
+        "selection",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 340,
+          "retrieved": 8886,
+          "one_pass_input": 25733,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 81684,
+          "normalized_one_pass_cost_units": 0.025748
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 337,
+          "retrieved": 9942,
+          "one_pass_input": 27454,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 85964,
+          "normalized_one_pass_cost_units": 0.027469
+        }
+      },
+      "required_spans": 11,
+      "matched_spans": 11,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        96.299083,
+        95.818375,
+        98.2025,
+        97.722792,
+        96.713042,
+        98.870042,
+        100.351,
+        101.344583,
+        101.003333,
+        100.125875,
+        96.980667,
+        96.729667,
+        96.699167,
+        98.431,
+        97.834083,
+        99.25425,
+        98.273875,
+        96.569167,
+        97.231625,
+        95.520291,
+        98.493375
+      ],
+      "median_ms": 97.834083,
+      "p95_ms": 101.003333,
+      "output_sha256": "75b46767265d108c5459e58f4b33a959489a059637121a5296fb94c2e190b89b"
+    },
+    {
+      "case": "complete_document",
+      "method": "cat_reuse",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-00",
+          "MAIL-01",
+          "MAIL-02",
+          "MAIL-03",
+          "MAIL-04",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-07",
+          "MAIL-08",
+          "GOV-01",
+          "GOV-02",
+          "PLAN-00",
+          "PLAN-01",
+          "AUD-02",
+          "FICHA-03",
+          "FICHA-04",
+          "FICHA-05",
+          "FICHA-06",
+          "FICHA-07"
+        ]
+      ],
+      "bytes_returned": 50900,
+      "commands": [
+        [
+          "cat",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "document"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 36,
+          "retrieved": 12051,
+          "one_pass_input": 27126,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 27126,
+          "normalized_one_pass_cost_units": 0.027141
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 35,
+          "retrieved": 13580,
+          "one_pass_input": 29328,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 29328,
+          "normalized_one_pass_cost_units": 0.029343
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        2.477166,
+        2.434792,
+        2.500917,
+        2.343291,
+        2.402209,
+        2.346334,
+        2.395083,
+        2.403583,
+        2.315625,
+        2.329333,
+        2.270875,
+        2.383083,
+        2.190458,
+        2.203333,
+        2.411541,
+        2.356125,
+        2.302291,
+        2.306458,
+        2.303209,
+        2.201625,
+        2.348083
+      ],
+      "median_ms": 2.346334,
+      "p95_ms": 2.477166,
+      "output_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66"
+    },
+    {
+      "case": "complete_document",
+      "method": "native_awk",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-00",
+          "MAIL-01",
+          "MAIL-02",
+          "MAIL-03",
+          "MAIL-04",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-07",
+          "MAIL-08",
+          "GOV-01",
+          "GOV-02",
+          "PLAN-00",
+          "PLAN-01",
+          "AUD-02",
+          "FICHA-03",
+          "FICHA-04",
+          "FICHA-05",
+          "FICHA-06",
+          "FICHA-07"
+        ]
+      ],
+      "bytes_returned": 50900,
+      "commands": [
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-00 MAIL-01 MAIL-02 MAIL-03 MAIL-04 MAIL-05 MAIL-06 MAIL-07 MAIL-08 GOV-01 GOV-02 PLAN-00 PLAN-01 AUD-02 FICHA-03 FICHA-04 FICHA-05 FICHA-06 FICHA-07",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 243,
+          "retrieved": 12051,
+          "one_pass_input": 27333,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 27333,
+          "normalized_one_pass_cost_units": 0.027348
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 241,
+          "retrieved": 13580,
+          "one_pass_input": 29534,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 29534,
+          "normalized_one_pass_cost_units": 0.029549
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        6.148833,
+        5.762333,
+        5.648709,
+        5.560542,
+        5.680875,
+        5.342625,
+        5.334,
+        5.451625,
+        5.887708,
+        5.42625,
+        5.380125,
+        5.251625,
+        5.892917,
+        5.549959,
+        5.543041,
+        5.487833,
+        5.349041,
+        5.432791,
+        5.707583,
+        5.760708,
+        5.861875
+      ],
+      "median_ms": 5.549959,
+      "p95_ms": 5.892917,
+      "output_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66"
+    },
+    {
+      "case": "complete_document",
+      "method": "native_rg_awk_discovery",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-00",
+          "MAIL-01",
+          "MAIL-02",
+          "MAIL-03",
+          "MAIL-04",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-07",
+          "MAIL-08",
+          "GOV-01",
+          "GOV-02",
+          "PLAN-00",
+          "PLAN-01",
+          "AUD-02",
+          "FICHA-03",
+          "FICHA-04",
+          "FICHA-05",
+          "FICHA-06",
+          "FICHA-07"
+        ]
+      ],
+      "bytes_returned": 52187,
+      "commands": [
+        [
+          "rg",
+          "-n",
+          "^## \\[",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=AUD-00 AUD-01 MAIL-00 MAIL-01 MAIL-02 MAIL-03 MAIL-04 MAIL-05 MAIL-06 MAIL-07 MAIL-08 GOV-01 GOV-02 PLAN-00 PLAN-01 AUD-02 FICHA-03 FICHA-04 FICHA-05 FICHA-06 FICHA-07",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 2,
+      "top_level_processes": 2,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "discovery",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 286,
+          "retrieved": 12460,
+          "one_pass_input": 27785,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 43274,
+          "normalized_one_pass_cost_units": 0.0278
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 283,
+          "retrieved": 14017,
+          "one_pass_input": 30013,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 46203,
+          "normalized_one_pass_cost_units": 0.030028
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        9.380375,
+        9.8505,
+        9.142667,
+        10.140416,
+        9.752083,
+        9.356,
+        9.264666,
+        9.347042,
+        10.41875,
+        9.361042,
+        9.397291,
+        10.360667,
+        9.553417,
+        9.325917,
+        9.762875,
+        9.56075,
+        9.496625,
+        9.370416,
+        9.381333,
+        9.887917,
+        9.371041
+      ],
+      "median_ms": 9.397291,
+      "p95_ms": 10.360667,
+      "output_sha256": "23304258faaf03cdcd5c6f74c6a2a8bbc4880a4ecf1721cd9a96e6a0114acb87"
+    },
+    {
+      "case": "complete_document",
+      "method": "wrapper",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-00",
+          "MAIL-01",
+          "MAIL-02",
+          "MAIL-03",
+          "MAIL-04",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-07",
+          "MAIL-08",
+          "GOV-01",
+          "GOV-02",
+          "PLAN-00",
+          "PLAN-01",
+          "AUD-02",
+          "FICHA-03",
+          "FICHA-04",
+          "FICHA-05",
+          "FICHA-06",
+          "FICHA-07"
+        ]
+      ],
+      "bytes_returned": 56157,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "get",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "AUD-00",
+          "AUD-01",
+          "MAIL-00",
+          "MAIL-01",
+          "MAIL-02",
+          "MAIL-03",
+          "MAIL-04",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-07",
+          "MAIL-08",
+          "GOV-01",
+          "GOV-02",
+          "PLAN-00",
+          "PLAN-01",
+          "AUD-02",
+          "FICHA-03",
+          "FICHA-04",
+          "FICHA-05",
+          "FICHA-06",
+          "FICHA-07",
+          "--max-lines",
+          "10000",
+          "--max-bytes",
+          "2097152"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 145,
+          "retrieved": 14239,
+          "one_pass_input": 30891,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 30891,
+          "normalized_one_pass_cost_units": 0.030906
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 146,
+          "retrieved": 15792,
+          "one_pass_input": 33113,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 33113,
+          "normalized_one_pass_cost_units": 0.033128
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        46.410625,
+        46.944416,
+        45.387583,
+        45.315958,
+        47.131958,
+        46.902291,
+        47.225875,
+        45.783083,
+        45.784583,
+        45.705416,
+        45.572917,
+        46.778167,
+        46.169625,
+        45.879667,
+        45.373417,
+        47.11,
+        45.321833,
+        45.288292,
+        45.58725,
+        45.491834,
+        45.172791
+      ],
+      "median_ms": 45.783083,
+      "p95_ms": 47.131958,
+      "output_sha256": "9fd9eb445f314a023a0ba061f9ef69746b96467cf0146175326fb80e4ca37ac9"
+    },
+    {
+      "case": "complete_document",
+      "method": "derived_index_cold",
+      "source_sha256": "e6a8f80772413938f1f9d84cd1fb0047a0350a14b47eabfbb1ea890795a55a66",
+      "selected_groups": [
+        [
+          "AUD-00",
+          "AUD-01",
+          "MAIL-00",
+          "MAIL-01",
+          "MAIL-02",
+          "MAIL-03",
+          "MAIL-04",
+          "MAIL-05",
+          "MAIL-06",
+          "MAIL-07",
+          "MAIL-08",
+          "GOV-01",
+          "GOV-02",
+          "PLAN-00",
+          "PLAN-01",
+          "AUD-02",
+          "FICHA-03",
+          "FICHA-04",
+          "FICHA-05",
+          "FICHA-06",
+          "FICHA-07"
+        ]
+      ],
+      "bytes_returned": 53096,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "index",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--max-lines",
+          "10000"
+        ],
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "check",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md",
+          "--index-file",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/complete_document.index.md"
+        ],
+        [
+          "sed",
+          "-n",
+          "-e",
+          "1,35p",
+          "-e",
+          "36,56p",
+          "-e",
+          "57,79p",
+          "-e",
+          "80,100p",
+          "-e",
+          "101,129p",
+          "-e",
+          "130,160p",
+          "-e",
+          "161,209p",
+          "-e",
+          "210,236p",
+          "-e",
+          "237,271p",
+          "-e",
+          "272,302p",
+          "-e",
+          "303,349p",
+          "-e",
+          "350,410p",
+          "-e",
+          "411,447p",
+          "-e",
+          "448,473p",
+          "-e",
+          "474,497p",
+          "-e",
+          "498,517p",
+          "-e",
+          "518,533p",
+          "-e",
+          "534,555p",
+          "-e",
+          "556,577p",
+          "-e",
+          "578,601p",
+          "-e",
+          "602,615p",
+          "-e",
+          "616,642p",
+          "/Users/hrms/MAC-DEV-PROJECTS/auragenda-correo-2026-09-09/revision-codex/01-analisis.md"
+        ]
+      ],
+      "logical_retrieval_calls": 3,
+      "top_level_processes": 3,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "index",
+        "index_validation",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 362,
+          "retrieved": 12818,
+          "one_pass_input": 29687,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 64348,
+          "normalized_one_pass_cost_units": 0.029702
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 360,
+          "retrieved": 14375,
+          "one_pass_input": 31910,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 67962,
+          "normalized_one_pass_cost_units": 0.031925
+        }
+      },
+      "required_spans": 21,
+      "matched_spans": 21,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        95.090292,
+        94.495875,
+        94.9575,
+        95.01025,
+        94.677583,
+        98.764334,
+        96.666958,
+        93.093959,
+        94.969125,
+        95.539916,
+        95.402417,
+        93.692333,
+        93.796458,
+        94.372458,
+        93.051875,
+        94.168792,
+        95.815709,
+        94.323833,
+        93.900625,
+        95.866125,
+        95.023125
+      ],
+      "median_ms": 94.9575,
+      "p95_ms": 96.666958,
+      "output_sha256": "5611cb790bc733a61f37824bb488789ab21ad212c6de2205bac3f75f88c2e468"
+    },
+    {
+      "case": "short_full",
+      "method": "cat_reuse",
+      "source_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f",
+      "selected_groups": [
+        [
+          "CORE-00",
+          "TASK-10"
+        ]
+      ],
+      "bytes_returned": 111,
+      "commands": [
+        [
+          "cat",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "document"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 42,
+          "retrieved": 31,
+          "one_pass_input": 15112,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 15112,
+          "normalized_one_pass_cost_units": 0.015127
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 43,
+          "retrieved": 31,
+          "one_pass_input": 15787,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 15787,
+          "normalized_one_pass_cost_units": 0.015802
+        }
+      },
+      "required_spans": 2,
+      "matched_spans": 2,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        2.520958,
+        2.406666,
+        2.370042,
+        2.464541,
+        2.622167,
+        2.559792,
+        2.29025,
+        2.370709,
+        2.21425,
+        2.144666,
+        2.3355,
+        2.63025,
+        2.309292,
+        2.487458,
+        2.424125,
+        2.306458,
+        2.304,
+        2.248083,
+        2.283958,
+        2.320833,
+        2.210625
+      ],
+      "median_ms": 2.3355,
+      "p95_ms": 2.622167,
+      "output_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f"
+    },
+    {
+      "case": "short_full",
+      "method": "native_awk",
+      "source_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f",
+      "selected_groups": [
+        [
+          "CORE-00",
+          "TASK-10"
+        ]
+      ],
+      "bytes_returned": 111,
+      "commands": [
+        [
+          "awk",
+          "-v",
+          "ids=CORE-00 TASK-10",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 182,
+          "retrieved": 31,
+          "one_pass_input": 15252,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 15252,
+          "normalized_one_pass_cost_units": 0.015267
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 180,
+          "retrieved": 31,
+          "one_pass_input": 15924,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 15924,
+          "normalized_one_pass_cost_units": 0.015939
+        }
+      },
+      "required_spans": 2,
+      "matched_spans": 2,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        2.378959,
+        2.293417,
+        2.409208,
+        2.2425,
+        2.373417,
+        2.240208,
+        2.418959,
+        2.402958,
+        2.343167,
+        2.427041,
+        2.32275,
+        2.285084,
+        2.288416,
+        2.318458,
+        2.352208,
+        2.302042,
+        2.527041,
+        2.812708,
+        2.483583,
+        2.418209,
+        2.222333
+      ],
+      "median_ms": 2.352208,
+      "p95_ms": 2.527041,
+      "output_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f"
+    },
+    {
+      "case": "short_full",
+      "method": "native_rg_awk_discovery",
+      "source_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f",
+      "selected_groups": [
+        [
+          "CORE-00",
+          "TASK-10"
+        ]
+      ],
+      "bytes_returned": 152,
+      "commands": [
+        [
+          "rg",
+          "-n",
+          "^## \\[",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md"
+        ],
+        [
+          "awk",
+          "-v",
+          "ids=CORE-00 TASK-10",
+          "BEGIN {n=split(ids,a,\" \");for(i=1;i<=n;i++) want[a[i]]=1; pre=1}\n/^## \\[[A-Z][A-Z0-9-]*\\] / {pre=0;key=$2;gsub(/^\\[|\\]$/,\"\",key);active=(key in want);if(active)found[key]++}\npre || active {out=out $0 ORS}\nEND {for(key in want)if(found[key]!=1){print \"missing or duplicate\" > \"/dev/stderr\";exit 2};printf \"%s\",out}",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md"
+        ]
+      ],
+      "logical_retrieval_calls": 2,
+      "top_level_processes": 2,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "discovery",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 0,
+          "invocation": 231,
+          "retrieved": 51,
+          "one_pass_input": 15321,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 30427,
+          "normalized_one_pass_cost_units": 0.015336
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 0,
+          "invocation": 230,
+          "retrieved": 51,
+          "one_pass_input": 15994,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 31775,
+          "normalized_one_pass_cost_units": 0.016009
+        }
+      },
+      "required_spans": 2,
+      "matched_spans": 2,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        6.188417,
+        6.359875,
+        6.483042,
+        6.0365,
+        6.357041,
+        6.109,
+        6.108208,
+        6.629208,
+        6.548875,
+        6.293291,
+        6.598083,
+        6.070125,
+        6.474,
+        6.52325,
+        5.969791,
+        6.397917,
+        6.0805,
+        6.391833,
+        6.400458,
+        5.925,
+        6.019292
+      ],
+      "median_ms": 6.357041,
+      "p95_ms": 6.598083,
+      "output_sha256": "14e27e0608715b8a3874b85586bdb1a1c2f675d01d3790998f0823b4fae9a37a"
+    },
+    {
+      "case": "short_full",
+      "method": "wrapper",
+      "source_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f",
+      "selected_groups": [
+        [
+          "CORE-00",
+          "TASK-10"
+        ]
+      ],
+      "bytes_returned": 774,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "get",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md",
+          "CORE-00",
+          "TASK-10",
+          "--max-lines",
+          "10000",
+          "--max-bytes",
+          "2097152"
+        ]
+      ],
+      "logical_retrieval_calls": 1,
+      "top_level_processes": 1,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 84,
+          "retrieved": 330,
+          "one_pass_input": 16921,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 16921,
+          "normalized_one_pass_cost_units": 0.016936
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 85,
+          "retrieved": 330,
+          "one_pass_input": 17590,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 17590,
+          "normalized_one_pass_cost_units": 0.017605
+        }
+      },
+      "required_spans": 2,
+      "matched_spans": 2,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        43.437708,
+        42.727958,
+        44.176375,
+        43.727791,
+        43.046667,
+        43.867792,
+        44.076792,
+        42.918875,
+        43.913541,
+        43.273708,
+        43.704333,
+        44.730333,
+        44.642834,
+        45.047916,
+        44.258917,
+        44.222334,
+        45.377833,
+        43.051792,
+        43.673292,
+        44.172083,
+        43.396833
+      ],
+      "median_ms": 43.867792,
+      "p95_ms": 45.047916,
+      "output_sha256": "2193d815d39323cbfc5f6dc6a70769062f83abb60bf28e00570962fb03ff4f29"
+    },
+    {
+      "case": "short_full",
+      "method": "derived_index_cold",
+      "source_sha256": "b538e57451a2170dc4ff81317d4608c3aced1f8471ad65c592812f9f5dffb58f",
+      "selected_groups": [
+        [
+          "CORE-00",
+          "TASK-10"
+        ]
+      ],
+      "bytes_returned": 638,
+      "commands": [
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "index",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md",
+          "--max-lines",
+          "10000"
+        ],
+        [
+          "/private/tmp/sds-governance-REL-2026-09-09-11/scripts/sds-text",
+          "check",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md",
+          "--index-file",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short_full.index.md"
+        ],
+        [
+          "sed",
+          "-n",
+          "-e",
+          "1,2p",
+          "-e",
+          "3,5p",
+          "-e",
+          "6,7p",
+          "/var/folders/mk/4rxbv21d1b19vx4mv5xvqbc80000gn/T/sds-context-benchmark-fy8ma8ul/short.md"
+        ]
+      ],
+      "logical_retrieval_calls": 3,
+      "top_level_processes": 3,
+      "harness_calls_if_batched": 1,
+      "model_calls_measured": 0,
+      "output_roles": [
+        "index",
+        "index_validation",
+        "selection"
+      ],
+      "tokens": {
+        "o200k_base": {
+          "fixed": 6440,
+          "routed": 8599,
+          "optional_guide": 1468,
+          "invocation": 247,
+          "retrieved": 259,
+          "one_pass_input": 17013,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 50610,
+          "normalized_one_pass_cost_units": 0.017028
+        },
+        "cl100k_base": {
+          "fixed": 6412,
+          "routed": 9301,
+          "optional_guide": 1462,
+          "invocation": 251,
+          "retrieved": 258,
+          "one_pass_input": 17684,
+          "modeled_closure_output": 15,
+          "modeled_uncached_input_exposure": 52619,
+          "normalized_one_pass_cost_units": 0.017699
+        }
+      },
+      "required_spans": 2,
+      "matched_spans": 2,
+      "selection_recall": 1.0,
+      "samples_ms": [
+        90.246167,
+        91.5965,
+        89.758625,
+        89.045042,
+        89.061541,
+        89.832625,
+        90.510542,
+        90.533542,
+        89.526584,
+        91.886459,
+        90.118417,
+        88.557583,
+        90.147,
+        91.579541,
+        90.1725,
+        91.834875,
+        92.360666,
+        91.768834,
+        92.356084,
+        91.209208,
+        89.71275
+      ],
+      "median_ms": 90.246167,
+      "p95_ms": 92.356084,
+      "output_sha256": "8526496799c4bb6c1bfddd31e61359a42498087fc3d7d7e65c99e8971206305d"
+    }
+  ],
+  "costs_note": "Normalized units assume one unit per million input/output tokens, no cache. Not provider prices or observed billing. Guide charged in full for new helper user. Includes fixed+selected governance, invocation text, all returned indices/metadata/repeated preambles and modeled closure output. Harness envelope, real completion/reasoning, network, maintenance labor and dollar charges unavailable; not zero.",
+  "limitations": [
+    "No LLM evaluated, no blinded semantic task-selection result.",
+    "Source-span recall only, audited same-author task sets.",
+    "Native awk safe only for this verified fence-free header corpus; reader adversarial fixtures separate.",
+    "Derived index generation+validation charged; no benefit assumed for a free cache.",
+    "Cold command startups/warm filesystem, one warmup excluded; local latency is not model latency.",
+    "Followup cat is reused once; no fake second full document read."
+  ]
+}

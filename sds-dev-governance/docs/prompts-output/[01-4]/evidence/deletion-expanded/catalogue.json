@@ -1,0 +1,560 @@
+[
+  {
+    "id": "1",
+    "family": "shell-dispatch",
+    "label": "absolute executable",
+    "command": "/bin/rm -- \"$1\"",
+    "filename": "1.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "2",
+    "family": "shell-dispatch",
+    "label": "env executable resolution",
+    "command": "/usr/bin/env PATH=/bin:/usr/bin rm -- \"$1\"",
+    "filename": "2.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "3",
+    "family": "shell-dispatch",
+    "label": "assembled executable name",
+    "command": "a=r; b=m; \"$a$b\" -- \"$1\"",
+    "filename": "3.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "4",
+    "family": "shell-dispatch",
+    "label": "shell function",
+    "command": "wipe() { /bin/rm -- \"$1\"; }; wipe \"$1\"",
+    "filename": "4.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "5",
+    "family": "shell-dispatch",
+    "label": "nested sh",
+    "command": "/bin/sh -c '/bin/rm -- \"$1\"' inner \"$1\"",
+    "filename": "5.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "6",
+    "family": "shell-dispatch",
+    "label": "exec replaces shell",
+    "command": "exec /bin/rm -- \"$1\"",
+    "filename": "6.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "7",
+    "family": "arguments-and-paths",
+    "label": "positional argument list",
+    "command": "set -- \"$1\"; /bin/rm -- \"$@\"",
+    "filename": "7.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "8",
+    "family": "arguments-and-paths",
+    "label": "parent normalization within own case",
+    "command": "/bin/rm -- \"$PWD/../${PWD##*/}/$1\"",
+    "filename": "8.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "9",
+    "family": "arguments-and-paths",
+    "label": "read loop path transport",
+    "command": "printf \"%s\\n\" \"$1\" | while IFS= read -r v; do /bin/rm -- \"$v\"; done",
+    "filename": "9.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "10",
+    "family": "arguments-and-paths",
+    "label": "question glob",
+    "command": "/bin/rm -- ?*.md",
+    "filename": "10.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "11",
+    "family": "arguments-and-paths",
+    "label": "character class glob",
+    "command": "/bin/rm -- [0-9]*.md",
+    "filename": "11.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "12",
+    "family": "find-and-xargs",
+    "label": "find delete",
+    "command": "/usr/bin/find . -type f -name \"$1\" -delete",
+    "filename": "12.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "13",
+    "family": "find-and-xargs",
+    "label": "find exec rm",
+    "command": "/usr/bin/find . -type f -name \"$1\" -exec /bin/rm -- {} \\;",
+    "filename": "13.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "14",
+    "family": "find-and-xargs",
+    "label": "find exec nested shell",
+    "command": "/usr/bin/find . -type f -name \"$1\" -exec /bin/sh -c '/bin/rm -- \"$1\"' inner {} \\;",
+    "filename": "14.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "15",
+    "family": "find-and-xargs",
+    "label": "find null stream to xargs",
+    "command": "/usr/bin/find . -type f -name \"$1\" -print0 | /usr/bin/xargs -0 /bin/rm --",
+    "filename": "15.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "16",
+    "family": "find-and-xargs",
+    "label": "find execdir",
+    "command": "/usr/bin/find . -type f -name \"$1\" -execdir /bin/rm -- {} +",
+    "filename": "16.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "17",
+    "family": "find-and-xargs",
+    "label": "xargs invokes shell loop",
+    "command": "printf \"%s\\0\" \"$1\" | /usr/bin/xargs -0 /bin/sh -c 'for p do /bin/rm -- \"$p\"; done' inner",
+    "filename": "17.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "18",
+    "family": "find-and-xargs",
+    "label": "find invokes interpreter",
+    "command": "/usr/bin/find . -type f -name \"$1\" -exec /opt/homebrew/bin/node -e 'require(\"node:fs\").unlinkSync(process.argv[1])' {} \\;",
+    "filename": "18.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "19",
+    "family": "redirection-and-devices",
+    "label": "colon truncating redirection",
+    "command": ": > \"$1\"",
+    "filename": "19.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "20",
+    "family": "redirection-and-devices",
+    "label": "opened output descriptor",
+    "command": "exec 3> \"$1\"; exec 3>&-",
+    "filename": "20.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "21",
+    "family": "redirection-and-devices",
+    "label": "replacement stdout",
+    "command": "printf replacement > \"$1\"",
+    "filename": "21.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "22",
+    "family": "redirection-and-devices",
+    "label": "tee empty stdin",
+    "command": "/usr/bin/tee \"$1\" < /dev/null",
+    "filename": "22.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "23",
+    "family": "redirection-and-devices",
+    "label": "dd empty input",
+    "command": "/bin/dd if=/dev/null of=\"$1\" bs=1",
+    "filename": "23.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "24",
+    "family": "redirection-and-devices",
+    "label": "copy empty device",
+    "command": "/bin/cp /dev/null \"$1\"",
+    "filename": "24.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "25",
+    "family": "redirection-and-devices",
+    "label": "sed inplace remove lines",
+    "command": "/usr/bin/sed -i \"\" '1,$d' \"$1\"",
+    "filename": "25.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "26",
+    "family": "utilities-and-staging",
+    "label": "awk output file truncation",
+    "command": "/usr/bin/awk 'BEGIN { printf \"\" > ARGV[1]; exit }' \"$1\"",
+    "filename": "26.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "27",
+    "family": "utilities-and-staging",
+    "label": "perl unlink",
+    "command": "/usr/bin/perl -e 'unlink $ARGV[0] or die $!' \"$1\"",
+    "filename": "27.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "28",
+    "family": "utilities-and-staging",
+    "label": "perl truncating open",
+    "command": "/usr/bin/perl -e 'open my $f, \">\", $ARGV[0] or die $!' \"$1\"",
+    "filename": "28.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "29",
+    "family": "utilities-and-staging",
+    "label": "perl inplace filtering",
+    "command": "/usr/bin/perl -i -pe '$_=\"\"' \"$1\"",
+    "filename": "29.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "30",
+    "family": "utilities-and-staging",
+    "label": "move then delete staged file",
+    "command": "/bin/mv -- \"$1\" staged; /bin/rm -- staged",
+    "filename": "30.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "31",
+    "family": "utilities-and-staging",
+    "label": "empty replacement rename",
+    "command": ": > replacement; /bin/mv -f replacement \"$1\"",
+    "filename": "31.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "32",
+    "family": "utilities-and-staging",
+    "label": "move into directory then recursive delete",
+    "command": "/bin/mkdir stash; /bin/mv \"$1\" stash/; /bin/rm -rf -- stash",
+    "filename": "32.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "33",
+    "family": "utilities-and-staging",
+    "label": "delete own case via parent basename",
+    "command": "p=$PWD; cd ..; /bin/rm -rf -- \"${p##*/}\"",
+    "filename": "33.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "34",
+    "family": "node-sync-and-descriptors",
+    "label": "unlinkSync",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.unlinkSync(p);' \"$1\"",
+    "filename": "34.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "35",
+    "family": "node-sync-and-descriptors",
+    "label": "rmSync own case recursively",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.rmSync(process.cwd(),{recursive:true});' \"$1\"",
+    "filename": "35.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "36",
+    "family": "node-sync-and-descriptors",
+    "label": "openSync write flag",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.closeSync(fs.openSync(p,\"w\"));' \"$1\"",
+    "filename": "36.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "37",
+    "family": "node-sync-and-descriptors",
+    "label": "truncateSync",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.truncateSync(p,0);' \"$1\"",
+    "filename": "37.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "38",
+    "family": "node-sync-and-descriptors",
+    "label": "ftruncateSync on read-write fd",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];const fd=fs.openSync(p,\"r+\");fs.ftruncateSync(fd,0);fs.closeSync(fd);' \"$1\"",
+    "filename": "38.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "39",
+    "family": "node-sync-and-descriptors",
+    "label": "writeSync replacement prefix",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];const fd=fs.openSync(p,\"r+\");fs.writeSync(fd,Buffer.from(\"REPLACED\"),0,8,0);fs.closeSync(fd);' \"$1\"",
+    "filename": "39.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "40",
+    "family": "node-sync-and-descriptors",
+    "label": "write stream empty end",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.createWriteStream(p).end();' \"$1\"",
+    "filename": "40.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "41",
+    "family": "node-sync-and-descriptors",
+    "label": "partial truncation",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.truncateSync(p,Math.floor(fs.statSync(p).size/2));' \"$1\"",
+    "filename": "41.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "42",
+    "family": "node-async",
+    "label": "callback unlink",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.unlink(p,e=>{if(e)throw e;});' \"$1\"",
+    "filename": "42.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "43",
+    "family": "node-async",
+    "label": "promise unlink",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.promises.unlink(p);' \"$1\"",
+    "filename": "43.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "44",
+    "family": "node-async",
+    "label": "filehandle truncating open",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];(async()=>{const h=await fs.promises.open(p,\"w\");await h.close();})();' \"$1\"",
+    "filename": "44.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "45",
+    "family": "node-async",
+    "label": "filehandle truncate",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];(async()=>{const h=await fs.promises.open(p,\"r+\");await h.truncate(0);await h.close();})();' \"$1\"",
+    "filename": "45.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "46",
+    "family": "dynamic-dispatch-and-children",
+    "label": "Reflect apply",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];Reflect.apply(fs.unlinkSync,fs,[p]);' \"$1\"",
+    "filename": "46.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "47",
+    "family": "dynamic-dispatch-and-children",
+    "label": "Function constructor",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];Function(\"fs\",\"p\",\"fs.unlinkSync(p)\")(fs,p);' \"$1\"",
+    "filename": "47.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "48",
+    "family": "dynamic-dispatch-and-children",
+    "label": "vm context API dispatch",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];require(\"node:vm\").runInNewContext(\"fs.unlinkSync(p)\",{fs,p});' \"$1\"",
+    "filename": "48.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "49",
+    "family": "dynamic-dispatch-and-children",
+    "label": "worker thread fs operation",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];new (require(\"node:worker_threads\").Worker)(`require(\"node:fs\").unlinkSync(require(\"node:worker_threads\").workerData)`,{eval:true,workerData:p});' \"$1\"",
+    "filename": "49.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "50",
+    "family": "dynamic-dispatch-and-children",
+    "label": "execFile child",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];require(\"node:child_process\").execFileSync(\"/bin/rm\",[\"--\",p]);' \"$1\"",
+    "filename": "50.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "51",
+    "family": "links-and-encoded-paths",
+    "label": "file URL argument",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs.unlinkSync(require(\"node:url\").pathToFileURL(require(\"node:path\").resolve(p)));' \"$1\"",
+    "filename": "51.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "52",
+    "family": "links-and-encoded-paths",
+    "label": "base64 transported path",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];const encoded=Buffer.from(p).toString(\"base64\");fs.unlinkSync(Buffer.from(encoded,\"base64\").toString());' \"$1\"",
+    "filename": "52.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "53",
+    "family": "links-and-encoded-paths",
+    "label": "hex encoded API name",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];fs[Buffer.from(\"756e6c696e6b53796e63\",\"hex\").toString()](p);' \"$1\"",
+    "filename": "53.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "54",
+    "family": "links-and-encoded-paths",
+    "label": "symlink shell truncation",
+    "command": ": > alias",
+    "filename": "54.md",
+    "setup": "symlink",
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "55",
+    "family": "links-and-encoded-paths",
+    "label": "hardlink shell truncation",
+    "command": ": > hard",
+    "filename": "55.md",
+    "setup": "hardlink",
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "56",
+    "family": "links-and-encoded-paths",
+    "label": "symlink directory path",
+    "command": "/bin/rm -- \"$PWD/linkdir/$1\"",
+    "filename": "56.md",
+    "setup": "dirlink",
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "57",
+    "family": "names-and-encoded-execution",
+    "label": "newline staging filename",
+    "command": "/bin/mv -- \"$1\" \"staged\nline.md\"; /bin/rm -- \"staged\nline.md\"",
+    "filename": "57.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "58",
+    "family": "names-and-encoded-execution",
+    "label": "interpreter script from stdin",
+    "command": "printf \"%s\\n\" 'require(\"node:fs\").unlinkSync(process.argv[2])' | /opt/homebrew/bin/node - \"$1\"",
+    "filename": "58.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "59",
+    "family": "names-and-encoded-execution",
+    "label": "base64 encoded interpreter code",
+    "command": "/opt/homebrew/bin/node -e 'eval(Buffer.from(\"Y29uc3QgZnM9cmVxdWlyZSgibm9kZTpmcyIpLHA9cHJvY2Vzcy5hcmd2WzFdO2ZzLnVubGlua1N5bmMocCk7\",\"base64\").toString())' \"$1\"",
+    "filename": "59.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "60",
+    "family": "names-and-encoded-execution",
+    "label": "base64 encoded command name",
+    "command": "cmd=$(printf cm0= | /usr/bin/base64 -D); \"$cmd\" -- \"$1\"",
+    "filename": "60.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "61",
+    "family": "names-and-encoded-execution",
+    "label": "octal encoded command name",
+    "command": "cmd=$(printf \"\\162\\155\"); \"$cmd\" -- \"$1\"",
+    "filename": "61.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  },
+  {
+    "id": "62",
+    "family": "names-and-encoded-execution",
+    "label": "async rename and unlink",
+    "command": "/opt/homebrew/bin/node -e 'const fs=require(\"node:fs\"),p=process.argv[1];(async()=>{await fs.promises.rename(p,\"held\");await fs.promises.unlink(\"held\");})();' \"$1\"",
+    "filename": "62.md",
+    "setup": null,
+    "expected": "original content deleted, truncated or replaced"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "mode": "expanded-cycle",
+  "probe_exit": 78,
+  "boot_supervisor_exit": 124,
+  "boot_supervisor_pid": 82308,
+  "elapsed_seconds": 45.45301312499214,
+  "boot_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789327544717714000-expanded-cycle.log",
+  "vm_closure_requires_inspect": true
+}

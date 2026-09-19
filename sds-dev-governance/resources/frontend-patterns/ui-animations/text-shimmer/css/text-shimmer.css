@@ -1,0 +1,38 @@
+/* Text Shimmer — highlight animado en degradado horizontal recortado al texto.
+   Aplicable a CUALQUIER texto. Por defecto, paleta cálida (naranja). Adapta los
+   colores con los tokens del proyecto destino. */
+
+.text-shimmer {
+  /* Tokens (sobrescribe con los del proyecto destino) */
+  --shimmer-from: #FF7A18;       /* extremos del degradado */
+  --shimmer-mid: #FFA63D;        /* tono intermedio */
+  --shimmer-highlight: #FFE08A;  /* banda de brillo que se desplaza */
+  --shimmer-duration: 7s;        /* lento = elegante */
+
+  font-weight: 600;
+  background: linear-gradient(100deg,
+    var(--shimmer-from) 0%,
+    var(--shimmer-mid) 28%,
+    var(--shimmer-highlight) 50%,
+    var(--shimmer-mid) 72%,
+    var(--shimmer-from) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* necesario en WebKit/Blink */
+  animation: text-shimmer var(--shimmer-duration) linear infinite;
+}
+
+@keyframes text-shimmer {
+  from { background-position: 0% 50%; }
+  to   { background-position: 220% 50%; }
+}
+
+/* Respeta la preferencia de movimiento reducido: deja el degradado quieto. */
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}

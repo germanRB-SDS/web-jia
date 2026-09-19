@@ -1,0 +1,9 @@
+{
+  "mode": "exec-admin",
+  "pid": 82560,
+  "exit_code": 2,
+  "stop_reason": null,
+  "elapsed_seconds": 0.016163583990419284,
+  "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789327630325603000-exec-admin.log",
+  "log_bytes": 33
+}

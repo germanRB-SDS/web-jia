@@ -1,0 +1,10 @@
+{
+  "arithmetic": "PASS",
+  "source_hashes": "MATCH",
+  "unknown_model_usage_money_currency": "PRESERVED",
+  "tokenizer_used": null,
+  "samples": "9 paired blocks inside each single process condition, not model sessions",
+  "api_calls": 0,
+  "new_VM_boots": 0,
+  "result_sha256": "c5fb0d5756990b00645407ee6cafa45126fa75c550c40d334673b355957f9b58"
+}

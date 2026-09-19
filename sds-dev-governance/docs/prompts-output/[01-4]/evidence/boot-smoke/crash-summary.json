@@ -1,0 +1,183 @@
+{
+  "procName": "tart",
+  "pid": 12629,
+  "exception": {
+    "codes": "0x0000000000000000, 0x0000000000000000",
+    "rawCodes": [
+      0,
+      0
+    ],
+    "type": "EXC_CRASH",
+    "signal": "SIGABRT"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 6,
+    "namespace": "SIGNAL",
+    "indicator": "Abort trap: 6",
+    "byProc": "tart",
+    "byPid": 12629
+  },
+  "asi": {
+    "libsystem_c.dylib": [
+      "abort() called"
+    ]
+  },
+  "faultingThread": 0,
+  "faulting_frames": [
+    {
+      "imageOffset": 38376,
+      "symbol": "__pthread_kill",
+      "symbolLocation": 8,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 26840,
+      "symbol": "pthread_kill",
+      "symbolLocation": 296,
+      "imageIndex": 2
+    },
+    {
+      "imageOffset": 493944,
+      "symbol": "abort",
+      "symbolLocation": 148,
+      "imageIndex": 3
+    },
+    {
+      "imageOffset": 191796,
+      "symbol": "___RegisterApplication_block_invoke",
+      "symbolLocation": 12716,
+      "imageIndex": 4
+    },
+    {
+      "imageOffset": 111792,
+      "symbol": "_dispatch_client_callout",
+      "symbolLocation": 16,
+      "imageIndex": 5
+    },
+    {
+      "imageOffset": 17968,
+      "symbol": "_dispatch_once_callout",
+      "symbolLocation": 32,
+      "imageIndex": 5
+    },
+    {
+      "imageOffset": 6348,
+      "symbol": "_RegisterApplication",
+      "symbolLocation": 164,
+      "imageIndex": 4
+    },
+    {
+      "imageOffset": 5864,
+      "symbol": "GetCurrentProcess",
+      "symbolLocation": 36,
+      "imageIndex": 4
+    },
+    {
+      "imageOffset": 16684700,
+      "symbol": "-[NSMenuBarPresentationInstance _getAggregateUIMode:withOptions:]",
+      "symbolLocation": 148,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 16698404,
+      "symbol": "+[NSMenuBarPresentationInstance _getAggregateUIMode:withOptionsPtr:]",
+      "symbolLocation": 64,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 4994452,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 4991068,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 5592784,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 5592504,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 111792,
+      "symbol": "_dispatch_client_callout",
+      "symbolLocation": 16,
+      "imageIndex": 5
+    },
+    {
+      "imageOffset": 17968,
+      "symbol": "_dispatch_once_callout",
+      "symbolLocation": 32,
+      "imageIndex": 5
+    },
+    {
+      "imageOffset": 5126264,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 5126364,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 5126296,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 758580,
+      "symbol": "specialized Darwin.graphicsDevice(vmConfig:)",
+      "symbolLocation": 204,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 801844,
+      "symbol": "VM.init(vmDir:network:additionalStorageDevices:directorySharingDevices:serialPorts:suspendable:nested:audio:clipboard:sync:caching:noTrackpad:noPointer:noKeyboard:)",
+      "symbolLocation": 1636,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 233448,
+      "symbol": "Run.runOnMainThread()",
+      "symbolLocation": 8896,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 766128,
+      "symbol": "closure #1 in static Root.main()",
+      "symbolLocation": 248,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 768816,
+      "symbol": "partial apply for closure #1 in static Root.main()",
+      "symbolLocation": 16,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 766368,
+      "symbol": "specialized static MainActor.assumeIsolated<A>(_:file:line:)",
+      "symbolLocation": 132,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 764940,
+      "symbol": "static Root.main()",
+      "symbolLocation": 464,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 767924,
+      "symbol": "main",
+      "symbolLocation": 12,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 132324,
+      "symbol": "start",
+      "symbolLocation": 6992,
+      "imageIndex": 7
+    }
+  ]
+}

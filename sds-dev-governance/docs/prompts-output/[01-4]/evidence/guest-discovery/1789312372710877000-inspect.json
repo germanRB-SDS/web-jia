@@ -1,0 +1,9 @@
+{
+  "mode": "inspect",
+  "pid": 17121,
+  "exit_code": 0,
+  "stop_reason": null,
+  "elapsed_seconds": 0.024921500007621944,
+  "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789312372710877000-inspect.log",
+  "log_bytes": 474
+}

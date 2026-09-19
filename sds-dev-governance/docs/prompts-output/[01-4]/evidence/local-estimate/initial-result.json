@@ -1,0 +1,844 @@
+{
+  "class": "LOCAL_COMPONENT_MEASUREMENT_AND_UNCALIBRATED_SCENARIOS",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6",
+  "source_sha256": {
+    "sentinel/core.py": "c4d0b03f79a3a07db7270763ccbf1aa98d9a59a0052fdeb035323a830134ca93",
+    "tests/estimate-sentinel-local.py": "78ab19c50964eedb1ed2534d7bd65775c5120121ade8d4177ea66fb3d8a24eb6"
+  },
+  "design": {
+    "pairs": 9,
+    "iterations_per_arm_per_pair": 2000,
+    "warmup_per_arm": 200,
+    "order": "alternating, fixed ahead of measurement"
+  },
+  "helper_measurements": [
+    {
+      "client_codec": "codex",
+      "denied": false,
+      "observed_wire_bytes": 0,
+      "observed_wire": "",
+      "raw": [
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.042
+        },
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 192.1875
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 189.3335
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.5625
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 12.7085
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 191.292
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 204.354
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.3955
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.875
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 215.7705
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 194.4585
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.6665
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 12.8955
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 191.5
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 192.604
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 12.625
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 17.0835
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 193.104
+        }
+      ],
+      "paired_delta_ns": {
+        "median": 179.1455,
+        "min": 175.771,
+        "max": 201.8955
+      },
+      "scope": "in-process encoding and validation only, not native client/Sentinel B",
+      "whole_session_overhead_percent": null
+    },
+    {
+      "client_codec": "codex",
+      "denied": true,
+      "observed_wire_bytes": 290,
+      "observed_wire": "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"SENTINEL[R3] ACCI\\u00d3N_BLOQUEADA: p\\u00e9rdida de contenido sobre \\\"fixtures/report.md\\\". No reintentes; el responsable debe revisar este caso y su control. Capa: no acreditada.\"}}",
+      "raw": [
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.25
+        },
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2581.25
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2561.104
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 15.375
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.479
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2575.625
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2638.0835
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 15.0625
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.771
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2602.9585
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2606.4375
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.7915
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.875
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2618.9165
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2621.25
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.875
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.9375
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2616.25
+        }
+      ],
+      "paired_delta_ns": {
+        "median": 2591.646,
+        "min": 2545.729,
+        "max": 2623.021
+      },
+      "scope": "in-process encoding and validation only, not native client/Sentinel B",
+      "whole_session_overhead_percent": null
+    },
+    {
+      "client_codec": "claude",
+      "denied": false,
+      "observed_wire_bytes": 0,
+      "observed_wire": "",
+      "raw": [
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.6875
+        },
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 202.3335
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 212.104
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.875
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.6875
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 213.3955
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 200.854
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.4585
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.5835
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 202.208
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 201.542
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.396
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.75
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 207.3335
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 208.3955
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.854
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.4375
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 203.625
+        }
+      ],
+      "paired_delta_ns": {
+        "median": 190.1875,
+        "min": 186.39550000000003,
+        "max": 198.708
+      },
+      "scope": "in-process encoding and validation only, not native client/Sentinel B",
+      "whole_session_overhead_percent": null
+    },
+    {
+      "client_codec": "claude",
+      "denied": true,
+      "observed_wire_bytes": 290,
+      "observed_wire": "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"SENTINEL[R3] ACCI\\u00d3N_BLOQUEADA: p\\u00e9rdida de contenido sobre \\\"fixtures/report.md\\\". No reintentes; el responsable debe revisar este caso y su control. Capa: no acreditada.\"}}",
+      "raw": [
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.708
+        },
+        {
+          "pair": 0,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2606.896
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2628.1875
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 15.7085
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 18.0835
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2610.521
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2610.5415
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.354
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 15.729
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2630.4165
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2641.854
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.0625
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 12.896
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2604.271
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2631.604
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate_codec",
+            "baseline_empty_call"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 14.229
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "baseline_empty_call",
+          "ns_per_call": 13.208
+        },
+        {
+          "pair": 8,
+          "order": [
+            "baseline_empty_call",
+            "candidate_codec"
+          ],
+          "path": "candidate_codec",
+          "ns_per_call": 2629.479
+        }
+      ],
+      "paired_delta_ns": {
+        "median": 2612.479,
+        "min": 2591.375,
+        "max": 2627.7915
+      },
+      "scope": "in-process encoding and validation only, not native client/Sentinel B",
+      "whole_session_overhead_percent": null
+    }
+  ],
+  "text": {
+    "class": "OBSERVED_LOCAL_TEXT",
+    "body": "SENTINEL[R3] ACCI\u00d3N_BLOQUEADA: p\u00e9rdida de contenido sobre \"fixtures/report.md\". No reintentes; el responsable debe revisar este caso y su control. Capa: no acreditada.",
+    "characters": 167,
+    "utf8_bytes": 169,
+    "compatible_tokenizer_available": false,
+    "assumed_chars_per_token": [
+      2,
+      4
+    ],
+    "uncalibrated_tokens_per_notice_range": [
+      42,
+      84
+    ],
+    "warning": "Sensitivity assumption only; actual token count may lie outside this range."
+  },
+  "scenarios": [
+    {
+      "scenario": "no_notice_component",
+      "class": "HYPOTHETICAL_SENSITIVITY",
+      "assumed_A_total_tokens": 10000,
+      "assumed_notices": 0,
+      "assumed_reads_per_notice": 0,
+      "assumed_extra_turn_total_tokens": 0,
+      "estimated_extra_tokens_range": [
+        0,
+        0
+      ],
+      "estimated_component_overhead_percent_range": [
+        0.0,
+        0.0
+      ],
+      "whole_session_overhead_percent": null
+    },
+    {
+      "scenario": "one_notice_once",
+      "class": "HYPOTHETICAL_SENSITIVITY",
+      "assumed_A_total_tokens": 10000,
+      "assumed_notices": 1,
+      "assumed_reads_per_notice": 1,
+      "assumed_extra_turn_total_tokens": 0,
+      "estimated_extra_tokens_range": [
+        42,
+        84
+      ],
+      "estimated_component_overhead_percent_range": [
+        0.42,
+        0.84
+      ],
+      "whole_session_overhead_percent": null
+    },
+    {
+      "scenario": "five_notices_read_five_times_each",
+      "class": "HYPOTHETICAL_SENSITIVITY",
+      "assumed_A_total_tokens": 10000,
+      "assumed_notices": 5,
+      "assumed_reads_per_notice": 5,
+      "assumed_extra_turn_total_tokens": 0,
+      "estimated_extra_tokens_range": [
+        1050,
+        2100
+      ],
+      "estimated_component_overhead_percent_range": [
+        10.5,
+        21.0
+      ],
+      "whole_session_overhead_percent": null
+    },
+    {
+      "scenario": "ten_notices_read_five_times_each",
+      "class": "HYPOTHETICAL_SENSITIVITY",
+      "assumed_A_total_tokens": 10000,
+      "assumed_notices": 10,
+      "assumed_reads_per_notice": 5,
+      "assumed_extra_turn_total_tokens": 0,
+      "estimated_extra_tokens_range": [
+        2100,
+        4200
+      ],
+      "estimated_component_overhead_percent_range": [
+        21.0,
+        42.0
+      ],
+      "whole_session_overhead_percent": null
+    },
+    {
+      "scenario": "one_notice_and_assumed_extra_turn",
+      "class": "HYPOTHETICAL_SENSITIVITY",
+      "assumed_A_total_tokens": 10000,
+      "assumed_notices": 1,
+      "assumed_reads_per_notice": 1,
+      "assumed_extra_turn_total_tokens": 2000,
+      "estimated_extra_tokens_range": [
+        2042,
+        2084
+      ],
+      "estimated_component_overhead_percent_range": [
+        20.42,
+        20.84
+      ],
+      "whole_session_overhead_percent": null
+    }
+  ],
+  "model_runs": 0,
+  "api_calls": 0,
+  "A_B_campaign_runs": 0,
+  "money": null,
+  "currency": null,
+  "quota_consumed_by_model_trials": null,
+  "real_model_overhead_percent": null,
+  "limits": [
+    "No inference runs: this does not run GPT-6 Astra or Fable offline.",
+    "No model-specific tokenizer, cache, quota or native usage calibration.",
+    "No startup/IPC/IO/policy resolver/snapshot/rollback measured by helper timing.",
+    "Token scenarios omit unknown static context, framing, retries, reasoning and behavioral change unless explicitly assumed.",
+    "Repeated input tokens are not necessarily new billed/weighted quota tokens.",
+    "The baseline is an empty function, never client A with native controls.",
+    "No security/utility/S0/S7 evidence or global <8/<40 acceptance."
+  ]
+}

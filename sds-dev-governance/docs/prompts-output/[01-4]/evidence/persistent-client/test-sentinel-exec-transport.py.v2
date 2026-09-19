@@ -1,0 +1,94 @@
+"""Exercise the guest JSONL observer against a synthetic server, never real Codex/Tart."""
+import json
+from contextlib import contextmanager
+import os
+from pathlib import Path
+import shutil
+import signal
+import subprocess
+import secrets
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+NODE = shutil.which('node')
+
+
+@contextmanager
+def fixture():
+    # Match the guest mktemp alphabet; Python's tempfile suffix may contain '_'.
+    root=Path('/private/tmp')/('sds-sentinel-exec.'+secrets.token_hex(8))
+    root.mkdir(mode=0o700)
+    try: yield root
+    finally: shutil.rmtree(root)
+
+
+MOCK = r'''
+const readline=require('node:readline');
+const root=process.argv[3], mode=process.argv[2];
+const send=x=>console.log(JSON.stringify(x));
+const lines=readline.createInterface({input:process.stdin});
+lines.on('line',line=>{
+ const r=JSON.parse(line);
+ if(mode==='silent') return;
+ if(r.id===undefined) return;
+ if(mode==='rpc-error') {send({id:r.id,error:{code:-32602,message:'synthetic'}});return;}
+ if(mode==='bad-json') {console.log('not json');return;}
+ if(mode==='null') {send(null);return;}
+ if(mode==='both-result-error') {send({id:r.id,result:{},error:{code:-1}});return;}
+ if(r.method==='initialize') send({id:r.id,result:{sessionId:'synthetic'}});
+ else if(r.method==='environment/info') send({id:r.id,result:{cwd:'file://'+root,executorVersion:mode==='wrong-version'?'0.0.0':'0.154.0'}});
+ else if(r.method==='environment/status') send({id:r.id,result:{status:'ready'}});
+ else if(r.method==='process/start') {
+  send({id:r.id,result:{processId:'sentinel-pwd'}});
+  send({method:'process/output',params:{processId:'sentinel-pwd',seq:1,stream:'stdout',chunk:mode==='bad-chunk'?42:Buffer.from((mode==='wrong-pwd'?'/wrong':root)+'\n').toString('base64')}});
+  send({method:'process/exited',params:{processId:'sentinel-pwd',seq:2,exitCode:0,sandboxDenied:mode==='denied'}});
+  if(mode==='duplicate-exit') send({method:'process/exited',params:{processId:'sentinel-pwd',seq:3,exitCode:0}});
+  send({method:'process/closed',params:{processId:'sentinel-pwd',seq:mode==='bad-seq'?1:4}});
+ }
+});
+lines.on('close',()=>process.exit(mode==='bad-close'?1:0));
+'''
+
+
+@unittest.skipUnless(NODE, 'Node required for synthetic observer tests')
+class ObserverTests(unittest.TestCase):
+    def run_mode(self, mode):
+        source=(ROOT/'sentinel/exec_transport_probe.sh').read_text().split("<<'JS'\n",1)[1].split('\nJS\n',1)[0]
+        old="cp.spawn('/Users/Shared/sds-sentinel-client-4f85982624b3/codex',\n  ['exec-server','--listen','stdio','--exit-on-stdin-close'],"
+        self.assertEqual(source.count(old),1)
+        with fixture() as root:
+            fake=root/'fake.js'; fake.write_text(MOCK)
+            source=source.replace(old,'cp.spawn(process.execPath,'+json.dumps([str(fake),mode,str(root)])+',')
+            probe=root/'probe.js';probe.write_text(source)
+            proc=subprocess.Popen([NODE,str(probe),str(root)],env={'PATH':'/usr/bin:/bin'},cwd=root,
+                stdout=subprocess.PIPE,stderr=subprocess.PIPE,start_new_session=True)
+            try:
+                out,err=proc.communicate(timeout=18)
+            finally:
+                try: os.killpg(proc.pid,signal.SIGKILL)
+                except ProcessLookupError: pass
+                proc.wait(timeout=2)
+            self.assertEqual(err,b'')
+            rows=[json.loads(line) for line in out.splitlines()]
+            passes=[r for r in rows if r.get('outcome')=='TRANSPORT_PASS']
+            if mode=='success':
+                self.assertEqual(proc.returncode,0,rows)
+                self.assertEqual(len(passes),1,rows)
+                self.assertFalse(passes[0]['custody_verified'])
+            else:
+                self.assertEqual(proc.returncode,78,rows)
+                self.assertEqual(passes,[],rows)
+                self.assertTrue(any(r.get('type')=='failure' for r in rows),rows)
+            return rows
+
+    def test_success_and_failures(self):
+        for mode in ['success','rpc-error','bad-json','wrong-version','wrong-pwd','bad-close',
+                     'null','both-result-error','bad-chunk','duplicate-exit','denied','bad-seq']:
+            with self.subTest(mode=mode): self.run_mode(mode)
+
+    def test_silent_server_reaches_real_deadline_without_pass(self):
+        rows=self.run_mode('silent')
+        self.assertTrue(any(r.get('message')=='DEADLINE_12S' for r in rows),rows)
+
+
+if __name__=='__main__': unittest.main()

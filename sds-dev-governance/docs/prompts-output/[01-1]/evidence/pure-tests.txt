@@ -1,0 +1,29 @@
+test_candidate_templates_are_data_without_personal_permissions (__main__.DistributionTests.test_candidate_templates_are_data_without_personal_permissions) ... ok
+test_control_changes_still_change_fingerprint (__main__.DistributionTests.test_control_changes_still_change_fingerprint) ... ok
+test_exact_components_and_control_neighbors (__main__.DistributionTests.test_exact_components_and_control_neighbors) ... ok
+test_local_native_files_never_export_but_remain_in_identity (__main__.DistributionTests.test_local_native_files_never_export_but_remain_in_identity) ... ok
+test_final_hash_does_not_prove_prevention (__main__.EvidenceTests.test_final_hash_does_not_prove_prevention) ... ok
+test_integration_gate_cannot_launch_anything (__main__.EvidenceTests.test_integration_gate_cannot_launch_anything) ... ok
+test_outer_rescue_is_not_sentinel_pass (__main__.EvidenceTests.test_outer_rescue_is_not_sentinel_pass) ... ok
+test_each_native_codec_defers_without_granting (__main__.NativeAndMessageTests.test_each_native_codec_defers_without_granting) ... ok
+test_each_native_deny_contract (__main__.NativeAndMessageTests.test_each_native_deny_contract) ... ok
+test_invalid_payload_does_not_return_allow (__main__.NativeAndMessageTests.test_invalid_payload_does_not_return_allow) ... ok
+test_long_names_remain_bounded_and_distinct (__main__.NativeAndMessageTests.test_long_names_remain_bounded_and_distinct) ... ok
+test_names_cannot_forge_messages (__main__.NativeAndMessageTests.test_names_cannot_forge_messages) ... ok
+test_no_false_stop_or_policy_override_message (__main__.NativeAndMessageTests.test_no_false_stop_or_policy_override_message) ... ok
+test_bounded_state_never_evicts_history (__main__.RetryTests.test_bounded_state_never_evicts_history) ... ok
+test_deduplicate_concurrently (__main__.RetryTests.test_deduplicate_concurrently) ... ok
+test_distinct_concurrent_updates (__main__.RetryTests.test_distinct_concurrent_updates) ... ok
+test_git_objects_belong_to_their_repository (__main__.RetryTests.test_git_objects_belong_to_their_repository) ... ok
+test_invalid_objects_and_native_decisions (__main__.RetryTests.test_invalid_objects_and_native_decisions) ... ok
+test_missing_object_uses_turn_without_invented_path (__main__.RetryTests.test_missing_object_uses_turn_without_invented_path) ... ok
+test_missing_turn_and_ids_are_explicit (__main__.RetryTests.test_missing_turn_and_ids_are_explicit) ... ok
+test_pending_and_new_authorization_do_not_count_or_erase (__main__.RetryTests.test_pending_and_new_authorization_do_not_count_or_erase) ... ok
+test_same_object_across_tool_spellings (__main__.RetryTests.test_same_object_across_tool_spellings) ... ok
+test_third_different_object_in_turn (__main__.RetryTests.test_third_different_object_in_turn) ... ok
+test_turn_and_session_scopes (__main__.RetryTests.test_turn_and_session_scopes) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.004s
+
+OK

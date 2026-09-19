@@ -1,0 +1,14 @@
+{
+  "mode": "stage-client",
+  "pid": 40797,
+  "exit_code": 0,
+  "stop_reason": null,
+  "elapsed_seconds": 11.015644833998522,
+  "source_sha256": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+  "source_bytes": 222655232,
+  "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789318000314971000-stage-client.log",
+  "log_bytes": 526,
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0
+}

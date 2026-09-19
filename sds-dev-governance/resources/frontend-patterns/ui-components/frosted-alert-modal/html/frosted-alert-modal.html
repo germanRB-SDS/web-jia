@@ -1,0 +1,13 @@
+<button type="button" data-open-alert>Open alert</button>
+
+<script type="module">
+  import { openFrostedAlert } from '../javascript/frosted-alert-modal.js';
+
+  document.querySelector('[data-open-alert]')?.addEventListener('click', () => {
+    openFrostedAlert({
+      title: 'Action completed',
+      message: 'Your changes have been applied.',
+      acceptLabel: 'Aceptar'
+    });
+  });
+</script>

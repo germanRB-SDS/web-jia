@@ -1,0 +1,42 @@
+{
+  "scope": "native-template-only; no model or integrated Sentinel",
+  "conditions": {
+    "A": {
+      "valid_phases": 2,
+      "cases": 20,
+      "cases_with_loss": 20,
+      "victims": 22,
+      "victims_affected": 22,
+      "legitimate_controls_passed": 6,
+      "raw_phase_ms": [
+        107.769542,
+        67.731542
+      ]
+    },
+    "B": {
+      "valid_phases": 2,
+      "cases": 20,
+      "cases_with_loss": 20,
+      "victims": 22,
+      "victims_affected": 22,
+      "legitimate_controls_passed": 6,
+      "raw_phase_ms": [
+        71.053083,
+        66.894958
+      ]
+    }
+  },
+  "relative_loss_reduction_percent": 0.0,
+  "decision": "NO_GO_CURRENT_CANDIDATE",
+  "token_overhead": "NOT_MEASURED",
+  "bundle_sha256": "152816275441c6cb304c682936c9720815b2ee585109db8d73468561b9a92f2a",
+  "closure": {
+    "type": "closure",
+    "phases": 4,
+    "branch": "lab-clean",
+    "test_a_absent": true,
+    "test_b_absent": true,
+    "clean": true,
+    "kind": "synthetic branch switch, not Sentinel recovery nor full S7"
+  }
+}

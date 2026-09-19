@@ -1,0 +1,9 @@
+{
+  "mode": "close-cycle",
+  "probe_exit": 0,
+  "boot_supervisor_exit": 124,
+  "boot_supervisor_pid": 85614,
+  "elapsed_seconds": 45.29829079200863,
+  "boot_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789328380656023000-close-cycle.log",
+  "vm_closure_requires_inspect": true
+}

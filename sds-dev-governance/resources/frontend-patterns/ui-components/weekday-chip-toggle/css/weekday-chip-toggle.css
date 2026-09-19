@@ -1,0 +1,72 @@
+/* Weekday chip toggle — theme via custom properties; map them to your project tokens.
+   Reference values mirror Auragenda's group-series modal ([49-6]). */
+.chip-toggle-group {
+  --chip-border: #1c3045;      /* resting ring            */
+  --chip-border-w: 1.5px;      /* ring weight             */
+  --chip-accent: #4aa7b8;      /* checked / hover hue     */
+  --chip-text: #ddeaf6;        /* active label            */
+  --chip-muted: #7a92a8;       /* resting label           */
+  --chip-radius: 999px;
+  --chip-min-h: 40px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-toggle-group label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--chip-min-h);
+  padding: 0 15px;
+  border: var(--chip-border-w) solid var(--chip-border);
+  border-radius: var(--chip-radius);
+  color: var(--chip-muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+/* Hover is suppressed on disabled chips; brightened ring pulls the accent toward white. */
+.chip-toggle-group label:not(:has(input:disabled)):hover {
+  border-color: color-mix(in srgb, var(--chip-accent) 88%, #ffffff);
+  color: var(--chip-text);
+  background: color-mix(in srgb, var(--chip-accent) 9%, transparent);
+}
+
+.chip-toggle-group label:has(input:checked) {
+  border-color: var(--chip-accent);
+  background: color-mix(in srgb, var(--chip-accent) 16%, transparent);
+  color: var(--chip-text);
+  font-weight: 750;
+}
+
+.chip-toggle-group label:has(input:focus-visible) {
+  outline: 2px solid var(--chip-accent);
+  outline-offset: 2px;
+}
+
+.chip-toggle-group label:has(input:disabled) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* The checkbox stays real and focusable — collapsed, never display:none. */
+.chip-toggle-group input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-toggle-group label {
+    transition: none;
+  }
+}

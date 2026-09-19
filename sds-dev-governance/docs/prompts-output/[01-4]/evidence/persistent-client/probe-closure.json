@@ -1,0 +1,16 @@
+{
+  "vm_state": "stopped",
+  "inspect_exit": 0,
+  "boot_exit": 124,
+  "boot_seconds": 45.13844079099363,
+  "pids": [
+    46766,
+    46767,
+    46896
+  ],
+  "ps_exit": 1,
+  "ps_output": "",
+  "lsof_exit": 1,
+  "lsof_output": "",
+  "scope": "own PIDs/control socket, point-in-time observation"
+}

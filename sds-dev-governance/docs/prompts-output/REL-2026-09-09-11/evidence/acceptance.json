@@ -1,0 +1,74 @@
+[
+  {
+    "shell": "/bin/bash",
+    "case": "test-governance-copies.sh",
+    "exit": 0,
+    "evidence": "bash32-test-governance-copies.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-github-guardrails.sh",
+    "exit": 0,
+    "evidence": "bash32-test-github-guardrails.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-skill-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash32-test-skill-bootstrap.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-plugin-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash32-test-plugin-bootstrap.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "checker project",
+    "exit": 0,
+    "evidence": "bash32-check-project.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "checker hub",
+    "exit": 0,
+    "evidence": "bash32-check-hub.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-governance-copies.sh",
+    "exit": 0,
+    "evidence": "bash53-test-governance-copies.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-github-guardrails.sh",
+    "exit": 0,
+    "evidence": "bash53-test-github-guardrails.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-skill-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash53-test-skill-bootstrap.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-plugin-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash53-test-plugin-bootstrap.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "checker project",
+    "exit": 0,
+    "evidence": "bash53-check-project.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "checker hub",
+    "exit": 0,
+    "evidence": "bash53-check-hub.log"
+  }
+]

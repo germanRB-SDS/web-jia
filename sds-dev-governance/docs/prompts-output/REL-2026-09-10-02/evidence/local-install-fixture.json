@@ -1,0 +1,8 @@
+{
+  "fixture": "public reviewed artifact copied into disposable synthetic installation",
+  "idempotent_config": true,
+  "verified_files": 32,
+  "timestamp_stable": true,
+  "artifact_mutation_rejected": true,
+  "provider_calls": 0
+}

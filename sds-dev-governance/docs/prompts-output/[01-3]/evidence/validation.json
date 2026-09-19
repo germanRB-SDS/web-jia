@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-09-13T10:50:04.595242+00:00",
+  "scope": "Documentation only; no Sentinel runtime claims",
+  "baseline_file_count": 431,
+  "existing_changed_files": [
+    "docs/prompts/README.md"
+  ],
+  "missing_previous_files": [],
+  "expected_changed_files": [
+    "docs/prompts/README.md"
+  ],
+  "index_prior_content_preserved": true,
+  "preservation_ok": true,
+  "local_markdown_links_checked_in_files": 9,
+  "local_link_errors": [],
+  "json_parsed": 3,
+  "prompt_sections_ok": true,
+  "report_sections_ok": true,
+  "future_prompt_words": 4341,
+  "static_adapter_words_added": 0,
+  "sentinel_campaigns_executed": false,
+  "runtime_code_or_configuration_changed": false,
+  "head_unchanged": true,
+  "outcome": "PASS_DOCUMENTATION_ONLY"
+}

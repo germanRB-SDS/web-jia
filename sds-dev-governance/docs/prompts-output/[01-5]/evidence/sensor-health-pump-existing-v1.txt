@@ -1,0 +1,10 @@
+test_close_cannot_stay_healthy (containment.PumpTests.test_close_cannot_stay_healthy) ... ok
+test_poll_error_latches (containment.PumpTests.test_poll_error_latches) ... ok
+test_read_error_latches_before_next_health_check (containment.PumpTests.test_read_error_latches_before_next_health_check) ... ok
+test_selector_error_latches (containment.PumpTests.test_selector_error_latches) ... ok
+test_transient_read_readiness_does_not_poison (containment.PumpTests.test_transient_read_readiness_does_not_poison) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

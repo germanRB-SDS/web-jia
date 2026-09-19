@@ -1,0 +1,23 @@
+{
+  "integration": {
+    "chunk_id": "d73757",
+    "wall_time_seconds": 0.000003083,
+    "exit_code": 78,
+    "original_token_count": 48,
+    "output": "{\n  \"outcome\": \"NO_VERIFICADO\",\n  \"reason\": \"R8\",\n  \"attempt_observed\": false,\n  \"effect_observed\": null,\n  \"limitation\": \"No independent barrier or verified backend. No payload executed.\"\n}\n"
+  },
+  "startup": {
+    "chunk_id": "aca792",
+    "wall_time_seconds": 0.000004833,
+    "exit_code": 78,
+    "original_token_count": 45,
+    "output": "{\"outcome\": \"BLOCKED_SUPERVISOR_LIFECYCLE\", \"reason\": \"Process-group control returned EPERM. Reopen exact admission and validate supervisor context before enabling VM startup.\"}\n"
+  },
+  "inspect": {
+    "chunk_id": "f0e6b5",
+    "wall_time_seconds": 0.023696416,
+    "exit_code": 0,
+    "original_token_count": 233,
+    "output": "{\"mode\": \"inspect\", \"log\": \"/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789300876746326000-inspect.log\"}\n{\"pid\": 91568, \"process_group\": 91568}\n{\"mode\": \"inspect\", \"pid\": 91568, \"exit_code\": 0, \"stop_reason\": null, \"elapsed_seconds\": 0.028777666011592373, \"log\": \"/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789300876746326000-inspect.log\", \"log_bytes\": 474}\n{\"captured_output_prefix\": \"[\\n  {\\n    \\\"Accessed\\\" : \\\"2026-09-13T12:00:19Z\\\",\\n    \\\"Source\\\" : \\\"local\\\",\\n    \\\"Name\\\" : \\\"sentinel-lab\\\",\\n    \\\"State\\\" : \\\"stopped\\\",\\n    \\\"Running\\\" : false,\\n    \\\"Disk\\\" : 50,\\n    \\\"Size\\\" : 33\\n  },\\n  {\\n    \\\"Accessed\\\" : \\\"2026-09-13T12:00:19Z\\\",\\n    \\\"Source\\\" : \\\"OCI\\\",\\n    \\\"Name\\\" : \\\"127.0.0.1:59957\\\\/cirruslabs\\\\/macos-tahoe-base@sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e\\\",\\n    \\\"State\\\" : \\\"stopped\\\",\\n    \\\"Running\\\" : false,\\n    \\\"Disk\\\" : 50,\\n    \\\"Size\\\" : 33\\n  }\\n]\\n\"}\n"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "provenance": "Recorded from tool outputs; summaries, not reconstructed raw log files",
+  "test_source_sha256": "2655242e3e01e5b647eff6d846610cd7c185308c06f8f5650c58b659dc504479",
+  "source_sha256": "75d14c47b2d8aaab612ee12ba7d305be72d4932a50ed8ef20c51fee5f714cb43",
+  "command": "python3 -B tests/test-sentinel-tart-host.py",
+  "independent_replicates": false,
+  "runs": [
+    {"context": "managed restricted session", "tool_session": 4163, "exit_code": 1, "tests": 5, "pass": 3, "error": 2, "unittest_elapsed_seconds": 4.400, "affected_process_groups": [89508, 89516]},
+    {"context": "same session; require_escalated requested and tool execution admitted", "tool_session": 55245, "exit_code": 1, "tests": 5, "pass": 3, "error": 2, "unittest_elapsed_seconds": 4.389, "affected_process_groups": [89720, 89751]}
+  ],
+  "passed_cases": ["environment_has_no_home_or_ambient_values", "nonzero_exit_is_preserved", "normal_exit_and_bytes"],
+  "error_cases": ["output_is_bounded", "timeout_terminates_parent_and_child_group"],
+  "exception": "PermissionError: [Errno 1] Operation not permitted at os.killpg(proc.pid, sig)",
+  "additional_observation": "ResourceWarning: subprocess still running; buffered reader unclosed after the exception",
+  "cause": null,
+  "cause_reason": "EPERM observed; underlying platform policy or precise syscall cause not independently established",
+  "subject_fixture": "Python child and forked child with natural sleep(30); no VM or external network",
+  "lifecycle_guarantee": "NOT_VERIFIED",
+  "sentinel_eligible_attempts": 0
+}

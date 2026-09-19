@@ -1,0 +1,30 @@
+{
+  "revision.json": {
+    "hashes_verified": 76,
+    "mismatches": []
+  },
+  "close-revision.json": {
+    "hashes_verified": 9,
+    "mismatches": []
+  },
+  "local_document_links": {
+    "checked": 105,
+    "broken": []
+  },
+  "correlated_csv_records": 62,
+  "closure_analyzer_tests": 16,
+  "host_test_directories_absent": true,
+  "host_branch": "main",
+  "host_head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "payloads_or_vm_executed_in_validation": false,
+  "timestamp": "2026-09-13T19:52:31.553871+00:00",
+  "analysis_provenance_sha256": {
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/analyze_with_closure.py": "bd3a8c2e171209187bd483bf3c801a15c58161b5d8468eabdd10a0c9443ca520",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/check_closure_analyzer.py": "31724d6ab54e68659663e9cc83661e908fb5fe83e8a2582e65d6f7b80bb6bc1b",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/analysis.json": "1453bbc5870f1ea608cac68b1833839cfd833098f4ef38f4f347ee40294b5249",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/1789328068464235000-deletion-expanded.log": "563474e50de06398e639996888fe110dec8e43fc1187370e5936c36f8fc8c586",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/1789328388708787000-deletion-close.log": "4a768eb8eeb03e385843127c55a872ecf2e16690574d316e7d40e183ea6e03d9",
+    "docs/prompts-output/[01-4]/evidence/deletion-expanded/executions.bundle": "861703a0302afbb0e566d0eb9db854cafb389b57c3a46dab3ddfc090ab736ae0",
+    "docs/prompts-output/[01-4]/deletion-expanded-report.md": "02ba8d4c4f633cc5bbd57f2a6dea6cb223db0d33c9aae640381c980ba4b0d5c3"
+  }
+}

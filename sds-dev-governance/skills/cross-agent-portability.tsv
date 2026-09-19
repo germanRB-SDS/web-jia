@@ -1,0 +1,95 @@
+# SDS cross-agent skill portability policy
+# Columns: skill<TAB>class<TAB>reason
+# Classes:
+#   LINK        provider-neutral SKILL.md; symlink the real directory into every agent store
+#   PORT        useful but Claude/gstack-coupled; serve the curated rewrite from the SDS port
+#   CLAUDE_ONLY not portable; requires gstack runtime, a device bridge, a daemon, or Claude host semantics
+# Fail-closed: a skill absent from this file is UNCLASSIFIED and is never propagated.
+_gstack-command	CLAUDE_ONLY	gstack command dispatcher; no meaning outside the gstack runtime
+autoplan	CLAUDE_ONLY	orchestrates Claude subagents and auto-decisions
+benchmark	CLAUDE_ONLY	requires the gstack browse daemon
+benchmark-models	CLAUDE_ONLY	benchmarks gstack skills across Claude models
+browse	PORT	curated rewrite uses generic browser tooling instead of the gstack daemon
+canary	CLAUDE_ONLY	post-deploy monitoring bound to gstack deploy state
+careful	PORT	curated rewrite expresses the guardrails as procedural checks
+codex	CLAUDE_ONLY	wrapper that shells out to another agent from inside Claude
+connect-chrome	CLAUDE_ONLY	launches the gstack Chromium build with its extension
+context-restore	CLAUDE_ONLY	reads gstack session state
+context-save	CLAUDE_ONLY	writes gstack session state
+cso	PORT	curated rewrite is findings-first security review guidance
+design-consultation	CLAUDE_ONLY	generates preview assets through gstack tooling
+design-html	CLAUDE_ONLY	emits Pretext-native output tied to the gstack pipeline
+design-review	PORT	curated rewrite drops the gstack browser dependency
+design-shotgun	CLAUDE_ONLY	opens a local comparison board served by gstack
+devex-review	CLAUDE_ONLY	live audit driven by the gstack browser daemon
+document-generate	PORT	curated rewrite is evidence-based documentation guidance
+document-release	PORT	curated rewrite removes publishing automation
+freeze	CLAUDE_ONLY	mutates Claude Code edit-scope state
+frontend-design	LINK	already provider-neutral design guidance
+graphify	PORT	curated rewrite references the official package and the SDS installer
+gstack	CLAUDE_ONLY	the runtime itself
+gstack-upgrade	CLAUDE_ONLY	upgrades the gstack runtime
+guard	PORT	curated rewrite expresses the scoped-edit posture procedurally
+health	CLAUDE_ONLY	dashboard bound to gstack collectors
+impeccable	LINK	multi-harness frontend design skill, portable by design
+investigate	PORT	curated rewrite drops external memory dependencies
+ios-clean	CLAUDE_ONLY	iOS DebugBridge package management
+ios-design-review	CLAUDE_ONLY	requires the iOS device bridge
+ios-fix	CLAUDE_ONLY	requires the iOS device bridge
+ios-qa	CLAUDE_ONLY	requires the iOS device bridge
+ios-sync	CLAUDE_ONLY	regenerates the iOS debug bridge
+land-and-deploy	CLAUDE_ONLY	live deploy access through gstack
+landing-report	CLAUDE_ONLY	reads the gstack workspace queue
+learn	CLAUDE_ONLY	manages gstack project learnings
+make-pdf	CLAUDE_ONLY	depends on the gstack rendering toolchain
+office-hours	CLAUDE_ONLY	interactive Claude-specific role play
+open-gstack-browser	CLAUDE_ONLY	launches the gstack browser
+pair-agent	CLAUDE_ONLY	pairs a remote agent with the gstack browser
+plan-ceo-review	CLAUDE_ONLY	depends on AskUserQuestion semantics
+plan-design-review	CLAUDE_ONLY	depends on AskUserQuestion semantics
+plan-devex-review	CLAUDE_ONLY	depends on AskUserQuestion semantics
+plan-eng-review	CLAUDE_ONLY	depends on AskUserQuestion semantics
+plan-tune	CLAUDE_ONLY	tunes gstack question sensitivity
+qa	PORT	curated rewrite targets generic tooling
+qa-only	PORT	curated rewrite targets generic tooling
+retro	CLAUDE_ONLY	reads gstack history collectors
+review	PORT	curated rewrite drops subagents and telemetry
+scrape	CLAUDE_ONLY	requires the gstack browse daemon
+sds-r8-analyzer	LINK	SDS-authored, analysis-only, provider-neutral
+setup-browser-cookies	CLAUDE_ONLY	imports cookies into the gstack browse session
+setup-deploy	CLAUDE_ONLY	configures gstack deploy settings
+setup-gbrain	CLAUDE_ONLY	installs and registers gbrain
+ship	PORT	curated rewrite removes push, PR, deploy and version automation
+skillify	CLAUDE_ONLY	codifies a gstack browse flow into a skill
+spec	PORT	curated rewrite is bounded planning guidance
+spline	LINK	SKILL.md is provider-neutral; the MCP bridge is registered per agent
+sync-gbrain	CLAUDE_ONLY	synchronises gbrain state
+threejs-agents-model-optimizer	LINK	provider-neutral three.js guidance
+threejs-agents-scene-builder	LINK	provider-neutral three.js guidance
+threejs-core-math	LINK	provider-neutral three.js guidance
+threejs-core-raycaster	LINK	provider-neutral three.js guidance
+threejs-core-renderer	LINK	provider-neutral three.js guidance
+threejs-core-scene-graph	LINK	provider-neutral three.js guidance
+threejs-errors-performance	LINK	provider-neutral three.js guidance
+threejs-errors-rendering	LINK	provider-neutral three.js guidance
+threejs-impl-animation	LINK	provider-neutral three.js guidance
+threejs-impl-audio	LINK	provider-neutral three.js guidance
+threejs-impl-drei	LINK	provider-neutral three.js guidance
+threejs-impl-ifc-viewer	LINK	provider-neutral three.js guidance
+threejs-impl-lighting	LINK	provider-neutral three.js guidance
+threejs-impl-physics	LINK	provider-neutral three.js guidance
+threejs-impl-post-processing	LINK	provider-neutral three.js guidance
+threejs-impl-react-three-fiber	LINK	provider-neutral three.js guidance
+threejs-impl-shadows	LINK	provider-neutral three.js guidance
+threejs-impl-webgpu	LINK	provider-neutral three.js guidance
+threejs-impl-xr	LINK	provider-neutral three.js guidance
+threejs-syntax-controls	LINK	provider-neutral three.js guidance
+threejs-syntax-geometries	LINK	provider-neutral three.js guidance
+threejs-syntax-loaders	LINK	provider-neutral three.js guidance
+threejs-syntax-materials	LINK	provider-neutral three.js guidance
+threejs-syntax-shaders	LINK	provider-neutral three.js guidance
+unfreeze	CLAUDE_ONLY	clears Claude Code edit-scope state
+deploy-to-vercel	LINK	already installed in the shared universal store
+vercel-cli-with-tokens	LINK	already installed in the shared universal store
+vercel-optimize	LINK	already installed in the shared universal store
+find-skills	LINK	already installed in the shared universal store

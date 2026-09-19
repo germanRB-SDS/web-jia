@@ -1,0 +1,5 @@
+{
+  "scripts/gh-safe.sh": "2e0b5d53a2391d0a2cfa296b74159becdc4ee185ff31a18fba07dea493228b24",
+  "scripts/git-safe-push.sh": "68dfd452ab33cbd5c5115c6485f9541919b12e1715fa13cc87352df8641d7c18",
+  "hooks/pre-push": "061a8786348b87a1a653affc055ab06f765762d915255025d39a83193d2ade38"
+}

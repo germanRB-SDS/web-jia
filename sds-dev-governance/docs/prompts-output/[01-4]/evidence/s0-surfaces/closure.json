@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-13T16:18:25.210110+00:00",
+  "vm": "stopped",
+  "owned_pids": [
+    34278,
+    34279,
+    34424
+  ],
+  "ps_observation": {
+    "command": "/bin/ps -p 34278,34279,34424 -o pid=,ppid=,pgid=,comm=",
+    "restricted_attempt": "Operation not permitted",
+    "approved_escalated_attempt": "no output, own PIDs absent"
+  },
+  "socket_observation": {
+    "command": "/usr/sbin/lsof -n -a -U /private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/control.sock",
+    "approved_escalated_attempt": "no output; command status1",
+    "earlier_unscoped_lsof": "-a missing, OR-selection output unusable; excluded from conclusions and not persisted"
+  },
+  "guest_cleanup": {
+    "type": "cleanup",
+    "listeners_closed": true,
+    "witness_closed": true
+  },
+  "boot_receipt": {
+    "mode": "boot-smoke",
+    "pid": 34278,
+    "exit_code": 124,
+    "stop_reason": "timeout",
+    "elapsed_seconds": 45.10445666601299,
+    "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789316071697178000-boot-smoke.log",
+    "log_bytes": 86
+  },
+  "probe_exit": 0,
+  "AB_runs": 0,
+  "S0_full": "NO_VERIFICADO",
+  "S7": "NO_VERIFICADO",
+  "cost_overhead_percent": null,
+  "platform_approval_rejection": null
+}

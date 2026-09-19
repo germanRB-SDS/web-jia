@@ -1,0 +1,126 @@
+{
+  "scope": "synthetic home; ten closed modules; empty valid ledger",
+  "cold": {
+    "ms": 38.633,
+    "stdout_bytes": 143,
+    "stderr_bytes": 0
+  },
+  "warm_median_ms": 38.703,
+  "warm_p95_ms": 39.148,
+  "samples": [
+    {
+      "ms": 38.633,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 39.016,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.647,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.807,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 39.327,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.861,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.831,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.402,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.435,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.925,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.42,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.617,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 39.095,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.793,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.499,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.581,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.759,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.526,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.556,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 39.148,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    },
+    {
+      "ms": 38.395,
+      "stdout_bytes": 143,
+      "stderr_bytes": 0
+    }
+  ],
+  "token_count": "NOT_MEASURED",
+  "provider_calls": 0,
+  "example": {
+    "server": "hostinger-vps",
+    "client": "codex",
+    "status": "BLOCKED_SECRET_ISOLATION",
+    "allowed": false,
+    "policy": "practices/modules/07-mcp-control.md"
+  }
+}

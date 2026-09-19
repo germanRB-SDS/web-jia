@@ -1,0 +1,14 @@
+{
+  "outcome": "STAGING_PASS_BEFORE_REBOOT",
+  "exit_code": 0,
+  "elapsed_seconds": 12.85595979198115,
+  "guest_root": "/Users/Shared/sds-sentinel-client-4f85982624b3",
+  "version": "codex-cli 0.154.0",
+  "hash_matches": true,
+  "fsync_completed": true,
+  "persistence_after_reboot": "PENDING",
+  "custody_verified": false,
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0
+}

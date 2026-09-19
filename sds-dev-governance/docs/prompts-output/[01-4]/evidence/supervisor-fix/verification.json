@@ -1,0 +1,15 @@
+{
+  "source_hashes_match": {
+    "sentinel/tart_host.py": true,
+    "sentinel/public_registry.py": true,
+    "tests/test-sentinel-tart-host.py": true
+  },
+  "ast": "PASS",
+  "run_gate_exit": 78,
+  "run_gate_created_processes": false,
+  "run_gate_checked_or_created_root": false,
+  "git_diff_check_exit": 0,
+  "git_diff_check_output": "",
+  "vm_started": false,
+  "ab_campaign_executed": false
+}

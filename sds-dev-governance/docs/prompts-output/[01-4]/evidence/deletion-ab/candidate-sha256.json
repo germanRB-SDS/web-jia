@@ -1,0 +1,7 @@
+{
+  "sentinel/core.py": "c4d0b03f79a3a07db7270763ccbf1aa98d9a59a0052fdeb035323a830134ca93",
+  "sentinel/recovery.py": "68181f3a83b6f547f64bf97de3d1662b3986b75beb7e9998e1f4a649511f3ae0",
+  "sentinel/templates/codex-config.toml": "81ee2e108b7c98af642908c46cd5a4b6ddd4e3c0cafe2404af136c02b2a03e3f",
+  "sentinel/templates/claude-settings.json": "7245a0ecfa060a7b9d07ec01fe6bb268553543f12f2247cd39578f1143a578b9",
+  "sentinel/templates/stop-rule.proposal.md": "1b1822b08aebd1bc02e4cc3cbacfd4a992d241a5b781bb00ed61c7f201f41692"
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Text Shimmer — example</title>
+  <link rel="stylesheet" href="../css/text-shimmer.css" />
+  <style>
+    body { margin: 0; background: #0A0A14; color: #EDEAF7;
+      font-family: ui-sans-serif, system-ui, sans-serif; display: grid; gap: 28px;
+      place-content: center; min-height: 100vh; }
+    p { margin: 0; font-size: 1.4rem; }
+    .muted { color: #9A97B5; }
+    /* Ejemplo de override de tokens (azul/violeta) para otra marca */
+    .text-shimmer.brand-aura {
+      --shimmer-from: #5AA0E8; --shimmer-mid: #7B7FE0; --shimmer-highlight: #CFCBFF;
+    }
+  </style>
+</head>
+<body>
+  <!-- Aplica el efecto solo a las palabras deseadas, no a toda la frase -->
+  <p class="muted">un producto de <span class="text-shimmer">South Desert Studio</span></p>
+  <p>Reservas <span class="text-shimmer">siempre claras</span> para tu negocio</p>
+  <p class="muted">override de tokens → <span class="text-shimmer brand-aura">aura azul-violeta</span></p>
+</body>
+</html>

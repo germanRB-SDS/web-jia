@@ -1,0 +1,106 @@
+:root {
+  --color-text: #ddeaf6;
+  --color-muted: #7a92a8;
+  --color-border: #1c3045;
+  --color-surface: #111f30;
+  --color-brand-primary: #4aa7b8;
+  --color-brand-accent: #f5c242;
+}
+
+.glow-card {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  background:
+    radial-gradient(220px 220px at calc(var(--x, -999) * 1px) calc(var(--y, -999) * 1px), hsl(var(--glow-hue, 210) 80% 65% / 0.08), transparent),
+    var(--color-surface);
+  color: var(--color-text);
+  transition: box-shadow 0.35s ease;
+}
+
+.glow-card:hover { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); }
+
+.glow-card::before,
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  pointer-events: none;
+  z-index: -1;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+.glow-card::before {
+  background: radial-gradient(160px 160px at calc(var(--x, -999) * 1px) calc(var(--y, -999) * 1px), hsl(var(--glow-hue, 210) 80% 55% / 0.7), transparent);
+}
+
+@property --ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.glow-ring {
+  --ring-blue: var(--color-brand-primary);
+  --ring-gold: var(--color-brand-accent);
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 28px;
+}
+
+.glow-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--ring-angle), transparent 0deg, var(--ring-blue) 80deg, var(--ring-gold) 180deg, transparent 260deg);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.glow-ring:hover::before,
+.glow-ring:focus-within::before {
+  opacity: 1;
+  animation: ring-shift 3.6s linear infinite;
+}
+
+.glow-ring-glass {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(22px) saturate(180%);
+}
+
+.glow-ring a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+@keyframes ring-shift {
+  to { --ring-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-card,
+  .glow-ring::before {
+    transition: none;
+    animation: none;
+  }
+}

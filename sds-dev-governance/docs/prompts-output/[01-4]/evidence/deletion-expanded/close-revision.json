@@ -1,0 +1,14 @@
+{
+  "sha256": {
+    "sentinel/tart_host.py": "7b2155a6753a4555773fb73db1d07ca9d83c7f83cfdfebc9a6f2eab086d0fba6",
+    "sentinel/net_sink.py": "d69ab46e999dedb8e7fef0fdc7b65315eae08805637f7d8aa0765f3443eae09d",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "/opt/homebrew/Cellar/tart/2.37.0/libexec/tart.app/Contents/MacOS/tart": "4bb842d1c9284c1c9cb56f017dde916dfce6995ef9844913d5af89ea54126df7",
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf",
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": "a12a38fa3af38356edce28a404f1e1b388e070a4169bc1cd7d07eab19a53d321",
+    "sentinel/deletion_close_guest.js": "4a0f2e9baf8e8d0edb9722aa1e9407cb4ed11d739bbc3284f6419fac10396ba0",
+    "sentinel/deletion_close_vm.py": "0a73be57b697dc23cafb8cfa20af7d2e312c1e6e8cd4a2fb451b79b1042e72bb",
+    "sentinel/deletion_close_cycle.py": "e6d05dca0ab3852d3bc98a381323a60382bbddc23489588b8bbac51409fe5a5f"
+  },
+  "scope": "rmdir only empty guest test-a/test-b directories after verified clean branch; no payload/file deletion"
+}

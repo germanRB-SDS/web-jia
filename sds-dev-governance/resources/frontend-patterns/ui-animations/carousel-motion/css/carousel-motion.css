@@ -1,0 +1,44 @@
+.motion-carousel {
+  --carousel-motion-distance: 16%;
+  --carousel-motion-duration: 260ms;
+  position: relative;
+  display: grid;
+  gap: 12px;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.motion-slide {
+  grid-area: 1 / 1;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #162437;
+  color: #ddeaf6;
+  opacity: 0;
+  transform: translateX(var(--carousel-motion-distance));
+  transition:
+    opacity var(--carousel-motion-duration) ease,
+    transform var(--carousel-motion-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.motion-slide.is-current {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.motion-slide.is-exiting-previous { transform: translateX(calc(var(--carousel-motion-distance) * -1)); }
+.motion-slide.is-exiting-next { transform: translateX(var(--carousel-motion-distance)); }
+
+.motion-carousel button {
+  z-index: 2;
+  justify-self: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-slide {
+    transition: none;
+    transform: none;
+  }
+}

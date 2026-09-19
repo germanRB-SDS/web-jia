@@ -1,0 +1,119 @@
+{
+  "state": "PASS within described scope; guard runtime NOT_VERIFIED",
+  "head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "preexisting_files_unchanged": 397,
+  "preexisting_files_changed_only_as_requested": [
+    "CHANGELOG.md",
+    "README.md",
+    "docs/governance/README.md",
+    "docs/governance/governance-change-log.md",
+    "docs/prompts/README.md",
+    "init-project-prompt.md",
+    "init.sh",
+    "practices/11-governance-evolution.md",
+    "scripts/bootstrap.py"
+  ],
+  "deleted_previous_files": 0,
+  "recovery_package_hashes": "PASS",
+  "local_links_checked": 19,
+  "local_link_errors": [],
+  "syntax_python_bash": "PASS",
+  "git_diff_check": 0,
+  "home_patch_check_on_pre_sentinel": 0,
+  "staged_changes": false,
+  "source_manifest": {
+    "docs/prompts/[01-2-alpha]sentinel-guard-local-macos.md": {
+      "sha256": "b9307665d792ee5d05a9c905b52392743aa5077a91f2f608012bb3e8e7e0e37a",
+      "bytes": 16392
+    },
+    "docs/prompts-output/[01-2]preparacion-guard-local.md": {
+      "sha256": "d570b281eff910a63435bffc9df0bdc0268dcc90bf659eebcdaa039356c98d68",
+      "bytes": 13112
+    },
+    "knowledge/README.md": {
+      "sha256": "0b71291b3dcb14e28cd1a71068b4e1c71115aaf4f50c91680fdaad5762492df1",
+      "bytes": 374
+    },
+    "knowledge/how-to-convert-from-image-to-svg.md": {
+      "sha256": "cab5fc3726679ade44381631e4631122f6492756bbdbd99f6feb8f235f837b0c",
+      "bytes": 7210
+    },
+    "docs/prompts-output/[01-2]/revision-claude.md": {
+      "sha256": "12b9d0822462870a5bc9cdc36240eda7554a3e5b834e44be01db732bd5d26691",
+      "bytes": 2697
+    },
+    "docs/prompts-output/[01-2]/README.md": {
+      "sha256": "e996afd061d7cd18f535cc708b0cfe2ec9e8bb3b75af9eec56158c21777fdf0e",
+      "bytes": 811
+    },
+    "docs/prompts-output/[01-2]/regresion.md": {
+      "sha256": "1b3d08b2060aab8fc8b932e177ac303d31b47653ab93e7b03ad780dd2af08aa9",
+      "bytes": 3544
+    },
+    "docs/prompts-output/[01-2]/tmp/continuidad.md": {
+      "sha256": "b1b90687ec93d3f35647b081cf4802e3e71fd2d0d26fcd583ddc9566dbe31a1d",
+      "bytes": 1632
+    },
+    "docs/prompts-output/[01-2]/evidence/README.md": {
+      "sha256": "a83b384472a83e9d2ae3c0bb9007039f5970b453786524aae9016df485a415e0",
+      "bytes": 742
+    },
+    "docs/prompts/README.md": {
+      "sha256": "f66e9aed7c01c99c7c91aacb420d59e4de492fb26bb0da7901cf48be04c3c115",
+      "bytes": 2541
+    },
+    "practices/11-governance-evolution.md": {
+      "sha256": "8200e5356364c67c00d2e364f571c5d993cb8aa7c6628a631e32ebf9a14129da",
+      "bytes": 14996
+    },
+    "scripts/bootstrap.py": {
+      "sha256": "99ebab86b8b41f81216115f9de3ce75bcfd1d152e6962b303735140162d13a55",
+      "bytes": 13184
+    },
+    "init.sh": {
+      "sha256": "13e663510a5a6bacf14877ad3b8038cf1ceeffbd55bc7b3f3037fef56efac53b",
+      "bytes": 830
+    },
+    "docs/governance/governance-change-log.md": {
+      "sha256": "183d3fafd84ce96e32695619fb635454aae8e9104a249034015e066674d62506",
+      "bytes": 13865
+    },
+    "docs/governance/README.md": {
+      "sha256": "45f085d3e8b1bdaad7035fea23675eaf746e993743f0e33f1b215237ccf8bc66",
+      "bytes": 737
+    },
+    "CHANGELOG.md": {
+      "sha256": "2bbfc87a84869ea27b4acfb0bd2001b06520aedb3df9ad5dc7f05c317c8c8326",
+      "bytes": 46082
+    },
+    "init-project-prompt.md": {
+      "sha256": "35435d6d150c36867eaf0435c9e60ff44bf3264b4ef2e8918d849e0c672b7740",
+      "bytes": 7746
+    },
+    "README.md": {
+      "sha256": "df5272e879fda37cd0941bdb1f46ca909a91aa973ec7472a276e0505f6bac53f",
+      "bytes": 28597
+    },
+    "tests/test-bootstrap-location.py": {
+      "sha256": "59f8c93e21a1124a89c6c345c2ab3a7198a8be3e5c04edc9961169bb885e4006",
+      "bytes": 4315
+    },
+    "docs/prompts-output/[01-2]/evidence/home-location.patch": {
+      "sha256": "ac470ec7b0a8bec97473641214a88b551951d2ab18eba93e1ea2b5c3a5042369",
+      "bytes": 9045
+    }
+  },
+  "limitations": [
+    "No guard implementation or runtime tests",
+    "No full bootstrap materialization or installer tests",
+    "No image conversion performed; knowledge recipe is reconstructed from archived parameters",
+    "Local snapshots are not independent security custody"
+  ],
+  "dossier": {
+    "path": "docs/prompts-output/[01-2]/dossier-terminal.txt",
+    "sha256": "4df07d6ef403633115682aebb95dd044be03c9f375990ded16f2ab617b2cc7bb",
+    "bytes": 54001,
+    "scope": "derived review copy; original sources listed in each block"
+  },
+  "final_documentation_links": "PASS: dossier links exist; other 19 links checked before final index additions"
+}

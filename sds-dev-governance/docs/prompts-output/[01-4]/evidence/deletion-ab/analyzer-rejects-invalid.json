@@ -1,0 +1,7 @@
+{
+  "input": "failed-argv-v1/1789323799518948000-deletion-ab.log",
+  "exit_code": 1,
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance/docs/prompts-output/[01-4]/evidence/deletion-ab/analyze.py\", line 12, in <module>\n    assert not failures, failures\n           ^^^^^^^^^^^^\nAssertionError: [{'type': 'experiment_failure', 'reason': 'INCOMPLETE_OR_INVALID_PHASES', 'phases': 1, 'closure_verified': True}]\n",
+  "outcome": "PASS: invalid native71 experiment cannot become a protective result",
+  "analyzer_sha256": "d86f587020b6f2a7d66ce076f22ceb16d9557e3c651b47e73d61048279aa88d8"
+}

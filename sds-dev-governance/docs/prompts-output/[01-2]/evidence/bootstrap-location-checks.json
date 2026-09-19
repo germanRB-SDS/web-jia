@@ -1,0 +1,32 @@
+{
+  "unit_tests": {
+    "command": "python3 -B tests/test-bootstrap-location.py",
+    "passed": 10,
+    "failed": 0,
+    "source": "observed tool output, first run; fixture retained at /private/tmp/sds-location-_pdhdsjk"
+  },
+  "entrypoint_smokes": [
+    {
+      "case": "home",
+      "exit": 2,
+      "expected_exit": 2,
+      "diagnostic": "HOME rejected before planning"
+    },
+    {
+      "case": "home-hub",
+      "exit": 2,
+      "expected_exit": 2,
+      "diagnostic": "HOME rejected before planning"
+    },
+    {
+      "case": "project-plan",
+      "exit": 0,
+      "expected_exit": 0,
+      "target_created": false,
+      "planned_files": 432,
+      "install_skills": false,
+      "install_plugins": false
+    }
+  ],
+  "scope": "location validation and read-only planning; no installers/materialization"
+}

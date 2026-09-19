@@ -1,0 +1,315 @@
+{
+  "scope": "fail-closed host reference scripts; payload never reached",
+  "checks": [
+    {
+      "id": "1",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "2",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "3",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "4",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "5",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "6",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "7",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "8",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "9",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "10",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "11",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "12",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "13",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "14",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "15",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "16",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "17",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "18",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "19",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "20",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "21",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "22",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "23",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "24",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "25",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "26",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "27",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "28",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "29",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "30",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "31",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "32",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "33",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "34",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "35",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "36",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "37",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "38",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "39",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "40",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "41",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "42",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "43",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "44",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "45",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "46",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "47",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "48",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "49",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "50",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "51",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "52",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "53",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "54",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "55",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "56",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "57",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "58",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "59",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "60",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "61",
+      "exit_code": 78,
+      "payload_executed": false
+    },
+    {
+      "id": "62",
+      "exit_code": 78,
+      "payload_executed": false
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "bundle",
+        "verify",
+        "docs/prompts-output/[01-4]/evidence/deletion-ab/executions.bundle"
+      ],
+      "exit_code": 0,
+      "stdout": "The bundle contains these 4 refs:\n56d42403eba5f96a2effc55f17c015eb5ef36867 refs/heads/lab-clean\nf11f6adf151bafe013fc0a7685bebbb233957a03 refs/heads/sentinel-deletion-runs\n0fc13659f92e4a8ff61597481c5c6812c8c2fd7f refs/heads/sentinel-deletion-runs-v2\n0fc13659f92e4a8ff61597481c5c6812c8c2fd7f HEAD\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\n",
+      "stderr": "docs/prompts-output/[01-4]/evidence/deletion-ab/executions.bundle is okay\n"
+    },
+    {
+      "argv": [
+        "git",
+        "bundle",
+        "list-heads",
+        "docs/prompts-output/[01-4]/evidence/deletion-ab/executions.bundle"
+      ],
+      "exit_code": 0,
+      "stdout": "56d42403eba5f96a2effc55f17c015eb5ef36867 refs/heads/lab-clean\nf11f6adf151bafe013fc0a7685bebbb233957a03 refs/heads/sentinel-deletion-runs\n0fc13659f92e4a8ff61597481c5c6812c8c2fd7f refs/heads/sentinel-deletion-runs-v2\n0fc13659f92e4a8ff61597481c5c6812c8c2fd7f HEAD\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": " M .gitignore\n M CHANGELOG.md\n M README.md\n M docs/governance/README.md\n M docs/governance/capability-registry.md\n M docs/governance/governance-change-log.md\n M init-project-prompt.md\n M init.sh\n M practices/11-governance-evolution.md\n M scripts/bootstrap.py\n M scripts/governance_tree.py\n?? .DS_Store\n?? docs/.DS_Store\n?? docs/prompts-output/.DS_Store\n?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/\n?? docs/prompts-output/[01-0]/\n?? docs/prompts-output/[01-0]sentinel-revision-aterrizada.md\n?? docs/prompts-output/[01-1]/\n?? docs/prompts-output/[01-1]sentinel-implementacion-verificable.md\n?? docs/prompts-output/[01-2]/\n?? docs/prompts-output/[01-2]preparacion-guard-local.md\n?? docs/prompts-output/[01-3]/\n?? docs/prompts-output/[01-3]sentinel-preparacion-definitiva.md\n?? docs/prompts-output/[01-4]/\n?? docs/prompts-output/[01-4]sentinel-implementacion-evaluacion.md\n?? docs/prompts/\n?? knowledge/\n?? sentinel/\n?? tests/estimate-sentinel-local.py\n?? tests/measure-sentinel.py\n?? tests/test-bootstrap-location.py\n?? tests/test-sentinel-evaluation.py\n?? tests/test-sentinel-exec-transport.py\n?? tests/test-sentinel-net-sink.py\n?? tests/test-sentinel-public-registry.py\n?? tests/test-sentinel-tart-host.py\n?? tests/test-sentinel.py\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "79aa7ffce2563e0e3abc189b19054187daf1a43d\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exit_code": 0,
+      "stdout": "main\n",
+      "stderr": ""
+    }
+  ],
+  "host_test_a_absent": true,
+  "host_test_b_absent": true,
+  "host_git_mutated_by_task": false
+}

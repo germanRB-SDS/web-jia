@@ -1,0 +1,12 @@
+test_chunked_jsonl_canary_and_unrelated_sequences (__main__.SensorTests.test_chunked_jsonl_canary_and_unrelated_sequences) ... ok
+test_duplicate_json_keys_rejected (__main__.SensorTests.test_duplicate_json_keys_rejected) ... ok
+test_global_gap_closes_even_on_unrelated_process (__main__.SensorTests.test_global_gap_closes_even_on_unrelated_process) ... ok
+test_per_type_gap_closes (__main__.SensorTests.test_per_type_gap_closes) ... ok
+test_restart_schema_and_identity_failure (__main__.SensorTests.test_restart_schema_and_identity_failure) ... ok
+test_same_group_and_forged_canary_rejected (__main__.SensorTests.test_same_group_and_forged_canary_rejected) ... ok
+test_saturation_and_eof_are_control_faults (__main__.SensorTests.test_saturation_and_eof_are_control_faults) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK

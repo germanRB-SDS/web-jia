@@ -1,0 +1,7 @@
+{
+  "chunk_id": "9a39ef",
+  "wall_time_seconds": 0.00000475,
+  "exit_code": 0,
+  "original_token_count": 27,
+  "output": "{\n  \"ast_files\": 14,\n  \"ast\": \"PASS\",\n  \"dashboard_reproduces\": true,\n  \"broken_local_report_links\": []\n}\n"
+}

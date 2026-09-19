@@ -1,0 +1,72 @@
+<section class="filter-panel" data-filter-panel>
+  <header class="filter-panel__header">
+    <h2>Records</h2>
+    <button
+      class="filter-panel__collapse"
+      type="button"
+      aria-expanded="true"
+      aria-controls="example-filter-panel-body"
+      aria-label="Collapse records panel"
+      data-panel-toggle>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="filter-panel__body" id="example-filter-panel-body" aria-hidden="false" data-panel-body>
+    <div class="filter-panel__body-inner">
+      <form class="expandable-filters" role="search" data-expandable-filters>
+        <label class="expandable-filters__search">
+          <span>Search records</span>
+          <input name="query" type="search" placeholder="Example: North office" autocomplete="off">
+        </label>
+
+        <div
+          class="expandable-filters__options"
+          id="example-filter-options"
+          aria-hidden="true"
+          data-filter-options
+          inert>
+          <label>
+            <span>Status</span>
+            <select name="status">
+              <option value="">All</option>
+              <option value="active">Active</option>
+              <option value="paused">Paused</option>
+            </select>
+          </label>
+          <label>
+            <span>Per page</span>
+            <select name="pageSize">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </label>
+        </div>
+
+        <button
+          class="expandable-filters__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="example-filter-options"
+          aria-label="Show filters"
+          data-filter-toggle>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M4 5h16l-6.5 7.5V18l-3 1.5v-7z" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+
+        <button class="visually-hidden" type="submit">Apply search</button>
+      </form>
+
+      <div class="filter-panel__results" aria-live="polite" data-filter-results>
+        Results render here.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="module" src="../javascript/expandable-search-filter-panel.js"></script>
+

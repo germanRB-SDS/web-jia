@@ -1,0 +1,98 @@
+{
+  "evidence_id": "E02-discovery",
+  "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6",
+  "git": "git version 2.50.1 (Apple Git-155)",
+  "tools": {
+    "codex": true,
+    "claude": true,
+    "gemini": false,
+    "sandbox-exec": true,
+    "docker": false,
+    "podman": false,
+    "limactl": false,
+    "colima": false,
+    "qemu-system-aarch64": false,
+    "graphify": true
+  },
+  "versions": {
+    "codex": {
+      "value": "0.154.0",
+      "class": "INFERIDO",
+      "method": "installation symlink and matching binary string; no CLI execution"
+    },
+    "claude": {
+      "value": "2.1.270",
+      "class": "INFERIDO",
+      "method": "installation symlink and matching binary string; no CLI execution"
+    },
+    "gemini": {
+      "value": null,
+      "class": "NO_DISPONIBLE",
+      "method": "not found in PATH; no claim about whole machine"
+    }
+  },
+  "current_session": {
+    "source": "developer runtime and environment_context",
+    "sandbox_mode": "workspace-write",
+    "permission_profile": "managed/restricted",
+    "approvals_reviewer": "auto_review",
+    "network": "restricted",
+    "writable_roots": [
+      "KIT",
+      "/private/tmp",
+      "SESSION_TMPDIR"
+    ],
+    "read_only_controls": [
+      "KIT/.git",
+      "KIT/.agents",
+      "KIT/.codex"
+    ],
+    "tool_executor": [
+      "functions.exec -> exec_command/write_stdin",
+      "apply_patch (separate tool)"
+    ],
+    "cli_installed_is_not_session_version": true
+  },
+  "outer_barrier": {
+    "outcome": "NO_VERIFICADO",
+    "attempt": "sandbox-exec read-only/no-network wrapper for codex --version only",
+    "exit": 71,
+    "stderr": "sandbox-exec: sandbox_apply: Operation not permitted",
+    "target_process_launched": false,
+    "no_escalation": true
+  },
+  "config_layers": [
+    {
+      "source": "codex-user",
+      "observed_keys": {
+        "approvals_reviewer": "auto_review"
+      },
+      "effective": false,
+      "root_permissions_declared": false,
+      "kit_trust": {
+        "trust_level": "trusted"
+      },
+      "parent_trust": {
+        "trust_level": "trusted"
+      },
+      "hooks_top_keys": [
+        "state"
+      ]
+    },
+    {
+      "source": "codex-parent",
+      "observed_keys": {},
+      "effective": false,
+      "root_permissions_declared": false
+    },
+    {
+      "source": "claude-user",
+      "observed_keys": {},
+      "effective": false,
+      "root_permissions_declared": true,
+      "permission_allow_count": 1,
+      "sandbox_declared": false
+    }
+  ]
+}

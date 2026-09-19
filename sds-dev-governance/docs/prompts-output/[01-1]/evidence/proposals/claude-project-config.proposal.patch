@@ -1,0 +1,13 @@
+diff --git a/.claude/settings.local.json b/.claude/settings.local.json
+--- /dev/null
++++ b/.claude/settings.local.json
+@@ -0,0 +1,9 @@
++{
++  "sandbox": {
++    "enabled": true,
++    "failIfUnavailable": true,
++    "allowUnsandboxedCommands": false,
++    "autoAllowBashIfSandboxed": true,
++    "excludedCommands": []
++  }
++}

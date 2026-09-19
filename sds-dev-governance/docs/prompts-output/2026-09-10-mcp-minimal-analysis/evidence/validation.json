@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "local_links_checked": 18,
+  "broken_links": [],
+  "trailing_whitespace": [],
+  "source_hash_changes_since_snapshot": [],
+  "report_sections": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+  ],
+  "reproduction_python_syntax": "PASS",
+  "json_parse": "PASS",
+  "canonical_status": "?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/",
+  "report_bytes": 25824,
+  "always_read_delta_bytes": 0,
+  "executable_changes": false,
+  "provider_calls_this_analysis": 0,
+  "observed_at_utc": "2026-09-10T15:55:32.429459+00:00",
+  "closure_decision": "CLOSED_NO_IMPLEMENTATION_NEEDED",
+  "closure_document_validation_at_utc": "2026-09-10T19:07:24.506206+00:00"
+}

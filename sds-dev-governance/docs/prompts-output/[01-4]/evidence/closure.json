@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-09-13T11:16:40.613655+00:00",
+  "baseline_files": 443,
+  "unchanged_preexisting_files": 438,
+  "changed_preexisting_files": [
+    "sentinel/README.md",
+    "sentinel/contract.md",
+    "sentinel/core.py",
+    "sentinel/lab.py",
+    "tests/test-sentinel.py"
+  ],
+  "missing_files": [],
+  "unexpected_changes": [],
+  "source_hashes": {
+    "sentinel/README.md": "2e36df619dcbf8637458fd25accdb27ee20ca3445e8f7bf242ab3c901d295645",
+    "sentinel/contract.md": "40d7b331b5e950f3e82b38f8649b69167dfbe90debb187657cbf77131930fdb2",
+    "sentinel/core.py": "c4d0b03f79a3a07db7270763ccbf1aa98d9a59a0052fdeb035323a830134ca93",
+    "sentinel/evaluation.md": "244db7fc16b78dc3dbcc7fd919cfa6178ec849f0e7ec06faffbeb7bd419f13e3",
+    "sentinel/evaluation.py": "8d1ca2adc87c451b848f0b18b82dfbb7faa91c1907a3b59e272dcb522766098c",
+    "sentinel/lab.py": "0e3f863753573a5e0227eb99e19715dad85c6f45acd83a8c4cabbc67b010a589",
+    "sentinel/recovery.py": "68181f3a83b6f547f64bf97de3d1662b3986b75beb7e9998e1f4a649511f3ae0",
+    "sentinel/runbook.md": "04616fd7e3edfd7ab11cc647c702d2ef15a00e32e0707c9edace7063ec390d30",
+    "tests/test-sentinel-evaluation.py": "dc3478b4523077554d9833cafc26f6b7e6825928895f3152f4109ef708beafd7",
+    "tests/test-sentinel.py": "20fb1f476605727e0681204084aeca1fdae009c0713d853f1af11fc782d4d1b3"
+  },
+  "adapter_files_verified": 8,
+  "static_adapter_words_added": 0,
+  "tracked_diff_numstat": "5\t0\t.gitignore\n15\t0\tCHANGELOG.md\n11\t0\tREADME.md\n8\t0\tdocs/governance/README.md\n45\t0\tdocs/governance/governance-change-log.md\n8\t0\tinit-project-prompt.md\n2\t1\tinit.sh\n7\t0\tpractices/11-governance-evolution.md\n20\t2\tscripts/bootstrap.py\n22\t1\tscripts/governance_tree.py\n",
+  "head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "index_diff": "",
+  "local_broken_links": [],
+  "verification": "PASS",
+  "scope": "development preservation and linked docs only; not runtime rollback/custody/S7"
+}

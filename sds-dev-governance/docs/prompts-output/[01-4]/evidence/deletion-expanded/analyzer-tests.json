@@ -1,0 +1,7 @@
+{
+  "scope": "synthetic records only, no payload or victim files",
+  "all_loss_zero_reduction": "PASS",
+  "B_tool_error_not_Sentinel_prevention": "PASS",
+  "A_tool_error_excluded_from_causal_denominator": "PASS",
+  "temporary_data": "/private/tmp/sds-sentinel-analyzer-khvrmx5o/synthetic.jsonl"
+}

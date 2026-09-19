@@ -1,0 +1,14 @@
+{
+  "evidence_id": "E04-pure-tests",
+  "command": [
+    "python3",
+    "-B",
+    "tests/test-sentinel.py"
+  ],
+  "exit": 0,
+  "elapsed_ms": 81.210834,
+  "class": "OBSERVADO",
+  "method": "perf_counter_ns around child process incl startup/test runner",
+  "scope": "pure utility tests; no native integration, payload execution, mutation or model",
+  "raw": "pure-tests.txt"
+}

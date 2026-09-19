@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDS R8 Analyzer"
+  short_description: "Evidence-backed Android R8 configuration analysis"
+  default_prompt: "Use $sds-r8-analyzer to analyze this Android project's R8 configuration and artifacts without changing files."

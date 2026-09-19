@@ -1,0 +1,17 @@
+{
+  "mode": "canary-discovery",
+  "boot_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789370085494019000-canary-discovery-boot.log",
+  "guest_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789370085494021000-canary-discovery-guest.log",
+  "guest_exit": 0,
+  "boot_exit": 124,
+  "stopped_observed": true,
+  "boot_pid": 99862,
+  "tart_pid": 99865,
+  "guest_pid": 146,
+  "guest_reason": null,
+  "inspect_pid": 769,
+  "inspect_exit": 0,
+  "inspect_reason": null,
+  "inspect_raw": "[\n  {\n    \"Accessed\" : \"2026-09-14T07:14:53Z\",\n    \"Running\" : false,\n    \"Source\" : \"local\",\n    \"Disk\" : 50,\n    \"Size\" : 31,\n    \"State\" : \"stopped\",\n    \"Name\" : \"sentinel-lab\"\n  },\n  {\n    \"Running\" : false,\n    \"Accessed\" : \"2026-09-13T12:00:19Z\",\n    \"Source\" : \"OCI\",\n    \"Disk\" : 50,\n    \"Size\" : 33,\n    \"State\" : \"stopped\",\n    \"Name\" : \"127.0.0.1:59957\\/cirruslabs\\/macos-tahoe-base@sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e\"\n  }\n]\n",
+  "elapsed_seconds": 45.842236665979726
+}

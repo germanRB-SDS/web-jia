@@ -1,0 +1,9 @@
+{
+  "mode": "boot-smoke",
+  "pid": 43640,
+  "exit_code": 124,
+  "stop_reason": "timeout",
+  "elapsed_seconds": 45.07963629101869,
+  "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789318661254443000-boot-smoke.log",
+  "log_bytes": 86
+}

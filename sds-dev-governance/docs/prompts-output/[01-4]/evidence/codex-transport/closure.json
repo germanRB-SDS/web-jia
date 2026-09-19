@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-09-13T16:50:19.566097+00:00",
+  "inspect_exit_code": 0,
+  "vm_state": "stopped",
+  "vm_running": false,
+  "boot_exit_code": 124,
+  "boot_stop_reason": "timeout",
+  "boot_seconds": 45.1721656669979,
+  "pids_checked": [
+    40718,
+    40719,
+    40797
+  ],
+  "ps_exit_code": 1,
+  "ps_output": "",
+  "socket": "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/control.sock",
+  "lsof_exit_code": 1,
+  "lsof_output": "",
+  "observation": "Exact own PIDs absent and no open socket owner at observation; supervisor confirms process group cleanup. Not generic descendant revocation proof.",
+  "artifacts": [
+    {
+      "file": "1789317987326250000-boot-smoke.log",
+      "bytes": 86,
+      "sha256": "005b513a9da2d0239d0e880ef14e68c7dc0fa54a006ff594c5a822e480a4e4c6"
+    },
+    {
+      "file": "1789317987326250000-boot-smoke.json",
+      "bytes": 238,
+      "sha256": "e0cf26a9b851d04648c328c4dd4877525e849d034d3a1f8d447b46199cfe18cc"
+    },
+    {
+      "file": "1789318000314971000-stage-client.log",
+      "bytes": 526,
+      "sha256": "b3ee993095808270c4e8bfe2680deb4d2929861d285114be8cf0e14d49ffd39b"
+    },
+    {
+      "file": "1789318000314971000-stage-client.json",
+      "bytes": 423,
+      "sha256": "bcadf660d3ce7f55992db159115ecf55c3d6f2c52fbf5a9b9f8b7d25f6bbc41b"
+    },
+    {
+      "file": "1789318173113885000-inspect.log",
+      "bytes": 474,
+      "sha256": "f22b1a493ac6159d84765c5c18eb8c2baf336839565d99c1bb018bc588d4ce4e"
+    },
+    {
+      "file": "1789318173113885000-inspect.json",
+      "bytes": 230,
+      "sha256": "ef2ec43c560a8d1b7cc23908069a70eaaa257814c6420946b7c2eab594058108"
+    }
+  ]
+}

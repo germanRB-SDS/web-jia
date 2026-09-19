@@ -1,0 +1,2 @@
+- fase 0: prompt commiteado (08bdd97)
+- fase 1: sds-dev-governance v1.28.0 instalado en la raíz con init.sh --mode project --files-only (992 ficheros; copia idéntica a la del hub salvo __pycache__); .gitignore fusionado a mano; adaptadores CLAUDE/AGENTS con repos, rama y stack; tsconfig excluye el kit; tsc, check:content y next build ok; check-governance: 1 FAIL, falso positivo del propio kit (índice de recursos con rutas cortas; las carpetas existen)

@@ -1,0 +1,17 @@
+<button type="button" data-open-confirm>Delete item</button>
+
+<script type="module">
+  import { openFrostedConfirm } from '../javascript/frosted-confirm-modal.js';
+
+  document.querySelector('[data-open-confirm]')?.addEventListener('click', () => {
+    openFrostedConfirm({
+      title: 'Delete this item?',
+      message: 'This action cannot be undone.',
+      confirmLabel: 'Aceptar',
+      cancelLabel: 'Cancelar',
+      danger: true,
+      dismissible: false,
+      onConfirm: () => console.log('confirmed')
+    });
+  });
+</script>

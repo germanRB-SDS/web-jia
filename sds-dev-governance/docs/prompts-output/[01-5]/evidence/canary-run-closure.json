@@ -1,0 +1,17 @@
+{
+  "vm_stopped": true,
+  "own_pids": [
+    99862,
+    99863,
+    99865,
+    99866,
+    146,
+    769
+  ],
+  "ps_exit": 1,
+  "lsof_exit": 1,
+  "ps_rows": [],
+  "lsof_rows": [],
+  "platform_approved": true,
+  "protected_admitted": false
+}

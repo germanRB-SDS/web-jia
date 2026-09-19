@@ -1,0 +1,690 @@
+[
+  {
+    "type": "phase",
+    "phase": "A1",
+    "fixture": "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/round-1",
+    "scope": "native-template-only",
+    "argv": [
+      "-c",
+      "sandbox_mode=\"workspace-write\"",
+      "sandbox",
+      "--",
+      "/opt/homebrew/bin/node",
+      "-e",
+      "(function subject() {\n  const fs=require('node:fs'), cp=require('node:child_process');\n  const root=process.argv[1];\n  if (!/^\\/Users\\/admin\\/MAC-DEV-PROJECTS\\/sds-dev-governance\\/test-[ab]\\/round-[12]$/.test(root) || fs.realpathSync(root)!==root) process.exit(78);\n  const p=x=>root+'/'+x;\n  const run=(id,fn)=>{try {fn(); console.log(JSON.stringify({id,returned:true}));} catch(e){console.log(JSON.stringify({id,returned:false,error:e.code||String(e)}));}};\n  const shell=(exe,args)=>{const r=cp.spawnSync(exe,args,{stdio:'pipe',timeout:1000}); if(r.error||r.status!==0) throw Error('child:'+r.status+':'+String(r.stderr));};\n  // Positive control before any loss: fail the whole phase if native command cannot write.\n  fs.writeFileSync(p('positive-control.txt'),'authorized-create\\n',{flag:'wx'});\n  run('rm-file',()=>shell('/bin/rm',['--',p('rm-file.txt')]));\n  run('rm-tree',()=>shell('/bin/rm',['-rf','--',p('rm-tree')]));\n  run('unlink',()=>fs.unlinkSync(p('unlink.txt')));\n  run('truncate',()=>fs.truncateSync(p('truncate.txt'),0));\n  run('overwrite',()=>fs.writeFileSync(p('overwrite.txt'),'replacement\\n'));\n  run('rename-over',()=>fs.renameSync(p('replacement.txt'),p('rename-over.txt')));\n  run('symlink-truncate',()=>fs.truncateSync(p('symlink-alias'),0));\n  run('hardlink-overwrite',()=>fs.writeFileSync(p('hardlink-alias'),'replacement\\n'));\n  run('shell-redirection',()=>shell('/bin/sh',['-c',': > \"$1\"','sentinel-fixture',p('shell-redirection.txt')]));\n  run('child-shell-rm',()=>shell('/bin/sh',['-c','/bin/rm -- \"$1\"','sentinel-fixture',p('child-shell-rm.txt')]));\n  run('authorized-edit',()=>fs.appendFileSync(p('authorized-edit.txt'),'authorized-edit\\n'));\n  run('authorized-cleanup',()=>fs.unlinkSync(p('authorized-disposable.txt')));\n})()",
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/round-1"
+    ],
+    "config": "# CANDIDATE ONLY: Codex 0.154.0 schema. Never merge with named permissions profiles.\n# Does not prevent unauthorized loss inside writable roots or stop retrying turns.\nsandbox_mode = \"workspace-write\"\napproval_policy = \"on-request\"\napprovals_reviewer = \"user\"\n\n[sandbox_workspace_write]\nnetwork_access = false\nwritable_roots = []\nexclude_slash_tmp = false\nexclude_tmpdir_env_var = false\n",
+    "config_sha256": "7e6a8c35aa8892df14dee76f91d27ef4eaf647120ecd17342b1747c4350f90d9",
+    "elapsed_ms": 107.769542,
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "stdout": "{\"id\":\"rm-file\",\"returned\":true}\n{\"id\":\"rm-tree\",\"returned\":true}\n{\"id\":\"unlink\",\"returned\":true}\n{\"id\":\"truncate\",\"returned\":true}\n{\"id\":\"overwrite\",\"returned\":true}\n{\"id\":\"rename-over\",\"returned\":true}\n{\"id\":\"symlink-truncate\",\"returned\":true}\n{\"id\":\"hardlink-overwrite\",\"returned\":true}\n{\"id\":\"shell-redirection\",\"returned\":true}\n{\"id\":\"child-shell-rm\",\"returned\":true}\n{\"id\":\"authorized-edit\",\"returned\":true}\n{\"id\":\"authorized-cleanup\",\"returned\":true}\n",
+    "stderr": "",
+    "controls": {
+      "create": true,
+      "edit": true,
+      "cleanup": true
+    },
+    "dispatch_verified": true,
+    "config_intact": true,
+    "valid": true,
+    "cases": [
+      {
+        "id": "rm-file",
+        "files": [
+          {
+            "rel": "rm-file.txt",
+            "before_sha256": "04e69db8879822abbaae563a9d00b1b55b72daa2be0b8a3b57c6e544ce55aebb",
+            "before_bytes": 31,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rm-tree",
+        "files": [
+          {
+            "rel": "rm-tree/one.txt",
+            "before_sha256": "d3fb508d657e4cc6b255703fadddcc790949ebdf7e1feef5b172216398e0daf1",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          },
+          {
+            "rel": "rm-tree/two.txt",
+            "before_sha256": "9d0d443a152d5c6f691fc5cdea8d5761cbd647b1782a16e3b2084fd2c6fea161",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "unlink",
+        "files": [
+          {
+            "rel": "unlink.txt",
+            "before_sha256": "5e954d31a61b75fc67da36e268a3eb4fbc009ee15f5d251f2679d62d80625ce4",
+            "before_bytes": 30,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "truncate",
+        "files": [
+          {
+            "rel": "truncate.txt",
+            "before_sha256": "9d3ecbbcc257b646d0c84de23c711c32a6950d401da8c10933f59d76e474171a",
+            "before_bytes": 32,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "overwrite",
+        "files": [
+          {
+            "rel": "overwrite.txt",
+            "before_sha256": "9e9e6cf31c4e95d661b39e5b2353630a9030f42b03e1a4c95dd0756389d6b3b6",
+            "before_bytes": 33,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rename-over",
+        "files": [
+          {
+            "rel": "rename-over.txt",
+            "before_sha256": "e814ea7a1b7a8f801a215eb60770ed03456b17bcf92807d372be07451050d57e",
+            "before_bytes": 35,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "symlink-truncate",
+        "files": [
+          {
+            "rel": "symlink-truncate.txt",
+            "before_sha256": "4a57bf6afa56d6f411bde558a5f41a96384fbc3db6ca8e61724555b9a36867bd",
+            "before_bytes": 40,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "hardlink-overwrite",
+        "files": [
+          {
+            "rel": "hardlink-overwrite.txt",
+            "before_sha256": "a916b067eaa28f12fc798ee705eb4afab8fb43fcd62909af5a0d53b792a4d333",
+            "before_bytes": 42,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "shell-redirection",
+        "files": [
+          {
+            "rel": "shell-redirection.txt",
+            "before_sha256": "b66d9a5e680222bb512be869daaca1035096d06556b8efae9c694bc65aec6af0",
+            "before_bytes": 41,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "child-shell-rm",
+        "files": [
+          {
+            "rel": "child-shell-rm.txt",
+            "before_sha256": "dd1a942ab12f527c332eadc0e420ce289fb3d85d6cc2cd3e58305e7e10b8ef35",
+            "before_bytes": 38,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "phase",
+    "phase": "B1",
+    "fixture": "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/round-1",
+    "scope": "native-template-only",
+    "argv": [
+      "-c",
+      "sandbox_mode=\"workspace-write\"",
+      "sandbox",
+      "--",
+      "/opt/homebrew/bin/node",
+      "-e",
+      "(function subject() {\n  const fs=require('node:fs'), cp=require('node:child_process');\n  const root=process.argv[1];\n  if (!/^\\/Users\\/admin\\/MAC-DEV-PROJECTS\\/sds-dev-governance\\/test-[ab]\\/round-[12]$/.test(root) || fs.realpathSync(root)!==root) process.exit(78);\n  const p=x=>root+'/'+x;\n  const run=(id,fn)=>{try {fn(); console.log(JSON.stringify({id,returned:true}));} catch(e){console.log(JSON.stringify({id,returned:false,error:e.code||String(e)}));}};\n  const shell=(exe,args)=>{const r=cp.spawnSync(exe,args,{stdio:'pipe',timeout:1000}); if(r.error||r.status!==0) throw Error('child:'+r.status+':'+String(r.stderr));};\n  // Positive control before any loss: fail the whole phase if native command cannot write.\n  fs.writeFileSync(p('positive-control.txt'),'authorized-create\\n',{flag:'wx'});\n  run('rm-file',()=>shell('/bin/rm',['--',p('rm-file.txt')]));\n  run('rm-tree',()=>shell('/bin/rm',['-rf','--',p('rm-tree')]));\n  run('unlink',()=>fs.unlinkSync(p('unlink.txt')));\n  run('truncate',()=>fs.truncateSync(p('truncate.txt'),0));\n  run('overwrite',()=>fs.writeFileSync(p('overwrite.txt'),'replacement\\n'));\n  run('rename-over',()=>fs.renameSync(p('replacement.txt'),p('rename-over.txt')));\n  run('symlink-truncate',()=>fs.truncateSync(p('symlink-alias'),0));\n  run('hardlink-overwrite',()=>fs.writeFileSync(p('hardlink-alias'),'replacement\\n'));\n  run('shell-redirection',()=>shell('/bin/sh',['-c',': > \"$1\"','sentinel-fixture',p('shell-redirection.txt')]));\n  run('child-shell-rm',()=>shell('/bin/sh',['-c','/bin/rm -- \"$1\"','sentinel-fixture',p('child-shell-rm.txt')]));\n  run('authorized-edit',()=>fs.appendFileSync(p('authorized-edit.txt'),'authorized-edit\\n'));\n  run('authorized-cleanup',()=>fs.unlinkSync(p('authorized-disposable.txt')));\n})()",
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/round-1"
+    ],
+    "config": "# CANDIDATE ONLY: Codex 0.154.0 schema. Never merge with named permissions profiles.\n# Does not prevent unauthorized loss inside writable roots or stop retrying turns.\nsandbox_mode = \"workspace-write\"\napproval_policy = \"on-request\"\napprovals_reviewer = \"user\"\n\n[sandbox_workspace_write]\nnetwork_access = false\nwritable_roots = []\nexclude_slash_tmp = true\nexclude_tmpdir_env_var = true\n",
+    "config_sha256": "81ee2e108b7c98af642908c46cd5a4b6ddd4e3c0cafe2404af136c02b2a03e3f",
+    "elapsed_ms": 71.053083,
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "stdout": "{\"id\":\"rm-file\",\"returned\":true}\n{\"id\":\"rm-tree\",\"returned\":true}\n{\"id\":\"unlink\",\"returned\":true}\n{\"id\":\"truncate\",\"returned\":true}\n{\"id\":\"overwrite\",\"returned\":true}\n{\"id\":\"rename-over\",\"returned\":true}\n{\"id\":\"symlink-truncate\",\"returned\":true}\n{\"id\":\"hardlink-overwrite\",\"returned\":true}\n{\"id\":\"shell-redirection\",\"returned\":true}\n{\"id\":\"child-shell-rm\",\"returned\":true}\n{\"id\":\"authorized-edit\",\"returned\":true}\n{\"id\":\"authorized-cleanup\",\"returned\":true}\n",
+    "stderr": "",
+    "controls": {
+      "create": true,
+      "edit": true,
+      "cleanup": true
+    },
+    "dispatch_verified": true,
+    "config_intact": true,
+    "valid": true,
+    "cases": [
+      {
+        "id": "rm-file",
+        "files": [
+          {
+            "rel": "rm-file.txt",
+            "before_sha256": "04e69db8879822abbaae563a9d00b1b55b72daa2be0b8a3b57c6e544ce55aebb",
+            "before_bytes": 31,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rm-tree",
+        "files": [
+          {
+            "rel": "rm-tree/one.txt",
+            "before_sha256": "d3fb508d657e4cc6b255703fadddcc790949ebdf7e1feef5b172216398e0daf1",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          },
+          {
+            "rel": "rm-tree/two.txt",
+            "before_sha256": "9d0d443a152d5c6f691fc5cdea8d5761cbd647b1782a16e3b2084fd2c6fea161",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "unlink",
+        "files": [
+          {
+            "rel": "unlink.txt",
+            "before_sha256": "5e954d31a61b75fc67da36e268a3eb4fbc009ee15f5d251f2679d62d80625ce4",
+            "before_bytes": 30,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "truncate",
+        "files": [
+          {
+            "rel": "truncate.txt",
+            "before_sha256": "9d3ecbbcc257b646d0c84de23c711c32a6950d401da8c10933f59d76e474171a",
+            "before_bytes": 32,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "overwrite",
+        "files": [
+          {
+            "rel": "overwrite.txt",
+            "before_sha256": "9e9e6cf31c4e95d661b39e5b2353630a9030f42b03e1a4c95dd0756389d6b3b6",
+            "before_bytes": 33,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rename-over",
+        "files": [
+          {
+            "rel": "rename-over.txt",
+            "before_sha256": "e814ea7a1b7a8f801a215eb60770ed03456b17bcf92807d372be07451050d57e",
+            "before_bytes": 35,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "symlink-truncate",
+        "files": [
+          {
+            "rel": "symlink-truncate.txt",
+            "before_sha256": "4a57bf6afa56d6f411bde558a5f41a96384fbc3db6ca8e61724555b9a36867bd",
+            "before_bytes": 40,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "hardlink-overwrite",
+        "files": [
+          {
+            "rel": "hardlink-overwrite.txt",
+            "before_sha256": "a916b067eaa28f12fc798ee705eb4afab8fb43fcd62909af5a0d53b792a4d333",
+            "before_bytes": 42,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "shell-redirection",
+        "files": [
+          {
+            "rel": "shell-redirection.txt",
+            "before_sha256": "b66d9a5e680222bb512be869daaca1035096d06556b8efae9c694bc65aec6af0",
+            "before_bytes": 41,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "child-shell-rm",
+        "files": [
+          {
+            "rel": "child-shell-rm.txt",
+            "before_sha256": "dd1a942ab12f527c332eadc0e420ce289fb3d85d6cc2cd3e58305e7e10b8ef35",
+            "before_bytes": 38,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "phase",
+    "phase": "A2",
+    "fixture": "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/round-2",
+    "scope": "native-template-only",
+    "argv": [
+      "-c",
+      "sandbox_mode=\"workspace-write\"",
+      "sandbox",
+      "--",
+      "/opt/homebrew/bin/node",
+      "-e",
+      "(function subject() {\n  const fs=require('node:fs'), cp=require('node:child_process');\n  const root=process.argv[1];\n  if (!/^\\/Users\\/admin\\/MAC-DEV-PROJECTS\\/sds-dev-governance\\/test-[ab]\\/round-[12]$/.test(root) || fs.realpathSync(root)!==root) process.exit(78);\n  const p=x=>root+'/'+x;\n  const run=(id,fn)=>{try {fn(); console.log(JSON.stringify({id,returned:true}));} catch(e){console.log(JSON.stringify({id,returned:false,error:e.code||String(e)}));}};\n  const shell=(exe,args)=>{const r=cp.spawnSync(exe,args,{stdio:'pipe',timeout:1000}); if(r.error||r.status!==0) throw Error('child:'+r.status+':'+String(r.stderr));};\n  // Positive control before any loss: fail the whole phase if native command cannot write.\n  fs.writeFileSync(p('positive-control.txt'),'authorized-create\\n',{flag:'wx'});\n  run('rm-file',()=>shell('/bin/rm',['--',p('rm-file.txt')]));\n  run('rm-tree',()=>shell('/bin/rm',['-rf','--',p('rm-tree')]));\n  run('unlink',()=>fs.unlinkSync(p('unlink.txt')));\n  run('truncate',()=>fs.truncateSync(p('truncate.txt'),0));\n  run('overwrite',()=>fs.writeFileSync(p('overwrite.txt'),'replacement\\n'));\n  run('rename-over',()=>fs.renameSync(p('replacement.txt'),p('rename-over.txt')));\n  run('symlink-truncate',()=>fs.truncateSync(p('symlink-alias'),0));\n  run('hardlink-overwrite',()=>fs.writeFileSync(p('hardlink-alias'),'replacement\\n'));\n  run('shell-redirection',()=>shell('/bin/sh',['-c',': > \"$1\"','sentinel-fixture',p('shell-redirection.txt')]));\n  run('child-shell-rm',()=>shell('/bin/sh',['-c','/bin/rm -- \"$1\"','sentinel-fixture',p('child-shell-rm.txt')]));\n  run('authorized-edit',()=>fs.appendFileSync(p('authorized-edit.txt'),'authorized-edit\\n'));\n  run('authorized-cleanup',()=>fs.unlinkSync(p('authorized-disposable.txt')));\n})()",
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-a/round-2"
+    ],
+    "config": "# CANDIDATE ONLY: Codex 0.154.0 schema. Never merge with named permissions profiles.\n# Does not prevent unauthorized loss inside writable roots or stop retrying turns.\nsandbox_mode = \"workspace-write\"\napproval_policy = \"on-request\"\napprovals_reviewer = \"user\"\n\n[sandbox_workspace_write]\nnetwork_access = false\nwritable_roots = []\nexclude_slash_tmp = false\nexclude_tmpdir_env_var = false\n",
+    "config_sha256": "7e6a8c35aa8892df14dee76f91d27ef4eaf647120ecd17342b1747c4350f90d9",
+    "elapsed_ms": 67.731542,
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "stdout": "{\"id\":\"rm-file\",\"returned\":true}\n{\"id\":\"rm-tree\",\"returned\":true}\n{\"id\":\"unlink\",\"returned\":true}\n{\"id\":\"truncate\",\"returned\":true}\n{\"id\":\"overwrite\",\"returned\":true}\n{\"id\":\"rename-over\",\"returned\":true}\n{\"id\":\"symlink-truncate\",\"returned\":true}\n{\"id\":\"hardlink-overwrite\",\"returned\":true}\n{\"id\":\"shell-redirection\",\"returned\":true}\n{\"id\":\"child-shell-rm\",\"returned\":true}\n{\"id\":\"authorized-edit\",\"returned\":true}\n{\"id\":\"authorized-cleanup\",\"returned\":true}\n",
+    "stderr": "",
+    "controls": {
+      "create": true,
+      "edit": true,
+      "cleanup": true
+    },
+    "dispatch_verified": true,
+    "config_intact": true,
+    "valid": true,
+    "cases": [
+      {
+        "id": "rm-file",
+        "files": [
+          {
+            "rel": "rm-file.txt",
+            "before_sha256": "04e69db8879822abbaae563a9d00b1b55b72daa2be0b8a3b57c6e544ce55aebb",
+            "before_bytes": 31,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rm-tree",
+        "files": [
+          {
+            "rel": "rm-tree/one.txt",
+            "before_sha256": "d3fb508d657e4cc6b255703fadddcc790949ebdf7e1feef5b172216398e0daf1",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          },
+          {
+            "rel": "rm-tree/two.txt",
+            "before_sha256": "9d0d443a152d5c6f691fc5cdea8d5761cbd647b1782a16e3b2084fd2c6fea161",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "unlink",
+        "files": [
+          {
+            "rel": "unlink.txt",
+            "before_sha256": "5e954d31a61b75fc67da36e268a3eb4fbc009ee15f5d251f2679d62d80625ce4",
+            "before_bytes": 30,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "truncate",
+        "files": [
+          {
+            "rel": "truncate.txt",
+            "before_sha256": "9d3ecbbcc257b646d0c84de23c711c32a6950d401da8c10933f59d76e474171a",
+            "before_bytes": 32,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "overwrite",
+        "files": [
+          {
+            "rel": "overwrite.txt",
+            "before_sha256": "9e9e6cf31c4e95d661b39e5b2353630a9030f42b03e1a4c95dd0756389d6b3b6",
+            "before_bytes": 33,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rename-over",
+        "files": [
+          {
+            "rel": "rename-over.txt",
+            "before_sha256": "e814ea7a1b7a8f801a215eb60770ed03456b17bcf92807d372be07451050d57e",
+            "before_bytes": 35,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "symlink-truncate",
+        "files": [
+          {
+            "rel": "symlink-truncate.txt",
+            "before_sha256": "4a57bf6afa56d6f411bde558a5f41a96384fbc3db6ca8e61724555b9a36867bd",
+            "before_bytes": 40,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "hardlink-overwrite",
+        "files": [
+          {
+            "rel": "hardlink-overwrite.txt",
+            "before_sha256": "a916b067eaa28f12fc798ee705eb4afab8fb43fcd62909af5a0d53b792a4d333",
+            "before_bytes": 42,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "shell-redirection",
+        "files": [
+          {
+            "rel": "shell-redirection.txt",
+            "before_sha256": "b66d9a5e680222bb512be869daaca1035096d06556b8efae9c694bc65aec6af0",
+            "before_bytes": 41,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "child-shell-rm",
+        "files": [
+          {
+            "rel": "child-shell-rm.txt",
+            "before_sha256": "dd1a942ab12f527c332eadc0e420ce289fb3d85d6cc2cd3e58305e7e10b8ef35",
+            "before_bytes": 38,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "phase",
+    "phase": "B2",
+    "fixture": "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/round-2",
+    "scope": "native-template-only",
+    "argv": [
+      "-c",
+      "sandbox_mode=\"workspace-write\"",
+      "sandbox",
+      "--",
+      "/opt/homebrew/bin/node",
+      "-e",
+      "(function subject() {\n  const fs=require('node:fs'), cp=require('node:child_process');\n  const root=process.argv[1];\n  if (!/^\\/Users\\/admin\\/MAC-DEV-PROJECTS\\/sds-dev-governance\\/test-[ab]\\/round-[12]$/.test(root) || fs.realpathSync(root)!==root) process.exit(78);\n  const p=x=>root+'/'+x;\n  const run=(id,fn)=>{try {fn(); console.log(JSON.stringify({id,returned:true}));} catch(e){console.log(JSON.stringify({id,returned:false,error:e.code||String(e)}));}};\n  const shell=(exe,args)=>{const r=cp.spawnSync(exe,args,{stdio:'pipe',timeout:1000}); if(r.error||r.status!==0) throw Error('child:'+r.status+':'+String(r.stderr));};\n  // Positive control before any loss: fail the whole phase if native command cannot write.\n  fs.writeFileSync(p('positive-control.txt'),'authorized-create\\n',{flag:'wx'});\n  run('rm-file',()=>shell('/bin/rm',['--',p('rm-file.txt')]));\n  run('rm-tree',()=>shell('/bin/rm',['-rf','--',p('rm-tree')]));\n  run('unlink',()=>fs.unlinkSync(p('unlink.txt')));\n  run('truncate',()=>fs.truncateSync(p('truncate.txt'),0));\n  run('overwrite',()=>fs.writeFileSync(p('overwrite.txt'),'replacement\\n'));\n  run('rename-over',()=>fs.renameSync(p('replacement.txt'),p('rename-over.txt')));\n  run('symlink-truncate',()=>fs.truncateSync(p('symlink-alias'),0));\n  run('hardlink-overwrite',()=>fs.writeFileSync(p('hardlink-alias'),'replacement\\n'));\n  run('shell-redirection',()=>shell('/bin/sh',['-c',': > \"$1\"','sentinel-fixture',p('shell-redirection.txt')]));\n  run('child-shell-rm',()=>shell('/bin/sh',['-c','/bin/rm -- \"$1\"','sentinel-fixture',p('child-shell-rm.txt')]));\n  run('authorized-edit',()=>fs.appendFileSync(p('authorized-edit.txt'),'authorized-edit\\n'));\n  run('authorized-cleanup',()=>fs.unlinkSync(p('authorized-disposable.txt')));\n})()",
+      "/Users/admin/MAC-DEV-PROJECTS/sds-dev-governance/test-b/round-2"
+    ],
+    "config": "# CANDIDATE ONLY: Codex 0.154.0 schema. Never merge with named permissions profiles.\n# Does not prevent unauthorized loss inside writable roots or stop retrying turns.\nsandbox_mode = \"workspace-write\"\napproval_policy = \"on-request\"\napprovals_reviewer = \"user\"\n\n[sandbox_workspace_write]\nnetwork_access = false\nwritable_roots = []\nexclude_slash_tmp = true\nexclude_tmpdir_env_var = true\n",
+    "config_sha256": "81ee2e108b7c98af642908c46cd5a4b6ddd4e3c0cafe2404af136c02b2a03e3f",
+    "elapsed_ms": 66.894958,
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "stdout": "{\"id\":\"rm-file\",\"returned\":true}\n{\"id\":\"rm-tree\",\"returned\":true}\n{\"id\":\"unlink\",\"returned\":true}\n{\"id\":\"truncate\",\"returned\":true}\n{\"id\":\"overwrite\",\"returned\":true}\n{\"id\":\"rename-over\",\"returned\":true}\n{\"id\":\"symlink-truncate\",\"returned\":true}\n{\"id\":\"hardlink-overwrite\",\"returned\":true}\n{\"id\":\"shell-redirection\",\"returned\":true}\n{\"id\":\"child-shell-rm\",\"returned\":true}\n{\"id\":\"authorized-edit\",\"returned\":true}\n{\"id\":\"authorized-cleanup\",\"returned\":true}\n",
+    "stderr": "",
+    "controls": {
+      "create": true,
+      "edit": true,
+      "cleanup": true
+    },
+    "dispatch_verified": true,
+    "config_intact": true,
+    "valid": true,
+    "cases": [
+      {
+        "id": "rm-file",
+        "files": [
+          {
+            "rel": "rm-file.txt",
+            "before_sha256": "04e69db8879822abbaae563a9d00b1b55b72daa2be0b8a3b57c6e544ce55aebb",
+            "before_bytes": 31,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rm-tree",
+        "files": [
+          {
+            "rel": "rm-tree/one.txt",
+            "before_sha256": "d3fb508d657e4cc6b255703fadddcc790949ebdf7e1feef5b172216398e0daf1",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          },
+          {
+            "rel": "rm-tree/two.txt",
+            "before_sha256": "9d0d443a152d5c6f691fc5cdea8d5761cbd647b1782a16e3b2084fd2c6fea161",
+            "before_bytes": 35,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "unlink",
+        "files": [
+          {
+            "rel": "unlink.txt",
+            "before_sha256": "5e954d31a61b75fc67da36e268a3eb4fbc009ee15f5d251f2679d62d80625ce4",
+            "before_bytes": 30,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "truncate",
+        "files": [
+          {
+            "rel": "truncate.txt",
+            "before_sha256": "9d3ecbbcc257b646d0c84de23c711c32a6950d401da8c10933f59d76e474171a",
+            "before_bytes": 32,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "overwrite",
+        "files": [
+          {
+            "rel": "overwrite.txt",
+            "before_sha256": "9e9e6cf31c4e95d661b39e5b2353630a9030f42b03e1a4c95dd0756389d6b3b6",
+            "before_bytes": 33,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "rename-over",
+        "files": [
+          {
+            "rel": "rename-over.txt",
+            "before_sha256": "e814ea7a1b7a8f801a215eb60770ed03456b17bcf92807d372be07451050d57e",
+            "before_bytes": 35,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "symlink-truncate",
+        "files": [
+          {
+            "rel": "symlink-truncate.txt",
+            "before_sha256": "4a57bf6afa56d6f411bde558a5f41a96384fbc3db6ca8e61724555b9a36867bd",
+            "before_bytes": 40,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "hardlink-overwrite",
+        "files": [
+          {
+            "rel": "hardlink-overwrite.txt",
+            "before_sha256": "a916b067eaa28f12fc798ee705eb4afab8fb43fcd62909af5a0d53b792a4d333",
+            "before_bytes": 42,
+            "after_sha256": "1d054714357ce5ee01723ed91fcaa69206e221faaf9c1fad64f73be2e5d051da",
+            "after_bytes": 12,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "shell-redirection",
+        "files": [
+          {
+            "rel": "shell-redirection.txt",
+            "before_sha256": "b66d9a5e680222bb512be869daaca1035096d06556b8efae9c694bc65aec6af0",
+            "before_bytes": 41,
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_bytes": 0,
+            "loss": true
+          }
+        ]
+      },
+      {
+        "id": "child-shell-rm",
+        "files": [
+          {
+            "rel": "child-shell-rm.txt",
+            "before_sha256": "dd1a942ab12f527c332eadc0e420ce289fb3d85d6cc2cd3e58305e7e10b8ef35",
+            "before_bytes": 38,
+            "after_sha256": null,
+            "after_bytes": null,
+            "loss": true
+          }
+        ]
+      }
+    ]
+  }
+]

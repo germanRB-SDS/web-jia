@@ -1,0 +1,50 @@
+{
+  "phase": "outer-barrier evaluation only, not A or B",
+  "source": "sentinel/s0_probe.sh",
+  "sha256": "924abf17c7507499b2e135a243ab94cd36ae3c3bc85a7fb038c0d90c3f135c66",
+  "planned_runs": 1,
+  "reason": "deterministic positive/negative controls, no stochastic estimates",
+  "guest_root": "new /private/tmp/sds-sentinel-s0.XXXXXX",
+  "real_targets": false,
+  "sudo": false,
+  "network_probes": false,
+  "installations": false,
+  "write_targets": [
+    "P",
+    "X",
+    "Y synthetic canary",
+    "W synthetic control"
+  ],
+  "positive_controls": [
+    "bare Y write",
+    "bare X write",
+    "bare W write",
+    "bare inheritedFD9 write to separate synthetic replica"
+  ],
+  "under_outer_sandbox": [
+    "P allowed",
+    "X allowed",
+    "Y denied before effect",
+    "W denied before effect",
+    "inheritedFD9 cannot alter Y"
+  ],
+  "observable_oracle": "admin parent compares final contents, separate from child status",
+  "stop_rule": "any unexpected content or inability to perform positive =>FAIL and no campaign",
+  "acceptance": "file controls subset only; never sufficient for full S0/S7",
+  "cost_metrics": "provisioning/test resources, no LLM tokens or A/B cost inference",
+  "cleanup": "retain exact guest fixture; shutdown VM45s and verify host owned processes absent",
+  "revision": "v3, Node spawnSync with descriptors restricted to ignore/pipe/pipe before same Seatbelt profile",
+  "prior_outcome": "v2 FAIL inherited FD9 altered synthetic Y; never reclassified",
+  "new_preconditions": [
+    "Node symlink and binary SHA256 match before execution",
+    "Node launcher fstat9 dev/ino matches canary",
+    "subject FD_STATUS nonzero required in addition to intact canary"
+  ],
+  "trusted_node": {
+    "symlink": "../Cellar/node@24/24.20.0/bin/node",
+    "sha256": "c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd",
+    "mode": "555",
+    "origin": "already present in pinned public guest image; no installed/downloaded dependencies",
+    "dependency_scope": "guest-image dependencies trusted for disposable evaluation, not individually attested for production"
+  }
+}

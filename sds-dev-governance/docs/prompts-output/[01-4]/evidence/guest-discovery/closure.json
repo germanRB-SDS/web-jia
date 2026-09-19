@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-09-13T15:34:34.807543+00:00",
+  "vm": "stopped",
+  "final_owned_pids": [
+    21099,
+    21100,
+    21247
+  ],
+  "final_ps_matches": 0,
+  "final_control_listener_lsof_matches": 0,
+  "vm_elapsed_seconds": 45.141129584022565,
+  "all_runs_tart_deadline_seconds": 45,
+  "guest_model_sessions": 0,
+  "AB_runs": 0,
+  "s0_file_probe_v1": "FAIL launch sh->bash not admitted in candidate profile",
+  "s0_file_probe_v2": "FAIL confirmed inherited-FD canary mutation",
+  "s0_file_probe_v3": "PASS observed subset with descriptor-closing launcher",
+  "S0_full": "NO_VERIFICADO",
+  "S7": "NO_VERIFICADO",
+  "cost_overhead_percent": null,
+  "current_permission_blocker": null,
+  "missing_model_session_inputs": [
+    "client",
+    "dedicated lab authentication route, no secrets in chat",
+    "total expense limit"
+  ],
+  "git_commits": "not performed: .git read-only and prior unrelated work preserved"
+}

@@ -1,0 +1,35 @@
+{
+  "type": "result",
+  "outcome": "TRANSPORT_PASS",
+  "root": "/private/tmp/sds-sentinel-exec.aDViYo",
+  "output": "/private/tmp/sds-sentinel-exec.aDViYo\n",
+  "executorVersion": "0.0.0",
+  "executor_version_unknown": true,
+  "providerId": "sha256:827a20f2260f53ca58aa207243d3363c6ea7fe34e8e579d7d2a24bb35bf39ed1",
+  "version_compatibility_verified": false,
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0,
+  "custody_verified": false,
+  "host_fallback_verified": false,
+  "native_exit": 0,
+  "host_capture_exit": 0,
+  "elapsed_seconds": 10.91060945802019,
+  "sandboxType": "none",
+  "not_A_or_B": true,
+  "binary_identity": "SHA256 exact prechecked; CLI0.154.0 separate from executor declared0.0.0",
+  "limits": [
+    "Administrative pwd only, no native sandbox requested or certified",
+    "No authenticated controller/host fallback verification",
+    "No full S0/S7/rollback/custody",
+    "No model/usage/cost measurements"
+  ],
+  "failures_preserved": [
+    "Inherited FD9 earlier v2",
+    "Initial synthetic fixture naming failure",
+    "Temporary staged root absent after reboot",
+    "Remote-only CLI flag rejected",
+    "Executor release declaration mismatch0.0.0"
+  ],
+  "closure": "closure.json"
+}

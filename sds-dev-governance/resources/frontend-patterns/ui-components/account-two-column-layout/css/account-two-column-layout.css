@@ -1,0 +1,162 @@
+/* Account Two-Column Layout — SDS asymmetric account console ("dos columnas con menú a la
+   izquierda"). Left rail is a narrow fixed-range column (NEVER 50/50); right column takes the
+   rest. Extracted from Teragenda's payments account console ([50-5]/[50-6]), which adapts the
+   Apple Account page structure to the SDS dark palette. */
+.account-layout-scope {
+  --al-bg: #0b1624;            /* page background      → teragenda --color-bg */
+  --al-text: #ddeaf6;          /* primary text         → teragenda --color-text */
+  --al-muted: #7a92a8;         /* captions             → teragenda --color-muted */
+  --al-border: #1c3045;        /* soft borders         → teragenda --color-border */
+  --al-accent: #4aa7b8;        /* selected/primary     → teragenda --color-brand-primary */
+  --al-hairline: #ffffff;      /* group separators     → teragenda --color-hairline-bright */
+  --al-separator-gap: 18px;    /* SAME air above and below each hairline (a named constant) */
+}
+
+/* 1. The asymmetry is the pattern: rail 200–252px, content takes everything else. */
+.account-layout {
+  align-items: start;
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: minmax(200px, 252px) minmax(0, 1fr);
+}
+
+.account-rail {
+  display: grid;
+  min-width: 0;
+}
+
+.account-content {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+/* 2. Identity stacks vertically in the rail (avatar → name → email) so the email owns the full
+      column width instead of wrapping beside the avatar. */
+.account-identity {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  padding: .4rem 0;
+}
+
+.account-identity-avatar {
+  align-items: center;
+  background: color-mix(in srgb, var(--al-text) 10%, transparent);
+  border: 1px solid var(--al-border);
+  border-radius: 999px;
+  display: inline-flex;
+  font-weight: 700;
+  height: 46px;
+  justify-content: center;
+  overflow: hidden;
+  width: 46px;
+}
+
+.account-identity-details {
+  display: grid;
+  gap: .15rem;
+  min-width: 0;
+}
+
+.account-identity-details strong {
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.account-identity-details span {
+  color: var(--al-muted);
+  font-size: .82rem;
+  overflow-wrap: anywhere;
+}
+
+/* 3. Bright hairline between rail groups: full column width, identical air above and below. */
+.account-rail-separator {
+  background: var(--al-hairline);
+  border: 0;
+  height: 1px;
+  margin: var(--al-separator-gap) 0;
+  width: 100%;
+}
+
+/* 4. Rail items: quiet text+icon buttons, no boxes. Hover lightens, press darkens, the selected
+      or primary item carries the accent. */
+.account-rail nav ul {
+  display: grid;
+  gap: .12rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.account-rail-item {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: color-mix(in srgb, var(--al-text) 82%, transparent);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: .96rem;
+  font-weight: 600;
+  gap: .6rem;
+  line-height: 1.25;
+  min-height: 2.4rem;
+  padding: .42rem .5rem .42rem 0;
+  text-align: left;
+  transition: color .16s ease;
+  width: 100%;
+}
+
+.account-rail-item svg {
+  flex: 0 0 auto;
+  height: 18px;
+  opacity: .78;
+  transition: opacity .16s ease;
+  width: 18px;
+}
+
+.account-rail-item:hover:not(:disabled) { color: var(--al-hairline); }
+.account-rail-item:hover:not(:disabled) svg { opacity: 1; }
+.account-rail-item:active:not(:disabled) { color: var(--al-muted); }
+
+.account-rail-item--primary,
+.account-rail-item[aria-pressed="true"] {
+  color: var(--al-accent);
+  font-weight: 750;
+}
+
+.account-rail-item:disabled {
+  color: color-mix(in srgb, var(--al-muted) 55%, transparent);
+  cursor: not-allowed;
+}
+
+.account-rail-item:focus-visible {
+  outline: 2px solid var(--al-accent);
+  outline-offset: 3px;
+}
+
+/* 5. Stacked mode: one column, rail first; identity returns to a compact row (there is width
+      for it); items grow to comfortable tap targets. */
+@media (max-width: 780px) {
+  .account-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .account-identity {
+    align-items: center;
+    flex-direction: row;
+    gap: .95rem;
+  }
+
+  .account-rail-item {
+    min-height: 2.9rem;
+    padding-left: .15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-rail-item,
+  .account-rail-item svg { transition: none; }
+}

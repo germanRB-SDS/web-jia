@@ -1,0 +1,9 @@
+{
+  "mode": "export-cycle",
+  "probe_exit": 0,
+  "boot_supervisor_exit": 124,
+  "boot_supervisor_pid": 83535,
+  "elapsed_seconds": 45.26380166699528,
+  "boot_log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789327843335506000-export-cycle.log",
+  "vm_closure_requires_inspect": true
+}

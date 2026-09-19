@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "source": "ALL_TOOLS metadata in this analysis session; no MCP invocation",
+  "tools": [
+    {
+      "name": "mcp__hostinger_dns__DNS_getDNSRecordsV1",
+      "description_chars": 296
+    },
+    {
+      "name": "mcp__hostinger_hosting__sds_status",
+      "description_chars": 172
+    },
+    {
+      "name": "mcp__hostinger_vps__VPS_getVirtualMachineDetailsV1",
+      "description_chars": 335
+    },
+    {
+      "name": "mcp__hostinger_vps__VPS_getVirtualMachinesV1",
+      "description_chars": 258
+    }
+  ],
+  "description_chars": 1061,
+  "limits": "No complete input schemas, runtime status, process inspection, context serialization or token measurements. Discovery metadata is not proof of what every model call receives."
+}

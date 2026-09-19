@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-09-13T15:19:11.628665+00:00",
+  "script_exit": 0,
+  "script_elapsed_seconds": 0.8633372090116609,
+  "guest_identity": {
+    "uid": 501,
+    "name": "admin",
+    "admin_group": true,
+    "root": false,
+    "unprivileged_subject_verified": false
+  },
+  "guest_os": {
+    "version": "26.6.2",
+    "build": "25G83"
+  },
+  "path_discovery": {
+    "python3": "/usr/bin/python3",
+    "node": "/opt/homebrew/bin/node",
+    "sandbox-exec": "/usr/bin/sandbox-exec",
+    "codex": null,
+    "claude": null
+  },
+  "mounts": "No host shares observed in enumerated mount table; local APFS and autofs",
+  "network": "No IPv4 on en0; IPv6 link-local; utun0..3 have IPv6 default routes; effective egress not tested",
+  "cleanup": {
+    "vm": "stopped",
+    "tart_pid": 17482,
+    "sink_pid": 17483,
+    "admin_client_pid": 17553,
+    "final_ps_matches": 0,
+    "final_listener_lsof_matches": 0,
+    "elapsed_seconds": 45.1444937089982
+  },
+  "S0": "NO_VERIFICADO",
+  "AB": "NO_EJECUTADO",
+  "cost": "COSTE_INCONCLUSO"
+}

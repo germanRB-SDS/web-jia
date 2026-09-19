@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-09-13T16:18:25.210110+00:00",
+  "outcome": "PASS_SUBSET_NOT_FULL_S0",
+  "source_sha256": "3c6cf05c13fa3edbebd9ba0e5a2f617e1a2289bbb00668e24e1e7db0ee3fc686",
+  "raw_log_sha256": "5a1da456fe5b04d21f5e5b89c7e23cf75110a5fce60881a0db4a78cfcb69f9d9",
+  "guest_root": "/private/tmp/sds-sentinel-surface.oxEMdG",
+  "phases": [
+    {
+      "phase": "positive",
+      "outcome": "PASS",
+      "observed": {
+        "signal": 1,
+        "witness_alive": true,
+        "received": {
+          "tcp4": 1,
+          "tcp6": 1,
+          "unix": 1
+        },
+        "p": "allowed",
+        "x": "allowed",
+        "policy_unchanged": true
+      }
+    },
+    {
+      "phase": "negative",
+      "outcome": "PASS",
+      "observed": {
+        "signal": 0,
+        "witness_alive": true,
+        "received": {
+          "tcp4": 0,
+          "tcp6": 0,
+          "unix": 0
+        },
+        "p": "allowed",
+        "x": "allowed",
+        "policy_unchanged": true
+      }
+    },
+    {
+      "phase": "postpositive",
+      "outcome": "PASS",
+      "observed": {
+        "signal": 1,
+        "witness_alive": true,
+        "received": {
+          "tcp4": 1,
+          "tcp6": 1,
+          "unix": 1
+        },
+        "p": "allowed",
+        "x": "allowed",
+        "policy_unchanged": true
+      }
+    }
+  ],
+  "negative_statuses": {
+    "p": {
+      "code": "ALLOWED"
+    },
+    "x": {
+      "code": "ALLOWED"
+    },
+    "write": {
+      "code": "EPERM"
+    },
+    "chmod": {
+      "code": "EPERM"
+    },
+    "unlink": {
+      "code": "EPERM"
+    },
+    "replace": {
+      "code": "EPERM"
+    },
+    "policy": {
+      "code": "EPERM"
+    },
+    "launcher": {
+      "code": "EPERM"
+    },
+    "parent": {
+      "code": "EPERM"
+    },
+    "signal": {
+      "code": "EPERM"
+    },
+    "tcp4": {
+      "code": "EPERM"
+    },
+    "tcp6": {
+      "code": "EPERM"
+    },
+    "unix": {
+      "code": "EPERM"
+    }
+  },
+  "negative_manifest_unchanged": true,
+  "guest_cleanup": {
+    "type": "cleanup",
+    "listeners_closed": true,
+    "witness_closed": true
+  },
+  "limits": [
+    "loopback TCP4/TCP6 and UNIX only; no external egress claim",
+    "UNIX denial may combine file and network policy",
+    "replica custody only; no installed runtime attestation or privilege revocation",
+    "SIGUSR2 only; no Mach/XPC, preexisting services, arbitrary descendants or FD revocation",
+    "not A/B and no operational cost estimate"
+  ],
+  "prior_v2": "FAIL preserved: guest-discovery/s0-v2-failure.json"
+}

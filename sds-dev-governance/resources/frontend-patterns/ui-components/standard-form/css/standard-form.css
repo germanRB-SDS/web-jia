@@ -1,0 +1,173 @@
+/* Standard Form — SDS dark-panel form ("el form de auragenda / teragenda / sds-dev").
+   Extracted from Teragenda's fiscal billing form ([50-2 F6] + [50-5]/[50-6] rhythm fixes).
+   Re-theme by mapping the --sf-* properties to the target project's tokens. */
+.standard-form-scope {
+  /* Surfaces */
+  --sf-bg: #0b1624;             /* page background        → teragenda --color-bg */
+  --sf-surface: #111f30;        /* form card surface      → teragenda --color-surface */
+  --sf-border: #1c3045;         /* hairline borders       → teragenda --color-border */
+  /* Text */
+  --sf-text: #ddeaf6;           /* primary text           → teragenda --color-text */
+  --sf-muted: #7a92a8;          /* labels / captions      → teragenda --color-muted */
+  /* Accents */
+  --sf-accent: #4aa7b8;         /* focus + selected pill  → teragenda --color-brand-primary */
+  --sf-danger: #e85a4f;         /* invalid + field errors → teragenda --color-danger */
+  /* Rhythm (the two numbers that make the form read as owned rows, not floating fields) */
+  --sf-row-gap: 12px;           /* field bottom → next label top (teragenda --billing-profile-field-gap) */
+  --sf-label-gap: .28rem;       /* label → its own control */
+}
+
+/* 1. The card. One bordered rounded surface per form; generous but bounded padding. */
+.standard-form {
+  background: var(--sf-surface);
+  border: 1px solid var(--sf-border);
+  border-radius: 12px;
+  color: var(--sf-text);
+  padding: 28px;
+  position: relative;
+}
+
+/* 2. Segmented switch (real radios, keyboard-native). NO outer box: the container is pure
+      layout; the pill (background + radius) belongs to each option, so only the chosen one fills. */
+.standard-form .sf-segmented {
+  border: 0;
+  margin: 0 0 1.25rem;
+  padding: 0;
+}
+
+.standard-form .sf-segmented legend {
+  font-weight: 800;
+  margin-bottom: .6rem;
+  padding: 0;
+}
+
+.standard-form .sf-segmented-options {
+  display: inline-flex;
+  gap: .4rem;
+}
+
+.standard-form .sf-segmented-option {
+  border-radius: 999px;
+  cursor: pointer;
+  margin: 0;
+  padding: .5rem 1.1rem;
+  position: relative;
+  transition: background-color .18s ease, color .18s ease;
+}
+
+.standard-form .sf-segmented-option input {
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.standard-form .sf-segmented-option span {
+  color: var(--sf-muted);
+  font-weight: 650;
+}
+
+.standard-form .sf-segmented-option:hover:not(:has(input:checked)) {
+  background: color-mix(in srgb, var(--sf-text) 8%, transparent);
+}
+
+.standard-form .sf-segmented-option:hover:not(:has(input:checked)) span {
+  color: var(--sf-text);
+}
+
+.standard-form .sf-segmented-option:has(input:checked) {
+  background: var(--sf-accent);
+}
+
+.standard-form .sf-segmented-option:has(input:checked) span {
+  color: var(--sf-bg);
+}
+
+.standard-form .sf-segmented-option:has(input:focus-visible) {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 3px;
+}
+
+/* 3. Field grid. Two columns desktop, one column mobile. The row gap is the ONLY vertical
+      rhythm: reset any global label margin or the rows detach from their labels. */
+.standard-form .sf-grid {
+  display: grid;
+  gap: var(--sf-row-gap) 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.standard-form .sf-field {
+  display: grid;
+  gap: var(--sf-label-gap);
+  margin: 0; /* guards against global `label { margin }` resets — the classic detachment bug */
+}
+
+.standard-form .sf-field > span {
+  color: var(--sf-muted);
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.standard-form .sf-field input,
+.standard-form .sf-field select {
+  background: var(--sf-bg);
+  border: 1px solid var(--sf-border);
+  border-radius: 8px;
+  color: var(--sf-text);
+  min-height: 42px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.standard-form .sf-field input:focus-visible,
+.standard-form .sf-field select:focus-visible {
+  border-color: var(--sf-accent);
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 1px;
+}
+
+.standard-form .sf-field input[aria-invalid='true'] {
+  border-color: color-mix(in srgb, var(--sf-danger) 65%, var(--sf-border));
+}
+
+.standard-form .sf-field-error {
+  color: var(--sf-danger);
+  font-size: .85rem;
+  margin: 0;
+}
+
+/* 4. Footer: submit + live status caption on one line; the status is quieter than the fields. */
+.standard-form .sf-footer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  margin-top: 1.25rem;
+}
+
+.standard-form .sf-status {
+  color: var(--sf-muted);
+  font-size: .82rem;
+  margin: 0;
+  min-height: 1.4em;
+}
+
+.standard-form .sf-status.is-error {
+  color: var(--sf-danger);
+}
+
+@media (max-width: 780px) {
+  .standard-form .sf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .standard-form .sf-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .standard-form .sf-segmented-option { transition: none; }
+}

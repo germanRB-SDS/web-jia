@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "campaign": "01-4-tart-run2",
+  "sentinel_active": false,
+  "sentinel_integrated": false,
+  "recommendation": "DO_NOT_USE_AS_PROTECTION",
+  "vm_startup": "BLOCKED_SUPERVISOR_LIFECYCLE",
+  "security_percent": null,
+  "security_missing_reason": "No defensible global security percentage; S0 and S7 not met",
+  "measured_protection": [
+    {
+      "label": "Sentinel protection",
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null,
+      "scope": "no eligible integrated observations"
+    },
+    {
+      "label": "Protected client compatibility",
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null,
+      "scope": "no eligible integrated observations"
+    },
+    {
+      "label": "Real rollback",
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null,
+      "scope": "no eligible integrated observations"
+    }
+  ],
+  "infrastructure_tests": [
+    {
+      "label": "tests/test-sentinel.py",
+      "numerator": 24,
+      "denominator": 24,
+      "percent": 100.0,
+      "scope": "synthetic tests, not protection"
+    },
+    {
+      "label": "tests/test-sentinel-evaluation.py",
+      "numerator": 34,
+      "denominator": 34,
+      "percent": 100.0,
+      "scope": "synthetic tests, not protection"
+    },
+    {
+      "label": "tests/test-sentinel-net-sink.py",
+      "numerator": 2,
+      "denominator": 2,
+      "percent": 100.0,
+      "scope": "synthetic tests, not protection"
+    },
+    {
+      "label": "tests/test-sentinel-public-registry.py",
+      "numerator": 4,
+      "denominator": 4,
+      "percent": 100.0,
+      "scope": "synthetic tests, not protection"
+    }
+  ],
+  "supervisor_runs": [
+    {
+      "label": "managed restricted session",
+      "numerator": 3,
+      "denominator": 5,
+      "percent": 60.0,
+      "scope": "same five synthetic supervisor cases",
+      "errors": 2,
+      "elapsed_seconds": 4.4
+    },
+    {
+      "label": "same session; require_escalated requested and tool execution admitted",
+      "numerator": 3,
+      "denominator": 5,
+      "percent": 60.0,
+      "scope": "same five synthetic supervisor cases",
+      "errors": 2,
+      "elapsed_seconds": 4.389
+    }
+  ],
+  "supervisor_runs_are_independent_replicates": false,
+  "static_adapter_words_added": 0,
+  "model_usage_tokens": null,
+  "monetary_cost": null,
+  "cost_outcome": "COSTE_INCONCLUSO",
+  "provisioning": {
+    "mode": "clone",
+    "pid": 88799,
+    "exit_code": 0,
+    "elapsed_seconds": 650.7716798750043,
+    "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789300168662599000-clone.log",
+    "log_bytes": 1269,
+    "public_mirror": {
+      "requests": 97,
+      "bytes_sent": 27312517392,
+      "rejected": 0,
+      "upstream_errors": 0
+    }
+  },
+  "warning": "Percentages are corpus-specific pass fractions, not security probabilities. Do not pool repeated contexts or compensate critical errors with unit successes."
+}

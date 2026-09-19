@@ -1,0 +1,162 @@
+diff --git b/.gitignore a/.gitignore
+index 9e5df71..3d83a60 100644
+--- b/.gitignore
++++ a/.gitignore
+@@ -8,8 +8,3 @@ __pycache__/
+ *.pyc
+ .build/
+ node_modules/
+-
+-# Native personal configuration is reviewed locally, never distributed.
+-/.claude/settings.local.json
+-/.codex/config.toml
+-/.gemini/settings.json
+diff --git b/CHANGELOG.md a/CHANGELOG.md
+index 6d55c2a..4a8ef49 100644
+--- b/CHANGELOG.md
++++ a/CHANGELOG.md
+@@ -1,12 +1,5 @@
+ # SDS Dev Governance — Changelog
+ 
+-## Sin publicar — Sentinel [01-1], 2026-09-13
+-
+-- Preparar contrato, utilidades puras y plantillas nativas sin activar Sentinel ni propagarlo.
+-- Separar exportación de ajustes personales y fingerprint de controles; omitir evidencia local.
+-- Añadir pruebas y medición puras. Integración A/B, parada, custodia y rollback pendientes de
+-  barrera exterior independiente; no se afirma protección runtime ni mejora de consumo.
+-
+ ## v1.27.0 — 2026-09-10
+ 
+ Change ID: `REL-2026-09-10-02`
+diff --git b/README.md a/README.md
+index 3f577fe..68562ad 100644
+--- b/README.md
++++ a/README.md
+@@ -4,10 +4,6 @@ Framework portable de gobernanza de desarrollo para proyectos gestionados con ag
+ 
+ Extraido de las practicas operativas del proyecto FIELDS (2026-05). Version actual: v1.27.0.
+ 
+-Candidato sin activar: [Sentinel](sentinel/README.md), encargo `[01-1]`. Contrato, plantillas
+-y pruebas puras preparados; integración y rollback pendientes. No modifica la versión publicada
+-ni admite nuevos permisos. [Informe](docs/prompts-output/%5B01-1%5Dsentinel-implementacion-verificable.md).
+-
+ ## Que contiene
+ 
+ ```
+diff --git b/docs/governance/README.md a/docs/governance/README.md
+index 05b1795..3b402cb 100644
+--- b/docs/governance/README.md
++++ a/docs/governance/README.md
+@@ -3,7 +3,3 @@
+ See [the detailed change log](governance-change-log.md) and [capability ledger](capability-registry.md).
+ 
+ REL-2026-09-10-02 adds optional closed MCP tooling; provider activation stays quarantined.
+-
+-[Sentinel 01-1](../prompts-output/%5B01-1%5Dsentinel-implementacion-verificable.md) prepara
+-un candidato sin activar. Pruebas puras y separación de exportación/identidad; integración,
+-custodia, parada y rollback NO_VERIFICADOS. No es una nueva admisión ni release.
+diff --git b/docs/governance/governance-change-log.md a/docs/governance/governance-change-log.md
+index afe6d99..c6f7d2c 100644
+--- b/docs/governance/governance-change-log.md
++++ a/docs/governance/governance-change-log.md
+@@ -1,26 +1,5 @@
+ # Governance Change Log
+ 
+-## GOV-2026-09-13-SENTINEL — Candidato 01-1 sin activar
+-
+-- Fuente/owner: encargo explícito del usuario `[01-1]`; incorporación/modificación 2026-09-13.
+-- GOV-SAFETY, GOV-AUTOMATION, GOV-STRUCTURE. Estado PARCIAL, no release ni admisión runtime.
+-- `sentinel/contract.md`: contrato de desarrollo; razones, ámbito, evidencia y límites.
+-- `sentinel/core.py`: códecs de denegación y contador de referencia en memoria; sin hooks instalados.
+-- `sentinel/templates/*`: candidatos Codex/Claude; Gemini solo DECLARADO, sin versión instalada.
+-- `sentinel/lab.py`: plan acotado; ejecución de integración cerrada hasta backend y barrera reales.
+-- `scripts/governance_tree.py`: exclusión exacta de settings personales al exportar; conservar
+-  identidad de controles; excluir evidencia/tmp de prompts por componentes.
+-- `scripts/bootstrap.py`: consume la vista de distribución y añade ignores personales exactos.
+-- `.gitignore`: mismo alcance local, sin desproteger carpetas de controles.
+-- `tests/test-sentinel.py`, `tests/measure-sentinel.py`: contratos puros, atribución y medidas locales.
+-- `docs/prompts/`, `docs/prompts-output/`, este índice, README/CHANGELOG: trazabilidad del candidato.
+-- Kernel, prácticas activas, adapters materializados, capability ledger, VERSION y consumidores:
+-  N/A — no activación, propagación ni modificación de permisos durante el ensayo.
+-- Verificación y límites: informe `[01-1]`; E2E de bootstrap y harness pendiente por barrera exterior.
+-- Recuperación: parche inverso revisable por rutas; sin reset/clean, sin rollback reclamado ni probado.
+-- El usuario prohíbe ramas/fetch/stash/commits/push y controles activos: excepción expresa de este
+-  encargo al workflow Git/fase de prácticas 05/14. No se pide repetir esa autorización.
+-
+ ## GOV-2026-09-09-10 — Bootstrap preservation and classifier repair
+ 
+ - Prompt base: owner continuation, hub docs/prompts/2026-09-09-continuar-gobernanza.md.
+diff --git b/scripts/bootstrap.py a/scripts/bootstrap.py
+index 78a390f..55edb2f 100644
+--- b/scripts/bootstrap.py
++++ a/scripts/bootstrap.py
+@@ -34,9 +34,6 @@ __pycache__/
+ .gradle/
+ graphify-out/
+ .sds/state/
+-/.claude/settings.local.json
+-/.codex/config.toml
+-/.gemini/settings.json
+ '''
+ HUB_IGNORES = '''# Hub owns only explicitly reviewed governance documents and entrypoints.
+ /*
+@@ -124,7 +121,7 @@ def main():
+     plugins = env_flag('SDS_INSTALL_PLUGINS') if args.plugins is None else args.plugins
+     graphify = env_flag('SDS_INSTALL_GRAPHIFY') and not args.skip_graphify
+     skills = skills and not files_only; plugins = plugins and not files_only
+-    source, source_bytes = snapshot(KIT, distribution=True)
++    source, source_bytes = snapshot(KIT)
+     for rel in ('GOVERNANCE.md','VERSION.md','practices/INDEX.md','skills/README.md',
+                 'skills/r8-analyzer.md','scaffold/docs/governance/capability-registry.md',
+                 'adapters/AGENTS.md','check-governance.sh'):
+diff --git b/scripts/governance_tree.py a/scripts/governance_tree.py
+index 5025b2f..82bb70f 100644
+--- b/scripts/governance_tree.py
++++ a/scripts/governance_tree.py
+@@ -3,28 +3,9 @@ import hashlib
+ import os
+ from pathlib import Path
+ import stat
+-import re
+ 
+ IGNORED = {'.git', '.DS_Store', '__pycache__'}
+ 
+-# Native files can mix local approvals with security controls. Do not export them,
+-# but retain them in identity snapshots so control changes remain detectable.
+-LOCAL_CONFIG_FILES = {
+-    '.claude/settings.local.json', '.codex/config.toml', '.gemini/settings.json',
+-}
+-
+-
+-def included_path(relative, *, distribution=False):
+-    """Classify components at the kit root, never arbitrary textual prefixes."""
+-    parts = relative.split('/')
+-    if any(part in IGNORED for part in parts):
+-        return False
+-    if (len(parts) >= 4 and parts[:2] == ['docs', 'prompts-output']
+-            and re.fullmatch(r'\[\d{2,}-\d+[a-z]?\]', parts[2])
+-            and parts[3] in {'evidence', 'tmp'}):
+-        return False
+-    return not (distribution and relative in LOCAL_CONFIG_FILES)
+-
+ 
+ def safe_name(value):
+     if any(ord(c) < 32 or ord(c) == 127 for c in value):
+@@ -33,7 +14,7 @@ def safe_name(value):
+     return value
+ 
+ 
+-def snapshot(root, *, distribution=False):
++def snapshot(root):
+     """Read each entry once through pinned, no-follow directory descriptors."""
+     root = Path(root).resolve(strict=True)
+     entries, contents = {}, {}
+@@ -42,8 +23,6 @@ def snapshot(root, *, distribution=False):
+             if name in IGNORED:
+                 continue
+             rel = safe_name(prefix + name)
+-            if not included_path(rel, distribution=distribution):
+-                continue
+             st = os.stat(name, dir_fd=fd, follow_symlinks=False)
+             if stat.S_ISLNK(st.st_mode):
+                 data = os.fsencode(os.readlink(name, dir_fd=fd)); kind = 'link'

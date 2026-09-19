@@ -1,0 +1,53 @@
+ M .gitignore
+ M CHANGELOG.md
+ M README.md
+ M docs/governance/README.md
+ M docs/governance/governance-change-log.md
+ M scripts/bootstrap.py
+ M scripts/governance_tree.py
+?? .DS_Store
+?? docs/.DS_Store
+?? docs/prompts-output/.DS_Store
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/observations.json
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/reproduce.md
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/source-manifest.json
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/tool-metadata.json
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/evidence/validation.json
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/report.md
+?? docs/prompts-output/2026-09-10-mcp-minimal-analysis/tmp/checkpoint.md
+?? docs/prompts-output/[01-0]/evidence/verificacion-documental.json
+?? docs/prompts-output/[01-0]/tmp/continuidad.md
+?? docs/prompts-output/[01-0]sentinel-revision-aterrizada.md
+?? docs/prompts-output/[01-1]/README.md
+?? docs/prompts-output/[01-1]/activacion-y-reversion.md
+?? docs/prompts-output/[01-1]/evidence/README.md
+?? docs/prompts-output/[01-1]/evidence/baseline-governance_tree.py.txt
+?? docs/prompts-output/[01-1]/evidence/baseline.json
+?? docs/prompts-output/[01-1]/evidence/closure.json
+?? docs/prompts-output/[01-1]/evidence/discovery.json
+?? docs/prompts-output/[01-1]/evidence/frozen-plan.json
+?? docs/prompts-output/[01-1]/evidence/patch-check.json
+?? docs/prompts-output/[01-1]/evidence/proposals/candidate-source-reverse.patch
+?? docs/prompts-output/[01-1]/evidence/proposals/candidate-source.patch
+?? docs/prompts-output/[01-1]/evidence/proposals/claude-project-config.proposal.patch
+?? docs/prompts-output/[01-1]/evidence/proposals/codex-project-config.proposal.patch
+?? docs/prompts-output/[01-1]/evidence/pure-measurements.json
+?? docs/prompts-output/[01-1]/evidence/pure-tests.json
+?? docs/prompts-output/[01-1]/evidence/pure-tests.txt
+?? docs/prompts-output/[01-1]/fuentes-y-cobertura.md
+?? docs/prompts-output/[01-1]/metricas.md
+?? docs/prompts-output/[01-1]/tmp/continuidad.md
+?? docs/prompts-output/[01-1]sentinel-implementacion-verificable.md
+?? docs/prompts/README.md
+?? docs/prompts/SDS-REVISION-sentinel-perimetro-local-2026-09-12.md
+?? docs/prompts/[01-0-alpha]sentinel-perimetro-local.md
+?? docs/prompts/[01-1]sentinel-implementacion-verificable.md
+?? sentinel/README.md
+?? sentinel/contract.md
+?? sentinel/core.py
+?? sentinel/lab.py
+?? sentinel/templates/claude-settings.json
+?? sentinel/templates/codex-config.toml
+?? sentinel/templates/gemini.md
+?? tests/measure-sentinel.py
+?? tests/test-sentinel.py

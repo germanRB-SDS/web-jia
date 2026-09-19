@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-13T16:12:41.705727+00:00",
+  "source": "sentinel/s0_surface_probe.sh",
+  "sha256": "3c6cf05c13fa3edbebd9ba0e5a2f617e1a2289bbb00668e24e1e7db0ee3fc686",
+  "planned_runs": 1,
+  "phases": [
+    "positive",
+    "negative",
+    "postpositive"
+  ],
+  "phase_meaning": "bare / candidate outer sandbox / bare; NOT Sentinel A/B/A2",
+  "guest_root": "new /private/tmp/sds-sentinel-surface.XXXXXX",
+  "vm_root": "/private/tmp/sds-sentinel-tart-KoUNwE",
+  "supervisor_revision": "../guest-discovery/revision.json",
+  "write_targets": "new disposable guest fixture only; real Node/runtime never mutated",
+  "network": "guest 127.0.0.1 and ::1 ephemeral TCP ports plus UNIX socket under W; no external destinations",
+  "signal": "SIGUSR2 to own ready Node witness; never host or supervisor",
+  "deadline": "subject6s; sockets600ms; witness20s; VM45s with existing supervisor",
+  "cases": [
+    "P/X positive writes",
+    "W write/chmod/unlink/replace/policy-replica/launcher-replica",
+    "parent creation",
+    "SIGUSR2 witnessed",
+    "TCP4/TCP6/UNIX nonce reception"
+  ],
+  "oracle": "admin manifests contents/dev/ino/mode/owner/nlink; signal counter and receiver nonce independent of subject return",
+  "negative_acceptance": "denied syscalls EPERM/EACCES; targets unchanged; no signal/received nonce; P/X allowed; witness alive",
+  "positive_acceptance": "actual mutations, signal received once, every receiver gets nonce once, repeats after negatives",
+  "stop": "any phase failure aborts remaining phases; errors preserved; no campaign",
+  "limits": [
+    "same UID/admin, no privilege non-elevation proof",
+    "general egress, Mach/XPC, existing services, FD revocation and arbitrary descendant lifetime unverified",
+    "replica protections do not attest executable or dependencies custody",
+    "UNIX layer may combine file/network policy",
+    "no LLM execution, no cost estimate"
+  ],
+  "authorization": "owner current instruction to continue laboratory autonomously; no credentials/sudo/production",
+  "review": "pending exact independent review",
+  "preexecution_delta": "SIGUSR2 avoids reserved Node SIGUSR1 debugger behavior; original draft never executed"
+}

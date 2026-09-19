@@ -1,0 +1,38 @@
+{
+  "phase": "outer-barrier evaluation only, not A or B",
+  "source": "sentinel/s0_probe.sh",
+  "sha256": "39c8f2ed12ed486f18450ca536768618c964889638e7f7ecb7cf865000ccdaa1",
+  "planned_runs": 1,
+  "reason": "deterministic positive/negative controls, no stochastic estimates",
+  "guest_root": "new /private/tmp/sds-sentinel-s0.XXXXXX",
+  "real_targets": false,
+  "sudo": false,
+  "network_probes": false,
+  "installations": false,
+  "write_targets": [
+    "P",
+    "X",
+    "Y synthetic canary",
+    "W synthetic control"
+  ],
+  "positive_controls": [
+    "bare Y write",
+    "bare X write",
+    "bare W write",
+    "bare inheritedFD9 write to separate synthetic replica"
+  ],
+  "under_outer_sandbox": [
+    "P allowed",
+    "X allowed",
+    "Y denied before effect",
+    "W denied before effect",
+    "inheritedFD9 cannot alter Y"
+  ],
+  "observable_oracle": "admin parent compares final contents, separate from child status",
+  "stop_rule": "any unexpected content or inability to perform positive =>FAIL and no campaign",
+  "acceptance": "file controls subset only; never sufficient for full S0/S7",
+  "cost_metrics": "provisioning/test resources, no LLM tokens or A/B cost inference",
+  "cleanup": "retain exact guest fixture; shutdown VM45s and verify host owned processes absent",
+  "revision": "v2, exact /bin/bash variant required by guest /bin/sh",
+  "prior_outcome": "v1 FAILED launch, not sufficient ability to run subject; preserved separately"
+}

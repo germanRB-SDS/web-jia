@@ -1,0 +1,21 @@
+{
+  "scope": "V3 supervisor interruption -> Tart lifecycle -> independent sink closure; no campaign",
+  "tests_supervisor": {
+    "passed": 14,
+    "total": 14,
+    "evidence": "tests-final2.log"
+  },
+  "tests_sink": {
+    "passed": 3,
+    "total": 3,
+    "evidence": "tests-sink.log"
+  },
+  "previous_test_error": "tests-final.log: recursion in test mock, corrected; retained",
+  "source_hashes_match": true,
+  "tart_lifecycle": "PASS bounded45s in automatically approved escalated context",
+  "restricted_launch": "FAIL SIGABRT, crash-summary.json",
+  "S0": "NO_VERIFICADO",
+  "AB": "NO_EJECUTADO",
+  "cost": "COSTE_INCONCLUSO",
+  "commits": "NOT_PERFORMED .git read-only and unrelated pre-existing work preserved"
+}

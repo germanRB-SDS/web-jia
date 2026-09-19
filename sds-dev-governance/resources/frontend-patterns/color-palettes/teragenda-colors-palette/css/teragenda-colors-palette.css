@@ -1,0 +1,34 @@
+:root {
+  --color-brand-primary: #4aa7b8;
+  --color-brand-secondary: #f4895a;
+  --color-brand-accent: #f2d98b; /* soft pale gold (replaced former #f5c242 yellow-orange) */
+  --color-brand-burgundy: #5b1816;
+  --color-brand-gradient: linear-gradient(135deg, #e05a6b 0%, #f4874a 50%, #f5c242 100%);
+  --color-brand-gradient-from: #e05a6b;
+  --color-brand-gradient-to: #f5c242;
+
+  --color-hero-bg: #070f1a;
+  --color-bg: #0b1624;
+  --color-surface: #111f30;
+  --color-surface-raised: #162437;
+  --color-modal-surface: #1d2e46; /* popup/dialog surface — pairs against --color-surface #111f30 */
+  --color-mobile-bg-deep: #020713;
+  --color-mobile-bg-mid: #030817;
+  --color-mobile-bg-end: #040a18;
+  --color-mobile-panel: #1d2a3f;
+  --color-mobile-tab: #516176;
+
+  --color-text: #ddeaf6;
+  --color-muted: #7a92a8;
+  --color-border: #1c3045;
+
+  --color-info-accent: #8ac6e0;   /* light informational blue (info affordances)        */
+  --color-accent-aqua: #3fd8a4;   /* aquamarine green (additive "+" affordances)        */
+  --color-eyebrow-soft: var(--color-brand-accent); /* dialog eyebrows — alias of the accent */
+
+  --color-success: #34c77b;
+  --color-whatsapp: #25d366;
+  --color-warning: #f5a623;
+  --color-auth-warning: #c2566a;
+  --color-danger: #e85a4f;
+}

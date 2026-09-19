@@ -1,0 +1,43 @@
+/* Gradient-flow button — CTA pill cuyo degradado se desplaza en horizontal al
+   hacer hover, con una sombra vertical ligera por debajo como realce. Colores y
+   velocidad re-tematizables vía custom properties. El degradado es simétrico
+   (c1…c3…c1) para que el desplazamiento sea un bucle continuo sin saltos. */
+.gradient-flow-btn {
+  --gf-c1: #5AA0E8;            /* extremos del degradado (azul) */
+  --gf-c2: #7B7FE0;            /* intermedio (violeta) */
+  --gf-c3: #9D7BE8;            /* centro (lila) */
+  --gf-shadow: 123, 127, 224;  /* RGB de la sombra */
+  --gf-speed: 2.5s;            /* duración del bucle */
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    var(--gf-c1), var(--gf-c2) 35%, var(--gf-c3) 50%, var(--gf-c2) 65%, var(--gf-c1));
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  box-shadow: 0 14px 40px -12px rgba(var(--gf-shadow), .8);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.gradient-flow-btn:hover {
+  transform: translateY(-1px);
+  /* realce de sombra vertical hacia abajo (spread negativo → queda por debajo,
+     no es un halo alrededor); ligero */
+  box-shadow: 0 18px 22px -14px rgba(var(--gf-shadow), .6);
+  animation: gradient-flow var(--gf-speed) linear infinite;
+}
+@keyframes gradient-flow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 220% 50%; }
+}
+
+/* Accesibilidad: sin desplazamiento del degradado bajo reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-flow-btn:hover { animation: none; }
+}

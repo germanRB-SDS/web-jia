@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-09-13T18:32:59.232640+00:00",
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "README.md",
+        "CHANGELOG.md",
+        "docs/governance/capability-registry.md",
+        "docs/governance/governance-change-log.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "--check",
+        "sentinel/deletion_guest.js"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "python_syntax": "PASS",
+  "frozen_source_hashes": "PASS",
+  "report_local_links": "PASS",
+  "host_test_a_b_absent": true,
+  "native_phases_valid": 4,
+  "analyzer_rejects_invalid": "PASS",
+  "bundle_deep_audit": "PASS"
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-13",
+  "class": "OBSERVADO for discovery; runtime policy from managed session context",
+  "os": "macOS 26.6.2 arm64 (25G83)",
+  "python": "3.14.6",
+  "codex_cli": {"version": "0.154.0", "path": "/opt/homebrew/bin/codex", "target": "/opt/homebrew/Caskroom/codex/0.154.0/bin/codex", "version_warning": "PATH aliases creation not permitted"},
+  "claude_cli": {"version": "2.1.270", "path": "/Users/hrms/.local/bin/claude"},
+  "not_found_in_PATH": ["gemini", "docker", "podman", "colima", "lima", "tart", "qemu-system-aarch64"],
+  "sandbox_exec": {"present": true, "invoked": false, "historical_denial": "01-1/evidence/discovery.json: sandbox_apply Operation not permitted; cause not demonstrated"},
+  "managed_session": {"executor_build": null, "sandbox": "workspace-write", "reviewer": "auto_review", "network": "restricted", "writable": ["KIT", "platform temporary roots"], "read_only": [".git", ".agents", ".codex"], "independent_lab": "NO_VERIFICADO"},
+  "selected_config": {
+    "codex_user": {"model": "gpt-6-astra", "effort": "high", "reviewer": "auto_review", "project_trust": "trusted", "sentinel_hook_reference_present": false, "sandbox_declared": false},
+    "claude_user": {"model": "claude-fable-5-1[1m]", "sandbox_declared": false, "hooks_declared": false},
+    "absent": ["project .codex/config.toml", "project .claude/settings.json", "project .claude/settings.local.json", "project .gemini/settings.json"]
+  },
+  "effective_config_all_sources": "NO_VERIFICADO",
+  "root_subfolder_restart_resume_other_root": "NO_VERIFICADO: no isolated client launch",
+  "model_sessions_in_test_campaign": 0,
+  "native_usage_schema_validated": false,
+  "construction_review_tokens": null,
+  "missing_reason": "No complete native session counters exposed; installed CLI/config does not identify current executor or loaded state"
+}

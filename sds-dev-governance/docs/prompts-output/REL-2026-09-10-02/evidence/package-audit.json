@@ -1,0 +1,41 @@
+{
+  "package": "@hostinger/mcp",
+  "version": "1.58.0",
+  "source_revision": "27e3b104a90c2292f178cbf2d251ab731aeabee1",
+  "dist_integrity": "sha512-mfUug0772Ajw893OAZ9ghN8AxKhT7Joo0NuGGhFjACN3A6aX+d1mylPPzAg56HJ4doQvcrDHgjzUp3eR3puzEQ==",
+  "locked_packages": 131,
+  "has_install_scripts": [],
+  "all_lock_origins_npm": true,
+  "modules": {
+    "hosting": {
+      "count": 64,
+      "catalog_sha256": "b25a2bdb5026f75a91cc4d5403f61cf4579f45c9c772fa02becda00f57c7d3e2",
+      "custom_operations": 7,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "domains": {
+      "count": 40,
+      "catalog_sha256": "776690a61788274f58bb41e6f4895ef2b6708ebe22a310c10429140e8fa93a67",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "dns": {
+      "count": 8,
+      "catalog_sha256": "303a1b489ef7eb2d0bec311f473ce5fc5e78986e3451533fe315cfe69e0fa63e",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "reach": {
+      "count": 52,
+      "catalog_sha256": "1b1b4e9645c7cde66506eafb5bd2a136436f7a70175c90db7972cde71bbccf0f",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "vps": {
+      "count": 64,
+      "catalog_sha256": "9a29f38175bb60c5fec4a9a581fbd3949ace41eee7c367d5cae6124a347c404f",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    }
+  }
+}

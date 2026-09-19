@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Reject remote ref deletion and non-fast-forward branch/tag updates, even for direct git push.
+
+set -euo pipefail
+
+ZERO_SHA="0000000000000000000000000000000000000000"
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ -n "${remote_ref:-}" ] || continue
+
+  if [ "$local_sha" = "$ZERO_SHA" ] || [ "$local_ref" = "(delete)" ]; then
+    echo "DENIED BY SDS PRE-PUSH GUARDRAIL: remote ref deletion is manual-owner only ($remote_ref)" >&2
+    exit 64
+  fi
+
+  if [ "$remote_sha" != "$ZERO_SHA" ] && [ "$local_sha" != "$remote_sha" ]; then
+    case "$remote_ref" in
+      refs/heads/*)
+        if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+          echo "DENIED BY SDS PRE-PUSH GUARDRAIL: non-fast-forward update ($remote_ref)" >&2
+          exit 64
+        fi
+        ;;
+      refs/tags/*)
+        echo "DENIED BY SDS PRE-PUSH GUARDRAIL: existing tag rewrite ($remote_ref)" >&2
+        exit 64
+        ;;
+    esac
+  fi
+done

@@ -1,0 +1,76 @@
+{
+  "date": "2026-09-13",
+  "method": "Read-only inspection during preparation 01-3; no client model session, Sentinel test campaign, activation or restoration",
+  "repository": {
+    "head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+    "version_file": "v1.27.0",
+    "tracked_dirty_files_before": 10,
+    "tracked_diff_insertions_before": 143,
+    "tracked_diff_deletions_before": 4,
+    "baseline_manifest": "baseline.json"
+  },
+  "platform": {
+    "commands": ["uname -sm", "sw_vers"],
+    "os": "macOS 26.6.2",
+    "build": "25G83",
+    "architecture": "arm64"
+  },
+  "clients": {
+    "codex_cli": {
+      "commands": ["command -v codex", "codex --version", "codex --help"],
+      "version": "0.154.0",
+      "version_warning": "proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)",
+      "version_result": "version printed; warning is not evidence of Sentinel or confinement",
+      "installed_cli_is_current_session_executor": "NO_VERIFICADO",
+      "help_observed_features": ["sandbox modes", "approval on-request/never", "dangerously-bypass-approvals-and-sandbox", "dangerously-bypass-hook-trust", "worktree", "add-dir"],
+      "runtime_effective_configuration": "NO_VERIFICADO for new CLI sessions"
+    },
+    "claude_cli": {
+      "commands": ["command -v claude", "claude --version", "claude --help"],
+      "version": "2.1.270",
+      "help_observed_features": ["manual/auto/acceptEdits/bypassPermissions/dontAsk/plan", "bare", "safe-mode", "restricted", "setting-sources", "settings", "json/stream-json output"],
+      "help_observed_caveat": "print mode silently ignores settings files failing validation",
+      "runtime_effective_configuration": "NO_VERIFICADO; no interactive session started"
+    },
+    "gemini_cli": {
+      "command": "command -v gemini",
+      "result": "not found in PATH; exit 1",
+      "version": null,
+      "runtime_effective_configuration": "NO_VERIFICADO"
+    }
+  },
+  "current_managed_session": {
+    "source": "Developer permission instructions and user environment_context, not inferred from global config",
+    "sandbox_mode": "workspace-write",
+    "permission_profile": "managed/restricted",
+    "approvals_reviewer": "auto_review",
+    "network": "restricted",
+    "writable_roots": ["KIT", "/private/tmp", "SESSION_TMPDIR"],
+    "read_only_controls": ["KIT/.git", "KIT/.agents", "KIT/.codex"],
+    "actual_tools_used_for_inspection": ["functions.exec -> exec_command", "native web browsing", "collaboration agents (read-only)"],
+    "actual_document_write_tool": "apply_patch / bounded Python evidence creation",
+    "barrier_effects_tested": false,
+    "sentinel_integration": "NO_VERIFICADO"
+  },
+  "config_inspection": {
+    "details": "config-inspection.json",
+    "codex_user_hook_state": "trust state entries for other projects/plugins; not Sentinel admission or effective hook list",
+    "claude_user_permissions": "one Bash-scoped allow entry; command details intentionally omitted",
+    "codex_hooks_json_home_parent_kit": "absent",
+    "environment_override_names_checked_unset": ["CODEX_HOME", "CLAUDE_CONFIG_DIR", "GEMINI_CLI_HOME", "CLAUDE_CODE_SAFE_MODE", "CLAUDE_CODE_SIMPLE", "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB"],
+    "limits": "Selected sources only; no claim to enumerate managed server settings, all installation locations, active IPC services or runtime merged permissions"
+  },
+  "historical_exit_71": {
+    "source": "docs/prompts-output/[01-1]/evidence/discovery.json",
+    "new_attempt": false,
+    "cause": "NO_VERIFICADO"
+  },
+  "source_consultation": [
+    "https://code.claude.com/docs/en/sandboxing",
+    "https://code.claude.com/docs/en/hooks",
+    "https://geminicli.com/docs/hooks/",
+    "https://developers.openai.com/codex/hooks/",
+    "https://developers.openai.com/codex/security/"
+  ],
+  "source_limits": "Current online documentation, not a local runtime test or a pinned release schema. Codex local installation had no .rs/.md/schema source files discovered; official documentation used as fallback."
+}

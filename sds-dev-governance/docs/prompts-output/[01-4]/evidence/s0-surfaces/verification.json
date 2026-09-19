@@ -1,0 +1,21 @@
+{
+  "scope": "V3 guest boundary candidate; existing supervisor unchanged",
+  "static": "sh -n and node --check PASS",
+  "runtime": "one preregistered positive/negative/postpositive run",
+  "review": "independent before and after",
+  "closure": "closure.json",
+  "prior_source_hashes": "verified all guest-discovery/revision.json entries and v3 preregistration at resume",
+  "not_rerun": "v1/v2/v3, lifecycle14 and sink3; unchanged functions/source hashes, no new claims of suite rerun",
+  "new_failures": "ps restricted context denied; unusable initial lsof selector; both retained in closure, approved scoped observations then completed",
+  "limits": "S0 full, B, A/B, rollback, costs remain unverified",
+  "offline_analysis": {
+    "initial_tests": 38,
+    "final_tests": 40,
+    "outcome": "PASS",
+    "log": "evaluation-tests.log",
+    "rerun_reason": "independent review identified two numeric boundary failures; corrected and covered",
+    "source_sha256": "19fc06e6f453cdebc97a7fad336f5532e39f2c384187671568d8d14c50de4dea",
+    "test_sha256": "ff2ac1f98c4633d2a5e13919b78b0e34c85e538f7a8db5f137efa13f0ccc86d1",
+    "scope": "records -> validation -> exact descriptive comparator -> JSON; no real AB costs"
+  }
+}

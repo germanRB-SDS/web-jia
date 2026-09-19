@@ -1,0 +1,22 @@
+{
+  "source": "exec tool observations 2026-09-13T14:36-14:37Z, minimized",
+  "tart_pid": 12976,
+  "sink_pid": 12977,
+  "tart_pgid": 12976,
+  "sink_pgid": 12977,
+  "sink_parent": 12976,
+  "running_observed": true,
+  "unix_sockets_observed": [
+    "paired AF_UNIX endpoints",
+    "control.sock"
+  ],
+  "ip_sockets_lsof_matches": 0,
+  "final_ps_matches": 0,
+  "final_control_socket_lsof_matches": 0,
+  "final_vm_state": "stopped",
+  "deadline_seconds": 45,
+  "elapsed_seconds": 45.10523366701091,
+  "outcome": "LIFECYCLE_SMOKE_PASS",
+  "S0": "NOT_VERIFIED",
+  "AB": "NOT_EXECUTED"
+}

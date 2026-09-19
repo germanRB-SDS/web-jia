@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-09-13T18:28:44.721Z",
+  "vm_state": "stopped",
+  "inspect": {
+    "chunk_id": "6d3397",
+    "wall_time_seconds": 0.00000325,
+    "exit_code": 0,
+    "original_token_count": 233,
+    "output": "{\"mode\": \"inspect\", \"log\": \"/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789324088006167000-inspect.log\"}\n{\"pid\": 64133, \"process_group\": 64133}\n{\"mode\": \"inspect\", \"pid\": 64133, \"exit_code\": 0, \"stop_reason\": null, \"elapsed_seconds\": 0.021397832984803244, \"log\": \"/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789324088006167000-inspect.log\", \"log_bytes\": 474}\n{\"captured_output_prefix\": \"[\\n  {\\n    \\\"Running\\\" : false,\\n    \\\"Disk\\\" : 50,\\n    \\\"Source\\\" : \\\"local\\\",\\n    \\\"State\\\" : \\\"stopped\\\",\\n    \\\"Accessed\\\" : \\\"2026-09-13T18:27:21Z\\\",\\n    \\\"Size\\\" : 31,\\n    \\\"Name\\\" : \\\"sentinel-lab\\\"\\n  },\\n  {\\n    \\\"Running\\\" : false,\\n    \\\"Disk\\\" : 50,\\n    \\\"Source\\\" : \\\"OCI\\\",\\n    \\\"State\\\" : \\\"stopped\\\",\\n    \\\"Accessed\\\" : \\\"2026-09-13T12:00:19Z\\\",\\n    \\\"Size\\\" : 33,\\n    \\\"Name\\\" : \\\"127.0.0.1:59957\\\\/cirruslabs\\\\/macos-tahoe-base@sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e\\\"\\n  }\\n]\\n\"}\n"
+  },
+  "ps": {
+    "chunk_id": "591f4e",
+    "wall_time_seconds": 0.000001292,
+    "exit_code": 1,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "socket": {
+    "chunk_id": "52b1d2",
+    "wall_time_seconds": 0.000006125,
+    "exit_code": 1,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "own_pids": [
+    63800,
+    63801,
+    63802,
+    63869
+  ],
+  "guest_branch": "lab-clean",
+  "guest_test_a_absent": true,
+  "guest_test_b_absent": true,
+  "limits": "Own PID/socket observation at closure; not general revocation or Sentinel recovery"
+}

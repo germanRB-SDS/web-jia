@@ -1,0 +1,19 @@
+{
+  "outcome": "FAIL_METADATA_VERSION_MISMATCH",
+  "exit_code": 78,
+  "handshake": "OBSERVED",
+  "environment_status": "ready",
+  "executorVersion": "0.0.0",
+  "CLI_version_from_stage": "0.154.0",
+  "binary_sha256_prechecked": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+  "providerId": "sha256:827a20f2260f53ca58aa207243d3363c6ea7fe34e8e579d7d2a24bb35bf39ed1",
+  "guest_root": "/private/tmp/sds-sentinel-exec.xB2R50",
+  "guest_pid": 623,
+  "guest_uid": 501,
+  "native_process_start_sent": false,
+  "native_close_signal": "SIGKILL",
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0,
+  "limits": "Handshake not complete process/EOF verification; source documents0.0.0 means unknown. Preserve mismatch."
+}

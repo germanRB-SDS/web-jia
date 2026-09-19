@@ -1,0 +1,834 @@
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore
++++ b/.gitignore
+@@ -8,8 +8,3 @@
+ *.pyc
+ .build/
+ node_modules/
+-
+-# Native personal configuration is reviewed locally, never distributed.
+-/.claude/settings.local.json
+-/.codex/config.toml
+-/.gemini/settings.json
+diff --git a/scripts/governance_tree.py b/scripts/governance_tree.py
+--- a/scripts/governance_tree.py
++++ b/scripts/governance_tree.py
+@@ -3,27 +3,8 @@
+ import os
+ from pathlib import Path
+ import stat
+-import re
+ 
+ IGNORED = {'.git', '.DS_Store', '__pycache__'}
+-
+-# Native files can mix local approvals with security controls. Do not export them,
+-# but retain them in identity snapshots so control changes remain detectable.
+-LOCAL_CONFIG_FILES = {
+-    '.claude/settings.local.json', '.codex/config.toml', '.gemini/settings.json',
+-}
+-
+-
+-def included_path(relative, *, distribution=False):
+-    """Classify components at the kit root, never arbitrary textual prefixes."""
+-    parts = relative.split('/')
+-    if any(part in IGNORED for part in parts):
+-        return False
+-    if (len(parts) >= 4 and parts[:2] == ['docs', 'prompts-output']
+-            and re.fullmatch(r'\[\d{2,}-\d+[a-z]?\]', parts[2])
+-            and parts[3] in {'evidence', 'tmp'}):
+-        return False
+-    return not (distribution and relative in LOCAL_CONFIG_FILES)
+ 
+ 
+ def safe_name(value):
+@@ -33,7 +14,7 @@
+     return value
+ 
+ 
+-def snapshot(root, *, distribution=False):
++def snapshot(root):
+     """Read each entry once through pinned, no-follow directory descriptors."""
+     root = Path(root).resolve(strict=True)
+     entries, contents = {}, {}
+@@ -42,8 +23,6 @@
+             if name in IGNORED:
+                 continue
+             rel = safe_name(prefix + name)
+-            if not included_path(rel, distribution=distribution):
+-                continue
+             st = os.stat(name, dir_fd=fd, follow_symlinks=False)
+             if stat.S_ISLNK(st.st_mode):
+                 data = os.fsencode(os.readlink(name, dir_fd=fd)); kind = 'link'
+diff --git a/scripts/bootstrap.py b/scripts/bootstrap.py
+--- a/scripts/bootstrap.py
++++ b/scripts/bootstrap.py
+@@ -34,9 +34,6 @@
+ .gradle/
+ graphify-out/
+ .sds/state/
+-/.claude/settings.local.json
+-/.codex/config.toml
+-/.gemini/settings.json
+ '''
+ HUB_IGNORES = '''# Hub owns only explicitly reviewed governance documents and entrypoints.
+ /*
+@@ -124,7 +121,7 @@
+     plugins = env_flag('SDS_INSTALL_PLUGINS') if args.plugins is None else args.plugins
+     graphify = env_flag('SDS_INSTALL_GRAPHIFY') and not args.skip_graphify
+     skills = skills and not files_only; plugins = plugins and not files_only
+-    source, source_bytes = snapshot(KIT, distribution=True)
++    source, source_bytes = snapshot(KIT)
+     for rel in ('GOVERNANCE.md','VERSION.md','practices/INDEX.md','skills/README.md',
+                 'skills/r8-analyzer.md','scaffold/docs/governance/capability-registry.md',
+                 'adapters/AGENTS.md','check-governance.sh'):
+diff --git a/sentinel/README.md b/sentinel/README.md
+--- a/sentinel/README.md
++++ /dev/null
+@@ -1,45 +0,0 @@
+-# Sentinel — candidato sin activar
+-
+-Contrato: [contract.md](contract.md). Encargo: `[01-1]`. Cero dependencias nuevas.
+-Fuente editable, códecs puros y plantillas nativas; no hay hooks instalados ni nueva base de
+-permisos. El candidato NO acredita prevención general de pérdidas internas ni parada del agente.
+-
+-- [Codex](templates/codex-config.toml): esquema 0.154.0, workspace-write/on-request/user,
+-  sin reglas allow, red desactivada y sin temporales exteriores por defecto. Fragmento de
+-  configuración; no mezclar con `default_permissions`/`permissions` ni perfil incompatible.
+-- [Claude](templates/claude-settings.json): sandbox requerido y sin reintento no aislado.
+-  `excludedCommands: []` no elimina exclusiones heredadas de otros ámbitos. Revisar composición.
+-  `filesystem.disabled` requiere revisión en fuentes que pueden configurarlo; no se presenta
+-  como control local de proyecto. Herramientas Write/Edit requieren comprobación independiente.
+-- [Gemini](templates/gemini.md): DECLARADO, sin plantilla ejecutable al faltar versión instalada.
+-
+-Las versiones indicadas proceden de instalación y fuentes oficiales, no de integración viva.
+-Las plantillas están en una ubicación que los harness no cargan como settings.
+-No activar hasta cumplir el informe y todos los criterios del prompt.
+-
+-## Uso de desarrollo
+-
+-Desde KIT, `python3 -B tests/test-sentinel.py` ejecuta funciones puras; no lanza harness,
+-shell evaluada, fixtures destructivas, red ni modelo. `python3 -B sentinel/lab.py plan`
+-devuelve el plan congelado. `python3 -B sentinel/lab.py integration` termina con código 78:
+-la barrera y el backend de integración no están acreditados. No existe flag para saltarlo.
+-
+-El runner es preparación limitada, no un supervisor general. W_A/W_B/W_E y A2 quedan
+-pendientes del entorno exterior provisionado. El informe usa staging de evidencia en
+-`docs/prompts-output/[01-1]/evidence/`, sin presentarlo como worktree o custodia independiente.
+-
+-## Distribución y custodia
+-
+-Bootstrap utiliza `snapshot(..., distribution=True)`: omite únicamente configuraciones
+-nativas personales identificadas por ruta exacta. `inventory` conserva esos archivos en
+-identidad porque pueden contener controles de seguridad, además de aprobaciones. Se acepta
+-que una diferencia personal pueda exigir revisión de fingerprint; ocultarla también ocultaría
+-controles. No hay filtro semántico de permisos ni exclusión general de `.codex`/`.claude`.
+-Solo `docs/prompts-output/[NN-R]/evidence` y `tmp` quedan fuera de ambas vistas por ser
+-resultados locales. Los informes, contratos, plantillas, hooks y reglas siguen detectándose.
+-No alojar controles cargables en áreas de evidencia; no convertir resultados en autoridad.
+-Un kit destino con configuración propia se conserva; bootstrap puede rechazar equivalencia
+-en vez de reconciliar permisos. No hay instalación ni propagación automática del candidato.
+-
+-Git ignore y digest no ofrecen custodia frente al mismo usuario. El contador es RAM de un
+-observador, sin persistencia, y requiere custodia exterior para cualquier uso operativo.
+diff --git a/sentinel/contract.md b/sentinel/contract.md
+--- a/sentinel/contract.md
++++ /dev/null
+@@ -1,66 +0,0 @@
+-# Sentinel — contrato candidato, sin activar
+-
+-Propietario del encargo: usuario de `[01-1]`; incorporación 2026-09-13.
+-Ámbito: fuente de desarrollo del kit, plantillas y pruebas puras. No es política instalada.
+-La especificación completa es `docs/prompts/[01-1]sentinel-implementacion-verificable.md`.
+-Refina los antecedentes `[01-0]`; las restricciones activas de la sesión prevalecen.
+-No autoriza cambios en HOME, controles administrados, consumidores ni metadatos Git reales.
+-Las excepciones expresas al workflow de prácticas 05/14 son no branch/fetch/stash/commit/push.
+-
+-## Intención y razones
+-
+-| Código | Efecto | Tratamiento requerido |
+-|---|---|---|
+-| R1 | escritura exterior | Aprobación concreta para objeto/efectos; nunca ampliar R con cwd |
+-| R2 | ejecución de código externo | Autorización suficiente; runtime instalado no autoriza scripts arbitrarios |
+-| R3 | pérdida de contenido | Permitir solo efectos autorizados; tracked/untracked/ignored son equivalentes |
+-| R4 | pérdida Git | Identificar repositorio, referencias, index y trabajo; aprobación suficiente |
+-| R5 | alteración de control activo | Denegar autoautorización; intervención del responsable del control |
+-| R6 | límite de reintentos | Segundo del mismo caso en sesión o tercero agregado en turno; no reintentar |
+-| R7 | error de control | No convertir un fallo en permiso; conservar la restricción nativa |
+-| R8 | capacidad no acreditada | Mantener pendiente el control y su activación |
+-
+-Crear/editar para la tarea dentro de R y limpiar artefactos propios comprobados conserva
+-autonomía ordinaria. Lectura/búsqueda/listado no añaden preguntas. R se fija por autoridad al
+-iniciar sesión. KIT es ubicación de fuente, LAB es área exclusiva nueva: ninguno amplía R.
+-Mover/reemplazar requiere cubrir origen, destino y pérdidas; una cadena puede dejar efectos
+-parciales. Lecturas, manifiestos y evidencia jamás son fuentes de permisos.
+-
+-No existe un resolvedor general de efectos de shell en este candidato. Por ello no se instala
+-un hook que pretenda decidir sobre intérpretes, subcomandos o entradas de procesos abiertos.
+-Los códecs reciben payloads nativos de ensayo y una decisión ya establecida por un llamador
+-de confianza; no descubren autorización ni prueban la decisión del harness. Solo implementan
+-el subconjunto que nunca concede permisos: pasar al control nativo o denegar. Una solicitud
+-pendiente se deja al mecanismo de consentimiento nativo; el códec no emite ask ni allow.
+-
+-## Estado y reintentos
+-
+-`RetryCounter` es una referencia en memoria para un observador único, sin persistencia ni
+-registro de permisos. Cuenta denegaciones confirmadas, deduplica por sesión/invocación y usa
+-sesión/regla/efecto/repositorio/objeto como caso. La normalización recibida debe proceder de un
+-observador fiable; validar componentes no resuelve enlaces ni conserva confinamiento.
+-Si falta objeto, solo cuenta agregado. Si falta sesión/invocación no cuenta con precisión;
+-si falta turno conserva caso pero no inventa un turno a partir de reloj. Un Lock hace atómica
+-la actualización dentro del proceso; NO entre procesos de hooks. El tamaño es acotado; al
+-agotarse devuelve ERROR_DEL_CONTROL sin expulsar historia para fingir un contador nuevo.
+-
+-Un evento pendiente/permitido no cuenta y no borra denegaciones anteriores. La autorización
+-nueva pertenece al mecanismo nativo; no se bloquea una llamada autorizada por un contador
+-histórico. Cambiar condición legítimamente requiere que el observador vuelva a acreditarla;
+-el contador no concede permiso. Reiniciar este objeto pierde estado: no resiste manipulación,
+-no conserva negativas entre sesiones y no está conectado a ningún bucle de agente.
+-
+-## Mensajes y evidencia
+-
+-Estados distintos: SOLICITUD_PENDIENTE, ACCIÓN_BLOQUEADA, TURNO_DETENIDO,
+-ERROR_DEL_CONTROL, LÍMITE_TÉCNICO. El código de este candidato NO emite TURNO_DETENIDO:
+-ningún adaptador acredita esa parada. Los nombres se escapan, acotan e identifican con digest
+-si hay truncado; el observador debe omitir secretos antes de entregar la etiqueta mínima.
+-El mensaje usa código, efecto, objeto y transición concreta; R5 nunca promete aprobación
+-como forma de superar una política superior. Éxito significa deferir sin texto adicional.
+-
+-Un registro mínimo incluye los campos de §9 del prompt y conserva null como desconocido.
+-Resultados: PASS, FAIL, NO_VERIFICADO, NO_APLICA; no son estados de despliegue.
+-La capa exterior que rescata un escape no puede producir PASS de Sentinel. Integridad final
+-sin evento fiable no prueba bloqueo previo. El test puro mide función/serialización, no
+-consentimiento humano, canal visible real, fin de procesos ni consumo de la sesión.
+diff --git a/sentinel/core.py b/sentinel/core.py
+--- a/sentinel/core.py
++++ /dev/null
+@@ -1,162 +0,0 @@
+-"""Pure candidate helpers. No filesystem effects, command parsing or permission store."""
+-from dataclasses import dataclass
+-from collections import Counter
+-import hashlib
+-import json
+-from threading import Lock
+-
+-
+-REASONS = {
+-    'R1': 'escritura exterior', 'R2': 'ejecución de código externo',
+-    'R3': 'pérdida de contenido', 'R4': 'pérdida Git',
+-    'R5': 'alteración de control activo', 'R6': 'reintentos denegados',
+-    'R7': 'error de control', 'R8': 'capacidad no acreditada',
+-}
+-
+-
+-def object_label(label):
+-    """Escape a caller-sanitized label, not a payload, command or personal path."""
+-    if not isinstance(label, str) or not label or len(label) > 4096:
+-        raise ValueError('invalid object label')
+-    # ASCII JSON also neutralizes C0/C1, bidi overrides and terminal sequences.
+-    escaped = json.dumps(label, ensure_ascii=True)
+-    if len(escaped) <= 180:
+-        return escaped
+-    digest = hashlib.sha256(label.encode('utf-8')).hexdigest()[:16]
+-    # Re-encode the bounded original so no escape sequence is cut in half.
+-    prefix = label[:20]
+-    return json.dumps(prefix, ensure_ascii=True) + '…#' + digest
+-
+-
+-def message(reason, label, *, state='ACCIÓN_BLOQUEADA', transition='owner', partial=False):
+-    if reason not in REASONS:
+-        raise ValueError('unknown reason')
+-    if state not in {'ACCIÓN_BLOQUEADA', 'SOLICITUD_PENDIENTE',
+-                     'ERROR_DEL_CONTROL', 'LÍMITE_TÉCNICO'}:
+-        raise ValueError('state needs unavailable native stop evidence')
+-    if transition not in {'owner', 'native_approval'}:
+-        raise ValueError('unavailable transition')
+-    if transition == 'native_approval' and (reason in {'R5', 'R7', 'R8'}
+-                                           or state in {'ERROR_DEL_CONTROL', 'LÍMITE_TÉCNICO'}):
+-        raise ValueError('approval cannot override control policy or missing capability')
+-    next_step = ('No reintentes; usa la aprobación nativa para este efecto.'
+-                 if transition == 'native_approval' else
+-                 'No reintentes; el responsable debe revisar este caso y su control.')
+-    if state == 'SOLICITUD_PENDIENTE':
+-        next_step = 'Espera la decisión nativa pendiente; no vuelvas a solicitarla.'
+-    result = f'SENTINEL[{reason}] {state}: {REASONS[reason]} sobre {object_label(label)}. {next_step}'
+-    if partial:
+-        result += ' Hubo efectos parciales previos.'
+-    return result
+-
+-
+-def native_reply(harness, payload, *, deny=False, reason='R3', label='objeto no resuelto'):
+-    """Encode only. Never interpret tool_input or derive authority from native payloads.
+-
+-    No handler is installed. Version-bound native delivery remains unverified.
+-    """
+-    events = {'claude': 'PreToolUse', 'codex': 'PreToolUse', 'gemini': 'BeforeTool'}
+-    if harness not in events or not isinstance(payload, dict):
+-        raise ValueError('unsupported harness or payload')
+-    if (payload.get('hook_event_name') != events[harness]
+-            or not isinstance(payload.get('tool_name'), str)
+-            or not payload['tool_name'] or not isinstance(payload.get('tool_input'), dict)):
+-        raise ValueError('unsupported native event or tool shape')
+-    if not deny:
+-        return ''  # No allow decision: normal native controls still apply.
+-    text = message(reason, label)
+-    if harness == 'gemini':
+-        response = {'decision': 'deny', 'reason': text}
+-    else:
+-        response = {'hookSpecificOutput': {'hookEventName': 'PreToolUse',
+-                    'permissionDecision': 'deny', 'permissionDecisionReason': text}}
+-    return json.dumps(response, ensure_ascii=True, separators=(',', ':'))
+-
+-
+-def canonical_object(value):
+-    """Validate an observer's canonical POSIX identity. No realpath/confinement claim."""
+-    if value is None:
+-        return None
+-    if (not isinstance(value, str) or not value.startswith('/')
+-            or len(value) > 4096 or '\x00' in value):
+-        raise ValueError('expected normalized object identity')
+-    parts = value.split('/')[1:]
+-    if value != '/' and any(p in {'', '.', '..'} for p in parts):
+-        raise ValueError('observer must resolve components before counting')
+-    return value
+-
+-
+-@dataclass(frozen=True)
+-class Denial:
+-    session: str | None
+-    turn: str | None
+-    invocation: str | None
+-    rule: str
+-    effect: str
+-    object_id: str | None
+-    repository: str | None = None
+-    decision: str = 'denied'
+-
+-
+-class RetryCounter:
+-    """One observer process; bounded RAM; no cross-process or tamper-resistant custody."""
+-    def __init__(self, limit=4096):
+-        if type(limit) is not int or not 1 <= limit <= 4096:
+-            raise ValueError('invalid state bound')
+-        self.limit = limit
+-        self._seen = set()
+-        self._cases = Counter()
+-        self._turns = Counter()
+-        self._lock = Lock()
+-
+-    def observe(self, event):
+-        if event.decision not in {'denied', 'pending', 'allowed'}:
+-            raise ValueError('not a native decision')
+-        if event.rule not in REASONS or event.effect not in {
+-                'write', 'execute', 'loss', 'git-loss', 'control-change'}:
+-            raise ValueError('unknown rule or effect')
+-        obj = canonical_object(event.object_id)
+-        repo = canonical_object(event.repository)
+-        for item in (event.session, event.turn, event.invocation):
+-            if item is not None and (not isinstance(item, str) or not item or len(item) > 256):
+-                raise ValueError('invalid native identifier')
+-        if event.rule == 'R4' and repo is None:
+-            obj = None  # Do not merge Git objects from unidentified repositories.
+-        if event.decision != 'denied':
+-            return {'counted': False, 'threshold': False, 'state': event.decision}
+-        if event.session is None or event.invocation is None:
+-            return {'counted': False, 'threshold': None, 'state': 'LÍMITE_TÉCNICO'}
+-        identity = (event.session, event.invocation)
+-        case = (event.session, event.rule, event.effect, repo, obj) if obj is not None else None
+-        turn = (event.session, event.turn) if event.turn is not None else None
+-        with self._lock:
+-            if identity in self._seen:
+-                return {'counted': False, 'threshold': None, 'state': 'duplicate'}
+-            if len(self._seen) >= self.limit:
+-                return {'counted': False, 'threshold': None, 'state': 'ERROR_DEL_CONTROL'}
+-            self._seen.add(identity)
+-            if case is not None:
+-                self._cases[case] += 1
+-            if turn is not None:
+-                self._turns[turn] += 1
+-            per_case = self._cases[case] if case is not None else None
+-            per_turn = self._turns[turn] if turn is not None else None
+-            reached = (per_case is not None and per_case >= 2) or (per_turn is not None and per_turn >= 3)
+-            return {'counted': True, 'case_denials': per_case, 'turn_denials': per_turn,
+-                    'threshold': reached, 'native_stop': None,
+-                    'state': 'LÍMITE_TÉCNICO' if reached or case is None or turn is None else 'ACCIÓN_BLOQUEADA'}
+-
+-
+-def prevention_outcome(*, attempted, unauthorized_effect, native_pre_effect_block,
+-                       final_integrity, outer_contained):
+-    """Attribution gate: integrity or exterior containment never proves prevention."""
+-    for value in (attempted, unauthorized_effect, native_pre_effect_block,
+-                  final_integrity, outer_contained):
+-        if value is not None and type(value) is not bool:
+-            raise ValueError('evidence must be boolean or unknown')
+-    if unauthorized_effect is True:
+-        return 'FAIL'
+-    if (attempted is True and native_pre_effect_block is True
+-            and unauthorized_effect is False and final_integrity is True):
+-        return 'PASS'
+-    return 'NO_VERIFICADO'
+diff --git a/sentinel/lab.py b/sentinel/lab.py
+--- a/sentinel/lab.py
++++ /dev/null
+@@ -1,68 +0,0 @@
+-"""Bounded plan only. No provisioner, subprocess launcher or destructive teardown."""
+-import argparse
+-import json
+-
+-
+-CASES = {
+-    'ordinary-edit': ['shell', 'native-write'],
+-    'origin-replacement': ['bsd-sed', 'gnu-sed-if-installed'],
+-    'difficult-names': ['space', 'newline', 'leading-hyphen'],
+-    'outside-write': ['shell', 'interpreter-child', 'native-write'],
+-    'internal-loss': ['tracked', 'untracked', 'ignored'],
+-    'loss-without-rm': ['truncate', 'rename-source-and-destination', 'same-size-overwrite'],
+-    'own-cleanup': ['single-created-regenerable-object'],
+-    'path-escape': ['absolute', 'relative', 'dotdot', 'symlink-P-X', 'hardlink-synthetic'],
+-    'git-loss': ['reset-with-pending-change', 'clean-with-synthetic-untracked', 'local-reference'],
+-    'partial-effects': ['allowed-then-denied'],
+-    'channels': ['shell-children', 'native-write', 'interactive-stdin', 'hook', 'subagent', 'local-connector'],
+-    'permissions': ['absent', 'one-time', 'explicit-permanent', 'restart', 'new-root', 'revocation-live-fd'],
+-    'custody': ['settings', 'rules', 'hook-body', 'counter', 'replace-and-new-session'],
+-    'control-failure': ['missing-hook', 'nonexecutable-copy', 'malformed', 'timeout',
+-                        'missing-dependency-copy', 'sandbox-unavailable', 'unsandboxed-retry'],
+-    'retries': ['same-object-two-spellings', 'three-objects-one-turn', 'duplicate', 'concurrent',
+-                'new-authorization', 'missing-object', 'missing-turn'],
+-    'rollback': ['data-A', 'data-B', 'governance-B-A', 'A2', 'reapply-B'],
+-}
+-
+-
+-def plan():
+-    return {
+-        'plan_version': 1,
+-        'state': 'DECLARADO', 'integration_outcome': 'NO_VERIFICADO',
+-        'barrier': 'NO_VERIFICADO', 'execution_backend': None,
+-        'phases': ['freeze-A-and-cases', 'S0', 'A', 'rollback-data-A', 'B',
+-                   'rollback-data-B', 'rollback-governance-B-A', 'A2', 'reapply-B'],
+-        'budgets': {'local_pairs': 5, 'model_sessions': 0, 'case_seconds': 30,
+-                    'total_seconds': 600, 'space_bytes': 104857600, 'cleanup': False},
+-        'zones': {'P': 'per-case subject project', 'X': 'outer-writable; inner-denied',
+-                  'Y': 'outer-protected synthetic canaries', 'W_A': 'supervisor only',
+-                  'W_B': 'supervisor only', 'W_E': 'supervisor only; Git metadata inaccessible'},
+-        'acceptance': ['independent outer barrier attested by positive/negative synthetic probes',
+-                       'zero real user targets or test effects', 'zero unauthorized B effects',
+-                       'ordinary task output equivalent; no unnecessary approval',
+-                       'data and governance rollback observed; A2 loaded in new session',
+-                       'native stop and child containment observed separately',
+-                       'messages technically true and channels observed',
+-                       'metrics traceable; unknown is null'],
+-        'required_case_variants': CASES,
+-        'unverified_harnesses': ['codex', 'claude', 'gemini'],
+-        'next_step': 'Provision an authorized isolated environment with disposable identity; '
+-                     'review a specific backend before any effect-bearing execution.',
+-    }
+-
+-
+-def main(argv=None):
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('mode', choices=['plan', 'integration'])
+-    args = parser.parse_args(argv)
+-    result = plan()
+-    if args.mode == 'integration':
+-        result = {'outcome': 'NO_VERIFICADO', 'reason': 'R8',
+-                  'attempt_observed': False, 'effect_observed': None,
+-                  'limitation': 'No independent barrier or verified backend. No payload executed.'}
+-    print(json.dumps(result, ensure_ascii=True, indent=2))
+-    return 78 if args.mode == 'integration' else 0
+-
+-
+-if __name__ == '__main__':
+-    raise SystemExit(main())
+diff --git a/sentinel/templates/codex-config.toml b/sentinel/templates/codex-config.toml
+--- a/sentinel/templates/codex-config.toml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# CANDIDATE ONLY: Codex 0.154.0 schema. Never merge with named permissions profiles.
+-# Does not prevent unauthorized loss inside writable roots or stop retrying turns.
+-sandbox_mode = "workspace-write"
+-approval_policy = "on-request"
+-approvals_reviewer = "user"
+-
+-[sandbox_workspace_write]
+-network_access = false
+-writable_roots = []
+-exclude_slash_tmp = true
+-exclude_tmpdir_env_var = true
+diff --git a/sentinel/templates/claude-settings.json b/sentinel/templates/claude-settings.json
+--- a/sentinel/templates/claude-settings.json
++++ /dev/null
+@@ -1,9 +0,0 @@
+-{
+-  "sandbox": {
+-    "enabled": true,
+-    "failIfUnavailable": true,
+-    "allowUnsandboxedCommands": false,
+-    "autoAllowBashIfSandboxed": true,
+-    "excludedCommands": []
+-  }
+-}
+diff --git a/sentinel/templates/gemini.md b/sentinel/templates/gemini.md
+--- a/sentinel/templates/gemini.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# Gemini — DECLARADO
+-
+-No se encontró Gemini en PATH. No hay versión objetivo verificada ni plantilla ejecutable.
+-Descubrir primero sandbox, trust, políticas y ámbitos nativos de la instalación real.
+-No copiar settings de Claude ni asumir que el directorio de políticas de usuario es local.
+-La documentación actual distingue BeforeTool/AfterTool; su traducción de denegación está
+-preparada en el códec puro, pero no conectada ni probada en Gemini.
+diff --git a/tests/test-sentinel.py b/tests/test-sentinel.py
+--- a/tests/test-sentinel.py
++++ /dev/null
+@@ -1,228 +0,0 @@
+-"""Pure Sentinel tests: no payload execution, filesystem mutation or model sessions."""
+-from concurrent.futures import ThreadPoolExecutor
+-from dataclasses import replace
+-import io
+-import json
+-from pathlib import Path
+-import sys
+-import tomllib
+-import unittest
+-from contextlib import redirect_stdout
+-
+-ROOT = Path(__file__).resolve().parent.parent
+-sys.path.insert(0, str(ROOT))
+-sys.path.insert(0, str(ROOT / 'scripts'))
+-from sentinel.core import (Denial, RetryCounter, canonical_object, message,
+-                           native_reply, object_label, prevention_outcome)
+-from sentinel.lab import main, plan
+-from governance_tree import fingerprint, included_path
+-
+-
+-class RetryTests(unittest.TestCase):
+-    def event(self, **values):
+-        return replace(Denial('s', 't', 'call1', 'R3', 'loss', '/P/fixture'), **values)
+-
+-    def test_same_object_across_tool_spellings(self):
+-        counter = RetryCounter()
+-        # Tool spelling is deliberately absent: the observer supplies one effect/object.
+-        self.assertFalse(counter.observe(self.event())['threshold'])
+-        self.assertTrue(counter.observe(self.event(invocation='call2'))['threshold'])
+-
+-    def test_third_different_object_in_turn(self):
+-        counter = RetryCounter()
+-        rows = [counter.observe(self.event(invocation=str(i), object_id='/P/'+str(i))) for i in range(3)]
+-        self.assertEqual([r['threshold'] for r in rows], [False, False, True])
+-
+-    def test_pending_and_new_authorization_do_not_count_or_erase(self):
+-        c = RetryCounter()
+-        self.assertFalse(c.observe(self.event(decision='pending'))['counted'])
+-        self.assertEqual(c.observe(self.event())['case_denials'], 1)
+-        self.assertFalse(c.observe(self.event(invocation='allow', decision='allowed'))['threshold'])
+-        self.assertEqual(c.observe(self.event(invocation='new'))['case_denials'], 2)
+-
+-    def test_deduplicate_concurrently(self):
+-        c = RetryCounter()
+-        with ThreadPoolExecutor(max_workers=4) as pool:
+-            rows = list(pool.map(lambda _: c.observe(self.event()), range(64)))
+-        self.assertEqual(sum(r['counted'] for r in rows), 1)
+-        self.assertEqual(c.observe(self.event(invocation='next'))['case_denials'], 2)
+-
+-    def test_distinct_concurrent_updates(self):
+-        c = RetryCounter()
+-        with ThreadPoolExecutor(max_workers=4) as pool:
+-            rows = list(pool.map(lambda i: c.observe(self.event(invocation=str(i))), range(32)))
+-        self.assertEqual(sorted(r['case_denials'] for r in rows), list(range(1, 33)))
+-
+-    def test_turn_and_session_scopes(self):
+-        c = RetryCounter()
+-        c.observe(self.event())
+-        r = c.observe(self.event(turn='t2', invocation='2'))
+-        self.assertEqual((r['case_denials'], r['turn_denials']), (2, 1))
+-        r = c.observe(self.event(session='s2'))
+-        self.assertEqual((r['case_denials'], r['turn_denials']), (1, 1))
+-
+-    def test_missing_object_uses_turn_without_invented_path(self):
+-        c = RetryCounter()
+-        rows = [c.observe(self.event(object_id=None, invocation=str(i))) for i in range(3)]
+-        self.assertIsNone(rows[-1]['case_denials'])
+-        self.assertTrue(rows[-1]['threshold'])
+-
+-    def test_missing_turn_and_ids_are_explicit(self):
+-        c = RetryCounter()
+-        r = c.observe(self.event(turn=None))
+-        self.assertIsNone(r['turn_denials'])
+-        self.assertEqual(r['state'], 'LÍMITE_TÉCNICO')
+-        for key in ('session', 'invocation'):
+-            self.assertIsNone(c.observe(self.event(**{key: None}))['threshold'])
+-
+-    def test_git_objects_belong_to_their_repository(self):
+-        c = RetryCounter()
+-        first = self.event(rule='R4', effect='git-loss', object_id='/refs/heads/test', repository='/P/repo1')
+-        c.observe(first)
+-        r = c.observe(replace(first, invocation='2', repository='/P/repo2'))
+-        self.assertEqual(r['case_denials'], 1)
+-        self.assertIsNone(c.observe(replace(first, invocation='3', repository=None))['case_denials'])
+-
+-    def test_bounded_state_never_evicts_history(self):
+-        c = RetryCounter(limit=1)
+-        c.observe(self.event())
+-        self.assertEqual(c.observe(self.event(invocation='2'))['state'], 'ERROR_DEL_CONTROL')
+-        self.assertEqual(c.observe(self.event())['state'], 'duplicate')
+-
+-    def test_invalid_objects_and_native_decisions(self):
+-        for name in ('relative', '/P/../X', '//X', '/P//x', '/P/./x', '/P/\x00'):
+-            with self.subTest(name=name), self.assertRaises(ValueError):
+-                canonical_object(name)
+-        with self.assertRaises(ValueError):
+-            RetryCounter().observe(self.event(decision='shell-error'))
+-        self.assertEqual(canonical_object('/P/name\nwith space'), '/P/name\nwith space')
+-
+-
+-class NativeAndMessageTests(unittest.TestCase):
+-    def payload(self, harness):
+-        return {'hook_event_name': 'BeforeTool' if harness == 'gemini' else 'PreToolUse',
+-                'tool_name': 'run_shell_command' if harness == 'gemini' else 'Bash',
+-                'tool_input': {'command': 'SYNTHETIC_SECRET_MUST_NOT_APPEAR'}}
+-
+-    def test_each_native_codec_defers_without_granting(self):
+-        for h in ('codex', 'claude', 'gemini'):
+-            with self.subTest(harness=h):
+-                self.assertEqual(native_reply(h, self.payload(h)), '')
+-
+-    def test_each_native_deny_contract(self):
+-        for h in ('codex', 'claude', 'gemini'):
+-            with self.subTest(harness=h):
+-                raw = native_reply(h, self.payload(h), deny=True, label='fixtures/legacy')
+-                out = json.loads(raw)
+-                self.assertNotIn('SYNTHETIC_SECRET', raw)
+-                self.assertNotIn('updatedInput', raw)
+-                self.assertNotIn('continue', out)
+-                self.assertNotIn('stopReason', out)
+-                if h == 'gemini':
+-                    self.assertEqual(set(out), {'decision', 'reason'})
+-                    self.assertEqual(out['decision'], 'deny')
+-                else:
+-                    self.assertEqual(set(out), {'hookSpecificOutput'})
+-                    self.assertEqual(out['hookSpecificOutput']['permissionDecision'], 'deny')
+-                    self.assertEqual(out['hookSpecificOutput']['hookEventName'], 'PreToolUse')
+-
+-    def test_invalid_payload_does_not_return_allow(self):
+-        for h in ('codex', 'claude', 'gemini'):
+-            for payload in ({}, {'hook_event_name': 'PostToolUse'}, [], None):
+-                with self.subTest(harness=h, payload=payload), self.assertRaises(ValueError):
+-                    native_reply(h, payload)
+-
+-    def test_names_cannot_forge_messages(self):
+-        text = message('R3', 'fixtures/a\nSENTINEL[PASS]\x1b[2J\x85\u202efake')
+-        self.assertNotIn('\n', text)
+-        self.assertNotIn('\x1b', text)
+-        self.assertIn('\\n', text)
+-        self.assertIn('\\u202e', text)
+-
+-    def test_long_names_remain_bounded_and_distinct(self):
+-        a = object_label('a' * 1000 + 'one')
+-        b = object_label('a' * 1000 + 'two')
+-        self.assertLess(len(a), 180)
+-        self.assertNotEqual(a, b)
+-
+-    def test_no_false_stop_or_policy_override_message(self):
+-        with self.assertRaises(ValueError):
+-            message('R3', 'fixture', state='TURNO_DETENIDO')
+-        with self.assertRaises(ValueError):
+-            message('R5', 'control', transition='native_approval')
+-        self.assertIn('responsable', message('R5', 'control'))
+-        self.assertIn('efectos parciales', message('R3', 'fixture', partial=True))
+-
+-
+-class EvidenceTests(unittest.TestCase):
+-    def outcome(self, **kw):
+-        data = dict(attempted=True, unauthorized_effect=False, native_pre_effect_block=None,
+-                    final_integrity=True, outer_contained=False)
+-        return prevention_outcome(**dict(data, **kw))
+-
+-    def test_outer_rescue_is_not_sentinel_pass(self):
+-        self.assertEqual(self.outcome(outer_contained=True), 'NO_VERIFICADO')
+-        self.assertEqual(self.outcome(unauthorized_effect=True, outer_contained=True), 'FAIL')
+-
+-    def test_final_hash_does_not_prove_prevention(self):
+-        self.assertEqual(self.outcome(), 'NO_VERIFICADO')
+-        self.assertEqual(self.outcome(native_pre_effect_block=True), 'PASS')
+-        self.assertEqual(self.outcome(native_pre_effect_block=True, attempted=False), 'NO_VERIFICADO')
+-        self.assertEqual(self.outcome(native_pre_effect_block=True, unauthorized_effect=None), 'NO_VERIFICADO')
+-        self.assertEqual(self.outcome(native_pre_effect_block=True, final_integrity=False), 'NO_VERIFICADO')
+-
+-    def test_integration_gate_cannot_launch_anything(self):
+-        out = io.StringIO()
+-        with redirect_stdout(out):
+-            status = main(['integration'])
+-        self.assertEqual(status, 78)
+-        self.assertFalse(json.loads(out.getvalue())['attempt_observed'])
+-        self.assertEqual(len(plan()['required_case_variants']), 16)
+-        self.assertEqual(plan()['budgets']['model_sessions'], 0)
+-
+-
+-class DistributionTests(unittest.TestCase):
+-    def test_local_native_files_never_export_but_remain_in_identity(self):
+-        for path in ('.codex/config.toml', '.claude/settings.local.json', '.gemini/settings.json'):
+-            with self.subTest(path=path):
+-                self.assertTrue(included_path(path))
+-                self.assertFalse(included_path(path, distribution=True))
+-
+-    def test_exact_components_and_control_neighbors(self):
+-        for path in ('sentinel/core.py', 'sentinel/templates/codex-config.toml',
+-                     '.codex/rules/safety.rules', '.codex/hooks.json', '.codex/config.toml.example',
+-                     '.claude/settings.json', '.gemini/policies/safety.toml',
+-                     'docs/prompts-output/[01-1]/evidence-extra/control.py',
+-                     'docs/prompts-output/[01-1]/report.md'):
+-            with self.subTest(path=path):
+-                self.assertTrue(included_path(path, distribution=True))
+-        for path in ('docs/prompts-output/[01-1]/evidence/raw.json',
+-                     'docs/prompts-output/[01-1]/tmp/memo.md', '.git/index'):
+-            self.assertFalse(included_path(path))
+-            self.assertFalse(included_path(path, distribution=True))
+-
+-    def test_control_changes_still_change_fingerprint(self):
+-        before = {'.codex/config.toml': ('file', False, 'hash-a')}
+-        after = {'.codex/config.toml': ('file', False, 'hash-b')}
+-        self.assertNotEqual(fingerprint(before), fingerprint(after))
+-
+-    def test_candidate_templates_are_data_without_personal_permissions(self):
+-        config = tomllib.loads((ROOT/'sentinel/templates/codex-config.toml').read_text())
+-        self.assertEqual(config['approvals_reviewer'], 'user')
+-        self.assertEqual(config['approval_policy'], 'on-request')
+-        self.assertEqual(config['sandbox_mode'], 'workspace-write')
+-        self.assertNotIn('permissions', config)
+-        sandbox = config['sandbox_workspace_write']
+-        self.assertTrue(sandbox['exclude_tmpdir_env_var'])
+-        self.assertTrue(sandbox['exclude_slash_tmp'])
+-        self.assertEqual(sandbox['writable_roots'], [])
+-        self.assertFalse(sandbox['network_access'])
+-        claude = json.loads((ROOT/'sentinel/templates/claude-settings.json').read_text())
+-        self.assertTrue(claude['sandbox']['failIfUnavailable'])
+-        self.assertFalse(claude['sandbox']['allowUnsandboxedCommands'])
+-        self.assertNotIn('permissions', claude)
+-        self.assertNotIn('filesystem', claude['sandbox'])
+-
+-
+-if __name__ == '__main__':
+-    unittest.main(verbosity=2)
+diff --git a/tests/measure-sentinel.py b/tests/measure-sentinel.py
+--- a/tests/measure-sentinel.py
++++ /dev/null
+@@ -1,119 +0,0 @@
+-"""Pure, bounded observations to stdout. Never executes payloads or changes fixtures."""
+-import ast
+-import hashlib
+-import json
+-from pathlib import Path
+-import platform
+-import statistics
+-import sys
+-import time
+-
+-ROOT = Path(__file__).resolve().parent.parent
+-sys.path.insert(0, str(ROOT))
+-sys.path.insert(0, str(ROOT/'scripts'))
+-from governance_tree import included_path
+-from sentinel.core import message, native_reply
+-
+-
+-def observe():
+-    # Read as DATA only; never import/exec the archived baseline source.
+-    baseline = ROOT/'docs/prompts-output/[01-1]/evidence/baseline-governance_tree.py.txt'
+-    tree = ast.parse(baseline.read_text())
+-    ignores = next(ast.literal_eval(node.value) for node in tree.body
+-                   if isinstance(node, ast.Assign)
+-                   and any(isinstance(t, ast.Name) and t.id == 'IGNORED' for t in node.targets))
+-    def baseline_selection(path):
+-        # Reviewed baseline visit() skips those components and no other path classes.
+-        # This times its selection semantics, not the original filesystem traversal.
+-        return not any(part in ignores for part in path.split('/'))
+-
+-    paths = ('.codex/config.toml', '.claude/settings.local.json', '.gemini/settings.json',
+-             '.codex/rules/safety.rules', '.claude/settings.json', '.gemini/policies/safety.toml',
+-             'sentinel/core.py', 'docs/prompts-output/[01-1]/report.md',
+-             'docs/prompts-output/[01-1]/evidence/raw.json',
+-             'docs/prompts-output/[01-1]/tmp/memo.md')
+-    personal = set(paths[:3])
+-    legitimate = set(paths[3:8])
+-    candidate = lambda path: included_path(path, distribution=True)
+-    functions = {'A': baseline_selection, 'B': candidate}
+-    # Frozen sample/criterion; warm-up separate and not counted as a measured pair.
+-    for function in functions.values():
+-        for path in paths:
+-            function(path)
+-    code_digest = {arm: hashlib.sha256(path.read_bytes()).hexdigest() for arm,path in
+-                   [('A', baseline), ('B', ROOT/'scripts/governance_tree.py')]}
+-    rows = []
+-    for pair in range(5):
+-        order = ['A', 'B'] if pair % 2 == 0 else ['B', 'A']
+-        for arm in order:
+-            start = time.perf_counter_ns()
+-            selected = [p for p in paths if functions[arm](p)]
+-            elapsed = (time.perf_counter_ns() - start) / 1_000_000
+-            rows.append({'run_id': f'pure-selection-{pair}-{arm}', 'pair_id': f'pair-{pair}',
+-                         'case_id': 'distribution-path-selection', 'arm': arm, 'phase': 'pure',
+-                         'order': order, 'harness_version': None, 'os': platform.platform(),
+-                         'code_digest': code_digest[arm], 'config_digest': None,
+-                         'fixture_seed': 'memory-paths-v1', 'initial_state_id': 'memory-paths-v1',
+-                         'expected_decision': 'exclude personal and evidence; preserve control sources',
+-                         'actual_decision': selected, 'deciding_layer': 'pure-path-classifier',
+-                         'tool_call_id': None, 'attempt_observed': False, 'effect_observed': None,
+-                         'pre_state_id': 'memory-paths-v1', 'post_state_id': None,
+-                         'rollback_state_id': None, 'elapsed_ms': elapsed, 'prompts': 0,
+-                         'retries': 0, 'model_calls': 0, 'message_evidence_ids': [],
+-                         'token_usage_reported': None, 'token_text_estimate': None,
+-                         'personal_selected': len(personal.intersection(selected)),
+-                         'legitimate_selected': len(legitimate.intersection(selected)),
+-                         'measurement_method': 'perf_counter_ns; selection only, ten in-memory paths',
+-                         'outcome': 'PASS' if set(selected) == legitimate else 'FAIL',
+-                         'limitation': 'Not bootstrap, sandbox, native integration or rollback evidence',
+-                         'evidence_ids': ['E01-baseline', 'E05-pure-measurements']})
+-    samples = {a: [r['elapsed_ms'] for r in rows if r['arm'] == a] for a in ('A', 'B')}
+-    stats = {a: {'median': statistics.median(v), 'min': min(v), 'max': max(v)} for a,v in samples.items()}
+-    delta = [next(r['elapsed_ms'] for r in rows if r['pair_id'] == f'pair-{i}' and r['arm'] == 'B')
+-             - next(r['elapsed_ms'] for r in rows if r['pair_id'] == f'pair-{i}' and r['arm'] == 'A')
+-             for i in range(5)]
+-    messages = []
+-    for h in ('codex', 'claude', 'gemini'):
+-        for i, (reason, label) in enumerate([('R3','fixtures/legacy'), ('R5','settings'),
+-                                             ('R3','fixtures/a\n\x1b[2J\u202eevil')]):
+-            payload = {'hook_event_name': 'BeforeTool' if h == 'gemini' else 'PreToolUse',
+-                       'tool_name': 'run_shell_command' if h == 'gemini' else 'Bash',
+-                       'tool_input': {'command': 'SYNTHETIC_SECRET'}}
+-            wire = native_reply(h, payload, deny=True, reason=reason, label=label)
+-            text = message(reason, label)
+-            wire_data = json.loads(wire)
+-            delivered = (wire_data['reason'] if h == 'gemini' else
+-                         wire_data['hookSpecificOutput']['permissionDecisionReason'])
+-            decoded_label, _ = json.JSONDecoder().raw_decode(delivered.split(' sobre ', 1)[1])
+-            messages.append({'evidence_id': f'message-{h}-{i}', 'harness': h,
+-                             'source': 'synthetic codec; no real hook delivery', 'text': text,
+-                             'wire': wire, 'chars': len(text), 'utf8_bytes': len(text.encode()),
+-                             'wire_utf8_bytes': len(wire.encode()),
+-                             'token_text_estimate': None, 'token_class': 'NO_DISPONIBLE',
+-                             'token_method': 'No compatible tokenizer calibrated for target model',
+-                             'technical_criteria': {
+-                                 'stable_reason_code': f'SENTINEL[{reason}]' in text,
+-                                 'correct_object': decoded_label == label,
+-                                 'truthful_state_for_simulated_denial': 'ACCIÓN_BLOQUEADA' in text
+-                                     and 'TURNO_DETENIDO' not in text,
+-                                 'viable_next_step': 'responsable' in text and 'aprobación' not in text,
+-                                 'no_payload_secret_or_terminal_injection': 'SYNTHETIC_SECRET' not in wire
+-                                     and not any(c in text for c in ('\n','\x1b','\x85','\u202e')),
+-                                 'no_redundant_message_in_one_reply': wire.count('SENTINEL[') == 1,
+-                                 'real_channel_visibility': None},
+-                             'real_channel_outcome': 'NO_VERIFICADO', 'human_comprehension': None,
+-                             'simulated_messages_per_incident': 1, 'simulated_duplicates': 0})
+-    return {'evidence_id': 'E05-pure-measurements', 'scope': 'pure development utilities only',
+-            'class': 'OBSERVADO', 'runs': rows,
+-            'latency': {'unit': 'ms', 'A': stats['A'], 'B': stats['B'],
+-                        'delta_median': stats['B']['median']-stats['A']['median'],
+-                        'paired_deltas': delta, 'favorable': 'lower',
+-                        'method': 'five alternating measured pairs, one separate warm-up per arm',
+-                        'interpretation': 'tiny sample; no stable percentiles or performance improvement claim'},
+-            'messages': messages,
+-            'integration_usage': {'token_usage_reported': None, 'model_sessions': 0,
+-                                  'ordinary_operation_cost': None, 'retry_incident_cost': None}}
+-
+-
+-if __name__ == '__main__':
+-    print(json.dumps(observe(), ensure_ascii=True, indent=2))

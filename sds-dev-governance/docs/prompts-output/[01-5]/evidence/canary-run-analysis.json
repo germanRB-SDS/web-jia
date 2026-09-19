@@ -1,0 +1,263 @@
+{
+  "exports": [
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789370085494019000-canary-discovery-boot.log",
+      "copy": "docs/prompts-output/[01-5]/evidence/canary-run-1789370085494019000-canary-discovery-boot.log",
+      "bytes": 544,
+      "sha256": "972a5ef4c9955938bcc0635fcc1886025cb296caeb8c092939d8ce194795f1c5"
+    },
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789370085494019000-canary-discovery-boot.json",
+      "copy": "docs/prompts-output/[01-5]/evidence/canary-run-1789370085494019000-canary-discovery-boot.json",
+      "bytes": 1070,
+      "sha256": "fd0df75db70e63750eef7783e48869438b444f448f7a7ba46ba0ed6840a43735"
+    },
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789370085494021000-canary-discovery-guest.log",
+      "copy": "docs/prompts-output/[01-5]/evidence/canary-run-1789370085494021000-canary-discovery-guest.log",
+      "bytes": 460255,
+      "sha256": "1b5585ecbd1cbd2bfb429c998bc4443c60fd9498dc30511d7c24eb5bb8bdf3a4"
+    },
+    {
+      "source": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789370086100407000-boot-smoke.log",
+      "copy": "docs/prompts-output/[01-5]/evidence/canary-run-1789370086100407000-boot-smoke.log",
+      "bytes": 86,
+      "sha256": "b03f765ece5275c696680fb54dc3ed14f59f1fdd26c887b37a751054f7112c88"
+    }
+  ],
+  "events": 120,
+  "bytes": 328901,
+  "sha256": "7498bc598c817270bc75bfe85267bf8d12445050dba990f1a6a37a8a3e7fa9ef",
+  "types": {
+    "32:unlink": 53,
+    "11:fork": 21,
+    "9:exec": 33,
+    "15:exit": 13
+  },
+  "schema_versions": [
+    1
+  ],
+  "global_first": 0,
+  "global_last": 119,
+  "sequence_gaps": [],
+  "cases": [
+    {
+      "number": 1,
+      "pid": 611,
+      "elapsed_ms": 54.227750000000015,
+      "events": [
+        {
+          "global_seq_num": 6,
+          "audit_token": {
+            "egid": 551,
+            "pidversion": 1581,
+            "euid": 551,
+            "ruid": 551,
+            "pid": 611,
+            "rgid": 551,
+            "auid": 501,
+            "asid": 100002
+          },
+          "group_id": 611,
+          "session_id": 611,
+          "path_exact": true,
+          "dev_match": true,
+          "ino_match": true,
+          "subject_uid_match": true,
+          "separate_group": true,
+          "separate_session": true,
+          "exec_pidversion_match": true,
+          "exit_pidversion_match": true
+        }
+      ],
+      "native_canary_verified": true,
+      "denials": {
+        "control_read": "EACCES",
+        "original_write": "EACCES",
+        "signal_custodian": "EPERM",
+        "regain_root": "EPERM"
+      },
+      "legitimate": true,
+      "original_intact": true,
+      "control_intact": true,
+      "exit": 0
+    },
+    {
+      "number": 2,
+      "pid": 612,
+      "elapsed_ms": 68.53108299999997,
+      "events": [
+        {
+          "global_seq_num": 10,
+          "audit_token": {
+            "egid": 551,
+            "pidversion": 1583,
+            "euid": 551,
+            "ruid": 551,
+            "pid": 612,
+            "rgid": 551,
+            "auid": 501,
+            "asid": 100002
+          },
+          "group_id": 612,
+          "session_id": 612,
+          "path_exact": true,
+          "dev_match": true,
+          "ino_match": true,
+          "subject_uid_match": true,
+          "separate_group": true,
+          "separate_session": true,
+          "exec_pidversion_match": true,
+          "exit_pidversion_match": true
+        }
+      ],
+      "native_canary_verified": true,
+      "denials": {
+        "control_read": "EACCES",
+        "original_write": "EACCES",
+        "signal_custodian": "EPERM",
+        "regain_root": "EPERM"
+      },
+      "legitimate": true,
+      "original_intact": true,
+      "control_intact": true,
+      "exit": 0
+    },
+    {
+      "number": 3,
+      "pid": 613,
+      "elapsed_ms": 46.22062499999993,
+      "events": [
+        {
+          "global_seq_num": 14,
+          "audit_token": {
+            "egid": 551,
+            "pidversion": 1585,
+            "euid": 551,
+            "ruid": 551,
+            "pid": 613,
+            "rgid": 551,
+            "auid": 501,
+            "asid": 100002
+          },
+          "group_id": 613,
+          "session_id": 613,
+          "path_exact": true,
+          "dev_match": true,
+          "ino_match": true,
+          "subject_uid_match": true,
+          "separate_group": true,
+          "separate_session": true,
+          "exec_pidversion_match": true,
+          "exit_pidversion_match": true
+        }
+      ],
+      "native_canary_verified": true,
+      "denials": {
+        "control_read": "EACCES",
+        "original_write": "EACCES",
+        "signal_custodian": "EPERM",
+        "regain_root": "EPERM"
+      },
+      "legitimate": true,
+      "original_intact": true,
+      "control_intact": true,
+      "exit": 0
+    },
+    {
+      "number": 4,
+      "pid": 614,
+      "elapsed_ms": 44.73145899999986,
+      "events": [
+        {
+          "global_seq_num": 18,
+          "audit_token": {
+            "egid": 551,
+            "pidversion": 1587,
+            "euid": 551,
+            "ruid": 551,
+            "pid": 614,
+            "rgid": 551,
+            "auid": 501,
+            "asid": 100002
+          },
+          "group_id": 614,
+          "session_id": 614,
+          "path_exact": true,
+          "dev_match": true,
+          "ino_match": true,
+          "subject_uid_match": true,
+          "separate_group": true,
+          "separate_session": true,
+          "exec_pidversion_match": true,
+          "exit_pidversion_match": true
+        }
+      ],
+      "native_canary_verified": true,
+      "denials": {
+        "control_read": "EACCES",
+        "original_write": "EACCES",
+        "signal_custodian": "EPERM",
+        "regain_root": "EPERM"
+      },
+      "legitimate": true,
+      "original_intact": true,
+      "control_intact": true,
+      "exit": 0
+    },
+    {
+      "number": 5,
+      "pid": 615,
+      "elapsed_ms": 59.14429100000007,
+      "events": [
+        {
+          "global_seq_num": 22,
+          "audit_token": {
+            "egid": 551,
+            "pidversion": 1589,
+            "euid": 551,
+            "ruid": 551,
+            "pid": 615,
+            "rgid": 551,
+            "auid": 501,
+            "asid": 100002
+          },
+          "group_id": 615,
+          "session_id": 615,
+          "path_exact": true,
+          "dev_match": true,
+          "ino_match": true,
+          "subject_uid_match": true,
+          "separate_group": true,
+          "separate_session": true,
+          "exec_pidversion_match": true,
+          "exit_pidversion_match": true
+        }
+      ],
+      "native_canary_verified": true,
+      "denials": {
+        "control_read": "EACCES",
+        "original_write": "EACCES",
+        "signal_custodian": "EPERM",
+        "regain_root": "EPERM"
+      },
+      "legitimate": true,
+      "original_intact": true,
+      "control_intact": true,
+      "exit": 0
+    }
+  ],
+  "native_canaries_passed": 5,
+  "collection_elapsed_ms": 4010.0678749999997,
+  "case_ms_median": 54.227750000000015,
+  "case_ms_max": 68.53108299999997,
+  "case_duration_scope": "spawn through process close; not sensor detection/stop latency",
+  "stderr_bytes": 0,
+  "account_created": true,
+  "group_created": true,
+  "account_uid": 551,
+  "service_absent": true,
+  "children_closed": true,
+  "errors": [],
+  "native_protected_admitted": false
+}

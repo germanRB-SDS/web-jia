@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-09-13T16:43:49.309211+00:00",
+  "delta": "capture optional regular file stdin for fixed client stage; default DEVNULL and lifecycle unchanged",
+  "sha256": {
+    "sentinel/tart_host.py": "7b2155a6753a4555773fb73db1d07ca9d83c7f83cfdfebc9a6f2eab086d0fba6",
+    "sentinel/net_sink.py": "d69ab46e999dedb8e7fef0fdc7b65315eae08805637f7d8aa0765f3443eae09d",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "tests/test-sentinel-tart-host.py": "d9da6fdc6f6d37407cd4cee980ffa39c5ddef67a72f587c3345e6f31d1e4b18b",
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": "a12a38fa3af38356edce28a404f1e1b388e070a4169bc1cd7d07eab19a53d321",
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf",
+    "tests/test-sentinel-net-sink.py": "f466cfd438984e5a5ca5473dca26839f1d986f01ac69b081a7ddbeb1d8c935d9",
+    "docs/prompts-output/[01-4]/evidence/guest-discovery/guest-discovery.sh": "ff238ddea5ced4307d289b0d7ddf2001b1dc9514f9caab71bdb0de370a9781a8",
+    "sentinel/stage_client.py": "ee9a49911cbb558c88a882bf19e07929b144be146117f6673c41bc745727348c",
+    "/opt/homebrew/Caskroom/codex/0.154.0/bin/codex": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc"
+  }
+}

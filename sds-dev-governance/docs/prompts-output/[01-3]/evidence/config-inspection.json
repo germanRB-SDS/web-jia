@@ -1,0 +1,91 @@
+[
+  {
+    "source": "~/.codex/config.toml",
+    "exists": true,
+    "selected_fields": {
+      "model": "gpt-6-astra",
+      "model_reasoning_effort": "high",
+      "approvals_reviewer": "auto_review",
+      "projects_count": 21,
+      "hooks_count": 1,
+      "mcp_servers_count": 8
+    },
+    "target_trust": {
+      "~/MAC-DEV-PROJECTS": "trusted",
+      "~/MAC-DEV-PROJECTS/sds-dev-governance": "trusted"
+    }
+  },
+  {
+    "source": "~/.codex/requirements.toml",
+    "exists": false
+  },
+  {
+    "source": "/etc/codex/managed_config.toml",
+    "exists": false
+  },
+  {
+    "source": "/etc/codex/requirements.toml",
+    "exists": false
+  },
+  {
+    "source": "~/.claude/settings.json",
+    "exists": true,
+    "selected_fields": {
+      "permissions": {
+        "allow_count": 1
+      },
+      "model": "claude-fable-5-1[1m]"
+    }
+  },
+  {
+    "source": "/Library/Application Support/ClaudeCode/managed-settings.json",
+    "exists": false
+  },
+  {
+    "source": "~/.gemini/settings.json",
+    "exists": false
+  },
+  {
+    "source": "/Library/Application Support/GeminiCli/settings.json",
+    "exists": false
+  },
+  {
+    "source": "~/.claude/settings.local.json",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/.codex/config.toml",
+    "exists": true,
+    "selected_fields": {
+      "mcp_servers_count": 2
+    }
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/.claude/settings.json",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/.claude/settings.local.json",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/.gemini/settings.json",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/sds-dev-governance/.codex/config.toml",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/sds-dev-governance/.claude/settings.json",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/sds-dev-governance/.claude/settings.local.json",
+    "exists": false
+  },
+  {
+    "source": "~/MAC-DEV-PROJECTS/sds-dev-governance/.gemini/settings.json",
+    "exists": false
+  }
+]

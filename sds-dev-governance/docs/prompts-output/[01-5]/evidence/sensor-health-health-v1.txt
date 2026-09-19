@@ -1,0 +1,17 @@
+test_bad_line_retains_already_received_following_bytes (__main__.SensorHealthTests.test_bad_line_retains_already_received_following_bytes) ... ok
+test_dead_producer_fences_then_drains_without_dispatch (__main__.SensorHealthTests.test_dead_producer_fences_then_drains_without_dispatch) ... ok
+test_delayed_confirmation_cannot_renew_old_observation (__main__.SensorHealthTests.test_delayed_confirmation_cannot_renew_old_observation) ... ok
+test_eof_preserves_partial_bytes_after_failure_callback (__main__.SensorHealthTests.test_eof_preserves_partial_bytes_after_failure_callback) ... ok
+test_health_observes_death_first_and_preserves_all_bytes (__main__.SensorHealthTests.test_health_observes_death_first_and_preserves_all_bytes) ... ok
+test_live_extra_pipe_writer_keeps_drain_unknown (__main__.SensorHealthTests.test_live_extra_pipe_writer_keeps_drain_unknown) ... ok
+test_live_silent_sensor_expires_despite_ticks (__main__.SensorHealthTests.test_live_silent_sensor_expires_despite_ticks) ... ok
+test_never_healthy_before_canary (__main__.SensorHealthTests.test_never_healthy_before_canary) ... ok
+test_new_canary_after_expiry_cannot_hide_missed_deadline (__main__.SensorHealthTests.test_new_canary_after_expiry_cannot_hide_missed_deadline) ... ok
+test_new_canary_renews_but_replay_does_not (__main__.SensorHealthTests.test_new_canary_renews_but_replay_does_not) ... ok
+test_recorded_native_schema_replays_without_canary_admission (__main__.SensorHealthTests.test_recorded_native_schema_replays_without_canary_admission) ... ok
+test_unrelated_events_do_not_renew_canary (__main__.SensorHealthTests.test_unrelated_events_do_not_renew_canary) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.059s
+
+OK

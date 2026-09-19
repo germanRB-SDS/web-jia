@@ -11,3 +11,19 @@ tsconfig.tsbuildinfo
 .check/
 .impeccable/review/
 out/shot.html
+
+# SDS Governance (v1.28.0, JIA-2026-09-19-38): secrets, editor and tooling leftovers. Merged by hand from the
+# kit's proposal; the lines for stacks this project does not have (Xcode, Gradle, Maven, CocoaPods) were left out.
+*.p12
+*.pem
+*.key
+*.keystore
+dist/
+.idea/
+.vscode/
+*.dump
+*.bak
+__pycache__/
+*.pyc
+graphify-out/
+.sds/state/

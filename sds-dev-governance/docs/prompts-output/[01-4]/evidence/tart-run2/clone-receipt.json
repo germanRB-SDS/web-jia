@@ -1,0 +1,14 @@
+{
+  "mode": "clone",
+  "pid": 88799,
+  "exit_code": 0,
+  "elapsed_seconds": 650.7716798750043,
+  "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789300168662599000-clone.log",
+  "log_bytes": 1269,
+  "public_mirror": {
+    "requests": 97,
+    "bytes_sent": 27312517392,
+    "rejected": 0,
+    "upstream_errors": 0
+  }
+}

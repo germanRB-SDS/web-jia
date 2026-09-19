@@ -1,0 +1,81 @@
+:root {
+  --color-text: #ddeaf6;
+  --color-muted: #7a92a8;
+  --color-border: #1c3045;
+  --color-surface: #111f30;
+  --color-brand-accent: #f5c242;
+}
+
+.sortable-card-list {
+  display: grid;
+  gap: 16px;
+}
+
+.sortable-card {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.sortable-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sortable-card-header h2 { margin: 0; }
+
+.drag-relocate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: grab;
+  touch-action: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.drag-relocate-button::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  background: linear-gradient(0deg, transparent, transparent 35%, rgba(255, 199, 68, 0.28));
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.drag-relocate-button:hover,
+.drag-relocate-button:focus-visible,
+.drag-relocate-button:active {
+  color: var(--color-brand-accent);
+  border-color: var(--color-border);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 16px rgba(255, 199, 68, 0.28);
+  transform: scale(1.04);
+}
+
+.drag-relocate-button:hover::before,
+.drag-relocate-button:focus-visible::before,
+.drag-relocate-button:active::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(80%);
+}
+
+.drag-relocate-button:active { cursor: grabbing; }
+.sortable-ghost { opacity: 0.35; }
+.sortable-chosen .drag-relocate-button { color: var(--color-brand-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .drag-relocate-button { transition: none; }
+}

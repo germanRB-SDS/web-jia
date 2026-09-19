@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "verified_at": "2026-09-10",
+  "name": "@hostinger/mcp",
+  "version": "1.58.0",
+  "source_revision": "27e3b104a90c2292f178cbf2d251ab731aeabee1",
+  "repository": "https://github.com/hostinger/api-mcp-server",
+  "publisher_observed": "GitHub Actions",
+  "dist_integrity": "sha512-mfUug0772Ajw893OAZ9ghN8AxKhT7Joo0NuGGhFjACN3A6aX+d1mylPPzAg56HJ4doQvcrDHgjzUp3eR3puzEQ==",
+  "tarball": "https://registry.npmjs.org/@hostinger/mcp/-/mcp-1.58.0.tgz",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "mcp": "src/servers/all.js",
+    "hostinger-api-mcp": "src/servers/all.js",
+    "hostinger-dns-mcp": "src/servers/dns.js",
+    "hostinger-vps-mcp": "src/servers/vps.js",
+    "hostinger-mail-mcp": "src/servers/mail.js",
+    "hostinger-reach-mcp": "src/servers/reach.js",
+    "hostinger-billing-mcp": "src/servers/billing.js",
+    "hostinger-domains-mcp": "src/servers/domains.js",
+    "hostinger-hosting-mcp": "src/servers/hosting.js",
+    "hostinger-horizons-mcp": "src/servers/horizons.js",
+    "hostinger-ecommerce-mcp": "src/servers/ecommerce.js",
+    "hostinger-wordpress-mcp": "src/servers/wordpress.js",
+    "hostinger-agency-hosting-mcp": "src/servers/agency-hosting.js"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "start": "node src/servers/all.js",
+    "start:ts": "npx tsc && node dist/src/servers/all.js"
+  },
+  "modules": {
+    "hosting": {
+      "count": 64,
+      "catalog_sha256": "b25a2bdb5026f75a91cc4d5403f61cf4579f45c9c772fa02becda00f57c7d3e2",
+      "custom_operations": 7,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "domains": {
+      "count": 40,
+      "catalog_sha256": "776690a61788274f58bb41e6f4895ef2b6708ebe22a310c10429140e8fa93a67",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "dns": {
+      "count": 8,
+      "catalog_sha256": "303a1b489ef7eb2d0bec311f473ce5fc5e78986e3451533fe315cfe69e0fa63e",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "reach": {
+      "count": 52,
+      "catalog_sha256": "1b1b4e9645c7cde66506eafb5bd2a136436f7a70175c90db7972cde71bbccf0f",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    },
+    "vps": {
+      "count": 64,
+      "catalog_sha256": "9a29f38175bb60c5fec4a9a581fbd3949ace41eee7c367d5cae6124a347c404f",
+      "custom_operations": 0,
+      "review": "catalog metadata reviewed; all real operations QUARANTINED; not a per-tool permission grant"
+    }
+  },
+  "files_sha256": {
+    "server.json": "6e058dcc7f1e0feefe7c5fb6a641c11c7a93f18710fc6733bd50acc2bb5ac39d",
+    "glama.json": "a1553dd00bddc1bb5f60cfd6028ba1b915bcedbfaabebd948900ac3011e73e60",
+    "build.js": "79a5d83defc3f6126cfd09c5c88f311d5563746161f1c50a12fc3be1cc44da80",
+    "gemini-extension.json": "0f82ea7e3a954835212027fc5a029b5d80621fdc586f6dbe31e4173913500cee",
+    "package.json": "bff12e22c4f7e6bab2caeb791ff88a6286b17a039f11d19f7ed10555f455dace",
+    "tsconfig.json": "b2d25f3ece9fab0b3d9d4347b3beb9a1730c48e0d995362a5984ab952f139ffa",
+    "src/core/runtime.js": "d2d58c06afa8edc40057d7113092aa5f9b78bf2d0cb942048ada7338eecdd593",
+    "src/core/oauth.js": "6bd8bccf2c76464916189eb8d663f7f933724b0473e1939950294a042c750a63",
+    "src/servers/domains.js": "5058f836047af584bb096cdff59ff47db454b4c504bca8d4d4111b447b855bed",
+    "src/servers/agency-hosting.js": "025f0ab53421225b672bdc6480df398e1019fc485a7572b35647f543e7365100",
+    "src/servers/all.js": "26332023c4e9c05a3873a53c873696db6d2cf43a7dc8c1e808a85548f90a6a0d",
+    "src/servers/horizons.js": "1d6b7ee11f2c626b01d784c19b26f09340d37e7a7549cf6114fbc95d57af45ce",
+    "src/servers/hosting.js": "6dfd37910967d9a1dc4423a4c206e288c9fd2e122d651cf8e4e15b8d3dc76108",
+    "src/servers/reach.js": "d684bd77baea4169880f58876854ffd738a124c269af856944b2038c767c9015",
+    "src/servers/mail.js": "dcbd07b534f0fdb44d7a2bc2ff2fb15909209a45a8683c2839252444e55e6d47",
+    "src/servers/dns.js": "7b3277ab6207a5314d816e2d7238cf0c03f97569949e9e7a25292d2d0c03a180",
+    "src/servers/billing.js": "d59e88ee2ac7fc105e8f92ef3599345c0d9f0c8e21ce1dbf1fcb84d9e389f423",
+    "src/servers/wordpress.js": "3dbb4f442d63395bb317ee0e267cdeca452b8d80beb78d1da01f1b2fa4f34e34",
+    "src/servers/ecommerce.js": "efcc1db4ce1894da8cd3b0edf0071e8bc79872756f4b0d76ee96f1e7e0bd816a",
+    "src/servers/vps.js": "d1699c1afe056b1c77df2bcf63931ca280ce713476746bb089c7fd8d3453640a",
+    "src/core/tools/domains.js": "776690a61788274f58bb41e6f4895ef2b6708ebe22a310c10429140e8fa93a67",
+    "src/core/tools/agency-hosting.js": "01d204caebbbe3869ee2a2c080b291340ee9f5c306707daaec8be99f468fa437",
+    "src/core/tools/all.js": "536cdb816f85aa7c41e6e4a65204a0b2f28e88b98d99d1ff771b81ba9bb17939",
+    "src/core/tools/horizons.js": "d89b331923bde8f78f717f329ed37ca5f07d39afb124e6fbb2120c94ae9da85b",
+    "src/core/tools/hosting.js": "b25a2bdb5026f75a91cc4d5403f61cf4579f45c9c772fa02becda00f57c7d3e2",
+    "src/core/tools/reach.js": "1b1b4e9645c7cde66506eafb5bd2a136436f7a70175c90db7972cde71bbccf0f",
+    "src/core/tools/mail.js": "46438b946b5374197996031525fd40da9129d91a5034e733614704c852509790",
+    "src/core/tools/dns.js": "303a1b489ef7eb2d0bec311f473ce5fc5e78986e3451533fe315cfe69e0fa63e",
+    "src/core/tools/billing.js": "bc38f8afe701a33ed411d1190668d3ffab220a699e452b8417437d6bf16cd5cf",
+    "src/core/tools/wordpress.js": "d5fa28465076007bfce46871c883a401ac5e69a148513da7c518a5784a447055",
+    "src/core/tools/ecommerce.js": "5b64b2bacdb69e4ed9764a2c0e00a80f362f0cd27bfab1e41f4ee717e71d9e49",
+    "src/core/tools/vps.js": "9a29f38175bb60c5fec4a9a581fbd3949ace41eee7c367d5cae6124a347c404f"
+  },
+  "provenance_signature": "PRESENT_IN_REGISTRY_NOT_CRYPTOGRAPHICALLY_VERIFIED"
+}

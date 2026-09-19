@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-09-13T12:01:41.037087+00:00",
+  "baseline_files": 443,
+  "unchanged_preexisting_files": 435,
+  "changed_preexisting_files": [
+    "docs/governance/README.md",
+    "docs/governance/capability-registry.md",
+    "docs/governance/governance-change-log.md",
+    "sentinel/README.md",
+    "sentinel/contract.md",
+    "sentinel/core.py",
+    "sentinel/lab.py",
+    "tests/test-sentinel.py"
+  ],
+  "missing_files": [],
+  "adapter_paths": [
+    "adapters/AGENTS.md",
+    "adapters/CLAUDE.md",
+    "adapters/GEMINI.md",
+    "adapters/cursor-rules/sds-governance.mdc",
+    "adapters/nested/AGENTS.md",
+    "adapters/nested/CLAUDE.md",
+    "adapters/nested/GEMINI.md",
+    "adapters/nested/cursor-rules/sds-governance.mdc"
+  ],
+  "source_sha256": {
+    "sentinel/net_sink.py": "71302955eec293de05f72b13c991bf2545bcde16304a8affad0390cd69291176",
+    "sentinel/recovery.py": "68181f3a83b6f547f64bf97de3d1662b3986b75beb7e9998e1f4a649511f3ae0",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "sentinel/evaluation.py": "8d1ca2adc87c451b848f0b18b82dfbb7faa91c1907a3b59e272dcb522766098c",
+    "sentinel/runbook.md": "04616fd7e3edfd7ab11cc647c702d2ef15a00e32e0707c9edace7063ec390d30",
+    "sentinel/core.py": "c4d0b03f79a3a07db7270763ccbf1aa98d9a59a0052fdeb035323a830134ca93",
+    "sentinel/contract.md": "40d7b331b5e950f3e82b38f8649b69167dfbe90debb187657cbf77131930fdb2",
+    "sentinel/README.md": "a12a6c88dc87ad5440c3b180ab55f9909d33ad3d1f2e6a8b0ff29787d754947b",
+    "sentinel/lab_dashboard.py": "e921159282f697880e0587271e815dca40f333e6f3e3cd24ffb746188f8b16e4",
+    "sentinel/tart_host.py": "c23c0f2d68ebd58d861931dc2521c2bab739698276a4e700c82ad81ccafa2d16",
+    "sentinel/lab.py": "0e3f863753573a5e0227eb99e19715dad85c6f45acd83a8c4cabbc67b010a589",
+    "sentinel/evaluation.md": "244db7fc16b78dc3dbcc7fd919cfa6178ec849f0e7ec06faffbeb7bd419f13e3",
+    "tests/test-sentinel-evaluation.py": "dc3478b4523077554d9833cafc26f6b7e6825928895f3152f4109ef708beafd7",
+    "tests/test-sentinel.py": "20fb1f476605727e0681204084aeca1fdae009c0713d853f1af11fc782d4d1b3",
+    "tests/test-sentinel-net-sink.py": "ff9526bb857f6d5ee7ac17d29a088a2c43a3c55f01a7f59430548bb070c49d17",
+    "tests/test-sentinel-tart-host.py": "2655242e3e01e5b647eff6d846610cd7c185308c06f8f5650c58b659dc504479",
+    "tests/test-sentinel-public-registry.py": "a191fe111dabc36b8a74e1ec260010f6f70b3ace3170287b8e83f227a16f8a99",
+    "tests/measure-sentinel.py": "728653f72a2ea14fd98c50166254680b04a4428975993ff5e8fa6d603e5cde58"
+  },
+  "static_adapter_words_added": 0,
+  "unexpected_changes": [],
+  "scope": "file preservation only, not runtime rollback or custody"
+}

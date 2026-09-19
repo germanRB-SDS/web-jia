@@ -1,0 +1,86 @@
+{
+  "scope": "pure receipt validation; no payload execution",
+  "passed": 16,
+  "checks": [
+    {
+      "case": "real receipts preserve original failure",
+      "expected": "accept",
+      "pass": true
+    },
+    {
+      "case": "original failed closure alone",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "unexpected original failure",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "incomplete phase pair",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "invalid B phase",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "additional failure in closure",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "files deleted during closure",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "test-b still present",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "wrong final branch",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "missing persisted reference",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "failed reference lookup",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "different commit reference",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "false persistence claim",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "inventory outside roots",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "inventory parent traversal",
+      "expected": "reject",
+      "pass": true
+    },
+    {
+      "case": "inventory count mismatch",
+      "expected": "reject",
+      "pass": true
+    }
+  ]
+}

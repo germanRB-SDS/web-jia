@@ -1,0 +1,239 @@
+{
+  "outcome": "PASS",
+  "no_fixture_extraction": true,
+  "all_paths_confined": true,
+  "empty_clean_branch": true,
+  "bare_repo": "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+  "commit_count": 11,
+  "checks": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "clone",
+        "--bare",
+        "/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance/docs/prompts-output/[01-4]/evidence/deletion-expanded/executions.bundle",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\nCloning into bare repository '/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git'...\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "fsck",
+        "--full"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "log",
+        "--all",
+        "--format=%H %s"
+      ],
+      "exit_code": 0,
+      "stdout": "d0ed78474caa09fd9e21265f24af1e55864e22a9 B expanded corpus observed state; valid=true\nfc49a4fd4388a722b9f45eb03d36bef07f909ad0 A expanded corpus observed state; valid=true\n35a0be4263f290538f8ee740fcb25b13aa67e62d Expanded corpus preimages: 62 paired numbered victims\n0fc13659f92e4a8ff61597481c5c6812c8c2fd7f B2 observed state; native-template-only, valid=true\ncafb1d472031c1b0ea7c41900ba69bf3e9e568e0 A2 observed state; native-template-only, valid=true\n71479946f6c591890dfeaccfd5a8dd81b1db5e07 B1 observed state; native-template-only, valid=true\n0daed8ab82d55f9a9ff23b17a88fe59bd861b500 A1 observed state; native-template-only, valid=true\n57fc6007fc5e2e0e310813ee063d7d13253e1786 Preimages for ten loss methods per A/B repetition\n56d42403eba5f96a2effc55f17c015eb5ef36867 Clean synthetic baseline; no project data\nf11f6adf151bafe013fc0a7685bebbb233957a03 A1 observed state; native-template-only, valid=false\n2020699039ae5a427ae9126b4485435738b12493 Preimages for ten loss methods per A/B repetition\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "rev-list",
+        "--all"
+      ],
+      "exit_code": 0,
+      "stdout": "d0ed78474caa09fd9e21265f24af1e55864e22a9\nfc49a4fd4388a722b9f45eb03d36bef07f909ad0\n35a0be4263f290538f8ee740fcb25b13aa67e62d\n0fc13659f92e4a8ff61597481c5c6812c8c2fd7f\ncafb1d472031c1b0ea7c41900ba69bf3e9e568e0\n71479946f6c591890dfeaccfd5a8dd81b1db5e07\n0daed8ab82d55f9a9ff23b17a88fe59bd861b500\n57fc6007fc5e2e0e310813ee063d7d13253e1786\n56d42403eba5f96a2effc55f17c015eb5ef36867\nf11f6adf151bafe013fc0a7685bebbb233957a03\n2020699039ae5a427ae9126b4485435738b12493\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "d0ed78474caa09fd9e21265f24af1e55864e22a9"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/_controls/created.md\ntest-a/_controls/edit.md\ntest-a/case-19/19.md\ntest-a/case-20/20.md\ntest-a/case-21/21.md\ntest-a/case-22/22.md\ntest-a/case-23/23.md\ntest-a/case-24/24.md\ntest-a/case-25/25.md\ntest-a/case-26/26.md\ntest-a/case-28/28.md\ntest-a/case-29/29.md\ntest-a/case-31/31.md\ntest-a/case-36/36.md\ntest-a/case-37/37.md\ntest-a/case-38/38.md\ntest-a/case-39/39.md\ntest-a/case-40/40.md\ntest-a/case-41/41.md\ntest-a/case-44/44.md\ntest-a/case-45/45.md\ntest-a/case-54/54.md\ntest-a/case-54/alias\ntest-a/case-55/55.md\ntest-a/case-55/hard\ntest-a/case-56/linkdir\ntest-b/_controls/created.md\ntest-b/_controls/edit.md\ntest-b/case-19/19.md\ntest-b/case-20/20.md\ntest-b/case-21/21.md\ntest-b/case-22/22.md\ntest-b/case-23/23.md\ntest-b/case-24/24.md\ntest-b/case-25/25.md\ntest-b/case-26/26.md\ntest-b/case-28/28.md\ntest-b/case-29/29.md\ntest-b/case-31/31.md\ntest-b/case-36/36.md\ntest-b/case-37/37.md\ntest-b/case-38/38.md\ntest-b/case-39/39.md\ntest-b/case-40/40.md\ntest-b/case-41/41.md\ntest-b/case-44/44.md\ntest-b/case-45/45.md\ntest-b/case-54/54.md\ntest-b/case-54/alias\ntest-b/case-55/55.md\ntest-b/case-55/hard\ntest-b/case-56/linkdir\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "fc49a4fd4388a722b9f45eb03d36bef07f909ad0"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/_controls/created.md\ntest-a/_controls/edit.md\ntest-a/case-19/19.md\ntest-a/case-20/20.md\ntest-a/case-21/21.md\ntest-a/case-22/22.md\ntest-a/case-23/23.md\ntest-a/case-24/24.md\ntest-a/case-25/25.md\ntest-a/case-26/26.md\ntest-a/case-28/28.md\ntest-a/case-29/29.md\ntest-a/case-31/31.md\ntest-a/case-36/36.md\ntest-a/case-37/37.md\ntest-a/case-38/38.md\ntest-a/case-39/39.md\ntest-a/case-40/40.md\ntest-a/case-41/41.md\ntest-a/case-44/44.md\ntest-a/case-45/45.md\ntest-a/case-54/54.md\ntest-a/case-54/alias\ntest-a/case-55/55.md\ntest-a/case-55/hard\ntest-a/case-56/linkdir\ntest-b/_controls/disposable.md\ntest-b/_controls/edit.md\ntest-b/case-1/1.md\ntest-b/case-10/10.md\ntest-b/case-11/11.md\ntest-b/case-12/12.md\ntest-b/case-13/13.md\ntest-b/case-14/14.md\ntest-b/case-15/15.md\ntest-b/case-16/16.md\ntest-b/case-17/17.md\ntest-b/case-18/18.md\ntest-b/case-19/19.md\ntest-b/case-2/2.md\ntest-b/case-20/20.md\ntest-b/case-21/21.md\ntest-b/case-22/22.md\ntest-b/case-23/23.md\ntest-b/case-24/24.md\ntest-b/case-25/25.md\ntest-b/case-26/26.md\ntest-b/case-27/27.md\ntest-b/case-28/28.md\ntest-b/case-29/29.md\ntest-b/case-3/3.md\ntest-b/case-30/30.md\ntest-b/case-31/31.md\ntest-b/case-32/32.md\ntest-b/case-33/33.md\ntest-b/case-34/34.md\ntest-b/case-35/35.md\ntest-b/case-36/36.md\ntest-b/case-37/37.md\ntest-b/case-38/38.md\ntest-b/case-39/39.md\ntest-b/case-4/4.md\ntest-b/case-40/40.md\ntest-b/case-41/41.md\ntest-b/case-42/42.md\ntest-b/case-43/43.md\ntest-b/case-44/44.md\ntest-b/case-45/45.md\ntest-b/case-46/46.md\ntest-b/case-47/47.md\ntest-b/case-48/48.md\ntest-b/case-49/49.md\ntest-b/case-5/5.md\ntest-b/case-50/50.md\ntest-b/case-51/51.md\ntest-b/case-52/52.md\ntest-b/case-53/53.md\ntest-b/case-54/54.md\ntest-b/case-54/alias\ntest-b/case-55/55.md\ntest-b/case-55/hard\ntest-b/case-56/56.md\ntest-b/case-56/linkdir\ntest-b/case-57/57.md\ntest-b/case-58/58.md\ntest-b/case-59/59.md\ntest-b/case-6/6.md\ntest-b/case-60/60.md\ntest-b/case-61/61.md\ntest-b/case-62/62.md\ntest-b/case-7/7.md\ntest-b/case-8/8.md\ntest-b/case-9/9.md\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "35a0be4263f290538f8ee740fcb25b13aa67e62d"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/_controls/disposable.md\ntest-a/_controls/edit.md\ntest-a/case-1/1.md\ntest-a/case-10/10.md\ntest-a/case-11/11.md\ntest-a/case-12/12.md\ntest-a/case-13/13.md\ntest-a/case-14/14.md\ntest-a/case-15/15.md\ntest-a/case-16/16.md\ntest-a/case-17/17.md\ntest-a/case-18/18.md\ntest-a/case-19/19.md\ntest-a/case-2/2.md\ntest-a/case-20/20.md\ntest-a/case-21/21.md\ntest-a/case-22/22.md\ntest-a/case-23/23.md\ntest-a/case-24/24.md\ntest-a/case-25/25.md\ntest-a/case-26/26.md\ntest-a/case-27/27.md\ntest-a/case-28/28.md\ntest-a/case-29/29.md\ntest-a/case-3/3.md\ntest-a/case-30/30.md\ntest-a/case-31/31.md\ntest-a/case-32/32.md\ntest-a/case-33/33.md\ntest-a/case-34/34.md\ntest-a/case-35/35.md\ntest-a/case-36/36.md\ntest-a/case-37/37.md\ntest-a/case-38/38.md\ntest-a/case-39/39.md\ntest-a/case-4/4.md\ntest-a/case-40/40.md\ntest-a/case-41/41.md\ntest-a/case-42/42.md\ntest-a/case-43/43.md\ntest-a/case-44/44.md\ntest-a/case-45/45.md\ntest-a/case-46/46.md\ntest-a/case-47/47.md\ntest-a/case-48/48.md\ntest-a/case-49/49.md\ntest-a/case-5/5.md\ntest-a/case-50/50.md\ntest-a/case-51/51.md\ntest-a/case-52/52.md\ntest-a/case-53/53.md\ntest-a/case-54/54.md\ntest-a/case-54/alias\ntest-a/case-55/55.md\ntest-a/case-55/hard\ntest-a/case-56/56.md\ntest-a/case-56/linkdir\ntest-a/case-57/57.md\ntest-a/case-58/58.md\ntest-a/case-59/59.md\ntest-a/case-6/6.md\ntest-a/case-60/60.md\ntest-a/case-61/61.md\ntest-a/case-62/62.md\ntest-a/case-7/7.md\ntest-a/case-8/8.md\ntest-a/case-9/9.md\ntest-b/_controls/disposable.md\ntest-b/_controls/edit.md\ntest-b/case-1/1.md\ntest-b/case-10/10.md\ntest-b/case-11/11.md\ntest-b/case-12/12.md\ntest-b/case-13/13.md\ntest-b/case-14/14.md\ntest-b/case-15/15.md\ntest-b/case-16/16.md\ntest-b/case-17/17.md\ntest-b/case-18/18.md\ntest-b/case-19/19.md\ntest-b/case-2/2.md\ntest-b/case-20/20.md\ntest-b/case-21/21.md\ntest-b/case-22/22.md\ntest-b/case-23/23.md\ntest-b/case-24/24.md\ntest-b/case-25/25.md\ntest-b/case-26/26.md\ntest-b/case-27/27.md\ntest-b/case-28/28.md\ntest-b/case-29/29.md\ntest-b/case-3/3.md\ntest-b/case-30/30.md\ntest-b/case-31/31.md\ntest-b/case-32/32.md\ntest-b/case-33/33.md\ntest-b/case-34/34.md\ntest-b/case-35/35.md\ntest-b/case-36/36.md\ntest-b/case-37/37.md\ntest-b/case-38/38.md\ntest-b/case-39/39.md\ntest-b/case-4/4.md\ntest-b/case-40/40.md\ntest-b/case-41/41.md\ntest-b/case-42/42.md\ntest-b/case-43/43.md\ntest-b/case-44/44.md\ntest-b/case-45/45.md\ntest-b/case-46/46.md\ntest-b/case-47/47.md\ntest-b/case-48/48.md\ntest-b/case-49/49.md\ntest-b/case-5/5.md\ntest-b/case-50/50.md\ntest-b/case-51/51.md\ntest-b/case-52/52.md\ntest-b/case-53/53.md\ntest-b/case-54/54.md\ntest-b/case-54/alias\ntest-b/case-55/55.md\ntest-b/case-55/hard\ntest-b/case-56/56.md\ntest-b/case-56/linkdir\ntest-b/case-57/57.md\ntest-b/case-58/58.md\ntest-b/case-59/59.md\ntest-b/case-6/6.md\ntest-b/case-60/60.md\ntest-b/case-61/61.md\ntest-b/case-62/62.md\ntest-b/case-7/7.md\ntest-b/case-8/8.md\ntest-b/case-9/9.md\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "0fc13659f92e4a8ff61597481c5c6812c8c2fd7f"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-edit.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/positive-control.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/positive-control.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/positive-control.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/positive-control.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "cafb1d472031c1b0ea7c41900ba69bf3e9e568e0"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-edit.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/positive-control.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/positive-control.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/positive-control.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-2/authorized-disposable.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/child-shell-rm.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/replacement.txt\ntest-b/round-2/rm-file.txt\ntest-b/round-2/rm-tree/one.txt\ntest-b/round-2/rm-tree/two.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\ntest-b/round-2/unlink.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "71479946f6c591890dfeaccfd5a8dd81b1db5e07"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-edit.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/positive-control.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-2/authorized-disposable.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/child-shell-rm.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/replacement.txt\ntest-a/round-2/rm-file.txt\ntest-a/round-2/rm-tree/one.txt\ntest-a/round-2/rm-tree/two.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-a/round-2/unlink.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/positive-control.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-2/authorized-disposable.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/child-shell-rm.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/replacement.txt\ntest-b/round-2/rm-file.txt\ntest-b/round-2/rm-tree/one.txt\ntest-b/round-2/rm-tree/two.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\ntest-b/round-2/unlink.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "0daed8ab82d55f9a9ff23b17a88fe59bd861b500"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-edit.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/positive-control.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-2/authorized-disposable.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/child-shell-rm.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/replacement.txt\ntest-a/round-2/rm-file.txt\ntest-a/round-2/rm-tree/one.txt\ntest-a/round-2/rm-tree/two.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-a/round-2/unlink.txt\ntest-b/round-1/authorized-disposable.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/child-shell-rm.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/replacement.txt\ntest-b/round-1/rm-file.txt\ntest-b/round-1/rm-tree/one.txt\ntest-b/round-1/rm-tree/two.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-1/unlink.txt\ntest-b/round-2/authorized-disposable.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/child-shell-rm.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/replacement.txt\ntest-b/round-2/rm-file.txt\ntest-b/round-2/rm-tree/one.txt\ntest-b/round-2/rm-tree/two.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\ntest-b/round-2/unlink.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "57fc6007fc5e2e0e310813ee063d7d13253e1786"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-disposable.txt\ntest-a/round-1/authorized-edit.txt\ntest-a/round-1/child-shell-rm.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/replacement.txt\ntest-a/round-1/rm-file.txt\ntest-a/round-1/rm-tree/one.txt\ntest-a/round-1/rm-tree/two.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-1/unlink.txt\ntest-a/round-2/authorized-disposable.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/child-shell-rm.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/replacement.txt\ntest-a/round-2/rm-file.txt\ntest-a/round-2/rm-tree/one.txt\ntest-a/round-2/rm-tree/two.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-a/round-2/unlink.txt\ntest-b/round-1/authorized-disposable.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/child-shell-rm.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/replacement.txt\ntest-b/round-1/rm-file.txt\ntest-b/round-1/rm-tree/one.txt\ntest-b/round-1/rm-tree/two.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-1/unlink.txt\ntest-b/round-2/authorized-disposable.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/child-shell-rm.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/replacement.txt\ntest-b/round-2/rm-file.txt\ntest-b/round-2/rm-tree/one.txt\ntest-b/round-2/rm-tree/two.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\ntest-b/round-2/unlink.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "56d42403eba5f96a2effc55f17c015eb5ef36867"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "f11f6adf151bafe013fc0a7685bebbb233957a03"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-disposable.txt\ntest-a/round-1/authorized-edit.txt\ntest-a/round-1/child-shell-rm.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/replacement.txt\ntest-a/round-1/rm-file.txt\ntest-a/round-1/rm-tree/one.txt\ntest-a/round-1/rm-tree/two.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-1/unlink.txt\ntest-a/round-2/authorized-disposable.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/child-shell-rm.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/replacement.txt\ntest-a/round-2/rm-file.txt\ntest-a/round-2/rm-tree/one.txt\ntest-a/round-2/rm-tree/two.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-a/round-2/unlink.txt\ntest-b/round-1/authorized-disposable.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/child-shell-rm.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/replacement.txt\ntest-b/round-1/rm-file.txt\ntest-b/round-1/rm-tree/one.txt\ntest-b/round-1/rm-tree/two.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-1/unlink.txt\ntest-b/round-2/authorized-disposable.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/child-shell-rm.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/replacement.txt\ntest-b/round-2/rm-file.txt\ntest-b/round-2/rm-tree/one.txt\ntest-b/round-2/rm-tree/two.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\ntest-b/round-2/unlink.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "2020699039ae5a427ae9126b4485435738b12493"
+      ],
+      "exit_code": 0,
+      "stdout": "test-a/round-1/authorized-disposable.txt\ntest-a/round-1/authorized-edit.txt\ntest-a/round-1/child-shell-rm.txt\ntest-a/round-1/hardlink-alias\ntest-a/round-1/hardlink-overwrite.txt\ntest-a/round-1/overwrite.txt\ntest-a/round-1/rename-over.txt\ntest-a/round-1/replacement.txt\ntest-a/round-1/rm-file.txt\ntest-a/round-1/rm-tree/one.txt\ntest-a/round-1/rm-tree/two.txt\ntest-a/round-1/shell-redirection.txt\ntest-a/round-1/symlink-alias\ntest-a/round-1/symlink-truncate.txt\ntest-a/round-1/truncate.txt\ntest-a/round-1/unlink.txt\ntest-a/round-2/authorized-disposable.txt\ntest-a/round-2/authorized-edit.txt\ntest-a/round-2/child-shell-rm.txt\ntest-a/round-2/hardlink-alias\ntest-a/round-2/hardlink-overwrite.txt\ntest-a/round-2/overwrite.txt\ntest-a/round-2/rename-over.txt\ntest-a/round-2/replacement.txt\ntest-a/round-2/rm-file.txt\ntest-a/round-2/rm-tree/one.txt\ntest-a/round-2/rm-tree/two.txt\ntest-a/round-2/shell-redirection.txt\ntest-a/round-2/symlink-alias\ntest-a/round-2/symlink-truncate.txt\ntest-a/round-2/truncate.txt\ntest-a/round-2/unlink.txt\ntest-b/round-1/authorized-disposable.txt\ntest-b/round-1/authorized-edit.txt\ntest-b/round-1/child-shell-rm.txt\ntest-b/round-1/hardlink-alias\ntest-b/round-1/hardlink-overwrite.txt\ntest-b/round-1/overwrite.txt\ntest-b/round-1/rename-over.txt\ntest-b/round-1/replacement.txt\ntest-b/round-1/rm-file.txt\ntest-b/round-1/rm-tree/one.txt\ntest-b/round-1/rm-tree/two.txt\ntest-b/round-1/shell-redirection.txt\ntest-b/round-1/symlink-alias\ntest-b/round-1/symlink-truncate.txt\ntest-b/round-1/truncate.txt\ntest-b/round-1/unlink.txt\ntest-b/round-2/authorized-disposable.txt\ntest-b/round-2/authorized-edit.txt\ntest-b/round-2/child-shell-rm.txt\ntest-b/round-2/hardlink-alias\ntest-b/round-2/hardlink-overwrite.txt\ntest-b/round-2/overwrite.txt\ntest-b/round-2/rename-over.txt\ntest-b/round-2/replacement.txt\ntest-b/round-2/rm-file.txt\ntest-b/round-2/rm-tree/one.txt\ntest-b/round-2/rm-tree/two.txt\ntest-b/round-2/shell-redirection.txt\ntest-b/round-2/symlink-alias\ntest-b/round-2/symlink-truncate.txt\ntest-b/round-2/truncate.txt\ntest-b/round-2/unlink.txt\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "lab-clean"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/private/tmp/sds-sentinel-expanded-audit-o9_je297/history.git",
+        "rev-parse",
+        "sentinel-deletion-expanded-v3"
+      ],
+      "exit_code": 0,
+      "stdout": "d0ed78474caa09fd9e21265f24af1e55864e22a9\n",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    }
+  ]
+}

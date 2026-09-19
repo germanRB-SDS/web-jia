@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-14T07:11:11.452435+00:00",
+  "mode": "dedicated_guest_canary_discovery",
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "sha256": {
+    "sentinel/tart_host.py": "7b2155a6753a4555773fb73db1d07ca9d83c7f83cfdfebc9a6f2eab086d0fba6",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "sentinel/net_sink.py": "d69ab46e999dedb8e7fef0fdc7b65315eae08805637f7d8aa0765f3443eae09d",
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": "a12a38fa3af38356edce28a404f1e1b388e070a4169bc1cd7d07eab19a53d321",
+    "/opt/homebrew/Cellar/tart/2.37.0/libexec/tart.app/Contents/MacOS/tart": "4bb842d1c9284c1c9cb56f017dde916dfce6995ef9844913d5af89ea54126df7",
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf",
+    "sentinel/sensor_preflight.py": "90aa813c36a49114506ed885904186cb86ffa0116bd933f5475c85a013d0e785",
+    "/opt/homebrew/Cellar/node/26.0.0/bin/node": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164",
+    "sentinel/canary_preflight.py": "75ff7f59a710383e82d619730c81cae501225a32bf13fa45bd9b79688e522dd5",
+    "sentinel/canary_preflight_guest.js": "4788a217cebcd9672af2cbab34f28df5eb13eb3ba4d121db440b9102a3675c3c"
+  },
+  "command": [
+    "python3",
+    "-B",
+    "sentinel/canary_preflight.py",
+    "--run"
+  ],
+  "bounds_seconds": {
+    "vm": 45,
+    "guest": 25,
+    "guest_command": 1.5,
+    "boot_wait": 55,
+    "cleanup": 30,
+    "inspect": 10,
+    "sensor_collection": 4
+  },
+  "constraints": [
+    "Existing own offline VM and unchanged supervisor/sink, 25s guest/45s VM",
+    "Create only previously absent _sds_sentinel UID/GID551; no password/login/sudo grants; preserve partial DS state, no account deletion",
+    "Five fixed Node children, supplementary groups cleared then setgid/setuid551, detached groups; only newly created synthetic test-a/test-b trees",
+    "Direct eslogger launchd and 4s capture with 2MiB/64KiB bounds; no TCC/SIP/settings host/shares/models/auth/IP",
+    "No protected admission; exact platform approval before run; no alternate after denial; preserve raw receipts and verify closure"
+  ],
+  "state": "QUARANTINED_PENDING_EXACT_REVIEW",
+  "delta": "Dedicated guest account/group provisioning and fixed canaries/custody diagnostics; preserves prior discovery. Full G1-G6 plus independent review before any execution.",
+  "syntax_check_node": "/opt/homebrew/Cellar/node/26.0.0/bin/node"
+}

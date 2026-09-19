@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-13T17:03:46.423006+00:00",
+  "sha256": {
+    "sentinel/stage_client.py": "a7a037f9721a401f7a84d20eb536011c47e4f3091d7d555d416b0e48c98f0bd0",
+    "sentinel/exec_transport_probe.sh": "22426f1e39e9ee315ddde4d42392a22728460effe9d0a80a3006883114f5f79c",
+    "sentinel/probe_exec_transport.py": "892f862866f4f79d26291ca7593a93996861d82ec79e24c9a2bc0c2de9c2a22d",
+    "tests/test-sentinel-exec-transport.py": "47f4b75503729fd0a69b3fc609be1601c9a0d13e4ced2371ce0c498528d1bbf3",
+    "tests/test-sentinel-tart-host.py": "d9da6fdc6f6d37407cd4cee980ffa39c5ddef67a72f587c3345e6f31d1e4b18b",
+    "sentinel/tart_host.py": "7b2155a6753a4555773fb73db1d07ca9d83c7f83cfdfebc9a6f2eab086d0fba6",
+    "sentinel/net_sink.py": "d69ab46e999dedb8e7fef0fdc7b65315eae08805637f7d8aa0765f3443eae09d",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "/usr/local/bin/node": "02ef8d68cd7f31aa60efb5fdafce5eedf8fe37c86c02b57d90b990a9c24686f3",
+    "/opt/homebrew/Caskroom/codex/0.154.0/bin/codex": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+    "/opt/homebrew/Cellar/tart/2.37.0/libexec/tart.app/Contents/MacOS/tart": "4bb842d1c9284c1c9cb56f017dde916dfce6995ef9844913d5af89ea54126df7",
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf",
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": "a12a38fa3af38356edce28a404f1e1b388e070a4169bc1cd7d07eab19a53d321"
+  },
+  "guest_node_sha256": "c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd"
+}

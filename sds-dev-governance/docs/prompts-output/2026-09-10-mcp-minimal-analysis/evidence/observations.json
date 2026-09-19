@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-09-10T15:47:49.356179+00:00",
+  "kit_head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "python": "3.14.6",
+  "scope": "synthetic local diagnosis, no provider or personal config",
+  "guard": "subprocess.Popen and socket.socket replaced with failures during diagnosis; not OS isolation proof",
+  "cases": {
+    "check_missing_ledger": {
+      "exit_code": 3,
+      "result": {
+        "server": "hostinger-vps",
+        "client": "codex",
+        "status": "LEDGER_MISSING",
+        "allowed": false,
+        "policy": "practices/modules/07-mcp-control.md"
+      },
+      "stdout_bytes": 133,
+      "stderr_bytes": 0
+    },
+    "doctor_missing_ledger": {
+      "exit_code": 3,
+      "result": {
+        "client": "codex",
+        "status": "BLOCKED_SECRET_ISOLATION",
+        "coverage": [
+          "desktop-ide-injection:UNVERIFIED",
+          "remote-connectors:UNVERIFIED",
+          "runtime-overrides:UNVERIFIED"
+        ],
+        "real_provider_calls": 0
+      },
+      "stdout_bytes": 189,
+      "stderr_bytes": 0
+    },
+    "state_files_after_observation": [
+      "inventory.json",
+      "lock"
+    ],
+    "check_changed_identity": {
+      "exit_code": 3,
+      "result": {
+        "server": "hostinger-vps",
+        "client": "codex",
+        "status": "BLOCKED_IDENTITY_CHANGE",
+        "allowed": false,
+        "policy": "practices/modules/07-mcp-control.md"
+      },
+      "stdout_bytes": 142,
+      "stderr_bytes": 0
+    },
+    "doctor_changed_identity": {
+      "exit_code": 3,
+      "result": {
+        "client": "codex",
+        "status": "BLOCKED_SECRET_ISOLATION",
+        "coverage": [
+          "desktop-ide-injection:UNVERIFIED",
+          "remote-connectors:UNVERIFIED",
+          "runtime-overrides:UNVERIFIED"
+        ],
+        "real_provider_calls": 0
+      },
+      "stdout_bytes": 189,
+      "stderr_bytes": 0
+    },
+    "cwd_fingerprint": {
+      "different_cwd_same_fingerprint": true,
+      "revision_changed_on_second_observation": false
+    },
+    "codex_duplicate": {
+      "statuses": [
+        "BLOCKED_CONFIG_AMBIGUITY"
+      ],
+      "effective_matches": 0
+    },
+    "check_duplicate": {
+      "exit_code": 3,
+      "result": {
+        "server": "hostinger-vps",
+        "client": "codex",
+        "status": "NOT_EVALUATED",
+        "allowed": false,
+        "policy": "practices/modules/07-mcp-control.md"
+      },
+      "stdout_bytes": 132,
+      "stderr_bytes": 0
+    },
+    "repeated_check_atomic_writes": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "observed_at_utc": "2026-09-14T07:05:05.758244+00:00",
+  "own_pids": [
+    93200,
+    93201,
+    93203,
+    93204,
+    93317,
+    93881
+  ],
+  "ps": {
+    "exit_code": 1,
+    "rows": []
+  },
+  "lsof": {
+    "exit_code": 1,
+    "rows": []
+  },
+  "platform_approved": true,
+  "vm_state": "stopped",
+  "running": false,
+  "service_absent": true,
+  "native_protected_admitted": false
+}

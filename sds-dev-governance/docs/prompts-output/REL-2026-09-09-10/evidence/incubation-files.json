@@ -1,0 +1,12 @@
+[
+  "CHANGELOG.md",
+  "README.md",
+  "VERSION.md",
+  "check-governance.sh",
+  "resources/index-of-resources-and-working-patters.md",
+  "resources/mobile-sample-code/README.md",
+  "resources/mobile-sample-code/swiftui-paypal-donation-link/INDEX-AND-HOW-TO-USE-THEM.md",
+  "resources/mobile-sample-code/swiftui-paypal-donation-link/Package.swift",
+  "resources/mobile-sample-code/swiftui-paypal-donation-link/Sources/PayPalDonationExample/PayPalDonationExample.swift",
+  "resources/mobile-sample-code/swiftui-paypal-donation-link/Tests/PayPalDonationExampleTests/PayPalDonationExampleTests.swift"
+]

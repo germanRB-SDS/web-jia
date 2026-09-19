@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-12",
+  "scope": "V0 document structure only; not harness or isolation validation",
+  "result": "PASS",
+  "checks": [
+    "local Markdown links",
+    "UTF-8 and whitespace",
+    "source H-01 through H-20 ordered once",
+    "source first and last sentence",
+    "prompt scope/performance markers",
+    "report sections and finding coverage",
+    "no tracked non-document changes",
+    "Revalidated after final wording and user clarification"
+  ],
+  "files": [
+    {
+      "path": "docs/prompts/README.md",
+      "bytes": 1469,
+      "words": 189,
+      "sha256": "b24ab855004c82da2b47efd403811106aa22abef9ed71445fc881cf60ec992e1"
+    },
+    {
+      "path": "docs/prompts/SDS-REVISION-sentinel-perimetro-local-2026-09-12.md",
+      "bytes": 33304,
+      "words": 4849,
+      "sha256": "7055a204dd48684804f11ca9ae21fd36c51b2348e1df3e2f07a0ff0ff547bdf5"
+    },
+    {
+      "path": "docs/prompts/[01-0-alpha]sentinel-perimetro-local.md",
+      "bytes": 24292,
+      "words": 3349,
+      "sha256": "d326df61528f54f67e09aab07ff8afd34ecfab5e104ac0406a930d0e7ac38000"
+    },
+    {
+      "path": "docs/prompts-output/[01-0]sentinel-revision-aterrizada.md",
+      "bytes": 22939,
+      "words": 3208,
+      "sha256": "847b1377552a46012a5f44eff5ec6bf944ed73e940db4fda68656b615ae0e25c"
+    }
+  ],
+  "always_read_words": {
+    "GOVERNANCE.md": 1449,
+    "practices/INDEX.md": 947,
+    "skills/README.md": 604
+  },
+  "always_read_total_words": 3000,
+  "tokens": "NOT MEASURED; bytes and words are not tokens",
+  "source_integrity_limit": "Hash of archived pasted text only; original attachment absent; byte-for-byte comparison to original attachment not performed",
+  "failures": []
+}

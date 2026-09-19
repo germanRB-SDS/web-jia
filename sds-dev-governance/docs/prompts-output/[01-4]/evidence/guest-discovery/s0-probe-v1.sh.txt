@@ -1,0 +1,54 @@
+#!/bin/sh
+# Candidate administrative setup + synthetic controls; no real data, sudo or installation.
+# Scope is one newly created guest directory; no destructive teardown.
+set -eu
+umask 077
+probe_root=$(/usr/bin/mktemp -d /private/tmp/sds-sentinel-s0.XXXXXX)
+/bin/mkdir "$probe_root/P" "$probe_root/X" "$probe_root/Y" "$probe_root/W"
+printf '%s\n' SENTINEL_CANARY > "$probe_root/Y/canary"
+printf '%s\n' CONTROL > "$probe_root/W/control"
+/bin/cat > "$probe_root/W/outer.sb" <<PROFILE
+(version 1)
+(deny default)
+(allow process-exec (literal "/bin/sh"))
+(allow process-fork)
+(allow sysctl-read)
+(allow file-read*)
+(allow file-write* (subpath "$probe_root/P") (subpath "$probe_root/X") (literal "/dev/null"))
+PROFILE
+printf 'ROOT=%s\n' "$probe_root"
+# Positive controls in the same replica and identity before applying the outer sandbox.
+/bin/sh -c 'printf "%s\n" positive > "$1/Y/positive"; printf "%s\n" positive > "$1/X/positive"' probe "$probe_root"
+/bin/sh -c 'printf "%s\n" positive > "$1/W/positive"' probe "$probe_root"
+exec 9<> "$probe_root/Y/positive-fd"
+/bin/sh -c 'printf "%s\n" positive >&9'
+exec 9>&-
+printf 'POSITIVE_Y=%s\n' "$(/bin/cat "$probe_root/Y/positive")"
+printf 'POSITIVE_X=%s\n' "$(/bin/cat "$probe_root/X/positive")"
+printf 'POSITIVE_W=%s\n' "$(/bin/cat "$probe_root/W/positive")"
+printf 'POSITIVE_FD=%s\n' "$(/bin/cat "$probe_root/Y/positive-fd")"
+# Preserve an already-open FD to a synthetic canary to detect inherited-FD gaps.
+exec 9<> "$probe_root/Y/canary"
+set +e
+/usr/bin/sandbox-exec -f "$probe_root/W/outer.sb" /bin/sh -c '
+root=$1
+printf "%s\n" allowed > "$root/P/allowed"; printf "P_STATUS=%s\n" "$?"
+printf "%s\n" allowed > "$root/X/allowed"; printf "X_STATUS=%s\n" "$?"
+printf "%s\n" forbidden > "$root/Y/canary"; printf "Y_STATUS=%s\n" "$?"
+printf "%s\n" forbidden > "$root/W/control"; printf "W_STATUS=%s\n" "$?"
+printf "%s\n" forbidden >&9; printf "FD_STATUS=%s\n" "$?"
+' probe "$probe_root"
+subject_status=$?
+set -e
+exec 9>&-
+printf 'SUBJECT_STATUS=%s\n' "$subject_status"
+printf 'P_CONTENT=%s\n' "$(/bin/cat "$probe_root/P/allowed" 2>/dev/null || true)"
+printf 'X_CONTENT=%s\n' "$(/bin/cat "$probe_root/X/allowed" 2>/dev/null || true)"
+printf 'Y_CONTENT=%s\n' "$(/bin/cat "$probe_root/Y/canary")"
+printf 'W_CONTENT=%s\n' "$(/bin/cat "$probe_root/W/control")"
+# Supervisor owns observations; child statuses alone are not acceptance.
+if [ "$subject_status" -ne 0 ] || [ "$(/bin/cat "$probe_root/P/allowed" 2>/dev/null || true)" != allowed ] || [ "$(/bin/cat "$probe_root/X/allowed" 2>/dev/null || true)" != allowed ] || [ "$(/bin/cat "$probe_root/Y/canary")" != SENTINEL_CANARY ] || [ "$(/bin/cat "$probe_root/W/control")" != CONTROL ]; then
+  printf '%s\n' SYNTHETIC_BOUNDARY_FAIL
+  exit 78
+fi
+printf '%s\n' SYNTHETIC_FILE_BOUNDARY_PASS_NOT_FULL_S0

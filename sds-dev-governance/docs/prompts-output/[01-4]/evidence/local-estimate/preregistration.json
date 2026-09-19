@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-13T17:50:02.716448+00:00",
+  "clients_requested": [
+    {
+      "client": "Codex",
+      "model": "gpt-6-astra",
+      "auth_method": "ChatGPT subscription; user confirmed"
+    },
+    {
+      "client": "Claude Code",
+      "model_request": "fable",
+      "configured_model": "claude-fable-5-1[1m]",
+      "configured_model_source": "Only model field in ~/.claude/settings.json; not effective runtime verification",
+      "auth_method": "Subscription-only target; actual sign-in not inspected"
+    }
+  ],
+  "budget_policy": {
+    "paid_api": "FORBIDDEN_BY_OWNER",
+    "extra_paid_credits": "NOT_AUTHORIZED",
+    "monetary_budget_question": "NOT_REQUIRED",
+    "mode": "local measurement if possible, explicit estimate otherwise",
+    "ideal_overhead_percent": 8,
+    "exploration_exclusive_ceiling_percent": 40
+  },
+  "measurements": {
+    "pairs": 9,
+    "iterations": 2000,
+    "warmup": 200,
+    "arms": "empty function vs codec, not campaign A/B",
+    "model_runs": 0,
+    "token_estimate": "uncalibrated 2-4 chars/token sensitivity, not a bound",
+    "scenarios": "fixed in hashed source; hypothetical A10000 tokens"
+  },
+  "sha256": {
+    "sentinel/core.py": "c4d0b03f79a3a07db7270763ccbf1aa98d9a59a0052fdeb035323a830134ca93",
+    "tests/estimate-sentinel-local.py": "f6fecc7784847b80982eeb1fdd60981be3f1c195cf20ede65ce1f81d2848ee8b",
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf"
+  },
+  "delta": "Metadata precision: no tokenizer used/calibrated; extra turn tokens exclude already-counted notice; initial observations preserved."
+}

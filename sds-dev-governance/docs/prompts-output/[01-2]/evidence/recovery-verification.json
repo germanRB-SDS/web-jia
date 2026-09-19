@@ -1,0 +1,17 @@
+{
+  "scope": "Archive recovery to separate new directories, not in-place/runtime rollback",
+  "results": {
+    "pre-sentinel": {
+      "recovered_directory": "/private/tmp/sds-recovery-pre-sentinel-qcs8n12b",
+      "files_verified": 363,
+      "bytes_modes_inventory": "PASS",
+      "deletions": 0
+    },
+    "estado-local-antes-01-2": {
+      "recovered_directory": "/private/tmp/sds-recovery-estado-local-antes-01-2-f7aa7s4s",
+      "files_verified": 406,
+      "bytes_modes_inventory": "PASS",
+      "deletions": 0
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "mode": "one credential-free exec-server stdio probe",
+  "host_launcher": "sentinel/probe_exec_transport.py",
+  "source": "sentinel/exec_transport_probe.sh",
+  "revision": "revision.json",
+  "guest_client": "/private/tmp/sds-sentinel-client.gXPEva/codex",
+  "operations": [
+    "initialize",
+    "initialized",
+    "environment/info",
+    "environment/status",
+    "process/start /bin/pwd in fresh own guest root"
+  ],
+  "ceilings_seconds": {
+    "native": 12,
+    "guest_hard": 15,
+    "host_capture": 25,
+    "VM": 45
+  },
+  "accept": [
+    "exit0 and TRANSPORT_PASS",
+    "metadata cwd and executorVersion0.154.0 match",
+    "ready status",
+    "exact guest pwd stdout, exit0, no sandboxDenied=true, coherent sequence, process/closed",
+    "native EOF close0",
+    "VM stopped and own PID/socket absence after boot bound"
+  ],
+  "on_failure": "Retain full raw output and guest fixture; do not silently retry or change executor after denial. Reopen revision/review for any change.",
+  "excluded": [
+    "auth",
+    "model sessions",
+    "IP forwarding",
+    "shares",
+    "privilege changes",
+    "host-authenticated app-server",
+    "Sentinel B",
+    "AB comparison",
+    "custody certification"
+  ]
+}

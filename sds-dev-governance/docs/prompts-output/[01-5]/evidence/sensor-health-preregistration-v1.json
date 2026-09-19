@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-14T07:12:08.423249+00:00",
+  "mode": "sensor_health_local_v1",
+  "source_sha256": {
+    "sentinel/beta/sensor.py": "4ff760dfd560f01fa003a87b94eb935a432af9b0ac50fcb5d555d4c399c9b579",
+    "sentinel/beta/protocol.py": "df1b1a9f2d0da1835007381f024bea1c0ba601dca1001de75fd92ffba0cf214c",
+    "tests/test-sentinel-sensor-health.py": "dbc7428bad00acac04d89590e66feed14f4235ea8e6ebbd6e30d20a29fc94e43",
+    "tests/test-sentinel-beta.py": "28d2c70986c39754c1411daa42e474e57ebb83d1848c4e70211498ca7d0fd7c1",
+    "tests/test-sentinel-containment.py": "438d3dd32f79bce734bd079cde7a028307aa7d93ccdfe8805c61fda5e706cd52",
+    "docs/prompts-output/[01-5]/evidence/sensor-run-stdout.jsonl": "a44ece40f7c5278d480031eae121c9d821c7e5e1c6517464597acfbb7978a78b"
+  },
+  "python": {
+    "path": "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "sha256": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf"
+  },
+  "cases": "12 new SensorHealthTests + existing SensorTests and PumpTests only",
+  "bounds_seconds": 30,
+  "effects": "local memory, synthetic monotonic clock, own os.pipe and local evidence reads; no worker process, native signals, VM, sensor, network, credentials or activation",
+  "review": "PENDING independent review before execution",
+  "verification": "V3 targeted sensor -> canary health -> raw preservation; unchanged unrelated beta/watchdog evidence retained as historical"
+}

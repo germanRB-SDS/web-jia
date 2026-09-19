@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-09-13T19:42:06.572Z",
+  "vm_state": "stopped",
+  "inspect_receipt": "1789328481817823000-inspect.json",
+  "checks": [
+    {
+      "cmd": "/bin/ps -p 82311,83535,83536,83537,83538,83549,84434,84435,84436,84437,84448,85614,85615,85616,85617,85692 -o pid=,ppid=,pgid=,comm=",
+      "chunk_id": "e8d9cd",
+      "wall_time_seconds": 0.000002959,
+      "exit_code": 1,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "cmd": "/usr/sbin/lsof -n -a -U /private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/control.sock",
+      "chunk_id": "48ac55",
+      "wall_time_seconds": 0.000003583,
+      "exit_code": 1,
+      "original_token_count": 0,
+      "output": ""
+    }
+  ],
+  "limits": "Observed own processes and exact socket; not universal process revocation or Sentinel recovery"
+}

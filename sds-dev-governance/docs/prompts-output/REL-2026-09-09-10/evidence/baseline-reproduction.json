@@ -1,0 +1,54 @@
+[
+  {
+    "shell": "/bin/bash",
+    "case": "empty",
+    "exit": 2,
+    "output": "No governance copy given. Use --root, --path or --stdin.\n"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "missing-path",
+    "exit": 0,
+    "output": "Baseline: /private/tmp/sds-governance-REL-2026-09-09-10\nBaseline version: v1.25.0   fingerprint: 4ffa45da14c1\n\nVERSION   FINGERPRINT   HEAD      TREE   UNIQUE STATE                      ACTION         PATH\nWARN: not a directory: /private/tmp/sds-bootstrap-before-pqh6j6_v/missing\n"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "missing-baseline",
+    "exit": 0,
+    "output": "Baseline: /private/tmp/sds-bootstrap-before-pqh6j6_v/missing\nBaseline version: none   fingerprint: \n\nVERSION   FINGERPRINT   HEAD      TREE   UNIQUE STATE                      ACTION         PATH\nv1.25.0   4ffa45da14c1  8c1ba0f   dirty  222    UNKNOWN                    INSPECT        /private/tmp/sds-governance-REL-2026-09-09-10\n"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "hub-child-overwrite-optout",
+    "exit": 0,
+    "child_modified": true,
+    "copied_git": true,
+    "bundled_ran": true
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "empty",
+    "exit": 0,
+    "output": "Baseline: /private/tmp/sds-governance-REL-2026-09-09-10\nBaseline version: v1.25.0   fingerprint: 4ffa45da14c1\n\nVERSION   FINGERPRINT   HEAD      TREE   UNIQUE STATE                      ACTION         PATH\n/private/tmp/sds-governance-REL-2026-09-09-10/scripts/governance-copies.sh: line 66: ${#PATHS[@]:-0}: bad substitution\n"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "missing-path",
+    "exit": 0,
+    "output": "Baseline: /private/tmp/sds-governance-REL-2026-09-09-10\nBaseline version: v1.25.0   fingerprint: 4ffa45da14c1\n\nVERSION   FINGERPRINT   HEAD      TREE   UNIQUE STATE                      ACTION         PATH\n/private/tmp/sds-governance-REL-2026-09-09-10/scripts/governance-copies.sh: line 66: ${#PATHS[@]:-0}: bad substitution\nWARN: not a directory: /private/tmp/sds-bootstrap-before-pqh6j6_v/missing\n"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "missing-baseline",
+    "exit": 0,
+    "output": "Baseline: /private/tmp/sds-bootstrap-before-pqh6j6_v/missing\nBaseline version: none   fingerprint: \n\nVERSION   FINGERPRINT   HEAD      TREE   UNIQUE STATE                      ACTION         PATH\nv1.25.0   4ffa45da14c1  8c1ba0f   dirty  222    UNKNOWN                    INSPECT        /private/tmp/sds-governance-REL-2026-09-09-10\n/private/tmp/sds-governance-REL-2026-09-09-10/scripts/governance-copies.sh: line 66: ${#PATHS[@]:-0}: bad substitution\n"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "hub-child-overwrite-optout",
+    "exit": 0,
+    "child_modified": true,
+    "copied_git": true,
+    "bundled_ran": true
+  }
+]

@@ -1,0 +1,37 @@
+# Index — <area> memory
+
+> Plantilla del **indice** de una memoria en arbol. Renombrar a `index-<area>.md` (p. ej.
+> `index-security.md`, `index-api-openapi.md`) al migrar un area que crece por encima de su tope.
+> Este fichero `.template` es inerte: `check-governance.sh` solo valida ficheros `*.md`.
+>
+> Reglas (ver `sds-dev-governance/practices/01-agent-memory.md`):
+> - Este `index-<area>.md` es el **unico punto de entrada** del area. Tope <= 300 lineas.
+> - Cada shard `<area>-N.md` es detalle de ambito cerrado, cargado **bajo demanda**, tope <= 250 lineas,
+>   y **debe estar listado** en la tabla de abajo.
+> - **do not read all shards by default** — abrir solo el shard que esta tabla indique.
+> - Cross-links entre shards solo en la seccion `## Cross-links`, como `<area>-N.md`. Grafo DAG, sin self-link.
+
+## Contexto minimo
+
+- 5-10 bullets con los hechos e invariantes estables imprescindibles del area.
+- Cargar este indice primero; **do not read all shards by default**.
+
+## Mapa tematico de shards
+
+| Shard | Ambito (cerrado) | Cuando leerlo |
+|---|---|---|
+| `<area>-1.md` | _tema 1_ | _disparador_ |
+| `<area>-2.md` | _tema 2_ | _disparador_ |
+| `<area>-3.md` | _tema 3_ | _disparador_ |
+
+## Invariantes criticos
+
+- _Resumen de invariantes que nunca deben romperse (detalle en los shards)._
+
+## Cross-links
+
+- `<area>-1.md` → `<area>-2.md` (_motivo del enlace_)
+
+For a large coded shard, the optional reader protocol is
+`sds-dev-governance/practices/modules/01-selective-text.md`. Keep this index as the semantic router;
+computed section ranges or a derived index never replace its dependency/authority decisions.

@@ -1,0 +1,15 @@
+diff --git a/.codex/config.toml b/.codex/config.toml
+--- /dev/null
++++ b/.codex/config.toml
+@@ -0,0 +1,11 @@
++# CANDIDATE ONLY: Codex 0.154.0 schema. Never merge with named permissions profiles.
++# Does not prevent unauthorized loss inside writable roots or stop retrying turns.
++sandbox_mode = "workspace-write"
++approval_policy = "on-request"
++approvals_reviewer = "user"
++
++[sandbox_workspace_write]
++network_access = false
++writable_roots = []
++exclude_slash_tmp = true
++exclude_tmpdir_env_var = true

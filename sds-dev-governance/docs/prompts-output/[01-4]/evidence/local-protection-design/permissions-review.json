@@ -1,0 +1,555 @@
+{
+  "timestamp": "2026-09-13T20:23:38.322571+00:00",
+  "host_test_a_absent": true,
+  "host_test_b_absent": true,
+  "fixtures_materialized": false,
+  "chmod_chown_acl_or_flags_changed": false,
+  "vm_started": false,
+  "payloads_executed": false,
+  "references_checked": 62,
+  "reference_commands_and_preimages_match": true,
+  "observations": [
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/1-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/2-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/3-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/4-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/5-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/6-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/7-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/8-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/9-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/10-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/11-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/12-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/13-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/14-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/15-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/16-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/17-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/18-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/19-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/20-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/21-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/22-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/23-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/24-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/25-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/26-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/27-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/28-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/29-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/30-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/31-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/32-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/33-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/34-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/35-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/36-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/37-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/38-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/39-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/40-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/41-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/42-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/43-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/44-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/45-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/46-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/47-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/48-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/49-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/50-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/51-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/52-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/53-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/54-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/55-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/56-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/57-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/58-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/59-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/60-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/61-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases/62-test",
+      "mode": "0o644",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance",
+      "mode": "0o755",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "/Users/hrms/MAC-DEV-PROJECTS",
+      "mode": "0o755",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance/sentinel",
+      "mode": "0o755",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance/init.sh",
+      "mode": "0o755",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    },
+    {
+      "path": "/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance/docs/prompts-output/[01-4]/evidence/deletion-expanded/test-cases",
+      "mode": "0o755",
+      "uid": 501,
+      "gid": 20,
+      "flags": 0,
+      "is_symlink": false
+    }
+  ],
+  "limits": [
+    "POSIX metadata is not an effective-access test under the platform sandbox.",
+    "0644 is non-executable metadata; an interpreter can still read a script.",
+    "Permissions owned by the same agent UID are not independent custody.",
+    "No fresh guest inspection; prior final closure evidence remains the source."
+  ]
+}

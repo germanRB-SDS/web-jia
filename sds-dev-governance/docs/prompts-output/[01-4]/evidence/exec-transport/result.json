@@ -1,0 +1,12 @@
+{
+  "outcome": "FAIL_PRECONDITION_UNLOCALIZED",
+  "exit_code": 78,
+  "log_bytes": 0,
+  "native_transport_verified": false,
+  "failure_phase": "Before PROBE_ROOT; one of Node link/hash or staged Codex type/hash guards",
+  "cause": "UNKNOWN; guest temporary-directory persistence across reboot not yet verified",
+  "native_model_sessions": 0,
+  "AB_runs": 0,
+  "auth_transferred": false,
+  "rerun": false
+}

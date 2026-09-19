@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SVG Path Glow Trace - example</title>
+  <link rel="stylesheet" href="../css/svg-path-glow-trace.css" />
+</head>
+<body>
+  <main class="demo-shell">
+    <figure class="mark-demo" aria-label="Example traced mark">
+      <svg class="mark-demo__base" viewBox="0 0 240 180" role="img" aria-label="Geometric A mark">
+        <path d="M34 152 107 28c7-12 25-12 32 0l67 124h-35l-17-33H91l-18 33H34Zm72-61h34l-17-33-17 33Z" />
+      </svg>
+
+      <svg class="svg-path-glow-trace" viewBox="0 0 240 180" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="svgPathGlow">
+            <stop offset="0%" stop-color="var(--path-glow-core)" stop-opacity="0.9" />
+            <stop offset="48%" stop-color="var(--path-glow-core)" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="var(--path-glow-core)" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <path id="svgPathGlowMotionPath" class="svg-path-glow-trace__path"
+          d="M34 152 107 28c7-12 25-12 32 0l67 124h-35l-17-33H91l-18 33H34Z" />
+
+        <!-- Static markup version. For dynamic generation, use ../javascript/svg-path-glow-trace.js. -->
+        <circle class="svg-path-glow-trace__particle" r="20" fill="url(#svgPathGlow)" opacity="0">
+          <animateMotion begin="0.30s" dur="3.2s" repeatCount="indefinite" calcMode="spline"
+            keyTimes="0;1" keySplines="0.42 0 0.58 1">
+            <mpath href="#svgPathGlowMotionPath" />
+          </animateMotion>
+          <animate attributeName="opacity" begin="0.30s" dur="3.2s" repeatCount="indefinite"
+            values="0;0.95;0.95;0" keyTimes="0;0.16;0.86;1" />
+        </circle>
+        <circle class="svg-path-glow-trace__particle" r="17" fill="url(#svgPathGlow)" opacity="0">
+          <animateMotion begin="0.36s" dur="3.2s" repeatCount="indefinite" calcMode="spline"
+            keyTimes="0;1" keySplines="0.42 0 0.58 1">
+            <mpath href="#svgPathGlowMotionPath" />
+          </animateMotion>
+          <animate attributeName="opacity" begin="0.36s" dur="3.2s" repeatCount="indefinite"
+            values="0;0.58;0.58;0" keyTimes="0;0.16;0.86;1" />
+        </circle>
+        <circle class="svg-path-glow-trace__particle" r="14" fill="url(#svgPathGlow)" opacity="0">
+          <animateMotion begin="0.42s" dur="3.2s" repeatCount="indefinite" calcMode="spline"
+            keyTimes="0;1" keySplines="0.42 0 0.58 1">
+            <mpath href="#svgPathGlowMotionPath" />
+          </animateMotion>
+          <animate attributeName="opacity" begin="0.42s" dur="3.2s" repeatCount="indefinite"
+            values="0;0.34;0.34;0" keyTimes="0;0.16;0.86;1" />
+        </circle>
+        <circle class="svg-path-glow-trace__particle" r="11" fill="url(#svgPathGlow)" opacity="0">
+          <animateMotion begin="0.48s" dur="3.2s" repeatCount="indefinite" calcMode="spline"
+            keyTimes="0;1" keySplines="0.42 0 0.58 1">
+            <mpath href="#svgPathGlowMotionPath" />
+          </animateMotion>
+          <animate attributeName="opacity" begin="0.48s" dur="3.2s" repeatCount="indefinite"
+            values="0;0.20;0.20;0" keyTimes="0;0.16;0.86;1" />
+        </circle>
+      </svg>
+    </figure>
+  </main>
+</body>
+</html>

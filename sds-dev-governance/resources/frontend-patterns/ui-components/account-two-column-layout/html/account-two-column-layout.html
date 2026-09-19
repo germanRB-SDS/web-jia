@@ -1,0 +1,59 @@
+<!-- Account Two-Column Layout — asymmetric rail + content. Labels are placeholders (copy/i18n
+     layer). Rail groups from top to bottom: identity, section navigation (aria-pressed toggles),
+     actions — each split by a bright hairline with symmetric air. -->
+<div class="account-layout-scope">
+  <div class="account-layout">
+    <aside class="account-rail" aria-label="Tu cuenta">
+      <div class="account-identity">
+        <span class="account-identity-avatar" aria-hidden="true">MB</span>
+        <span class="account-identity-details">
+          <strong>Maria B.</strong>
+          <span>maria@example.test</span>
+        </span>
+      </div>
+
+      <hr class="account-rail-separator">
+
+      <nav>
+        <ul>
+          <li>
+            <button class="account-rail-item" type="button" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="13" height="17" rx="2"/><path d="M7 8h6"/><path d="M7 12h4"/><path d="m14.5 16.5 5.5-5.5 1.5 1.5-5.5 5.5-2 .5z"/></svg>
+              <span>Datos de facturación</span>
+            </button>
+          </li>
+          <li>
+            <button class="account-rail-item" type="button" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12V20l-2-1.2-2 1.2-2-1.2-2 1.2-2-1.2-2 1.2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg>
+              <span>Facturas</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <hr class="account-rail-separator">
+
+      <nav>
+        <ul>
+          <li>
+            <button class="account-rail-item account-rail-item--primary" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16V8.5"/><path d="m8.5 12 3.5-3.5 3.5 3.5"/></svg>
+              <span>Mejorar el plan</span>
+            </button>
+          </li>
+          <li>
+            <button class="account-rail-item" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M18 7h2"/><path d="M4 17h4"/><path d="M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg>
+              <span>Gestionar suscripción</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="account-content">
+      <!-- Resting state: ONE summary card. Rail navigation reveals further panels below it. -->
+      <section>[ tarjeta resumen / contenido principal ]</section>
+    </div>
+  </div>
+</div>

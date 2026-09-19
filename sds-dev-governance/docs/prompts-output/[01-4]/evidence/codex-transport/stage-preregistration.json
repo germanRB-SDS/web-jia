@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-09-13T16:44:54.260487+00:00",
+  "phase": "credential-free client staging; not A/B",
+  "source": "sentinel/stage_client.py",
+  "sha256": "ee9a49911cbb558c88a882bf19e07929b144be146117f6673c41bc745727348c",
+  "revision": "revision.json",
+  "planned_runs": 1,
+  "target": "new guest /private/tmp/sds-sentinel-client.XXXXXX; retain partial transfer on failure",
+  "source_binary": "/opt/homebrew/Caskroom/codex/0.154.0/bin/codex",
+  "source_sha256": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+  "source_bytes": 222655232,
+  "stdin": "same regular fileFD verified on host; Tart exec -i into guest cat",
+  "guest_preexecution": "size and sha256 required beforechmod500/exec",
+  "guest_command": "env-i with private HOME/CODEX_HOME/TMPDIR and fixed PATH; --version only",
+  "limits": "host stage25s; VM45s unchanged; no unbounded run",
+  "no_auth": true,
+  "no_network": true,
+  "no_model": true,
+  "no_mounts": true,
+  "acceptance": "stage exit0 plus exact client hash and version codex-cli0.154.0, owned fixture path; then VM stopped, owned groups absent",
+  "failure": "preserve exit/error/partial root; no automatic retry or auth",
+  "cost": "provisioning only; no operational overhead claim"
+}

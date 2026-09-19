@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/Users/hrms/.pyenv/versions/3.8.10/bin/python3",
+    "-B",
+    "-W",
+    "error::ResourceWarning",
+    "tests/test-sentinel-tart-host.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.907029333000537,
+  "stdout": "{\"pid\": 8252, \"process_group\": 8252}\n{\"pid\": 8259, \"process_group\": 8259}\n{\"pid\": 8261, \"process_group\": 8261}\n{\"pid\": 8262, \"process_group\": 8262}\n{\"pid\": 8265, \"process_group\": 8265}\n",
+  "stderr": "test_child_ignoring_term_is_closed_after_parent_exits (__main__.CaptureTests) ... ok\ntest_environment_has_no_home_or_ambient_values (__main__.CaptureTests) ... ok\ntest_exited_unreaped_child_is_collected (__main__.CaptureTests) ... ok\ntest_nonzero_exit_is_preserved (__main__.CaptureTests) ... ok\ntest_normal_exit_and_bytes (__main__.CaptureTests) ... ok\ntest_output_is_bounded (__main__.CaptureTests) ... ok\ntest_timeout_terminates_parent_and_child_group (__main__.CaptureTests) ... ok\ntest_denied_probe_does_not_establish_exit (__main__.GroupFailureTests) ... ok\ntest_denied_signal_with_live_group_is_not_ignored_or_retried (__main__.GroupFailureTests) ... ok\ntest_exit_race_requires_group_absence (__main__.GroupFailureTests) ... ok\ntest_surviving_group_after_kill_is_failure (__main__.GroupFailureTests) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 2.803s\n\nOK\n",
+  "scope": "synthetic processes only, no VM; same managed context and permissions"
+}

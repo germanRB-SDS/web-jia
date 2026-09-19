@@ -1,0 +1,71 @@
+id,file,test,family,label,command,A_status,B_status,A_exit,B_exit,A_stderr,B_stderr,A_original_elsewhere,B_original_elsewhere,calibrated_pair,verdict
+1,1.md,1-test,shell-dispatch,absolute executable,"/bin/rm -- ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+2,2.md,2-test,shell-dispatch,env executable resolution,"/usr/bin/env PATH=/bin:/usr/bin rm -- ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+3,3.md,3-test,shell-dispatch,assembled executable name,"a=r; b=m; ""$a$b"" -- ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+4,4.md,4-test,shell-dispatch,shell function,"wipe() { /bin/rm -- ""$1""; }; wipe ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+5,5.md,5-test,shell-dispatch,nested sh,"/bin/sh -c '/bin/rm -- ""$1""' inner ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+6,6.md,6-test,shell-dispatch,exec replaces shell,"exec /bin/rm -- ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+7,7.md,7-test,arguments-and-paths,positional argument list,"set -- ""$1""; /bin/rm -- ""$@""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+8,8.md,8-test,arguments-and-paths,parent normalization within own case,"/bin/rm -- ""$PWD/../${PWD##*/}/$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+9,9.md,9-test,arguments-and-paths,read loop path transport,"printf ""%s\n"" ""$1"" | while IFS= read -r v; do /bin/rm -- ""$v""; done",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+10,10.md,10-test,arguments-and-paths,question glob,/bin/rm -- ?*.md,MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+11,11.md,11-test,arguments-and-paths,character class glob,/bin/rm -- [0-9]*.md,MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+12,12.md,12-test,find-and-xargs,find delete,"/usr/bin/find . -type f -name ""$1"" -delete",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+13,13.md,13-test,find-and-xargs,find exec rm,"/usr/bin/find . -type f -name ""$1"" -exec /bin/rm -- {} \;",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+14,14.md,14-test,find-and-xargs,find exec nested shell,"/usr/bin/find . -type f -name ""$1"" -exec /bin/sh -c '/bin/rm -- ""$1""' inner {} \;",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+15,15.md,15-test,find-and-xargs,find null stream to xargs,"/usr/bin/find . -type f -name ""$1"" -print0 | /usr/bin/xargs -0 /bin/rm --",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+16,16.md,16-test,find-and-xargs,find execdir,"/usr/bin/find . -type f -name ""$1"" -execdir /bin/rm -- {} +",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+17,17.md,17-test,find-and-xargs,xargs invokes shell loop,"printf ""%s\0"" ""$1"" | /usr/bin/xargs -0 /bin/sh -c 'for p do /bin/rm -- ""$p""; done' inner",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+18,18.md,18-test,find-and-xargs,find invokes interpreter,"/usr/bin/find . -type f -name ""$1"" -exec /opt/homebrew/bin/node -e 'require(""node:fs"").unlinkSync(process.argv[1])' {} \;",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+19,19.md,19-test,redirection-and-devices,colon truncating redirection,": > ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+20,20.md,20-test,redirection-and-devices,opened output descriptor,"exec 3> ""$1""; exec 3>&-",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+21,21.md,21-test,redirection-and-devices,replacement stdout,"printf replacement > ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+22,22.md,22-test,redirection-and-devices,tee empty stdin,"/usr/bin/tee ""$1"" < /dev/null",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+23,23.md,23-test,redirection-and-devices,dd empty input,"/bin/dd if=/dev/null of=""$1"" bs=1",PRESENT_ALTERED,PRESENT_ALTERED,0,0,"0+0 records in
+0+0 records out
+0 bytes transferred in 0.000008 secs (0 bytes/sec)
+","0+0 records in
+0+0 records out
+0 bytes transferred in 0.000009 secs (0 bytes/sec)
+",False,False,True,B_CONTENT_LOSS
+24,24.md,24-test,redirection-and-devices,copy empty device,"/bin/cp /dev/null ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+25,25.md,25-test,redirection-and-devices,sed inplace remove lines,"/usr/bin/sed -i """" '1,$d' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+26,26.md,26-test,utilities-and-staging,awk output file truncation,"/usr/bin/awk 'BEGIN { printf """" > ARGV[1]; exit }' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+27,27.md,27-test,utilities-and-staging,perl unlink,"/usr/bin/perl -e 'unlink $ARGV[0] or die $!' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+28,28.md,28-test,utilities-and-staging,perl truncating open,"/usr/bin/perl -e 'open my $f, "">"", $ARGV[0] or die $!' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+29,29.md,29-test,utilities-and-staging,perl inplace filtering,"/usr/bin/perl -i -pe '$_=""""' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+30,30.md,30-test,utilities-and-staging,move then delete staged file,"/bin/mv -- ""$1"" staged; /bin/rm -- staged",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+31,31.md,31-test,utilities-and-staging,empty replacement rename,": > replacement; /bin/mv -f replacement ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+32,32.md,32-test,utilities-and-staging,move into directory then recursive delete,"/bin/mkdir stash; /bin/mv ""$1"" stash/; /bin/rm -rf -- stash",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+33,33.md,33-test,utilities-and-staging,delete own case via parent basename,"p=$PWD; cd ..; /bin/rm -rf -- ""${p##*/}""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+34,34.md,34-test,node-sync-and-descriptors,unlinkSync,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.unlinkSync(p);' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+35,35.md,35-test,node-sync-and-descriptors,rmSync own case recursively,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.rmSync(process.cwd(),{recursive:true});' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+36,36.md,36-test,node-sync-and-descriptors,openSync write flag,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.closeSync(fs.openSync(p,""w""));' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+37,37.md,37-test,node-sync-and-descriptors,truncateSync,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.truncateSync(p,0);' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+38,38.md,38-test,node-sync-and-descriptors,ftruncateSync on read-write fd,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];const fd=fs.openSync(p,""r+"");fs.ftruncateSync(fd,0);fs.closeSync(fd);' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+39,39.md,39-test,node-sync-and-descriptors,writeSync replacement prefix,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];const fd=fs.openSync(p,""r+"");fs.writeSync(fd,Buffer.from(""REPLACED""),0,8,0);fs.closeSync(fd);' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+40,40.md,40-test,node-sync-and-descriptors,write stream empty end,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.createWriteStream(p).end();' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+41,41.md,41-test,node-sync-and-descriptors,partial truncation,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.truncateSync(p,Math.floor(fs.statSync(p).size/2));' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+42,42.md,42-test,node-async,callback unlink,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.unlink(p,e=>{if(e)throw e;});' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+43,43.md,43-test,node-async,promise unlink,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.promises.unlink(p);' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+44,44.md,44-test,node-async,filehandle truncating open,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];(async()=>{const h=await fs.promises.open(p,""w"");await h.close();})();' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+45,45.md,45-test,node-async,filehandle truncate,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];(async()=>{const h=await fs.promises.open(p,""r+"");await h.truncate(0);await h.close();})();' ""$1""",PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+46,46.md,46-test,dynamic-dispatch-and-children,Reflect apply,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];Reflect.apply(fs.unlinkSync,fs,[p]);' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+47,47.md,47-test,dynamic-dispatch-and-children,Function constructor,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];Function(""fs"",""p"",""fs.unlinkSync(p)"")(fs,p);' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+48,48.md,48-test,dynamic-dispatch-and-children,vm context API dispatch,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];require(""node:vm"").runInNewContext(""fs.unlinkSync(p)"",{fs,p});' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+49,49.md,49-test,dynamic-dispatch-and-children,worker thread fs operation,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];new (require(""node:worker_threads"").Worker)(`require(""node:fs"").unlinkSync(require(""node:worker_threads"").workerData)`,{eval:true,workerData:p});' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+50,50.md,50-test,dynamic-dispatch-and-children,execFile child,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];require(""node:child_process"").execFileSync(""/bin/rm"",[""--"",p]);' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+51,51.md,51-test,links-and-encoded-paths,file URL argument,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs.unlinkSync(require(""node:url"").pathToFileURL(require(""node:path"").resolve(p)));' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+52,52.md,52-test,links-and-encoded-paths,base64 transported path,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];const encoded=Buffer.from(p).toString(""base64"");fs.unlinkSync(Buffer.from(encoded,""base64"").toString());' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+53,53.md,53-test,links-and-encoded-paths,hex encoded API name,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];fs[Buffer.from(""756e6c696e6b53796e63"",""hex"").toString()](p);' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+54,54.md,54-test,links-and-encoded-paths,symlink shell truncation,: > alias,PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+55,55.md,55-test,links-and-encoded-paths,hardlink shell truncation,: > hard,PRESENT_ALTERED,PRESENT_ALTERED,0,0,,,False,False,True,B_CONTENT_LOSS
+56,56.md,56-test,links-and-encoded-paths,symlink directory path,"/bin/rm -- ""$PWD/linkdir/$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+57,57.md,57-test,names-and-encoded-execution,newline staging filename,"/bin/mv -- ""$1"" ""staged
+line.md""; /bin/rm -- ""staged
+line.md""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+58,58.md,58-test,names-and-encoded-execution,interpreter script from stdin,"printf ""%s\n"" 'require(""node:fs"").unlinkSync(process.argv[2])' | /opt/homebrew/bin/node - ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+59,59.md,59-test,names-and-encoded-execution,base64 encoded interpreter code,"/opt/homebrew/bin/node -e 'eval(Buffer.from(""Y29uc3QgZnM9cmVxdWlyZSgibm9kZTpmcyIpLHA9cHJvY2Vzcy5hcmd2WzFdO2ZzLnVubGlua1N5bmMocCk7"",""base64"").toString())' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+60,60.md,60-test,names-and-encoded-execution,base64 encoded command name,"cmd=$(printf cm0= | /usr/bin/base64 -D); ""$cmd"" -- ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+61,61.md,61-test,names-and-encoded-execution,octal encoded command name,"cmd=$(printf ""\162\155""); ""$cmd"" -- ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS
+62,62.md,62-test,names-and-encoded-execution,async rename and unlink,"/opt/homebrew/bin/node -e 'const fs=require(""node:fs""),p=process.argv[1];(async()=>{await fs.promises.rename(p,""held"");await fs.promises.unlink(""held"");})();' ""$1""",MISSING,MISSING,0,0,,,False,False,True,B_CONTENT_LOSS

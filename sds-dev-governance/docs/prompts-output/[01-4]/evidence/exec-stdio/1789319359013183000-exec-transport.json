@@ -1,0 +1,12 @@
+{
+  "mode": "exec-transport",
+  "pid": 47835,
+  "exit_code": 78,
+  "stop_reason": null,
+  "elapsed_seconds": 12.831846916989889,
+  "log": "/private/tmp/sds-sentinel-tart-KoUNwE/logs/1789319359013183000-exec-transport.log",
+  "log_bytes": 2006,
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0
+}

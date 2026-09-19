@@ -1,0 +1,17 @@
+{
+  "outcome": "FAIL_NATIVE_CLI_ARGUMENTS",
+  "persistence_after_reboot": "OBSERVED_PRESENT_HASH_MATCH",
+  "native_executable_started": true,
+  "executor_exit": 2,
+  "observer_exit": 78,
+  "reason": "CLI --exit-on-stdin-close invocation requires --environment-id and --remote, no successful initialize",
+  "guest_root": "/Users/Shared/sds-sentinel-client-4f85982624b3",
+  "probe_guest_root": "/private/tmp/sds-sentinel-exec.oLuode",
+  "guest_executor_pid": 621,
+  "guest_uid": 501,
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0,
+  "native_transport_verified": false,
+  "custody_verified": false
+}

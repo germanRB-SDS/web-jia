@@ -1,0 +1,36 @@
+{
+  "scope": "read-only file preflight; no Tart invocation or VM startup",
+  "root_exists": true,
+  "root_canonical": true,
+  "root_owned_by_current_user": true,
+  "root_owner_only": true,
+  "component_hash_matches": {
+    "/opt/homebrew/Cellar/tart/2.37.0/libexec/tart.app/Contents/MacOS/tart": true,
+    "/private/tmp/sds-sentinel-tart-KoUNwE/bin/softnet": true,
+    "sentinel/net_sink.py": true,
+    "/opt/homebrew/bin/python3": true,
+    "sentinel/tart_host.py": true,
+    "sentinel/public_registry.py": true,
+    "tests/test-sentinel-tart-host.py": true
+  },
+  "vm_config_present": true,
+  "vm_config_keys": [
+    "arch",
+    "cpuCount",
+    "cpuCountMin",
+    "diskFormat",
+    "display",
+    "ecid",
+    "hardwareModel",
+    "macAddress",
+    "memorySize",
+    "memorySizeMin",
+    "os",
+    "version"
+  ],
+  "disk_free_bytes": 128387616768,
+  "disk_reserve_satisfied": true,
+  "vm_started_by_this_check": false,
+  "isolation_verified": false,
+  "ab_campaign_executed": false
+}

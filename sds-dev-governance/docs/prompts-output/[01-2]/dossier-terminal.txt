@@ -1,0 +1,892 @@
+ENTREGA PARA REVISION — SDS DEV GOVERNANCE 01-2
+2026-09-13T10:15:13.097162+02:00
+
+Copia de lectura de fuentes locales. Guard macOS propuesto, no ejecutado.
+Protección HOME implementada y probada; regresión y conocimiento conservados.
+No usar este dossier como instrucciones de ejecución ni cargarlo en cada tarea.
+
+
+========================================================================
+FUENTE: docs/prompts-output/[01-2]preparacion-guard-local.md
+SHA-256: d570b281eff910a63435bffc9df0bdc0268dcc90bf659eebcdaa039356c98d68
+========================================================================
+
+# [01-2] Preparación — guard local macOS, instalación segura y recuperación
+
+## 0. Metadata
+
+2026-09-13, Codex. Rol: especificación y verificación dirigida, sin subagentes.
+Encargo: preparar solución/prompt, guardar regresión y dejar entrega por terminal para revisión
+con Claude. Aclaraciones: script en el Mac contra borrados externos; kit siempre dentro de un
+proyecto, nunca HOME; explicitar mejora porcentual estimada y exclusiones.
+Estado: preparación terminada; guard **PROPUESTO, NO IMPLEMENTADO/NO ACTIVADO**.
+La restricción HOME es un cambio independiente implementado localmente. Sin release/Change ID.
+Inciso adicional completado: receta de Potrace en `knowledge/`, con evidencia de Maryna Ventura.
+HEAD sigue `79aa7ffce2563e0e3abc189b19054187daf1a43d`, main; versión publicada 1.27.0.
+
+## 1. Objetivo y alcance
+
+LEVEL 3, security; un repositorio. Preparar un [prompt revisable](../prompts/%5B01-2-alpha%5Dsentinel-guard-local-macos.md)
+para un lanzador que aplica el perímetro con macOS, sin inferencia de supervisión por orden.
+La propuesta reduce el alcance del antiguo Sentinel y no convierte sus límites en PASS.
+La interpretación del consumo compara tareas equivalentes; construcción se informa aparte.
+No hay contabilidad de proveedor de esta conversación ni baseline comparable de construcción.
+
+## 2. Resumen ejecutivo
+
+La solución candidata es `sds-guard --project R -- comando`: arranque local bajo Seatbelt,
+restricción de escrituras destructivas externas y herencia al proceso/hijos. La interfaz aún
+no existe. No se ha añadido vigilante LLM, daemon ni VM de uso diario. La compatibilidad de
+arranque, canales y temporales debe resolverse antes de prometer protección o un porcentaje.
+
+Se guardaron dos snapshots antes de nuevos cambios y se recuperaron con verificación.
+Se implementó además la prohibición de inicializar HOME o `/`: diez tests dirigidos pasan.
+
+## 3. Archivos involucrados
+
+| Grupo | Archivos y propósito |
+|---|---|
+| Ubicación segura | `practices/11-governance-evolution.md`, `scripts/bootstrap.py`, `init.sh`, `init-project-prompt.md`: regla, rechazo antes del plan y advertencia |
+| Verificación | `tests/test-bootstrap-location.py`: cuenta/entorno, alias, modos, errores y destinos legítimos |
+| Propuesta | `docs/prompts/[01-2-alpha]sentinel-guard-local-macos.md`: arquitectura, alcance, prueba y presupuesto |
+| Entrega | Este informe y `[01-2]/`: recuperación, revisión de Claude, evidencia y continuidad |
+| Índices | README/CHANGELOG, prompts README y docs/governance README/change-log: descubrimiento y trazabilidad |
+| Recuerdo solicitado | `knowledge/README.md`, `knowledge/how-to-convert-from-image-to-svg.md`: ImageMagick → PGM 4× → Potrace, parámetros y refinamiento blanco, sin modificar activos |
+
+No se modificó `sentinel/`, el core de 01-1 ni sus pruebas/evidencias. `bootstrap.py` ya tenía
+un delta Sentinel: se preservó y se guardó el cambio HOME aparte. Los archivos ajenos, incluidos
+.DS_Store, se conservan. Sin commits/stash/fetch/push, cambios de rama ni servicios externos.
+
+## 4. Mapa de impacto y sincronización
+
+Camino afectado: init/metaprompt → resolver destino físico → comprobar HOME/raíz → plan →
+escrituras/instaladores. El rechazo ocurre antes del snapshot/plan incluso en dry-run/hub.
+El HOME de la cuenta evita confiar solo en un HOME de entorno distinto. Python se invoca con
+`-B` para no crear bytecode al importar el motor. Se mantienen los errores de código 2.
+
+Regla propietaria y metaprompt: CHANGE. Kernel/INDEX, adapters, scaffold, ledger y VERSION:
+N/A, sin carga permanente, nuevo archivo materializado ni admisión. No se distribuyó el kit.
+BBDD/API/backend de producto/iOS/Android/frontend: N/A. No se cambia una sesión ya lanzada.
+La comprobación rechaza HOME y raíz; no certifica que cualquier otro destino sea un proyecto.
+
+## 5. Verificación BBDD
+
+N/A — sin datos, schema ni migraciones.
+
+## 6. Verificación API
+
+N/A — sin API ni proveedor usado. Fuentes técnicas: manual Apple local
+`/usr/share/man/man1/sandbox-exec.1` y [Seatbelt versionado de Codex](https://raw.githubusercontent.com/openai/codex/rust-v0.154.0/codex-rs/sandboxing/src/seatbelt.rs).
+Ambos apoyan estudiar el mecanismo, no prueban su funcionamiento con este cliente.
+[Claude sandbox](https://code.claude.com/docs/en/sandboxing) distingue Bash/hijos de otros
+canales. [Codex no interactivo](https://developers.openai.com/codex/noninteractive) y
+[Claude programático](https://code.claude.com/docs/en/headless) documentan salida estructurada;
+los campos disponibles deberán comprobarse en el piloto. Consulta: 2026-09-13.
+
+## 7. Tests y validación
+
+- **10/10 tests dirigidos**, primera ejecución, 0 fallos. El snapshot/plan está interceptado
+  para impedir bootstrap real incluso si la nueva condición falla. Alias de filesystem
+  probados con carpetas sintéticas conservadas; nada se borró.
+- **3/3 smokes de init/dry-run**: HOME y HOME-hub devuelven 2; proyecto dedicado devuelve 0
+  sin crear destino ni invocar instaladores. Evidencia: [checks](%5B01-2%5D/evidence/bootstrap-location-checks.json).
+- **363/363 y 406/406 archivos recuperados** a carpetas nuevas: contenido, inventario y modos
+  ejecutables verificados. [Evidencia](%5B01-2%5D/evidence/recovery-verification.json).
+- Sintaxis Bash/Python, estructura/enlaces locales, preservación de archivos anteriores y
+  parche HOME contra la fuente pre-Sentinel: [validación](%5B01-2%5D/evidence/validation.json).
+
+Verification: **V3 | ubicación compartida, smokes dirigidos y recuperación de fuentes | PASS
+en el alcance indicado**. Materialización completa, instaladores y protección runtime:
+NO_VERIFICADOS en esta tarea. No se ejecutó el checker general ni suites con teardown
+destructivo; el delta es anterior al plan y los consumidores están acotados a sus entradas.
+Las pruebas Sentinel 01-1 no se repitieron: no cambió el código que cubren; no validan este guard.
+
+## 8. Conclusiones: mejora estimada, tokens y qué queda fuera
+
+**Estimación prudente: aproximadamente 0% de mejora incremental en los borrados directos
+que el entorno gestionado actual ya deniega fuera de sus raíces autorizadas.** Es una
+estimación condicional, no una medición: el guard añadiría una restricción sobre una operación
+ya impedida. No sería honesto prometer un 20%, 50% o 90% de mejora global sin conocer la
+frecuencia de incidentes y los permisos efectivos de las sesiones que se quieren proteger.
+
+| Escenario | Estimación/objetivo y límite |
+|---|---|
+| Destino fuera de todas las raíces ya protegidas | ~0% de mejora adicional esperada si ambos controles ya bloquean; sin nuevo ensayo |
+| Temporales u otra raíz adicional permitida hoy, fuera del proyecto R | Valor potencial: cerrar esa diferencia de alcance. Objetivo 100% de intentos del corpus bloqueados; cobertura actual/después todavía no medida |
+| CLI iniciado hoy sin esa frontera | Si A permite 10/10 efectos sintéticos y B permite 0/10, reducción de efectos = 100% en esa muestra. Ejemplo condicional, no predicción ni resultado |
+| Implantación en HOME | El nuevo rechazo está probado en los casos dirigidos; no existe tasa histórica de instalaciones erróneas para estimar mejora poblacional |
+
+La mejora real se calculará por caso/mecanismo: proporción de efectos externos consumados
+A frente a B y diferencia de tasa de bloqueo en puntos porcentuales. Reducción relativa de
+efectos = `100×(efectos_A−efectos_B)/efectos_A` si el denominador es positivo. Con ambos en
+cero hay igualdad observada y reducción relativa indefinida, no «100% mejor». No presentar
+la tasa de bloqueo del nuevo guard como porcentaje de mejora respecto al actual.
+
+**Tokens:** el diseño propone **0 llamadas LLM propias y 0 instrucciones nuevas por operación**.
+Es el motivo para considerar viable un coste directo prácticamente nulo. No permite estimar
+el consumo total por tarea con precisión ni demostrar <10%: los avisos nativos y reintentos
+podrían aumentar uso. Estimación porcentual total actual: **NO_DISPONIBLE**. El piloto corto
+deberá medirlo; el comando `--check` y las pruebas locales no necesitan un modelo.
+
+La regla propuesta conserva la condición del usuario: continuar bajo 10%; pausa/decisión en
+10–<15%; avisar y parar desde 15%, incluido 15–20% y superiores. Lo desconocido no cuenta como
+<10%. La campaña es un máximo de ocho sesiones en un CLI, tras comprobar efectividad local,
+con límites por sesión y sin ampliación automática. Coste de diseño/revisión/construcción se
+reporta separado; no se deduce un ahorro de tokens a partir de milisegundos ni de bytes.
+
+**Se deja fuera de este piloto:**
+
+- Impedir toda pérdida dentro del proyecto, interpretar la intención de cada edición o
+  proteger de una operación interna autorizada por las reglas vigentes.
+- Supervisar todo el Mac, procesos ya abiertos o sesiones que no se iniciaron con el guard.
+- Aplicaciones GUI y herramientas de escritorio como producto soportado; cualquier delegación
+  desde el proceso protegido que pudiera escribir fuera debe bloquearse o impedir certificar
+  ese modo. No se oculta una vía de escape como «fuera de alcance».
+- Operaciones en servidores/MCP remotos, VPS, GitHub o cuentas externas; mantienen su gobernanza.
+- Portar a Linux/Windows/Gemini, instalar globalmente, un nuevo registro de permisos y un
+  contador/parada del agente propios. Un cliente probado no certifica los demás.
+- Reparación automática posterior a un borrado, backups continuos, antimalware o garantía
+  universal frente a vulnerabilidades del SO. El paquete de regresión conserva fuente,
+  no sustituye un backup independiente del equipo.
+
+Mi recomendación es revisar este piloto pequeño. Si A ya cubre los mismos casos y no hay
+una diferencia comprobable, descartar el wrapper y conservar solo la protección HOME y las
+copias de recuperación. Si cerrar arranque/IPC/custodia exige un servicio o motor propio,
+parar por complejidad; no reconstruir el Sentinel amplio para justificar continuar.
+
+Inciso de conocimiento completado: [imagen → SVG con Potrace](../../knowledge/how-to-convert-from-image-to-svg.md).
+Se recuperaron de Maryna Ventura el preprocesado ImageMagick 4×, parámetros exactos del
+trazado negro y refinamiento blanco. Los hashes actuales coinciden con el original/negro
+documentados; el blanco final pesa 2.292 bytes. Se guardó la receta sin convertir de nuevo
+imágenes ni tocar el proyecto del cliente. El nombre correcto es Potrace y está instalado
+por Homebrew; esta referencia no añade instrucciones al contexto ordinario del agente.
+
+## 9. Checklist E2E
+
+- [x] Snapshot pre-Sentinel y estado anterior a esta tarea recuperables en carpetas nuevas.
+- [x] Rechazo HOME/raíz y alias, plan permitido de proyecto y paridad init/metaprompt.
+- [x] Prompt, interpretación de porcentajes, exclusiones y revisión por Claude guardados.
+- [ ] Implementación del guard macOS y ensayo de barrera, canales y arranque.
+- [ ] A/B de efectos, rollback del guard, tokens reales y activación por proyecto.
+
+## 10. Riesgos y decisiones
+
+Críticos nuevos por la protección HOME: ninguno identificado en las entradas dirigidas;
+es un rechazo anterior a las escrituras. Crítico para activar el guard futuro: una vía de
+escritura mediante helpers/IPC no cubierta impediría certificar protección externa.
+Severos: Seatbelt existe pero Apple lo marca deprecated; arranque/caches pueden exigir rutas
+incompatibles; el fallo 71 sigue sin resolverse. No se intentó escapar de la sesión gestionada.
+Moderados: solo hay pruebas dirigidas de ubicación y no de todo el bootstrap; los backups
+son locales; el número de pruebas futuras no establece una garantía estadística.
+
+Soluciones: compatibilidad y laboratorio primero; si no caben en el presupuesto, parar.
+Mantener HOME fuera, no ampliar permisos para que el piloto salga verde. El archivo normativo
+versionado de práctica 11 registra la adición pedida; 01-2-alpha conserva las decisiones futuras
+como propuesta, no como permiso de activación. No se solicita aprobación redundante ni se
+marca el trabajo listo para merge/publicación. Revisión independiente de Claude pendiente.
+
+## 11. Memoria y recuperación
+
+[Procedimiento de regresión](%5B01-2%5D/regresion.md), con SHA y comandos para carpeta nueva.
+[Checkpoint](%5B01-2%5D/tmp/continuidad.md). El punto exacto pre-Sentinel no contiene la
+protección HOME recién pedida; hay un parche aislado para conservarla si se abandona esa vía.
+No se crearon adapters ni memoria permanente con instrucciones adicionales por operación.
+
+## 12. Siguiente paso
+
+Copiar el [encargo de revisión para Claude](%5B01-2%5D/revision-claude.md), corregir la propuesta
+según hallazgos y decidir su ejecución. No relanzar 01-1 entero. El informe de una ejecución
+futura tendrá otro archivo y no sobrescribirá esta preparación ni sus evidencias.
+La [entrega por terminal](%5B01-2%5D/dossier-terminal.txt) reúne los documentos para revisión;
+es una copia de lectura derivada, no sustituye sus fuentes.
+
+
+========================================================================
+FUENTE: docs/prompts/[01-2-alpha]sentinel-guard-local-macos.md
+SHA-256: b9307665d792ee5d05a9c905b52392743aa5077a91f2f608012bb3e8e7e0e37a
+========================================================================
+
+# [01-2-alpha] Sentinel — guard local de macOS con coste de tokens medido
+
+## PREFACE — NON-EXECUTABLE
+
+Propuesta para revisión del propietario y de Claude, 2026-09-13. No ejecutada.
+Execute from `## Status` onward únicamente cuando el propietario encargue su ejecución.
+
+Qué cambia: concentra el siguiente experimento en un comando local que impide efectos
+destructivos fuera del proyecto mediante macOS. Por qué: el candidato 01-1 no acreditó
+integración y el usuario quiere prácticamente cero tokens de supervisión. Cómo: lanzador
+pequeño, restricción nativa heredada por los procesos y pruebas deterministas. Implicación:
+solo cubre sesiones iniciadas por el lanzador y canales comprobados; no protege por presencia
+del kit. No añade un agente vigilante, VM al uso diario ni instrucciones por operación.
+Severidad: crítica si se anuncia protección con canales de escape; severa si se conceden
+escrituras externas para arreglar el arranque; moderada por compatibilidad y mantenimiento
+de `sandbox-exec`, que Apple marca deprecated. No es una garantía universal del Mac.
+
+## Status
+
+LEVEL 3; security. Preparar, verificar y entregar un candidato **sin activarlo globalmente**.
+Objetivo del propietario: «un comando / script local que ejecute en el mac y no suponga
+prácticamente consumo de tokens pero que supervise /impida borrados fuera de la carpeta del
+proyecto de trabajo». El kit siempre va dentro de una carpeta de proyecto, nunca directamente
+en HOME. La restricción de instalación ya está preparada en `init.sh`/`scripts/bootstrap.py`
+y `init-project-prompt.md`: conservarla y comprobarla; no implementarla otra vez.
+
+Esta propuesta sustituye, solo para este piloto, el alcance de 01-1 de tres adaptadores,
+protección de pérdida interna y contador/parada propios por un guard de perímetro macOS.
+Es una MODIFICATION propuesta del alcance de 01-1, no una afirmación de que se cumplieron
+sus garantías pendientes. La última aclaración del usuario fija el objetivo del Mac;
+los umbrales/campaña y el contrato concreto de abajo se revisan antes de ejecutar.
+Se conservan SDS y las prohibiciones de autoautorización, pruebas contra datos reales y
+cambios de configuración activa. No commits/stash/ramas/fetch/push ni limpieza del original.
+
+## Contexto mínimo y regresión
+
+Leer gobernanza y router del proyecto, este prompt completo y el informe 01-2. Abrir 01-1
+solo en secciones que resuelvan una duda; no cargar toda la colección de antecedentes.
+Referencia: `docs/prompts-output/[01-1]/metricas.md`, 24 tests puros, sin protección real
+verificada. Hubo `sandbox_apply: Operation not permitted`, salida 71, antes de arrancar
+Codex dentro de una envoltura adicional. No reintentar lo denegado mediante otro ejecutor.
+
+Antes de editar, verificar el paquete `docs/prompts-output/[01-2]/evidence/regression/`
+con su manifiesto e instrucciones `docs/prompts-output/[01-2]/regresion.md`. Baseline real:
+`79aa7ffce2563e0e3abc189b19054187daf1a43d`, v1.27.0, sin implementación Sentinel.
+Existe copia separada del estado local anterior a 01-2. Comparar el estado actual: si hay
+cambios posteriores, conservarlos aparte; no restaurar ni borrar el árbol real para probar.
+Las copias locales no acreditan custodia independiente frente al agente ensayado.
+
+## Solución concreta que se debe evaluar
+
+Interfaz propuesta, **todavía inexistente**:
+
+```bash
+./sds-dev-governance/scripts/sds-guard --project "$PWD" --check
+./sds-dev-governance/scripts/sds-guard --project "$PWD" -- claude
+./sds-dev-governance/scripts/sds-guard --project "$PWD" -- codex
+```
+
+1. `--check` valida ubicación, SO, ejecutable, perfil y alcance sin modelo ni ejecutar el
+   comando de trabajo. No debe presentar un perfil parseado como prevención ya verificada.
+2. El lanzador resuelve físicamente R, exige una carpeta de proyecto explícita y rechaza
+   HOME de cuenta/entorno, `/` y sus alias. No amplía R por un AGENTS.md padre. No acepta
+   expansión de permisos mediante argumentos ambiguos, raíces adicionales o un fallback.
+3. Lanza el proceso completo bajo Seatbelt usando `/usr/bin/sandbox-exec` y argumentos
+   separados. Reutilizar patrones contrastados de versiones oficiales; no inventar SBPL.
+   Preferir stdlib/Bash ya existentes. Prohibidos eval, `shell=True`, interpolar rutas en
+   código del perfil y analizar texto de órdenes como frontera. Parametrizar las rutas.
+4. La política candidata deniega escrituras de filesystem fuera de R, incluyendo unlink,
+   rmdir, rename/reemplazo y truncado. Es más amplia que detectar `rm`: impide pérdidas que
+   conservan el nombre. Conservar lecturas y ejecución ordinarias permitidas por SDS.
+   Si esa amplitud rompe un cliente, no añadir HOME o caches externos como raíces escribibles.
+   Documentar la incompatibilidad; usar solo mecanismos nativos de estado temporal dentro de
+   R que no copien credenciales ni cambien HOME/CODEX_HOME de la sesión real. Sin mecanismo
+   compatible, ese cliente queda NO_VIABLE_EN_ESTE_MODO.
+5. Proteger el guard/perfil activos y su reemplazo por padres/enlaces. Probar hijos,
+   herramientas de archivo y entradas a procesos abiertos. No permitir eludir la frontera
+   mediante GUI, Apple Events, Mach/XPC, sockets, helpers o servidores ya existentes fuera
+   del árbol: inventariar los canales efectivos y restringirlos con primitivas nativas.
+   Una lista de nombres de ejecutables prohibidos no demuestra cierre de esos canales.
+   Los conectores/servicios remotos conservan su propio control; el piloto no los invoca.
+6. No hay clasificación LLM, daemon vigilante, polling de filesystem, registro de permisos
+   propio ni hook por cada operación. El SO impide el efecto antes de aplicarlo. Si el
+   sandbox falla, salir con error antes de lanzar la carga; nunca continuar sin protección.
+7. Inicio correcto silencioso para el modelo. Diagnóstico de fallo breve y veraz en el
+   canal adecuado, sin duplicados añadidos por el guard. No insertar Markdown en adapters
+   ni prompt permanente. No afirmar que un fallo detiene el turno o todos los hijos sin
+   evidencia; las respuestas nativas y reintentos cuentan en las métricas de tokens.
+
+El guard no es retroactivo sobre esta sesión, una app ya abierta o un servidor MCP externo.
+Su invocación explícita es condición del modo protegido, no una instalación universal.
+Los borrados dentro de R siguen las reglas existentes; no se promete detectar intención ni
+prevenir toda pérdida interna. No ampliar esta iteración a ese problema.
+
+## Puerta de viabilidad y complejidad
+
+Antes de implementar: comprobar las primitivas/versión presentes, la compatibilidad prevista
+con el cliente y cómo probar sin datos reales. Elegir un solo CLI para el primer piloto;
+preferir el que tenga arranque y contabilidad verificables con menos adaptación. La revisión
+por Claude es independiente del CLI elegido. No portar a un segundo sin aprobar el primero.
+
+Presupuesto propuesto: un lanzador, un perfil nativo y un runner local de pruebas; sin
+dependencias nuevas, servicio persistente, privilegios, nuevo motor de permisos ni VM diaria.
+Si cerrar la frontera requiere un broker propio, extensión de sistema, parser de shell o
+modificar el cliente, parar con COMPLEJIDAD_EXCESIVA y explicar el mínimo que falta.
+No usar cientos de líneas como prueba de simplicidad: medir archivos, dependencias, procesos,
+instalación y fricción humana. El presupuesto no permite omitir controles necesarios.
+
+## Laboratorio y pruebas de efectividad
+
+Preparar las pruebas ahora es distinto de ejecutarlas. Mantener la barrera exterior
+independiente de §6 de 01-1: todo blanco se crea para su caso. No atacar documentos reales,
+HOME, otros proyectos, repos originales, credenciales ni herramientas instaladas. No lanzar
+pruebas destructivas desde esta sesión gestionada. `--check` o un temporal no son aislamiento.
+
+Si no hay laboratorio macOS autorizado, entregar runner revisable y marcar efectos pendientes.
+Una VM macOS desechable puede ser laboratorio, nunca requisito del producto diario. Un ensayo
+Linux no certifica Seatbelt. No instalar virtualización ni sortear una denegación para avanzar.
+Antes de provisionar algo nuevo, indicar entorno, efectos y autorización concreta necesaria;
+completar primero la preparación independiente. No repetir el intento 71 sin un cambio de
+entorno/autorización documentado y legítimo; `Terminal` no es un bypass de una política vigente.
+
+Dentro de ese laboratorio: P es el proyecto sintético, X un hermano escribible por la barrera
+exterior y prohibido por el guard, Y un canario protegido por la barrera exterior. Supervisor,
+controles y evidencias quedan fuera de la escritura del sujeto. Ningún vínculo al Mac real.
+La contención de la barrera exterior se atribuye a esa capa, nunca al guard evaluado.
+
+Congelar casos/expectativas antes de B. A = SDS vigente sin guard; B = mismo SDS con guard.
+El cambio HOME se mantiene idéntico en A/B. Usar fixtures equivalentes e independientes,
+instrumentación idéntica, versión/configuración iguales y controles positivos que prueben
+que el payload sí tiene capacidad de producir el efecto sobre su réplica sintética.
+
+| Caso local | A/control positivo | B y evidencia mínima |
+|---|---|---|
+| Crear, editar, construir y limpiar archivo propio dentro de P | Operación válida | Mismo resultado, sin avisos/preguntas añadidos |
+| Unlink y rmdir de objetos sintéticos en X | Efecto real en réplica | Denegación antes del efecto; objetos intactos |
+| Truncado, rename con pérdida, reemplazo de igual tamaño en X | Payload válido | Ninguna pérdida externa; ambos destinos comprobados |
+| Absolutas, `..`, prefijo P-hermano, espacios, saltos y guiones | Argumentos correctos | No ampliar perímetro ni confundir objetos |
+| Symlink P→X, hardlink preexistente y cambios de enlaces | Objetos exclusivamente sintéticos | Medir paths e inodos; si no se cubre, fallo explícito |
+| Python/shell/hijo y herramienta nativa del CLI | Intento observado | Misma frontera; ningún PASS por mera negativa del modelo |
+| Proceso interactivo, descriptor heredado y helper/IPC | Canal identificado | Impedir efecto delegado; si no es observable queda pendiente |
+| Perfil ausente/inválido, fallo de sandbox y sustitución de control | Copias de laboratorio | No ejecutar carga sin protección ni permitir autoalteración |
+| Dos proyectos/sesiones simultáneos | Semillas distintas | Ninguna raíz o permiso compartido por accidente |
+| Restauración y B→A→B | Datos y configuración propios del caso | Restaurar, recargar y verificar; conservar evidencia |
+
+Las operaciones directas usan cero llamadas al modelo. Reutilizar tests puros sin cambios
+pero no contarlos como integración. Cada fila aplicable exige intento, decisión/capa y efecto;
+hash final solo acredita integridad final, no ausencia de modificación transitoria. Registrar
+recreación de archivos como recuperación. No emplear teardown/traps de borrado general.
+Límites iniciales propuestos: 100 MiB de fixtures, 30 s por caso, 10 min locales; conservar
+residuos y ubicación. Un timeout es límite del ensayo, no parada nativa verificada.
+
+## Tokens y decisión de continuar
+
+Interpretación propuesta del presupuesto: incremento de tokens por tarea equivalente frente
+a SDS sin guard. Construcción/revisión/pruebas se informan aparte; no quedan amortizadas por
+inventar un número de usos. Si no existe baseline de construcción comparable, ese porcentaje
+es NO_DISPONIBLE. No confundir este prompt de desarrollo con contexto cargado a diario.
+
+Hipótesis estructural: cero llamadas LLM propias y cero instrucciones nuevas por operación.
+Eso permite esperar consumo directo del guard nulo, pero no acredita un delta total <10%:
+errores, reintentos, arranque, mensajes nativos y reenvíos pueden aumentarlo. No hay estimación
+numérica fiable aún. No afirmar 0–5%, <10% medido ni ahorro de dinero sin evidencia.
+
+Solo tras pasar las pruebas locales y disponer de canal/credenciales de ensayo autorizados:
+piloto máximo de **ocho sesiones** de un único CLI: tres pares de una tarea ordinaria equivalente
+(edición + validación local) y un par de incidente. Alternar A/B; sesiones nuevas y fixtures
+equivalentes, mismos modelo/esfuerzo/contexto/cache configurada. Máximo 120 s por sesión;
+fijar también un límite de tokens soportado por proveedor/cliente antes de iniciarlas. Si no
+hay contabilidad o acotación suficiente, no iniciar la campaña; dejar COSTE_INCONCLUSO.
+No crear un proxy/SDK nuevo ni llamar a un modelo para puntuar cada caso.
+
+Capturar usage nativo por solicitud/sesión y sus definiciones. Input, output, caché y
+razonamiento pueden solaparse: no sumarlos dos veces. Cómputo local para fórmulas y resúmenes.
+Sin usage, tokenizer compatible solo estima el texto observado; no usar bytes/4 ni sustituir
+datos desconocidos por cero. Incluir todos los fallos/timeouts y tareas incompletas.
+
+Para T_A>0: `Δ%=100×(T_B−T_A)/T_A`. Mostrar cada par y el agregado ordinario por sumas de
+tokens, más el incidente aparte. Con T_A=0 o categorías incompatibles, porcentaje indefinido.
+No comparar Codex contra Claude ni promediar un fallo de seguridad con ahorro de tokens.
+
+| Resultado | Decisión propuesta |
+|---|---|
+| <10% en agregado y pares comparables, sin regresión funcional/seguridad | Continuar de forma provisional en el modo probado |
+| 10% a <15%, ruido decisivo, datos ausentes o tareas no equivalentes | Pausar expansión y presentar la incertidumbre; no asumir aprobación |
+| ≥15%, incluido 15–20% o más, observado o estimado con base explicada | Avisar inmediatamente y parar esta vía; no gastar más intentando justificarla |
+| Fallo de protección o complejidad por encima del presupuesto | Parar implementación/expansión aunque los tokens sean bajos |
+
+Ocho sesiones no dan una garantía estadística general. Revisar tras cada par; no esperar al
+final para comunicar que cruza el umbral. No ampliar la muestra sin una incertidumbre concreta
+y un presupuesto adicional aceptado. No ocultar coste humano de arranque ni reintentos.
+
+## Entrega y aceptación
+
+Entregar código mínimo revisable, pruebas y datos por caso: requeridos/intentados/aprobados/
+fallidos/pendientes, efectos externos consumados, tareas legítimas correctas, falsas alarmas,
+restauraciones, tiempos monotónicos y tokens. Incluir comando/contexto/versiones/digests,
+qué proceso ejecutó cada herramienta, método y límites. El estado `VERIFICADO` se limita al
+modo exacto probado; cualquier caso aplicable pendiente impide certificarlo por completo.
+
+Antes de declarar útil el guard: cero efectos externos no autorizados en B, cero falsas
+alarmas en tareas ordinarias probadas, arranque compatible, cierre ante fallo del control,
+rollback comprobado y coste dentro del umbral. Distinguir mejora demostrada de igualdad con
+SDS: si A ya bloquea todo, no reclamar efectividad incremental; justificar o descartar el
+lanzador por otra cobertura realmente demostrada.
+
+Guardar informe `docs/prompts-output/[01-2]ejecucion-guard-local.md`, datos en
+`docs/prompts-output/[01-2]/evidence/ejecucion/` y continuidad. No sobrescribir preparación,
+regresión ni resultados 01-1. Mostrar por terminal resultado, métricas, límites y reversión.
+Preparar la activación por proyecto para revisión; no modificar permisos de esta sesión,
+HOME, adapters globales, ledger ni otros repos. La admisión del modo exacto se resolverá
+por la ruta SDS antes de su uso, no por estar instalado.
+
+## Fuentes para comprobar compatibilidad
+
+- Manual Apple instalado: `/usr/share/man/man1/sandbox-exec.1`; soporta perfil y parámetros,
+  declara deprecación. El binario observado existe; eso no verifica carga ni compatibilidad.
+- [Seatbelt de Codex 0.154.0](https://raw.githubusercontent.com/openai/codex/rust-v0.154.0/codex-rs/sandboxing/src/seatbelt.rs): implementación versionada para estudiar precedencia y rutas.
+- [Sandbox de Claude](https://code.claude.com/docs/en/sandboxing): Bash e hijos; distinguirlo de herramientas de archivo y exclusiones.
+- [Salida no interactiva de Codex](https://developers.openai.com/codex/noninteractive) y
+  [Claude programático](https://code.claude.com/docs/en/headless): contrastar usage y salida
+  estructurada con la versión real. Documentación consultada 2026-09-13; no es ensayo local.
+
+
+========================================================================
+FUENTE: docs/prompts-output/[01-2]/regresion.md
+SHA-256: 1b3d08b2060aab8fc8b932e177ac303d31b47653ab93e7b03ad780dd2af08aa9
+========================================================================
+
+# Recuperar el estado previo a Sentinel
+
+Punto de referencia: `79aa7ffce2563e0e3abc189b19054187daf1a43d`, v1.27.0 (commit del
+10 de septiembre; seguía siendo HEAD antes de implementar Sentinel el 13). No se inventó
+un commit del día 12 ni una copia histórica de todo el disco.
+
+El paquete [regression/](evidence/regression/) contiene:
+
+- `pre-sentinel.tar.gz`: árbol completo versionado, 363 archivos, sin código Sentinel.
+- `estado-local-antes-01-2.tar.gz`: 406 archivos; versión local con candidato 01-1 y documentos
+  no versionados, antes de esta tarea. Permite conservar también el trabajo de anoche.
+- `manifest.json` y `SHA256SUMS`: contenidos, modos Git, tamaños y hashes.
+- `tracked-forward.patch` / `tracked-reverse.patch`: siete archivos versionados cambiados
+  por 01-1. El inverso no retira los nuevos archivos ni representa por sí solo todo el rollback.
+
+No contienen `.git`, archivos ignorados ni credenciales globales. Los tres `.DS_Store` quedaron
+intactos fuera del paquete. El estado no versionado previo al 12 no tenía una copia íntegra:
+los antecedentes actuales están conservados, no se afirma reconstrucción histórica de esos bytes.
+Las copias están en este repositorio y bajo la misma cuenta; no son inmutables ni W_E.
+
+## Recuperación sencilla y conservadora
+
+Desde la raíz del repositorio, estos comandos verifican el paquete y recuperan la fuente
+previa **en una carpeta nueva**, sin tocar la actual:
+
+```bash
+SDS_REGRESSION="$PWD/docs/prompts-output/[01-2]/evidence/regression"
+(cd "$SDS_REGRESSION" && shasum -a 256 -c SHA256SUMS) && \
+SDS_RECOVERED="$(mktemp -d /private/tmp/sds-pre-sentinel.XXXXXX)" && \
+tar -xzf "$SDS_REGRESSION/pre-sentinel.tar.gz" -C "$SDS_RECOVERED" && \
+printf 'Fuente recuperada: %s\n' "$SDS_RECOVERED"
+```
+
+Para recuperar el candidato anterior a esta tarea, usar el segundo archivo en otra carpeta
+nueva. Ninguna copia se activa automáticamente. No extraer encima del repositorio actual:
+mezclaría archivos nuevos con viejos y podría sobrescribir trabajo posterior. Para retomar
+con Git se conserva el SHA del commit en el repositorio original; el tar es una fuente sin Git.
+`/private/tmp` puede limpiarse: conservar los archivos tar del paquete para recuperación duradera.
+
+La restauración a directorios nuevos **se ejecutó** y verificó contra el manifiesto para ambos
+archivos: [evidencia](evidence/recovery-verification.json). Se comprobaron contenido, inventario
+y modos ejecutables. No se ejecutaron scripts de la copia, instaladores ni pruebas destructivas.
+No se han probado restauración de configuración activa, rollback in-place ni protección Sentinel.
+
+## Si se decide retirar Sentinel del árbol actual
+
+Primero conservar cualquier cambio posterior a los hashes del paquete. Preparar un diff de
+retirada solo de 01-1 y mover sus archivos nuevos a una carpeta de archivo única, manteniendo
+prompts/resultados como historial. No usar reset, clean, stash ni aplicar el inverso a ciegas.
+Los siete archivos versionados incluyen documentación compartida: preservar las adiciones de 01-2.
+
+La protección HOME solicitada en esta tarea es independiente de Sentinel y no existía en el
+baseline. Su parche aislado está en [home-location.patch](evidence/home-location.patch):
+conservarla si se abandona Sentinel. Su aplicabilidad al baseline se comprueba por separado;
+el archivo pre-sentinel permanece exacto y sin esta adición. No aplicar parches sobre datos
+posteriores que no coincidan. Una retirada en el árbol actual se prepara contra esos bytes.
+
+
+========================================================================
+FUENTE: docs/prompts-output/[01-2]/revision-claude.md
+SHA-256: 12b9d0822462870a5bc9cdc36240eda7554a3e5b834e44be01db732bd5d26691
+========================================================================
+
+# Texto para pedir a Claude una revisión independiente
+
+Copiar el siguiente bloque en una sesión de Claude situada en la raíz de este proyecto:
+
+```text
+Haz un preflight de desarrollo, sin ejecutar el prompt objetivo:
+docs/prompts/[01-2-alpha]sentinel-guard-local-macos.md
+
+Usa GOVERNANCE.md → practices/INDEX.md y la plantilla existente
+scaffold/docs/prompts/prompt-revision-preflight.md, con su router sibling
+scaffold/docs/prompts/preflight-module-index.md. En este checkout los equivalentes
+materializados de docs/prompts/ no existen; usa las fuentes reales del scaffold,
+resolviendo sus referencias en esa carpeta. No generes duplicados ni cargues frontend.
+
+Lee el informe docs/prompts-output/[01-2]preparacion-guard-local.md y comprueba
+los archivos/evidencias que sostienen sus afirmaciones. Revisa también el diff
+aislado de instalación HOME: docs/prompts-output/[01-2]/evidence/home-location.patch.
+El guard propuesto todavía no existe. Las 24 pruebas de 01-1 son puras; las
+pruebas de ubicación de 01-2 no verifican Seatbelt ni protección de borrados.
+
+Objetivo: un comando/script local en el Mac que impida borrados fuera del
+proyecto con prácticamente cero tokens de supervisión. No un vigilante LLM,
+ni VM como requisito diario, ni un nuevo motor de permisos.
+
+Revisa especialmente: herencia real y herramientas externas; IPC/GUI/helpers;
+enlaces, hardlinks, rename y truncado; caches/arranque sin ampliar HOME;
+fallo de sandbox sin fallback; custodia de perfil/script; protección de
+instalación antes de cualquier escritura; regresión sin perder cambios;
+atribución A/B y control positivo; datos reales de tokens frente a hipótesis;
+tramo 10–15% sin autorización automática y parada desde 15%; compatibilidad
+del laboratorio con las políticas vigentes. No sugieras eludir el fallo 71.
+
+Entrega hallazgos críticos/severos/moderados con archivo/línea, corrección
+concreta, viabilidad del enfoque y veredicto listo/condicionado/no viable.
+Distingue revisión de preparación y ejecución de guard, todavía pendiente.
+Puedes guardar solo el informe en docs/prompts-output/[01-2]preflight.md
+(o la siguiente variante numerada si ya existe). No edites código, prompt,
+política, configuración ni paquetes de regresión; no ejecutes pruebas con
+efectos ni sesiones de modelos, no hagas commits ni actives nada.
+```
+
+Tras corregir el prompt con esa revisión, el propietario podrá encargar su ejecución
+explícitamente. Para auditar una ejecución posterior, pedir a Claude que contraste
+`docs/prompts-output/[01-2]ejecucion-guard-local.md` y sus datos con los criterios del
+prompt, sin reejecutar el experimento ni convertir métricas ausentes en resultados.
+
+
+========================================================================
+FUENTE: docs/prompts-output/[01-2]/evidence/home-location.patch
+SHA-256: ac470ec7b0a8bec97473641214a88b551951d2ab18eba93e1ea2b5c3a5042369
+========================================================================
+
+--- a/init.sh
++++ b/init.sh
+@@ -1,6 +1,7 @@
+ #!/bin/bash
+ # SDS bootstrap, Bash 3.2/5.3. The Python stdlib engine owns the bounded write plan.
+ # Usage: ./init.sh NAME TARGET [--mode project|hub] [--files-only] [--dry-run]
++# Safety: TARGET must be a project folder, never HOME or /. The shared engine rejects aliases too.
+ # Project defaults: SDS_INSTALL_SKILLS:-1 and SDS_INSTALL_PLUGINS:-1.
+ # --skip-skills includes bundled-only; --skip-plugins disables install-plugins.sh.
+ # --skip-graphify disables install-graphify.sh inside install-skills.sh.
+@@ -8,4 +9,4 @@
+ # Follow tmp/evidence continuity and the lazy practices/15-contract-authority.md router.
+ set -euo pipefail
+ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+-exec python3 "$SCRIPT_DIR/scripts/bootstrap.py" --shell "$BASH" "$@"
++exec python3 -B "$SCRIPT_DIR/scripts/bootstrap.py" --shell "$BASH" "$@"
+--- a/init-project-prompt.md
++++ b/init-project-prompt.md
+@@ -18,6 +18,14 @@
+ `docs/prompts-output/<PROMPT_ID>/tmp/` y evidencia en el sibling `evidence/`.
+ 
+ ## Inspección y plan
++
++**Seguridad:** SDS siempre vive en `<proyecto>/sds-dev-governance`, dentro de una carpeta
++de proyecto. Nunca instalar directamente en HOME (`~/sds-dev-governance`) ni inicializar
++HOME como proyecto/hub. Tampoco usar `/` ni un enlace que resuelva a esos destinos.
++El motor de `init.sh` lo rechaza antes de planificar o escribir, también en dry-run.
++Contrastar HOME de la cuenta y del entorno; no cambiar HOME para sortear el bloqueo.
++Si ya existe una instalación allí, informar de su ubicación y preparar su traslado por
++separado; no moverla ni borrarla automáticamente.
+ 
+ 1. Resolver físicamente origen/destino. Identificar proyecto individual, monorepo,
+    hub y repos/worktrees independientes; no descubrir módulos para escribir en ellos.
+--- a/scripts/bootstrap.py
++++ b/scripts/bootstrap.py
+@@ -4,6 +4,7 @@
+ import json
+ import os
+ from pathlib import Path, PurePosixPath
++import pwd
+ import re
+ import stat
+ import subprocess
+@@ -92,8 +93,21 @@
+         os.close(fd)
+ 
+ 
++def validate_project_target(target):
++    """Require a project directory, never a HOME/root alias; no writes or installers."""
++    try:
++        homes = {Path.home().resolve(), Path(pwd.getpwuid(os.getuid()).pw_dir).resolve()}
++    except (KeyError, RuntimeError) as error:
++        raise ValueError('Cannot resolve HOME safely; choose a project only after fixing account identity') from error
++    if target in homes or target == Path(target.anchor):
++        raise ValueError('SDS requires a project directory: <project>/sds-dev-governance. '
++                         'Never install directly in HOME or the filesystem root '
++                         '(including symlink aliases). Choose a dedicated project folder.')
++
++
+ def main():
+-    parser = argparse.ArgumentParser(description=__doc__)
++    parser = argparse.ArgumentParser(description=__doc__, epilog=(
++        'Safety: SDS belongs in <project>/sds-dev-governance, never directly in HOME.'))
+     parser.add_argument('--shell', required=True, help=argparse.SUPPRESS)
+     parser.add_argument('project_name')
+     parser.add_argument('target_directory')
+@@ -113,6 +127,7 @@
+     if not args.project_name.strip() or '`' in args.project_name or '{{' in args.project_name:
+         raise ValueError('project name must be nonempty plain text')
+     target = Path(args.target_directory).expanduser().resolve()
++    validate_project_target(target)
+     if target == KIT or KIT in target.parents:
+         raise ValueError('target cannot be inside the source kit')
+     if target.exists() and not target.is_dir():
+--- a/practices/11-governance-evolution.md
++++ b/practices/11-governance-evolution.md
+@@ -259,6 +259,13 @@
+ 
+ ## Bootstrap preservation boundary
+ 
++The kit belongs inside a dedicated project directory: `<project>/sds-dev-governance`.
++Never bootstrap directly into the user's HOME or the filesystem root, including physical
++aliases. Both `init.sh` and the metaprompt must explain this boundary; the shared engine
++rejects those targets before planning, copying files or invoking installers, even in dry-run
++and hub modes. Resolve the account's HOME as well as the environment's HOME. Existing kits
++in an unsafe location are not moved or deleted automatically.
++
+ Bootstrap is file creation, never an upgrade or reconciliation of an existing kit.
+ `--dry-run` computes the complete write plan; `--files-only` invokes no capability installer.
+ Only newly generated files receive placeholder substitution or executable modes.
+--- /dev/null
++++ b/tests/test-bootstrap-location.py
+@@ -0,0 +1,99 @@
++"""Location gate tests: mocked planning prevents all bootstrap writes, even on failure."""
++import contextlib
++import io
++from pathlib import Path
++import pwd
++import os
++import sys
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++
++sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
++import bootstrap
++
++
++class ReachedPlan(Exception):
++    pass
++
++
++class LocationGate(unittest.TestCase):
++    def attempt(self, target, *, home=None, account=None, options=(), expected=ValueError):
++        home = home or Path.home()
++        account = account or Path(pwd.getpwuid(os.getuid()).pw_dir)
++        argv = ['bootstrap', '--shell', '/bin/bash', 'Fixture', str(target), *options]
++        with patch.object(sys, 'argv', argv), \
++                patch.object(bootstrap.Path, 'home', return_value=home), \
++                patch.object(bootstrap.pwd, 'getpwuid', return_value=SimpleNamespace(pw_dir=str(account))), \
++                patch.object(bootstrap, 'snapshot', side_effect=ReachedPlan) as planning, \
++                patch.object(bootstrap, 'exclusive_write') as writing, \
++                patch.object(bootstrap.subprocess, 'run') as installers:
++            with self.assertRaises(expected):
++                bootstrap.main()
++            self.assertEqual(planning.call_count, int(expected is ReachedPlan))
++            writing.assert_not_called()
++            installers.assert_not_called()
++
++    def test_home_in_all_modes_before_planning(self):
++        for options in [(), ('--dry-run',), ('--files-only',), ('--mode', 'hub'),
++                        ('--mode', 'hub', '--dry-run'), ('--install-skills', '--install-plugins')]:
++            with self.subTest(options=options):
++                self.attempt(Path.home(), options=options)
++
++    def test_account_home_still_rejected_when_environment_home_differs(self):
++        self.attempt(Path(pwd.getpwuid(os.getuid()).pw_dir), home=Path('/synthetic-other-home'))
++
++    def test_environment_home_also_rejected(self):
++        self.attempt('/synthetic-environment-home', home=Path('/synthetic-environment-home'))
++
++    def test_filesystem_root_rejected(self):
++        self.attempt(Path(Path.cwd().anchor))
++
++    def test_relative_dot_at_home_rejected(self):
++        previous = Path.cwd()
++        try:
++            os.chdir(Path.home())
++            self.attempt('.')
++        finally:
++            os.chdir(previous)
++
++    def test_tilde_home_rejected(self):
++        self.attempt('~')
++
++    def test_symlink_and_parent_aliases_rejected(self):
++        fixture = Path(tempfile.mkdtemp(prefix='sds-location-', dir='/private/tmp'
++                                      if Path('/private/tmp').exists() else None))
++        home = fixture / 'synthetic-home'
++        home.mkdir()
++        (home / 'child').mkdir()
++        alias = fixture / 'alias'
++        alias.symlink_to(home, target_is_directory=True)
++        for target in [alias, home / 'child' / '..']:
++            with self.subTest(target=target):
++                self.attempt(target, home=home, account=home)
++        # No teardown deletion. These synthetic fixtures are deliberately retained.
++        print('Retained non-destructive location fixture:', fixture, file=sys.stderr)
++
++    def test_project_subdirectory_and_similar_prefix_reach_planning(self):
++        home = Path.home().resolve()
++        for target in [home / 'projects' / 'example', home.with_name(home.name + '-project')]:
++            with self.subTest(target=target):
++                self.attempt(target, options=('--files-only', '--dry-run'), expected=ReachedPlan)
++
++    def test_missing_account_identity_fails_before_planning(self):
++        with patch.object(bootstrap.pwd, 'getpwuid', side_effect=KeyError('unresolved account')):
++            with self.assertRaises(ValueError):
++                bootstrap.validate_project_target(Path('/synthetic-project'))
++
++    def test_help_explains_project_location(self):
++        output = io.StringIO()
++        with patch.object(sys, 'argv', ['bootstrap', '--help']), contextlib.redirect_stdout(output):
++            with self.assertRaises(SystemExit) as result:
++                bootstrap.main()
++        self.assertEqual(result.exception.code, 0)
++        self.assertIn('never directly in HOME', output.getvalue())
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)
+
+
+========================================================================
+FUENTE: knowledge/how-to-convert-from-image-to-svg.md
+SHA-256: cab5fc3726679ade44381631e4631122f6492756bbdbd99f6feb8f235f837b0c
+========================================================================
+
+# Convertir una imagen en SVG con Potrace
+
+La herramienta se llama **Potrace**, no «Potrage». La usamos para vectorizar la firma/logo
+de **Maryna Ventura** el 12 de septiembre de 2026. ImageMagick preparó el raster y Potrace
+generó curvas reales. Este recuerdo se recuperó de las evidencias del proyecto y se contrastó
+con sus archivos el 13 de septiembre de 2026; no se ha vuelto a procesar el logo para escribirlo.
+
+## Herramientas locales
+
+En el Mac consultado están instalados con Homebrew **Potrace 1.16** (incluye `mkbitmap`)
+e **ImageMagick 7.1.1-47** (`magick`). Se comprobó la instalación y el recibo de Potrace,
+sin instalar ni actualizar paquetes. No fijar `/opt/homebrew` en scripts portables: resolver
+los comandos desde PATH. En otro equipo, comprobar primero:
+
+```bash
+command -v potrace magick mkbitmap
+potrace --version
+magick -version
+```
+
+Si faltan y está autorizada su instalación en ese equipo:
+
+```bash
+brew install potrace imagemagick
+```
+
+Potrace acepta PBM/PGM/PPM/BMP y produce, entre otros formatos, SVG. No recibe directamente
+el PNG/JPEG habitual: primero se convierte a un formato de entrada. Traza las formas de un
+bitmap binario o convertido a blanco/negro; no reconstruye semánticamente un logo multicolor
+o una fotografía. [Documentación de Potrace](https://potrace.sourceforge.net/).
+
+## Qué hicimos con Maryna Ventura
+
+1. Conservamos el original sin modificar: `docs/prompt-images/logo-mv-original.png`.
+   Aunque el encargo lo llamaba JPG, los bytes eran **PNG RGBA, 622 × 106 px**, 32.987 bytes.
+2. Preparamos un PGM en escala de grises con ImageMagick: ampliación **4× con Lanczos**
+   y suavizado de baja frecuencia **sigma 1,8** en la imagen ampliada, equivalente a
+   unos **0,45 píxeles originales**. No se dilató la tinta.
+3. Comparamos variantes de umbral y curvas. Potrace 1.16 quedó con:
+
+```text
+--blacklevel 0.30 --turdsize 8 --alphamax 1.0 --opttolerance 0.35 --unit 10
+```
+
+4. Normalizamos el SVG manteniendo las proporciones originales: `viewBox="0 0 622 106"`,
+   un contorno real dentro de `g id="signature"`, fondo transparente y `fill="currentColor"`.
+   Se eliminaron dimensiones CSS fijas y metadatos innecesarios, sin incrustar un bitmap.
+5. Inspeccionamos comparación original/render, superposición cian/magenta, extremos finos,
+   cruces, huecos y tamaño real de uso. La evidencia histórica registró RMSE normalizado
+   **0,0707976**, que no equivale a un porcentaje de fidelidad perceptiva.
+
+El resultado negro se conserva como `public/brand/logo-mv-black.svg`: **5.262 bytes**.
+Su SHA-256 observado sigue siendo
+`9eabec495d0ab3bd5e475eccc8bf6994f04511454c8639f35d1464e312bc8be7`.
+Original: `20003cb5f29699d85c39d5918a68b6de2dba5815b154a280885267bcc85bc6f1`.
+
+## Receta reproducible a partir de esos parámetros
+
+Este bloque reconstruye el flujo documentado; no es una transcripción de un comando
+histórico completo ni promete el mismo hash con otras versiones. Usar la raíz del proyecto,
+conservar el original y escribir a una carpeta nueva. Para una firma clara sobre oscuro,
+preparar antes una copia con tinta oscura sobre fondo blanco; no invertir por defecto.
+
+```bash
+SDS_LOGO_INPUT="$PWD/docs/prompt-images/logo-mv-original.png"
+SDS_VECTOR_DIR="$(mktemp -d "$PWD/.vectorization.XXXXXX")" && \
+
+magick "$SDS_LOGO_INPUT" \
+  -background white -alpha remove -alpha off \
+  -colorspace Gray -filter Lanczos -resize 400% -blur 0x1.8 \
+  "$SDS_VECTOR_DIR/logo-4x.pgm" && \
+potrace --svg \
+  --blacklevel 0.30 --turdsize 8 --alphamax 1.0 --opttolerance 0.35 --unit 10 \
+  --output "$SDS_VECTOR_DIR/logo-raw.svg" -- "$SDS_VECTOR_DIR/logo-4x.pgm" && \
+
+printf 'Intermedios y SVG para revisar: %s\n' "$SDS_VECTOR_DIR"
+```
+
+No pasar `--tight` si se quiere mantener el lienzo y encuadre originales. `mkbitmap` es otra
+opción de preprocesado, pero **no fue la elegida en esta conversión**. No aplicar a ciegas
+un threshold más agresivo: puede borrar remates finos o cerrar huecos.
+
+## Normalización para uso web
+
+La geometría salió de un raster ampliado 4×. Cambiar solo el `viewBox` sin ajustar el
+transform puede recortar o deformar el resultado. El SVG negro final utiliza exactamente:
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 622 106">
+  <g id="signature"
+     transform="translate(0.000000,106.000000) scale(0.025000,-0.025000)"
+     fill="currentColor">
+    <!-- Conservar aquí el path completo generado por Potrace. -->
+  </g>
+</svg>
+```
+
+El factor 0,025 corresponde a la unidad 10 de Potrace y a deshacer la ampliación 4×
+en este caso. Descubrir las dimensiones y transforms para otra imagen; no copiar 622/106
+universalmente. No reescribir manualmente la geometría si solo se quiere cambiar el color.
+`currentColor` sirve al insertar el SVG inline; una imagen cargada con `<img>` no hereda
+automáticamente el `color` CSS del elemento padre. La variante blanca utiliza color explícito.
+
+## Refinamiento posterior del SVG blanco
+
+El propietario creó una versión blanca manual, inicialmente de **7.815 bytes**. Más tarde
+se retrazó esa geometría a 4×, con gris/suavizado gaussiano **sigma 2,4** (0,6 píxeles
+de origen), sin dilatación y con estos parámetros:
+
+```text
+--blacklevel 0.5 --turdsize 8 --alphamax 1 --opttolerance 0.8 --unit 10
+```
+
+La versión blanca final pesa **2.292 bytes**, mantiene el viewBox 622 × 106, `id="signature"`
+y un path de relleno blanco. SHA-256 observado:
+`f3815822383fdd245e5c66edccb18d4326406fac45df4ba13859af7374b449fb`.
+El blanco anterior se conserva en el proyecto en
+`docs/prompts-output/[07-8]/evidence/smoothing/logo-mv-white-before.svg`.
+La firma negra y el raster original no se sustituyeron. El ajuste aceptó un ligero redondeo
+de terminales a cambio de menos microirregularidades; no convertirlo en preset universal.
+
+## Verificación que importa
+
+- SVG con `<path>` real: sin `<image>`, data URI ni bitmap embebido bajo una extensión SVG.
+- Lienzo, proporción, huecos/cruces y remates preservados; comparar ampliado y al tamaño real.
+- Fondo transparente y color correcto; sin filtros de desenfoque usados para ocultar errores.
+- XML válido y original intacto; guardar parámetros/versiones y evidencia de la selección.
+- Potrace produce el **contorno de la tinta**, no el eje ni el orden de escritura. La animación
+  de la firma de Maryna se resolvió aparte con guías/máscaras; no viene incluida en vectorizar.
+
+Fuentes de memoria dentro del proyecto `maryna-ventura` (rutas relativas a ese proyecto):
+
+- `docs/prompts-output/[07-8]/evidence/vectorization.md`: trazado original y parámetros.
+- `docs/prompts-output/[07-8]/README.md`, sección «Contour refinement»: actualización blanca
+  que sustituye las cifras históricas posteriores del mismo informe.
+- Los tres archivos de origen/resultado mencionados arriba: hashes y tamaños comprobados.
+
+El kit conserva la receta, no copia los activos del cliente ni necesita que su repositorio
+esté presente para entenderla. Consultar los manuales locales `man potrace` y `man mkbitmap`
+para otras opciones. Convertir con estas herramientas es procesamiento local: no requiere
+llamadas al modelo; redactar/revisar el trabajo del agente sí consume su contexto habitual.

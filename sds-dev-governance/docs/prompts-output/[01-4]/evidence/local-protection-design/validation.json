@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-09-13T20:26:56.203962+00:00",
+  "status": "PASS_DOCUMENTARY_INSPECTION_ONLY",
+  "definitions_count": 62,
+  "reference_scripts": 62,
+  "local_links_checked": 78,
+  "source_and_historical_manifest_hashes_unchanged": true,
+  "fixtures_materialized": false,
+  "permission_mutations": false,
+  "payloads_executed": false,
+  "new_protection_implemented": false,
+  "source_state": "source-state.json",
+  "last_checkpoint": "20260913-202656-local-protection-discussion.md",
+  "host_status_entry_count": 37
+}

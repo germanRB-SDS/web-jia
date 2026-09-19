@@ -1,0 +1,128 @@
+[
+  {
+    "shell": "/bin/bash",
+    "case": "test-governance-copies.sh",
+    "exit": 0,
+    "evidence": "bash32-test-governance-copies.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-github-guardrails.sh",
+    "exit": 0,
+    "evidence": "bash32-test-github-guardrails.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-skill-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash32-test-skill-bootstrap.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-plugin-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash32-test-plugin-bootstrap.sh.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "checker project",
+    "exit": 0,
+    "evidence": "bash32-check-project.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "checker hub",
+    "exit": 0,
+    "evidence": "bash32-check-hub.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-governance-copies.sh",
+    "exit": 0,
+    "evidence": "bash53-test-governance-copies.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-github-guardrails.sh",
+    "exit": 0,
+    "evidence": "bash53-test-github-guardrails.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-skill-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash53-test-skill-bootstrap.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-plugin-bootstrap.sh",
+    "exit": 0,
+    "evidence": "bash53-test-plugin-bootstrap.sh.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "checker project",
+    "exit": 0,
+    "evidence": "bash53-check-project.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "checker hub",
+    "exit": 0,
+    "evidence": "bash53-check-hub.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-bootstrap-safety.py",
+    "exit": 0,
+    "evidence": "bash32-test-bootstrap-safety.py.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-copy-safety.py",
+    "exit": 0,
+    "evidence": "bash32-test-copy-safety.py.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-selective-context.py",
+    "exit": 0,
+    "evidence": "bash32-test-selective-context.py.log"
+  },
+  {
+    "shell": "/bin/bash",
+    "case": "test-governance-freshness.py",
+    "exit": 0,
+    "evidence": "bash32-test-governance-freshness.py.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-bootstrap-safety.py",
+    "exit": 0,
+    "evidence": "bash53-test-bootstrap-safety.py.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-copy-safety.py",
+    "exit": 0,
+    "evidence": "bash53-test-copy-safety.py.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-selective-context.py",
+    "exit": 0,
+    "evidence": "bash53-test-selective-context.py.log"
+  },
+  {
+    "shell": "/opt/homebrew/bin/bash",
+    "case": "test-governance-freshness.py",
+    "exit": 0,
+    "evidence": "bash53-test-governance-freshness.py.log"
+  },
+  {
+    "shell": "python",
+    "case": "test-mcp-control.py",
+    "exit": 0,
+    "evidence": "mcp-tests.log"
+  }
+]

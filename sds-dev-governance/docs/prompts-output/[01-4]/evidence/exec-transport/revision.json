@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-09-13T16:55:06.235869+00:00",
+  "dependencies": "../codex-transport/revision.json",
+  "sha256": {
+    "sentinel/exec_transport_probe.sh": "a631dcc3d4405ae14e9bffec9762a854ca541c88d9678a9aedab9877f0c155e1",
+    "sentinel/probe_exec_transport.py": "b568996754774b8abd1e28676be590908a9776457f2ad4a88f4da731102dd144",
+    "tests/test-sentinel-exec-transport.py": "289e1b79f973c1c615bd43e58b633fab84fe74094a7ef9de6a2096bb1ca8f045",
+    "sentinel/tart_host.py": "7b2155a6753a4555773fb73db1d07ca9d83c7f83cfdfebc9a6f2eab086d0fba6",
+    "/usr/local/bin/node": "02ef8d68cd7f31aa60efb5fdafce5eedf8fe37c86c02b57d90b990a9c24686f3"
+  }
+}

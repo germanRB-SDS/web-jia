@@ -1,0 +1,29 @@
+{
+  "tart_list": [
+    {
+      "Accessed": "2026-09-13T12:00:19Z",
+      "Source": "local",
+      "Name": "sentinel-lab",
+      "State": "stopped",
+      "Running": false,
+      "Disk": 50,
+      "Size": 33
+    },
+    {
+      "Accessed": "2026-09-13T12:00:19Z",
+      "Source": "OCI",
+      "Name": "127.0.0.1:59957/cirruslabs/macos-tahoe-base@sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e",
+      "State": "stopped",
+      "Running": false,
+      "Disk": 50,
+      "Size": 33
+    }
+  ],
+  "root": "/private/tmp/sds-sentinel-tart-KoUNwE",
+  "du_reported_kib": 65070316,
+  "df_available_kib": 124927904,
+  "accounting_note": "du may count APFS shared clones more than once; df is whole-volume observation, not attributable task cost",
+  "cpu_count": 4,
+  "memory_bytes": 8589934592,
+  "started_by_this_campaign": false
+}

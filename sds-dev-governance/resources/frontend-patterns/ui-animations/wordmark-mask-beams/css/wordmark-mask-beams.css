@@ -1,0 +1,53 @@
+:root {
+  --wordmark: url("/assets/wordmark.svg");
+  --brand-beam-blue: #5AA0E8;
+  --brand-beam-violet: #7B7FE0;
+  --brand-beam-lilac: #9D7BE8;
+}
+
+.wordmark-mask-beams-demo {
+  position: relative;
+  width: min(64vw, 820px);
+  aspect-ratio: 3664 / 729;
+}
+
+.wordmark-mask-beams__wordmark,
+.wordmark-mask-beams {
+  position: absolute;
+  inset: 0;
+}
+
+.wordmark-mask-beams__wordmark {
+  z-index: 1;
+  background: linear-gradient(120deg, #FFFFFF, #CFCBFF 55%, #BFE0FF);
+  -webkit-mask: var(--wordmark) no-repeat center / contain;
+  mask: var(--wordmark) no-repeat center / contain;
+  filter: drop-shadow(0 0 38px rgba(160, 150, 255, .45));
+}
+
+.wordmark-mask-beams {
+  display: block;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: .98;
+  pointer-events: none;
+  -webkit-mask: var(--wordmark) no-repeat center / contain;
+  mask: var(--wordmark) no-repeat center / contain;
+  filter:
+    saturate(1.28)
+    drop-shadow(0 0 24px rgba(90, 160, 232, .26))
+    drop-shadow(0 0 34px rgba(157, 123, 232, .22));
+}
+
+@media (max-width: 760px) {
+  .wordmark-mask-beams-demo {
+    width: 86vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark-mask-beams {
+    display: none;
+  }
+}

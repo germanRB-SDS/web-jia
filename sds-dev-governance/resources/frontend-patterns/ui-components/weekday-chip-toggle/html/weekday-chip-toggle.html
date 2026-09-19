@@ -1,0 +1,21 @@
+<!-- Weekday chip toggle strip. Native checkboxes inside labels: the label IS the chip.
+     Visible short labels + full accessible names must come from the project's copy/i18n layer. -->
+<fieldset class="chip-toggle-fieldset">
+  <legend>Días de la semana</legend>
+
+  <!-- Optional master checkbox (mutual exclusion handled by js/weekday-chip-toggle.js) -->
+  <label class="chip-toggle-master">
+    <input name="allOpenDays" type="checkbox" checked>
+    Todos los días
+  </label>
+
+  <div class="chip-toggle-group" data-chip-toggle-group>
+    <label title="Lunes"><input name="weekdays" type="checkbox" value="1" aria-label="Lunes"> Lun</label>
+    <label title="Martes"><input name="weekdays" type="checkbox" value="2" aria-label="Martes"> Mar</label>
+    <label title="Miércoles"><input name="weekdays" type="checkbox" value="3" aria-label="Miércoles"> Mié</label>
+    <label title="Jueves"><input name="weekdays" type="checkbox" value="4" aria-label="Jueves"> Jue</label>
+    <label title="Viernes"><input name="weekdays" type="checkbox" value="5" aria-label="Viernes"> Vie</label>
+    <label title="Sábado"><input name="weekdays" type="checkbox" value="6" aria-label="Sábado"> Sáb</label>
+    <label title="Domingo"><input name="weekdays" type="checkbox" value="0" aria-label="Domingo"> Dom</label>
+  </div>
+</fieldset>

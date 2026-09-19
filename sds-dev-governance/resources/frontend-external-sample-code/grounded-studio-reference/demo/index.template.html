@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="{{themeColor}}" />
+    <link rel="icon" href="data:," />
+    <title>{{documentTitle}}</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./hero-boot.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body id="top">
+    <header class="masthead">
+      <div class="page masthead__inner">
+        <a class="brand" href="#top" aria-label="{{homeLabel}}">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span>{{businessName}}</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+          <span class="visually-hidden">{{navigationToggleLabel}}</span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <nav class="nav" id="nav" aria-label="{{navigationLabel}}">{{navLinks}}</nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="world-hero" aria-labelledby="hero-title">
+        <div class="world-hero__scene" aria-hidden="true">
+          <canvas class="world-hero__canvas"></canvas>
+        </div>
+        <div class="world-hero__fallback" aria-hidden="true">
+          <div class="world-hero__plots"></div>
+        </div>
+        <div class="world-hero__scrim" aria-hidden="true"></div>
+        <div class="page world-hero__content">
+          <h1 class="world-hero__title" id="hero-title">{{heroTitle}}</h1>
+          <p class="world-hero__summary">{{heroSummary}}</p>
+          <div class="world-hero__actions">{{heroActions}}</div>
+        </div>
+        <p class="world-hero__measure">{{businessLocation}}</p>
+        <a class="world-hero__cue" href="#approach" aria-label="{{continueLabel}}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6" /></svg>
+        </a>
+      </section>
+
+      <section class="band" id="approach" aria-labelledby="approach-title">
+        <div class="page">
+          <h2 class="lede" id="approach-title">{{approachLede}}</h2>
+          <div class="stance">{{approachColumns}}</div>
+        </div>
+      </section>
+
+      <section class="band" id="work" aria-labelledby="work-title">
+        <div class="page">
+          <h2 class="band-title" id="work-title">{{workTitle}}</h2>
+          <div class="projects">{{projects}}</div>
+        </div>
+      </section>
+
+      <section class="band contact-band" id="contact" aria-labelledby="contact-title">
+        <div class="page contact">
+          <div>
+            <h2 class="band-title" id="contact-title">{{contactTitle}}</h2>
+            <p class="prose contact__body">{{contactBody}}</p>
+          </div>
+          <a class="action action--solid contact__action" href="mailto:{{businessEmail}}">{{contactAction}}</a>
+        </div>
+      </section>
+    </main>
+
+    <noscript><p class="noscript-note">{{noScriptMessage}}</p></noscript>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "vm_state": "stopped",
+  "own_pids": [
+    62478,
+    62480,
+    62481,
+    62538
+  ],
+  "ps_output": "",
+  "lsof_output": "",
+  "combined_closure_check_exit": 1,
+  "guest_branch": "lab-clean",
+  "guest_test_a_absent": true,
+  "guest_test_b_absent": true,
+  "experiment_exit": 78,
+  "native_exit": 71,
+  "reason": "execvp macos failed; payload did not run; not protection evidence"
+}

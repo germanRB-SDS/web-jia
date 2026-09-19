@@ -1,0 +1,63 @@
+{
+  "artifacts": [
+    {
+      "file": "1789319605541445000-boot-smoke.json",
+      "bytes": 239,
+      "sha256": "da6414a14674d053af3af3528eedf3bbfbfd29e5babb4e58d10c46ea3ac3b34f"
+    },
+    {
+      "file": "1789319605541445000-boot-smoke.log",
+      "bytes": 86,
+      "sha256": "305844bf97fce4cdcdcec98506586ba9525587944d433c611da6821ed4ab64a6"
+    },
+    {
+      "file": "1789319617105008000-exec-transport.json",
+      "bytes": 311,
+      "sha256": "9de1a9f11e3035162267c19a1563f2eede673a41a064e8ff1c1cb16e5ac00998"
+    },
+    {
+      "file": "1789319617105008000-exec-transport.log",
+      "bytes": 3302,
+      "sha256": "45090d63c8304915731c268062162658829633f3b95077b78b464dc3a6d5405b"
+    },
+    {
+      "file": "1789319681387335000-inspect.json",
+      "bytes": 230,
+      "sha256": "b13d43ab146d8fee0e288098eae8f7f534d2525225b134398f23aa9602036d8d"
+    },
+    {
+      "file": "1789319681387335000-inspect.log",
+      "bytes": 474,
+      "sha256": "927655e0a24a37dbf064676147c530e4366dd64ea1a4bbb001c39d90ad0ac4b4"
+    },
+    {
+      "file": "closure.json",
+      "bytes": 506,
+      "sha256": "537206e3be3843b3b4b329d2b233399f516013726b21ac4c639f98c8a4b18770"
+    },
+    {
+      "file": "result.json",
+      "bytes": 1228,
+      "sha256": "93a99485e01ec758efe3e4c2680b495616665757d9f319798c55d3f1bd99c8b3"
+    },
+    {
+      "file": "revision.json",
+      "bytes": 1655,
+      "sha256": "205e3624f93b0e338297f54ffd13909c2fb4b8d0ed879fff8e3d49232888249c"
+    },
+    {
+      "file": "tests-final.log",
+      "bytes": 100,
+      "sha256": "5fbfb89f754a90bdae84bd847a1490bee3e3f6a06b9761bb65a1fd4a1a3a51aa"
+    },
+    {
+      "file": "tests.log",
+      "bytes": 100,
+      "sha256": "9d42c943998d40ebaef671e68c58ec7591185378a90d2d24e2576ae822092317"
+    }
+  ],
+  "live_tests": "One final native benign probe only; earlier failed revisions retained separately",
+  "synthetic_final": "2 methods/14 scenarios PASS; unchanged silent12s test result reused",
+  "supervisor": "18 prior suite +2 directed with overlap, no full suite recount",
+  "evaluation": "42 previous PASS, no delta/rerun"
+}

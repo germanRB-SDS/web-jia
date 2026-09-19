@@ -1,0 +1,32 @@
+{
+  "outcome": "STAGING_PASS",
+  "guest_root": "/private/tmp/sds-sentinel-client.gXPEva",
+  "source_sha256": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+  "size": 222655232,
+  "stage_exit_code": 0,
+  "stage_seconds": 11.015644833998522,
+  "guest_version": "codex-cli 0.154.0",
+  "guest_hash_matches": true,
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0,
+  "custody_verified": false,
+  "remote_routing_verified": false,
+  "S0": "PARTIAL",
+  "cost": "COSTE_INCONCLUSO",
+  "closure": "closure.json",
+  "preserved_failures": [
+    "Earlier v2 inherited FD9 modified forbidden canary",
+    "Native Tart help attempted ambient cache GC; sandbox permission denied; never used for admitted operations",
+    "CLI help/schema PATH alias warning; no workaround"
+  ],
+  "tests": {
+    "full_suite_run": 18,
+    "full_suite_passed": 18,
+    "later_targeted_run": 2,
+    "later_targeted_passed": 2,
+    "overlap": true,
+    "evaluation_previous": 42,
+    "evaluation_rerun": false
+  }
+}

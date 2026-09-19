@@ -1,0 +1,13 @@
+{
+  "evidence_id": "E06-patch-check",
+  "command": [
+    "git",
+    "apply",
+    "--check",
+    "candidate-source-reverse.patch"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "effect": "read-only check; no patch applied; not a rollback test"
+}

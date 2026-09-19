@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-09-13T16:28:57.062509+00:00",
+  "authority": "owner latest chat; explicit cost-policy modification",
+  "ideal_below_percent": 8,
+  "exploratory_below_percent": 40,
+  "at_8": "continue and record above ideal",
+  "at_40": "outside additional authorized range; review before further spend",
+  "measured_AB_runs": 0,
+  "cost_outcome": "COSTE_INCONCLUSO",
+  "tests": 42,
+  "test_status": "PASS",
+  "test_log": "tests.log",
+  "review": "independent /root/review_s0, read-only; no remaining findings; no test rerun",
+  "sha256": {
+    "sentinel/evaluation.py": "4521f0ab8a7a15111709da0e4f86394f96cf3f9799b6db67b204dc47976da43f",
+    "tests/test-sentinel-evaluation.py": "8ed59c5beb1cea9b1652a94f28a61691039a26741b648d64ee5d5b0aec623ec4",
+    "sentinel/runbook.md": "0949da5256ada79b985ac14c2e61b626534c10610687886fc0d80a745bb7ba58",
+    "sentinel/contract.md": "f3d91e8fe187cc932b276404fcd1b5f6c432c69853859de186c9593000968847",
+    "sentinel/evaluation.md": "ede39c4d61c05e233e9f0b96e9aab7fc48e7a19b1b4d6cc26e3d5b3c514739e2"
+  },
+  "client_candidate": {
+    "client": "Codex CLI",
+    "version_from_resolved_path": "0.154.0",
+    "model_config": "gpt-6-astra",
+    "effort_config": "high",
+    "guest_available": false,
+    "note": "observed host config, not resolved guest model or current session model identity"
+  },
+  "auth": "not inspected; explain subscription vs API and ask method only, no secrets",
+  "monetary_budget": null,
+  "native_help": {
+    "command": "codex login --help",
+    "exit": 0,
+    "options": [
+      "--with-api-key",
+      "--with-access-token",
+      "--device-auth"
+    ],
+    "warning": "could not create PATH aliases: Operation not permitted; no workaround attempted"
+  },
+  "auth_docs": "https://learn.chatgpt.com/docs/auth",
+  "new_VM_runs": 0
+}

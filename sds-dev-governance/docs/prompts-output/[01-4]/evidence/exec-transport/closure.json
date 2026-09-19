@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-13T16:59:36.848228+00:00",
+  "vm_state": "stopped",
+  "inspect_exit": 0,
+  "boot_exit": 124,
+  "boot_reason": "timeout",
+  "boot_seconds": 45.07963629101869,
+  "pids": [
+    43640,
+    43647,
+    43758
+  ],
+  "ps_exit": 1,
+  "ps_output": "",
+  "lsof_exit": 1,
+  "lsof_output": "",
+  "lsof_scope": "exact own control.sock only",
+  "limits": "Point-in-time own process/socket observation; no general revocation claim"
+}

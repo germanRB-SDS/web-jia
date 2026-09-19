@@ -1,0 +1,878 @@
+{
+  "image": "ghcr.io/cirruslabs/macos-tahoe-base@sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e",
+  "digest": "sha256:1b093499716409d29e8b5336844528e1cae375db97d2ad8e5aeff78cf0da201e",
+  "manifest": {
+    "annotations": {
+      "org.cirruslabs.tart.uncompressed-disk-size": "50000000000",
+      "org.cirruslabs.tart.upload-time": "2026-09-05T09:08:42Z"
+    },
+    "config": {
+      "digest": "sha256:3a6cb4eb6201aa00136781f9d350858ca23054fdda419893193af3e3a044b3a8",
+      "mediaType": "application/vnd.oci.image.config.v1+json",
+      "size": 100
+    },
+    "layers": [
+      {
+        "annotations": {},
+        "digest": "sha256:7151683924275892344c9e63cc82af02397aacc4e36ec4887bbdf385bb5980ff",
+        "mediaType": "application/vnd.cirruslabs.tart.config.v1",
+        "size": 509
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:b4c1c0c4e1e5717662fb86ffcdf564c8c61dd86d0b74cec2de54b831b3005b19",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:23feee5502c0c203b0523159bc88b2a07a06558234183f0cda4a126a695e6638",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3688035
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:05d5c24ade84393c13f792f31a480ee32f7274efe646a466054ed9d5b96549c0",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:7e941be3759108b7c7ee1271240d8f2ffb87136ca951c71d585d5ca47b707c4d",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 7806068
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:f1e1b1e35ab52cd5350c0689cbe8712c4c30a4cd5698bfb923325735040af60d",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:3b347b006701f13747d671e250d2dc12b962eeb0e6b57ca2e58c5275377c9dd6",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 93920287
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:e411fee4fbebe955a93eb083da22707cd829050522f5952b9d54df345289321c",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:1bdaefb0e3b9a770271ab27dcc14d6e50cea0f5b1cf54e87f55ee6c4f7e3909a",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 187123147
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:c2f269205fac740ff98acad430bf70f5aa1ae019671aa82b827127a15ebdea53",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:08508cd6917a6c661682fdd19b14126c578470c2497293bf91d4073c4d02f482",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 500626228
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:a15d71181a46f77e43b7017c228e3cb69b9698b8e7865af7506579812ede1f0a",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:014e56d245cab774b4f3c7edc31414e27760d0e0b194e7d0d08f299965796797",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 517189068
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:48ec3b8a63f9e2b6d798c3d54e14192c26f01a9c20c0a25c79f76e97627f0a2e",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:b89ab53745d3576d2eb2dd7bb29e32b94f74c2b7a6e88e622d3b2a4f3cac1f39",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 485561664
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9ef1761fee9acaae1e118878cf267661554a7593722b48dd34ab1477aead70dc",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:7a2a176742ed0660ce910d9c361e2f663e79657c45d9e114dda6f6258be3f313",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 316179673
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:f84162b2bb0e72461e60c80731be0199edd1d365a4e2c2343a23f57863bd890f",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:e8898d71a076204af07188ab3f92792548fa43c979f60be7bf4442e810e152dd",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 446035108
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:aac3f89cb9b59feee253201f082ad6ab25ba0dc4946c72719234e600b1df63ea",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:964f27d63b177318dc7da295120c453e62a6ff05b7495486890b9173230b1755",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 443768395
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:f1007f3e29e0f444a620d1a57ab850d4161f7184c6ae19d467e534a17bb9d9be",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:9971321cb281cfd561da55039817401f9e6791d51c007e857d9984322c446f86",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 440368666
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:fc7327a61d8092d280d4fd2467fc4fc8f684b6e5b06d9a7776ae11786506610e",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:ec0a3f089dc6a76d9ea9202de4f5b8443e4233c47f621c0d0d1bcadb3427f769",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 519233097
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:d82c3913f2559809cb7d763df24bca17ccebd94b6b6a83ef39c7c7ba591888ca",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:2efe9c1853274087f5569e1f71e1d9d218ddb667617db2cd6b0d16f2738b9632",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 505761094
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:1fe2d0928ae0cf402ef4e93841ce9b9a0c2c68f72bfbf38f59d230e7e754037b",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:765f8447b7c610411fc65dd70ff95abea63b88376d48f0f8e2e798adda0f67b5",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 508996820
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:52a173e1d9eb420b0d19e15d6b78fccc80e847ac5f0d29198f1f7994b8cc1047",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:c9cae2aa12333cf78c013c932c59e56f5ade0772af977e52d817082a2f143f11",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 510104608
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:b12ff7f5df507ce6d583547a4a2b01ec06b4d82e0d487061699c69a6b6e19d5a",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:41be98e26950982f2aa2b78024373862be28e0a01196889fbceef8021a3e44fe",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 526383986
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:db86870767fe267606a20edc2dab7d2635020eef66d9d2c4912ab5a300acbfa0",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:8793180c596ae93a352115253c650f6b5cec529ba9eecda38a3d6fc3af38ffd9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 502572586
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:4a422d1c5060d8bcd2b76897bb07c7106117de3ce0421f89e51d591a7b2698b2",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:5e801e6751785955a2acbba8585d04b1d26cf0dbd9ed0dfd46142ba3b561da3f",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 421025371
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:b73b72bb701c603f63bd4e5dde9042b00332dddaf70e76cd786b7bf4b2fd112d",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:20c424a3fafcba016898ce335a30abbfb913f0e5360db9ad484b378da7ede1a1",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 481363778
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:0b3d0877e22d2daf2b2c4104581c37c84de88745577b800c28d9c2542ce8491e",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6d98a9117c0d07afecc1d50ff2955b32f3adc4c3e871423aae505234794640a6",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 525158729
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:a38af7763cfc1d04827e607a02c21f4a14fb8b5e2dc427ced13f84c018409c65",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6b1d3cb28b594755dd9a6d32644e0e43113ca43e1628cf5729145769960612be",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 528932625
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:e81c4090d46123155e5efc3693499f4a94a5278f3b39e2a1449609ced69b9248",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:da87322a3317490b0efbc53ed26285fda6bfd49baa531881a7fbdb2e58743638",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 488811413
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:eea927f6eeb66c9a6015ba196287f2e13192d8e82d7402442977377879825785",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:088a3986bdbede1b46fff7444dc1fe2ca84ff1d996feae14e9442534ecbb8479",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 509478490
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:4499ace182570c591e6b5baf82ac34cfe40ea6087ed1948039cb7f25207876de",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:fe0e1dd8de32cda3f8494578749594c69fa01c36d31486f0a848c82ce3be075d",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 508164569
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:08cfe5a7121ada0cb307b08e28271c1cb3cde6b57a93ce9f18817602c6d398c3",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:be8195bac839563a73418804f4c868e774b037e5b76d93a2eff656da18e00b91",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 478300702
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:aad7730f7a912e37ce1be39410bdc038871c937746dddb93b8bd5d0f187cf907",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:9963e0b2cf708c78b6f56cf6f12993d0cc60ecd86c7b2c7e9b5d13841615baca",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 483218442
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:3ae45f98c72ed95a5f176192d7b8ce3ae4b5bc0e7678490783856f8ba6686c9a",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:ac3d9b1e3a3333436cbf028804b503750394d82055fe06e68e7e1bf0962ae7f0",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 487471768
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:f6c29ff1597d1aa4eb1a8558b87cf87c4359bb8c95c2417d300a5ab068cef16f",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:4ba327f3d98754e5514b69d81a40f810a8ee0a97652c87893f6714f794d43891",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 509416274
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:048b610b0cbe7fb798f6c120dd2548c68f8a99c6340ebb3b2ff8d1681db05401",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:833df92e8c1b395d557db3f5ca3a1c0f3c3ed9a6bd44555900c3b5e95205518a",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 520853307
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:92e8e0a58928802fc4da114f54212845982c2565f608815398f8f461362999a9",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:98c1e7af9d67578fb260995141fa6389e380be9dfa8f5323d4817f653e3a4637",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 508511472
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:c447833bbfe537ef884c83d35d36fbf6e62efc82bab0481395d768da72b58579",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:89f3d99ecae333525b01968ec4d8f43efc366a86ab4b9abc0319fc38dd55b7d4",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 187654158
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:5b9faae19ba0d95559b63bd06166bb1fe5926f3cccb84a58906d4e7a9c4a8aa8",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:9316d9d449c6f3bb6d20eb15003b32961ab514333be17dad859a12e544bfe26b",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 294254390
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:ae3b6f1d046f3bd4319c29b7a9ffafbf9220f19fa7deb36581570eb5a2cd2dc9",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:9f890e7a5c5d787aadf1424b218054efaa4c722d90160b8172c5a9a8356be206",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 283987746
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:b19b6be255ff9cf78b88e31f823e9dd209ec25550d313f05347e61cb441e7be1",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:1b7410720123e2f69412e1396b2276ecb67265f8bc898f9f9928526f10f103fc",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 290402970
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:0a38572531193a1aeafa58e580d63d80bc16749b80f4d484795383409220e8ca",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:f5655340779c48ada30d58aee0990fc6c1f0d01adc81a69e9f14011330b298b5",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 529378472
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:01e38cb9afe9a83b0ac713e8fb0865418e1d1674999adef130494e382852e963",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:ab90757d92d0a1dfbe11d34d871b4186dd35e59ec57e50fe8ecfb5c2b201e14b",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 533282395
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:2b842f7c2788fa4b1436fac4e2ba1118e8fa36987ee41aa0dec29aece613345c",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:306c54d6bdfc958cbd838c6081023cda502ae00532c6bd586a0b62cb31d83d67",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 533161304
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:051ad31e99e86701c9434e9a749f158bc882c3839cd67d1e139d5e8ebd02fcae",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:71524b06b67a694dbc14fb1fe0e9867e8156091b746011c893d4193a465c5039",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 532603499
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:7d5a40a7f9f51a1c4a61b7e72abbf93a7dcaf768d82f996bfdb587ffb10af42d",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:d485357abad13e162ae912468d04c6205a907789b05ad16f7829c835dd17b763",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 532204718
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:12ce1ad017a537473ec4fe5492432b33db85226520558bb163124f21aa39650b",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:3bb28509c16a14c8c624f28ebe47bbfd42e0deb3a5efe2af953e05a3b49d704f",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 526973779
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:609ced90c4b0cb159bfd06b7dcf0e57b131ee1f76fbe1f9bab3a007ab6525049",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:2973301ff46bee76420967d2e7586979952e34520d89abdd66f520dc0a45f31f",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 528459435
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:2b4844b82772f7456d187c7b596123424e4eefb0a2e53209132a55cfaba96ea5",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:d36ef6244a5f854b7a24b535fca2f3252c21e73c4620d6658476a822499bddfc",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 527036697
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:74042db7e49f230034f783c5591b4767cb50dcd60265f40f09e77ef9f8c397f6",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:e570ede38df0c8007740bada27802c38efcc076f3551bd4bd11170e2ebce4be2",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 526599504
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:8127866ffb9fbb0d09385cc1907b2b499e7f9632afc64fb06dfc0d329b15278c",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:147ffaaa739070b5dc6eb8263e8ca84adb4f9613b89b8ce2b29d2d9e17d30865",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 531473199
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:c8089ab003ca29d73c3821dd2976cca8ee43c645c583377733d65984b961a07d",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:d63917609b0e395a5f0e9de15704828465d9f4fba0e2d4712f2aade567b93d7d",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 529451159
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:685377ed044c426002559252eee1fef7f44684b9fcef0274e1c61f55ec5ce1f4",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:c407c3641f3b7bb10ad1edd04d0fcef7124dff4e9917b237a4640a7e200033a3",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 463511182
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:6294d4bdc6ee09a0aae6e10755760ae34ad1cf25b77259d7eb499f25fcfe72d9",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:42d7d64ab8fb87b1b8876de483838b1d4bc52c8225699710afff19d8e3472805",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 409506702
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:31e48f8ce405add50ee6df36595dc1012d196bca68197f5f50ec4307433eb2bc",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:e601bd1960ac6b26fe5941cfea04d521477e850a772ec5c56530ed5760d66f99",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 469346967
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:15678d3d8f163fb9e931aa6754448fed81eb7bcbc057ed21634e397cac844022",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:b09706a44657b662d8f8c6cd8879ceb0ef9eeb4fe89f9fc99371f9498b51788e",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 425019868
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:dff29964fe4a62d7f5cb0a3214d4774e1123abbb87c9e7c18ea88fb7317ae913",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:75eec42cf32e2b287d0336f0f0cba8575356d371a10465475d40171ad528fd7d",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 405915857
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:788e163003a78f3a91f2d1a100bba952dc4c3e9b80346f88ee150cc1e072e3ed",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:1b1ac69b9c9ec49977ed40e2f53c6cf6f3670189a8976cca5e110857c0e27d1e",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 324783948
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:d1df69d280a784918f4ac898b9cba2d17e076786602dc7b081b2360526704ae8",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:a29036dfbd4f199c87bd11889cda82528ac5bc4ab7091b0fb787503da66ecc52",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 386288547
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:b6c0c481148e02d859cea9a7a645c151ba4b09c37fdcd1efee23587ae71df639",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:5842c8bfb02eefa156d8af8d41ec90c3f35a3564d9aa63e7bebd7e48a0b1e82c",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 261161494
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:6cbe0130e169fb756db6d38eab67425da0b1ae1b3007f5114c0ad88fdf4e03df",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:c4e20dd8dcb86be26dd682b30dcf3ec55a96f2527b8660b97990594032605dfe",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 399123546
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:706a41818e548fb57fe3e0668c6a02db32f9cbac5e91e72a6f808be1e3cb8f6f",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:36bd59f8a8d910c13f78b5acc2ee12a96c88633fddeea3cb2b917d2bf8f4895f",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 399065576
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9ce9d0f2802f3d6722a7b4cf376b233d6f4d4dfb88c926199c1e927dfb405b13",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:d4f92cc4fb6ff458b4bdfed605467ee3a5046b83b7b80c7fd635c7dcd63b1ed5",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 530535456
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:0d99d3358288559ac3ac0c7b4af645faded159d16ec7fb55954bb1b0b7c0c270",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:173e0baa738eccc3b4f4023d199880c2e1a5450c3d325f1aa3fc5a8e79037867",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 355252793
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:ec2000a056d3090e0bec2106c493877cfaedbb083055dbd646c26a59f659bc9f",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:2197579aaea84b8f445dc84eb44dcece868c898b467b0e6ea58655a6505f80c4",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 162095769
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:c29ea97286283f5430b757ca485fb512a61ca67e5195876fc0693d7f4cad6298",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:4094640451e02168ddb803fb891926e553a2e4b8753f800ee6ff8a77dee76532",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 233376909
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:4d99462cb654b9cfe81801393a0d1704f247ef7f39567499f7e0bc304a9e6318",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:391220ff85377c3e0275839aabf50db8b7b17ec774b40f7c991429e6b431c6a2",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 231309260
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:df7b3fb7c304a535113fb576538ea63dae3fe9b1c789ea88f59035cef27cac3f",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:499cf64bbf1deca141aabbd4832d24f7fce64e43314a1105a8e50ee19193ea0b",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 249579569
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:cf1669ca9a0cfb2afe0c116f29ff4f8f29b016cc75db5c4e10cca2bd40a4e6e3",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:5c52c04f74cb2c777877f677421bf2e41a344d1ccf79434805978e298ec875d9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 190808963
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:912a60ede0e6695b5903c022b22a08c66144c135dbc4fe7d157e95956ce9629e",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:1010636fbff0a14b0c5fece68966dcfaaf62a7c6d07e4bef1251211a6e47f045",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 162824200
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:627534ddd1c45536ee8d9d8a958f2d41d88a5ed1a1a40e74ca25110a7e989fdd",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:d9db99aa7d1b6c5b09cbd5d75434584d531ed6346bd10cdde4150619d14fc987",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 29998744
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:14e4210addcf455726009cf52ea41b68e52d1f3d8f35e4ae75efe3caf1ada8fd",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:15e5e427c43bcdd88fd686c72a63676a17e48e7c8bf5df7b530150780bea332d",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 442477408
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:a76ba8f6a078c09613a8a541e08f240d06345683921a3e148cacb5ec0c9b6be1",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:7794584af87214d07363cd91a48671dfd0819d426ed9b070307d383bfabeef8d",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 532975650
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:85822d173c3c9aede9c49023604e95d3267beaea9912d8a5b4d9934a6f8879a0",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:d15460620a351b44b6ea124319ed814955162e0106652bf4d187aeca329f4dc2",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 275794513
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:9acca8e8c22201155389f65abbf6bc9723edc7384ead80503839f49dcc56d767",
+          "org.cirruslabs.tart.uncompressed-size": "536870912"
+        },
+        "digest": "sha256:6f95979b1390a9ebe8ce08d802b2a6adba652c110ec73a40c8303363719cb4e9",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 3260420
+      },
+      {
+        "annotations": {
+          "org.cirruslabs.tart.uncompressed-content-digest": "sha256:34fccd12ae3e9dabff588377501cc53eeccb357b412ffea863016b819987645b",
+          "org.cirruslabs.tart.uncompressed-size": "71005184"
+        },
+        "digest": "sha256:8fd7415a78f8ff7acf614e49284514e63fa13cd5300259204f140db882bf2fce",
+        "mediaType": "application/vnd.cirruslabs.tart.disk.v2",
+        "size": 431514
+      },
+      {
+        "annotations": {},
+        "digest": "sha256:8bbb7ce3ea6932c8eed21e69e8beb5cd8710d7b15361a35a06ead31f0ebc9bc4",
+        "mediaType": "application/vnd.cirruslabs.tart.nvram.v1",
+        "size": 33579164
+      }
+    ],
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "schemaVersion": 2
+  },
+  "compressed_layer_bytes": 27312483923
+}

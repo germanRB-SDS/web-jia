@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-13T17:15:23.594280+00:00",
+  "vm_state": "stopped",
+  "inspect_exit": 0,
+  "boot_exit": 124,
+  "boot_reason": "timeout",
+  "boot_seconds": 45.24020358300186,
+  "own_pids": [
+    49053,
+    49054,
+    49118
+  ],
+  "ps_exit": 1,
+  "ps_output": "",
+  "lsof_exit": 1,
+  "lsof_output": "",
+  "socket": "/private/tmp/sds-sentinel-tart-KoUNwE/storage/vms/sentinel-lab/control.sock",
+  "limits": "Own process/socket observation at closure; not proof of arbitrary descendant revocation"
+}

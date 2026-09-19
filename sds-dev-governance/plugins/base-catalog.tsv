@@ -1,0 +1,2 @@
+# capability|handler|scope|harnesses|source|desired_revision|features
+figma|figma|user|claude,codex|https://mcp.figma.com/mcp|figma@claude-plugins-official|design,make

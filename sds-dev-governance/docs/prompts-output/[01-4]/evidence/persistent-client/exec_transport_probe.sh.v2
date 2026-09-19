@@ -1,0 +1,120 @@
+#!/bin/sh
+# Fixed administrative guest probe, no authentication/model/network/subject campaign.
+set -eu
+umask 077
+[ "$(/usr/bin/readlink /opt/homebrew/bin/node)" = '../Cellar/node@24/24.20.0/bin/node' ] || { echo PREFLIGHT_NODE_LINK_FAIL; exit 78; }
+[ "$(/usr/bin/shasum -a 256 /opt/homebrew/bin/node)" = 'c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd  /opt/homebrew/bin/node' ] || { echo PREFLIGHT_NODE_HASH_FAIL; exit 78; }
+client_binary=/Users/Shared/sds-sentinel-client-4f85982624b3/codex
+[ ! -L "$client_binary" ] && [ -f "$client_binary" ] || { echo PREFLIGHT_CLIENT_TYPE_FAIL; exit 78; }
+[ "$(/usr/bin/shasum -a 256 "$client_binary")" = "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc  $client_binary" ] || { echo PREFLIGHT_CLIENT_HASH_FAIL; exit 78; }
+probe_root=$(/usr/bin/mktemp -d /private/tmp/sds-sentinel-exec.XXXXXX)
+printf 'PROBE_ROOT=%s\n' "$probe_root"
+/bin/mkdir "$probe_root/home" "$probe_root/state" "$probe_root/tmp"
+/bin/cat > "$probe_root/probe.js" <<'JS'
+'use strict';
+const fs = require('node:fs');
+const cp = require('node:child_process');
+const {pathToFileURL} = require('node:url');
+const root = process.argv[2];
+const emit = row => console.log(JSON.stringify(row));
+if (!/^\/private\/tmp\/sds-sentinel-exec\.[A-Za-z0-9]+$/.test(root) || fs.realpathSync(root) !== root) process.exit(78);
+const env = {PATH:'/usr/bin:/bin', HOME:root+'/home', CODEX_HOME:root+'/state', TMPDIR:root+'/tmp'};
+const child = cp.spawn('/Users/Shared/sds-sentinel-client-4f85982624b3/codex',
+  ['exec-server','--listen','stdio','--exit-on-stdin-close'],
+  {cwd:root, env, stdio:['pipe','pipe','pipe']});
+emit({type:'executor', pid:child.pid, uid:process.getuid(), argv:['exec-server','--listen','stdio','--exit-on-stdin-close']});
+let seq=0, bytes=0, buffer='', fault=null, output='', exitNotice=null, outputSeq=0, processClosed=false;
+const pending = new Map();
+let finishProcess;
+const processDone = new Promise(resolve => {finishProcess=resolve;});
+let finishClose;
+const closed = new Promise(resolve => {finishClose=resolve;});
+function fail(message) {
+  if (fault) return;
+  fault=message; emit({type:'failure', message});
+  for (const {reject} of pending.values()) reject(Error(message));
+  pending.clear(); finishProcess();
+  child.stdin.destroy();
+  try { child.kill('SIGKILL'); } catch(e) { emit({type:'cleanup_error',code:e.code}); }
+}
+child.on('error', e => fail('SPAWN_'+e.code));
+child.stdin.on('error', e => fail('STDIN_'+e.code));
+child.on('close', (code,signal) => {
+  emit({type:'executor_close',code,signal});
+  if (pending.size) fail('CLOSED_WITH_PENDING_REQUESTS');
+  finishProcess(); finishClose({code,signal});
+});
+function count(c) {bytes+=c.length; if(bytes>65536) {fail('OUTPUT_LIMIT'); return false;} return true;}
+child.stderr.on('data', c => {if(count(c)) emit({type:'executor_stderr',text:c.toString('utf8')});});
+child.stdout.on('data', c => {
+  if(!count(c)) return;
+  buffer+=c.toString('utf8');
+  for (let i; (i=buffer.indexOf('\n'))>=0;) {
+    const line=buffer.slice(0,i); buffer=buffer.slice(i+1);
+    let row; try {row=JSON.parse(line);} catch {fail('NON_JSON_STDOUT');return;}
+    emit({type:'received',row});
+    try {
+    if(row===null || typeof row!=='object' || Array.isArray(row)) throw Error('INVALID_ENVELOPE');
+    if (Object.hasOwn(row,'id')) {
+      if(Object.hasOwn(row,'result')===Object.hasOwn(row,'error') || Object.hasOwn(row,'method')) throw Error('INVALID_RESPONSE');
+      const task=pending.get(row.id);
+      if(!task) {fail('UNEXPECTED_RESPONSE_ID');return;}
+      pending.delete(row.id);
+      if(row.error) task.reject(Error('RPC_ERROR_'+JSON.stringify(row.error)));
+      else task.resolve(row.result);
+    } else {
+      if(row.params===null || typeof row.params!=='object' || Array.isArray(row.params) ||
+         row.params.processId!=='sentinel-pwd') throw Error('INVALID_NOTIFICATION');
+      if(!Number.isInteger(row.params.seq) || row.params.seq<=outputSeq) throw Error('INVALID_SEQUENCE');
+      outputSeq=row.params.seq;
+      if(row.method==='process/output') {
+        if(exitNotice || typeof row.params.chunk!=='string') throw Error('INVALID_OUTPUT');
+        if(row.params.stream !== 'stdout') {fail('UNEXPECTED_PROCESS_STREAM');return;}
+        const b=Buffer.from(row.params.chunk,'base64');
+        if(b.toString('base64')!==row.params.chunk) {fail('INVALID_BASE64');return;}
+        output+=b.toString('utf8');
+      } else if(row.method==='process/exited') {
+        if(exitNotice) throw Error('DUPLICATE_EXIT');
+        if(row.params.sandboxDenied===true) throw Error('SANDBOX_DENIED');
+        exitNotice=row.params;
+      } else if(row.method==='process/closed') {
+        if(!exitNotice || processClosed) throw Error('INVALID_PROCESS_CLOSE');
+        processClosed=true;finishProcess();
+      } else throw Error('UNKNOWN_NOTIFICATION');
+    }
+    } catch(e) {fail(e.message);return;}
+  }
+});
+function send(row) {if(fault) throw Error(fault);emit({type:'sent',row});child.stdin.write(JSON.stringify(row)+'\n');}
+function request(method,params={}) {
+  return new Promise((resolve,reject) => {
+    const id=++seq;pending.set(id,{resolve,reject});
+    try {send({id,method,params});} catch(e) {pending.delete(id);reject(e);}
+  });
+}
+const deadline=setTimeout(() => fail('DEADLINE_12S'),12000);
+// VM45s remains the final bound if native shutdown fails; this is not revocation proof.
+const hardDeadline=setTimeout(() => {emit({type:'failure',message:'CLEANUP_UNCONFIRMED_15S'});process.exit(78);},15000);
+(async () => {
+  try {
+    const init=await request('initialize',{clientName:'sentinel-credential-free-probe'});
+    if(typeof init?.sessionId!=='string') throw Error('NO_SESSION_ID');
+    send({method:'initialized',params:{}});
+    const info=await request('environment/info');
+    const status=await request('environment/status');
+    if(info.cwd!==pathToFileURL(root).href || info.executorVersion!=='0.154.0' || status.status!=='ready') throw Error('METADATA_MISMATCH');
+    const started=await request('process/start',{processId:'sentinel-pwd',argv:['/bin/pwd'],cwd:pathToFileURL(root).href,env,tty:false,pipeStdin:false,arg0:null});
+    if(started.processId!=='sentinel-pwd') throw Error('PROCESS_ID_MISMATCH');
+    await processDone;
+    if(fault || !processClosed || exitNotice?.exitCode!==0 || output!==root+'\n') throw Error(fault || 'PWD_MISMATCH');
+    child.stdin.end();
+    const end=await closed;
+    if(fault || end.code!==0 || end.signal!==null || buffer!=='') throw Error(fault || 'UNCLEAN_EOF');
+    emit({type:'result',outcome:'TRANSPORT_PASS',root,output,auth_transferred:false,model_sessions:0,AB_runs:0,custody_verified:false,host_fallback_verified:false});
+  } catch(e) {
+    fail(e.message);await closed;process.exitCode=78;
+  } finally {clearTimeout(deadline);clearTimeout(hardDeadline);}
+})().catch(e => {emit({type:'uncaught',message:e.message});process.exitCode=78;});
+JS
+cd "$probe_root"
+exec /usr/bin/env -i PATH=/usr/bin:/bin /opt/homebrew/bin/node "$probe_root/probe.js" "$probe_root"

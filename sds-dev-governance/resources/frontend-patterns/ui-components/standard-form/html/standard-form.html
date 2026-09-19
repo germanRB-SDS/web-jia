@@ -1,0 +1,49 @@
+<!-- Standard Form — SDS dark-panel form. Labels are placeholders: pull every visible string from
+     the target project's copy/i18n layer. Real radios inside fieldset/legend keep the segmented
+     switch keyboard-native; aria-invalid + per-field error paragraphs mirror server validation. -->
+<div class="standard-form-scope">
+  <form class="standard-form" novalidate>
+    <fieldset class="sf-segmented">
+      <legend>Tipo de personalidad fiscal</legend>
+      <div class="sf-segmented-options">
+        <label class="sf-segmented-option">
+          <input type="radio" name="entity" value="company" checked>
+          <span>Empresa</span>
+        </label>
+        <label class="sf-segmented-option">
+          <input type="radio" name="entity" value="individual">
+          <span>Autónomo</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="sf-grid">
+      <label class="sf-field">
+        <span>Razón social</span>
+        <input type="text" name="legalName" autocomplete="organization" aria-describedby="err-legalName">
+        <p class="sf-field-error" id="err-legalName" hidden></p>
+      </label>
+      <label class="sf-field">
+        <span>CIF</span>
+        <input type="text" name="taxId" autocomplete="off" aria-describedby="err-taxId">
+        <p class="sf-field-error" id="err-taxId" hidden></p>
+      </label>
+      <label class="sf-field">
+        <span>Email para facturas</span>
+        <input type="email" name="invoiceEmail" autocomplete="email" aria-describedby="err-invoiceEmail">
+        <p class="sf-field-error" id="err-invoiceEmail" hidden></p>
+      </label>
+      <label class="sf-field">
+        <span>País</span>
+        <select name="country" autocomplete="country">
+          <option value="ES">España</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="sf-footer">
+      <button class="button primary" type="submit">Guardar datos de facturación</button>
+      <p class="sf-status" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+</div>

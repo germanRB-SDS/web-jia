@@ -1,0 +1,13 @@
+{
+  "vm_stopped": true,
+  "own_pids": [
+    80642,
+    80643,
+    80644,
+    80846
+  ],
+  "ps_output": "",
+  "lsof_output": "",
+  "guest_branch_closure_pending": true,
+  "reason": "VM45s lifetime expired; start-to-payload gap40.97s includes platform approval latency; no approval rejection; preserve partial B and close before repeat"
+}

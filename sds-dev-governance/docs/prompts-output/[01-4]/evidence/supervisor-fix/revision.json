@@ -1,0 +1,18 @@
+{
+  "scope": "synthetic supervisor diagnosis and tests only; no VM, network, provider or production activation",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "sha256": {
+    "sentinel/tart_host.py": "c6b4d30bf763247061e94fab733b3748dd6145691144930560c4cd19630ea0a5",
+    "sentinel/public_registry.py": "330439ae41b779c777531804adedf6ba568fd81051a36db360948bd447b696f0",
+    "tests/test-sentinel-tart-host.py": "6f5c4e2f4777ef79939d19a3d73ca49a685433012d4603f0ba04372e321e9ed2"
+  },
+  "test_correction": "Orphan fixture parent exits normally: expect preserved status 0, not timeout. Group absence and elapsed bound still required.",
+  "additional_test_interpreter": {
+    "path": "/Users/hrms/.pyenv/versions/3.8.10/bin/python3",
+    "resolved": "/Users/hrms/.pyenv/versions/3.8.10/bin/python3.8",
+    "sha256": "e528a4e35e1d6ae1cd9dc61d3c9ecb631f06c89eeeb0a8f6e78fb88ff9ea4e22",
+    "scope": "same synthetic tests, unchanged killpg and permissions; compatibility with user-reported Python"
+  }
+}

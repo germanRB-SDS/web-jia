@@ -1,0 +1,70 @@
+/* SVG Path Glow Trace - decorative particle/trail following an SVG path.
+   Keep the visible SVG and glow overlay on the same viewBox ratio and layout box. */
+
+:root {
+  --path-glow-core: #FFFFFF;
+  --path-glow-shadow: rgba(194, 186, 255, 0.48);
+  --path-glow-surface: #0A0A14;
+  --path-glow-mark: #D8D3FF;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(95, 112, 255, 0.18), transparent 34rem),
+    var(--path-glow-surface);
+  color: #F4F0FF;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.demo-shell {
+  width: min(90vw, 560px);
+}
+
+.mark-demo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 240 / 180;
+  margin: 0;
+}
+
+.mark-demo__base,
+.svg-path-glow-trace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mark-demo__base {
+  fill: var(--path-glow-mark);
+  filter:
+    drop-shadow(0 0 22px rgba(136, 128, 255, 0.28))
+    drop-shadow(0 18px 38px rgba(0, 0, 0, 0.38));
+}
+
+.svg-path-glow-trace {
+  overflow: visible;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.svg-path-glow-trace__path {
+  fill: none;
+  stroke: none;
+}
+
+.svg-path-glow-trace__particle {
+  filter: drop-shadow(0 0 7px var(--path-glow-shadow));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg-path-glow-trace {
+    display: none;
+  }
+}

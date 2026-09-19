@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-09-10T15:50:27.506765+00:00",
+  "kit_head": "79aa7ffce2563e0e3abc189b19054187daf1a43d",
+  "sources": {
+    "kit:kernel": {
+      "path": "GOVERNANCE.md",
+      "sha256": "c72eef5e8cf2cf37b21770296704cc2c87d43c32cdc2c2e7b429b2bd0903675f",
+      "bytes": 11176,
+      "coverage": "complete"
+    },
+    "kit:router": {
+      "path": "practices/INDEX.md",
+      "sha256": "26dbc5a00c5f103a5b8ffb57aeb3a669c5579cb33a2f4b0e95b34f8a9b2e5c25",
+      "bytes": 6794,
+      "coverage": "complete"
+    },
+    "kit:skills": {
+      "path": "skills/README.md",
+      "sha256": "dfc5cb340d89308933d6cdc7fa60a8ef5b9daba6064ee0f204383593ec99a0ad",
+      "bytes": 4160,
+      "coverage": "complete"
+    },
+    "kit:mcp_policy": {
+      "path": "practices/modules/07-mcp-control.md",
+      "sha256": "8ad665e77eee191abb185a0b241d7ed107e4041c51c60307588fa9301515e28f",
+      "bytes": 6309,
+      "coverage": "complete"
+    },
+    "kit:admission_policy": {
+      "path": "practices/modules/11-capability-admission.md",
+      "sha256": "a1e247c6d0ec1c102b828b3f203ce5e323c7cf02af51efd89e16444ff0222be3",
+      "bytes": 9027,
+      "coverage": "complete"
+    },
+    "kit:ledger": {
+      "path": "docs/governance/capability-registry.md",
+      "sha256": "2d674e6b56f1777ea7efe1890d20b135b1250d18d33b968bad26cabc0ddaffb5",
+      "bytes": 4769,
+      "coverage": "complete"
+    },
+    "kit:cli": {
+      "path": "mcp/cli.py",
+      "sha256": "7a5495d0c91f879d4916c618d0606cc99e3bedc218b3c795da026fdb4283e20d",
+      "bytes": 3978,
+      "coverage": "complete"
+    },
+    "kit:inventory": {
+      "path": "mcp/inventory.py",
+      "sha256": "d1d7df3683955f282b1e8fed08092d5d765c6b42d06250a1ead173376a1933b6",
+      "bytes": 12620,
+      "coverage": "complete"
+    },
+    "kit:gateway": {
+      "path": "mcp/gateway.py",
+      "sha256": "607c0083436f20da3af6b92ce7dcde55f4932329367175cd0809f4458416c8b0",
+      "bytes": 3347,
+      "coverage": "complete"
+    },
+    "kit:configure": {
+      "path": "mcp/configure.py",
+      "sha256": "9082a7b4ac01d98cc7ab05a527352005250941ebb4e11add7cfebfb99c114239",
+      "bytes": 9092,
+      "coverage": "complete"
+    },
+    "kit:control": {
+      "path": "mcp/control.py",
+      "sha256": "b2917b38633fc4be7df6ce5a5fc0471d3a58d76215b8c6116a19a76ec16cae41",
+      "bytes": 6828,
+      "coverage": "selected sections; no production adapter"
+    },
+    "kit:install": {
+      "path": "mcp/install-local.py",
+      "sha256": "34c270805b1e554edc7051dd7529137794afaa00f363eab98cbef00bc39bc648",
+      "bytes": 3093,
+      "coverage": "complete"
+    },
+    "kit:mcp_readme": {
+      "path": "mcp/README.md",
+      "sha256": "eeba216a017f84a8cf8ecff5f46fa6dbdbbd55cdffcf254518c3cd7540e29eac",
+      "bytes": 5901,
+      "coverage": "complete"
+    },
+    "kit:reader": {
+      "path": "scripts/sds_text.py",
+      "sha256": "dd0470076111c6c239d327f64b9be74372ed93eecbfbca8e532ad03e41530de2",
+      "bytes": 9615,
+      "coverage": "read_file and Document parser/closure"
+    },
+    "kit:selective_policy": {
+      "path": "practices/modules/01-selective-text.md",
+      "sha256": "fbc9ed8c6c193e134dfc6e72d6268da7a294110c7bdaf1b85df3eae5cc472660",
+      "bytes": 6838,
+      "coverage": "complete"
+    },
+    "kit:tests": {
+      "path": "tests/test-mcp-control.py",
+      "sha256": "d91f2fc08d690665517b5fa48e0958b26076a826e47046c2c71ea67fb292fa99",
+      "bytes": 15564,
+      "coverage": "complete; not rerun"
+    },
+    "kit:historic_report": {
+      "path": "docs/prompts-output/REL-2026-09-10-02/report.md",
+      "sha256": "b4bc28e6f09946435f4eace32b460c0ed077e18f37a3dd3f8f1dec4284b5fc3c",
+      "bytes": 9297,
+      "coverage": "complete"
+    },
+    "kit:implementation_manifest": {
+      "path": "docs/prompts-output/REL-2026-09-10-02/evidence/implementation-manifest.json",
+      "sha256": "06a662d94cda80a03e1329895e6fd8cb5bbb58b4eb42193ee27735ec22f61756",
+      "bytes": 3157,
+      "coverage": "hash verification of 14 MCP-related files"
+    },
+    "hub:ledger": {
+      "path": "../docs/governance/capability-registry.md",
+      "sha256": "ef29f642088dcc767097bc1a2eaa27fb40971cd5642d5fbd8457de4f22b328f9",
+      "bytes": 6914,
+      "coverage": "complete; uncommitted snapshot"
+    },
+    "hub:exception": {
+      "path": "../docs/governance/evaluation/2026-09-10-auragenda-hostinger-exception.md",
+      "sha256": "da3f6b9aa3a211314177fec5edab19d305738c35ec70ce9a48545b8a81ce86dc",
+      "bytes": 4145,
+      "coverage": "complete; uncommitted snapshot"
+    },
+    "hub:read_report": {
+      "path": "../docs/prompts-output/REL-2026-09-10-07/report.md",
+      "sha256": "5bae9888a287d403a21b45ba5a77a5509919af23bbbba1608e0fead2eb9646b2",
+      "bytes": 5984,
+      "coverage": "complete; uncommitted snapshot"
+    },
+    "hub:read_receipt": {
+      "path": "../docs/prompts-output/REL-2026-09-10-07/evidence/hostinger-initial-read.json",
+      "sha256": "a399ad36a4daf1ace25901e7d8e149b42a0a1a14b779a20eeabca9e6bc846e24",
+      "bytes": 3130,
+      "coverage": "complete; historical live evidence, no new API calls"
+    },
+    "hub:reviewed_config": {
+      "path": "../docs/operations/auragenda-hostinger-temporal.toml",
+      "sha256": "5d108d4fc87307a21c57b6c8f577688a714b8a3cc1ffe527c1f1ac9e3cd221c8",
+      "bytes": 1178,
+      "coverage": "complete; reviewed copy only, not private configuration"
+    },
+    "hub:proposal_D01": {
+      "path": "../docs/governance/evaluation/2026-09-10-hostinger-mcp-addendum.md",
+      "sha256": "2ff8987a0f2062c49dcdf9213239405cb20106a038bc7e45fb78f6eeb2b9db0d",
+      "bytes": 23192,
+      "coverage": "preamble, ADD-00 and ADD-50 through ADD-80"
+    },
+    "hub:proposal_D02": {
+      "path": "../docs/prompts/[01-0]hostinger-mcp-custodia-y-carga-selectiva.md",
+      "sha256": "215cc3ca6969a5e100a5d635f7b36306c4846877179461590a708452aad113e1",
+      "bytes": 19499,
+      "coverage": "complete; not executed"
+    },
+    "supplied:review": {
+      "path": "[02-0]revision-web-hostinger-coherencia-seguridad-eficiencia.md",
+      "sha256": "4c035acce7cf624353bdff99da4eabe5459a74f681ea88adf9f203959e7d6d45",
+      "bytes": 23879,
+      "coverage": "complete; proposal only"
+    },
+    "supplied:dossier": {
+      "path": "2026-09-10-hostinger-mcp-mejora-dossier-completo.md",
+      "sha256": "f746b5e1074258c379dd0dc6f00f1e1b8482392f07c29892d9513e0fa1144433",
+      "bytes": 414427,
+      "coverage": "preamble/index and D55/D56; current originals used for implementation and D01/D02"
+    }
+  },
+  "size_method": "raw file bytes; whitespace-separated words, not model tokens",
+  "always_read": {
+    "files": [
+      "GOVERNANCE.md",
+      "practices/INDEX.md",
+      "skills/README.md"
+    ],
+    "bytes": 22130,
+    "words": 3000,
+    "excludes": "adapters, ledgers, selected modules, session messages and tool schemas"
+  }
+}

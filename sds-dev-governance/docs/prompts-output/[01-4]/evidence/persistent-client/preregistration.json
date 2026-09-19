@@ -1,0 +1,24 @@
+{
+  "phases": [
+    "one stage into new fixed persistent root, then verified VM shutdown",
+    "one boot and native stdio probe v2 checking staged binary hash/presence, then verified shutdown"
+  ],
+  "guest_root": "/Users/Shared/sds-sentinel-client-4f85982624b3",
+  "source": "revision.json",
+  "stage_accept": [
+    "new mkdir no overwrite",
+    "size/hash/version exact",
+    "fsync success",
+    "VM stopped and own processes/socket absent"
+  ],
+  "probe_accept": "Same as ../exec-transport/preregistration.json, new fixed binary path and explicit failed-guard messages. Require native result PASS/exit0 after reboot.",
+  "limits": [
+    "No auth/model/AB",
+    "No S0/custody certification",
+    "Previous failures retained",
+    "No silent retry"
+  ],
+  "auth_transferred": false,
+  "model_sessions": 0,
+  "AB_runs": 0
+}

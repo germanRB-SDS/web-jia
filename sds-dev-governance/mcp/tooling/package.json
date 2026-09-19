@@ -1,0 +1,8 @@
+{
+  "name": "sds-hostinger-quarantined-tooling",
+  "version": "1.27.0",
+  "private": true,
+  "description": "Pinned Hostinger artifact for review; never launched by the SDS closed gateway",
+  "dependencies": { "@hostinger/mcp": "1.58.0" },
+  "engines": { "node": ">=20.0.0" }
+}

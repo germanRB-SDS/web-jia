@@ -1,0 +1,21 @@
+{
+  "outcome": "DIAGNOSIS_OBSERVED",
+  "node_link_and_hash": "MATCH",
+  "staged_root": "ABSENT",
+  "codex": "ABSENT",
+  "state": "ABSENT",
+  "diagnosis_exit": 0,
+  "prior_failure_inference": "Absent staged path is consistent with prior type guard exit78; earlier guard had no diagnostic output, so contemporaneous cause was not directly recorded. Deletion mechanism not proven.",
+  "vm_state_after": "stopped",
+  "boot_seconds": 45.12072099998477,
+  "boot_exit": 124,
+  "pids": [
+    44721,
+    44722,
+    44795
+  ],
+  "ps_exit": 1,
+  "ps_output": "",
+  "lsof_exit": 1,
+  "lsof_output": ""
+}
