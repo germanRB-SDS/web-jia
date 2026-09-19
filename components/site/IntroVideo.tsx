@@ -2,25 +2,32 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { IntroVideoModel } from "@/lib/content";
-import { PauseIcon, PlayIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
+import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PlayIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
 import styles from "./IntroVideo.module.css";
 
 type Props = { intro: IntroVideoModel };
+
+/** iOS Safari only offers fullscreen on the video element itself, through its own prefixed method. */
+type IOSVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void; webkitDisplayingFullscreen?: boolean };
 
 /**
  * The "Intro" block before the programme: one full-width video, no taller than the rider band
  * (its limit comes from lib/content/sections/jornadas-intro-video.ts). The file is only
  * requested when the block nears the viewport; it then plays muted, pauses when it leaves the
- * screen and never autoplays under prefers-reduced-motion. Round controls sit top-right.
+ * screen and never autoplays under prefers-reduced-motion. Round controls sit top-right:
+ * fullscreen (the frame goes full screen so the controls stay; iOS uses the player's own), sound, play/pause.
  */
 export function IntroVideo({ intro }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   const userPaused = useRef(false);
   const [load, setLoad] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [failed, setFailed] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [canFullscreen, setCanFullscreen] = useState(false);
 
   // Ask for the file shortly before the block shows up.
   useEffect(() => {
@@ -69,6 +76,28 @@ export function IntroVideo({ intro }: Props) {
     }
   }, []);
 
+  // Fullscreen: offered only where some API exists; the state follows the document, not the click.
+  useEffect(() => {
+    const video = videoRef.current as IOSVideo | null;
+    setCanFullscreen(Boolean(document.fullscreenEnabled || video?.webkitEnterFullscreen));
+    const sync = () => setFullscreen(document.fullscreenElement === frameRef.current);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, [load]);
+
+  const toggleFullscreen = useCallback(() => {
+    const frame = frameRef.current;
+    const video = videoRef.current as IOSVideo | null;
+    if (!frame || !video) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.fullscreenEnabled) {
+      frame.requestFullscreen().catch(() => {});
+    } else if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen();
+    }
+  }, []);
+
   const toggleSound = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -94,7 +123,7 @@ export function IntroVideo({ intro }: Props) {
         </h3>
         <p className={styles.barText}>{intro.barText}</p>
       </div>
-      <div className={styles.frame} style={intro.poster ? { backgroundImage: `url(${intro.poster})` } : undefined}>
+      <div ref={frameRef} className={styles.frame} style={intro.poster ? { backgroundImage: `url(${intro.poster})` } : undefined}>
         {intro.src && !failed ? (
           <video
             ref={videoRef}
@@ -114,6 +143,11 @@ export function IntroVideo({ intro }: Props) {
         ) : null}
         {showControls ? (
           <div className={styles.controls}>
+            {canFullscreen ? (
+              <button type="button" className={styles.control} onClick={toggleFullscreen} aria-label={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} title={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} aria-pressed={fullscreen}>
+                {fullscreen ? <FullscreenExitIcon size={24} /> : <FullscreenIcon size={24} />}
+              </button>
+            ) : null}
             <button type="button" className={styles.control} onClick={toggleSound} aria-label={muted ? intro.controls.unmute : intro.controls.mute} title={muted ? intro.controls.unmute : intro.controls.mute} aria-pressed={!muted}>
               {muted ? <SoundOffIcon size={24} /> : <SoundOnIcon size={24} />}
             </button>

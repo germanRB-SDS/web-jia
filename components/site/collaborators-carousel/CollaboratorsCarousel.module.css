@@ -44,9 +44,23 @@
   border-radius: 14px;
   background: var(--jia-gradient-cube);
   color: var(--jia-ivory);
-  box-shadow: 0 1px 0 rgb(var(--jia-ivory-rgb) / 0.08) inset, 0 14px 24px -16px rgb(var(--jia-ink-rgb) / 0.55);
+  /* Lit from above: a catch-light on the top rim, the bottom edge in shadow, a short contact shadow and the longer ambient one. */
+  box-shadow:
+    inset 0 1px 0 rgb(var(--jia-ivory-rgb) / 0.22),
+    inset 0 -1px 0 rgb(var(--jia-ink-rgb) / 0.28),
+    0 1px 2px rgb(var(--jia-ink-rgb) / 0.3),
+    0 14px 24px -16px rgb(var(--jia-ink-rgb) / 0.55);
 }
 .image { border-radius: 8px; overflow: hidden; pointer-events: none; }
+/* The card's lip casts a soft shadow onto the photograph, so it sits a step below the frame. */
+.image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 2px 5px rgb(var(--jia-ink-rgb) / 0.35), inset 0 0 0 1px rgb(var(--jia-ink-rgb) / 0.12);
+  pointer-events: none;
+}
 /* A solid colour, as asked, until the photograph arrives: no pin on it (Surface's empty state). */
 .image::before { display: none; }
 /* The name starts on the image's left edge (the card's padding); the arrow keeps the right one. */

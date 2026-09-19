@@ -63,6 +63,14 @@
   background-size: cover;
   background-position: center;
 }
+/* At full screen the frame drops its height limit and the video sits whole (contain) on ink. */
+.frame:fullscreen {
+  aspect-ratio: auto;
+  max-height: none;
+  height: 100%;
+  background-image: none;
+}
+.frame:fullscreen .video { object-fit: contain; }
 /* A soft top shade so the label and the controls stay legible on any frame. */
 .frame::after {
   content: "";

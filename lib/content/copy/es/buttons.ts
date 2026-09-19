@@ -10,5 +10,12 @@ export const buttons: Buttons = {
   nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
   route: { replay: "Repetir recorrido" },
   cube: { prev: "Tarjeta anterior", next: "Tarjeta siguiente" },
-  video: { play: "Reproducir el vídeo", pause: "Pausar el vídeo", mute: "Quitar el sonido", unmute: "Activar el sonido" },
+  video: {
+    play: "Reproducir el vídeo",
+    pause: "Pausar el vídeo",
+    mute: "Quitar el sonido",
+    unmute: "Activar el sonido",
+    fullscreen: "Ver el vídeo a pantalla completa",
+    exitFullscreen: "Salir de pantalla completa",
+  },
 };

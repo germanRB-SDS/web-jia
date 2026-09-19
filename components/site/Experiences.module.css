@@ -51,6 +51,20 @@
     margin: 0;
   }
   .photo::before { display: none; }
+  /* The seam below: the ground of Propuestas (the section that follows) rises into the photograph's floor,
+     the same way Acoge's ground fades into its own photograph. Its ground (--jia-bg-deep) is a gradient, so
+     this takes the colour at its top edge: a gradient cannot be a stop of another one. */
+  .photo::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22%;
+    background: linear-gradient(to top, color-mix(in srgb, var(--jia-sand-deep) 72%, var(--jia-vellum-5)), transparent);
+    pointer-events: none;
+  }
   /* The content column: from where the paper clears to the container's right edge. */
   .section > :not(.photo) {
     width: auto;

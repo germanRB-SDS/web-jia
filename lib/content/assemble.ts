@@ -84,7 +84,7 @@ export type IntroVideoModel = {
   aspect: number;
   autoplay: boolean;
   loop: boolean;
-  controls: { play: string; pause: string; mute: string; unmute: string };
+  controls: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string };
 };
 
 export type DayModel = {

@@ -171,6 +171,23 @@ export function SoundOffIcon(props: IconProps) {
   );
 }
 
+/** Fullscreen: four corners opening out; its exit twin, four corners closing in. */
+export function FullscreenIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M14 26V14h12M38 14h12v12M50 38v12H38M26 50H14V38" />
+    </svg>
+  );
+}
+
+export function FullscreenExitIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} strokeWidth={4}>
+      <path d="M26 14v12H14M50 26H38V14M38 50V38h12M14 38h12v12" />
+    </svg>
+  );
+}
+
 /** "Download": an arrow into a tray, same grid and stroke as the family. */
 export function DownloadIcon(props: IconProps) {
   return (
