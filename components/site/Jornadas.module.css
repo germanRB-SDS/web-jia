@@ -31,9 +31,12 @@
   position: relative;
   z-index: 1;
   display: grid;
-  gap: clamp(1.75rem, 4vw, 3rem);
+  /* The road sits close under the statement, and the band closes soon after it: the two stretches the promoter
+     allowed us to spend (JIA-2026-09-20-45), so the whole opening is shorter without touching the text, the seal
+     or the road's own drawing. */
+  gap: clamp(0.875rem, 1.6vw, 1.5rem);
   align-content: center;
-  padding: clamp(2rem, 5vw, 3.5rem) var(--gutter) clamp(3rem, 7vw, 5rem);
+  padding: clamp(2rem, 5vw, 3.5rem) var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
   background: var(--jia-dune);
 }
 .bandText {

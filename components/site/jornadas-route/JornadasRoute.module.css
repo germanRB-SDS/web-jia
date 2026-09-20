@@ -8,7 +8,10 @@
   /* Fills the desktop column; in the single-column band (tablet) it stops growing at 36rem. */
   max-width: 36rem;
   min-width: 0;
-  /* Room for the controls row below the map without growing on state changes. */
+  /* Room for the controls row below the map without growing on state changes. JIA-2026-09-20-45 tried to trim
+     it to 1.75rem and measured the button instead of guessing: the replay control is 33.2 px tall (a 22 px icon
+     plus 0.35rem of padding on each side), so 2.25rem is the smallest row that holds it. This stretch is a real
+     control, not air; the air the promoter asked us to spend is the band's bottom padding. */
   margin-bottom: 2.25rem;
 }
 .canvas {
