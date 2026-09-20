@@ -18,13 +18,8 @@ export function Hero({ hero, brand, markLabels, showMarks }: Props) {
   return (
     <section id={hero.id} className={styles.hero} aria-labelledby="hero-name">
       <div className={styles.photo}>
-        <Surface media={hero.media} alt={hero.alt} fallback={hero.fallback} ratio={1672 / 941} sizes="(min-width: 960px) 64vw, 100vw" className={styles.surface} priority />
+        <Surface media={hero.media} alt={hero.alt} fallback={hero.fallback} sizes="(min-width: 960px) 64vw, 100vw" className={styles.surface} priority />
         <span className={styles.light} aria-hidden="true" />
-        {hero.note ? (
-          <span className={styles.note} aria-hidden="true">
-            {hero.note}
-          </span>
-        ) : null}
       </div>
 
       <div className={styles.content}>

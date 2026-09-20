@@ -70,6 +70,23 @@ const CARD_NUMBERS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
 export const MEDIA: Record<string, Media> = Object.fromEntries(
   [
     {
+      /** Hero in use: the three at the saloon porch. The frame is far wider than the band's photo box, so
+          the sides are trimmed. Measured on the frame, the three stand at 39-49 %, 53-78 % and 81-96 % of
+          its width, and the left third is flat cream. The focal point is pushed right so the window ends
+          past the third of them at every width; what it costs is that cream, so from a laptop down the
+          torn edge falls on the first man instead. That is the trade the promoter asked for: his face is
+          hidden anyway, and the third one has to be in. */
+      id: "hero-saloon",
+      variants: [
+        { src: "/hero/hero-saloon-960.webp", width: 960 },
+        { src: "/hero/hero-saloon-1916.webp", width: 1916 },
+      ],
+      ratio: 1916 / 821,
+      focal: { x: 92, y: 50 },
+      original: "assets/images-website/hero-salloon-vaqueros.png",
+      license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Hero crop without the signpost (its baked-in words were cut mid-word at 1440). */
       id: "hero-1",
       variants: [

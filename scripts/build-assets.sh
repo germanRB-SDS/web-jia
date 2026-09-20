@@ -23,6 +23,14 @@ for name in hero-almeria-docentes hero-2-almeria-docentes; do
   magick "$src" -crop 1021x941+300+0 +repage -strip -quality 82 "public/hero/$name-crop-1021.webp"
 done
 
+# Hero photograph in use: the three at the saloon porch supplied by the promoter (hero-salloon-vaqueros.png,
+# 1916x821, 2026-09-20). Its left third is flat cream, which is what the hero's torn edge dissolves into. No
+# crop here: the band's photo box is far more upright than the frame, so the sides are trimmed by object-fit
+# and the focal point in media.ts decides which. The two earlier hero frames stay above, unused.
+out public/hero/x
+magick assets/images-website/hero-salloon-vaqueros.png -resize 960x -strip -quality 80 "public/hero/hero-saloon-960.webp"
+magick assets/images-website/hero-salloon-vaqueros.png -strip -quality 82 "public/hero/hero-saloon-1916.webp"
+
 # Jornadas band: the rider over the valley supplied by the promoter (1916x821)
 out public/jornadas/x
 magick assets/images-website/jornadas-jinete.png -resize 960x -strip -quality 80 "public/jornadas/jinete-960.webp"
