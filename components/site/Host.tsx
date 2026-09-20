@@ -15,7 +15,7 @@ export function Host({ acoge, copy }: Props) {
   return (
     <section id={acoge.id} className={styles.band} aria-labelledby={`${acoge.id}-title`}>
       <div className={styles.photo}>
-        <Surface media={acoge.media} alt={acoge.alt} fallback={acoge.fallback} ratio={1922 / 818} sizes="100vw" className={styles.surface} />
+        <Surface media={acoge.media} alt={acoge.alt} fallback={acoge.fallback} sizes="100vw" className={styles.surface} />
       </div>
       <div className={styles.inner}>
         <div className={styles.text}>

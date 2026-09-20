@@ -34,10 +34,30 @@
   height: 22%;
   background: linear-gradient(to bottom, var(--jia-vellum-4), transparent);
 }
+/* Two jobs on one layer, because ::before already carries the top seam: the veil that clears the right
+   side of the photograph, and the seam with Socios below.
+
+   The veil exists because the band's photograph is not pale on the right: it ends in warm desert dust, and
+   the call would sit on it. It fades to the page's own ground so the right side arrives the same as before.
+   Its solid edge is not a round number but the text column's own left edge, worked out from the same
+   geometry .inner and .text use — around 50% of the band at laptop width, and further left as the window
+   narrows and the column starts earlier. Anchored that way the copy never lands on the dust at any width.
+   The ramp is eased (a smoothstep across the 12% before that edge), not straight: a linear one leaves a
+   visible seam where it begins. The first stop keeps 0.5% of the colour instead of `transparent` so the
+   interpolation never drifts through grey. */
 .photo::after {
+  --veil-solid: calc(50% + min(100% - 2 * var(--gutter), var(--container)) / 2 - clamp(0rem, 3vw, 3rem) - 28rem);
+  top: 0;
   bottom: 0;
-  height: 22%;
-  background: linear-gradient(to top, var(--jia-vellum-4), transparent);
+  background:
+    linear-gradient(to right,
+      color-mix(in srgb, var(--jia-vellum-4) 0.5%, transparent) calc(var(--veil-solid) - 12%),
+      color-mix(in srgb, var(--jia-vellum-4) 10%, transparent) calc(var(--veil-solid) - 9.6%),
+      color-mix(in srgb, var(--jia-vellum-4) 35%, transparent) calc(var(--veil-solid) - 7.2%),
+      color-mix(in srgb, var(--jia-vellum-4) 65%, transparent) calc(var(--veil-solid) - 4.8%),
+      color-mix(in srgb, var(--jia-vellum-4) 90%, transparent) calc(var(--veil-solid) - 2.4%),
+      var(--jia-vellum-4) var(--veil-solid)),
+    linear-gradient(to top, var(--jia-vellum-4) 0%, transparent 22%);
 }
 .inner {
   position: relative;

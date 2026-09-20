@@ -10,6 +10,6 @@ export const acogeConfig = {
   id: "acoge",
   url: null as string | null,
   external: true,
-  mediaId: "acoge-arquero" as string | null,
+  mediaId: "acoge-indio" as string | null,
   fallbackSurface: "sand" as SurfaceToken,
 } as const;

@@ -75,10 +75,11 @@ out public/experiencias/x
 magick assets/images-website/aula-maestra2.png -resize 960x -strip -quality 80 "public/experiencias/aula-960.webp"
 magick assets/images-website/aula-maestra2.png -strip -quality 82 "public/experiencias/aula-1916.webp"
 
-# Acoge JIA band: the archer supplied by the promoter (1922x818)
+# Acoge JIA band: the archer supplied by the promoter (indio.png, 1916x821, second version supplied on
+# 2026-09-20). The first archer stays beside it as acoge-arquero.png, unused: originals are never overwritten.
 out public/acoge/x
-magick assets/images-website/acoge-arquero.png -resize 960x -strip -quality 80 "public/acoge/arquero-960.webp"
-magick assets/images-website/acoge-arquero.png -strip -quality 82 "public/acoge/arquero-1922.webp"
+magick assets/images-website/indio.png -resize 960x -strip -quality 80 "public/acoge/indio-960.webp"
+magick assets/images-website/indio.png -strip -quality 82 "public/acoge/indio-1916.webp"
 
 # Collaborators' cards (JIA-2026-09-18-24): each entity's logotype composed on a western still (1448x1086, 4:3,
 # the card's image slot). The slot is ~272 CSS px wide: 420 covers density 1, 840 densities 2-3.
