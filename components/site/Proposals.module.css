@@ -22,6 +22,19 @@
   color: var(--jia-terracotta);
 }
 
+/* ---- the phone: the photograph right under the title ----
+   Stacked (below 900 px) the fire used to close the section, and the next one, «Acoge JIA», opens with a
+   full-bleed photograph of its own: two pictures touching, with no edge between the two sections. Under the
+   title instead, the section ends on its own words and its button, and the one below starts against paper
+   (promoter, JIA-2026-09-20-49). It is the same single image — reordered, never a second copy. */
+@media (max-width: 899.98px) {
+  .visual {
+    order: 1;
+    margin-block: clamp(1.25rem, 5vw, 2rem) clamp(1.75rem, 6vw, 2.5rem);
+  }
+  .text { order: 2; }
+}
+
 /* ---- the band ----
    From 1280 px up the section measures exactly the same as the one above it, «Ideas que ya han pasado por el
    aula» (promoter, JIA-2026-09-20-47), whose height is its classroom photograph at full bleed. Both read the
