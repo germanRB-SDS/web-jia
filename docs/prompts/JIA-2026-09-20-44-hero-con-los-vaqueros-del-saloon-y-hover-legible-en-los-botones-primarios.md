@@ -5,7 +5,9 @@ en el porche de un saloon, la mujer de pie en el centro entre las puertas batien
 lado; el tercio izquierdo se disuelve en un crema plano).
 **Nivel:** LEVEL 2 (imagen nueva en el hero + corrección de un defecto de contraste en un primitivo compartido) ·
 tmp/scratch: **no aplica** (tarea corta, dos encargos independientes) → se registra `N/A` en el informe.
-**Estado:** PENDIENTE DE EJECUTAR.
+**Estado:** EJECUTADO (2026-09-20) — informe en `docs/prompts-output/JIA-2026-09-20-44/report.md`. Dos encargos
+añadidos por el promotor a mitad de ejecución: correr el encuadre a la derecha para que **el tercer vaquero salga**
+(aunque el primero quede dentro del borde deshilachado) y **retirar del todo** la nota «Almería siempre inspira».
 
 ## Texto del promotor
 
