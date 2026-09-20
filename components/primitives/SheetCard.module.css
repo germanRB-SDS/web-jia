@@ -192,6 +192,35 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
 @media (prefers-reduced-motion: reduce) {
   .download svg { transition: none; }
 }
+/* ---- the phone: the card lays itself out ----
+   The seven rows above exist so that cards SIDE BY SIDE line their rows up and their two actions sit at
+   one height: that is why the title, the subtitle, the who and the theme each keep room for two lines even
+   when they have one or none. On a phone there is one card per view — in «Ideas que ya han pasado por el
+   aula» one per row, in the workshops one per carousel page — so there is no neighbour to line up with,
+   and those reserves turned into 84 px of empty paper over «Ver ficha» (measured at 390 px before
+   JIA-2026-09-20-49). Here the card simply flows: each line takes the height of its own text. */
+@media (max-width: 759.98px) {
+  .card {
+    grid-template-rows: auto;
+    grid-row: auto;
+  }
+  .media,
+  .title,
+  .subtitle,
+  .who,
+  .theme,
+  .foot,
+  .download {
+    grid-row: auto;
+  }
+  .title,
+  .subtitle,
+  .who,
+  .theme {
+    min-height: 0;
+  }
+}
+
 .pending {
   font-family: var(--f-ui);
   font-size: 0.8125rem;
