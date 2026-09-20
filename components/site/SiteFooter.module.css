@@ -200,19 +200,25 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 260ms ease;
-  /* Symmetric (rose - gold - rose) so the loop restarts without a snap. */
+  /* Symmetric (rose - gold - rose) so consecutive tiles join on the same colour and the loop never snaps.
+     90deg is the horizontal axis in CSS (0deg points up, 180deg down), so the colour runs left to right.
+     The width has to be exactly 200%: a percentage background-position slides the image by
+     position x (container - image), so covering the whole 0-200% range moves it by exactly one tile and
+     the loop closes on itself. The kit's 220% does not close - it travels 1.2 tiles and jumps on restart. */
   background-image: linear-gradient(90deg, var(--sds-rose), var(--sds-orange) 35%, var(--sds-gold) 50%, var(--sds-orange) 65%, var(--sds-rose));
-  background-size: 220% 100%;
-  background-position: 0% 50%;
+  background-size: 200% 100%;
+  background-position: 200% 50%;
 }
 .bottom:has(.bottomInner:hover)::before,
 .bottom:has(.bottomInner:focus-within)::before {
-  opacity: 1;
+  opacity: 0.9;
   animation: studio-rule-flow var(--sds-flow-speed) linear infinite;
 }
+/* Counting down, not up: a falling background-position slides the image to the right, so the colours
+   flow left to right. Counting up would run them the other way. */
 @keyframes studio-rule-flow {
-  from { background-position: 0% 50%; }
-  to { background-position: 220% 50%; }
+  from { background-position: 200% 50%; }
+  to { background-position: 0% 50%; }
 }
 /* Reduced motion: the rule still lights up, it just does not travel. */
 @media (prefers-reduced-motion: reduce) {
