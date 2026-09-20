@@ -7,7 +7,10 @@
 |---|---|---|
 | 1 | `493f361` | La regla del colofón se enciende con el degradado de South Desert Studio en hover. |
 | 2 | `f0b4a01` | La marca del estudio se dibuja un 15 % mayor sin que la franja crezca. |
-| — | (este) | Informe. |
+| — | `bb13307` | Informe de las fases 1–2. |
+| 3 | `d18aa41` | El flujo corre de izquierda a derecha, al 90 % de opacidad, y el bucle cierra exacto. |
+| 4 | `7dec9b5` | Las tres columnas del pie miden 240 px cada una, centradas. |
+| — | (este) | Informe de las fases 3–4. |
 
 ## Resultado
 
@@ -17,10 +20,10 @@
 (el crédito del estudio y la nota de los estepicursores), un `::before` de 1 px funde su opacidad a 1 en
 260 ms y muestra el degradado de marca del estudio, que además se desplaza en bucle.
 
-El degradado es `linear-gradient(90deg, …)`: **horizontal, el color cambia de izquierda a derecha**, y el
-desplazamiento viaja también de izquierda a derecha. Es simétrico (rosa · naranja · oro · naranja · rosa)
-con `background-size: 220%` alineado al final de los keyframes, tal como exige el patrón del kit, para que
-el bucle reinicie sin salto. Todo en CSS: el TSX no se ha tocado.
+El degradado es `linear-gradient(90deg, …)`: **horizontal, el color cambia de izquierda a derecha**. Es
+simétrico (rosa · naranja · oro · naranja · rosa), de modo que dos baldosas contiguas se unen sobre el mismo
+color. Todo en CSS: el TSX no se ha tocado. (El sentido del desplazamiento y el tamaño del fondo se
+corrigieron en la fase 3; ver más abajo.)
 
 Geometría intacta: el `padding-block-start: 1px` de `.bottom` devuelve el píxel que aportaba el borde.
 
@@ -122,3 +125,123 @@ coordenadas de documento. Hoy no falla porque todos sus recortes son de página 
 cualquier recorte parcial futuro saldría de la zona equivocada. Se detectó al capturar esta evidencia y se
 resolvió en el script auxiliar de esta fase, que es temporal y no se commitea.
 *Destino:* candidato a arreglo en una fase futura del script de QA; no entra aquí para no mezclar ámbitos.
+
+
+---
+
+# Fase 3 — Sentido del flujo, opacidad y cierre del bucle
+
+Commit: `d18aa41`.
+
+## Resultado
+
+**1 · Opacidad al 90 %.** El degradado encendido pasa de `opacity: 1` a `0.9`. Los tonos se apagan lo justo
+sobre la tinta del pie: el extremo izquierdo del fotograma A pasa de `#f1814e` a `#de734e`.
+
+**2 · El flujo corre ahora de izquierda a derecha.** Iba al revés, y el promotor lo detectó a ojo. La causa:
+con un fondo más ancho que su caja, **subir** `background-position` desplaza la imagen hacia la **izquierda**,
+porque el porcentaje interpola sobre `(contenedor − imagen)`, que es negativo. Los keyframes ahora cuentan
+hacia atrás, de `200%` a `0%`, y la imagen viaja hacia la derecha. El eje del degradado sigue siendo `90deg`,
+que es el horizontal en CSS (`0deg` apunta arriba, `180deg` abajo); lo que se ha invertido es el sentido del
+recorrido, no el eje.
+
+**3 · `background-size` de 220 % a 200 %.** Salió al comprobar lo anterior: **el 220 % que recomienda el
+patrón del kit no cierra el bucle.** Con `background-position` en porcentaje el desplazamiento es
+`posición × (contenedor − imagen)`, así que recorrer 0–220 % con una imagen del 220 % mueve 264 % del ancho,
+mientras el patrón se repite cada 220 %: 1,2 baldosas, con salto visible al reiniciar. La condición de cierre
+es `|(100 − S)/100| = 1`, que sólo cumple `S = 200`. Con 200 % el recorrido es de exactamente una baldosa.
+
+## Verificación determinista del sentido
+
+Fijando `background-position` sin animación (`evidence/pos-*.png`) y localizando el pico dorado (canal verde:
+oro `#f5c242` tiene G=194; rosa `#e05a6b`, G=90):
+
+| `background-position` | pico dorado | pico rosa |
+|---|---|---|
+| 200 % | 100 % del ancho | 0 % |
+| 150 % | fuera de cuadro (G máx. 123) | 49 % |
+| 100 % | **0 %** | 99 % |
+| 50 % | **50 %** | 0 % |
+| 0 % | **100 %** | 0 % |
+
+La animación recorre 200 % → 0 %, luego el oro **entra por la izquierda, cruza el centro y sale por la
+derecha**. Y el fotograma de 0 % es idéntico al de 200 %: el bucle cierra sobre sí mismo sin salto, que es
+justo lo que el 220 % no conseguía.
+
+En los fotogramas animados, el oro pasa del 25 % al 87 % del ancho entre +0,8 s y +1,6 s.
+
+## Verificación
+
+`npx tsc --noEmit`, `npm run check:content` y `npx next build` en verde; el `:has()` sigue en el CSS
+compilado. Geometría sin cambios respecto a la fase 2: fila 72 px, franja 73 px, marca 32 × 32 px de caja y
+36,8 × 36,8 px pintada.
+
+## Análisis de riesgo
+
+**Críticos: ninguno nuevo. Severos: ninguno nuevo.**
+
+**Moderados (1 nuevo, y uno que esta fase cierra):**
+
+1. **Nuevo — divergencia con el patrón del kit.** Este componente usa `background-size: 200%` mientras
+   `gradient-flow-button` documenta 220 % y pide explícitamente mantener ambos alineados. Quien copie el
+   patrón del kit a otro sitio reproducirá el salto. El porqué queda escrito en el comentario de la regla.
+   *Destino:* candidato a corrección del recurso del kit y de su lista de modos de fallo, en una promoción
+   futura de `sds-dev-governance` (fuera del ámbito de este proyecto). Decisión del promotor.
+
+2. **Cerrado — el salto del bucle.** El riesgo de reinicio brusco que el patrón del kit daba por resuelto
+   con el 220 % existía de verdad y queda eliminado, con la evidencia `pos-0.png` ≡ `pos-200.png`.
+
+Los dos moderados del informe anterior (`:has()` sin repliegue; el escalado de la marca es de pintado y no
+de maquetación) siguen vigentes y sin cambios.
+
+
+---
+
+# Fase 4 — Las tres columnas, del mismo ancho
+
+Commit: `7dec9b5`.
+
+## Resultado
+
+Secciones, Organiza y Colabora tenían anchos distintos: cada columna se ajustaba a su contenido
+(`grid-auto-columns: minmax(0, max-content)`) y sólo Organiza, la de textos más largos, alcanzaba el tope de
+`15rem` que imponía `.cols .col { max-width: 15rem }`. Ahora el ancho lo fija la pista de la rejilla
+—`grid-auto-columns: 15rem`— así que las tres miden **240 px exactos**, y el `max-width` de `.col` sobra y
+desaparece.
+
+El grupo **sigue centrado respecto a la ventana**, que era la condición conseguida en `JIA-2026-09-19-40`:
+las zonas laterales de `.inner` siguen siendo iguales (`minmax(min-content, 1fr)` · `auto` ·
+`minmax(0, 1fr)`) y el grupo, ahora más ancho, se las come por igual.
+
+## Verificación
+
+Medido sobre el export estático (Chrome headless por CDP):
+
+| Ventana | Anchos de columna | Separaciones | Centro del grupo | Centro de la ventana |
+|---|---|---|---|---|
+| 1920 px | 240 · 240 · 240 | 64 · 64 | 960 | 960 ✓ |
+| 1440 px | 240 · 240 · 240 | 57,6 · 57,6 | 720 | 720 ✓ |
+| 1280 px | 240 · 240 · 240 | 51,2 · 51,2 | 640 | 640 ✓ |
+| 1100 px | 240 · 240 · 240 | 44 · 44 | 550 | 550 ✓ |
+
+Por debajo de 1100 px nada cambia: sigue el diseño de tablet de cuatro columnas con la marca (medido a
+1000 px → 187,3 px cada una, y a 760 px → 137,1 px cada una; el grupo no está centrado en la ventana ahí
+**por diseño**, porque se disuelve en la rejilla junto a la marca). En móvil, apiladas.
+
+`npx tsc --noEmit`, `npm run check:content` y `npx next build` en verde. Evidencia: `evidence/footer-1440.png`.
+
+## Análisis de riesgo
+
+**Críticos: ninguno. Severos: ninguno.**
+
+**Moderado (1):** las columnas dejan de encogerse con el contenido entre 1100 px y el ancho del contenedor.
+Con los textos actuales sobra sitio en las cuatro anchuras medidas, pero una entrada futura notablemente más
+larga en `lib/content/sections/footer.ts` partiría palabras dentro de sus 240 px en lugar de ensanchar la
+columna, y a 1100 px justo el margen libre es el más estrecho (44 px de separación).
+*Destino:* aceptado; es exactamente el comportamiento pedido. Si alguna vez molesta, la salida es bajar
+`grid-auto-columns` a `minmax(0, 15rem)` con `justify-content: center`, que conserva la igualdad sólo
+mientras quepa.
+
+El moderado nuevo de la fase 3 (divergencia con el `background-size` del patrón del kit) y los dos de las
+fases 1–2 (`:has()` sin repliegue; el escalado de la marca es de pintado, no de maquetación) siguen vigentes
+y sin cambios.
