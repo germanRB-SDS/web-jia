@@ -10,7 +10,9 @@
 | — | `bb13307` | Informe de las fases 1–2. |
 | 3 | `d18aa41` | El flujo corre de izquierda a derecha, al 90 % de opacidad, y el bucle cierra exacto. |
 | 4 | `7dec9b5` | Las tres columnas del pie miden 240 px cada una, centradas. |
-| — | (este) | Informe de las fases 3–4. |
+| — | `1037468` | Informe de las fases 3–4. |
+| 5 | `cea8059` | Opacidad al 80 % y el extremo rosa a tierra cocida. |
+| — | (este) | Informe de la fase 5. |
 
 ## Resultado
 
@@ -245,3 +247,53 @@ mientras quepa.
 El moderado nuevo de la fase 3 (divergencia con el `background-size` del patrón del kit) y los dos de las
 fases 1–2 (`:has()` sin repliegue; el escalado de la marca es de pintado, no de maquetación) siguen vigentes
 y sin cambios.
+
+
+---
+
+# Fase 5 — Opacidad al 80 % y el extremo rosa a tierra cocida
+
+Commit: `cea8059`.
+
+## Resultado
+
+**1 · Opacidad de 0,9 a 0,8.**
+
+**2 · El tercer tono deja de ser rosa.** El naranja `#f4874a` y el oro `#f5c242` de South Desert Studio
+quedan **intactos**. El tercero, el rosa `#e05a6b`, pasa a un barro `#c2604a`. El motivo técnico de que el
+original se leyera como rosa es que su canal **azul estaba por encima del verde** (107 frente a 90); en el
+nuevo manda el verde, que es lo que sitúa un color en el terreno de la tierra cocida. Así el extremo oscuro
+de la línea se retira y el naranja y el oro la llevan, que es el realce que pidió el promotor.
+
+## Verificación
+
+Medido sobre el export estático, extremo oscuro y pico dorado de la regla:
+
+| Estado | extremo oscuro | pico dorado | verde vs azul en el extremo oscuro |
+|---|---|---|---|
+| antes (0,9 · rosa) | `#c1525d` | `#d2a03d` | 82 < 93 → rosa |
+| ahora (0,8 · barro) | `#aa5742` | `#d2a23c` | 87 > 66 → barro |
+
+El salto entre los dos extremos crece pese a bajar la opacidad: el realce pedido.
+
+`npx tsc --noEmit`, `npm run check:content` y `npx next build` en verde.
+
+## Excepción de paleta, actualizada
+
+El naranja y el oro siguen siendo la marca exacta del socio (`--color-brand-gradient` de
+`teragenda-colors-palette`). **El tercer tono ya no lo es**: es un valor propio de este componente, elegido
+para que encaje con la tinta del pie. El porqué queda escrito en el comentario de la regla. Sigue sin ser un
+token de `app/theme/palette.css`, dentro de la misma excepción explícita declarada en las fases 1–2.
+
+## Análisis de riesgo
+
+**Críticos: ninguno. Severos: ninguno.**
+
+**Moderado (1 nuevo):** el degradado ya no reproduce `--color-brand-gradient` tal cual. Si mañana el socio
+revisa su marca, este componente no la seguirá automáticamente, y nada en el repositorio lo vigila.
+*Destino:* documentado en el comentario de la regla y aquí; sin acción. Si el promotor quiere que vuelva a
+seguir la marca literal, basta con devolver `--sds-clay` a `#e05a6b`.
+
+Siguen vigentes y sin cambios los moderados anteriores: divergencia con el `background-size` del patrón del
+kit (fase 3), las columnas fijas de 240 px entre 1100 px y el ancho del contenedor (fase 4), `:has()` sin
+repliegue y el escalado de la marca por pintado y no por maquetación (fases 1–2).
