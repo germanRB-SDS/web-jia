@@ -7,8 +7,9 @@ import { acogeConfig } from "./acoge";
 import { experienciasConfig } from "./experiencias";
 import { jornadasConfig } from "./jornadas";
 import { propuestasConfig } from "./propuestas";
+import { sociosConfig } from "./socios";
 
-export type NavKey = "jornadas" | "dosieres" | "experiencias" | "propuestas" | "acoge";
+export type NavKey = "jornadas" | "dosieres" | "experiencias" | "propuestas" | "acoge" | "socios";
 export type NavChildKey = "programa" | "comoFuncionan" | "talleres";
 
 export const navStructure: readonly { key: NavKey; anchor: string; children?: readonly { key: NavChildKey; anchor: string }[] }[] = [
@@ -24,4 +25,6 @@ export const navStructure: readonly { key: NavKey; anchor: string; children?: re
   { key: "experiencias", anchor: experienciasConfig.id },
   { key: "propuestas", anchor: propuestasConfig.id },
   { key: "acoge", anchor: acogeConfig.id },
+  // Last, because it is the last section of the page (JIA-2026-09-20-45, promoter).
+  { key: "socios", anchor: sociosConfig.id },
 ];

@@ -16,6 +16,8 @@ export const nav: Copy["nav"] = {
     experiencias: "Experiencias",
     propuestas: "Propuestas",
     acoge: "Acoge JIA",
+    // The same name the section itself carries; the menu renders it in capitals.
+    socios: "Quiénes somos",
   },
   jornadas: { programa: "Programa", comoFuncionan: "Cómo funcionan", talleres: "Talleres" },
 };

@@ -53,7 +53,7 @@ export type Copy = {
   nav: {
     skip: string;
     home: string;
-    areas: { jornadas: string; dosieres: string; experiencias: string; propuestas: string; acoge: string };
+    areas: { jornadas: string; dosieres: string; experiencias: string; propuestas: string; acoge: string; socios: string };
     jornadas: { programa: string; comoFuncionan: string; talleres: string };
   };
   a11y: {

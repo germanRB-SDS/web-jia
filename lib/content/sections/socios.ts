@@ -1,7 +1,7 @@
 import type { SurfaceToken } from "../data/types";
 
 /**
- * SOCIOS ("Quién hace posible las JIA"). Each collaborator's card shows its image (`logoMediaId` in
+ * SOCIOS ("Quiénes somos", renamed from "Quién hace posible las JIA" in JIA-2026-09-20-45). Each collaborator's card shows its image (`logoMediaId` in
  * data/organizations.ts); the solid palette surface below is what the same slot shows if one is missing.
  */
 export const sociosConfig = {
