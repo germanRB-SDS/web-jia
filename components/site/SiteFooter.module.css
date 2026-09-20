@@ -77,6 +77,11 @@
   /* A phone: the lists are stacked over the whole block; the post stays out and the door's light comes in. */
   --post-x: calc(100cqw + 38cqh);
 }
+/* A phone: the post and the lit door of the stable are what shows (promoter, JIA-2026-09-20-49). Until then
+   the post sat far off to the right (100cqw + 38cqh) and the window fell on the middle-left of the picture.
+   65 % of the block's width puts the post inside the screen; the veil below is rewritten here, because the
+   one for wide windows opens up just before the post and on a phone that would leave the lists over the
+   light of the door. */
 @media (min-width: 760px) {
   .stableGround { --post-x: calc(100cqw - 12cqh); }
 }
@@ -111,6 +116,33 @@
 .stableGround::after {
   background: linear-gradient(90deg, rgb(var(--jia-ink-rgb) / 0.9) 0%, rgb(var(--jia-ink-rgb) / 0.78) 55%, rgb(var(--jia-ink-rgb) / 0) calc(var(--post-x) - 26cqh));
 }
+
+/* ---- a phone: the right half of the photograph, not a wall of texture ----
+   Sized by the block's HEIGHT (the rules above) the picture came out 3 900 px wide on a phone, where the
+   block is tall and narrow, and the window fell on a tenth of it. Here it is sized by its WIDTH — 2,4 times
+   the screen — and centred in the block, still placed by its post: what shows is the right half of the
+   photograph proper (the shaft of light, the horse's legs and the lit post). Since the band no longer fills
+   the block, the picture melts top and bottom as well as sideways (promoter, JIA-2026-09-20-49). */
+@media (max-width: 759.98px) {
+  .stableGround { --post-x: 62cqw; }
+  .stable {
+    width: 240cqw;
+    height: auto;
+    top: 50%;
+    translate: 0 -50%;
+    left: calc(var(--post-x) - var(--post-centre) * 240cqw);
+  }
+  .stableImg {
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 90%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+    mask-composite: intersect;
+  }
+  /* The veil for wide windows opens up to nothing just before the post; here the post is on screen and the
+     lists sit over the light, so it keeps a floor of its own all the way across. */
+  .stableGround::after {
+    background: linear-gradient(90deg, rgb(var(--jia-ink-rgb) / 0.82) 0%, rgb(var(--jia-ink-rgb) / 0.66) 55%, rgb(var(--jia-ink-rgb) / 0.42) 100%);
+  }
+}
+
 
 /* The horseshoe's stage: as tall as the block above the rule and as wide as the window (it bleeds out of the
    container so the shoe can hang by the window's right edge), never in the pointer's way; only the button that
