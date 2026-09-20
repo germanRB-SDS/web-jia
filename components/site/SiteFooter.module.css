@@ -172,7 +172,53 @@
 }
 .links a:hover, .orgs a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .orgs { color: var(--jia-sand); }
-.bottom { position: relative; z-index: 1; overflow: hidden; border-top: 1px solid rgb(var(--jia-paper-rgb) / 0.12); }
+/* The rule over the colophon. It is no longer a border but a 1px layer: at rest the same hairline as
+   before, and while the pointer (or the keyboard) is on the strip below it lights up with South Desert
+   Studio's gradient, which then flows sideways in a seamless loop. Pattern: the kit's gradient-flow-button
+   (`sds-dev-governance/resources/frontend-patterns/ui-components/gradient-flow-button/`). The three tones
+   are the partner's brand (`--color-brand-gradient` of teragenda-colors-palette), not JIA palette tokens:
+   the same explicit exception already made below for the shimmer of the studio's name. The padding keeps
+   the 1px the border used to contribute, so nothing moves. */
+.bottom {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-block-start: 1px;
+  background: linear-gradient(rgb(var(--jia-paper-rgb) / 0.12), rgb(var(--jia-paper-rgb) / 0.12)) top / 100% 1px no-repeat;
+}
+.bottom::before {
+  --sds-rose: #e05a6b;
+  --sds-orange: #f4874a;
+  --sds-gold: #f5c242;
+  --sds-flow-speed: 2.5s;
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 1px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 260ms ease;
+  /* Symmetric (rose - gold - rose) so the loop restarts without a snap. */
+  background-image: linear-gradient(90deg, var(--sds-rose), var(--sds-orange) 35%, var(--sds-gold) 50%, var(--sds-orange) 65%, var(--sds-rose));
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+}
+.bottom:has(.bottomInner:hover)::before,
+.bottom:has(.bottomInner:focus-within)::before {
+  opacity: 1;
+  animation: studio-rule-flow var(--sds-flow-speed) linear infinite;
+}
+@keyframes studio-rule-flow {
+  from { background-position: 0% 50%; }
+  to { background-position: 220% 50%; }
+}
+/* Reduced motion: the rule still lights up, it just does not travel. */
+@media (prefers-reduced-motion: reduce) {
+  .bottom:has(.bottomInner:hover)::before,
+  .bottom:has(.bottomInner:focus-within)::before { animation: none; background-position: 50% 50%; }
+}
 /* The tumbleweeds' field: the whole strip, behind the credit (tumbleweeds/tumbleweed-field.ts fills it). */
 .weeds {
   position: absolute;
