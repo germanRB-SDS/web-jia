@@ -6,7 +6,7 @@ plumas, una mujer con micrófono entrevistándole y un sheriff), reclamando un e
 `JIA-2026-09-20-45`.
 **Nivel:** LEVEL 2 (sustitución de la fotografía de una sección + cambio del velo que la funde con el papel) ·
 tmp/scratch: **no aplica** (tarea corta, un solo encargo en una sola capa) → se registra `N/A` en el informe.
-**Estado:** PENDIENTE.
+**Estado:** EJECUTADO (2026-09-20) — informe en `docs/prompts-output/JIA-2026-09-20-46/report.md`.
 
 ## Texto del promotor
 
