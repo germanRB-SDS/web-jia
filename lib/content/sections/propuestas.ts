@@ -7,5 +7,5 @@ export const propuestasConfig = {
   url: null as string | null,
   external: true,
   /** Visual column on the right; null falls back to a parchment surface. */
-  mediaId: "propuestas-camara" as string | null,
+  mediaId: "propuestas-hoguera" as string | null,
 } as const;

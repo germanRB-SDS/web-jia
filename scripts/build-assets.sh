@@ -84,6 +84,12 @@ out public/propuestas/x
 magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -resize 800x -strip -quality 80 "public/propuestas/camara-800.webp"
 magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -strip -quality 82 "public/propuestas/camara-1059.webp"
 
+# Propuestas visual column in use: the fireside conversation about the next theme supplied by the promoter
+# (hoguera-nuevos-temas.png, 1672x941, 2026-09-20). No crop: the column's veil already decides how much of the
+# left of the frame is read. The vault stays above, unused: originals are never overwritten nor renamed.
+magick assets/images-website/hoguera-nuevos-temas.png -resize 960x -strip -quality 80 "public/propuestas/hoguera-960.webp"
+magick assets/images-website/hoguera-nuevos-temas.png -strip -quality 82 "public/propuestas/hoguera-1672.webp"
+
 # Experiencias ground: the teacher in her classroom supplied by the promoter (aula-maestra3.png, 1919x820,
 # third version, supplied on 2026-09-20 — now she faces the room). She holds the left and the right half is
 # clear paper for the heading and the sheets. The two earlier originals stay beside it, unused: originals are
