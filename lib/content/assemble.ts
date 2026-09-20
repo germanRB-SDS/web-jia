@@ -135,7 +135,6 @@ export type LandingModel = {
     title: string;
     titleMarks: MarkKind[];
     lede: string;
-    note: string | null;
     dateline: string | null;
     datelineMarks: MarkKind[];
     actions: Action[];
@@ -412,7 +411,6 @@ export function getLanding(locale: Locale): LandingModel {
       title: edition.title,
       titleMarks: marksOf(edition.titleStatus),
       lede: copy.hero.lede,
-      note: copy.hero.note || null,
       dateline: dateline(language),
       datelineMarks: programDays.some((d) => d.status !== "confirmed") ? ["provisional"] : [],
       actions: [

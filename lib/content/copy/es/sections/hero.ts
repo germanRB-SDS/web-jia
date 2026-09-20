@@ -3,8 +3,6 @@ import type { Copy } from "../../types";
 export const hero: Copy["hero"] = {
   lede: "Dos jornadas para explorar nuevas formas de enseñar, compartir experiencias y llevar la creatividad del cine al aula.",
   /** Handwritten, decorative note over the photograph. Taken from the render; not essential information. */
-  note: "Almería siempre inspira",
-  noteStatus: "provisional",
 };
 
 export const waypoints: Copy["waypoints"] = {

@@ -85,7 +85,7 @@ export type Copy = {
     hoursTbc: string;
   };
   buttons: Buttons;
-  hero: { lede: string; note: string; noteStatus: EditorialStatus };
+  hero: { lede: string };
   waypoints: { title: string; items: Record<string, { label: string; line: string }> };
   jornadas: {
     title: string;
