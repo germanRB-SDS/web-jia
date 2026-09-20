@@ -312,11 +312,18 @@
   color: var(--jia-sand);
   text-decoration: none;
 }
+/* The mark is drawn 15% larger than the box it occupies. The growth is a transform, not a bigger
+   width/height, on purpose: the laid-out box stays 2rem, so the strip keeps its height (the mark is
+   what sets it) and the tumbleweeds keep their size (tumbleweed-field.ts scales every weed off this
+   element's offsetHeight). */
 .studioMark {
-  width: 2rem;
-  height: 2rem;
+  --mark-box: 2rem;
+  --mark-grow: 1.15;
+  width: var(--mark-box);
+  height: var(--mark-box);
   flex: none;
   border-radius: 50%;
+  transform: scale(var(--mark-grow));
 }
 .studioCopy {
   display: flex;
