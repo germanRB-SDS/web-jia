@@ -6,7 +6,9 @@ una niña a caballo sobre una loma, al atardecer, con el valle, el río y el cam
 la capa de presentación; sin datos, sin API, sin seguridad).
 **tmp/scratch:** **sí aplica** — tres encargos independientes con verificación en navegador entre medias;
 checkpoint en `docs/prompts-output/JIA-2026-09-20-45/tmp/checkpoint.md`.
-**Estado:** PENDIENTE DE EJECUCIÓN.
+**Estado:** EJECUTADO (2026-09-20) — informe en `docs/prompts-output/JIA-2026-09-20-45/report.md`. Un encargo
+añadidos por el promotor a mitad de ejecución: **el texto nuevo de «Tu propuesta JIA»** (encargo 4) y
+**«Quiénes somos» en el menú** (encargo 5).
 
 ## Texto del promotor
 
@@ -145,6 +147,34 @@ casa) y el rótulo sale de la capa de constantes, no del componente.
 - Al quedar `--f-script` otra vez en uso, se corrigen su rol en `lib/content/media.ts` y el comentario de
   `app/layout.tsx`, que siguen describiendo la nota del hero que ya no existe.
 
+## Encargo 4 — El texto de «Tu propuesta JIA» (añadido a mitad de ejecución)
+
+> «El texto actual "Tus ideas son un auténtico tesoro para las cámaras de la JIA. […] Aquí encontrarás la
+> información para presentar tu propuesta cuando se concrete el proceso de participación." cámbialo por "Tu
+> participación nos ayudaría (¡mucho!) para preparar las próximas JIA. Envíanos tu idea respecto a qué temática te
+> gustaría que se utilizara como hilo conductor para la próxima edición. Toda la información la encontrarás al
+> pulsar aquí abajo."»
+
+Sustitución literal de los dos párrafos de `lib/content/copy/es/sections/propuestas.ts`. Siguen siendo dos, así
+que la flecha dibujada que `Proposals.tsx` engancha al final del último párrafo sigue apuntando al botón: ahora,
+además, el texto lo dice en voz alta («al pulsar aquí abajo»). No se toca ni el título, ni el subtítulo, ni la
+acción, ni el componente.
+
+## Encargo 5 — «Quiénes somos» en el menú (añadido a mitad de ejecución)
+
+> «Añade en el menú como botón "QUIENES SOMOS"; al ser pulsado lleva a la sección "Quién hace posible las JIA",
+> que se renombra a "QUIENES SOMOS" ;)»
+
+- La sección de socios (`#socios`) se renombra en `lib/content/copy/es/sections/partners.ts`.
+- El menú se arma desde `lib/content/sections/nav.ts` y el rótulo sale del diccionario: basta una `key` nueva
+  (`socios`) con su ancla, que declara la propia sección. Va **la última**, porque es la última sección de la
+  página (jornadas → experiencias → propuestas → acoge → socios).
+- La columna de secciones del pie se deriva de esos mismos items (`assemble.ts`), así que lo recoge sola. Es lo
+  correcto: el pie y el menú no deben divergir.
+- El nombre se guarda **acentuado y en caja natural** («Quiénes somos»), como todos los rótulos del sitio; el
+  menú y el título de sección lo suben a versales por CSS, y el acento se conserva en mayúsculas, como manda la
+  ortografía española.
+
 ## Verificación exigida
 
 - `npx tsc --noEmit`, `npm run check:content` y `npx next build` en verde.
@@ -155,6 +185,9 @@ casa) y el rótulo sale de la capa de constantes, no del componente.
 - Rótulo de tiza revisado a 1920, 1440, 1280, 900 y 390 px, con captura recortada de la pizarra.
 - Revisión de que nada más de la página se ha movido: el camino 3D sigue animando y los rótulos de sus paradas
   siguen donde estaban (el `margin-bottom` que se toca es el que reserva su fila de controles).
+- «Tu propuesta JIA» revisada en el navegador: dos párrafos, la flecha al final del segundo y el botón debajo.
+- Menú revisado a 1440, 1100, 1024 y 960 px (la barra horizontal) y en el panel del teléfono a 390 px, más el
+  pie: el rótulo nuevo cabe, apunta a `#socios` y no empuja a los demás.
 
 ## Cierre
 
