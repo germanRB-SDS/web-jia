@@ -4,7 +4,7 @@
 `JIA-2026-09-20-46`.
 **Nivel:** LEVEL 2 (composición de una sección: se retira un efecto y cambia la altura de la banda) ·
 tmp/scratch: **no aplica** (tarea corta, un encargo en una sola capa) → se registra `N/A` en el informe.
-**Estado:** PENDIENTE.
+**Estado:** EJECUTADO (2026-09-20) — informe en `docs/prompts-output/JIA-2026-09-20-47/report.md`.
 
 ## Texto del promotor
 
