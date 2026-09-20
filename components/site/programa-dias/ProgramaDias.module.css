@@ -175,9 +175,15 @@
 
   /* One day per view. The scroll is the mechanism: the finger drags it, the labels and the arrow
      keys move it, and what the track reports back is what lights the line up. */
+  /* The track is as tall as the day being read, not as tall as the longer one: otherwise Jornada 1,
+     with two sessions fewer, would leave a hand's width of empty paper under it. The height comes
+     from the component, which measures the open panel (`--programa-alto`). */
   .days {
     grid-auto-flow: column;
     grid-auto-columns: 100%;
+    align-items: start;
+    height: var(--programa-alto, auto);
+    transition: height 260ms var(--ease-out);
     gap: 0;
     overflow-x: auto;
     overscroll-behavior-x: contain;
@@ -198,5 +204,5 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tab, .tab::after { transition: none; }
+  .tab, .tab::after, .days { transition: none; }
 }

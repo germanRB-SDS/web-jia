@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import type { LandingModel, MarkKind } from "@/lib/content";
 import { ArrowIcon } from "@/components/icons";
 import { Marks } from "@/components/primitives/Mark";
@@ -64,6 +64,21 @@ export function ProgramaDias({ days, copy, markLabels, showMarks }: Props) {
     };
   }, [onScroll]);
 
+  // The track shows one day at a time, so it takes that day's height and not the longer one's.
+  // Measured, not guessed: the text reflows with the width and with the reader's own font size.
+  const [alto, setAlto] = useState<number | null>(null);
+  useLayoutEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const panel = track.children[active] as HTMLElement | undefined;
+    if (!panel) return;
+    const measure = () => setAlto(panel.offsetHeight);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, [active]);
+
   const goTo = useCallback((i: number, moveFocus = false) => {
     const track = trackRef.current;
     setActive(i);
@@ -105,7 +120,7 @@ export function ProgramaDias({ days, copy, markLabels, showMarks }: Props) {
         ))}
       </div>
 
-      <ol ref={trackRef} className={styles.days}>
+      <ol ref={trackRef} className={styles.days} style={alto ? ({ "--programa-alto": `${alto}px` } as CSSProperties) : undefined}>
         {days.map((day, i) => (
           <li key={day.id} id={panelId(i)} className={styles.day}>
             <div className={styles.dayHead}>
