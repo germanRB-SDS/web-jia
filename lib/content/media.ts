@@ -133,7 +133,8 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen generada para el proyecto (ver JIA_IDENTIDAD_VISUAL.md §8)",
     },
     {
-      /** Jornadas band. The rider stands on the left; the valley and the road open to the right. */
+      /** Jornadas band until JIA-2026-09-20-45: one rider on the left, the valley and the road to the right.
+          Out of use, kept like the earlier hero frames. */
       id: "jornadas-jinete",
       variants: [
         { src: "/jornadas/jinete-960.webp", width: 960 },
@@ -143,6 +144,21 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       focal: { x: 30, y: 48 },
       original: "assets/images-website/jornadas-jinete.png",
       license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
+    },
+    {
+      /** Jornadas band in use (JIA-2026-09-20-45): a man and a girl on horseback on a rise at dusk, the valley,
+          the river and the road opening to the right. The band's photo box is far more upright than the frame, so
+          only a strip of its width is shown; the focal point below is what keeps the whole group — tail to muzzle,
+          13.5 % to 33 % of the width — inside that strip down to 900 px. */
+      id: "jornadas-jinete-nina",
+      variants: [
+        { src: "/jornadas/jinete-nina-960.webp", width: 960 },
+        { src: "/jornadas/jinete-nina-1983.webp", width: 1983 },
+      ],
+      ratio: 1983 / 793,
+      focal: { x: 16, y: 50 },
+      original: "assets/images-website/jornadas-jinete-niña.png",
+      license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
     },
     {
       /** Propuestas visual column: the vault with the JIA books. */
@@ -256,5 +272,5 @@ export const fonts = {
   display: { family: "Rokkitt", role: "Nombre de las jornadas y títulos de sección (slab estrecha, tipo de imprenta)", license: "OFL" },
   body: { family: "Alegreya", role: "Párrafos y fichas", license: "OFL" },
   ui: { family: "Barlow Semi Condensed", role: "Navegación, botones y etiquetas", license: "OFL" },
-  script: { family: "Homemade Apple", role: "Nota manuscrita decorativa (un solo uso)", license: "OFL" },
+  script: { family: "Homemade Apple", role: "Escritura a mano decorativa (un solo uso: el rótulo de tiza de la pizarra del aula)", license: "OFL" },
 } as const;

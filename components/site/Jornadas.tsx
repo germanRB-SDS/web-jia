@@ -48,12 +48,12 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
   return (
     <section id={jornadas.id} aria-labelledby={`${jornadas.id}-title`}>
-      {/* The opening: the rider over the valley behind a dune-coloured veil that
+      {/* The opening: the two riders over the valley behind a dune-coloured veil that
           is dense where the text sits and opens toward the landscape; the poster
           is pinned on the right and opens at full size. */}
       <div className={styles.band}>
         <div className={styles.bandPhoto} aria-hidden="true">
-          <Surface media={jornadas.band} alt={jornadas.bandAlt} fallback="sand" ratio={1916 / 821} sizes="(min-width: 900px) 58vw, 100vw" className={styles.bandSurface} />
+          <Surface media={jornadas.band} alt={jornadas.bandAlt} fallback="sand" sizes="(min-width: 900px) 58vw, 100vw" className={styles.bandSurface} />
           <span className={styles.veil} />
         </div>
         {/* "jornadas-mapa": the text panel beside the photograph; under the text, the wagon

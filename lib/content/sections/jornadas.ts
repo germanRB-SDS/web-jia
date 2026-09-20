@@ -6,7 +6,7 @@ export const jornadasConfig = {
   /** The #JIA26 seal to the right of the statement, as tall as the paragraph (not on phones); null hides it. */
   sealMediaId: "sello-jia26" as string | null,
   /** Full-bleed photograph behind the section opening; null falls back to the dune veil alone. */
-  bandMediaId: "jornadas-jinete" as string | null,
+  bandMediaId: "jornadas-jinete-nina" as string | null,
   showTeam: true,
   /** The wagon exported from assets/3d/carruaje (copied to public/ by scripts/build-assets.sh); null disables the 3D road. */
   routeGlb: "/jornadas/jia-carruaje.glb" as string | null,

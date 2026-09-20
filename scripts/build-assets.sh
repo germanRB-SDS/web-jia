@@ -31,10 +31,17 @@ out public/hero/x
 magick assets/images-website/hero-salloon-vaqueros.png -resize 960x -strip -quality 80 "public/hero/hero-saloon-960.webp"
 magick assets/images-website/hero-salloon-vaqueros.png -strip -quality 82 "public/hero/hero-saloon-1916.webp"
 
-# Jornadas band: the rider over the valley supplied by the promoter (1916x821)
+# Jornadas band: the rider over the valley supplied by the promoter (1916x821). No longer in use since
+# JIA-2026-09-20-45, kept because its entry stays in the media registry.
 out public/jornadas/x
 magick assets/images-website/jornadas-jinete.png -resize 960x -strip -quality 80 "public/jornadas/jinete-960.webp"
 magick assets/images-website/jornadas-jinete.png -strip -quality 82 "public/jornadas/jinete-1916.webp"
+
+# Jornadas band in use: the two riders over the valley supplied by the promoter (jornadas-jinete-niña.png,
+# 1983x793, 2026-09-20). The first rider stays beside it, unused: originals are never overwritten nor renamed
+# (this one keeps its ñ, the way the poster files keep their spaces).
+magick "assets/images-website/jornadas-jinete-niña.png" -resize 960x -strip -quality 80 "public/jornadas/jinete-nina-960.webp"
+magick "assets/images-website/jornadas-jinete-niña.png" -strip -quality 82 "public/jornadas/jinete-nina-1983.webp"
 
 # Jornadas intro: the #JIA26 seal beside the statement (1080x1080, transparent; JIA-2026-09-19-29). The widest one
 # is for the back of the workshop sheet's flip card (JIA-2026-09-19-30: 88 % of 320 px at density 2).
