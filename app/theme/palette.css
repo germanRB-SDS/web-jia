@@ -20,6 +20,7 @@
   --jia-line: #c9b79f;             /* Línea de arena: separadores decorativos */
   --jia-copper: #ad754d;           /* Cobre mate: detalle gráfico, nunca texto pequeño */
   --jia-olive: #72715b;            /* Oliva seco: acento muy puntual */
+  --jia-chalk: #d7c9b2;            /* Tiza (extensión, muestreada de la foto del aula): sólo el rótulo escrito sobre la pizarra */
 
   /* Canales RGB de los tokens que se usan con transparencia (máscaras del hero,
      velos de tarjeta). Se derivan de los HEX anteriores; no son colores nuevos. */

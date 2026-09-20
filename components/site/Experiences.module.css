@@ -4,7 +4,10 @@
    is exactly as tall as the photograph, so nothing ever sits above it; the type and the cards tighten to fit.
    Narrower, the photograph is a band of its own above the heading, cropped to her. */
 .section {
-  --aula-ratio: 1916 / 821;
+  /* The photograph's own proportion (1919 x 820). Until JIA-2026-09-20-45 it read 1916/821, a stale copy:
+     the section was then 0,3 % taller than the image and cropped it a hair sideways. It has to be exact,
+     because the chalk lettering below is placed in percentages of the image. */
+  --aula-ratio: 1919 / 820;
   /* Where the clear paper starts, as a share of the photograph's width. */
   --aula-clear: 56%;
   /* How far left of that the content column starts, as a share of the section's width. */
@@ -25,6 +28,51 @@
   height: 100%;
   border-radius: 0;
 }
+/* ---- the chalk lettering on the blackboard ----
+   The blackboard is at the back on the left, out of focus, and the teacher covers it from x 195 on. Measured on
+   the original (1919 x 820), the free, legible slate is x 45 -> 230 and y 140 -> 270: the box below, in percent.
+
+   .boardFrame is the rectangle the photograph is actually DRAWN in, which is the same rule at every width:
+   `object-fit: cover` with an image wider than its box resolves by height, and the focal point pins it to the
+   left edge (media.ts: experiencias-aula, focal x 0). So: the box's full height, its own ratio, flush left.
+   Above 1280 px the box already has that ratio and the frame simply coincides with it. Inside the frame, a
+   percentage is a percentage OF THE IMAGE, and `cqw` sizes the letters against the photograph rather than the
+   window, so the writing never grows off the slate. */
+.boardFrame {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  aspect-ratio: var(--aula-ratio);
+  container-type: size;
+  pointer-events: none;
+}
+.board {
+  position: absolute;
+  left: 2.4%;
+  top: 18.4%;
+  width: 9.2%;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  font-family: var(--f-script);
+  /* 1,28 % of the photograph's width: about 25 px over a 1920 px wide frame. The longest line then measures
+     about 160 px against the 180 px of clear slate, so the tilt and the blur still have room before the
+     wooden frame on the right. */
+  font-size: 1.28cqw;
+  line-height: 1.22;
+  text-align: center;
+  text-wrap: nowrap;
+  color: var(--jia-chalk);
+  /* Chalk dust, not paint; and the same soft focus as the board behind it (about 2 px at 1920). */
+  opacity: 0.55;
+  filter: blur(0.12cqw);
+  /* Written by a hand, not typeset. */
+  rotate: -1.1deg;
+}
+.board span { display: block; }
+
 /* The band's floor melts into the ground the heading stands on. */
 .photo::before {
   content: "";

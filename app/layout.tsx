@@ -11,7 +11,7 @@ import "./globals.css";
  *  - Rokkitt (condensed slab, the printer's wood-type voice) for the name and titles;
  *  - Alegreya (warm, high x-height reading serif) for paragraphs and sheets;
  *  - Barlow Semi Condensed (sober, slightly narrow sans) for navigation and buttons;
- *  - Homemade Apple, one decorative handwritten note in the hero.
+ *  - Homemade Apple, one decorative handwriting: the chalk lettering on the classroom blackboard.
  * The JIA lettering itself is an SVG traced from the approved render (public/brand).
  */
 const display = Rokkitt({ subsets: ["latin"], display: "swap", variable: "--font-display" });

@@ -142,6 +142,8 @@ export type Copy = {
     title: string;
     lede: string;
     empty: string;
+    /** Written in chalk on the blackboard of the section's photograph, one entry per line. */
+    board: string[];
     fields: {
       presents: string;
       audience: string;

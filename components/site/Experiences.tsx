@@ -29,6 +29,17 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
         experiencias.media ? (
           <div className={styles.photo} aria-hidden="true">
             <Surface media={experiencias.media} alt="" fallback={experiencias.fallback} sizes="100vw" className={styles.surface} />
+            {/* The name of the jornadas written in chalk on the blackboard at the back of the classroom. The
+                frame below is the photograph's own rectangle (see the CSS), so the lettering is placed in
+                percentages OF THE IMAGE and lands on the slate at every width. Decorative: the backdrop is
+                already aria-hidden and the name is in the title, the h1 and the badge. */}
+            <div className={styles.boardFrame}>
+              <p className={styles.board}>
+                {copy.experiencias.board.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </p>
+            </div>
           </div>
         ) : null
       }
