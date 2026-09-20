@@ -53,7 +53,7 @@ export const jornadas: Copy["jornadas"] = {
     title: "Quién está detrás",
     lede: "Todas las personas que lo hacen realidad: Coordinadores, Directores CEP, asesores y colaboradores. Las JIA no esconden sus talentos: conoce a quienes lanzan los dados ;)",
     cube: {
-      hint: "Desliza el cubo en horizontal. Prueba suerte.",
+      hint: "Desliza el dado en horizontal. Prueba suerte.",
       position: "{current} de {total}",
       list: "Todas las personas del equipo",
     },

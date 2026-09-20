@@ -27,3 +27,7 @@ __pycache__/
 *.pyc
 graphify-out/
 .sds/state/
+
+# Assets de vídeo en bruto (>2 GB): exceden el límite de 100 MB de GitHub y el tope de 2 GB de LFS.
+# Se quedan solo en disco; distribúyelos por Drive u otro alojamiento.
+assets/videos-website/

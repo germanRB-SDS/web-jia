@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-09-18T06:42:57.930Z",
-  "title": "Design System: JIA — Jornadas de Innovación de Almería",
+  "title": "Design System: JIA",
   "source": {
     "tokens": [
       "app/theme/palette.css",

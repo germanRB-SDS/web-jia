@@ -10,7 +10,7 @@ export const event = {
   /** Public short name. Always JIA, never GIA. */
   shortName: "JIA",
   /** Full name as printed on the official badge and poster. */
-  fullName: "Jornadas de Innovación de Almería",
+  fullName: "",
   /** Three-line lockup used next to the wordmark (render composition). */
   nameLines: ["Jornadas de", "Innovación de", "Almería"] as const,
   /** Edition hashtag printed on every official asset. */
@@ -25,7 +25,7 @@ export const event = {
  * kept below as an alternate so the history stays readable.
  */
 export const edition = {
-  title: "Aulas de cine: el duelo",
+  title: "Jornadas de Innovación de Almería",
   titleStatus: "confirmed" as EditorialStatus,
   titleAlternates: [
     { value: "Almería, aulas de cine: El duelo", source: "assets/cep/CARTEL #JIA26 (9).png and talleres-carteles/*.png" },
