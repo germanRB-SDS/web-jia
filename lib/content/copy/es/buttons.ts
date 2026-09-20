@@ -10,6 +10,7 @@ export const buttons: Buttons = {
   nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
   route: { replay: "Repetir recorrido" },
   cube: { prev: "Tarjeta anterior", next: "Tarjeta siguiente" },
+  workshops: { prev: "Taller anterior", next: "Taller siguiente" },
   video: {
     play: "Reproducir el vídeo",
     pause: "Pausar el vídeo",

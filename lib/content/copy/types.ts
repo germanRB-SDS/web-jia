@@ -18,6 +18,8 @@ export type Buttons = {
   video: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; /** Picture in picture: the video in a small floating window. */ minimize: string; exitMinimize: string; share: string };
   /** Arrows of the team cube (icon buttons: these are their accessible names). */
   cube: { prev: string; next: string };
+  /** Arrows of the workshops carousel on a phone (icon buttons: these are their accessible names). */
+  workshops: { prev: string; next: string };
 };
 
 export type WorkshopCopy = {
@@ -119,6 +121,8 @@ export type Copy = {
     };
     workshops: {
       title: string;
+      /** Accessible name of the track of cards on a phone, where the workshops are a carousel. */
+      carouselLabel: string;
       peopleLabel: string;
       themeLabel: string;
       summaryLabel: string;

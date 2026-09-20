@@ -8,6 +8,7 @@ import { SubSection } from "./Section";
 import { IntroVideo } from "./IntroVideo";
 import { JornadasRoute } from "./jornadas-route/JornadasRoute";
 import { ProgramaDias } from "./programa-dias/ProgramaDias";
+import { TalleresCarrusel } from "./talleres-carrusel/TalleresCarrusel";
 import styles from "./Jornadas.module.css";
 
 type Props = {
@@ -123,7 +124,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
           </p>
         ) : null}
         {jornadas.workshops.items.length ? (
-          <div className={styles.grid}>
+          <TalleresCarrusel labels={{ region: copy.jornadas.workshops.carouselLabel, prev: copy.buttons.workshops.prev, next: copy.buttons.workshops.next }}>
             {jornadas.workshops.items.map((sheet) => (
               <SheetCard
                 key={sheet.id}
@@ -135,7 +136,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
                 flipBack={jornadas.seal}
               />
             ))}
-          </div>
+          </TalleresCarrusel>
         ) : (
           <p className={styles.note}>{copy.states.pending}</p>
         )}

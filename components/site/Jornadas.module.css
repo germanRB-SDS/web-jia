@@ -228,8 +228,3 @@
   font-size: 0.9375rem;
   color: var(--jia-text-muted);
 }
-.grid {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
-}

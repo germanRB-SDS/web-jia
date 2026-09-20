@@ -1,0 +1,70 @@
+/* ---- the workshops ----
+   From 760 px up, the rejilla of always: as many cards per row as fit, each at least 240 px
+   (these rules used to live in Jornadas.module.css, beside markup that is now this component's).
+   Below 760 px they become a track that swipes, one card per view with the next one peeking, and
+   two round buttons underneath (JIA-2026-09-20-49). */
+.grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+}
+.controls { display: none; }
+
+@media (max-width: 759.98px) {
+  /* A flex row, not a grid: the card stops being a grid item, so its seven-row alignment with its
+     neighbours (`subgrid`) simply does not apply here — on one card per view there is nothing to
+     line up with. The pin on top of each card sticks out 6 px, hence the padding: the scroll box
+     would clip it. */
+  .grid {
+    display: flex;
+    gap: 1.25rem;
+    padding-top: 10px;
+    margin-top: -10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .grid::-webkit-scrollbar { display: none; }
+  .grid > * {
+    flex: 0 0 min(78%, 19rem);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    margin-top: 1.25rem;
+  }
+  /* The collaborator card's round arrow (CollaboratorsCarousel .go), brought onto paper: the same
+     2,75 rem ring and the same fill on press, in ink and terracotta instead of ivory. The video's
+     controls were the other candidate; they carry a translucent ink disc and a blur because they
+     have to read over moving film, and on this paper they would land as a dark stain. */
+  .arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--jia-line);
+    background: transparent;
+    color: var(--jia-terracotta);
+    cursor: pointer;
+    transition: background-color 200ms var(--ease-out), border-color 200ms var(--ease-out), color 200ms var(--ease-out), opacity 200ms var(--ease-out);
+  }
+  .arrow:hover:not(:disabled),
+  .arrow:focus-visible {
+    background: var(--jia-terracotta);
+    border-color: var(--jia-terracotta);
+    color: var(--jia-ivory);
+  }
+  .arrow:focus-visible { outline: 2px solid var(--jia-terracotta); outline-offset: 3px; }
+  .arrow:disabled { opacity: 0.35; cursor: default; }
+  .prevIcon { rotate: 90deg; }
+  .nextIcon { rotate: -90deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrow { transition: none; }
+}
