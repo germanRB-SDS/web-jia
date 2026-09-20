@@ -90,6 +90,18 @@
   border-radius: 4px;
 }
 
+/* The studio's call: it only exists in the panel (see below); the desktop bar never shows it. */
+.studio { display: none; }
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* ---- desktop ---- */
 @media (min-width: 960px) {
   .toggle { display: none; }
@@ -138,4 +150,26 @@
   .subToggle { display: none; }
   .sub { padding: 0 0 0.5rem 1rem; }
   .subLink { font-size: 0.9375rem; }
+  /* Last of the panel, parted by a rule: what is above goes to a place on this page, this one leaves it. */
+  .studio {
+    display: block;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--jia-line);
+  }
+  .studioLink {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.8rem;
+    font-family: var(--f-ui);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: var(--jia-label-tracking);
+    text-transform: uppercase;
+    color: var(--jia-terracotta);
+    text-decoration: none;
+  }
+  .studioLink:hover,
+  .studioLink:focus-visible { color: var(--jia-terracotta-deep); }
 }

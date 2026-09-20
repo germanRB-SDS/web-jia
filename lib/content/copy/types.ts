@@ -57,6 +57,8 @@ export type Copy = {
     home: string;
     areas: { jornadas: string; dosieres: string; experiencias: string; propuestas: string; acoge: string; socios: string };
     jornadas: { programa: string; comoFuncionan: string; talleres: string };
+    /** Last entry of the phone menu: the studio that produces the site (it leaves the site). */
+    studio: string;
   };
   a11y: {
     wordmark: string;

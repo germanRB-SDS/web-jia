@@ -20,6 +20,7 @@ export const nav: Copy["nav"] = {
     socios: "Quiénes somos",
   },
   jornadas: { programa: "Programa", comoFuncionan: "Cómo funcionan", talleres: "Talleres" },
+  studio: "Contacta con South Desert Studio",
 };
 
 export const a11y: Copy["a11y"] = {

@@ -40,7 +40,7 @@ export type Action = {
   note: string | null;
 };
 
-export type NavItem = { key: string; label: string; href: string; children?: NavItem[] };
+export type NavItem = { key: string; label: string; href: string; children?: NavItem[]; /** The link leaves the site: a new tab, and said so to a screen reader. */ external?: boolean };
 
 export type SheetSection = { label: string; body: string | string[] };
 
@@ -121,7 +121,7 @@ export type LandingModel = {
   event: typeof event;
   edition: typeof edition;
   markProvisional: boolean;
-  nav: { items: NavItem[]; homeHref: string };
+  nav: { items: NavItem[]; homeHref: string; studio: NavItem };
   brand: { wordmark: typeof brand.wordmark; badge: Media | null };
   hero: {
     id: string;
@@ -398,7 +398,14 @@ export function getLanding(locale: Locale): LandingModel {
     event,
     edition,
     markProvisional,
-    nav: { items: navItems, homeHref: anchor(heroConfig.id) },
+    nav: {
+      items: navItems,
+      homeHref: anchor(heroConfig.id),
+      /** Apart from the page's own areas (it is not one of them, and it does not belong in the footer's
+          list of sections either): the studio that produces the site. Its address is the one already
+          published in site.ts, not a second copy (promoter, JIA-2026-09-20-49). */
+      studio: { key: "studio", label: copy.nav.studio, href: productionStudio.url, external: true },
+    },
     brand: { wordmark: brand.wordmark, badge: getMedia("badge-jia26") },
     hero: {
       id: heroConfig.id,

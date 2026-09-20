@@ -7,7 +7,9 @@ import styles from "./SiteNav.module.css";
 
 type Props = {
   items: NavItem[];
-  labels: { menu: string; close: string; submenu: string; region: string };
+  /** The studio that produces the site: last entry of the panel, and it leaves the site. */
+  studio: NavItem;
+  labels: { menu: string; close: string; submenu: string; region: string; newTab: string };
 };
 
 /**
@@ -15,7 +17,7 @@ type Props = {
  * three blocks: hover/focus reveals it on desktop, a button toggles it
  * everywhere, and on the phone panel it is simply open.
  */
-export function SiteNav({ items, labels }: Props) {
+export function SiteNav({ items, studio, labels }: Props) {
   const [open, setOpen] = useState(false);
   const [subOpen, setSubOpen] = useState<string | null>(null);
   const panelId = useId();
@@ -91,6 +93,20 @@ export function SiteNav({ items, labels }: Props) {
             </li>
           );
         })}
+        {/* Only in the menu — the panel, below 960 px (the CSS hides it in the desktop bar, where the row
+            carries the page's five areas and an outside call would not belong). */}
+        <li className={styles.studio}>
+          <a
+            href={studio.href}
+            className={styles.studioLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            {studio.label}
+            <span className={styles.srOnly}> ({labels.newTab})</span>
+          </a>
+        </li>
       </ul>
     </nav>
   );

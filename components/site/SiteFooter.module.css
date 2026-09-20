@@ -310,11 +310,12 @@
 }
 .studioCredit { grid-column: 2; justify-self: center; }
 .notice { grid-column: 1 / -1; justify-self: center; }
-/* Narrow: one column, the credit centred and the note under it, to the right. */
+/* Narrow: one column and the credit centred. The tumbleweeds' note is not shown at all (promoter,
+   JIA-2026-09-20-49): the weeds only roll under a pointer that enters the footer, and a phone has none,
+   so the note explained something that never happens there. From 760 px up it stays as it was. */
 @media (max-width: 759.98px) {
   .bottomInner { grid-template-columns: 1fr; }
   .bottomInner .studioCredit { grid-column: 1; }
-  .bottomInner .weedsNote { grid-column: 1; }
 }
 .weedsNote {
   grid-column: 3;
@@ -335,6 +336,11 @@
 }
 .weedsNote:hover { color: var(--jia-ivory); text-decoration-color: currentColor; }
 .weedsNote:focus-visible { outline: 2px solid var(--jia-ivory); outline-offset: 3px; border-radius: 2px; }
+/* Not on a phone (promoter, JIA-2026-09-20-49): the weeds only roll under a pointer that enters the
+   footer, and a phone has none, so the note explained something that never happens there. */
+@media (max-width: 759.98px) {
+  .weedsNote { display: none; }
+}
 .notice {
   margin: 0;
   max-width: 70ch;
@@ -354,26 +360,32 @@
   color: var(--jia-sand);
   text-decoration: none;
 }
-/* The mark is drawn 15% larger than the box it occupies. The growth is a transform, not a bigger
-   width/height, on purpose: the laid-out box stays 2rem, so the strip keeps its height (the mark is
-   what sets it) and the tumbleweeds keep their size (tumbleweed-field.ts scales every weed off this
-   element's offsetHeight). */
+/* The mark is drawn larger than the box it occupies: 1,15 (JIA-2026-09-19-40) raised by another 15 %
+   (promoter, JIA-2026-09-20-49), which is 1,3225 of the box at every width. The growth is a transform,
+   not a bigger width/height, on purpose: the laid-out box stays 2rem, so the strip keeps its height (the
+   mark is what sets it) and the tumbleweeds keep their size (tumbleweed-field.ts scales every weed off
+   this element's offsetHeight). */
 .studioMark {
   --mark-box: 2rem;
-  --mark-grow: 1.15;
+  --mark-grow: 1.3225;
   width: var(--mark-box);
   height: var(--mark-box);
   flex: none;
   border-radius: 50%;
   transform: scale(var(--mark-grow));
 }
+/* "Diseñado por South Desert Studio": one step up the interface's own ladder (…0,8125 · 0,875 · 0,9375
+   · 1…) on a phone and two from 760 px up (promoter, JIA-2026-09-20-49). */
 .studioCopy {
   display: flex;
   flex-wrap: wrap;
   gap: 0 0.35em;
   font-family: var(--f-ui);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--jia-line);
+}
+@media (min-width: 760px) {
+  .studioCopy { font-size: 1rem; }
 }
 .studioCredit:hover .studioCopy > span:first-child { color: var(--jia-ivory); }
 .studioName {
