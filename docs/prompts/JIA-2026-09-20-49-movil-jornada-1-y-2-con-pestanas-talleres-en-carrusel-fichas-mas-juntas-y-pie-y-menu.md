@@ -43,7 +43,8 @@ contratos, sin seguridad).
 informe.
 **Rama:** `main` (rama compartida del proyecto). Push por
 `sds-dev-governance/scripts/git-safe-push.sh origin main`.
-**Estado:** PENDIENTE DE EJECUCIÓN.
+**Estado:** EJECUTADO (2026-09-21) — informe en `docs/prompts-output/JIA-2026-09-20-49/report.md`, con
+los informes de fase `phase-a-report.md` y `phase-b-report.md`.
 
 ## Texto del promotor
 
