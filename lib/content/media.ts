@@ -156,12 +156,12 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       id: "experiencias-aula",
       variants: [
         { src: "/experiencias/aula-960.webp", width: 960 },
-        { src: "/experiencias/aula-1916.webp", width: 1916 },
+        { src: "/experiencias/aula-1919.webp", width: 1919 },
       ],
-      ratio: 1916 / 821,
+      ratio: 1919 / 820,
       focal: { x: 0, y: 50 },
-      original: "assets/images-website/aula-maestra2.png",
-      license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
+      original: "assets/images-website/aula-maestra3.png",
+      license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
     },
     {
       /** Acoge JIA band. The subject stands on the left; the right side is clear ground for the text. */

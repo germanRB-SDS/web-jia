@@ -28,7 +28,7 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
       backdrop={
         experiencias.media ? (
           <div className={styles.photo} aria-hidden="true">
-            <Surface media={experiencias.media} alt="" fallback={experiencias.fallback} ratio={1916 / 821} sizes="100vw" className={styles.surface} />
+            <Surface media={experiencias.media} alt="" fallback={experiencias.fallback} sizes="100vw" className={styles.surface} />
           </div>
         ) : null
       }

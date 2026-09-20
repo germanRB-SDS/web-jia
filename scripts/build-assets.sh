@@ -69,11 +69,13 @@ out public/propuestas/x
 magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -resize 800x -strip -quality 80 "public/propuestas/camara-800.webp"
 magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -strip -quality 82 "public/propuestas/camara-1059.webp"
 
-# Experiencias ground: the teacher in her classroom supplied by the promoter (1916x821), she on the left and
-# the right half clear paper (JIA-2026-09-18-19; the earlier mirrored original, aula-maestra-clase.png, is unused).
+# Experiencias ground: the teacher in her classroom supplied by the promoter (aula-maestra3.png, 1919x820,
+# third version, supplied on 2026-09-20 — now she faces the room). She holds the left and the right half is
+# clear paper for the heading and the sheets. The two earlier originals stay beside it, unused: originals are
+# never overwritten.
 out public/experiencias/x
-magick assets/images-website/aula-maestra2.png -resize 960x -strip -quality 80 "public/experiencias/aula-960.webp"
-magick assets/images-website/aula-maestra2.png -strip -quality 82 "public/experiencias/aula-1916.webp"
+magick assets/images-website/aula-maestra3.png -resize 960x -strip -quality 80 "public/experiencias/aula-960.webp"
+magick assets/images-website/aula-maestra3.png -strip -quality 82 "public/experiencias/aula-1919.webp"
 
 # Acoge JIA band: the archer supplied by the promoter (indio.png, 1916x821, second version supplied on
 # 2026-09-20). The first archer stays beside it as acoge-arquero.png, unused: originals are never overwritten.
