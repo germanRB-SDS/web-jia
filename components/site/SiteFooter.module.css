@@ -177,8 +177,8 @@
    before, and while the pointer (or the keyboard) is on the strip below it lights up with South Desert
    Studio's gradient, which then flows sideways in a seamless loop. Pattern: the kit's gradient-flow-button
    (`sds-dev-governance/resources/frontend-patterns/ui-components/gradient-flow-button/`). The three tones
-   are the partner's brand (`--color-brand-gradient` of teragenda-colors-palette), not JIA palette tokens:
-   the same explicit exception already made below for the shimmer of the studio's name. The padding keeps
+   come from the partner's brand (`--color-brand-gradient` of teragenda-colors-palette), not from JIA
+   palette tokens: the same explicit exception already made below for the shimmer of the studio's name. The padding keeps
    the 1px the border used to contribute, so nothing moves. */
 .bottom {
   position: relative;
@@ -188,7 +188,10 @@
   background: linear-gradient(rgb(var(--jia-paper-rgb) / 0.12), rgb(var(--jia-paper-rgb) / 0.12)) top / 100% 1px no-repeat;
 }
 .bottom::before {
-  --sds-rose: #e05a6b;
+  /* The studio's orange and gold, untouched. Its third tone, a rose #e05a6b, is pulled towards the
+     desert's baked earth (its blue channel sat above its green, which is what read as pink; now green
+     leads) so that the darker end of the line recedes and the orange and the gold carry it. */
+  --sds-clay: #c2604a;
   --sds-orange: #f4874a;
   --sds-gold: #f5c242;
   --sds-flow-speed: 2.5s;
@@ -201,18 +204,18 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 260ms ease;
-  /* Symmetric (rose - gold - rose) so consecutive tiles join on the same colour and the loop never snaps.
+  /* Symmetric (clay - gold - clay) so consecutive tiles join on the same colour and the loop never snaps.
      90deg is the horizontal axis in CSS (0deg points up, 180deg down), so the colour runs left to right.
      The width has to be exactly 200%: a percentage background-position slides the image by
      position x (container - image), so covering the whole 0-200% range moves it by exactly one tile and
      the loop closes on itself. The kit's 220% does not close - it travels 1.2 tiles and jumps on restart. */
-  background-image: linear-gradient(90deg, var(--sds-rose), var(--sds-orange) 35%, var(--sds-gold) 50%, var(--sds-orange) 65%, var(--sds-rose));
+  background-image: linear-gradient(90deg, var(--sds-clay), var(--sds-orange) 35%, var(--sds-gold) 50%, var(--sds-orange) 65%, var(--sds-clay));
   background-size: 200% 100%;
   background-position: 200% 50%;
 }
 .bottom:has(.bottomInner:hover)::before,
 .bottom:has(.bottomInner:focus-within)::before {
-  opacity: 0.9;
+  opacity: 0.8;
   animation: studio-rule-flow var(--sds-flow-speed) linear infinite;
 }
 /* Counting down, not up: a falling background-position slides the image to the right, so the colours
