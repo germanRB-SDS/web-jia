@@ -1,5 +1,4 @@
 import type { LandingModel, MarkKind } from "@/lib/content";
-import { ArrowIcon } from "@/components/icons";
 import { Marks } from "@/components/primitives/Mark";
 import { Picture } from "@/components/primitives/Picture";
 import { SheetCard } from "@/components/primitives/SheetCard";
@@ -8,6 +7,7 @@ import { CubeCarousel, type CubeItem } from "@/components/cube-carousel";
 import { SubSection } from "./Section";
 import { IntroVideo } from "./IntroVideo";
 import { JornadasRoute } from "./jornadas-route/JornadasRoute";
+import { ProgramaDias } from "./programa-dias/ProgramaDias";
 import styles from "./Jornadas.module.css";
 
 type Props = {
@@ -87,59 +87,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
       {/* ---- Programa ---- */}
       <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks}>
-        <ol className={styles.days}>
-          {jornadas.program.days.map((day) => (
-            <li key={day.id} className={styles.day}>
-              <div className={styles.dayHead}>
-                <h4 className={styles.dayLabel}>{day.label}</h4>
-                <Marks marks={day.marks} labels={markLabels} show={showMarks} />
-              </div>
-              {day.dateText ? (
-                <p className={styles.dayDate}>
-                  <time dateTime={day.dateIso ?? undefined}>{day.dateText}</time>
-                </p>
-              ) : (
-                <p className={styles.dayDate}>{copy.states.dateTbc}</p>
-              )}
-              <dl className={styles.dayMeta}>
-                <div>
-                  <dt>{copy.jornadas.program.venueLabel}</dt>
-                  <dd>{day.venue ?? copy.states.venueTbc}</dd>
-                </div>
-                <div>
-                  <dt>{copy.jornadas.program.hoursLabel}</dt>
-                  <dd>{day.hours.length ? day.hours.join(" · ") : copy.states.hoursTbc}</dd>
-                </div>
-                {day.map ? (
-                  <div>
-                    <dt>{copy.jornadas.program.locationLabel}</dt>
-                    <dd>
-                      {/* A maps.app.goo.gl link: a new tab on a computer, the maps app on a phone. */}
-                      <a href={day.map.href} className={styles.mapLink} target="_blank" rel="noopener noreferrer" aria-label={day.map.label} title={day.map.label}>
-                        <ArrowIcon size={18} className={styles.mapArrow} />
-                        <span>{copy.jornadas.program.directions}</span>
-                      </a>
-                    </dd>
-                  </div>
-                ) : null}
-              </dl>
-              <ol className={styles.sessions}>
-                {day.sessions.map((s) => (
-                  <li key={s.id} className={styles.session} data-unnumbered={s.numbered ? undefined : ""}>
-                    {s.time ? <span className={styles.sessionTime}>{s.time}</span> : null}
-                    <span className={styles.sessionText}>{s.text}</span>
-                    {s.link ? (
-                      <a href={s.link.href} className={styles.sessionLink}>
-                        {s.link.label}
-                      </a>
-                    ) : null}
-                  </li>
-                ))}
-              </ol>
-              {day.provenanceNote && showMarks ? <p className={styles.provenance}>{day.provenanceNote}</p> : null}
-            </li>
-          ))}
-        </ol>
+        <ProgramaDias days={jornadas.program.days} copy={copy} markLabels={markLabels} showMarks={showMarks} />
       </SubSection>
 
       {/* ---- Cómo funcionan ---- */}

@@ -99,6 +99,8 @@ export type Copy = {
       title: string;
       /** `{n}` */
       dayLabel: string;
+      /** Accessible name of the two labels on a phone, where the days are a track that swipes. */
+      daysRegion: string;
       venueLabel: string;
       hoursLabel: string;
       locationLabel: string;

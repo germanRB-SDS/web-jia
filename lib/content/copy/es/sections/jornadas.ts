@@ -18,6 +18,8 @@ export const jornadas: Copy["jornadas"] = {
   program: {
     title: "Programa",
     dayLabel: "Jornada {n}",
+    /** Phone: the two labels above the track of days (JIA-2026-09-20-49). */
+    daysRegion: "Jornadas del programa: desliza para cambiar de jornada",
     venueLabel: "Lugar",
     hoursLabel: "Horario",
     locationLabel: "Localización",
