@@ -175,19 +175,20 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
     },
     {
       /** Propuestas visual column in use (JIA-2026-09-20-46): the fireside conversation about the next theme.
-          The column dissolves its left edge with a mask instead of veiling it (Proposals.module.css), so the
-          woman on the far left of the frame (9-24 % of the width) is read as ground and the chief (24-53 %)
-          surfaces through his face. The horizontal focal point is what keeps that reading stable: at 50 % the
-          mask clears between 52 % and 54 % of the photograph at every width from 900 px up, however much of
-          the sides object-fit trims. The vertical one is above centre so that, where the box is far more
-          oblong than the frame (18 % of the height goes at 1920 px), the hats stay inside. */
+          Since JIA-2026-09-20-47 the column shows it whole, with a straight edge against the band's left half
+          and nothing painted over it, so the framing is the focal point's job alone. From 1280 px up the
+          column's proportion is a constant 1,240 (0,53 of the window over the height of the band above), so
+          `cover` resolves by height — nothing is trimmed off the top or the bottom — and 69,9 % of the width
+          is shown. At 78 % that window starts at 23,5 % of the frame: the woman on the far left (9-24 %) is
+          out of it and the chief's headdress begins right at the edge. The vertical point only matters below
+          1280 px, where the band is shorter. */
       id: "propuestas-hoguera",
       variants: [
         { src: "/propuestas/hoguera-960.webp", width: 960 },
         { src: "/propuestas/hoguera-1672.webp", width: 1672 },
       ],
       ratio: 1672 / 941,
-      focal: { x: 50, y: 40 },
+      focal: { x: 78, y: 40 },
       original: "assets/images-website/hoguera-nuevos-temas.png",
       license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
     },

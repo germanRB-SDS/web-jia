@@ -70,6 +70,15 @@
        padding is half its left one, so the copy sits close to the photograph. */
     grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
     align-items: center;
+    /* A split can ask for a floor of its own — Propuestas matches the band above it
+       (JIA-2026-09-20-47). `align-content: center` is what makes that floor usable: the
+       two rows keep the size of their content and the whole text column centres inside
+       the taller band, instead of the head and the copy drifting apart as the rows
+       stretch. A visual column that has to fill the whole band anchors itself to the
+       section, not here: an absolutely positioned grid item with a placement of its own
+       takes its GRID AREA as containing block, which is only as tall as the rows. */
+    min-height: var(--split-min, auto);
+    align-content: center;
   }
   .split .head,
   .split > :not(.head):not([data-visual]) {

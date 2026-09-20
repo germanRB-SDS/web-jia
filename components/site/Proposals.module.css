@@ -22,50 +22,40 @@
   color: var(--jia-terracotta);
 }
 
-/* The visual column: the photograph fills the column's height and bleeds to
-   the right edge. Its inner edge is not veiled but dissolved (JIA-2026-09-20-46): the
-   mask below takes the surface away instead of painting a colour over it, so what
-   shows through is the section's own ground. That ground is a vertical gradient
-   (--jia-bg-deep), which no flat veil could match at every height, and this way the
-   fade introduces no colour of its own. */
+/* ---- the band ----
+   From 1280 px up the section measures exactly the same as the one above it, «Ideas que ya han pasado por el
+   aula» (promoter, JIA-2026-09-20-47), whose height is its classroom photograph at full bleed. Both read the
+   same token. Below 1280 px that section is a band of photograph over a stack of cards, so its height means
+   nothing here and this one keeps the height its own copy asks for. */
+/* The photograph anchors itself to this box, so the band has to be the positioned ancestor: inside the grid,
+   an absolutely positioned item with a placement of its own takes its grid area as containing block, and that
+   area is only as tall and as wide as the rows and the column. */
+.section { position: relative; }
+@media (min-width: 1280px) {
+  .section { --split-min: calc(100vw / (var(--jia-band-aula-ratio))); }
+}
+
+/* The visual column: the photograph bleeds top, right and bottom, and meets the left half at a straight edge
+   on the 47 % line. That left half is the section's own ground with the copy on it — the solid rectangle the
+   promoter asked to keep. No veil and no mask over the photograph (JIA-2026-09-20-47): two clean halves. */
 .visual {
   position: relative;
   overflow: clip;
 }
-.visualSurface {
-  border-radius: 0;
-  /* Under 900 px the photograph stands alone below the text, with nothing to its left
-     to protect, so only its inner edge is softened and the whole group stays readable. */
-  --propuestas-fade: linear-gradient(90deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0.78) 16%, #000 34%);
-  -webkit-mask-image: var(--propuestas-fade);
-  mask-image: var(--propuestas-fade);
-}
+.visualSurface { border-radius: 0; }
 @media (min-width: 900px) {
+  /* Anchored to the band rather than laid out in it, the way the hero's photograph is: inside the grid it
+     would only be as tall as the text and leave ground above and below it. */
   .visual {
-    height: 100%;
-    min-height: 28rem;
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 53%;
+    min-height: 0;
   }
   .visualSurface {
     position: absolute !important;
     inset: 0;
     aspect-ratio: auto !important;
     height: 100%;
-    /* With the copy beside it, the fade is read in percentages of the photograph: the
-       woman on the far left (9-24 % of the width) is all but gone, the chief (24-53 %)
-       surfaces through his face, and from the microphone on nothing is veiled. The
-       stops are percentages of the box, not of the image, and the two scales are held
-       together by the horizontal focal point of the media entry: at 50 % the mask
-       clears between 52 % and 54 % of the photograph at 900, 1024, 1440 and 1920 px. */
-    --propuestas-fade: linear-gradient(
-      90deg,
-      rgb(0 0 0 / 0) 0%,
-      rgb(0 0 0 / 0.02) 12%,
-      rgb(0 0 0 / 0.08) 22%,
-      rgb(0 0 0 / 0.22) 30%,
-      rgb(0 0 0 / 0.42) 36%,
-      rgb(0 0 0 / 0.65) 42%,
-      rgb(0 0 0 / 0.88) 48%,
-      #000 54%
-    );
   }
 }

@@ -12,6 +12,12 @@
   --f-ui: var(--font-ui), "Helvetica Neue", Arial, sans-serif;
   --f-script: var(--font-script), "Bradley Hand", "Segoe Script", cursive;
 
+  /* The classroom photograph's own proportion (1919 x 820). From 1280 px up it is what gives the Experiencias
+     band its height, and Propuestas takes the same floor from it so the two bands measure the same
+     (JIA-2026-09-20-47). It lives here, and not in one of the two stylesheets, so that replacing the classroom
+     photograph moves both at once. */
+  --jia-band-aula-ratio: 1919 / 820;
+
   --container: 80rem;
   --gutter: clamp(1rem, 4vw, 3.5rem);
   --measure: 62ch;

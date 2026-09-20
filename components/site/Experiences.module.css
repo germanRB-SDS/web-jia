@@ -4,10 +4,11 @@
    is exactly as tall as the photograph, so nothing ever sits above it; the type and the cards tighten to fit.
    Narrower, the photograph is a band of its own above the heading, cropped to her. */
 .section {
-  /* The photograph's own proportion (1919 x 820). Until JIA-2026-09-20-45 it read 1916/821, a stale copy:
-     the section was then 0,3 % taller than the image and cropped it a hair sideways. It has to be exact,
-     because the chalk lettering below is placed in percentages of the image. */
-  --aula-ratio: 1919 / 820;
+  /* The photograph's own proportion. It has to be exact, because the chalk lettering below is placed in
+     percentages of the image (until JIA-2026-09-20-45 it read 1916/821, a stale copy, and the section was
+     0,3 % taller than the image and cropped it a hair sideways). Since JIA-2026-09-20-47 the number lives in
+     globals.css, because Propuestas takes its height from the same one. */
+  --aula-ratio: var(--jia-band-aula-ratio);
   /* Where the clear paper starts, as a share of the photograph's width. */
   --aula-clear: 56%;
   /* How far left of that the content column starts, as a share of the section's width. */
