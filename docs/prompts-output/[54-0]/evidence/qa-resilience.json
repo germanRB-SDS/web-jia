@@ -1,0 +1,92 @@
+{
+  "origin": "http://127.0.0.1:3054",
+  "phase": "resilience",
+  "checks": [
+    {
+      "name": "programmatic scroll does not count as exploration",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "keyboard focus blocks closing",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "blur starts a full new window",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "closes after new focus-free window",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "unrelated modal blocks closing",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "modal close grants full window",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "closes after modal unblocks",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "active pointer blocks closing",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "release without exploration rearms",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "effective horizontal gesture counts and suppresses accidental sheet click",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "leaving section still collapses explored deck",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "exploration survives second opening",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "vertical gesture is not exploration",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "direct workshop anchor counts as exploration",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "hidden tab does not close deck",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "visible tab gets full window",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "visible idle eventually closes",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": []
+}

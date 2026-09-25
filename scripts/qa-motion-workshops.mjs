@@ -19,7 +19,7 @@ try {
  ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){pending.get(m.id)?.(m);pending.delete(m.id);}else if(m.method==='Runtime.exceptionThrown')report.errors.push(m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text);};
  const send=(method,params={})=>new Promise((r,j)=>{const id=++seq;pending.set(id,m=>m.error?j(Error(JSON.stringify(m.error))):r(m.result));ws.send(JSON.stringify({id,method,params}));});
  const ev=async expression=>{const r=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description || r.exceptionDetails.text);return r.result.value;};
- const check=async(name,expression)=>{const value=await ev(expression);report.checks.push({name,pass:!!value,value});if(!value)throw Error(name);};
+ const check=async(name,expression)=>{const value=await ev(expression);report.checks.push({name,pass:!!value,value});if(!value){report.debug=await ev(`({focus:document.hasFocus(),active:document.activeElement?.outerHTML.slice(0,300),focusVisible:document.querySelector(':focus-visible')?.outerHTML.slice(0,300),hidden:document.hidden,dialog:document.querySelector('dialog[open]')?.outerHTML.slice(0,120),deck:document.querySelector('[class*=TalleresCarrusel_deck]')?.getBoundingClientRect().toJSON()})`);throw Error(name);}};
  const wait=async expression=>{for(let i=0;i<160;i++){if(await ev(`Boolean(${expression})`))return;await sleep(100);}throw Error(`Timeout: ${expression}`);};
  const media=async reduce=>send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:reduce?'reduce':'no-preference'}]});
  const viewport=async(width,touch=false)=>{await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:touch});await send('Emulation.setTouchEmulationEnabled',{enabled:touch});};
@@ -27,7 +27,7 @@ try {
  const button=text=>`[...document.querySelectorAll('button')].find(b=>b.textContent.trim()===${JSON.stringify(text)})`;
  const click=async text=>{await ev(`${button(text)}.click()`);await sleep(120);};
  const shot=async name=>{const {data}=await send('Page.captureScreenshot',{format:'png'});writeFileSync(`${output}/${name}.png`,Buffer.from(data,'base64'));};
- await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
+ await send('Page.enable');await send('Runtime.enable');await send('Network.enable');await send('Emulation.setFocusEmulationEnabled',{enabled:true});
  if(phase==='policy'||phase==='full') {
  await viewport(1440);await media(true);await load();
  await check('reduce prompts and stays calm',`document.documentElement.dataset.motion==='reduce' && document.querySelector('dialog[open]')?.textContent.includes('Estás viendo esta web sin animaciones. Actívalas (solo para esta página).')`);
@@ -63,14 +63,34 @@ try {
   const track=`document.querySelector('[class*="TalleresCarrusel_grid"]')`;
   const expanded=`${deck}.hasAttribute('data-expanded')`;
   const open=async()=>{await ev(`${deck}.scrollIntoView({block:'center',behavior:'instant'});${deck}.querySelector('[class*="TalleresCarrusel_expand"]').dispatchEvent(new MouseEvent('click',{bubbles:true,detail:1}))`);await sleep(150);};
-  if (phase==='full') {
+  if (phase==='full'||phase==='timer') {
   await open();await sleep(4200);await check('deck remains open before 5 seconds',expanded);await sleep(1200);await check('idle deck closes after 5 seconds',`!${expanded}`);
   await open();await ev(`${deck}.querySelector('button[aria-label*="siguiente" i]').click()`);await sleep(5300);await check('arrow exploration cancels idle closing',expanded);
   await ev(`${track}.querySelector('button').click()`);await sleep(150);await check('workshop sheet opens',`!!document.querySelector('dialog[open]')`);await shot('workshop-sheet');
   await ev(`document.querySelector('dialog[open]').close()`);await sleep(200);
+  } else if(phase==='resilience') {
+   const fresh=async()=>{await load();await open();};
+   await fresh();await ev(`${track}.scrollTo({left:180,behavior:'instant'})`);await sleep(5300);
+   await check('programmatic scroll does not count as exploration',`!${expanded} && ${track}.scrollLeft===0`);
+   await fresh();await ev(`${track}.focus()`);await sleep(5300);
+   await check('keyboard focus blocks closing',expanded);
+   await ev(`document.activeElement.blur()`);await sleep(2000);await check('blur starts a full new window',expanded);await sleep(3300);await check('closes after new focus-free window',`!${expanded}`);
+   await fresh();await ev(`window.qaModal=document.createElement('dialog');document.body.append(qaModal);qaModal.showModal()`);await sleep(5300);
+   await check('unrelated modal blocks closing',expanded);await ev(`qaModal.close();qaModal.remove()`);await sleep(2000);await check('modal close grants full window',expanded);await sleep(3300);await check('closes after modal unblocks',`!${expanded}`);
+   await fresh();await ev(`${track}.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerId:1,button:0,clientX:200,clientY:300}))`);await sleep(5300);await check('active pointer blocks closing',expanded);
+   await ev(`window.dispatchEvent(new PointerEvent('pointerup',{pointerId:1}))`);await sleep(5300);await check('release without exploration rearms',`!${expanded}`);
+   await fresh();await ev(`${track}.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerId:2,button:0,clientX:220,clientY:300}));${track}.dispatchEvent(new PointerEvent('pointermove',{bubbles:true,pointerId:2,clientX:100,clientY:302}));${track}.scrollTo({left:180,behavior:'instant'})`);await sleep(100);
+   await ev(`window.dispatchEvent(new PointerEvent('pointerup',{pointerId:2}));${track}.querySelector('[data-workshop-media]').click()`);await sleep(5300);
+   await check('effective horizontal gesture counts and suppresses accidental sheet click',`${expanded} && !document.querySelector('dialog[open]')`);
+   await ev(`window.scrollTo({top:0,behavior:'instant'})`);await sleep(300);await check('leaving section still collapses explored deck',`!${expanded}`);await open();await sleep(5300);await check('exploration survives second opening',expanded);
+   await fresh();await ev(`${track}.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerId:3,button:0,clientX:200,clientY:300}));${track}.dispatchEvent(new PointerEvent('pointermove',{bubbles:true,pointerId:3,clientX:202,clientY:220}));window.dispatchEvent(new PointerEvent('pointerup',{pointerId:3}))`);await sleep(5300);await check('vertical gesture is not exploration',`!${expanded}`);
+   await fresh();await ev(`location.hash=${track}.children[1].id`);await sleep(5300);await check('direct workshop anchor counts as exploration',expanded);
+   await load();await ev(`history.replaceState(null,'',location.pathname)`);await load();await open();
+   await ev(`Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'))`);await sleep(5300);await check('hidden tab does not close deck',expanded);
+   await ev(`Object.defineProperty(document,'hidden',{configurable:true,get:()=>false});document.dispatchEvent(new Event('visibilitychange'))`);await sleep(2000);await check('visible tab gets full window',expanded);await sleep(3300);await check('visible idle eventually closes',`!${expanded}`);
   } else { await open(); }
   await ev(`${track}.scrollTo({left:0,behavior:'instant'})`);
-  for(const width of [320,390,440,759,760,1440]) {
+  for(const width of (['geometry','full'].includes(phase)?[320,390,440,759,760,1440]:[])) {
    await viewport(width,false);await ev(`${deck}.scrollIntoView({block:'center',behavior:'instant'})`);await sleep(200);
    const geometry=await ev(`(()=>{const t=${track},a=t.firstElementChild,m=a.querySelector('[data-workshop-media]'),p=m.firstElementChild; const b=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}};return {width:${width},track:b(t),card:b(a),media:b(m),poster:b(p)}})()`);
    report.checks.push({name:`geometry ${width}`,pass:geometry.poster.w<=geometry.media.w,geometry});

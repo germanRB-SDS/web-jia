@@ -1,0 +1,27 @@
+{
+  "origin": "http://127.0.0.1:3054",
+  "phase": "timer",
+  "checks": [
+    {
+      "name": "deck remains open before 5 seconds",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "idle deck closes after 5 seconds",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "arrow exploration cancels idle closing",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "workshop sheet opens",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": []
+}
