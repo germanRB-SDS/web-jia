@@ -138,3 +138,9 @@ Verificación V3 dirigida: política de movimiento → CSS/JS/motores → cookie
 Cada fase ejecutable futura sigue práctica 14 (checkpoint verde, informe/riesgos, commit documental separado). Output completo en `docs/prompts-output/[54-0]/prompt-output.md`, memoria frontend/security afectada y checkpoint actualizado. Aplicar assurance al cerrar código según router; no firmar como humano ni afirmar pruebas que no se ejecutaron.
 
 Entregar preview y commits locales. Si la continuación autoriza publicar, seguir la guía y wrappers vigentes, verificar mismo sitio/ruta, CSS/JS dinámicos, cookie HTTPS, efectos y móvil después de activar. No activar MCP ni reutilizar credenciales/SSH de una ocasión anterior por inferencia.
+
+## Delta autorizado durante ejecución — tarjetas compactas
+
+Registro histórico documental: el propietario pide antes del despliegue el 25-09-2026 eliminar Imparte y Temática de cada tarjeta de Talleres y acercar el subtítulo a Ver ficha/Descargar dossier. MODIFICATION acotada de la presentación de las tarjetas, incluido escritorio; sustituye para ese alcance la instrucción anterior de no cambiar escritorio. La ficha completa conserva sus datos. Las tarjetas de otras secciones mantienen su contrato. No cambia negocio, autoría, temática ni sus constantes.
+
+El propietario confirma después que esta ampliación debe figurar en el prompt como historial y ejecutarse antes de producción, con commit y despliegue incluidos. Se integra en la misma release de [54-0], previa verificación.

@@ -80,13 +80,13 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
             {sheet.subtitle}
           </p>
         ) : null}
-        {sheet.people.length ? (
+        {workshopIndex === undefined && sheet.people.length ? (
           <p className={`${styles.people} ${styles.who} ${styles.clamp}`} title={sheet.people.map((p) => p.name).join(" · ")}>
             <span className={styles.peopleLabel}>{labels.people}</span>{" "}
             {sheet.people.map((p) => p.name).join(" · ")}
           </p>
         ) : null}
-        {sheet.meta ? (
+        {workshopIndex === undefined && sheet.meta ? (
           <p className={`${styles.people} ${styles.theme} ${styles.clamp}`} title={sheet.meta}>
             <span className={styles.peopleLabel}>{labels.theme}</span> {sheet.meta}
           </p>
@@ -143,7 +143,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
               {sheet.summary && !sheet.sections.length ? <p>{sheet.summary}</p> : null}
               <dl className={styles.fields}>
                 {workshopIndex !== undefined && sheet.meta ? (
-                  <div className={`${styles.field} ${styles.mobileTheme}`}>
+                  <div className={styles.field}>
                     <dt>{labels.theme}</dt>
                     <dd>{sheet.meta}</dd>
                   </div>

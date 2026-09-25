@@ -313,10 +313,16 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
 .compact .foot { grid-row: 3; }
 .compact .download { grid-row: 4; }
 
+/* Workshops omit the people/theme preview rows. Their full details remain in the dialog. */
+@media (min-width: 760px) {
+  .workshop { grid-row: auto; grid-template-rows: auto; row-gap: 0.25rem; }
+  .workshop .foot { grid-row: 4; margin-top: 0; }
+  .workshop .download { grid-row: 5; margin-top: 0; }
+  .workshop .title, .workshop .subtitle { min-height: 0; }
+}
+
 /* Workshops keep their full copy in the sheet; the mobile row is just posters and actions. */
-.mobileTheme { display: none; }
 @media (max-width: 759.98px) {
-  .mobileTheme { display: block; }
   .workshop .sheet {
     display: flow-root;
     padding: calc(4.5rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));

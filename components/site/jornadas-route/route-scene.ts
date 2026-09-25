@@ -184,6 +184,7 @@ export class RouteScene {
         console.warn("[JornadasRoute] GLB unavailable, static road shown:", err);
       }
     }
+    if (this.disposed) return;
     if (!this.wagon) {
       this.showStatic(false);
       this.handlers.onFail("glb");

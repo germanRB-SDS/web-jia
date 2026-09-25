@@ -134,7 +134,10 @@ export class TumbleweedField {
 
   dispose(): void {
     this.stop();
-    for (const tl of this.alive) tl.kill();
+    for (const tl of this.alive) {
+      gsap.killTweensOf(tl); // The repeating gust owns the timeline as its target.
+      tl.kill();
+    }
     this.alive.clear();
     this.stage.replaceChildren();
   }

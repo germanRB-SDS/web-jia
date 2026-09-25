@@ -1,5 +1,7 @@
 # Continuidad [54-0]
 
-2026-09-25. Rama feat/REL-2026-09-25-03-motion; base bb284af. Worktree /private/tmp/web-jia-54. Root tiene next-env.d.ts ajeno intacto. Fase A descubrimiento completo; B en implementación. Pendientes B/C/D/E/F, commits por fase, integración/push y release. Sin MCP ni capacidades externas: ledger vacío; se aplica guía SDS, tooling nativo existente. Riesgos: cleanup, modal, geometría, timer; SSH requiere autorización nueva antes de uso. Siguiente: integrar store con consumidores y popup; typecheck y navegador.
+2026-09-25. Rama feat/REL-2026-09-25-03-motion; base bb284af. Worktree /private/tmp/web-jia-54. Root conserva next-env.d.ts ajeno; node_modules del worktree es enlace local excluido del staging.
 
-Fase B: store, popup, CSS, todos los consumidores JS migrados; typecheck, contenido, build y 13 checks CDP PASS. Cookie atributos inspeccionados en localhost; HTTPS real pendiente. Fase C: capacidades comunes sin UA; equipos físicos no disponibles. Siguiente: fase D geometría y E máquina de interacción.
+A descubrimiento y C matriz terminados. B implementación c23e342 + informe 7eed176. D implementación 1531e1a + informe 64d08de. E implementación 479fa43 + informe 35268ed. F código final verificado: compactación autorizada, cleanup GSAP y guarda de carga tardía. TypeScript, contenido, build webpack y governance PASS. Chrome HTTPS: full 27, input nativo 11, compact 3, extra 15, nojs 2; resiliencia previa 17. Ver JSON y límites del informe final.
+
+Pendiente: commit F, informe separado, integración main, push seguro y paquete con hash. Producción requiere nueva autorización explícita SSH según guía; no se ha conectado al VPS. Excepción anterior consumida, MCP no admitido. Tras autorización comprobar current real y permisos sudo antes de activar; jamás asumir release previa por memoria.

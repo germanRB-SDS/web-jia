@@ -1,0 +1,28 @@
+{
+  "origin": "https://127.0.0.1:3454",
+  "phase": "nojs",
+  "browser": "Google Chrome macOS",
+  "checks": [
+    {
+      "name": "reduce is quiet before hydration without JS",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "workshop content exists without JS",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": [],
+  "networkFailures": [
+    {
+      "requestId": "86406.50",
+      "timestamp": 23345.99059,
+      "type": "Script",
+      "errorText": "",
+      "canceled": false,
+      "blockedReason": "csp"
+    }
+  ]
+}
