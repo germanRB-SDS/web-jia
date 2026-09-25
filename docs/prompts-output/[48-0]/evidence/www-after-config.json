@@ -1,0 +1,22 @@
+{
+  "effectiveHosts": [
+    "api.fields.es",
+    "backoffice.fields.es",
+    "fields.es",
+    "jornadasdeinnovacion.com",
+    "www.fields.es",
+    "www.jornadasdeinnovacion.com"
+  ],
+  "hashes": {
+    "/etc/caddy/Caddyfile": "0ccdba9da664e38246ef711983464b2cdf40877f9b386a10359fb40511e66870",
+    "/etc/caddy/web-jia.caddy": "f684b1df89fcec318e6935bc3e6358217a8e91a1519d22c86c09ac1677b9b8b4",
+    "/etc/caddy/web-jia-www.caddy": "ec6a195b042ed576ae78652b88940b1aff0e9546cc266583e3328b608c528e66"
+  },
+  "services": {
+    "caddy": "ActiveState=active\nActiveEnterTimestamp=Sat 2026-09-12 06:45:54 UTC",
+    "fields-web": "ActiveState=active\nActiveEnterTimestamp=Fri 2026-09-18 18:42:18 UTC",
+    "fields-roots": "ActiveState=active\nActiveEnterTimestamp=Sat 2026-09-12 06:46:00 UTC",
+    "fields-backoffice": "ActiveState=active\nActiveEnterTimestamp=Sat 2026-09-12 06:46:00 UTC",
+    "fields-mongodb": "ActiveState=active\nActiveEnterTimestamp=Sat 2026-09-12 06:46:00 UTC"
+  }
+}
