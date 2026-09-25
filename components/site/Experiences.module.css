@@ -29,6 +29,19 @@
   height: 100%;
   border-radius: 0;
 }
+/* ---- layer 3: the teacher, cut out of the same frame and laid back on herself ([51-0]) ----
+   It takes the same box as layer 1 (`.surface` above), and its media entry carries the same ratio and the
+   same focal point, so `object-fit: cover` can only resolve the two images in the same rectangle: no offset
+   is possible at any width. Not one length of its own here — a `left`, a `width` or a `transform` would be
+   exactly the thing that lets her drift.
+   The `background` is the one thing that has to go: `Surface` paints its fallback surface inline, and under an
+   image with transparency that fallback would be a slab of colour over the classroom. A declaration in a
+   stylesheet with `!important` wins over an inline one without it; that is the whole trick. */
+.cutout {
+  background: none !important;
+  pointer-events: none;
+  z-index: 3;
+}
 /* ---- the chalk lettering on the blackboard ----
    The blackboard is at the back on the left, out of focus, and the teacher covers it from x 195 on. Measured on
    the original (1919 x 820), the free, legible slate is x 45 -> 230 and y 140 -> 270: the box below, in percent.
@@ -49,6 +62,47 @@
   container-type: size;
   pointer-events: none;
 }
+/* ---- layer 2: the sun through the window ----
+   Same rule as the blackboard's frame, and for the same reason: this is the rectangle the photograph is really
+   drawn in, so the window of the scene stays under the window of the photograph at every width. The blend is
+   on the frame, not on the canvas: the frame is the element that makes the stacking context, and a blend
+   inside one of those never reaches the photograph. `screen` is what light does — it lifts and never dirties. */
+.lightFrame {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  height: 100%;
+  aspect-ratio: var(--aula-ratio);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  /* Where the glass is, as a share of the photograph: measured, and the same numbers the scene is given
+     (components/site/sun-rays/config.ts › glass). One place to change if the photograph is ever replaced. */
+  --window-x: 41.2%;
+  --window-y: 33.6%;
+}
+/* The room around the window is never quite dark: a wash of the same light that pours through it, at the
+   promoter's request. It reaches the left edge of the photograph and dies there — that is what the 41,2 %
+   radius is, the distance from the window to that edge. Unlike the shafts, this one does not come and go:
+   it is CSS, it needs no JavaScript and it is there from the first paint. */
+.lightFrame::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    ellipse var(--window-x) 88% at var(--window-x) var(--window-y),
+    rgb(var(--jia-sunbeam-rgb) / 0.4) 0%,
+    rgb(var(--jia-sunbeam-rgb) / 0) 100%
+  );
+}
+.lightCanvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .board {
   position: absolute;
   left: 2.4%;
@@ -66,19 +120,62 @@
   text-align: center;
   text-wrap: nowrap;
   color: var(--jia-chalk);
-  /* Chalk dust, not paint; and the same soft focus as the board behind it (about 2 px at 1920). */
+  /* Chalk dust, not paint. The board behind it is out of focus, so the lettering cannot be sharp — a crisp word
+     on a blurred slate reads as a sticker. But the promoter asked for it to be read more easily, so since
+     [51-0] the blur went from 0,12cqw to 0,07cqw: from about 2,3 px to about 1,3 px over a 1920 px frame. The
+     opacity is deliberately left where it was; if it ever needs a hand, move one of the two, not both. */
   opacity: 0.55;
-  filter: blur(0.12cqw);
+  filter: blur(0.07cqw);
   /* Written by a hand, not typeset. */
   rotate: -1.1deg;
 }
-.board span { display: block; }
+/* ---- the chalk writes itself, letter by letter ([51-0]) ----
+   Each letter is drawn left to right by its own `clip-path`, and they take their turn in the queue the
+   component gave them: two and a half seconds from the first stroke to the last. A clip and not a mask,
+   because over a single letter the edge is a pen tip and a mask would only cost more to composite; and
+   neither of them over a `width`, which would lay the line out again on every frame.
+   The bottom inset is negative so the descenders, and the blur that hangs off them, are never clipped.
+   At rest there is no clip at all: with no JavaScript, with no `data-chalk`, the name is simply written on
+   the board the way it always was. The pen only moves when the section says so. */
+.chalkLine {
+  display: block;
+  white-space: pre;
+}
+.glyph {
+  display: inline-block;
+}
+/* Armed: the client piece has mounted and is going to write. Nothing on the slate yet. */
+[data-chalk="armed"] .glyph {
+  clip-path: inset(0 100% -25% 0);
+}
+/* And writing. Linear inside a letter — a stroke has no ease of its own — with the queue doing the rhythm. */
+[data-chalk="writing"] .glyph {
+  animation: chalk-write var(--chalk-duration) linear both;
+  animation-delay: calc(var(--chalk-at) * var(--chalk-step));
+}
+@keyframes chalk-write {
+  from {
+    clip-path: inset(0 100% -25% 0);
+  }
+  to {
+    clip-path: inset(0 0 -25% 0);
+  }
+}
+/* Whoever asked for less movement gets the name whole and still. The lower blur stays: that is not
+   movement, that is being able to read it. */
+@media (prefers-reduced-motion: reduce) {
+  [data-chalk] .glyph {
+    animation: none;
+    clip-path: none;
+  }
+}
 
-/* The band's floor melts into the ground the heading stands on. */
+/* The band's floor melts into the ground the heading stands on. It went from level 1 to level 4 in [51-0]:
+   under the cut-out teacher it would have cut her skirt off dead against the seam. */
 .photo::before {
   content: "";
   position: absolute;
-  z-index: 1;
+  z-index: 4;
   left: 0;
   right: 0;
   bottom: 0;
@@ -108,7 +205,7 @@
   .photo::after {
     content: "";
     position: absolute;
-    z-index: 1;
+    z-index: 4;
     left: 0;
     right: 0;
     bottom: 0;

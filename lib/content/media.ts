@@ -217,6 +217,22 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
     },
     {
+      /** Experiencias, capa 3 ([51-0]): la misma maestra recortada del mismo fotograma, sin fondo. Se dibuja
+          EXACTAMENTE encima de `experiencias-aula` para que la luz de la capa 2 pase por detrás de ella.
+          La proporción y el punto focal de las dos entradas TIENEN que ser idénticos: es lo único que garantiza
+          que `object-fit: cover` resuelva las dos imágenes en el mismo rectángulo a cualquier ancho. Si un día
+          cambia el encuadre de una, cambia el de la otra en el mismo movimiento, o la maestra se verá doble. */
+      id: "experiencias-maestra",
+      variants: [
+        { src: "/experiencias/maestra-960.webp", width: 960 },
+        { src: "/experiencias/maestra-1919.webp", width: 1919 },
+      ],
+      ratio: 1919 / 820,
+      focal: { x: 0, y: 50 },
+      original: "assets/images-website/aula-maestra3-cutout.png",
+      license: "Recorte aportado por el promotor el 25-09-2026, derivado de aula-maestra3.png (origen y licencia por confirmar)",
+    },
+    {
       /** Acoge JIA band. The subject stands on the left; the right side is clear ground for the text. */
       id: "acoge-indio",
       variants: [

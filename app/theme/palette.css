@@ -21,6 +21,7 @@
   --jia-copper: #ad754d;           /* Cobre mate: detalle gráfico, nunca texto pequeño */
   --jia-olive: #72715b;            /* Oliva seco: acento muy puntual */
   --jia-chalk: #d7c9b2;            /* Tiza (extensión, muestreada de la foto del aula): sólo el rótulo escrito sobre la pizarra */
+  --jia-sunbeam: #eedccb;          /* Luz de la ventana (extensión, muestreada del cristal de esa misma foto del aula): sólo los rayos de sol de Experiencias */
 
   /* Canales RGB de los tokens que se usan con transparencia (máscaras del hero,
      velos de tarjeta). Se derivan de los HEX anteriores; no son colores nuevos. */
@@ -31,6 +32,7 @@
   --jia-dune-rgb: 192 172 148;
   --jia-dune-light-rgb: 221 204 181;
   --jia-terracotta-deep-rgb: 112 57 35;
+  --jia-sunbeam-rgb: 238 220 203;
 
   /* Degradados de «Cómo funcionan» (JIA-2026-09-18-11, extensión pedida por el promotor): un foco
      cálido detrás del cubo del equipo y el barniz de sus caras. Solo combinan tokens anteriores. */

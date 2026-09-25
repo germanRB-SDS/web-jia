@@ -98,6 +98,18 @@ out public/experiencias/x
 magick assets/images-website/aula-maestra3.png -resize 960x -strip -quality 80 "public/experiencias/aula-960.webp"
 magick assets/images-website/aula-maestra3.png -strip -quality 82 "public/experiencias/aula-1919.webp"
 
+# Experiencias, layer 3 ([51-0]): the same teacher cut out of the same frame, with no background, supplied by the
+# promoter on 2026-09-25 (1918x820). It is laid EXACTLY over the photograph above so that the light of layer 2 can
+# pass behind her. Two conditions make that registration impossible to break:
+#   - the extent to 1919x820 anchored north-west, so the cutout has the photograph's ratio to the pixel (the
+#     source is one column short; padding beats resizing, which would resample and shift her half a pixel);
+#   - "-define webp:alpha-quality" and no flattening, so the transparency survives the WebP. An opaque file here
+#     would paint a cream rectangle over the classroom.
+magick assets/images-website/aula-maestra3-cutout.png -background none -gravity NorthWest -extent 1919x820 \
+  -resize 960x -strip -quality 84 -define webp:alpha-quality=100 "public/experiencias/maestra-960.webp"
+magick assets/images-website/aula-maestra3-cutout.png -background none -gravity NorthWest -extent 1919x820 \
+  -strip -quality 86 -define webp:alpha-quality=100 "public/experiencias/maestra-1919.webp"
+
 # Acoge JIA band: the archer supplied by the promoter (indio.png, 1916x821, second version supplied on
 # 2026-09-20). The first archer stays beside it as acoge-arquero.png, unused: originals are never overwritten.
 out public/acoge/x
