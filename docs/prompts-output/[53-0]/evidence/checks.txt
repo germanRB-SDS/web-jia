@@ -1,0 +1,12 @@
+REL-2026-09-25-02 | 2026-09-25 | Node v24.19.0
+
+npx tsc --noEmit: PASS
+npm run check:content: PASS (6 workshops, 38 people, 2 experiences, 0 resources, 62 media)
+npx next build --webpack: PASS (4 static pages generated; export out/)
+git diff --check: PASS
+
+Webpack is used only for this isolated worktree: node_modules is a symlink to the installed project dependencies; Turbopack rejects symlinks outside its project root. No dependencies or config changed.
+
+Browser: installed Chrome, CDP, touch emulation, 320/390/520/759/760/960/1440 CSS px. 61 assertions pass across the six JSON files. Production smoke is on exported out/, with hydration awaited. No physical Safari/iOS run.
+
+Harness corrections: full navigations between scenarios; case-insensitive visible labels (CSS uppercases); complete CDP Enter activation including carriage return. Intermediate harness failures are not claimed as product regressions.

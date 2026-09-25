@@ -1,0 +1,188 @@
+[
+  {
+    "check": "production starts with mobile fan",
+    "pass": true,
+    "detail": {
+      "viewport": 390,
+      "pageWidth": 438,
+      "trackWidth": 358,
+      "deckWidth": 358,
+      "deckScroll": 358,
+      "scroll": 0,
+      "inert": true,
+      "layout": "flex",
+      "heading": "TALLERES EN EL SALOON",
+      "expanded": false,
+      "dialogs": 0,
+      "header": {
+        "badge": {
+          "x": 224.859375,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "top": 12,
+          "right": 268.859375,
+          "bottom": 56,
+          "left": 224.859375
+        },
+        "menu": {
+          "x": 284.859375,
+          "y": 12,
+          "width": 89.140625,
+          "height": 44,
+          "top": 12,
+          "right": 374,
+          "bottom": 56,
+          "left": 284.859375
+        }
+      },
+      "cards": [
+        {
+          "id": "talleres-w-scratch",
+          "width": 279,
+          "transform": "matrix(0.561911, -0.262023, 0.262023, 0.561911, 39.38, -64)",
+          "titleVisible": false,
+          "actionVisible": false,
+          "download": null
+        },
+        {
+          "id": "talleres-w-canva",
+          "width": 279,
+          "transform": "matrix(0.598874, -0.160468, 0.160468, 0.598874, -259.86, -64)",
+          "titleVisible": false,
+          "actionVisible": false,
+          "download": null
+        },
+        {
+          "id": "talleres-w-corto",
+          "width": 279,
+          "transform": "matrix(0.617641, -0.0540366, 0.0540366, 0.617641, -559.1, -64)",
+          "titleVisible": false,
+          "actionVisible": false,
+          "download": null
+        },
+        {
+          "id": "talleres-w-stopmotion",
+          "width": 279,
+          "transform": "matrix(0.617641, 0.0540366, -0.0540366, 0.617641, -858.34, -64)",
+          "titleVisible": false,
+          "actionVisible": false,
+          "download": null
+        },
+        {
+          "id": "talleres-w-album",
+          "width": 279,
+          "transform": "matrix(0.598874, 0.160468, -0.160468, 0.598874, -1157.58, -64)",
+          "titleVisible": false,
+          "actionVisible": false,
+          "download": null
+        },
+        {
+          "id": "talleres-w-podcast",
+          "width": 279,
+          "transform": "matrix(0.561911, 0.262023, -0.262023, 0.561911, -1456.82, -64)",
+          "titleVisible": false,
+          "actionVisible": false,
+          "download": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "production tap unfolds without dialog",
+    "pass": true,
+    "detail": {
+      "viewport": 390,
+      "pageWidth": 438,
+      "trackWidth": 358,
+      "deckWidth": 358,
+      "deckScroll": 358,
+      "scroll": 0,
+      "inert": false,
+      "layout": "flex",
+      "heading": "TALLERES EN EL SALOON",
+      "expanded": true,
+      "dialogs": 0,
+      "header": {
+        "badge": {
+          "x": 224.859375,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "top": 12,
+          "right": 268.859375,
+          "bottom": 56,
+          "left": 224.859375
+        },
+        "menu": {
+          "x": 284.859375,
+          "y": 12,
+          "width": 89.140625,
+          "height": 44,
+          "top": 12,
+          "right": 374,
+          "bottom": 56,
+          "left": 284.859375
+        }
+      },
+      "cards": [
+        {
+          "id": "talleres-w-scratch",
+          "width": 279,
+          "transform": "none",
+          "titleVisible": false,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-canva",
+          "width": 279,
+          "transform": "none",
+          "titleVisible": false,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-corto",
+          "width": 279,
+          "transform": "none",
+          "titleVisible": false,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-stopmotion",
+          "width": 279,
+          "transform": "none",
+          "titleVisible": false,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-album",
+          "width": 279,
+          "transform": "none",
+          "titleVisible": false,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-podcast",
+          "width": 279,
+          "transform": "none",
+          "titleVisible": false,
+          "actionVisible": true,
+          "download": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "production sheet opens",
+    "pass": true
+  },
+  {
+    "check": "deep link aligns requested fifth card",
+    "pass": true
+  }
+]

@@ -1,0 +1,349 @@
+[
+  {
+    "check": "footer credit above content 320",
+    "pass": true,
+    "detail": {
+      "footerTop": 101.75,
+      "creditTop": 101.75,
+      "creditBottom": 174.75,
+      "contentTop": 174.75,
+      "lineTop": "72px",
+      "lineBottom": "0px",
+      "opacity": "0.8",
+      "animation": "SiteFooter_studio-rule-flow__MFFBm",
+      "position": "84.0141% 50%",
+      "shadow": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)",
+      "pointerEvents": "none",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "gradient actually moves 320",
+    "pass": true,
+    "detail": [
+      "84.0141% 50%",
+      "70.6861% 50%"
+    ]
+  },
+  {
+    "check": "header translucent shadow 320",
+    "pass": true,
+    "detail": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)"
+  },
+  {
+    "check": "footer credit above content 390",
+    "pass": true,
+    "detail": {
+      "footerTop": 111.390625,
+      "creditTop": 111.390625,
+      "creditBottom": 184.390625,
+      "contentTop": 184.390625,
+      "lineTop": "72px",
+      "lineBottom": "0px",
+      "opacity": "0.8",
+      "animation": "SiteFooter_studio-rule-flow__MFFBm",
+      "position": "84.0102% 50%",
+      "shadow": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)",
+      "pointerEvents": "none",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "gradient actually moves 390",
+    "pass": true,
+    "detail": [
+      "84.0102% 50%",
+      "70.6822% 50%"
+    ]
+  },
+  {
+    "check": "header translucent shadow 390",
+    "pass": true,
+    "detail": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)"
+  },
+  {
+    "check": "footer credit above content 520",
+    "pass": true,
+    "detail": {
+      "footerTop": 112.90625,
+      "creditTop": 112.90625,
+      "creditBottom": 185.90625,
+      "contentTop": 185.90625,
+      "lineTop": "72px",
+      "lineBottom": "0px",
+      "opacity": "0.8",
+      "animation": "SiteFooter_studio-rule-flow__MFFBm",
+      "position": "82.6778% 50%",
+      "shadow": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)",
+      "pointerEvents": "none",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "gradient actually moves 520",
+    "pass": true,
+    "detail": [
+      "82.6778% 50%",
+      "70.6778% 50%"
+    ]
+  },
+  {
+    "check": "header translucent shadow 520",
+    "pass": true,
+    "detail": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)"
+  },
+  {
+    "check": "footer credit above content 759",
+    "pass": true,
+    "detail": {
+      "footerTop": 113.46875,
+      "creditTop": 113.46875,
+      "creditBottom": 186.46875,
+      "contentTop": 186.46875,
+      "lineTop": "72px",
+      "lineBottom": "0px",
+      "opacity": "0.8",
+      "animation": "SiteFooter_studio-rule-flow__MFFBm",
+      "position": "84.0122% 50%",
+      "shadow": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)",
+      "pointerEvents": "none",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "gradient actually moves 759",
+    "pass": true,
+    "detail": [
+      "84.0122% 50%",
+      "72.0202% 50%"
+    ]
+  },
+  {
+    "check": "header translucent shadow 759",
+    "pass": true,
+    "detail": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)"
+  },
+  {
+    "check": "desktop footer unchanged 760",
+    "pass": true,
+    "detail": {
+      "footerTop": 507.390625,
+      "creditTop": 812.09375,
+      "creditBottom": 885.09375,
+      "contentTop": 507.390625,
+      "lineTop": "0px",
+      "lineBottom": "72px",
+      "opacity": "0",
+      "animation": "none",
+      "position": "200% 50%",
+      "shadow": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)",
+      "pointerEvents": "none",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "desktop footer unchanged 1440",
+    "pass": true,
+    "detail": {
+      "footerTop": 494.9375,
+      "creditTop": 826.859375,
+      "creditBottom": 899.859375,
+      "contentTop": 494.9375,
+      "lineTop": "0px",
+      "lineBottom": "72px",
+      "opacity": "0",
+      "animation": "none",
+      "position": "200% 50%",
+      "shadow": "none",
+      "pointerEvents": "auto",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "mobile footer respects reduced motion",
+    "pass": true,
+    "detail": {
+      "footerTop": 4159.390625,
+      "creditTop": 4159.390625,
+      "creditBottom": 4232.390625,
+      "contentTop": 4232.390625,
+      "lineTop": "72px",
+      "lineBottom": "0px",
+      "opacity": "0.8",
+      "animation": "none",
+      "position": "50% 50%",
+      "shadow": "radial-gradient(at 50% 0px, rgba(47, 24, 11, 0.28), rgba(47, 24, 11, 0.08) 45%, rgba(0, 0, 0, 0) 72%)",
+      "pointerEvents": "none",
+      "credit": "Diseñado porSouth Desert Studio",
+      "href": "https://southdesertstudio.com"
+    }
+  },
+  {
+    "check": "desktop workshop geometry matches main",
+    "pass": true,
+    "detail": {
+      "desktop": {
+        "pageWidth": 1425,
+        "viewport": 1425,
+        "trackWidth": 1016,
+        "cards": [
+          {
+            "w": 317,
+            "x": 337,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 686,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 1035,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 337,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 686,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 1035,
+            "title": "22px"
+          }
+        ],
+        "header": [
+          {
+            "tag": "IMG",
+            "x": 1308.5,
+            "w": 44
+          },
+          {
+            "tag": "BUTTON",
+            "x": 0,
+            "w": 0
+          },
+          {
+            "tag": "BUTTON",
+            "x": 766.796875,
+            "w": 32
+          }
+        ]
+      },
+      "base": {
+        "pageWidth": 1425,
+        "viewport": 1425,
+        "trackWidth": 1016,
+        "cards": [
+          {
+            "w": 317,
+            "x": 337,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 686,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 1035,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 337,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 686,
+            "title": "22px"
+          },
+          {
+            "w": 317,
+            "x": 1035,
+            "title": "22px"
+          }
+        ],
+        "header": [
+          {
+            "tag": "BUTTON",
+            "x": 0,
+            "w": 0
+          },
+          {
+            "tag": "BUTTON",
+            "x": 766.796875,
+            "w": 32
+          },
+          {
+            "tag": "IMG",
+            "x": 1308.5,
+            "w": 44
+          }
+        ]
+      }
+    }
+  },
+  {
+    "check": "desktop header geometry matches main",
+    "pass": true,
+    "detail": {
+      "header": [
+        {
+          "tag": "IMG",
+          "x": 1308.5,
+          "w": 44
+        },
+        {
+          "tag": "BUTTON",
+          "x": 0,
+          "w": 0
+        },
+        {
+          "tag": "BUTTON",
+          "x": 766.796875,
+          "w": 32
+        }
+      ],
+      "baseline": [
+        {
+          "tag": "BUTTON",
+          "x": 0,
+          "w": 0
+        },
+        {
+          "tag": "BUTTON",
+          "x": 766.796875,
+          "w": 32
+        },
+        {
+          "tag": "IMG",
+          "x": 1308.5,
+          "w": 44
+        }
+      ]
+    }
+  },
+  {
+    "check": "mobile page overflow not increased",
+    "pass": true,
+    "detail": {
+      "base": 1514,
+      "current": 438
+    }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "check": "mobile sheet retains theme 0",
+    "pass": true,
+    "detail": {
+      "text": "TemáticaProgramación creativa",
+      "visible": true
+    }
+  },
+  {
+    "check": "mobile sheet retains theme 1",
+    "pass": true,
+    "detail": {
+      "text": "TemáticaVídeo y producción audiovisual",
+      "visible": true
+    }
+  },
+  {
+    "check": "mobile sheet retains theme 2",
+    "pass": true,
+    "detail": {
+      "text": "TemáticaCortometraje",
+      "visible": true
+    }
+  },
+  {
+    "check": "mobile sheet retains theme 3",
+    "pass": true,
+    "detail": {
+      "text": "TemáticaStop motion",
+      "visible": true
+    }
+  },
+  {
+    "check": "mobile sheet retains theme 4",
+    "pass": true,
+    "detail": {
+      "text": "TemáticaIlustración",
+      "visible": true
+    }
+  },
+  {
+    "check": "mobile sheet retains theme 5",
+    "pass": true,
+    "detail": {
+      "text": "TemáticaRadio y podcast",
+      "visible": true
+    }
+  },
+  {
+    "check": "desktop sheet layout retained",
+    "pass": true
+  }
+]

@@ -1,0 +1,286 @@
+[
+  {
+    "check": "desktop grid 760",
+    "pass": true,
+    "detail": {
+      "viewport": 745,
+      "pageWidth": 838,
+      "trackWidth": 684,
+      "deckWidth": 684,
+      "deckScroll": 684,
+      "scroll": 0,
+      "inert": false,
+      "layout": "grid",
+      "heading": "TALLERES",
+      "expanded": false,
+      "dialogs": 0,
+      "header": {
+        "badge": {
+          "x": 565.453125,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "top": 12,
+          "right": 609.453125,
+          "bottom": 56,
+          "left": 565.453125
+        },
+        "menu": {
+          "x": 625.453125,
+          "y": 12,
+          "width": 89.140625,
+          "height": 44,
+          "top": 12,
+          "right": 714.59375,
+          "bottom": 56,
+          "left": 625.453125
+        }
+      },
+      "cards": [
+        {
+          "id": "talleres-w-scratch",
+          "width": 332,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-canva",
+          "width": 332,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-corto",
+          "width": 332,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-stopmotion",
+          "width": 332,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-album",
+          "width": 332,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-podcast",
+          "width": 332,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "desktop grid 960",
+    "pass": true,
+    "detail": {
+      "viewport": 945,
+      "pageWidth": 968,
+      "trackWidth": 620,
+      "deckWidth": 620,
+      "deckScroll": 620,
+      "scroll": 0,
+      "inert": false,
+      "layout": "grid",
+      "heading": "TALLERES",
+      "expanded": false,
+      "dialogs": 0,
+      "header": {
+        "badge": {
+          "x": 862.59375,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "top": 12,
+          "right": 906.59375,
+          "bottom": 56,
+          "left": 862.59375
+        },
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "cards": [
+        {
+          "id": "talleres-w-scratch",
+          "width": 298,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-canva",
+          "width": 298,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-corto",
+          "width": 298,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-stopmotion",
+          "width": 298,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-album",
+          "width": 298,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-podcast",
+          "width": 298,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "desktop grid 1440",
+    "pass": true,
+    "detail": {
+      "viewport": 1425,
+      "pageWidth": 1425,
+      "trackWidth": 1016,
+      "deckWidth": 1016,
+      "deckScroll": 1016,
+      "scroll": 0,
+      "inert": false,
+      "layout": "grid",
+      "heading": "TALLERES",
+      "expanded": false,
+      "dialogs": 0,
+      "header": {
+        "badge": {
+          "x": 1308.5,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "top": 12,
+          "right": 1352.5,
+          "bottom": 56,
+          "left": 1308.5
+        },
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "cards": [
+        {
+          "id": "talleres-w-scratch",
+          "width": 317,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-canva",
+          "width": 317,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-corto",
+          "width": 317,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-stopmotion",
+          "width": 317,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-album",
+          "width": 317,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        },
+        {
+          "id": "talleres-w-podcast",
+          "width": 317,
+          "transform": "none",
+          "titleVisible": true,
+          "actionVisible": true,
+          "download": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "deep link unfolds",
+    "pass": true,
+    "detail": 1197
+  },
+  {
+    "check": "resize to desktop",
+    "pass": true
+  },
+  {
+    "check": "resize back stays open",
+    "pass": true
+  },
+  {
+    "check": "mobile menu opens",
+    "pass": true
+  }
+]

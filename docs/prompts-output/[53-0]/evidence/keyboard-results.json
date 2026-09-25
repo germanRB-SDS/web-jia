@@ -1,0 +1,18 @@
+[
+  {
+    "check": "keyboard expansion moves focus to track",
+    "pass": true
+  },
+  {
+    "check": "reduced motion",
+    "pass": true
+  },
+  {
+    "check": "reduced motion unfolds",
+    "pass": true
+  },
+  {
+    "check": "real mouse hover unfolds",
+    "pass": true
+  }
+]
