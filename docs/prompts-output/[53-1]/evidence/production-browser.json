@@ -1,0 +1,31 @@
+[
+  {
+    "check": "production edition canonical",
+    "pass": true
+  },
+  {
+    "check": "mobile deck hydrated",
+    "pass": true
+  },
+  {
+    "check": "edition sheet fullscreen",
+    "pass": true
+  },
+  {
+    "check": "edition header visible",
+    "pass": true
+  },
+  {
+    "check": "edition deck collapses",
+    "pass": true
+  },
+  {
+    "check": "edition desktop modal",
+    "pass": true
+  },
+  {
+    "check": "no uncaught browser errors",
+    "pass": true,
+    "detail": []
+  }
+]

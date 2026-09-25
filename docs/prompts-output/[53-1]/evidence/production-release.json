@@ -7,5 +7,8 @@
   "files": 203,
   "html_sha256": "369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169",
   "expected_current": "releases/20260920-5b4d363",
-  "status": "prepared-not-activated"
+  "status": "activated-and-verified",
+  "activated_by": "owner via prepared SSH launcher",
+  "verified_date": "2026-09-25",
+  "public_url": "https://jornadasdeinnovacion.com/almeria-2026"
 }

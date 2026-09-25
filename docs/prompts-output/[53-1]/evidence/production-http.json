@@ -1,0 +1,331 @@
+[
+  {
+    "check": "public HTML matches release",
+    "pass_": true,
+    "detail": {
+      "status": 200,
+      "sha256": "369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169"
+    }
+  },
+  {
+    "check": "redirect /",
+    "pass_": true,
+    "detail": {
+      "status": 302,
+      "location": "/almeria-2026"
+    }
+  },
+  {
+    "check": "redirect /?qa=deploy&source=smoke",
+    "pass_": true,
+    "detail": {
+      "status": 302,
+      "location": "/almeria-2026?qa=deploy&source=smoke"
+    }
+  },
+  {
+    "check": "redirect /almeria-2026/",
+    "pass_": true,
+    "detail": {
+      "status": 302,
+      "location": "/almeria-2026"
+    }
+  },
+  {
+    "check": "redirect /almeria-2026/?qa=deploy&source=smoke",
+    "pass_": true,
+    "detail": {
+      "status": 302,
+      "location": "/almeria-2026?qa=deploy&source=smoke"
+    }
+  },
+  {
+    "check": "redirect /almeria-2026.html",
+    "pass_": true,
+    "detail": {
+      "status": 302,
+      "location": "/almeria-2026"
+    }
+  },
+  {
+    "check": "redirect /almeria-2026.html?qa=deploy&source=smoke",
+    "pass_": true,
+    "detail": {
+      "status": 302,
+      "location": "/almeria-2026?qa=deploy&source=smoke"
+    }
+  },
+  {
+    "check": "missing page returns 404",
+    "pass_": true,
+    "detail": 404
+  },
+  {
+    "check": "referenced assets available",
+    "pass_": true,
+    "detail": [
+      {
+        "path": "/_next/static/chunks/30f47f8d-e929c471e18414dc.js",
+        "status": 200,
+        "bytes": 201054,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/342-7d0fb1a7eed6e83d.js",
+        "status": 200,
+        "bytes": 241200,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/660-9d317a67e6d227e8.js",
+        "status": 200,
+        "bytes": 66558,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/app/almeria-2026/page-2eacff944b58da8d.js",
+        "status": 200,
+        "bytes": 132,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/app/layout-71082e51cef06c00.js",
+        "status": 200,
+        "bytes": 4052,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/main-app-92f23c66d8ec9b91.js",
+        "status": 200,
+        "bytes": 512,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+        "status": 200,
+        "bytes": 112594,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/chunks/webpack-76975eb65a859d9c.js",
+        "status": 200,
+        "bytes": 3732,
+        "mime": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/css/101e9c5619a4b357.css",
+        "status": 200,
+        "bytes": 17161,
+        "mime": "text/css; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/css/1191099bea6ee230.css",
+        "status": 200,
+        "bytes": 58777,
+        "mime": "text/css; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/css/dcdfc971690ca4f8.css",
+        "status": 200,
+        "bytes": 20355,
+        "mime": "text/css; charset=utf-8"
+      },
+      {
+        "path": "/_next/static/media/2b67d3d69d36dbdf-s.p.woff2",
+        "status": 200,
+        "bytes": 29032,
+        "mime": "font/woff2"
+      },
+      {
+        "path": "/_next/static/media/52f8cf394b3641e4-s.p.woff2",
+        "status": 200,
+        "bytes": 15960,
+        "mime": "font/woff2"
+      },
+      {
+        "path": "/_next/static/media/9424e009d099d7fa-s.p.woff2",
+        "status": 200,
+        "bytes": 44460,
+        "mime": "font/woff2"
+      },
+      {
+        "path": "/_next/static/media/b4796fdbb42263df-s.p.woff2",
+        "status": 200,
+        "bytes": 15760,
+        "mime": "font/woff2"
+      },
+      {
+        "path": "/_next/static/media/ce0f708f7deb1f7b-s.p.woff2",
+        "status": 200,
+        "bytes": 43420,
+        "mime": "font/woff2"
+      },
+      {
+        "path": "/acoge/indio-1916.webp",
+        "status": 200,
+        "bytes": 117562,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/brand/jia26-badge-640.png",
+        "status": 200,
+        "bytes": 493981,
+        "mime": "image/png"
+      },
+      {
+        "path": "/brand/south-desert-studio.png",
+        "status": 200,
+        "bytes": 172715,
+        "mime": "image/png"
+      },
+      {
+        "path": "/colaboradores/consejeria-educacion-840.webp",
+        "status": 200,
+        "bytes": 51216,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/colaboradores/kichi-840.webp",
+        "status": 200,
+        "bytes": 33090,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/colaboradores/lagata-840.webp",
+        "status": 200,
+        "bytes": 40632,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/colaboradores/leonardo-840.webp",
+        "status": 200,
+        "bytes": 37726,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/colaboradores/minihollywood-840.webp",
+        "status": 200,
+        "bytes": 43390,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/colaboradores/sds-840.webp",
+        "status": 200,
+        "bytes": 29454,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/equipo/card-39-800.webp",
+        "status": 200,
+        "bytes": 98616,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/equipo/card-40-800.webp",
+        "status": 200,
+        "bytes": 109372,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/equipo/card-43-800.webp",
+        "status": 200,
+        "bytes": 93986,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/equipo/card-46-800.webp",
+        "status": 200,
+        "bytes": 92926,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/experiencias/aula-1919.webp",
+        "status": 200,
+        "bytes": 50736,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/experiencias/maestra-1919.webp",
+        "status": 200,
+        "bytes": 71416,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/footer/establo-2172.webp",
+        "status": 200,
+        "bytes": 49492,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/hero/hero-saloon-1916.webp",
+        "status": 200,
+        "bytes": 99178,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/jornadas/jinete-nina-1983.webp",
+        "status": 200,
+        "bytes": 160168,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/jornadas/sello-jia26-640.webp",
+        "status": 200,
+        "bytes": 65058,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/propuestas/hoguera-1672.webp",
+        "status": 200,
+        "bytes": 133958,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/talleres/cartel-1-1000.webp",
+        "status": 200,
+        "bytes": 139994,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/talleres/cartel-2-1000.webp",
+        "status": 200,
+        "bytes": 135326,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/talleres/cartel-4-1000.webp",
+        "status": 200,
+        "bytes": 151938,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/talleres/cartel-6-1000.webp",
+        "status": 200,
+        "bytes": 154126,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/talleres/cartel-7-1000.webp",
+        "status": 200,
+        "bytes": 138842,
+        "mime": "image/webp"
+      },
+      {
+        "path": "/talleres/cartel-8-1000.webp",
+        "status": 200,
+        "bytes": 121768,
+        "mime": "image/webp"
+      }
+    ]
+  },
+  {
+    "check": "video range /jornadas/intro/intro-720.mp4",
+    "pass_": true,
+    "detail": {
+      "status": 206,
+      "bytes": 1024,
+      "mime": "video/mp4",
+      "range": "bytes 0-1023/41533732"
+    }
+  }
+]

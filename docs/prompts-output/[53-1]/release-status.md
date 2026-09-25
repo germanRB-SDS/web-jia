@@ -1,4 +1,6 @@
-# Publicación de la versión aprobada — estado parcial
+# Publicación de la versión aprobada — histórico de preparación
+
+**Estado vigente: IMPLEMENTADO.** Release 20260925-b410b77 activa y verificada. Ver [cierre del despliegue](deployment-closure.md). El texto siguiente conserva el estado histórico inicial y no describe el estado actual.
 
 ## 0. Metadata
 2026-09-25 · Codex · REL-2026-09-25-02 · PARCIAL.

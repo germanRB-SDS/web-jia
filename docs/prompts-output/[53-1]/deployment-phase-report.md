@@ -1,5 +1,7 @@
 # Preparación de actualización del sitio existente — informe de fase
 
+Registro histórico de preparación. La activación posterior está completada y verificada en [deployment-closure.md](deployment-closure.md).
+
 2026-09-25 · REL-2026-09-25-02 · LEVEL 3 · implementación b410b77 · PARCIAL: preparado y transferido, no activado.
 
 ## Resumen

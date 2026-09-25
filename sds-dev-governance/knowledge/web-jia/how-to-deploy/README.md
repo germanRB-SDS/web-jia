@@ -17,10 +17,10 @@ La decisión sustituye la alternativa pendiente VPS/Cloudflare Pages del prompt 
 | Servidor | Caddy, unidad `caddy.service`, activa |
 | Configuración del sitio | `/etc/caddy/web-jia.caddy`, importada desde `/etc/caddy/Caddyfile` |
 | Document root | `/srv/web-jia/current` |
-| Versión anterior | `current -> releases/20260920-5b4d363` |
+| Versión anterior conservada | `releases/20260920-5b4d363` |
 | Propiedad | Directorios y enlace de publicación pertenecen a root; sdsadmin necesita sudo |
 | Staging de esta ocasión | `/home/sdsadmin/web-jia-release-review-Xstzs4/`, fuera del document root |
-| Nueva versión preparada | `20260925-b410b77`; código `b410b77`; activación pendiente de sudo |
+| Versión activa y verificada | `current -> releases/20260925-b410b77`; código `b410b77` |
 
 No hay que crear otro sitio, dominio, contenedor, servicio Node o virtual host. Tampoco hay que ejecutar el instalador antiguo de primera instalación. `current` es un enlace a la release servida por el sitio existente.
 
@@ -95,15 +95,15 @@ El actualizador exige root y valida los argumentos; toma un bloqueo exclusivo de
 
 La activación sustituye atómicamente `current` mediante un enlace temporal y `mv -T`. No cambia configuración, DNS, TLS ni proceso de Caddy. A continuación descarga el HTML desde el origen con TLS verificado, compara su hash y confirma que configuración y PID de Caddy siguen iguales. Si falla una comprobación posterior al cambio, restaura el enlace anterior, siempre que ningún otro operador lo haya cambiado. Releases y evidencia quedan conservadas; un fallo requiere revisar el estado antes de reintentar.
 
-### Comando preparado para esta ocasión
+### Comando ejecutado en esta ocasión
 
-El paquete y el actualizador ya están transferidos; sus hashes coinciden. El launcher siguiente verifica el script y contiene el hash/release/destino anterior exactos. Si no se identifica una entrada Keychain utilizable, el propietario puede ejecutarlo desde su terminal y escribir la contraseña únicamente ante el prompt de sudo:
+El propietario ejecutó el siguiente launcher desde su terminal y autenticó sudo allí. El launcher verificó el script y usó el hash/release/destino anterior exactos. Se conserva el comando como registro, no como instrucción para volver a ejecutarlo:
 
 ```sh
 ssh -t -o StrictHostKeyChecking=yes sds-prod-01 'bash /home/sdsadmin/web-jia-release-review-Xstzs4/activate-once.sh'
 ```
 
-No se ha ejecutado ese launcher. No reutilizarlo para otra release ni después de una actualización concurrente.
+Ejecutado correctamente: `ACTIVATED 20260925-b410b77`. No volver a ejecutar ese launcher. Para otra release, preparar nuevos identificadores y comprobar el destino activo. El aviso de GNU cp sobre la portabilidad de `-n` fue no fatal; se verificó el resultado. En una futura revisión del actualizador, usar `--update=none` cuando la versión de GNU coreutils del servidor lo admita.
 
 ## Comprobar después de activar
 
@@ -136,4 +136,4 @@ Estas son mejoras recomendadas, no cambios realizados en este despliegue:
 
 ## Estado de esta ocasión
 
-Build, TypeScript, contenido, siete comprobaciones del navegador para la ruta de producción y cinco simulaciones aisladas Linux del actualizador: PASS. Las simulaciones cubren éxito, checksum inválido, destino concurrente, enlace inseguro en archivo y rollback por fallo de salud; no equivalen a ejecutar sudo en producción. Activación y verificación pública de la versión nueva: PENDIENTES de autenticación sudo. No se ha duplicado ni sustituido todavía la web activa.
+Build, TypeScript, contenido, siete comprobaciones del navegador para la ruta de producción y cinco simulaciones aisladas Linux del actualizador: PASS. Las simulaciones cubren éxito, checksum inválido, destino concurrente, enlace inseguro en archivo y rollback por fallo de salud; no equivalen a ejecutar sudo en producción. Activación realizada por el propietario y verificación productiva: PASS. Origen y HTML público coinciden con SHA `369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169`. Diez comprobaciones HTTP (incluidos 42 recursos y vídeo Range 206) y siete comprobaciones Chrome móvil/escritorio: PASS. Configuración y proceso Caddy conservados; release anterior disponible. Se actualizó el mismo sitio sin duplicarlo. La autorización SSH excepcional queda consumida al cerrar este despliegue; futuros accesos requieren su propia autorización o admisión vigente. Evidencia y límites: [cierre del despliegue](../../../../docs/prompts-output/[53-1]/deployment-closure.md).

@@ -15,4 +15,4 @@
 
 ## Último estado verificado
 
-2026-09-25: producción antigua releases/20260920-5b4d363, HTTPS 200. Nueva release 20260925-b410b77 preparada y transferida a staging privado con SHA verificado; activación pendiente de autenticación sudo. Ver [checkpoint](../prompts-output/[53-1]/tmp/deployment-checkpoint.md).
+2026-09-25: release activa releases/20260925-b410b77, código b410b77. El propietario autenticó sudo y ejecutó el launcher preparado. Origen y público HTTPS 200 con HTML SHA coincidente; 10 checks HTTP (42 recursos, vídeo 206) y 7 checks de navegador PASS. Caddy y configuración sin cambios. Anterior releases/20260920-5b4d363 conservada. La excepción SSH de una sola ocasión queda cerrada. Ver [cierre y evidencia](../prompts-output/[53-1]/deployment-closure.md).

@@ -1,0 +1,13 @@
+{
+  "current": "releases/20260925-b410b77",
+  "origin_html_sha256": "369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169",
+  "previous_retained": true,
+  "caddy_configuration_sha256": {
+    "/etc/caddy/Caddyfile": "0ccdba9da664e38246ef711983464b2cdf40877f9b386a10359fb40511e66870",
+    "/etc/caddy/fields.caddy": "5ea49912533ed9264cd26299b1833353f05676955da13ef88e36ee905b315ef1",
+    "/etc/caddy/web-jia-www.caddy": "ec6a195b042ed576ae78652b88940b1aff0e9546cc266583e3328b608c528e66",
+    "/etc/caddy/web-jia.caddy": "f684b1df89fcec318e6935bc3e6358217a8e91a1519d22c86c09ac1677b9b8b4"
+  },
+  "caddy_service": "MainPID=9241\nActiveState=active\nActiveEnterTimestamp=Sat 2026-09-12 06:45:54 UTC\n",
+  "activation_record": "release=20260925-b410b77\nprevious=releases/20260920-5b4d363\nhtml_sha256=369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169\nprevious_html_sha256=3f91e5946bcb00a7488c5ccf95adc455ec155777aa01f77aede190a4b01c0a62\n"
+}
