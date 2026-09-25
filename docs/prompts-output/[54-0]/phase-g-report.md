@@ -1,0 +1,13 @@
+# Fase G — popup automático y excepción Apple
+
+Resumen: b1adf52 implementa la ampliación final del propietario: modal automático sin cookie aceptada al cargar, salvo Mac/iPad/iPhone; elimina el acceso Animaciones del footer. Mantiene papel/tipografías, añade cristal con blur24px y botón primario de 60px. Etiquetas exactas Activar animaciones / Dejar sin animaciones, sin botón Cerrar. Texto explica que los efectos son propios de Jornadas de Innovación y no cambian el dispositivo. Rechazo/Escape mantiene reduce esa visita sin persistir; reload vuelve a preguntar fuera de Apple. Cookie on válida evita nuevas ofertas.
+
+Verification: V3 | tsc, contenido, build webpack, governance y assurance técnica PASS; 27 checks HTTPS local Chrome + 27 Edge PASS | PASS. Cobertura: normal/reduce, rechazo/hash/reload/Escape, aceptación/atributos180d/recarga, inválida/bloqueada, foco/teclado, footer ausente, blur/CTA y 320/390/759; Mac/iPhone/iPad y iPad con identidad Mac excluidos mediante identidad emulada. Capturas desktop/320 inspeccionadas. El ensayo intermedio iPad/multitouch se corrigió al modelo táctil adecuado y al contrato final que excluye Apple. No se presenta emulación como equipo físico.
+
+Moderado: navigator.platform puede variar con privacidad/identidad falsa; la excepción expresa del propietario se limita a prefijos Apple habituales. Si no hay identidad Apple, se ofrece el modal y siempre puede declinarse. Destino: confirmar equipos físicos si se aportan. El control de retirada del footer desaparece por MODIFICATION explícita; borrar la cookie en ajustes del navegador permite retirar la aceptación. Documentación técnica actualizada.
+
+Severo: bloquear acceso sin salida o guardar rechazo contra el contrato afectaría usabilidad/persistencia. Mitigado con dos acciones, Escape, foco nativo, ausencia de cookie/storage al declinar y prueba de carga siguiente. Sin defectos severos abiertos detectados. La nueva activación usa paquete/hash/expected-current y mantiene release previa; sudo requiere autenticación del propietario, ya autorizado el despliegue.
+
+Crítico: ninguno nuevo detectado; sin backend ni credenciales en artefacto. No se modifica preferencia del dispositivo, audio ni comportamiento gráfico Apple. La excepción SSH es acotada a esta publicación.
+
+Soluciones/continuidad: paquete 20260925-b1adf52 preparado (203 archivos); manifiesto evidence/release-popup.json. Transferir/verificar staging uk3Txv y activar desde releases/20260925-5ff471c mediante launcher nuevo. Ejecutar suite G y smoke HTTP en producción; actualizar guía y cierre documental. El harness B–F se conserva como histórico de 5ff471c, con cabecera explícita; G usa qa-motion-offer.mjs.

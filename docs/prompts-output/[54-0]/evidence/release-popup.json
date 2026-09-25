@@ -1,0 +1,15 @@
+{
+  "state": "PREPARED_NOT_DEPLOYED",
+  "source_commit": "b1adf529d625c252f8a4fd0c2d1820ec0a524c9e",
+  "release": "20260925-b1adf52",
+  "archive": "/private/tmp/web-jia-20260925-b1adf52.tar.gz",
+  "archive_sha256": "7dbf8a5f34af8a9c5b0fb1d0d7c6bc14e3c19c87c9081e2b131fef9a87a9800d",
+  "archive_bytes": 50470027,
+  "html_sha256": "4c860935b95fefe122a0b80d2af6b8004e94f5e0b62a7225ce38d0d454e8c23b",
+  "files": 203,
+  "url": "https://jornadasdeinnovacion.com/almeria-2026",
+  "previous_release": "releases/20260925-5ff471c",
+  "staging": "/home/sdsadmin/web-jia-release-review-uk3Txv",
+  "ssh_authorization": "Owner explicitly authorized this second deployment in the ongoing SSH operation",
+  "prepared_utc": "2026-09-25T16:57:03.973848+00:00"
+}

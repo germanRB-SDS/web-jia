@@ -4,8 +4,8 @@
 
 - Sitio estático; esta preferencia no añade autenticación, backend ni datos personales.
 - La única persistencia nueva es aceptación exacta `__Host-jia-motion=on`, Secure, SameSite=Lax, Path=/, sin Domain, 180 días. Configuración: `lib/motion/config.ts`.
-- Rechazo y exploración de Talleres solo viven en memoria del documento; no localStorage/sessionStorage.
-- Lectura defensiva por nombre/valor; bloqueo de cookies degrada a memoria sin forzar consentimiento. No se renueva al montar.
+- Rechazo (Dejar sin animaciones/Escape) y exploración de Talleres solo viven en memoria del documento; no localStorage/sessionStorage.
+- Lectura defensiva por nombre/valor; bloqueo de cookies degrada a memoria sin forzar consentimiento. No se renueva al montar. Tras el delta G, la retirada de aceptación se hace eliminando la cookie en el navegador; el propietario eliminó el control de footer.
 - No HttpOnly: JavaScript necesita acceso en export estático. Secure no cifra el valor. Inventario técnico: `docs/web-jia-policies/web-jia-cookies-policy.md`.
 - El ledger de capacidades no contiene admisión de MCP; no interpretar instalación como permiso. SSH productivo requiere la autorización específica vigente descrita en la guía de despliegue.
 

@@ -4,8 +4,8 @@
 
 - Next App Router exporta la misma landing en `/` (preview) y `/almeria-2026` (producción); no hay backend.
 - Movimiento: `lib/motion/policy.ts` mantiene aceptación y preferencia efectiva; `use-motion.ts` conecta React. El atributo `html[data-motion]` gobierna CSS, con fallback media sin inicializar.
-- Cada motor se actualiza o limpia individualmente; cambiar la preferencia no remonta página, carruseles ni vídeo. CSS/JS no consultan otra política de reduce.
-- `components/motion/MotionPreference.tsx`: diálogo nativo, diferido si hay otro modal; control en footer. Copy en diccionario ES.
+- Cada motor se actualiza o limpia individualmente; cambiar la preferencia no remonta página, carruseles ni vídeo. CSS/JS no consultan otra política de reduce. Dejar sin animaciones/Escape mantiene reduce para ese documento; siguiente carga pregunta de nuevo fuera de Apple.
+- `components/motion/MotionPreference.tsx`: diálogo nativo automático sin aceptación, diferido si hay otro modal, montado al comienzo del layout. No hay control en footer por delta G. Apple (Mac/iPad/iPhone) queda excluido del aviso por petición expresa; conserva su política normal. Copy en diccionario ES.
 - Talleres móvil: `TalleresCarrusel` conserva actividad en memoria del documento; 5000ms sin explorar devuelve a mazo, con guardas de foco/modal/pointer/visibilidad.
 - `SheetCard` reserva 5% por lado solo en cartel móvil expandido, manteniendo celda y acciones. Geometría/config en `talleres-carrusel/config.ts`.
 
@@ -23,7 +23,7 @@
 
 ## Validación
 
-Sin .nvmrc en la revisión [54-0]; runtime comprobado Node 24.19.0. TypeScript, check:content y Next build webpack (node_modules enlazado en worktree). CDP de proyecto: `scripts/qa-motion-workshops.mjs ORIGIN policy|geometry|timer|resilience|extra|input|full`. Ver evidencia y límites en `docs/prompts-output/[54-0]/`.
+Sin .nvmrc en la revisión [54-0]; runtime comprobado Node 24.19.0. TypeScript, check:content y Next build webpack (node_modules enlazado en worktree). CDP de proyecto: `scripts/qa-motion-offer.mjs ORIGIN` cubre el contrato final G. `qa-motion-workshops.mjs` conserva el harness histórico B–F para release 5ff471c; sus expectativas del popup fueron sustituidas. Ver evidencia y límites en `docs/prompts-output/[54-0]/`.
 
 ## Riesgos y referencias
 

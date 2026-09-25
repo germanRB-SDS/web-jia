@@ -2,13 +2,15 @@
 
 ## 0. Metadata
 
-2026-09-25 · Codex · implementación/revisión/QA · LEVEL 3 · REL-2026-09-25-03. Áreas frontend, security y deployment; memorias de esas áreas cargadas. Estado IMPLEMENTADO: código verificado y publicado en producción, con autorización SSH nueva y sudo autenticado por el propietario.
+2026-09-25 · Codex · implementación/revisión/QA · LEVEL 3 · REL-2026-09-25-03. Áreas frontend, security y deployment; memorias de esas áreas cargadas. Estado PARCIAL tras ampliación G: primera release publicada y verificada; popup final b1adf52 implementado/verificado, segunda publicación autorizada y preparada.
 
 ## 1. Objetivo
 
-Ejecutar [54-0]: preferencia compartida de animaciones, aceptación mínima, carteles móviles sin clipping y retorno al mazo por inactividad. Incluir modificación posterior de tarjetas compactas en historial del prompt y release. A descubrimiento, B política, C capacidades, D geometría, E interacción y F QA implementadas. Commit/push y producción forman parte del encargo; SSH requiere nueva autorización específica según guía vigente.
+Ejecutar [54-0]: preferencia compartida de animaciones, aceptación mínima, carteles móviles sin clipping y retorno al mazo por inactividad. Incluir modificación posterior de tarjetas compactas en historial del prompt y release. A descubrimiento, B política, C capacidades, D geometría, E interacción y F QA implementadas. G posterior: popup automático sin aceptación salvo Apple, cristal difuminado, CTA mayor, etiquetas finales y sin footer; implementada/verificada. Commit/push y producción forman parte del encargo; SSH requiere nueva autorización específica según guía vigente.
 
 ## 2. Resumen ejecutivo
+
+Delta final G: popup al cargar sin aceptación salvo Mac/iPad/iPhone, con Activar animaciones / Dejar sin animaciones. Sin footer ni Cerrar; rechazo solo esa visita, aceptación persiste.
 
 La elección activa efectos en vivo sin recargar ni reiniciar vídeo/carruseles. Talleres conserva reserva de tilt y vuelve a mazo tras 5s sin explorar, con protecciones de interacción. Tarjetas sin Imparte/Temática y acciones más próximas; datos completos conservados en ficha.
 
@@ -30,11 +32,15 @@ N/A: sin endpoints nuevos. Se conserva ruta /almeria-2026 y canonical de producc
 
 ## 7. Tests y validación
 
+G: 27 checks en Chrome y 27 en Edge sobre HTTPS local; tsc/contenido/build/governance/assurance PASS. Capturas y JSON en evidence/popup-local y popup-edge. Harness vigente del popup: scripts/qa-motion-offer.mjs. Las expectativas B–F del popup son históricas de la primera release.
+
 Node 24.19.0 (sin .nvmrc en raíz). npx tsc --noEmit PASS; npm run check:content PASS (6 talleres, 38 personas, 2 experiencias, 62 medios); NEXT_PUBLIC_SITE_URL=https://jornadasdeinnovacion.com npx next build --webpack PASS. Webpack por node_modules enlazado del worktree, sin nuevas dependencias. bash check-governance.sh y check-ai-pr-assurance.sh PASS; assurance firma exclusivamente técnica de Codex, no firma humana.
 
 Chrome macOS sobre export HTTPS local: full 27, input 11, compact 3, extra 15, nojs 2; Edge macOS policy 13. Resiliencia dirigida previa 17. Evidencia qa-*.json/capturas; grupos solapados. Cookie atributos inspeccionados con CDP HTTPS, no inferidos de document.cookie. Motor WebGL SwiftShader, pointer/touch/teclado CDP y preferencias/viewport emulados. Ver compatibility.md: Windows/Linux/Guadalinex/Android/Samsung físicos NO VERIFICADOS. Sin JS probado fallback de reduce y presencia de contenido, no interacción que depende de JS. Dossiers sin enlace real no prueban una descarga inexistente. No se ejecuta script lint obsoleto basado en next lint; tsc/contenido/build sí.
 
 ## 8. Resultado
+
+G b1adf52 listo para segunda publicación autorizada; manifesto release-popup.json. La siguiente evidencia describe la primera release, preservada como historial.
 
 Código verificado y artefacto publicado: current=releases/20260925-5ff471c, hashes local/origen/público coincidentes. main ca77f86 subido y SHA remoto comprobado. B c23e342 / 7eed176; D 1531e1a / 64d08de; E 479fa43 / 35268ed; F 5ff471c y commit documental siguiente. Release 20260925-5ff471c: inventario/hash/archivo local en evidence/release-prepared.json. Nuevo acceso SSH autorizado expresamente en esta conversación y usado para inspección/staging. current comprobado: releases/20260925-b410b77; el propietario autenticó sudo y completó la activación; Caddy sin cambios y versión anterior conservada. Los fallos instrumentales y límites de red se detallan en phase-f-report.md.
 
@@ -50,7 +56,7 @@ Código verificado y artefacto publicado: current=releases/20260925-5ff471c, has
 
 ## 10. Decisiones y riesgos
 
-Moderado: alcance de compatibilidad limitado al entorno indicado y resets locales en extra (sin excepción JS), con smoke público completado sin excepciones JS. Severo: riesgo operativo de activación mitigado por artefacto único, checksum, expected-current, lock y rollback del actualizador existente; ejecutado y verificado. Críticos nuevos: ninguno detectado. No hay storage de rechazo ni UA sniffing, override global de matchMedia, remount global o cambio de audio. Histórico del prompt registra MODIFICATION para compactar escritorio solo en tarjetas de Talleres. Informes por fase conservan riesgos y soluciones.
+Moderado: alcance de compatibilidad limitado al entorno indicado y resets locales en extra (sin excepción JS), con smoke público completado sin excepciones JS. Severo: riesgo operativo de activación mitigado por artefacto único, checksum, expected-current, lock y rollback del actualizador existente; ejecutado y verificado. Críticos nuevos: ninguno detectado. No hay storage de rechazo ni detección de distribución Linux; la excepción Apple explícita usa navigator.platform. No hay override global de matchMedia, remount global o cambio de audio. Histórico del prompt registra MODIFICATION para compactar escritorio solo en tarjetas de Talleres. Informes por fase conservan riesgos y soluciones.
 
 ## 11. Actualizaciones de memoria
 
@@ -58,4 +64,4 @@ Frontend: store, consumidores, constantes, geometría/timer y delta compacto. Se
 
 ## 12. Siguiente paso
 
-Trabajo solicitado completado. Producción 20260925-5ff471c verificada; conservar release anterior para rollback y evidencias. Cierre documental en deployment-closure.md y commit/push final. La autorización SSH es exclusiva de este despliegue y queda consumida; no reutilizar launcher histórico. QA física pendiente solo como limitación documentada, no como validación pretendida.
+Publicar G 20260925-b1adf52 autorizado por el propietario: staging nuevo uk3Txv, expected-current releases/20260925-5ff471c. Sudo exige autenticación en launcher específico. Verificar HTTP/navegador y actualizar guía, memoria y cierre. No volver a pedir permiso de despliegue/SSH ya concedido; solo autenticación que el servidor exige. Primera release y QA anteriores permanecen documentadas.

@@ -13,7 +13,7 @@ drafted it**. "The AI wrote it" is never an accepted explanation for a defect.
 
 ## What & why
 
-La preferencia de movimiento puede activarse expresamente para JIA y retirarse sin recargar. Talleres móvil reserva espacio para el tilt y vuelve a baraja tras 5 segundos sin explorar. Por ampliación del propietario, las tarjetas omiten Imparte/Temática y compactan subtítulo/acciones, preservando datos en la ficha.
+La preferencia de movimiento puede activarse expresamente para JIA sin recargar. Delta G: oferta automática sin aceptación salvo Mac/iPad/iPhone, fondo difuminado, CTA mayor y etiquetas exactas; el control de footer se elimina por orden del propietario. Declinar/Escape desactiva efectos esa visita sin persistir rechazo. La retirada posterior de aceptación pasa a ajustes de cookies del navegador. Talleres móvil reserva espacio para el tilt y vuelve a baraja tras 5 segundos sin explorar. Por ampliación del propietario, las tarjetas omiten Imparte/Temática y compactan subtítulo/acciones, preservando datos en la ficha.
 
 - Change ID / prompt: REL-2026-09-25-03 / [54-0]
 - AI involvement: implementación y auditoría técnica por Codex. Esta es la firma del agente, no una firma ni declaración de revisión humana del propietario. La plantilla del repositorio no define un responsable humano materializado.
@@ -63,7 +63,7 @@ Sin nuevas dependencias. No se ha ejecutado npm run lint: Next 16 no ofrece ese 
 
 Complete `sds-dev-governance/practices/10-pre-pr-checklist.md` (branch/fetch/secrets/contract/traceability).
 
-La revisión cubre las líneas modificadas de componentes, store, CSS, copy y pruebas. Un aviso previo PCFSoftShadowMap usa fallback en Three; esta entrega no cambia esa API. Fuentes/constantes centralizadas, sin UA sniffing.
+La revisión cubre las líneas modificadas de componentes, store, CSS, copy y pruebas. Un aviso previo PCFSoftShadowMap usa fallback en Three; esta entrega no cambia esa API. Fuentes/constantes centralizadas, excepción Apple explícita por navigator.platform, sin detectar distribución Linux. Se han auditado todas las líneas del delta G en layout, diálogo/estilos, copy/tipos, store y harness nuevo.
 
 ## Machine-checkable footer (do not edit the marker line)
 
