@@ -36,6 +36,9 @@
      cálido detrás del cubo del equipo y el barniz de sus caras. Solo combinan tokens anteriores. */
   --jia-gradient-spotlight: radial-gradient(closest-side, rgb(var(--jia-ivory-rgb) / 0.95) 0%, rgb(var(--jia-dune-light-rgb) / 0.7) 46%, rgb(var(--jia-dune-rgb) / 0.22) 74%, rgb(var(--jia-dune-rgb) / 0) 100%);
   --jia-gradient-floor: radial-gradient(closest-side, rgb(137 72 46 / 0.2), rgb(137 72 46 / 0));
+  /* Reverso de la tarjeta de taller al girar: tinta JIA (marrón oscuro) dominante, con un resplandor de terracota profunda
+     tras el sello y un destello de cobre en la esquina baja. */
+  --jia-gradient-flip-back: radial-gradient(ellipse 78% 62% at 50% 40%, color-mix(in srgb, var(--jia-terracotta-deep) 42%, transparent) 0%, transparent 72%), radial-gradient(ellipse 70% 50% at 96% 102%, color-mix(in srgb, var(--jia-copper) 26%, transparent) 0%, transparent 70%), linear-gradient(155deg, color-mix(in srgb, var(--jia-terracotta) 34%, var(--jia-ink)) 0%, var(--jia-ink) 46%, color-mix(in srgb, var(--jia-ink) 76%, black) 100%);
   --jia-gradient-cube: linear-gradient(158deg, color-mix(in srgb, var(--jia-terracotta-deep) 62%, var(--jia-ink)) 0%, var(--jia-ink) 46%, color-mix(in srgb, var(--jia-ink) 72%, black) 100%);
   /* Velo de las caras del cubo (JIA-2026-09-18-14): casi nada sobre la tarjeta, terracota y tinta hacia las esquinas. */
   --jia-gradient-cube-veil: radial-gradient(ellipse 74% 74% at 50% 48%, color-mix(in srgb, var(--jia-terracotta) 5%, transparent) 0%, color-mix(in srgb, var(--jia-terracotta) 7%, transparent) 42%, color-mix(in srgb, var(--jia-terracotta-deep) 26%, transparent) 72%, color-mix(in srgb, var(--jia-ink) 58%, transparent) 100%);

@@ -18,6 +18,6 @@ export const FLIP = {
     /** Share of the remaining way to the pointer covered each frame (the reference's interpolation). */
     follow: 0.125,
   },
-  /** The back: the ground under the seal (a palette token) and how much of the card's width the seal takes. */
-  back: { surface: "var(--jia-ink)", sealShare: 0.88 },
+  /** The back: the ground under the seal (a gradient token: ink, dominant, with terracotta and copper) and how much of the card's width the seal takes. */
+  back: { surface: "var(--jia-gradient-flip-back)", sealShare: 0.88 },
 } as const;
