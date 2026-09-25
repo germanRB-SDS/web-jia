@@ -1,5 +1,5 @@
 {
-  "state": "PREPARED_NOT_DEPLOYED",
+  "state": "STAGED_WAITING_OWNER_SUDO",
   "source_commit": "b1adf529d625c252f8a4fd0c2d1820ec0a524c9e",
   "release": "20260925-b1adf52",
   "archive": "/private/tmp/web-jia-20260925-b1adf52.tar.gz",
@@ -11,5 +11,8 @@
   "previous_release": "releases/20260925-5ff471c",
   "staging": "/home/sdsadmin/web-jia-release-review-uk3Txv",
   "ssh_authorization": "Owner explicitly authorized this second deployment in the ongoing SSH operation",
-  "prepared_utc": "2026-09-25T16:57:03.973848+00:00"
+  "prepared_utc": "2026-09-25T16:57:03.973848+00:00",
+  "remote_archive_sha256": "7dbf8a5f34af8a9c5b0fb1d0d7c6bc14e3c19c87c9081e2b131fef9a87a9800d",
+  "launcher_sha256": "2918c207e67e8aee7a705793905bff75010c01f8332c3784125b8579e49cea77",
+  "github_main": "48b3518"
 }
