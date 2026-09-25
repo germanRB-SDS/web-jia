@@ -17,6 +17,12 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
     theme: copy.experiencias.relatedWorkshops,
     marks: markLabels,
   };
+  /* Nothing sits between the title of an experience and its «Ver ficha»: no subtitle, no people, no theme. Those
+     three rows of the card would still be paid for, one section row gap each — 96 px of empty paper under the
+     title, the same reserve that the cards already drop on a phone. The section decides it for all its cards at
+     once, so they keep sharing a row structure; the day one experience carries any of the three, the seven-row
+     card comes back for every one of them and the actions go on lining up. */
+  const compact = experiencias.items.every((x) => !x.subtitle && !x.people.length && !x.meta);
   return (
     <Section
       id={experiencias.id}
@@ -58,6 +64,7 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
                 mediaRatio={16 / 9}
                 heading="h3"
                 sizes="(min-width: 900px) 420px, 90vw"
+                compact={compact}
               />
             ))}
           </div>

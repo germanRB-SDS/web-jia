@@ -35,6 +35,10 @@ type Props = {
   /** With it, the sheet's picture is a card with this image on its back that turns once each time the sheet opens
       (flip-card); without it the picture stands as always. */
   flipBack?: Media | null;
+  /** The card skips the three rows between its title and its action (subtitle, who, theme). The decision belongs to
+      the SECTION, not to one card: every card of a grid shares its row structure, so they all take it or none does
+      and their actions stay at one height. Pass it only when no item of the grid fills any of those three. */
+  compact?: boolean;
 };
 
 /**
@@ -42,7 +46,7 @@ type Props = {
  * through a real button that opens the full sheet in a dialog. Hover is an
  * enhancement; keyboard and touch reach everything (brief §7).
  */
-export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio, flipBack }: Props) {
+export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio, flipBack, compact = false }: Props) {
   const Heading = heading;
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
@@ -50,7 +54,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
   const sheetPicture = <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" priority={open} />;
 
   return (
-    <article id={anchorId} className={`${styles.card} ${styles[variant]}`} aria-labelledby={titleId} data-cursor="open">
+    <article id={anchorId} className={`${styles.card} ${styles[variant]}${compact ? ` ${styles.compact}` : ""}`} aria-labelledby={titleId} data-cursor="open">
       {/* A click on the picture opens the sheet, like "Ver ficha" (the button below is the keyboard's way in). */}
       <div className={styles.media} onClick={sheet.pending ? undefined : () => setOpen(true)} data-opens={sheet.pending ? undefined : ""}>
         {/* The picture turns towards a fine pointer (tilt-card); the pin stays where it is, on the card's frame. */}

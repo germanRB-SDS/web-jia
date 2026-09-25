@@ -297,3 +297,16 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   font-size: 0.8125rem;
   color: var(--jia-terracotta);
 }
+
+/* ---- a grid whose cards have nothing between title and action ----
+   Rows 3, 4 and 5 (subtitle, who, theme) are the card's middle. When a whole grid leaves them empty they are not
+   free: the row gap that separates one CARD from the next is also the gap between the subgrid's own rows, so three
+   empty rows spend three of them. In «Ideas que ya han pasado por el aula» that was 107 px between the title and
+   «Ver ficha», for nothing. The card then spans four rows instead of seven and the action climbs to the third.
+
+   The section grants this, never the card itself (SheetCard.tsx, `compact`): cards of one grid share their rows, so
+   a card that skipped them next to one that does not would drop its action out of line — the very thing the
+   seven-row structure exists to prevent. Below 760 px the card already flows and none of this applies. */
+.compact { grid-row: span 4; }
+.compact .foot { grid-row: 3; }
+.compact .download { grid-row: 4; }
