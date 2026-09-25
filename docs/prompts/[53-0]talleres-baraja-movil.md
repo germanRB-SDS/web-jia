@@ -18,6 +18,7 @@ Petición del propietario del 2026-09-25, incluido su añadido sobre la cabecera
 6. Mantener el escritorio y otras secciones que usan SheetCard; no modificar el trabajo de Claude en maestra, aula, foto o luces, ni el vídeo.
 7. Añadido posterior del propietario: solo en móvil, sustituir el título «TALLERES» por «TALLERES EN EL SALOON». Guardar el texto en el catálogo de copy y conservar «TALLERES» en escritorio.
 8. Añadido visual posterior: sombra suave, difuminada y semitransparente bajo la cabecera móvil, como en su captura. El contenido debe pasar visible por debajo; la sombra no debe capturar eventos ni crear una franja opaca.
+9. Footer solo móvil: trasladar la franja del logo y «Diseñado por South Desert Studio» al principio del footer. Su línea separadora pasa debajo de la franja, con el gradiente animado siempre activo sin hover (estático con preferencia de movimiento reducido). Mantener enlaces, contenido y composición de escritorio.
 
 ## Ejecución y constantes
 
