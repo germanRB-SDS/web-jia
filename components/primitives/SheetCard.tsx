@@ -58,7 +58,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
   return (
     <article id={anchorId} className={`${styles.card} ${styles[variant]}${compact ? ` ${styles.compact}` : ""}${workshopIndex !== undefined ? ` ${styles.workshop}` : ""}`} aria-labelledby={titleId} data-cursor="open" style={workshopIndex === undefined ? undefined : { "--workshop-index": workshopIndex } as CSSProperties}>
       {/* A click on the picture opens the sheet, like "Ver ficha" (the button below is the keyboard's way in). */}
-      <div className={styles.media} onClick={sheet.pending ? undefined : () => setOpen(true)} data-opens={sheet.pending ? undefined : ""}>
+      <div className={styles.media} data-workshop-media={workshopIndex === undefined ? undefined : ""} onClick={sheet.pending ? undefined : () => setOpen(true)} data-opens={sheet.pending ? undefined : ""}>
         {/* The picture turns towards a fine pointer (tilt-card); the pin stays where it is, on the card's frame. */}
         <TiltCard>
           <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={mediaRatio ?? (variant === "poster" ? 1414 / 2000 : 4 / 3)} sizes={sizes} className={styles.surface}>

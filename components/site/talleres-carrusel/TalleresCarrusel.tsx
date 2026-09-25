@@ -4,6 +4,7 @@ import { isMotionReduced } from "@/lib/motion/policy";
 
 import { Children, useId, useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ChevronIcon } from "@/components/icons";
+import { WORKSHOP_DECK as CFG } from "./config";
 import styles from "./TalleresCarrusel.module.css";
 
 type Props = {
@@ -51,7 +52,7 @@ export function TalleresCarrusel({ labels, children }: Props) {
   }, [read]);
 
   useEffect(() => {
-    const query = window.matchMedia("(max-width: 759.98px)");
+    const query = window.matchMedia(CFG.mobileMedia);
     const update = () => setMobile(query.matches);
     update();
     query.addEventListener("change", update);
@@ -106,7 +107,7 @@ export function TalleresCarrusel({ labels, children }: Props) {
   };
 
   return (
-    <div className={styles.deck} data-expanded={expanded ? "" : undefined} style={{ "--workshop-count": Children.count(children) } as CSSProperties}>
+    <div className={styles.deck} data-expanded={expanded ? "" : undefined} style={{ "--workshop-count": Children.count(children), "--poster-inset": CFG.posterInset } as CSSProperties}>
       {/* A scrollable box needs to be reachable from the keyboard — but only while it scrolls: on a
           wide window this is a plain grid and would be one more empty stop on the way to the cards. */}
       <div id={trackId} ref={trackRef} className={styles.grid} inert={collapsed} role="group" aria-label={labels.region} tabIndex={collapsed ? undefined : ends.start && ends.end ? -1 : 0}>

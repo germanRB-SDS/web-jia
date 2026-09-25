@@ -28,6 +28,7 @@ try {
  const click=async text=>{await ev(`${button(text)}.click()`);await sleep(120);};
  const shot=async name=>{const {data}=await send('Page.captureScreenshot',{format:'png'});writeFileSync(`${output}/${name}.png`,Buffer.from(data,'base64'));};
  await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
+ if(phase==='policy'||phase==='full') {
  await viewport(1440);await media(true);await load();
  await check('reduce prompts and stays calm',`document.documentElement.dataset.motion==='reduce' && document.querySelector('dialog[open]')?.textContent.includes('Estás viendo esta web sin animaciones. Actívalas (solo para esta página).')`);
  await shot('motion-offer');
@@ -55,20 +56,29 @@ try {
  const blocked=await send('Page.addScriptToEvaluateOnNewDocument',{source:`Object.defineProperty(document,'cookie',{get(){return ''},set(){}});`});
  await load();await click('Activar');await check('blocked cookies allow in-memory choice',`document.documentElement.dataset.motion==='on' && !document.querySelector('dialog[open]')`);
  await send('Page.removeScriptToEvaluateOnNewDocument',{identifier:blocked.identifier});
+ }
  if(phase!=='policy') {
   await media(false);await viewport(390,true);await load();
   const deck=`document.querySelector('[class*="TalleresCarrusel_deck"]')`;
   const track=`document.querySelector('[class*="TalleresCarrusel_grid"]')`;
   const expanded=`${deck}.hasAttribute('data-expanded')`;
-  const open=async()=>{await ev(`${deck}.scrollIntoView({block:'center',behavior:'instant'});${deck}.querySelector('button[aria-expanded]').click()`);await sleep(150);};
+  const open=async()=>{await ev(`${deck}.scrollIntoView({block:'center',behavior:'instant'});${deck}.querySelector('[class*="TalleresCarrusel_expand"]').dispatchEvent(new MouseEvent('click',{bubbles:true,detail:1}))`);await sleep(150);};
+  if (phase==='full') {
   await open();await sleep(4200);await check('deck remains open before 5 seconds',expanded);await sleep(1200);await check('idle deck closes after 5 seconds',`!${expanded}`);
   await open();await ev(`${deck}.querySelector('button[aria-label*="siguiente" i]').click()`);await sleep(5300);await check('arrow exploration cancels idle closing',expanded);
   await ev(`${track}.querySelector('button').click()`);await sleep(150);await check('workshop sheet opens',`!!document.querySelector('dialog[open]')`);await shot('workshop-sheet');
   await ev(`document.querySelector('dialog[open]').close()`);await sleep(200);
+  } else { await open(); }
+  await ev(`${track}.scrollTo({left:0,behavior:'instant'})`);
   for(const width of [320,390,440,759,760,1440]) {
    await viewport(width,false);await ev(`${deck}.scrollIntoView({block:'center',behavior:'instant'})`);await sleep(200);
    const geometry=await ev(`(()=>{const t=${track},a=t.firstElementChild,m=a.querySelector('[data-workshop-media]'),p=m.firstElementChild; const b=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}};return {width:${width},track:b(t),card:b(a),media:b(m),poster:b(p)}})()`);
-   report.checks.push({name:`geometry ${width}`,pass:geometry.poster.w<=geometry.media.w,geometry});await shot(`workshops-${width}`);
+   report.checks.push({name:`geometry ${width}`,pass:geometry.poster.w<=geometry.media.w,geometry});
+   if(width<760) {
+    const bounds=await ev(`(()=>{const m=${track}.firstElementChild.querySelector('[data-workshop-media]'),t=m.firstElementChild,i=t.firstElementChild,box=m.getBoundingClientRect();i.style.transition='none';const poses=[];for(const [x,y] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]){t.style.setProperty('--tilt-scale','1.07');t.style.setProperty('--tilt-deg','12deg');t.style.setProperty('--tilt-ax',x);t.style.setProperty('--tilt-ay',y);const r=i.getBoundingClientRect();poses.push({x,y,left:r.left-box.left,right:box.right-r.right,top:r.top-box.top,bottom:box.bottom-r.bottom});}for(const n of ['--tilt-scale','--tilt-deg','--tilt-ax','--tilt-ay'])t.style.removeProperty(n);i.style.removeProperty('transition');return poses})()`);
+    const pass=bounds.every(b=>Math.min(b.left,b.right,b.top,b.bottom)>=-0.5);report.checks.push({name:`max tilt bounds ${width}`,pass,bounds});if(!pass)throw Error(`Tilt clipping at ${width}`);
+   }
+   await shot(`workshops-${width}`);
   }
  }
  if(report.errors.length)throw Error('Browser exceptions');

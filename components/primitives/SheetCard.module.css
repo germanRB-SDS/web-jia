@@ -341,3 +341,14 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   .workshop:hover .surface,
   .workshop:focus-within .surface { transform: none; }
 }
+
+/* Reserve the unchanged workshop cell for the scaled, perspective-projected picture.
+   Only the expanded mobile track opts in; dialogs and the closed fan retain their sizes. */
+@media (max-width: 759.98px) {
+  :global([data-expanded]) .workshop > .media { aspect-ratio: 1414 / 2000; }
+  :global([data-expanded]) .workshop > .media > div {
+    position: absolute;
+    inset: var(--poster-inset);
+  }
+  :global([data-expanded]) .workshop > .media::before { top: calc(var(--poster-inset) - 6px); }
+}
