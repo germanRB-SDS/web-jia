@@ -119,6 +119,7 @@
 @media (max-width: 599px) {
   .name { font-size: 0.875rem; letter-spacing: 0.02em; }
 }
+:where(:global(html[data-motion="reduce"])) .go, :where(:global(html[data-motion="reduce"])) .goIcon { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .go, .goIcon { transition: none; }
+  :where(:global(html:not([data-motion]))) .go, :where(:global(html:not([data-motion]))) .goIcon { transition: none; }
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { isMotionReduced } from "@/lib/motion/policy";
+
 import { Children, useId, useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ChevronIcon } from "@/components/icons";
 import styles from "./TalleresCarrusel.module.css";
@@ -99,7 +101,7 @@ export function TalleresCarrusel({ labels, children }: Props) {
     const first = track.firstElementChild as HTMLElement | null;
     const second = track.children[1] as HTMLElement | null;
     const step = first && second ? second.offsetLeft - first.offsetLeft : (first?.offsetWidth ?? track.clientWidth);
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const calm = isMotionReduced();
     track.scrollBy({ left: direction * step, behavior: calm ? "auto" : "smooth" });
   };
 

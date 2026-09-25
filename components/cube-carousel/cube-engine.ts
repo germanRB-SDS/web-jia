@@ -357,6 +357,12 @@ export class CubeEngine {
     this.o.onInteract();
   }
 
+  setReducedMotion(reduced: boolean): void {
+    this.o.reducedMotion = reduced;
+    if (reduced) gsap.getTweensOf(this.state).forEach((tween) => tween.progress(1));
+    this.schedule(CUBE_CONFIG.autoplay.firstDelay);
+  }
+
   setVisible(visible: boolean): void {
     this.visible = visible;
     this.schedule(CUBE_CONFIG.autoplay.firstDelay);

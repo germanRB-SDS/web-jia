@@ -1,3 +1,4 @@
+import { motionQuery } from "@/lib/motion/policy";
 import { COLLABORATORS_CAROUSEL as TUNE } from "./config";
 
 type Options = {
@@ -21,7 +22,7 @@ const mod = (n: number, m: number) => ((n % m) + m) % m;
  * Reduced motion: no drift, no glide and no easing, the track stays where it was left.
  */
 export function createCarouselEngine({ viewport, track, anchor, count, onCopies }: Options) {
-  const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const calm = motionQuery;
   let step = 0;
   let inset = 0;
   /** Position in pixels; unbounded, wrapped only when painted. */

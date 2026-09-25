@@ -1,5 +1,7 @@
 "use client";
 
+import { isMotionReduced } from "@/lib/motion/policy";
+
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { BulletHole, type Shot } from "@/components/primitives/BulletHole";
 import styles from "./SiteFooter.module.css";
@@ -41,7 +43,7 @@ export function FooterShots({ max, lifeMs, fadeMs }: Props) {
       const key = ++count.current;
       const shot = { key, x: ((e.clientX - box.left) / box.width) * 100, y: ((e.clientY - box.top) / box.height) * 100, turn: Math.round(Math.random() * 360), leaving: false };
       setShots((all) => [...all, shot].slice(-max));
-      const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const calm = isMotionReduced();
       later(() => setShots((all) => all.map((s) => (s.key === key ? { ...s, leaving: true } : s))), lifeMs);
       later(() => setShots((all) => all.filter((s) => s.key !== key)), lifeMs + (calm ? 0 : fadeMs));
     };

@@ -1,5 +1,7 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/motion/use-motion";
+
 import { useEffect, useRef } from "react";
 import { SUN_RAYS as CFG } from "./config";
 import styles from "../Experiences.module.css";
@@ -19,6 +21,7 @@ import styles from "../Experiences.module.css";
  * blackboard's frame), so the window stays under the window at every width.
  */
 export function SunRays() {
+  const reduced = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -29,7 +32,7 @@ export function SunRays() {
     const root = stage.closest<HTMLElement>("[data-classroom]");
     if (!root) return;
 
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const calm = reduced;
     // Hide the lettering only once we know we are here to write it. Everything else leaves it written.
     if (!calm) root.dataset.chalk = "armed";
 
@@ -81,7 +84,7 @@ export function SunRays() {
       ro = new ResizeObserver(() => scene?.resize());
       ro.observe(stage);
       if (wanted) scene.start();
-    })();
+    })().catch(() => { /* Static content remains available if the engine cannot load. */ });
 
     return () => {
       disposed = true;
@@ -92,7 +95,7 @@ export function SunRays() {
       scene = null;
       delete root.dataset.chalk;
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <div ref={stageRef} className={styles.lightFrame} aria-hidden="true">

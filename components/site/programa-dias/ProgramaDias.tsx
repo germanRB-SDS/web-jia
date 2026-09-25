@@ -1,5 +1,7 @@
 "use client";
 
+import { isMotionReduced } from "@/lib/motion/policy";
+
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import type { LandingModel, MarkKind } from "@/lib/content";
 import { ArrowIcon } from "@/components/icons";
@@ -83,7 +85,7 @@ export function ProgramaDias({ days, copy, markLabels, showMarks }: Props) {
     const track = trackRef.current;
     setActive(i);
     if (track && track.clientWidth) {
-      const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const calm = isMotionReduced();
       track.scrollTo({ left: i * track.clientWidth, behavior: calm ? "auto" : "smooth" });
     }
     if (moveFocus) tabsRef.current[i]?.focus();

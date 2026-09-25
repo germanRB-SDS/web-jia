@@ -1,3 +1,4 @@
+import { motion } from "./motion";
 import type { Copy } from "../types";
 import { buttons } from "./buttons";
 import { a11y, metadata, nav, states } from "./common";
@@ -13,6 +14,7 @@ import { propuestas } from "./sections/propuestas";
 
 /** The Spanish dictionary, assembled from its section files. */
 export const dictionaryEs: Copy = {
+  motion,
   metadata,
   nav,
   a11y,

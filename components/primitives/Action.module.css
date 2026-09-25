@@ -132,20 +132,35 @@
 
 /* Con movimiento reducido, el destello no se anima y la pieza no se levanta ni se hunde: el cambio de color al pasar
    el puntero se conserva, porque es la señal de estado. Los iconos tampoco se mueven. */
-@media (prefers-reduced-motion: reduce) {
-  .primary::after {
+:where(:global(html[data-motion="reduce"])) .primary::after {
     animation: none;
     opacity: 0;
   }
-  .primary:hover,
-  .primary:focus-visible,
-  .primary:active {
+:where(:global(html[data-motion="reduce"])) .primary:hover,
+  :where(:global(html[data-motion="reduce"])) .primary:focus-visible,
+  :where(:global(html[data-motion="reduce"])) .primary:active {
     transform: none;
   }
-  .btn:hover svg,
-  .btn:focus-visible svg,
-  .primary:hover .badge,
-  .primary:focus-visible .badge {
+:where(:global(html[data-motion="reduce"])) .btn:hover svg,
+  :where(:global(html[data-motion="reduce"])) .btn:focus-visible svg,
+  :where(:global(html[data-motion="reduce"])) .primary:hover .badge,
+  :where(:global(html[data-motion="reduce"])) .primary:focus-visible .badge {
+    transform: none;
+  }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .primary::after {
+    animation: none;
+    opacity: 0;
+  }
+  :where(:global(html:not([data-motion]))) .primary:hover,
+  :where(:global(html:not([data-motion]))) .primary:focus-visible,
+  :where(:global(html:not([data-motion]))) .primary:active {
+    transform: none;
+  }
+  :where(:global(html:not([data-motion]))) .btn:hover svg,
+  :where(:global(html:not([data-motion]))) .btn:focus-visible svg,
+  :where(:global(html:not([data-motion]))) .primary:hover .badge,
+  :where(:global(html:not([data-motion]))) .primary:focus-visible .badge {
     transform: none;
   }
 }

@@ -74,8 +74,9 @@
 }
 .mapArrow { flex: none; transition: translate 160ms var(--ease-out); }
 .mapLink:hover .mapArrow { translate: 3px 0; }
+:where(:global(html[data-motion="reduce"])) .mapArrow { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .mapArrow { transition: none; }
+  :where(:global(html:not([data-motion]))) .mapArrow { transition: none; }
 }
 .sessions {
   list-style: none;
@@ -206,6 +207,7 @@
     white-space: nowrap;
   }
 }
+:where(:global(html[data-motion="reduce"])) .tab, :where(:global(html[data-motion="reduce"])) .tab::after, :where(:global(html[data-motion="reduce"])) .days { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .tab, .tab::after, .days { transition: none; }
+  :where(:global(html:not([data-motion]))) .tab, :where(:global(html:not([data-motion]))) .tab::after, :where(:global(html:not([data-motion]))) .days { transition: none; }
 }

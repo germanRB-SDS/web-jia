@@ -1,5 +1,7 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/motion/use-motion";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RouteModel } from "@/lib/content";
 import { NARROW_MEDIA, ROUTE_CONFIG, ROUTE_LAYOUTS, chooseSlots, type LayoutName } from "./config";
@@ -18,6 +20,7 @@ type ViewState = PlayState | "fallback";
  * for the animation. Without WebGL or the model, the same list renders as a static row.
  */
 export function JornadasRoute({ route }: Props) {
+  const reduced = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<import("./route-scene").RouteScene | null>(null);
@@ -36,7 +39,7 @@ export function JornadasRoute({ route }: Props) {
     let ro: ResizeObserver | null = null;
     let io: IntersectionObserver | null = null;
     const narrow = window.matchMedia(NARROW_MEDIA);
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const calm = { matches: reduced };
     const onVisibility = () => sceneRef.current?.setVisible(document.visibilityState === "visible" && inView);
     let inView = false;
 
@@ -93,10 +96,10 @@ export function JornadasRoute({ route }: Props) {
       );
       io.observe(container);
       document.addEventListener("visibilitychange", onVisibility);
-      document.fonts?.ready.then(() => scene.resize()).catch(() => {});
+      document.fonts?.ready.then(() => { if (!disposed) scene.resize(); }).catch(() => {});
 
       await scene.init(route.glb);
-    })();
+    })().catch(() => { if (!disposed) setState("fallback"); });
 
     return () => {
       disposed = true;
@@ -106,7 +109,7 @@ export function JornadasRoute({ route }: Props) {
       sceneRef.current?.dispose();
       sceneRef.current = null;
     };
-  }, [route.glb, route.stops]);
+  }, [route.glb, route.stops, reduced]);
 
   const onReplay = useCallback(() => sceneRef.current?.replay(), []);
 

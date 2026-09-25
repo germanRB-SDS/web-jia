@@ -257,9 +257,11 @@
   to { background-position: 0% 50%; }
 }
 /* Reduced motion: the rule still lights up, it just does not travel. */
+:where(:global(html[data-motion="reduce"])) .bottom:has(.bottomInner:hover)::before,
+  :where(:global(html[data-motion="reduce"])) .bottom:has(.bottomInner:focus-within)::before { animation: none; background-position: 50% 50%; }
 @media (prefers-reduced-motion: reduce) {
-  .bottom:has(.bottomInner:hover)::before,
-  .bottom:has(.bottomInner:focus-within)::before { animation: none; background-position: 50% 50%; }
+  :where(:global(html:not([data-motion]))) .bottom:has(.bottomInner:hover)::before,
+  :where(:global(html:not([data-motion]))) .bottom:has(.bottomInner:focus-within)::before { animation: none; background-position: 50% 50%; }
 }
 /* The tumbleweeds' field: the whole strip, behind the credit (tumbleweeds/tumbleweed-field.ts fills it). */
 .weeds {
@@ -406,8 +408,9 @@
   from { background-position: 0% 50%; }
   to { background-position: 220% 50%; }
 }
+:where(:global(html[data-motion="reduce"])) .studioName { animation: none; background-position: 50% 50%; }
 @media (prefers-reduced-motion: reduce) {
-  .studioName { animation: none; background-position: 50% 50%; }
+  :where(:global(html:not([data-motion]))) .studioName { animation: none; background-position: 50% 50%; }
 }
 
 /* On a phone the studio credit introduces the footer; its flowing rule sits below it. */
@@ -426,6 +429,9 @@
     animation: studio-rule-flow var(--sds-flow-speed) linear infinite;
   }
 }
-@media (max-width: 759.98px) and (prefers-reduced-motion: reduce) {
-  .bottom::before { animation: none; background-position: 50% 50%; }
+@media (max-width: 759.98px) {
+  :where(:global(html[data-motion="reduce"])) .bottom::before { animation: none; background-position: 50% 50%; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 759.98px) {
+  :where(:global(html:not([data-motion]))) .bottom::before { animation: none; background-position: 50% 50%; }
 }

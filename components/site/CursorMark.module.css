@@ -61,6 +61,10 @@
   .open .dot { opacity: 0; }
   .down .ring { transform: scale(0.78); }
 }
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (pointer: coarse) {
   .mark { display: none; }
+}
+:where(:global(html[data-motion="reduce"])) .mark { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .mark { display: none; }
 }

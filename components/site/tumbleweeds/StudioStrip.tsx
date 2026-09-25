@@ -1,5 +1,7 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/motion/use-motion";
+
 import { useEffect, useRef } from "react";
 import type { LandingModel } from "@/lib/content";
 import type { TumbleweedField } from "./tumbleweed-field";
@@ -14,6 +16,7 @@ type Props = { studio: LandingModel["footer"]["studio"]; tumbleweeds: LandingMod
  * and the links work the same with or without it.
  */
 export function StudioStrip({ studio, tumbleweeds, notice }: Props) {
+  const reduced = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLImageElement>(null);
 
@@ -22,11 +25,11 @@ export function StudioStrip({ studio, tumbleweeds, notice }: Props) {
     const mark = markRef.current;
     const footer = stage?.closest("footer");
     if (!stage || !footer || !mark) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (reduced) return;
     let field: TumbleweedField | null = null;
     let over = false;
     let disposed = false;
-    const enter = async () => {
+    const start = async () => {
       over = true;
       if (!field) {
         const { TumbleweedField } = await import("./tumbleweed-field");
@@ -35,6 +38,7 @@ export function StudioStrip({ studio, tumbleweeds, notice }: Props) {
       }
       if (over) field.start();
     };
+    const enter = () => { void start().catch(() => {}); };
     const leave = () => {
       over = false;
       field?.stop();
@@ -54,7 +58,7 @@ export function StudioStrip({ studio, tumbleweeds, notice }: Props) {
       footer.removeEventListener("focusout", onFocusOut);
       field?.dispose();
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <div className={styles.bottom}>

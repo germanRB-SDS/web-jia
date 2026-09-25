@@ -1,3 +1,4 @@
+import { disposeUnclaimedModel } from "@/lib/motion/dispose-model";
 /**
  * Jornadas road — the Three.js scene and the GSAP timeline behind <JornadasRoute>.
  *
@@ -177,7 +178,7 @@ export class RouteScene {
     if (glbUrl) {
       try {
         const gltf = await new GLTFLoader().loadAsync(glbUrl);
-        if (this.disposed) return;
+        if (this.disposed) { disposeUnclaimedModel(gltf.scene); return; }
         this.wagon = this.adoptWagon(gltf);
       } catch (err) {
         console.warn("[JornadasRoute] GLB unavailable, static road shown:", err);

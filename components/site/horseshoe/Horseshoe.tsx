@@ -1,5 +1,7 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/motion/use-motion";
+
 import { useCallback, useEffect, useRef, useSyncExternalStore, type KeyboardEvent } from "react";
 import { HORSESHOE as CFG } from "./config";
 import styles from "../SiteFooter.module.css";
@@ -26,6 +28,7 @@ export function Horseshoe({ glb, label }: Props) {
 }
 
 function Stage({ glb, label }: Props) {
+  const reduced = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hitRef = useRef<HTMLButtonElement>(null);
@@ -53,7 +56,7 @@ function Stage({ glb, label }: Props) {
       let scene: import("./horseshoe-scene").HorseshoeScene;
       try {
         const post = stage.closest("footer")?.querySelector<HTMLElement>(CFG.post.selector) ?? null;
-        scene = new mod.HorseshoeScene(stage, canvas, hit, window.matchMedia("(prefers-reduced-motion: reduce)").matches, post);
+        scene = new mod.HorseshoeScene(stage, canvas, hit, reduced, post);
       } catch (err) {
         console.warn("[Horseshoe] WebGL renderer unavailable:", err);
         return;
@@ -66,7 +69,7 @@ function Stage({ glb, label }: Props) {
       } catch (err) {
         console.warn("[Horseshoe] model unavailable:", err);
       }
-    })();
+    })().catch(() => { /* Static content remains available if the engine cannot load. */ });
 
     return () => {
       disposed = true;
@@ -74,7 +77,7 @@ function Stage({ glb, label }: Props) {
       sceneRef.current?.dispose();
       sceneRef.current = null;
     };
-  }, [glb]);
+  }, [glb, reduced]);
 
   return (
     <div ref={stageRef} className={styles.shoeStage}>

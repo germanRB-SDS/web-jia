@@ -1,5 +1,7 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/motion/use-motion";
+
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { TILT } from "./config";
 import styles from "./TiltCard.module.css";
@@ -13,22 +15,23 @@ type Props = { children: ReactNode; className?: string; /** Extra class on the c
  * children render exactly as before. The glow is decoration (aria-hidden, no pointer).
  */
 export function TiltCard({ children, className, innerClassName }: Props) {
+  const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
-    if (!window.matchMedia(TILT.media).matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia(TILT.media).matches || reduced) return;
     let tilt: import("./tilt-card").Tilt | null = null;
     let disposed = false;
     import("./tilt-card").then(({ Tilt }) => {
       if (!disposed) tilt = new Tilt(root);
-    });
+    }).catch(() => { /* Keep the static face if the engine cannot load. */ });
     return () => {
       disposed = true;
       tilt?.dispose();
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <div ref={ref} className={`${styles.tilt} ${className ?? ""}`} style={{ "--tilt-perspective": `${TILT.perspectivePx}px` } as CSSProperties}>

@@ -44,7 +44,9 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
+:where(:global(html[data-motion="reduce"])) .hole { animation: none; }
+:where(:global(html[data-motion="reduce"])) .leaving { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .hole { animation: none; }
-  .leaving { opacity: 0; }
+  :where(:global(html:not([data-motion]))) .hole { animation: none; }
+  :where(:global(html:not([data-motion]))) .leaving { opacity: 0; }
 }

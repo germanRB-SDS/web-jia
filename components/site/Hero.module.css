@@ -178,9 +178,11 @@
   55% { opacity: 1; transform: rotate(-1deg) scale(1); }
   100% { opacity: 0.55; transform: none; }
 }
+:where(:global(html[data-motion="reduce"])) .nameLine, :where(:global(html[data-motion="reduce"])) .seal, :where(:global(html[data-motion="reduce"])) .rule, :where(:global(html[data-motion="reduce"])) .title, :where(:global(html[data-motion="reduce"])) .dateline, :where(:global(html[data-motion="reduce"])) .lede, :where(:global(html[data-motion="reduce"])) .actions, :where(:global(html[data-motion="reduce"])) .surface img, :where(:global(html[data-motion="reduce"])) .light { animation: none; }
+:where(:global(html[data-motion="reduce"])) .light { opacity: 0.55; }
 @media (prefers-reduced-motion: reduce) {
-  .nameLine, .seal, .rule, .title, .dateline, .lede, .actions, .surface img, .light { animation: none; }
-  .light { opacity: 0.55; }
+  :where(:global(html:not([data-motion]))) .nameLine, :where(:global(html:not([data-motion]))) .seal, :where(:global(html:not([data-motion]))) .rule, :where(:global(html:not([data-motion]))) .title, :where(:global(html:not([data-motion]))) .dateline, :where(:global(html:not([data-motion]))) .lede, :where(:global(html:not([data-motion]))) .actions, :where(:global(html:not([data-motion]))) .surface img, :where(:global(html:not([data-motion]))) .light { animation: none; }
+  :where(:global(html:not([data-motion]))) .light { opacity: 0.55; }
 }
 .surface {
   border-radius: 0;

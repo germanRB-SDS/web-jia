@@ -135,6 +135,7 @@
   outline: 2px solid var(--jia-ivory);
   outline-offset: 3px;
 }
+:where(:global(html[data-motion="reduce"])) .control { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .control { transition: none; }
+  :where(:global(html:not([data-motion]))) .control { transition: none; }
 }

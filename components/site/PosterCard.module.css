@@ -85,8 +85,9 @@
   text-transform: uppercase;
   color: var(--jia-text-muted);
 }
+:where(:global(html[data-motion="reduce"])) .trigger, :where(:global(html[data-motion="reduce"])) .surface, :where(:global(html[data-motion="reduce"])) .label { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .trigger, .surface, .label { transition: none; }
+  :where(:global(html:not([data-motion]))) .trigger, :where(:global(html:not([data-motion]))) .surface, :where(:global(html:not([data-motion]))) .label { transition: none; }
 }
 .full { padding: 1rem; display: grid; justify-items: center; }
 .fullImg {

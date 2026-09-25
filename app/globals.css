@@ -56,8 +56,9 @@ html {
 @media (max-width: 959px) {
   html, body { overflow-x: hidden; }
 }
+html:where([data-motion="reduce"]) { scroll-behavior: auto; }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html:where(:not([data-motion])) { scroll-behavior: auto; }
 }
 
 body {

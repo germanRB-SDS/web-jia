@@ -1,3 +1,4 @@
+import { MotionPreference } from "@/components/motion/MotionPreference";
 import type { LandingModel } from "@/lib/content";
 import type { CSSProperties } from "react";
 import { Picture } from "@/components/primitives/Picture";
@@ -76,6 +77,7 @@ export function SiteFooter({ footer, brand, event, copy }: Props) {
       </div>
 
       <StudioStrip studio={footer.studio} tumbleweeds={footer.tumbleweeds} notice={footer.editionTitleNotice} />
+      <MotionPreference copy={copy.motion} />
       <FooterShots max={footer.maxShots} lifeMs={footer.shotLifeMs} fadeMs={footer.shotFadeMs} />
     </footer>
   );

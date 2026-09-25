@@ -1,5 +1,7 @@
 "use client";
 
+import { isMotionReduced } from "@/lib/motion/policy";
+
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { IntroVideoModel } from "@/lib/content";
 import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PictureInPictureExitIcon, PictureInPictureIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
@@ -58,7 +60,6 @@ export function IntroVideo({ intro }: Props) {
     const root = rootRef.current;
     const video = videoRef.current;
     if (!root || !video || !load) return;
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries[0]?.isIntersecting ?? false;
@@ -66,7 +67,7 @@ export function IntroVideo({ intro }: Props) {
         // Minimised (picture in picture) it goes on playing while the visitor reads the rest of the page.
         if (!visible && document.pictureInPictureElement === video) return;
         if (!visible) video.pause();
-        else if (intro.autoplay && !calm && !userPaused.current) video.play().catch(() => {});
+        else if (intro.autoplay && !isMotionReduced() && !userPaused.current) video.play().catch(() => {});
       },
       { threshold: 0.35 },
     );

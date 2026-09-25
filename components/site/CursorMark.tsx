@@ -1,5 +1,7 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/motion/use-motion";
+
 import { useEffect, useRef } from "react";
 import styles from "./CursorMark.module.css";
 
@@ -15,23 +17,26 @@ import styles from "./CursorMark.module.css";
  * the mark is shown again, so it is the topmost element of the layer (promoter, JIA-2026-09-19-27).
  */
 export function CursorMark() {
+  const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mark = ref.current;
     if (!mark) return;
     const fine = window.matchMedia("(pointer: fine)");
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const calm = { matches: reduced };
     const root = document.documentElement;
     if (!fine.matches || calm.matches) return;
 
     root.classList.add("has-mark");
 
     // Hiding leaves the top layer only at the next rendering step, so the re-show waits one frame.
+    let topFrame = 0;
     const toTop = () => {
       try {
         if (mark.matches(":popover-open")) mark.hidePopover();
-        requestAnimationFrame(() => {
+        cancelAnimationFrame(topFrame);
+        topFrame = requestAnimationFrame(() => {
           try {
             if (!mark.matches(":popover-open")) mark.showPopover();
           } catch {
@@ -117,7 +122,6 @@ export function CursorMark() {
     document.addEventListener("mouseleave", hide);
     window.addEventListener("blur", hide);
     fine.addEventListener("change", reassess);
-    calm.addEventListener("change", reassess);
 
     return () => {
       if (raf !== null) window.cancelAnimationFrame(raf);
@@ -129,11 +133,13 @@ export function CursorMark() {
       document.removeEventListener("mouseleave", hide);
       window.removeEventListener("blur", hide);
       fine.removeEventListener("change", reassess);
-      calm.removeEventListener("change", reassess);
       dialogs.disconnect();
+      cancelAnimationFrame(topFrame);
+      hide();
+      try { mark.hidePopover(); } catch { /* No popover support. */ }
       root.classList.remove("has-mark");
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <div ref={ref} className={styles.mark} aria-hidden="true" popover="manual">

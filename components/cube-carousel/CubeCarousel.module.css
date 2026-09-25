@@ -244,7 +244,11 @@
   list-style: none;
 }
 
+:where(:global(html[data-motion="reduce"])) .arrow { transition: none; }
+
+:where(:global(html[data-motion="reduce"])) .cube { will-change: auto; }
+
 @media (prefers-reduced-motion: reduce) {
-  .arrow { transition: none; }
-  .cube { will-change: auto; }
+  :where(:global(html:not([data-motion]))) .arrow { transition: none; }
+  :where(:global(html:not([data-motion]))) .cube { will-change: auto; }
 }

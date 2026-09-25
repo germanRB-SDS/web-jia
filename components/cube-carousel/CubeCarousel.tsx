@@ -1,5 +1,7 @@
 "use client";
 
+import { isMotionReduced, subscribeMotion } from "@/lib/motion/policy";
+
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { BulletHole, type Shot } from "@/components/primitives/BulletHole";
 import { CUBE_CONFIG } from "./config";
@@ -62,6 +64,7 @@ export function CubeCarousel({ items, labels, className }: Props) {
     if (!root || !stage || !cube || !count) return;
     let disposed = false;
     let io: IntersectionObserver | null = null;
+    const unsubscribe = subscribeMotion(() => engineRef.current?.setReducedMotion(isMotionReduced()));
     (async () => {
       const { CubeEngine } = await import("./cube-engine");
       if (disposed) return;
@@ -73,7 +76,7 @@ export function CubeCarousel({ items, labels, className }: Props) {
         top: pick("top")[0],
         bottom: pick("bottom")[0],
         count,
-        reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+        reducedMotion: isMotionReduced(),
         onAssign: setAssigned,
         onCap: setCap,
         onFront: setFront,
@@ -86,9 +89,10 @@ export function CubeCarousel({ items, labels, className }: Props) {
       engineRef.current = engine;
       io = new IntersectionObserver((entries) => engine.setVisible(entries[0]?.isIntersecting ?? false), { threshold: 0.5 });
       io.observe(stage);
-    })();
+    })().catch(() => { /* Static content remains available if the engine cannot load. */ });
     return () => {
       disposed = true;
+      unsubscribe();
       io?.disconnect();
       engineRef.current?.dispose();
       engineRef.current = null;

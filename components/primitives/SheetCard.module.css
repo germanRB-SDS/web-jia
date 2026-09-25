@@ -68,8 +68,9 @@
 @media (hover: none) {
   .reveal { display: none; }
 }
+:where(:global(html[data-motion="reduce"])) .surface, :where(:global(html[data-motion="reduce"])) .reveal { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .surface, .reveal { transition: none; }
+  :where(:global(html:not([data-motion]))) .surface, :where(:global(html:not([data-motion]))) .reveal { transition: none; }
 }
 /* The body's children are the card's own rows (2–7). */
 .body { display: contents; }
@@ -189,8 +190,9 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   clip-path: inset(50%);
   white-space: nowrap;
 }
+:where(:global(html[data-motion="reduce"])) .download svg { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .download svg { transition: none; }
+  :where(:global(html:not([data-motion]))) .download svg { transition: none; }
 }
 /* ---- the phone: the card lays itself out ----
    The seven rows above exist so that cards SIDE BY SIDE line their rows up and their two actions sit at

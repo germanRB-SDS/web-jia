@@ -109,6 +109,7 @@
   .prevIcon { rotate: 90deg; }
   .nextIcon { rotate: -90deg; }
 }
+:where(:global(html[data-motion="reduce"])) .arrow, :where(:global(html[data-motion="reduce"])) .grid > * { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .arrow, .grid > * { transition: none; }
+  :where(:global(html:not([data-motion]))) .arrow, :where(:global(html:not([data-motion]))) .grid > * { transition: none; }
 }

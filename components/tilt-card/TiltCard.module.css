@@ -33,6 +33,7 @@
   pointer-events: none;
 }
 .tilt[data-active] .glow { opacity: 1; }
+:where(:global(html[data-motion="reduce"])) .inner, :where(:global(html[data-motion="reduce"])) .glow { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .inner, .glow { transition: none; }
+  :where(:global(html:not([data-motion]))) .inner, :where(:global(html:not([data-motion]))) .glow { transition: none; }
 }

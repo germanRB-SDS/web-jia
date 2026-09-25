@@ -1,3 +1,4 @@
+import { disposeUnclaimedModel } from "@/lib/motion/dispose-model";
 /**
  * The horseshoe's Three.js scene: one transparent canvas over the footer's upper block, a narrow perspective
  * camera set so the wall (z = 0) is in CSS pixels (1 unit = 1 px, y down = −y), the GLB from Blender hung on
@@ -106,7 +107,7 @@ export class HorseshoeScene {
 
   async init(glbUrl: string): Promise<void> {
     const gltf = await new GLTFLoader().loadAsync(glbUrl);
-    if (this.disposed) return;
+    if (this.disposed) { disposeUnclaimedModel(gltf.scene); return; }
     const model = gltf.scene;
     model.traverse((o) => {
       if (o instanceof THREE.Mesh) {

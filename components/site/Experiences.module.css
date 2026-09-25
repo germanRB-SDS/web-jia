@@ -163,8 +163,12 @@
 }
 /* Whoever asked for less movement gets the name whole and still. The lower blur stays: that is not
    movement, that is being able to read it. */
+:where(:global(html[data-motion="reduce"])) [data-chalk] .glyph {
+    animation: none;
+    clip-path: none;
+  }
 @media (prefers-reduced-motion: reduce) {
-  [data-chalk] .glyph {
+  :where(:global(html:not([data-motion]))) [data-chalk] .glyph {
     animation: none;
     clip-path: none;
   }
