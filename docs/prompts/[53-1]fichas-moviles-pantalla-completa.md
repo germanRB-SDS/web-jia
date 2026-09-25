@@ -17,6 +17,7 @@ Execute from `## Status` onward. El propietario valida la baraja y autoriza guar
 - Mantener escritorio, otros diálogos y añadidos ya aprobados; conservar todos los datos de cada ficha.
 - Reutilizar copy/media y tokens del proyecto, sin nuevas cadenas visibles ni dependencias.
 - Añadido del propietario: solo en móvil, reducir al 50 % la extensión vertical actual del degradado de la fotografía del hero; conservar encuadre y versión de escritorio.
+- Añadido del propietario: cabecera móvil fija durante todo el scroll, conservando sello, menú y sombra; reservar su espacio en el flujo para no tapar el inicio. Mantener escritorio.
 
 ## Verificación y entrega
 
