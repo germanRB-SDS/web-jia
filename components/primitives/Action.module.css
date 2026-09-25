@@ -13,7 +13,7 @@
   text-decoration: none;
   line-height: 1.1;
   border: 1.5px solid transparent;
-  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
   cursor: pointer;
   white-space: nowrap;
 }
@@ -25,20 +25,67 @@
 .btn:focus-visible svg {
   transform: translateX(3px);
 }
+/* La acción primaria es una pieza de cuero en relieve ([50-0], de la referencia «Wild West Shimmer Button» que aportó
+   el promotor): el degradado diagonal de la paleta, una sombra proyectada y otra interior en el canto bajo, y un
+   destello que la cruza de vez en cuando. `isolation` abre un contexto de apilado propio para que el destello quepa
+   entre el fondo y el rótulo sin tocar a ninguno de los dos. */
 .primary {
-  background: var(--jia-terracotta);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--jia-gradient-leather);
   color: var(--jia-ivory);
-  border-color: var(--jia-terracotta);
+  border-color: var(--jia-terracotta-deep);
+  box-shadow: var(--jia-shadow-relief);
+}
+/* El destello: una banda de luz de un tercio del ancho, inclinada como un haz de sol. Se mueve con `transform`, nunca
+   con `background-position`, que repintaría en CPU en cada fotograma (el defecto declarado de la referencia). Cruza en
+   1,6 s y descansa fuera de cuadro los 3,4 s restantes: un destello, no un estrobo. */
+.primary::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: 0;
+  z-index: -1;
+  width: 34%;
+  background: var(--jia-glint);
+  transform: translateX(-170%) skewX(-18deg);
+  will-change: transform;
+  animation: glint 5s linear infinite;
+  pointer-events: none;
+}
+@keyframes glint {
+  0% { transform: translateX(-170%) skewX(-18deg); }
+  32% { transform: translateX(340%) skewX(-18deg); }
+  100% { transform: translateX(340%) skewX(-18deg); }
 }
 /* The colour is restated on hover on purpose. `a:hover` in globals.css sets the link colour to deep
    terracotta and its specificity (0,1,1) beats `.primary`'s (0,1,0), so without this line the label
    took the very colour its own ground turns, and vanished. The button owns its colours; the global
-   rule stays right for the site's text links. Ivory on deep terracotta reads at 7.9:1. */
+   rule stays right for the site's text links. Ivory reads at 6.0:1 against the lightest stop of the leather
+   gradient, and higher against every darker point of it and against the hover gradient. */
 .primary:hover,
 .primary:focus-visible {
-  background: var(--jia-terracotta-deep);
+  background: var(--jia-gradient-leather-hover);
   border-color: var(--jia-terracotta-deep);
   color: var(--jia-ivory);
+  box-shadow: var(--jia-shadow-relief-hover);
+  transform: translateY(-2px) scale(1.02);
+}
+/* Al pulsar, el cuero se hunde: la sombra proyectada se recoge y la pieza baja. */
+.primary:active {
+  box-shadow: var(--jia-shadow-relief-active);
+  transform: translateY(1px) scale(0.99);
+}
+/* La estrella de sheriff gira sobre sí misma; las flechas de los otros botones siguen avanzando (regla de `.btn svg`,
+   que esta gana por especificidad). El giro pide más recorrido que el desplazamiento de una flecha. */
+.primary .badge {
+  transition: transform 620ms var(--ease-out);
+}
+.primary:hover .badge,
+.primary:focus-visible .badge {
+  transform: rotate(360deg) scale(1.1);
 }
 .secondary {
   background: transparent;
@@ -81,4 +128,24 @@
   font-size: 0.9375rem;
   color: var(--jia-text-muted);
   max-width: 34ch;
+}
+
+/* Con movimiento reducido, el destello no se anima y la pieza no se levanta ni se hunde: el cambio de color al pasar
+   el puntero se conserva, porque es la señal de estado. Los iconos tampoco se mueven. */
+@media (prefers-reduced-motion: reduce) {
+  .primary::after {
+    animation: none;
+    opacity: 0;
+  }
+  .primary:hover,
+  .primary:focus-visible,
+  .primary:active {
+    transform: none;
+  }
+  .btn:hover svg,
+  .btn:focus-visible svg,
+  .primary:hover .badge,
+  .primary:focus-visible .badge {
+    transform: none;
+  }
 }
