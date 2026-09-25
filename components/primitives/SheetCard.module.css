@@ -312,7 +312,9 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
 .compact .download { grid-row: 4; }
 
 /* Workshops keep their full copy in the sheet; the mobile row is just posters and actions. */
+.mobileTheme { display: none; }
 @media (max-width: 759.98px) {
+  .mobileTheme { display: block; }
   .workshop .body > .title,
   .workshop .body > .subtitle,
   .workshop .body > .who,

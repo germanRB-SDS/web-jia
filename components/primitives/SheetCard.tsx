@@ -142,6 +142,12 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
               ) : null}
               {sheet.summary && !sheet.sections.length ? <p>{sheet.summary}</p> : null}
               <dl className={styles.fields}>
+                {workshopIndex !== undefined && sheet.meta ? (
+                  <div className={`${styles.field} ${styles.mobileTheme}`}>
+                    <dt>{labels.theme}</dt>
+                    <dd>{sheet.meta}</dd>
+                  </div>
+                ) : null}
                 {sheet.sections.map((s) => (
                   <div key={s.label} className={styles.field}>
                     <dt>{s.label}</dt>
