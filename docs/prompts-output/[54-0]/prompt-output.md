@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-2026-09-25 · Codex · implementación/revisión/QA · LEVEL 3 · REL-2026-09-25-03. Áreas frontend, security y deployment; memorias de esas áreas cargadas. Estado PARCIAL: código y verificación terminados, publicación pendiente de acceso expresamente autorizado.
+2026-09-25 · Codex · implementación/revisión/QA · LEVEL 3 · REL-2026-09-25-03. Áreas frontend, security y deployment; memorias de esas áreas cargadas. Estado PARCIAL: código y verificación terminados, publicación pendiente de autenticación sudo por el propietario; SSH ya autorizado expresamente.
 
 ## 1. Objetivo
 
@@ -36,7 +36,7 @@ Chrome macOS sobre export HTTPS local: full 27, input 11, compact 3, extra 15, n
 
 ## 8. Resultado
 
-Código verificado y artefacto preparado, aún no publicado. B c23e342 / 7eed176; D 1531e1a / 64d08de; E 479fa43 / 35268ed; F 5ff471c y commit documental siguiente. Release 20260925-5ff471c: inventario/hash/archivo local en evidence/release-prepared.json. Nuevo acceso SSH aún no usado; no se ha inferido permiso de la excepción anterior. Los fallos instrumentales y límites de red se detallan en phase-f-report.md.
+Código verificado y artefacto preparado, transferido y verificado, aún no activado. main ca77f86 subido y SHA remoto comprobado. B c23e342 / 7eed176; D 1531e1a / 64d08de; E 479fa43 / 35268ed; F 5ff471c y commit documental siguiente. Release 20260925-5ff471c: inventario/hash/archivo local en evidence/release-prepared.json. Nuevo acceso SSH autorizado expresamente en esta conversación y usado para inspección/staging. current comprobado: releases/20260925-b410b77; sudo requiere contraseña del propietario. Los fallos instrumentales y límites de red se detallan en phase-f-report.md.
 
 ## 9. Checklist E2E
 
@@ -45,7 +45,7 @@ Código verificado y artefacto preparado, aún no publicado. B c23e342 / 7eed176
 - [x] Geometría móvil, entrada touch/ratón/teclado, timer/guardas y reset de documento.
 - [x] Delta compacto en seis tarjetas; ficha con datos completos.
 - [x] Export y checks locales; contrato de publicación conservado.
-- [ ] Activación y smoke en producción: pendiente de nueva autorización SSH.
+- [ ] Activación y smoke en producción: pendiente de autenticación sudo del propietario.
 - [ ] Plataformas físicas: no disponibles; no se confunden con emulación.
 
 ## 10. Decisiones y riesgos
@@ -58,4 +58,4 @@ Frontend: store, consumidores, constantes, geometría/timer y delta compacto. Se
 
 ## 12. Siguiente paso
 
-Integrar por fast-forward en main y push mediante git-safe-push.sh; comprobar SHA remoto. Solicitar únicamente autorización nueva SSH al sitio existente con el artefacto listo. Tras autorización inspeccionar current real y sudo; transferir/verificar/activar con update-web-jia-release.sh y hacer smoke público, después documentar publicación y commit/push del cierre. Si sudo requiere intervención, entregar launcher concreto de esa release. No reutilizar launcher histórico ni modificar DNS/Caddy/otros sitios.
+main integrado y subido mediante git-safe-push.sh; SHA remoto ca77f86 comprobado. SSH expresamente autorizado y staging verificado. El propietario debe autenticar sudo en el launcher de esta release; después comprobar origen/HTTPS público, canonical, recursos, cookie y móvil. Actualizar memoria/guía con release activa y commit/push de cierre. No reutilizar launcher histórico ni modificar DNS/Caddy/otros sitios.

@@ -1,5 +1,5 @@
 {
-  "state": "PREPARED_NOT_DEPLOYED",
+  "state": "STAGED_WAITING_OWNER_SUDO",
   "source_commit": "5ff471c63257dd57d27df2259632c542999393a9",
   "release": "20260925-5ff471c",
   "archive": "/private/tmp/web-jia-20260925-5ff471c.tar.gz",
@@ -8,6 +8,10 @@
   "html_sha256": "7858b3e953f8dd3aca5646943e1a6891d416bfde3b3e17dfe98e8187be956f88",
   "files": 203,
   "url": "https://jornadasdeinnovacion.com/almeria-2026",
-  "previous_release": "NOT_RECHECKED_REQUIRES_AUTHORIZED_SSH",
-  "prepared_utc": "2026-09-25T16:38:17.766663+00:00"
+  "previous_release": "releases/20260925-b410b77",
+  "prepared_utc": "2026-09-25T16:38:17.766663+00:00",
+  "staging": "/home/sdsadmin/web-jia-release-review-X8Gv4D",
+  "remote_archive_sha256": "001728823c08819013e60fbfcad3e6a810188726a81a8e68a90cfc062eb59e1a",
+  "ssh_authorization": "Owner: permiso explícito por ssh, this deployment only",
+  "launcher_sha256": "e2960d4d5b8843ac85722ad95affb33c0a28c5b1bda57f3e9892d761e229fecb"
 }

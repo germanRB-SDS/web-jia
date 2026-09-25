@@ -144,3 +144,7 @@ Entregar preview y commits locales. Si la continuación autoriza publicar, segui
 Registro histórico documental: el propietario pide antes del despliegue el 25-09-2026 eliminar Imparte y Temática de cada tarjeta de Talleres y acercar el subtítulo a Ver ficha/Descargar dossier. MODIFICATION acotada de la presentación de las tarjetas, incluido escritorio; sustituye para ese alcance la instrucción anterior de no cambiar escritorio. La ficha completa conserva sus datos. Las tarjetas de otras secciones mantienen su contrato. No cambia negocio, autoría, temática ni sus constantes.
 
 El propietario confirma después que esta ampliación debe figurar en el prompt como historial y ejecutarse antes de producción, con commit y despliegue incluidos. Se integra en la misma release de [54-0], previa verificación.
+
+## Autorización de publicación de esta ejecución
+
+El propietario confirma «te doy permiso para este despliegue también» y «permiso explícito por ssh». MODIFICATION de acceso limitada a la release [54-0] en el sitio existente web-jia: se permite inspección, staging, activación y verificación SSH. No reutiliza la excepción anterior ni habilita Hostinger MCP, otros proyectos, DNS o cambios de servicios. Se conserva el control de hash, expected-current y rollback de la guía.
