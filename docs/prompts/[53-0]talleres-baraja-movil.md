@@ -17,6 +17,7 @@ Petición del propietario del 2026-09-25, incluido su añadido sobre la cabecera
 5. Cabecera móvil: colocar el sello circular a la izquierda del menú hamburguesa, y el menú a la derecha en la antigua posición del sello. Mantener el sello visible también en teléfonos estrechos. Conservar la cabecera de escritorio.
 6. Mantener el escritorio y otras secciones que usan SheetCard; no modificar el trabajo de Claude en maestra, aula, foto o luces, ni el vídeo.
 7. Añadido posterior del propietario: solo en móvil, sustituir el título «TALLERES» por «TALLERES EN EL SALOON». Guardar el texto en el catálogo de copy y conservar «TALLERES» en escritorio.
+8. Añadido visual posterior: sombra suave, difuminada y semitransparente bajo la cabecera móvil, como en su captura. El contenido debe pasar visible por debajo; la sombra no debe capturar eventos ni crear una franja opaca.
 
 ## Ejecución y constantes
 
