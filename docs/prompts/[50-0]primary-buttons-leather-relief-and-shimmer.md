@@ -15,7 +15,8 @@ Este documento recoge la instrucción del propietario del 25 de septiembre de 20
 
 ## Status
 
-`PREPARED — NOT EXECUTED`.
+`EJECUTADO (Phases A–E) — PENDIENTE DE VALIDACIÓN VISUAL` el 25-09-2026. Resultado y análisis de riesgo en
+`docs/prompts-output/[50-0]prompt-output.md`. Phase F sigue **BLOQUEADA**.
 
 Objetivo: llevar los tres botones primarios al lenguaje visual del oeste que ya tiene el sitio, con una pieza reutilizable y modular, y dejar el conocimiento listo para promoverse al kit canónico **solo después** de la validación visual del propietario.
 
