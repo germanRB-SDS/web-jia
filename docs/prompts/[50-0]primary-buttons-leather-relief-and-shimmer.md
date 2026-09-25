@@ -22,7 +22,7 @@ validación en `docs/prompts-output/[50-0]prompt-output.md`. El patrón vive en 
 
 Objetivo: llevar los tres botones primarios al lenguaje visual del oeste que ya tiene el sitio, con una pieza reutilizable y modular, y dejar el conocimiento listo para promoverse al kit canónico **solo después** de la validación visual del propietario.
 
-**Gate de validación visual (vinculante).** La promoción a `sds-dev-governance/` (Phase F) está **BLOQUEADA**. No se ejecuta en esta pasada. Requiere que el propietario diga explícitamente que el resultado le gusta, después de verlo. Ninguna otra señal —que compilen los checks, que las capturas parezcan correctas, que el prompt esté escrito— sustituye esa validación.
+**Gate de validación visual (vinculante).** La promoción a `sds-dev-governance/` (Phase F) estuvo **BLOQUEADA** hasta que el propietario dijera explícitamente que el resultado le gustaba, después de verlo. Ninguna otra señal —que compilaran los checks, que las capturas parecieran correctas, que el prompt estuviera escrito— sustituía esa validación. **Gate satisfecho el 25-09-2026**; la Phase F se ejecutó después, nunca antes.
 
 ## Governance and scope
 
@@ -104,9 +104,9 @@ Restricciones de calidad, de obligado cumplimiento:
 5. Cierre conforme a la práctica 14: commit(s) de implementación con rutas explícitas, informe de fase por terminal y en el output, y commit documental aparte con el resumen y el análisis de riesgo íntegros en su descripción. Después, `git-safe-push.sh origin main`.
 6. Presentar el resultado al propietario y **parar**. El prompt queda `EJECUTADO — PENDIENTE DE VALIDACIÓN VISUAL`.
 
-## Phase F — Promoción al kit canónico (BLOQUEADA)
+## Phase F — Promoción al kit canónico (desbloqueada y ejecutada el 25-09-2026)
 
-No ejecutar sin la validación visual explícita del propietario. Cuando llegue:
+No ejecutar sin la validación visual explícita del propietario. Llegada esa validación:
 
 1. Registrarla en el output con fecha y palabras del propietario.
 2. Promover el patrón a `sds-dev-governance/resources/frontend-patterns/ui-components/`, que es la ruta real del kit (el propietario la nombró como «resources/ui-components»; confirmarla antes de escribir y no crear una carpeta paralela). Nombre propuesto: `button-leather-shimmer`, neutro y portable, sin atarlo a esta edición ni al oeste.
