@@ -1,0 +1,160 @@
+{
+  "origin": "https://127.0.0.1:3454",
+  "phase": "offer",
+  "browser": "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+  "checks": [
+    {
+      "name": "macOS normal does not prompt",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "macOS reduce remains respected without automatic offer",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "non-Mac normal offers automatically",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "exact two actions and no Close",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "no footer preference control",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "glass blur and larger activation",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "focus starts inside modal",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "keyboard remains in modal",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "decline stops effects without storing rejection",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "decline survives hash and system changes within visit",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "new document asks after decline",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "Escape leaves visit calm and stores nothing",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "reduce also offers",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "accept enables live without reloading",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "HTTPS opt-in cookie exact attributes and 180 days",
+      "pass": true
+    },
+    {
+      "name": "acceptance suppresses future offer even under reduce",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "invalid acceptance does not suppress offer",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "blocked cookies still allow current-visit activation",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "blocked acceptance cannot promise persistence",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "mobile non-Mac offers on load",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "dialog fits 320",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "dialog fits 390",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "dialog fits 759",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "iPad desktop identity is excluded",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "iPhone does not offer automatically",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "iPad does not offer automatically",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "actual desktop Mac remains excluded",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": [],
+  "platformSimulation": "navigator.platform and touch capabilities only; not a physical OS/browser certification",
+  "cookies": [
+    {
+      "name": "__Host-jia-motion",
+      "value": "on",
+      "domain": "127.0.0.1",
+      "path": "/",
+      "expires": 1805907360.404341,
+      "size": 19,
+      "httpOnly": false,
+      "secure": true,
+      "session": false,
+      "sameSite": "Lax",
+      "priority": "Medium",
+      "sourceScheme": "Secure",
+      "sourcePort": 3454
+    }
+  ]
+}

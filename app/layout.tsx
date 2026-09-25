@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Alegreya, Barlow_Semi_Condensed, Homemade_Apple, Rokkitt } from "next/font/google";
+import { MotionPreference } from "@/components/motion/MotionPreference";
 import { CursorMark } from "@/components/site/CursorMark";
 import { DEFAULT_LOCALE, event, LANGUAGE_BY_CODE, site } from "@/lib/content";
 import { getDictionary } from "@/lib/content/copy/dictionaries";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div hidden dangerouslySetInnerHTML={{ __html: `<!--
 ${CONTRACT}
 -->` }} />
+        <MotionPreference copy={copy.motion} />
         {children}
         <CursorMark />
       </body>

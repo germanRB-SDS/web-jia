@@ -9,7 +9,7 @@ let query: MediaQueryList | undefined;
 const listeners = new Set<() => void>();
 
 function publish() {
-  reduced = !accepted && (!supported || Boolean(query?.matches));
+  reduced = !accepted && (dismissed || !supported || Boolean(query?.matches));
   document.documentElement.dataset.motion = reduced ? "reduce" : "on";
   listeners.forEach((listener) => listener());
 }
@@ -44,8 +44,13 @@ export function subscribeMotion(listener: () => void) {
 }
 export function isMotionReduced() { initialize(); return reduced; }
 export function hasMotionAcceptance() { initialize(); return accepted; }
-export function shouldOfferMotion() { initialize(); return supported && Boolean(query?.matches) && !accepted && !dismissed; }
-export function dismissMotionOffer() { dismissed = true; }
+export function shouldOfferMotion() {
+  initialize();
+  // Owner-requested Apple exception, including iPad desktop mode reporting Mac.
+  const appleDevice = /^(Mac|iPhone|iPad|iPod)/.test(navigator.platform);
+  return !appleDevice && !accepted && !dismissed;
+}
+export function dismissMotionOffer() { dismissed = true; publish(); }
 export function chooseMotion(enable: boolean) {
   initialize();
   accepted = enable;

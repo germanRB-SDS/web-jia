@@ -1,9 +1,6 @@
 export const motion = {
   title: "Animaciones",
-  message: "Estás viendo esta web sin animaciones. Actívalas (solo para esta página).",
-  settings: "Elige cómo quieres ver las animaciones de JIA.",
-  activate: "Activar",
-  decline: "Seguir sin animaciones",
-  system: "Usar la preferencia del sistema",
-  close: "Cerrar",
+  message: "Activa las animaciones para disfrutar de una experiencia más completa en la web de Jornadas de Innovación. Se aplicarán únicamente a esta web; no cambiarán la configuración de tu dispositivo.",
+  activate: "Activar animaciones",
+  decline: "Dejar sin animaciones",
 };

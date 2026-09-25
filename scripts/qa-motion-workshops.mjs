@@ -1,4 +1,4 @@
-/** Targeted browser regression checks using the project's existing CDP approach. */
+/** Historical B–F harness for release 5ff471c. Phase G supersedes its popup UX checks in qa-motion-offer.mjs. */
 import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 const origin = process.argv[2] || 'http://127.0.0.1:3054';

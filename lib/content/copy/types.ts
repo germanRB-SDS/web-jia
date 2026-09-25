@@ -51,7 +51,7 @@ export type ExperienceCopy = {
 export type ResourceCopy = { title: string; summary: string; status: EditorialStatus };
 
 export type Copy = {
-  motion: { title: string; message: string; settings: string; activate: string; decline: string; system: string; close: string };
+  motion: { title: string; message: string; activate: string; decline: string };
   metadata: { title: string; description: string };
   nav: {
     skip: string;
