@@ -7,7 +7,7 @@
 - Next exporta almeria-2026.html con trailingSlash:false. La landing de la edición reutiliza app/page.tsx; metadata deriva de lib/content/site.ts.
 - Solo publicar export estático; no necesita Node/PM2 en servidor. No volver a ejecutar el instalador de primera instalación.
 - Actualizador: deployment/update-web-jia-release.sh, con checksum, bloqueo, enlace atómico y rollback inicial. No recarga Caddy al actualizar archivos.
-- SSH por clave existente funciona; sudo requiere autenticación independiente. Las autorizaciones explícitas del 25-09-2026 para [53-1] y [54-0] son excepcionales, cada una para su despliegue; ambas consumidas, no permiso persistente. MCP no se ha activado.
+- SSH por clave existente funciona; sudo requiere autenticación independiente. Las autorizaciones explícitas del 25-09-2026 para [53-1] y [54-0] son excepcionales, incluida renovación explícita de [54-0] G; todas consumidas, no permiso persistente. MCP no se ha activado.
 
 ## Procedimiento canónico
 
@@ -15,4 +15,4 @@
 
 ## Último estado verificado
 
-2026-09-25 [54-0]: release activa releases/20260925-5ff471c, código 5ff471c. Propietario dio nueva autorización explícita SSH y autenticó sudo en launcher preparado. HTML local/origen/público SHA coincidente; 10 checks HTTP (43 recursos, vídeo 206) y 42 checks de navegador público PASS. Caddy/configuración sin cambios; anterior releases/20260925-b410b77 conservada. Excepción SSH consumida. Ver [cierre y evidencia](../prompts-output/[54-0]/deployment-closure.md).
+2026-09-25 [54-0] G: release activa releases/20260925-b1adf52, código b1adf52. Propietario renovó permiso de publicación y autenticó sudo en launcher nuevo. HTML local/origen/público SHA coincidente; 10 checks HTTP (43 recursos, vídeo206) y 27 checks de popup público PASS, incluyendo excepción Apple simulada. Caddy/configuración sin cambios; anterior releases/20260925-5ff471c conservada. Excepción SSH consumida. Ver [cierre y evidencia](../prompts-output/[54-0]/deployment-popup-closure.md).

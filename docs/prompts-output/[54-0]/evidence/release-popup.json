@@ -1,5 +1,5 @@
 {
-  "state": "STAGED_WAITING_OWNER_SUDO",
+  "state": "ACTIVATED_AND_VERIFIED",
   "source_commit": "b1adf529d625c252f8a4fd0c2d1820ec0a524c9e",
   "release": "20260925-b1adf52",
   "archive": "/private/tmp/web-jia-20260925-b1adf52.tar.gz",
@@ -14,5 +14,14 @@
   "prepared_utc": "2026-09-25T16:57:03.973848+00:00",
   "remote_archive_sha256": "7dbf8a5f34af8a9c5b0fb1d0d7c6bc14e3c19c87c9081e2b131fef9a87a9800d",
   "launcher_sha256": "2918c207e67e8aee7a705793905bff75010c01f8332c3784125b8579e49cea77",
-  "github_main": "48b3518"
+  "github_main": "48b3518",
+  "activated_by": "owner via prepared SSH launcher with sudo",
+  "origin_html_sha256": "4c860935b95fefe122a0b80d2af6b8004e94f5e0b62a7225ce38d0d454e8c23b",
+  "public_html_sha256": "4c860935b95fefe122a0b80d2af6b8004e94f5e0b62a7225ce38d0d454e8c23b",
+  "previous_retained": true,
+  "caddy_config_and_process_unchanged": true,
+  "verified_utc": "2026-09-25T17:07:00.645689+00:00",
+  "http_checks_passed": 10,
+  "referenced_resources_ok": 43,
+  "browser_checks_passed": 27
 }

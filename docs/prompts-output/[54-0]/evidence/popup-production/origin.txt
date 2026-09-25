@@ -1,0 +1,7 @@
+release=20260925-b1adf52
+previous=releases/20260925-5ff471c
+html_sha256=4c860935b95fefe122a0b80d2af6b8004e94f5e0b62a7225ce38d0d454e8c23b
+previous_html_sha256=7858b3e953f8dd3aca5646943e1a6891d416bfde3b3e17dfe98e8187be956f88
+Current and origin TLS verification HTML hashes match the prepared artifact.
+Caddy active; updater verified configuration and process unchanged.
+Previous release retained; owner authenticated sudo and confirmed ACTIVATED.

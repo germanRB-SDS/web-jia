@@ -1,6 +1,14 @@
 # Cómo desplegar web-jia
 
-## Último despliegue comprobado — [54-0]
+## Último despliegue comprobado — [54-0] G
+
+25-09-2026: release activa `releases/20260925-b1adf52`, código `b1adf52`; previa `releases/20260925-5ff471c` conservada. El propietario renovó explícitamente permiso para publicar la revisión del popup en esta misma operación SSH y autenticó sudo en el launcher nuevo del staging `/home/sdsadmin/web-jia-release-review-uk3Txv/`. No reejecutarlo. Autorización de esta publicación consumida; no crea permiso permanente ni admisión MCP.
+
+Paquete/hash y expected-current comprobados antes de activar; HTML local/origen/público coincidente. Caddy/configuración/proceso sin cambios. Smoke final: 10 HTTP, 43 recursos, vídeo206 y 27 checks de navegador del popup PASS. Incluye ausencia del aviso en identidades Apple simuladas y aparición/persistencia/rechazo en el resto; no certifica equipos físicos. [Cierre final](../../../../docs/prompts-output/[54-0]/deployment-popup-closure.md), [manifiesto final](../../../../docs/prompts-output/[54-0]/evidence/release-popup.json).
+
+Los apartados siguientes conservan las publicaciones anteriores como historial. Los nuevos despliegues requieren artefacto/launcher nuevos, autorización vigente y comprobar current real. El aviso cp -n fue no fatal también en G; sudo mantiene autenticación independiente.
+
+## Publicación anterior — [54-0] B–F
 
 El 25-09-2026 se actualizó el mismo sitio a `releases/20260925-5ff471c` (código `5ff471c`), conservando `releases/20260925-b410b77`. El propietario dio una **nueva** autorización: «te doy permiso para este despliegue también» y «permiso explícito por ssh». Autenticó sudo en su terminal mediante el launcher específico del nuevo staging `/home/sdsadmin/web-jia-release-review-X8Gv4D/`. No volver a ejecutar ese launcher. Esta excepción también queda consumida y no crea permiso permanente ni admisión MCP.
 
