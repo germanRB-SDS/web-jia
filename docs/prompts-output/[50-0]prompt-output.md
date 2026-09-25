@@ -11,7 +11,7 @@
 | Nivel de gobernanza | `LEVEL 2` |
 | Áreas afectadas | `frontend` |
 | Memorias cargadas | `docs/memory/frontend.md` |
-| Estado final | `EJECUTADO — PENDIENTE DE VALIDACIÓN VISUAL` |
+| Estado final | `IMPLEMENTADO` (Phases A–F) |
 | Change ID | N/A (un solo repositorio) |
 
 ## 1. Objetivo
@@ -20,8 +20,7 @@ Llevar los tres botones primarios (`EXPLORAR LAS JORNADAS`, `DISPARA TU IDEA`, `
 pieza de cuero en relieve con un destello que la recorre, a partir de la referencia que aportó el propietario; poner la
 estrella de sheriff en el primero y renombrar el tercero. Todo el texto sigue viviendo en constantes.
 
-Phases A–E ejecutadas. **Phase F (promoción a `sds-dev-governance/`) sigue BLOQUEADA**: requiere la validación visual
-explícita del propietario.
+Phases A–F ejecutadas y cerradas.
 
 ## 2. Qué se hizo
 
@@ -32,7 +31,7 @@ explícita del propietario.
 | C | `.primary` en `components/primitives/Action.module.css`: cuero, relieve, destello, elevación, hundimiento y guarda de movimiento reducido | `DONE` |
 | D | `SheriffStarIcon`, el icono declarado desde la capa de contenido, y el rótulo `Acoger las JIA` | `DONE` |
 | E | Checks, evidencia visual y cierre por práctica 14 | `DONE` |
-| F | Promoción al kit canónico | `BLOCKED` — falta la validación visual |
+| F | Promoción al kit canónico, tras la validación del propietario | `DONE` |
 
 ### Ficheros
 
@@ -129,10 +128,25 @@ Ninguna otra. El resto de fases se ejecutó tal como estaba escrito.
 Tmp/scratch: N/A — prompt corto, una sola sesión, sin interrupciones. Los scripts de captura son de un solo uso y
 viven en el scratchpad de la sesión, fuera del repositorio; los scripts de QA del proyecto no se tocaron.
 
-## 7. Siguiente paso
+## 7. Validación del propietario y Phase F
 
-**Validación visual del propietario.** Hasta que la dé, la Phase F no se ejecuta: no se escribe nada en
-`sds-dev-governance/`. Cuando llegue, se registra aquí con fecha y se promueve el patrón a
-`sds-dev-governance/resources/frontend-patterns/ui-components/` (ruta real del kit, que el propietario nombró como
-«resources/ui-components»), con su `INDEX-AND-HOW-TO-USE-THEM.md`, la fila en el índice de recursos y el flujo de
-release del kit.
+**Validación visual recibida el 2026-09-25**, en palabras del propietario: «Visualmente te doy la aprobación». Con
+ella se desbloqueó la Phase F y se promovió el patrón al kit canónico.
+
+| Qué | Dónde |
+|---|---|
+| Recurso | `sds-dev-governance/resources/frontend-patterns/ui-components/button-leather-shimmer` (guía, `css/`, `html/`) |
+| Registros | fila en el índice de recursos, bullet en el README de la categoría, término `leather-shimmer` en el glosario |
+| Release | `v1.30.0`, `REL-2026-09-25-01`, etiquetada y subida a `germanRB-SDS/sds-dev-governance` |
+| Informe de release | `sds-dev-governance/docs/prompts-output/REL-2026-09-25-01/report.md` |
+
+El propietario nombró el destino como «resources/ui-components»; la ruta real del kit es
+`resources/frontend-patterns/ui-components`, confirmada contra el índice antes de escribir. No se creó una carpeta
+paralela.
+
+El recurso salió desacoplado de la paleta de JIA: todos los colores son custom properties con valores neutros de
+partida. Se registró la procedencia de terceros (LeonKohli, Uiverse, MIT) y los dos defectos de rendimiento que
+declara la propia ficha de la referencia, con la técnica que los sustituye.
+
+La copia del kit dentro de este proyecto se actualizó desde la etiqueta `v1.30.0` y su `check-governance.sh` pasa
+en verde, reconociendo el recurso nuevo.
