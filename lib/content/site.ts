@@ -25,6 +25,7 @@ export const event = {
  * kept below as an alternate so the history stays readable.
  */
 export const edition = {
+  path: "/almeria-2026",
   title: "Jornadas de Innovación de Almería",
   titleStatus: "confirmed" as EditorialStatus,
   titleAlternates: [
@@ -44,7 +45,7 @@ export const productionStudio = {
 } as const;
 
 export const site = {
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jornadasdeinnovacion.com",
   defaultLocale: DEFAULT_LOCALE,
   locales: LOCALES,
   preview: {

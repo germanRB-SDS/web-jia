@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   output: "export",
   reactStrictMode: true,
   devIndicators: false,
-  trailingSlash: true,
+  trailingSlash: false,
   images: { unoptimized: true },
   // Next 16 writes its own AGENTS.md / CLAUDE.md on `next dev`; the hub governance owns those files.
   agentRules: false,
