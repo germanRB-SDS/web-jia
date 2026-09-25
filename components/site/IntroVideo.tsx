@@ -17,7 +17,8 @@ type IOSVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void; webkitD
  * screen and never autoplays under prefers-reduced-motion. Round controls sit top-right:
  * share (phones only: the Web Share API with a coarse pointer), fullscreen (the frame goes full screen so the
  * controls stay; iOS uses the player's own), minimise (picture in picture, where the browser has it: the video
- * goes on playing in a floating window while the page is read), sound, play/pause.
+ * goes on playing in a floating window while the page is read), sound, play/pause. Entering fullscreen or
+ * picture in picture enables sound; the initial in-page autoplay stays muted.
  */
 export function IntroVideo({ intro }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -134,6 +135,10 @@ export function IntroVideo({ intro }: Props) {
     setLoad(true);
     const open = () => {
       if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      if (video.muted) {
+        video.muted = false;
+        setMuted(false);
+      }
       video.requestPictureInPicture().then(() => video.play().catch(() => {})).catch(() => {});
     };
     if (video.readyState >= 1) open();
@@ -147,8 +152,16 @@ export function IntroVideo({ intro }: Props) {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     } else if (document.fullscreenEnabled) {
+      if (video.muted) {
+        video.muted = false;
+        setMuted(false);
+      }
       frame.requestFullscreen().catch(() => {});
     } else if (video.webkitEnterFullscreen) {
+      if (video.muted) {
+        video.muted = false;
+        setMuted(false);
+      }
       video.webkitEnterFullscreen();
     }
   }, []);

@@ -68,8 +68,8 @@ FFMPEG="${FFMPEG:-$(command -v ffmpeg || true)}"
 intro_src="assets/videos-website/capitulo2corregidofran.mp4"
 if [ -n "$FFMPEG" ] && [ -f "$intro_src" ]; then
   out public/jornadas/intro/x
-  "$FFMPEG" -y -v error -i "$intro_src" -vf "scale=-2:720" -c:v libx264 -profile:v high -pix_fmt yuv420p \
-    -crf 27 -maxrate 1800k -bufsize 3600k -preset medium -movflags +faststart -c:a aac -b:a 96k -ac 2 \
+  "$FFMPEG" -y -v error -i "$intro_src" -vf "scale=1280:720:flags=lanczos" -c:v libx264 -profile:v high -pix_fmt yuv420p \
+    -crf 28 -maxrate 1800k -bufsize 3600k -preset slow -movflags +faststart -c:a aac -b:a 96k -ac 2 \
     public/jornadas/intro/intro-720.mp4
   "$FFMPEG" -y -v error -ss 8 -i "$intro_src" -frames:v 1 -vf "scale=1600:-2" /tmp/jia-intro-poster.png
   magick /tmp/jia-intro-poster.png -strip -quality 80 public/jornadas/intro/intro-poster.webp

@@ -1,7 +1,7 @@
 /* ---- "Intro": the video that opens the jornadas, before the programme ----
    Full width, edge to edge; its height never passes --intro-max-height (set inline from
    lib/content/sections/jornadas-intro-video.ts, the same limit as the rider band). The
-   frame keeps the video's proportion until that limit and then crops (cover). */
+   frame keeps the video's proportion until that limit and then shows the whole frame. */
 .intro {
   position: relative;
   background: var(--jia-ink);
@@ -63,6 +63,17 @@
   background-size: cover;
   background-position: center;
 }
+/* The source stays complete at the height limit. A softened poster extends its colours into
+   the spare width on wide screens without competing with the moving image. */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: -3rem;
+  background: inherit;
+  background-size: cover;
+  filter: blur(32px) brightness(0.55) saturate(0.8);
+  pointer-events: none;
+}
 /* At full screen the frame drops its height limit and the video sits whole (contain) on ink. */
 .frame:fullscreen {
   aspect-ratio: auto;
@@ -71,6 +82,7 @@
   background-image: none;
 }
 .frame:fullscreen .video { object-fit: contain; }
+.frame:fullscreen::before { display: none; }
 /* A soft top shade so the label and the controls stay legible on any frame. */
 .frame::after {
   content: "";
@@ -85,7 +97,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 .controls {

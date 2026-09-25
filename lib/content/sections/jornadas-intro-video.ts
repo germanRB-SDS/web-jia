@@ -24,8 +24,8 @@ export const JORNADAS_INTRO_VIDEO_POSTER: string | null = "/jornadas/intro/intro
 /**
  * Altura máxima del bloque. Partía de la banda del jinete (el velo de «Las jornadas»,
  * `min(78vh, 780px)` en Jornadas.module.css); el promotor pidió un 10 % más de vertical para
- * que se vea más fotograma (JIA-2026-09-18-11). El vídeo ocupa todo el ancho y se recorta
- * (cover) para no pasar de aquí.
+ * que se vea más fotograma (JIA-2026-09-18-11). El marco ocupa todo el ancho; al alcanzar
+ * este límite el vídeo se muestra entero y el póster suavizado llena los lados libres.
  */
 export const JORNADAS_INTRO_VIDEO_MAX_HEIGHT = "min(86vh, 858px)";
 

@@ -96,7 +96,10 @@
   font-size: 1.0625rem;
   color: var(--jia-text);
 }
+/* The closing rule below “Agradecimientos y despedida” was removed at the promoter's request.
 .session:last-child { border-bottom: 1px solid var(--jia-line); }
+*/
+.day:first-child .session:last-child { border-bottom: 1px solid var(--jia-line); }
 .session::before {
   counter-increment: session;
   content: counter(session, upper-roman);
