@@ -13,3 +13,5 @@ no se precargan en adapters y no autorizan ejecutar herramientas o instalar depe
   - [Gráfica de actividad semanal leída de HealthKit](ios/how-to-healthkit-weekly-activity-chart.md):
     código SwiftUI completo de «Tu semana» de UpNews, retirado de producción por
     `Guideline 2.5.1`; incluye el porqué del rechazo.
+
+- [web-jia: despliegue del sitio existente](web-jia/how-to-deploy/README.md).

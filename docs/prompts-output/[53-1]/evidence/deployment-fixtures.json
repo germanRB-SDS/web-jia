@@ -1,0 +1,32 @@
+[
+  {
+    "case": "success",
+    "pass": true,
+    "exit_code": 0,
+    "current": "releases/20260925-1234567"
+  },
+  {
+    "case": "bad_checksum",
+    "pass": true,
+    "exit_code": 1,
+    "current": "releases/20260920-abcdef0"
+  },
+  {
+    "case": "stale_current",
+    "pass": true,
+    "exit_code": 1,
+    "current": "releases/20260920-abcdef0"
+  },
+  {
+    "case": "unsafe_archive",
+    "pass": true,
+    "exit_code": 1,
+    "current": "releases/20260920-abcdef0"
+  },
+  {
+    "case": "health_failure",
+    "pass": true,
+    "exit_code": 22,
+    "current": "releases/20260920-abcdef0"
+  }
+]

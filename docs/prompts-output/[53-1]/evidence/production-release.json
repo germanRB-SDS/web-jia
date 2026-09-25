@@ -1,0 +1,11 @@
+{
+  "release": "20260925-b410b77",
+  "source_commit": "b410b7746ee4d2e30f11519647a1a977652f562f",
+  "archive": "/private/tmp/web-jia-20260925-b410b77.tar.gz",
+  "sha256": "c04bf2fdca4f96d475cc316376d394b80ce234d236e4556ba219d157a60d7ce7",
+  "bytes": 50464056,
+  "files": 203,
+  "html_sha256": "369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169",
+  "expected_current": "releases/20260920-5b4d363",
+  "status": "prepared-not-activated"
+}

@@ -40,3 +40,7 @@ Leída docs/memory/deployment.md; sin hechos suficientes para completarla. Sin c
 
 ## 12. Checkpoint y siguiente paso
 Pregunta enviada al propietario para identificar alojamiento actual/proyecto. Pendiente respuesta. Continuar desde la release 6ec0109, verificar destino/acceso admitido y rollback, publicar el artefacto y comprobar HTTPS, recursos y comportamiento móvil. No volver a pedir permiso para publicar: ya está autorizado. Registrar el resultado real cuando se complete; no presentar este paquete como despliegue.
+
+## Actualización posterior — destino y staging verificados
+
+El propietario confirma VPS Hostinger y autoriza SSH exclusivamente para esta ocasión. Se localizó el sitio existente y se completó el inventario. La nueva release compatible con su ruta es 20260925-b410b77; sustituye el paquete inicial 6ec0109. Paquete y actualizador ya transferidos a staging privado con hashes coincidentes. La única dependencia actual para activar es autenticación sudo. Guía canónica: sds-dev-governance/knowledge/web-jia/how-to-deploy/README.md. No se ha cambiado el enlace current ni se ha duplicado el sitio.

@@ -1,39 +1,18 @@
 # Deployment Memory
 
-Contexto tecnico estable de despliegue, entornos e infraestructura. No duplicar reglas de `CLAUDE.md`.
+## Contexto mínimo
 
-## Cargar cuando
+- Producción confirmada por el propietario: VPS Hostinger existente, Caddy, dominio jornadasdeinnovacion.com y entrada /almeria-2026.
+- Configuración comprobada: /etc/caddy/web-jia.caddy, root /srv/web-jia/current, releases bajo /srv/web-jia/releases. Conservar el mismo sitio y las redirecciones actuales.
+- Next exporta almeria-2026.html con trailingSlash:false. La landing de la edición reutiliza app/page.tsx; metadata deriva de lib/content/site.ts.
+- Solo publicar export estático; no necesita Node/PM2 en servidor. No volver a ejecutar el instalador de primera instalación.
+- Actualizador: deployment/update-web-jia-release.sh, con checksum, bloqueo, enlace atómico y rollback inicial. No recarga Caddy al actualizar archivos.
+- SSH por clave existente funciona; sudo requiere autenticación independiente. La autorización del 25-09-2026 es excepcional y solo para esta ocasión, no permiso persistente. MCP no se ha activado.
 
-- Cambios en CI/CD, entornos, variables, infraestructura, releases, jobs programados o configuracion operacional.
-- Cambios que requieran runbook o verificacion post-deploy.
+## Procedimiento canónico
 
-## Contexto minimo
+[Cómo desplegar web-jia](../../sds-dev-governance/knowledge/web-jia/how-to-deploy/README.md): inventario, preparación, transferencia, activación, verificaciones y mejoras recomendadas.
 
-- _pendiente_
+## Último estado verificado
 
-## Rutas clave
-
-| Ruta | Proposito |
-|---|---|
-| `docs/runbooks/` | Procedimientos operativos |
-| `docs/operations/` | Notas operativas generales |
-
-## Entornos
-
-| Entorno | Proposito | Rama/fuente |
-|---|---|---|
-| _pendiente_ | _pendiente_ | _pendiente_ |
-
-## Comandos canonicos
-
-| Comando | Uso |
-|---|---|
-| _pendiente_ | _pendiente_ |
-
-## Riesgos conocidos
-
-- _pendiente_
-
-## Ultimo estado estable
-
-- _pendiente_
+2026-09-25: producción antigua releases/20260920-5b4d363, HTTPS 200. Nueva release 20260925-b410b77 preparada y transferida a staging privado con SHA verificado; activación pendiente de autenticación sudo. Ver [checkpoint](../prompts-output/[53-1]/tmp/deployment-checkpoint.md).

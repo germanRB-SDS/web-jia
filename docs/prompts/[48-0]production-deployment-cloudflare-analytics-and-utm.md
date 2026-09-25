@@ -17,6 +17,8 @@ Cuando el propietario solicite ejecutarlo, leer el documento completo y ejecutar
 
 `PREPARED — NOT EXECUTED`.
 
+Actualización autorizada del propietario (25-09-2026, alcance de entrega actual): el destino es el VPS Hostinger existente y se debe actualizar el mismo sitio sin duplicarlo. SSH verificó Caddy y la entrada /almeria-2026 con redirección de raíz existente; se conserva ese comportamiento. Esto resuelve alojamiento/ruta para la actualización actual y sustituye las alternativas de la tabla siguiente en ese alcance. No activa las fases adicionales de analítica/UTM de este prompt. Procedimiento y autorización SSH excepcional de una sola ocasión: `sds-dev-governance/knowledge/web-jia/how-to-deploy/README.md`.
+
 Objetivo: ejecutar por fases una publicación sencilla y reversible de `web-jia`, con Cloudflare Web Analytics y convención UTM, preservando el aspecto y comportamiento actuales.
 
 **Dos decisiones contractuales pendientes impiden ejecutar sus cambios dependientes:**
