@@ -16,6 +16,7 @@ Petición del propietario del 2026-09-25, incluido su añadido sobre la cabecera
 4. En móvil, ocultar bajo los carteles título, subtítulo, Imparte y Temática. Conservar la información y los nombres accesibles en las fichas. Mostrar únicamente «Ver ficha» y «Descargar dossier» bajo cada cartel, y únicamente mientras el carrusel está desplegado. Conservar la disponibilidad real de cada dossier; no inventar enlaces.
 5. Cabecera móvil: colocar el sello circular a la izquierda del menú hamburguesa, y el menú a la derecha en la antigua posición del sello. Mantener el sello visible también en teléfonos estrechos. Conservar la cabecera de escritorio.
 6. Mantener el escritorio y otras secciones que usan SheetCard; no modificar el trabajo de Claude en maestra, aula, foto o luces, ni el vídeo.
+7. Añadido posterior del propietario: solo en móvil, sustituir el título «TALLERES» por «TALLERES EN EL SALOON». Guardar el texto en el catálogo de copy y conservar «TALLERES» en escritorio.
 
 ## Ejecución y constantes
 
