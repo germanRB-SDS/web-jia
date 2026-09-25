@@ -1,0 +1,820 @@
+[
+  {
+    "check": "menu inside viewport 320",
+    "pass": true,
+    "detail": {
+      "x": 214.859375,
+      "y": 12,
+      "width": 89.140625,
+      "height": 44,
+      "top": 12,
+      "right": 304,
+      "bottom": 56,
+      "left": 214.859375
+    }
+  },
+  {
+    "check": "fullscreen 320",
+    "pass": true,
+    "detail": {
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 900,
+        "top": 0,
+        "right": 320,
+        "bottom": 900,
+        "left": 0
+      },
+      "image": {
+        "x": 203.203125,
+        "y": 72,
+        "width": 100.796875,
+        "height": 142.5625,
+        "top": 72,
+        "right": 304,
+        "bottom": 214.5625,
+        "left": 203.203125
+      },
+      "close": {
+        "x": 213.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 304,
+        "bottom": 56,
+        "left": 213.9375
+      },
+      "panel": {
+        "scroll": 0,
+        "scrollHeight": 900,
+        "height": 900,
+        "width": 320,
+        "scrollWidth": 320
+      },
+      "text": "CERRAR\nPor un puñado de bloques\n\nAnimación con Scratch\n\nIMPARTE Manuel Salmerón Águila\n\nTEMÁTICA\nProgramación creativa\nDE QUÉ TRATA\nCrear animaciones con bloques de programación y pensar cómo convertirlas en una actividad de aula.\nOBJETIVOS\nLos objetivos y aprendizajes del taller se publicarán cuando la organización los facilite.",
+      "overflow": "hidden"
+    }
+  },
+  {
+    "check": "close fully visible 320",
+    "pass": true,
+    "detail": {
+      "x": 213.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 304,
+      "bottom": 56,
+      "left": 213.9375
+    }
+  },
+  {
+    "check": "right poster below close 320",
+    "pass": true,
+    "detail": {
+      "x": 203.203125,
+      "y": 72,
+      "width": 100.796875,
+      "height": 142.5625,
+      "top": 72,
+      "right": 304,
+      "bottom": 214.5625,
+      "left": 203.203125
+    }
+  },
+  {
+    "check": "poster roughly ten percent smaller 320",
+    "pass": true,
+    "detail": {
+      "old": 113.9375,
+      "new": 100.796875
+    }
+  },
+  {
+    "check": "dialog locks background 320",
+    "pass": true
+  },
+  {
+    "check": "close restores focus and scrolling 320",
+    "pass": true
+  },
+  {
+    "check": "menu inside viewport 390",
+    "pass": true,
+    "detail": {
+      "x": 284.859375,
+      "y": 12,
+      "width": 89.140625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 284.859375
+    }
+  },
+  {
+    "check": "fullscreen 390",
+    "pass": true,
+    "detail": {
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 900,
+        "top": 0,
+        "right": 390,
+        "bottom": 900,
+        "left": 0
+      },
+      "image": {
+        "x": 210.203125,
+        "y": 72,
+        "width": 163.796875,
+        "height": 231.671875,
+        "top": 72,
+        "right": 374,
+        "bottom": 303.671875,
+        "left": 210.203125
+      },
+      "close": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "panel": {
+        "scroll": 0,
+        "scrollHeight": 900,
+        "height": 900,
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "text": "CERRAR\nPor un puñado de bloques\n\nAnimación con Scratch\n\nIMPARTE Manuel Salmerón Águila\n\nTEMÁTICA\nProgramación creativa\nDE QUÉ TRATA\nCrear animaciones con bloques de programación y pensar cómo convertirlas en una actividad de aula.\nOBJETIVOS\nLos objetivos y aprendizajes del taller se publicarán cuando la organización los facilite.",
+      "overflow": "hidden"
+    }
+  },
+  {
+    "check": "close fully visible 390",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "right poster below close 390",
+    "pass": true,
+    "detail": {
+      "x": 210.203125,
+      "y": 72,
+      "width": 163.796875,
+      "height": 231.671875,
+      "top": 72,
+      "right": 374,
+      "bottom": 303.671875,
+      "left": 210.203125
+    }
+  },
+  {
+    "check": "poster roughly ten percent smaller 390",
+    "pass": true,
+    "detail": {
+      "old": 183.9375,
+      "new": 163.796875
+    }
+  },
+  {
+    "check": "dialog locks background 390",
+    "pass": true
+  },
+  {
+    "check": "close restores focus and scrolling 390",
+    "pass": true
+  },
+  {
+    "check": "menu inside viewport 440",
+    "pass": true,
+    "detail": {
+      "x": 333.25,
+      "y": 12,
+      "width": 89.140625,
+      "height": 44,
+      "top": 12,
+      "right": 422.390625,
+      "bottom": 56,
+      "left": 333.25
+    }
+  },
+  {
+    "check": "fullscreen 440",
+    "pass": true,
+    "detail": {
+      "viewport": {
+        "width": 440,
+        "height": 900
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 900,
+        "top": 0,
+        "right": 440,
+        "bottom": 900,
+        "left": 0
+      },
+      "image": {
+        "x": 215.203125,
+        "y": 72,
+        "width": 208.796875,
+        "height": 295.3125,
+        "top": 72,
+        "right": 424,
+        "bottom": 367.3125,
+        "left": 215.203125
+      },
+      "close": {
+        "x": 333.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 424,
+        "bottom": 56,
+        "left": 333.9375
+      },
+      "panel": {
+        "scroll": 0,
+        "scrollHeight": 900,
+        "height": 900,
+        "width": 440,
+        "scrollWidth": 440
+      },
+      "text": "CERRAR\nPor un puñado de bloques\n\nAnimación con Scratch\n\nIMPARTE Manuel Salmerón Águila\n\nTEMÁTICA\nProgramación creativa\nDE QUÉ TRATA\nCrear animaciones con bloques de programación y pensar cómo convertirlas en una actividad de aula.\nOBJETIVOS\nLos objetivos y aprendizajes del taller se publicarán cuando la organización los facilite.",
+      "overflow": "hidden"
+    }
+  },
+  {
+    "check": "close fully visible 440",
+    "pass": true,
+    "detail": {
+      "x": 333.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 424,
+      "bottom": 56,
+      "left": 333.9375
+    }
+  },
+  {
+    "check": "right poster below close 440",
+    "pass": true,
+    "detail": {
+      "x": 215.203125,
+      "y": 72,
+      "width": 208.796875,
+      "height": 295.3125,
+      "top": 72,
+      "right": 424,
+      "bottom": 367.3125,
+      "left": 215.203125
+    }
+  },
+  {
+    "check": "poster roughly ten percent smaller 440",
+    "pass": true,
+    "detail": {
+      "old": 233.9375,
+      "new": 208.796875
+    }
+  },
+  {
+    "check": "dialog locks background 440",
+    "pass": true
+  },
+  {
+    "check": "close restores focus and scrolling 440",
+    "pass": true
+  },
+  {
+    "check": "menu inside viewport 759",
+    "pass": true,
+    "detail": {
+      "x": 639.484375,
+      "y": 12,
+      "width": 89.140625,
+      "height": 44,
+      "top": 12,
+      "right": 728.625,
+      "bottom": 56,
+      "left": 639.484375
+    }
+  },
+  {
+    "check": "fullscreen 759",
+    "pass": true,
+    "detail": {
+      "viewport": {
+        "width": 759,
+        "height": 900
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 759,
+        "height": 900,
+        "top": 0,
+        "right": 759,
+        "bottom": 900,
+        "left": 0
+      },
+      "image": {
+        "x": 455,
+        "y": 72,
+        "width": 288,
+        "height": 407.34375,
+        "top": 72,
+        "right": 743,
+        "bottom": 479.34375,
+        "left": 455
+      },
+      "close": {
+        "x": 652.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 743,
+        "bottom": 56,
+        "left": 652.9375
+      },
+      "panel": {
+        "scroll": 0,
+        "scrollHeight": 900,
+        "height": 900,
+        "width": 759,
+        "scrollWidth": 759
+      },
+      "text": "CERRAR\nPor un puñado de bloques\n\nAnimación con Scratch\n\nIMPARTE Manuel Salmerón Águila\n\nTEMÁTICA\nProgramación creativa\nDE QUÉ TRATA\nCrear animaciones con bloques de programación y pensar cómo convertirlas en una actividad de aula.\nOBJETIVOS\nLos objetivos y aprendizajes del taller se publicarán cuando la organización los facilite.",
+      "overflow": "hidden"
+    }
+  },
+  {
+    "check": "close fully visible 759",
+    "pass": true,
+    "detail": {
+      "x": 652.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 743,
+      "bottom": 56,
+      "left": 652.9375
+    }
+  },
+  {
+    "check": "right poster below close 759",
+    "pass": true,
+    "detail": {
+      "x": 455,
+      "y": 72,
+      "width": 288,
+      "height": 407.34375,
+      "top": 72,
+      "right": 743,
+      "bottom": 479.34375,
+      "left": 455
+    }
+  },
+  {
+    "check": "poster roughly ten percent smaller 759",
+    "pass": true,
+    "detail": {
+      "old": 320,
+      "new": 288
+    }
+  },
+  {
+    "check": "dialog locks background 759",
+    "pass": true
+  },
+  {
+    "check": "close restores focus and scrolling 759",
+    "pass": true
+  },
+  {
+    "check": "sheet opens at top 0",
+    "pass": true,
+    "detail": {
+      "scroll": 0,
+      "scrollHeight": 525,
+      "height": 500,
+      "width": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "check": "short viewport close visible 0",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "fixed close while scrolling sheet 0",
+    "pass": true,
+    "detail": {
+      "first": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "after": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "scroll": 25
+    }
+  },
+  {
+    "check": "deck stays open behind sheet 0",
+    "pass": true
+  },
+  {
+    "check": "sheet opens at top 1",
+    "pass": true,
+    "detail": {
+      "scroll": 0,
+      "scrollHeight": 569,
+      "height": 500,
+      "width": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "check": "short viewport close visible 1",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "fixed close while scrolling sheet 1",
+    "pass": true,
+    "detail": {
+      "first": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "after": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "scroll": 69
+    }
+  },
+  {
+    "check": "deck stays open behind sheet 1",
+    "pass": true
+  },
+  {
+    "check": "sheet opens at top 2",
+    "pass": true,
+    "detail": {
+      "scroll": 0,
+      "scrollHeight": 626,
+      "height": 500,
+      "width": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "check": "short viewport close visible 2",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "fixed close while scrolling sheet 2",
+    "pass": true,
+    "detail": {
+      "first": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "after": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "scroll": 126
+    }
+  },
+  {
+    "check": "deck stays open behind sheet 2",
+    "pass": true
+  },
+  {
+    "check": "sheet opens at top 3",
+    "pass": true,
+    "detail": {
+      "scroll": 0,
+      "scrollHeight": 645,
+      "height": 500,
+      "width": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "check": "short viewport close visible 3",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "fixed close while scrolling sheet 3",
+    "pass": true,
+    "detail": {
+      "first": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "after": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "scroll": 145
+    }
+  },
+  {
+    "check": "deck stays open behind sheet 3",
+    "pass": true
+  },
+  {
+    "check": "sheet opens at top 4",
+    "pass": true,
+    "detail": {
+      "scroll": 0,
+      "scrollHeight": 561,
+      "height": 500,
+      "width": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "check": "short viewport close visible 4",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "fixed close while scrolling sheet 4",
+    "pass": true,
+    "detail": {
+      "first": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "after": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "scroll": 61
+    }
+  },
+  {
+    "check": "deck stays open behind sheet 4",
+    "pass": true
+  },
+  {
+    "check": "sheet opens at top 5",
+    "pass": true,
+    "detail": {
+      "scroll": 0,
+      "scrollHeight": 611,
+      "height": 500,
+      "width": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "check": "short viewport close visible 5",
+    "pass": true,
+    "detail": {
+      "x": 283.9375,
+      "y": 12,
+      "width": 90.0625,
+      "height": 44,
+      "top": 12,
+      "right": 374,
+      "bottom": 56,
+      "left": 283.9375
+    }
+  },
+  {
+    "check": "fixed close while scrolling sheet 5",
+    "pass": true,
+    "detail": {
+      "first": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "after": {
+        "x": 283.9375,
+        "y": 12,
+        "width": 90.0625,
+        "height": 44,
+        "top": 12,
+        "right": 374,
+        "bottom": 56,
+        "left": 283.9375
+      },
+      "scroll": 111
+    }
+  },
+  {
+    "check": "deck stays open behind sheet 5",
+    "pass": true
+  },
+  {
+    "check": "reopened sheet resets scroll",
+    "pass": true
+  },
+  {
+    "check": "scroll up contracts deck",
+    "pass": true
+  },
+  {
+    "check": "return from above shows fan",
+    "pass": true
+  },
+  {
+    "check": "scroll down contracts deck",
+    "pass": true
+  },
+  {
+    "check": "header fixed at footer",
+    "pass": true
+  },
+  {
+    "check": "header inside visual viewport at footer",
+    "pass": true
+  },
+  {
+    "check": "fixed menu opens at footer",
+    "pass": true
+  },
+  {
+    "check": "return from below shows reset fan",
+    "pass": true
+  },
+  {
+    "check": "hero fade halved",
+    "pass": true
+  },
+  {
+    "check": "desktop remains modal",
+    "pass": true,
+    "detail": {
+      "x": 216.5,
+      "y": 183.6875,
+      "width": 992,
+      "height": 532.609375,
+      "top": 183.6875,
+      "right": 1208.5,
+      "bottom": 716.296875,
+      "left": 216.5
+    }
+  },
+  {
+    "check": "desktop header remains sticky",
+    "pass": true
+  }
+]

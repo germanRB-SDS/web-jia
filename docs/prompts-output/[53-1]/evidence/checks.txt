@@ -1,0 +1,12 @@
+REL-2026-09-25-02 / [53-1]
+Runtime: Node 24.19.0, Chrome headless con emulación táctil vía CDP.
+npx tsc --noEmit: PASS
+npm run check:content: PASS (6 talleres, 38 personas, 62 medios).
+npx next build --webpack: PASS, exportación estática out/.
+El build usa webpack para el node_modules enlazado del worktree aislado, sin cambiar configuración ni dependencias.
+git diff --check: PASS.
+
+Diagnóstico y resolución: captura reveló Cerrar fuera de pantalla y cabecera ausente al llegar al footer aunque getBoundingClientRect daba top=0. El viewport de layout era 495 px para pantalla de 440 y visualViewport.offsetTop=113 al bajar. Anchos explícitos y contención overflow-x:hidden en html/body móvil restablecen 440 px y offsetTop=0; se añade aserción de viewport real/hit test, además de capturas. No se da por buena únicamente la geometría del DOM.
+La versión intermedia sin contención en body falló la nueva aserción de cabecera; quedó corregida antes del commit.
+QA final registrado en mobile-review.json y header-review.json. Capturas finales sheet-*, hero-*, fixed-header-footer*, returned-fan y desktop-sheet. Las capturas de diagnóstico se excluyen de la entrega.
+El retorno al carrusel, seis fichas, scroll interno, foco y escritorio se vuelven a comprobar sobre el build final. Verificación de Safari/iOS físico no realizada.

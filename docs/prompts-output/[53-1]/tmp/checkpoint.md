@@ -7,4 +7,4 @@
 - Diagnóstico de viewport: el desbordamiento previo ampliaba layout viewport (495 px para pantalla de 440), desplazando controles. Contención horizontal en html/body solo en móvil permite alinear viewport y pantalla; carruseles conservan sus scroll internos.
 - TypeScript, contenido y exportación webpack verdes. QA final: 66 aserciones PASS (63 de fichas/cabecera/baraja y 3 de viewport/carrusel a 440 px). Capturas revisadas; evidencia en evidence/.
 - Base compartida 5b131c9. next-env.d.ts ajeno en raíz se preserva. node_modules enlazado solo local; nunca incluir. Sin cambios a maestra/aula/foto/luces.
-- Pendiente: revisar capturas finales, commit de implementación, informe separado, fetch/integración fast-forward y safe push main ya autorizado.
+- Implementación cdd0472 verde; informe/evidencia consolidados en commit documental separado. Fetch confirma main/origin en 5b131c9 sin cambios concurrentes nuevos; siguiente paso integración fast-forward y safe push ya autorizados.

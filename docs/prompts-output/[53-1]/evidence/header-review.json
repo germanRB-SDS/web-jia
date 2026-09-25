@@ -1,0 +1,14 @@
+[
+  {
+    "check": "440 viewport matches screen",
+    "pass": true
+  },
+  {
+    "check": "horizontal workshop scroll remains available",
+    "pass": true
+  },
+  {
+    "check": "440 header visible over footer",
+    "pass": true
+  }
+]
