@@ -1,0 +1,121 @@
+{
+  "url": "https://jornadasdeinnovacion.com/almeria-2026",
+  "date": "2026-09-25",
+  "environment": "macOS Chrome headless, 1440x1000, SwiftShader WebGL; reduced-motion emulated; not a Windows device test",
+  "source_commit": "b410b7746ee4d2e30f11519647a1a977652f562f",
+  "modes": [
+    {
+      "motion": "no-preference",
+      "button": {
+        "x": 205.125,
+        "y": 662.953125,
+        "glint": "Action_glint___qSBi",
+        "duration": "5s"
+      },
+      "draws": {
+        "classroom_before": {
+          "JornadasRoute_canvas__BCwdR": 32,
+          "Experiences_lightCanvas__4Jglr": 6,
+          "SiteFooter_shoeStage__KDv5s": 56
+        },
+        "classroom_after": {
+          "JornadasRoute_canvas__BCwdR": 32,
+          "Experiences_lightCanvas__4Jglr": 89,
+          "SiteFooter_shoeStage__KDv5s": 56
+        },
+        "before_drop": {
+          "JornadasRoute_canvas__BCwdR": 32,
+          "Experiences_lightCanvas__4Jglr": 146,
+          "SiteFooter_shoeStage__KDv5s": 56
+        },
+        "after_drop": {
+          "JornadasRoute_canvas__BCwdR": 32,
+          "Experiences_lightCanvas__4Jglr": 146,
+          "SiteFooter_shoeStage__KDv5s": 264
+        }
+      }
+    },
+    {
+      "motion": "reduce",
+      "button": {
+        "x": 205.125,
+        "y": 662.953125,
+        "glint": "none",
+        "duration": "0s"
+      },
+      "draws": {
+        "classroom_before": {
+          "JornadasRoute_canvas__BCwdR": 76,
+          "Experiences_lightCanvas__4Jglr": 3,
+          "SiteFooter_shoeStage__KDv5s": 56
+        },
+        "classroom_after": {
+          "JornadasRoute_canvas__BCwdR": 76,
+          "Experiences_lightCanvas__4Jglr": 3,
+          "SiteFooter_shoeStage__KDv5s": 56
+        },
+        "before_drop": {
+          "JornadasRoute_canvas__BCwdR": 76,
+          "Experiences_lightCanvas__4Jglr": 3,
+          "SiteFooter_shoeStage__KDv5s": 56
+        },
+        "after_drop": {
+          "JornadasRoute_canvas__BCwdR": 76,
+          "Experiences_lightCanvas__4Jglr": 3,
+          "SiteFooter_shoeStage__KDv5s": 56
+        }
+      }
+    }
+  ],
+  "pointer_samples": [
+    {
+      "hover": true,
+      "under": "<span>Explorar las jornadas</span>",
+      "icon": "matrix(1, 0, 0, 1, 0, 0)",
+      "glint": "matrix(1, 0, -0.32492, 1, -67.3234, 0)"
+    },
+    {
+      "hover": true,
+      "under": "<span>Explorar las jornadas</span>",
+      "icon": "matrix(0.431634, -0.991669, 0.991669, 0.431634, 0, 0)",
+      "glint": "matrix(1, 0, -0.32492, 1, -26.9741, 0)"
+    },
+    {
+      "hover": true,
+      "under": "<span>Explorar las jornadas</span>",
+      "icon": "matrix(1.06259, -0.268776, 0.268776, 1.06259, 0, 0)",
+      "glint": "matrix(1, 0, -0.32492, 1, 8.90983, 0)"
+    },
+    {
+      "hover": true,
+      "under": "<span>Explorar las jornadas</span>",
+      "icon": "matrix(1.09915, -0.030246, 0.030246, 1.09915, 0, 0)",
+      "glint": "matrix(1, 0, -0.32492, 1, 49.25, 0)"
+    },
+    {
+      "hover": true,
+      "under": "<span>Explorar las jornadas</span>",
+      "icon": "matrix(1.1, 0, 0, 1.1, 0, 0)",
+      "glint": "matrix(1, 0, -0.32492, 1, 237.556, 0)"
+    },
+    {
+      "hover": true,
+      "under": "<span>Explorar las jornadas</span>",
+      "icon": "matrix(1.1, 0, 0, 1.1, 0, 0)",
+      "glint": "matrix(1, 0, -0.32492, 1, 277.905, 0)"
+    }
+  ],
+  "tumbleweed_transforms": [
+    [
+      "matrix(1, 0, 0, 1, 61.5201, 0)"
+    ],
+    [
+      "matrix(1, 0, 0, 1, 87, 0)"
+    ],
+    [
+      "matrix(1, 0, 0, 1, 113.554, 0)"
+    ]
+  ],
+  "network_or_runtime_errors": [],
+  "warning": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead. Non-fatal; rendering and motion verified."
+}
