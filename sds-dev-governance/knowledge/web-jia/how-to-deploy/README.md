@@ -1,6 +1,14 @@
 # Cómo desplegar web-jia
 
-## Decisión autorizada y alcance
+## Último despliegue comprobado — [54-0]
+
+El 25-09-2026 se actualizó el mismo sitio a `releases/20260925-5ff471c` (código `5ff471c`), conservando `releases/20260925-b410b77`. El propietario dio una **nueva** autorización: «te doy permiso para este despliegue también» y «permiso explícito por ssh». Autenticó sudo en su terminal mediante el launcher específico del nuevo staging `/home/sdsadmin/web-jia-release-review-X8Gv4D/`. No volver a ejecutar ese launcher. Esta excepción también queda consumida y no crea permiso permanente ni admisión MCP.
+
+Paquete y updater se verificaron con SHA-256 antes de activar. HTML local, origen y dominio público coinciden; Caddy/configuración/proceso sin cambios. Smoke: 10 checks HTTP, 43 recursos, vídeo Range 206; 42 checks de navegador público PASS para preferencia/cookie, tarjetas compactas, touch/teclado y efectos. [Cierre y evidencia [54-0]](../../../../docs/prompts-output/[54-0]/deployment-closure.md), [manifiesto](../../../../docs/prompts-output/[54-0]/evidence/release-prepared.json).
+
+Los comandos e inventario históricos de [53-1] que siguen documentan cómo se descubrió el procedimiento; sus identificadores no son la release actual. Para cada despliegue nuevo, autorización vigente, comprobación real de current, nuevos hashes/staging y launcher. sudo sigue requiriendo autenticación independiente; no recuperar ni publicar contraseñas. El aviso cp -n volvió a ser no fatal; la mejora de coreutils sigue pendiente y no se introdujo durante la publicación visual.
+
+## Decisión autorizada y alcance histórico — [53-1]
 
 El 25 de septiembre de 2026 el propietario confirma que producción está en su VPS de Hostinger y ordena actualizar la instalación existente de web-jia, sin duplicar el sitio. Tras ser informado del bloqueo SDS de Hostinger y de la prohibición de recurrir a SSH, indica expresamente: «puedes utilizar ssh, yo te autorizo expresamente ahora mismo».
 

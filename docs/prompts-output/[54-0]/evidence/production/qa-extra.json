@@ -1,0 +1,98 @@
+{
+  "origin": "https://jornadasdeinnovacion.com",
+  "phase": "extra",
+  "browser": "Google Chrome macOS",
+  "checks": [
+    {
+      "name": "automatic offer defers to existing modal",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "offer resumes when modal closes",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "native dialog keyboard focus stays inside",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "reduced light is still",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "acceptance preserves document scroll",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "classroom light starts live after acceptance",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "horseshoe responds live",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "tumbleweed engine starts live",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "tumbleweed moves",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "sheriff star turns after override",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "button reflection enabled after override",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "footer reflection animation enabled",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "withdrawal stops WebGL redraw loops",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "video node, time and audio preserved",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "no WebGL keeps readable route fallback",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": [],
+  "stopDiagnostics": {
+    "before": "{\"JornadasRoute_canvas__BCwdR\":216,\"Experiences_lightCanvas__4Jglr\":107,\"shoe\":464}",
+    "after": "{\"JornadasRoute_canvas__BCwdR\":216,\"Experiences_lightCanvas__4Jglr\":107,\"shoe\":464}",
+    "weeds": 0,
+    "motion": "reduce"
+  },
+  "networkFailures": [
+    {
+      "requestId": "90828.498",
+      "timestamp": 23917.811108,
+      "type": "Media",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ]
+}

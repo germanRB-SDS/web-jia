@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-2026-09-25 · Codex · implementación/revisión/QA · LEVEL 3 · REL-2026-09-25-03. Áreas frontend, security y deployment; memorias de esas áreas cargadas. Estado PARCIAL: código y verificación terminados, publicación pendiente de autenticación sudo por el propietario; SSH ya autorizado expresamente.
+2026-09-25 · Codex · implementación/revisión/QA · LEVEL 3 · REL-2026-09-25-03. Áreas frontend, security y deployment; memorias de esas áreas cargadas. Estado IMPLEMENTADO: código verificado y publicado en producción, con autorización SSH nueva y sudo autenticado por el propietario.
 
 ## 1. Objetivo
 
@@ -36,7 +36,7 @@ Chrome macOS sobre export HTTPS local: full 27, input 11, compact 3, extra 15, n
 
 ## 8. Resultado
 
-Código verificado y artefacto preparado, transferido y verificado, aún no activado. main ca77f86 subido y SHA remoto comprobado. B c23e342 / 7eed176; D 1531e1a / 64d08de; E 479fa43 / 35268ed; F 5ff471c y commit documental siguiente. Release 20260925-5ff471c: inventario/hash/archivo local en evidence/release-prepared.json. Nuevo acceso SSH autorizado expresamente en esta conversación y usado para inspección/staging. current comprobado: releases/20260925-b410b77; sudo requiere contraseña del propietario. Los fallos instrumentales y límites de red se detallan en phase-f-report.md.
+Código verificado y artefacto publicado: current=releases/20260925-5ff471c, hashes local/origen/público coincidentes. main ca77f86 subido y SHA remoto comprobado. B c23e342 / 7eed176; D 1531e1a / 64d08de; E 479fa43 / 35268ed; F 5ff471c y commit documental siguiente. Release 20260925-5ff471c: inventario/hash/archivo local en evidence/release-prepared.json. Nuevo acceso SSH autorizado expresamente en esta conversación y usado para inspección/staging. current comprobado: releases/20260925-b410b77; el propietario autenticó sudo y completó la activación; Caddy sin cambios y versión anterior conservada. Los fallos instrumentales y límites de red se detallan en phase-f-report.md.
 
 ## 9. Checklist E2E
 
@@ -45,17 +45,17 @@ Código verificado y artefacto preparado, transferido y verificado, aún no acti
 - [x] Geometría móvil, entrada touch/ratón/teclado, timer/guardas y reset de documento.
 - [x] Delta compacto en seis tarjetas; ficha con datos completos.
 - [x] Export y checks locales; contrato de publicación conservado.
-- [ ] Activación y smoke en producción: pendiente de autenticación sudo del propietario.
+- [x] Activación y smoke de producción: 10 checks HTTP, 43 recursos, vídeo 206 y 42 checks de navegador PASS; ver deployment-closure.md.
 - [ ] Plataformas físicas: no disponibles; no se confunden con emulación.
 
 ## 10. Decisiones y riesgos
 
-Moderado: alcance de compatibilidad limitado al entorno indicado y resets locales en extra (sin excepción JS), con smoke público pendiente. Severo: riesgo operativo de activación mitigado por artefacto único, checksum, expected-current, lock y rollback del actualizador existente; todavía no ejecutado. Críticos nuevos: ninguno detectado. No hay storage de rechazo ni UA sniffing, override global de matchMedia, remount global o cambio de audio. Histórico del prompt registra MODIFICATION para compactar escritorio solo en tarjetas de Talleres. Informes por fase conservan riesgos y soluciones.
+Moderado: alcance de compatibilidad limitado al entorno indicado y resets locales en extra (sin excepción JS), con smoke público completado sin excepciones JS. Severo: riesgo operativo de activación mitigado por artefacto único, checksum, expected-current, lock y rollback del actualizador existente; ejecutado y verificado. Críticos nuevos: ninguno detectado. No hay storage de rechazo ni UA sniffing, override global de matchMedia, remount global o cambio de audio. Histórico del prompt registra MODIFICATION para compactar escritorio solo en tarjetas de Talleres. Informes por fase conservan riesgos y soluciones.
 
 ## 11. Actualizaciones de memoria
 
-Frontend: store, consumidores, constantes, geometría/timer y delta compacto. Security: cookie mínima, limitaciones y controles de acceso. Deployment: normalización de encabezado requerido por validador; no falsear release activa. Inventario técnico de cookies actualizado, sin inventar texto legal. Checkpoint tmp/execution-checkpoint.md mantiene estado recuperable; tmp aplica por LEVEL 3 y fases.
+Frontend: store, consumidores, constantes, geometría/timer y delta compacto. Security: cookie mínima, limitaciones y controles de acceso. Deployment: release activa, autorización de una sola ocasión y evidencia de producción actualizadas; guía knowledge sincronizada. Inventario técnico de cookies actualizado, sin inventar texto legal. Checkpoint tmp/execution-checkpoint.md mantiene estado recuperable; tmp aplica por LEVEL 3 y fases.
 
 ## 12. Siguiente paso
 
-main integrado y subido mediante git-safe-push.sh; SHA remoto ca77f86 comprobado. SSH expresamente autorizado y staging verificado. El propietario debe autenticar sudo en el launcher de esta release; después comprobar origen/HTTPS público, canonical, recursos, cookie y móvil. Actualizar memoria/guía con release activa y commit/push de cierre. No reutilizar launcher histórico ni modificar DNS/Caddy/otros sitios.
+Trabajo solicitado completado. Producción 20260925-5ff471c verificada; conservar release anterior para rollback y evidencias. Cierre documental en deployment-closure.md y commit/push final. La autorización SSH es exclusiva de este despliegue y queda consumida; no reutilizar launcher histórico. QA física pendiente solo como limitación documentada, no como validación pretendida.

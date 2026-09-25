@@ -1,0 +1,233 @@
+{
+  "url": "https://jornadasdeinnovacion.com/almeria-2026",
+  "checks": [
+    {
+      "name": "edition 200",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "public HTML matches artifact",
+      "pass": true
+    },
+    {
+      "name": "canonical",
+      "pass": true,
+      "value": "https://jornadasdeinnovacion.com/almeria-2026"
+    },
+    {
+      "name": "redirect /",
+      "pass": true,
+      "status": 302,
+      "location": "/almeria-2026?qa=54-0"
+    },
+    {
+      "name": "redirect /almeria-2026/",
+      "pass": true,
+      "status": 302,
+      "location": "/almeria-2026?qa=54-0"
+    },
+    {
+      "name": "redirect /almeria-2026.html",
+      "pass": true,
+      "status": 302,
+      "location": "/almeria-2026?qa=54-0"
+    },
+    {
+      "name": "missing 404",
+      "pass": true,
+      "status": 404
+    },
+    {
+      "name": "same-site referenced resources",
+      "pass": true,
+      "resources": [
+        {
+          "path": "/_next/static/chunks/133-16bee945cc1c5162.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/30f47f8d-e929c471e18414dc.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/342-7d0fb1a7eed6e83d.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/app/almeria-2026/page-2ea492419612a651.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/app/layout-063c1f65807db942.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/main-app-92f23c66d8ec9b91.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/chunks/webpack-134531e7041cadaa.js",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/css/73b9fb7b018e4ac5.css",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/css/ac59f6d6a75a48f7.css",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/css/ed80c130b8f3c23f.css",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/media/2b67d3d69d36dbdf-s.p.woff2",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/media/52f8cf394b3641e4-s.p.woff2",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/media/9424e009d099d7fa-s.p.woff2",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/media/b4796fdbb42263df-s.p.woff2",
+          "status": 200
+        },
+        {
+          "path": "/_next/static/media/ce0f708f7deb1f7b-s.p.woff2",
+          "status": 200
+        },
+        {
+          "path": "/acoge/indio-1916.webp",
+          "status": 200
+        },
+        {
+          "path": "/brand/jia26-badge-640.png",
+          "status": 200
+        },
+        {
+          "path": "/brand/south-desert-studio.png",
+          "status": 200
+        },
+        {
+          "path": "/colaboradores/consejeria-educacion-840.webp",
+          "status": 200
+        },
+        {
+          "path": "/colaboradores/kichi-840.webp",
+          "status": 200
+        },
+        {
+          "path": "/colaboradores/lagata-840.webp",
+          "status": 200
+        },
+        {
+          "path": "/colaboradores/leonardo-840.webp",
+          "status": 200
+        },
+        {
+          "path": "/colaboradores/minihollywood-840.webp",
+          "status": 200
+        },
+        {
+          "path": "/colaboradores/sds-840.webp",
+          "status": 200
+        },
+        {
+          "path": "/equipo/card-39-800.webp",
+          "status": 200
+        },
+        {
+          "path": "/equipo/card-40-800.webp",
+          "status": 200
+        },
+        {
+          "path": "/equipo/card-43-800.webp",
+          "status": 200
+        },
+        {
+          "path": "/equipo/card-46-800.webp",
+          "status": 200
+        },
+        {
+          "path": "/experiencias/aula-1919.webp",
+          "status": 200
+        },
+        {
+          "path": "/experiencias/maestra-1919.webp",
+          "status": 200
+        },
+        {
+          "path": "/footer/establo-2172.webp",
+          "status": 200
+        },
+        {
+          "path": "/hero/hero-saloon-1916.webp",
+          "status": 200
+        },
+        {
+          "path": "/jornadas/intro/intro-poster.webp",
+          "status": 200
+        },
+        {
+          "path": "/jornadas/jinete-nina-1983.webp",
+          "status": 200
+        },
+        {
+          "path": "/jornadas/sello-jia26-640.webp",
+          "status": 200
+        },
+        {
+          "path": "/propuestas/hoguera-1672.webp",
+          "status": 200
+        },
+        {
+          "path": "/talleres/cartel-1-1000.webp",
+          "status": 200
+        },
+        {
+          "path": "/talleres/cartel-2-1000.webp",
+          "status": 200
+        },
+        {
+          "path": "/talleres/cartel-4-1000.webp",
+          "status": 200
+        },
+        {
+          "path": "/talleres/cartel-6-1000.webp",
+          "status": 200
+        },
+        {
+          "path": "/talleres/cartel-7-1000.webp",
+          "status": 200
+        },
+        {
+          "path": "/talleres/cartel-8-1000.webp",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "video configured in release",
+      "pass": true,
+      "path": "/jornadas/intro/intro-720.mp4"
+    },
+    {
+      "name": "video Range 206",
+      "pass": true,
+      "status": 206,
+      "bytes": 1024,
+      "content_range": "bytes 0-1023/38823483"
+    }
+  ],
+  "public_html_sha256": "7858b3e953f8dd3aca5646943e1a6891d416bfde3b3e17dfe98e8187be956f88"
+}

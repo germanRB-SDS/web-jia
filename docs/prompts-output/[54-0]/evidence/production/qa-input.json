@@ -1,0 +1,63 @@
+{
+  "origin": "https://jornadasdeinnovacion.com",
+  "phase": "input",
+  "browser": "Google Chrome macOS",
+  "checks": [
+    {
+      "name": "native first tap opens deck without sheet",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "native opening tap is not exploration",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "native touch swipe scrolls without sheet",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "native swipe preserves expansion",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "narrow mouse hover expands",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "hover idle closes",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "stationary pointer does not reopen",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "real pointer reentry reopens",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "narrow mouse tilt engine runs",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "keyboard expansion returns focus to track",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "keyboard exploration survives viewport roundtrip",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": []
+}

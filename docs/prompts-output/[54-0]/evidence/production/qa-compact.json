@@ -1,0 +1,30 @@
+{
+  "origin": "https://jornadasdeinnovacion.com",
+  "phase": "compact",
+  "browser": "Google Chrome macOS",
+  "checks": [
+    {
+      "name": "all workshop cards omit people and theme preview",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "subtitle to sheet action stays compact",
+      "pass": true,
+      "gaps": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "full sheet retains people and theme on desktop",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": []
+}

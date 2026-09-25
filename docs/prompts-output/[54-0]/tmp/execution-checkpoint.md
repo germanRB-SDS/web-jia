@@ -1,9 +1,7 @@
-# Continuidad [54-0]
+# Continuidad [54-0] — terminado
 
-2026-09-25. Rama feat/REL-2026-09-25-03-motion; base bb284af. Worktree /private/tmp/web-jia-54. Root conserva next-env.d.ts ajeno; node_modules del worktree es enlace local excluido del staging.
+2026-09-25. IMPLEMENTADO Y PUBLICADO. A/B/C/D/E/F completos. Implementaciones c23e342, 1531e1a, 479fa43, 5ff471c; informes separados 7eed176, 64d08de, 35268ed, ca77f86. Autorización SSH nueva y staging 1e70525. main subido mediante wrapper SDS.
 
-A descubrimiento y C matriz terminados. B implementación c23e342 + informe 7eed176. D implementación 1531e1a + informe 64d08de. E implementación 479fa43 + informe 35268ed. F código final verificado: compactación autorizada, cleanup GSAP y guarda de carga tardía. TypeScript, contenido, build webpack y governance PASS. Chrome HTTPS: full 27, input nativo 11, compact 3, extra 15, nojs 2; resiliencia previa 17. Ver JSON y límites del informe final.
+Release 20260925-5ff471c activa en mismo sitio, previa releases/20260925-b410b77 conservada. Propietario autenticó sudo y ejecutó launcher; hashes local/origen/público coinciden. HTTP 10 (43 recursos/vídeo206), navegador público 42 PASS. Detalle en deployment-closure.md y evidence/production. No MCP; excepción SSH consumida, no permiso persistente.
 
-F implementación 5ff471c; Edge policy HTTPS 13 PASS. Paquete 20260925-5ff471c preparado, hashes en evidence/release-prepared.json. Pendiente: commit documental, integración main y push seguro. Producción requiere nueva autorización explícita SSH según guía; no se ha conectado al VPS. Excepción anterior consumida, MCP no admitido. Tras autorización comprobar current real y permisos sudo antes de activar; jamás asumir release previa por memoria.
-
-main integrado y subido a GitHub ca77f86 (SHA remoto comprobado). Autorización NUEVA del propietario: «permiso explícito por ssh» para este despliegue. SSH comprobado: current=releases/20260925-b410b77, Caddy activo. sudo -n necesita contraseña; no hay autenticación sudo del agente. Staging privado /home/sdsadmin/web-jia-release-review-X8Gv4D; transferencia en curso. Preparado launcher /private/tmp/web-jia-54-activate-once.sh. Siguiente: comparar hashes remotos y entregar comando de autenticación/activación al propietario; después smoke y documentación.
+Root conserva next-env.d.ts ajeno sin incluir en commits. Worktree /private/tmp/web-jia-54 conserva node_modules enlazado sin trackear y el export de la release. Paquete /private/tmp/web-jia-20260925-5ff471c.tar.gz. Staging servidor /home/sdsadmin/web-jia-release-review-X8Gv4D no debe reactivarse. Solo queda commit/push documental de cierre en esta operación; ninguna fase funcional pendiente. QA física no disponible declarada, sin fingir cobertura.

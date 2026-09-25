@@ -1,0 +1,84 @@
+{
+  "origin": "https://jornadasdeinnovacion.com",
+  "phase": "policy",
+  "browser": "Google Chrome macOS",
+  "checks": [
+    {
+      "name": "reduce prompts and stays calm",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "Escape closes without persistence",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "hash does not reprompt",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "new document prompts again",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "accept enables live CSS and JS",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "acceptance cookie only",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "acceptance survives reload without popup",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "override survives system changes",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "withdrawal removes only preference and stops effects",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "system changes update live",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "normal system never prompts",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "invalid cookie ignored",
+      "pass": true,
+      "value": true
+    },
+    {
+      "name": "blocked cookies allow in-memory choice",
+      "pass": true,
+      "value": true
+    }
+  ],
+  "errors": [],
+  "cookies": [
+    {
+      "name": "__Host-jia-motion",
+      "value": "on",
+      "secure": true,
+      "httpOnly": false,
+      "sameSite": "Lax",
+      "path": "/",
+      "expires": 1805906702.470852
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "state": "STAGED_WAITING_OWNER_SUDO",
+  "state": "ACTIVATED",
   "source_commit": "5ff471c63257dd57d27df2259632c542999393a9",
   "release": "20260925-5ff471c",
   "archive": "/private/tmp/web-jia-20260925-5ff471c.tar.gz",
@@ -13,5 +13,10 @@
   "staging": "/home/sdsadmin/web-jia-release-review-X8Gv4D",
   "remote_archive_sha256": "001728823c08819013e60fbfcad3e6a810188726a81a8e68a90cfc062eb59e1a",
   "ssh_authorization": "Owner: permiso explícito por ssh, this deployment only",
-  "launcher_sha256": "e2960d4d5b8843ac85722ad95affb33c0a28c5b1bda57f3e9892d761e229fecb"
+  "launcher_sha256": "e2960d4d5b8843ac85722ad95affb33c0a28c5b1bda57f3e9892d761e229fecb",
+  "activated_by": "owner via prepared SSH launcher with sudo",
+  "origin_html_sha256": "7858b3e953f8dd3aca5646943e1a6891d416bfde3b3e17dfe98e8187be956f88",
+  "previous_retained": true,
+  "caddy_config_and_process_unchanged": true,
+  "verified_utc": "2026-09-25T16:47:01.325818+00:00"
 }

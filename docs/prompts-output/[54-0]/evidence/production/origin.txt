@@ -1,0 +1,7 @@
+release=20260925-5ff471c
+previous=releases/20260925-b410b77
+html_sha256=7858b3e953f8dd3aca5646943e1a6891d416bfde3b3e17dfe98e8187be956f88
+previous_html_sha256=369b27981351628cb0d3fab53d3008dace40c622b3db777b2e8016d9a1f08169
+Origin TLS verification HTML and current HTML hashes match artifact.
+Caddy active; updater verified configuration and process unchanged.
+Previous release retained.
