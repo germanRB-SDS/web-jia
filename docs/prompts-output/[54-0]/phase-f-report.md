@@ -1,0 +1,15 @@
+# Fase F — verificación, compactación y preparación de release
+
+Resumen: implementación final 5ff471c. Se añade al prompt el delta autorizado de tarjetas sin Imparte/Temática y subtítulo a 4px de Ver ficha; la ficha conserva los datos. La revisión de cleanup corrige el tween de ráfaga que sobrevivía al timeline y una respuesta tardía de GLB. Se valida el export de producción con Node 24.19.0, TypeScript, check:content, build webpack, governance y assurance técnica del agente.
+
+Verification: V3 | Chrome HTTPS full 27, input nativo 11, compact 3, extra 15, no-JS 2; Edge macOS HTTPS policy 13; resiliencia previa 17 | PASS. Los grupos se solapan, no son un recuento de casos únicos. Cookie observada por CDP: Secure, SameSite=Lax, Path=/, HttpOnly=false, on; eliminación y reload correctos. Capturas de 320/390/440/759/760/1440, tilt máximo y móvil/ficha en evidence. Artefacto preparado: 20260925-5ff471c, 203 archivos, 50.5MB, hashes en release-prepared.json. No desplegado aún.
+
+Moderado: equipos físicos Windows/Linux/Guadalinex/Samsung no disponibles; destino QA física posterior, sin declarar compatibilidad certificada. La pasada extra registra resets de transporte locales durante navegación, sin excepciones ni errores de consola; full e input finales no tienen fallos de red. No-JS registra un script bloqueado (CDP blockedReason=csp) con ejecución deshabilitada deliberadamente; no se presenta como carga JS normal. Se mejoró servidor local con keepalive/cola y espera de documento nuevo. Destino: smoke público de recursos al activar.
+
+Severo: activar una release incorrecta o ocultar foco con timer afectaría disponibilidad/usabilidad. Timer validado con foco/modal/pointer/visibilidad y entrada nativa. Activación queda pendiente de nueva autorización SSH y comprobación real de current/sudo; el paquete solo contiene export, el actualizador existente exige hash y expected-current y permite rollback. No defectos severos de producto abiertos detectados en el alcance verificado.
+
+Crítico: no se detectan críticos nuevos; no cambia backend/autenticación ni se suben secretos. Hostinger MCP sigue sin admisión y la autorización SSH histórica no se reutiliza.
+
+Incidencias de harness resueltas: selector inicial alcanzaba botón de ficha; se acotó al botón de expansión. Foco headless se emuló para probar documento activo. Enter necesitaba su carácter en CDP. Comparación de dos instantes de hover era FLAKY-SUSPECT y se sustituyó por comprobación de transformación efectiva; los límites geométricos se miden sin transición. La propiedad cookie bloqueada se simula con lectura vacía/escritura ignorada; no se presenta como navegador físico ni como una prueba de toda configuración de privacidad.
+
+Soluciones propuestas: activar el mismo artefacto tras acceso expresamente autorizado; comprobar HTTPS público/origen, canonical, recursos, cookie y móvil. Mantener paquete y release previa para rollback. Conservar las limitaciones de matriz y no instalar nuevos frameworks para aparentar cobertura.

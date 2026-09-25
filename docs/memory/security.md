@@ -1,36 +1,14 @@
 # Security Memory
 
-Contexto tecnico estable de seguridad. No duplicar reglas de `CLAUDE.md`.
-
-## Cargar cuando
-
-- Cambios en auth, permisos, roles, secretos, tokens, datos personales, logging sensible o configuracion de seguridad.
-- Cambios de deployment que afecten credenciales o exposicion publica.
-
 ## Contexto minimo
 
-- _pendiente_
+- Sitio estático; esta preferencia no añade autenticación, backend ni datos personales.
+- La única persistencia nueva es aceptación exacta `__Host-jia-motion=on`, Secure, SameSite=Lax, Path=/, sin Domain, 180 días. Configuración: `lib/motion/config.ts`.
+- Rechazo y exploración de Talleres solo viven en memoria del documento; no localStorage/sessionStorage.
+- Lectura defensiva por nombre/valor; bloqueo de cookies degrada a memoria sin forzar consentimiento. No se renueva al montar.
+- No HttpOnly: JavaScript necesita acceso en export estático. Secure no cifra el valor. Inventario técnico: `docs/web-jia-policies/web-jia-cookies-policy.md`.
+- El ledger de capacidades no contiene admisión de MCP; no interpretar instalación como permiso. SSH productivo requiere la autorización específica vigente descrita en la guía de despliegue.
 
-## Rutas clave
+## Evidencia
 
-| Ruta | Proposito |
-|---|---|
-| `docs/security/` | Revisiones y hallazgos de seguridad |
-
-## Superficies sensibles
-
-- _pendiente_
-
-## Comandos canonicos
-
-| Comando | Uso |
-|---|---|
-| `rg -i -l "password|secret|key|token|connection|mongodb\\+srv|apikey" .` | Busqueda inicial de posibles secretos |
-
-## Riesgos conocidos
-
-- _pendiente_
-
-## Ultimo estado estable
-
-- _pendiente_
+`docs/prompts-output/[54-0]/evidence/` contiene pruebas de aceptación, rechazo, retirada, cookie inválida/bloqueada, foco/modal y atributos leídos mediante CDP. Las evidencias indican el origen exacto; HTTPS local no sustituye verificación pública tras despliegue.
