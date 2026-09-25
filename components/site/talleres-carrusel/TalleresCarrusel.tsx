@@ -64,6 +64,20 @@ export function TalleresCarrusel({ labels, children }: Props) {
     }
   }, [expanded, mobile, read]);
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!mobile || !expanded || !track) return;
+    const section = track.closest('[role="region"]') ?? track;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting && !track.querySelector("dialog[open]")) {
+        track.scrollTo({ left: 0, behavior: "instant" });
+        setExpanded(false);
+      }
+    });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [mobile, expanded]);
+
   // Programme/related links must still reach an individual workshop in a closed deck.
   useEffect(() => {
     const revealAnchor = () => {

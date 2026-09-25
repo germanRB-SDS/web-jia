@@ -120,7 +120,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
       </div>
 
       {sheet.pending ? null : (
-        <SheetDialog open={open} onClose={close} label={labels.sheetOf} closeLabel={labels.close}>
+        <SheetDialog open={open} onClose={close} label={labels.sheetOf} closeLabel={labels.close} mobileFullscreen={workshopIndex !== undefined}>
           <div className={styles.sheet}>
             <div className={styles.sheetMedia}>
               {flipBack ? (

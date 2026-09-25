@@ -7,6 +7,7 @@ type Props = Pick<LandingModel, "nav" | "brand" | "event" | "copy">;
 
 export function SiteHeader({ nav, brand, event, copy }: Props) {
   return (
+    <>
     <header className={styles.header}>
       <div className={styles.inner}>
         <a href={nav.homeHref} className={styles.lockup} aria-label={`${event.shortName} · ${event.fullName} · ${copy.nav.home}`}>
@@ -27,5 +28,7 @@ export function SiteHeader({ nav, brand, event, copy }: Props) {
         <SiteNav items={nav.items} studio={nav.studio} labels={{ menu: copy.buttons.nav.menu, close: copy.buttons.nav.close, submenu: copy.buttons.nav.submenu, region: copy.a11y.mainNav, newTab: copy.footer.newTab }} />
       </div>
     </header>
+    <div className={styles.mobileSpace} aria-hidden="true" />
+    </>
   );
 }

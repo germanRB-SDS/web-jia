@@ -52,6 +52,10 @@ html {
   scroll-behavior: smooth;
   scrollbar-color: var(--jia-copper) var(--jia-sand);
 }
+/* Keep the mobile layout viewport aligned with the screen for fixed controls. */
+@media (max-width: 959px) {
+  html, body { overflow-x: hidden; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

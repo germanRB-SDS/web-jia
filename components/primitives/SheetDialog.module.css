@@ -53,3 +53,35 @@
   cursor: pointer;
 }
 .close:hover { background: var(--jia-sand-deep); }
+
+@media (max-width: 759.98px) {
+  .mobileFullscreen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    overflow: hidden;
+    background: var(--jia-card);
+  }
+  .mobileFullscreen[open] { animation: none; }
+  .mobileFullscreen .panel {
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .mobileFullscreen .close {
+    position: fixed;
+    top: max(0.75rem, env(safe-area-inset-top));
+    right: auto;
+    left: calc(100vw - max(1rem, env(safe-area-inset-right)));
+    transform: translateX(-100%);
+    float: none;
+    margin: 0;
+  }
+}

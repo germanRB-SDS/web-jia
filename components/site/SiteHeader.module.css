@@ -58,7 +58,15 @@
 }
 
 /* A translucent shadow floats over the scrolling page without blocking touch. */
+.mobileSpace { display: none; }
 @media (max-width: 959px) {
+  .header {
+    position: fixed;
+    inset-inline: 0;
+    width: 100vw;
+    padding-top: env(safe-area-inset-top);
+  }
+  .mobileSpace { display: block; height: calc(4.25rem + 1px + env(safe-area-inset-top)); }
   .header::after {
     content: "";
     position: absolute;

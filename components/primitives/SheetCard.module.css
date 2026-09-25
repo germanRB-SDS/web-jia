@@ -315,6 +315,22 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
 .mobileTheme { display: none; }
 @media (max-width: 759.98px) {
   .mobileTheme { display: block; }
+  .workshop .sheet {
+    display: flow-root;
+    padding: calc(4.5rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+  .workshop .sheetMedia {
+    float: right;
+    /* 90% of the former mobile footprint (close control + dialog/sheet gutters ≈ 13rem). */
+    width: min(18rem, calc((100vw - 13rem) * 0.9));
+    margin: 0 0 1rem 1.25rem;
+  }
+  .workshop .sheetBody { display: contents; }
+  .workshop .sheetTitle { display: block; margin-bottom: 0.75rem; text-wrap: pretty; }
+  .workshop .sheetSubtitle { margin: 0 0 0.75rem; }
+  .workshop .fields { display: block; }
+  .workshop .field { margin-top: 1rem; }
+  .workshop .related { margin-top: 1rem; }
   .workshop .body > .title,
   .workshop .body > .subtitle,
   .workshop .body > .who,
