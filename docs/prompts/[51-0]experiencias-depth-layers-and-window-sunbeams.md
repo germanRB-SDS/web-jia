@@ -90,6 +90,27 @@ ejecutarlo**. El gate protege el código, no el prompt.
 | «el texto de la pizarra, un poquito menos blurr» | Baja el desenfoque del rótulo de tiza, sin perder que la pizarra está fuera de foco (Phase E) |
 | «y que se "escriban" durante 2,5 s» | El rótulo se escribe línea a línea, de izquierda a derecha, en 2,5 s, disparado en el mismo momento que la luz |
 
+## Ajustes del propietario durante la ejecución (25-09-2026)
+
+El propietario fue viendo el resultado en el servidor de desarrollo y pidió seis cambios sobre lo escrito
+arriba. Se recogen aquí, con su efecto, porque el prompt es el contrato y no puede quedar diciendo una cosa
+mientras el código hace otra. Todos son de intensidad, tiempo o ángulo: ninguno cambia la arquitectura de
+capas ni el punto de rollback.
+
+| # | Lo que pidió | Qué cambió | Dónde |
+| --- | --- | --- | --- |
+| 1 | La tiza, «un poquito menos blurr» y que se escriba en 2,5 s | Desenfoque de `0.12cqw` a `0.07cqw`; escritura en 2,5 s | Phase E |
+| 2 | Más resplandor, «que casi tenga visibilidad», y que se note que la maestra **no** se ilumina | El resplandor deja de ser una fracción de los haces y pasa a tener su propia opacidad (0,83); se añade luz **entre** los haces, que es lo que llena la habitación | `config.ts` › `fan.glow`, `fan.fill` |
+| 3 | El ángulo, «aprox 45°, porque los de la ventana aparecen con ese ángulo» | Inclinación de 30° a 45°. A 45° todo el abanico cruza por detrás de la falda, que es justo lo que hace visible la profundidad | `config.ts` › `fan.tiltDeg` |
+| 4 | Los haces, más «blur» y más dispersos, con entrada y salida suaves | Borde de haz mucho más suave, menos haces y más anchos, abanico de 17° a 23°, y todas las curvas pasan a `ease-in-out` | `config.ts` › `fan.softness`, `fan.bands`, `fan.spreadDeg`; `sun-rays-scene.ts` |
+| 5 | Un degradado radial en la ventana, 0,4 de opacidad, del color de la luz, hasta el borde izquierdo de la foto | Un `::before` en el marco de la luz. Es CSS, no depende de JavaScript y no se va con la animación: la ventana siempre es una fuente | `Experiences.module.css` › `.lightFrame::before` |
+| 6 | Quitar un 20 % de opacidad a los rayos; y luego, que el efecto durase **el doble** | Fuerza de los haces de 0,72 a 0,576. Ciclo de la luz de 2,5 s a 5 s; la tiza se queda en 2,5 s, que es lo que él pidió para ella | `config.ts` › `fan.strength`, `timing` |
+| 7 | Que la luz entre **cada vez** que se vuelve a la sección, no solo la primera | El observador ya no se desconecta; la luz se dispara en cada llegada y siempre reinicia el ciclo. La tiza no: se escribe una vez y se queda escrita | `SunRays.tsx`, `sun-rays-scene.ts` |
+
+«El doble de lo que dura ahora mismo» se interpretó sobre los 2,5 s que ya estaban corriendo en el servidor de
+desarrollo cuando lo dijo, de donde salen los 5 s. Es un solo número (`timing.total`) y el resto del ciclo son
+proporciones suyas, así que corregirlo es cambiar esa línea.
+
 ## Phase A — Descubrimiento y medición (solo lectura)
 
 1. Dejar constancia del punto de rollback: `git rev-parse HEAD` debe seguir dando `4781e7a…` antes de tocar nada
@@ -197,9 +218,10 @@ marco de la ventana se ve la jamba izquierda de canto y la derecha apenas, luego
 y el cristal mira al frente-izquierda. Es además la única dirección que hace visible la profundidad que pidió el
 propietario: un haz que se fuera a la derecha no pasaría por detrás de nadie.
 
-- Inclinación central respecto a la vertical: **30°** hacia la izquierda.
-- Abanico: de **14°** a **46°**. El haz más abierto llega al suelo del encuadre por detrás de la falda de la
-  maestra; ahí es donde se lee la profundidad.
+- Inclinación central respecto a la vertical: **45°** hacia la izquierda, que es el ángulo con el que la luz ya
+  cae en la fotografía (propietario, 25-09-2026).
+- Abanico: **±23°**, de 22° a 68°. A 45° el abanico entero cruza por detrás de la falda de la maestra, así que la
+  habitación se llena de luz y ella se queda oscura dentro; ahí es donde se lee la profundidad.
 - Alcance: hasta pasado el borde inferior del encuadre, con el haz adelgazando antes de llegar.
 
 ### D.3 — Cómo se dibujan
@@ -216,10 +238,16 @@ haz (`s`) y su desplazamiento perpendicular (`q`), y de ahí sale todo:
 4. **La nube.** Un borde suave barre el abanico de un lado a otro. Es el borde de la nube que se retira. Es lo que
    convierte una opacidad que sube en una luz que entra.
 5. **El resplandor.** Sí, uno, y por una razón: un haz sin fuente se lee como un adorno pegado encima. Una elipse
-   muy suave sobre el propio cristal, con la proporción del cristal (alta y estrecha), ancla los haces en la
-   ventana. Va contenido: su aporte máximo no pasa de una fracción del de los haces, y el cristal de la fotografía
-   ya está casi quemado, así que pasarse lo convertiría en una mancha blanca. Si al verlo no aportara, se apaga
-   desde `config.ts` sin tocar el shader.
+   muy suave centrada en el cristal, más ancha que él, porque no es el cristal encendiéndose sino la habitación
+   llenándose de lo que entra por él. El propietario pidió que fuera fuerte —«que casi tenga visibilidad»—, así
+   que tiene **su propia opacidad** (0,83) y no una fracción de la de los haces: son dos peticiones distintas y
+   son dos mandos distintos. Si un día no aportara, se apaga desde `config.ts` sin tocar el shader.
+6. **La luz entre los haces.** Un abanico de franjas con nada en medio es un patrón, no una luz. Entre los haces
+   queda una fracción de su brillo (`fan.fill`), de modo que la cuña de aire entera está iluminada y los haces
+   son los sitios más claros dentro de ella. Eso es la mayor parte de lo que se lee como «entra mucha más luz».
+7. **El velo de la ventana.** Aparte del lienzo, un degradado radial en CSS centrado en el cristal, del mismo
+   color de la luz, a 0,4 de opacidad en el centro y a 0 justo en el borde izquierdo de la fotografía (de ahí el
+   radio del 41,2 %). No depende de JavaScript ni se va con la animación: la ventana es una fuente siempre.
 
 Mezcla: el lienzo se compone sobre `layer1` con `mix-blend-mode: screen`, que es lo que hace la luz de verdad
 —aclara y nunca ensucia—. `.photo` ya aísla la mezcla, así que no se escapa al resto de la página. Dentro del
@@ -230,16 +258,24 @@ medido sobre `aula-maestra3.png`), con el mismo precedente y el mismo comentario
 de esta misma foto. Un solo uso. La escena lo lee de `:root` con `getComputedStyle`, como ya hace
 `components/site/jornadas-route/JornadasRoute.tsx`. Ningún color literal en el shader ni en el TypeScript.
 
-### D.4 — Los 1,2 segundos
+### D.4 — El ciclo
 
-Un solo ciclo, con el reparto asimétrico que tiene la luz de verdad: entra más rápido de lo que se va.
+Un solo ciclo. Empezó en 1,2 s; el propietario lo llevó a 2,5 s con entrada y salida suaves y después pidió el
+doble, así que son **5 s**. Los tramos son proporciones de ese total y viven en `config.ts` › `timing`.
 
 | Tramo | Qué pasa |
 | --- | --- |
-| 0 → 0,55 s | La nube se retira: el barrido abre el abanico de lado a lado, con salida suave |
-| 0 → 0,20 s | A la vez, la intensidad sube de cero a su máximo |
-| 0,55 → 0,72 s | Pleno. El alcance crece un punto, lo justo para que respire |
-| 0,72 → 1,20 s | Se apaga, con entrada y salida suaves |
+| 0 → 2,30 s | La nube se retira: el barrido abre el abanico de lado a lado |
+| 0 → 1,00 s | A la vez, la intensidad sube de cero a su máximo |
+| 1,00 → 3,10 s | Pleno. El alcance crece un punto, lo justo para que respire |
+| 3,10 → 5,00 s | Se apaga |
+
+Todas las curvas son `ease-in-out`: nada de esta luz arranca ni se detiene de golpe.
+
+Al terminar se para el bucle y se limpia el lienzo, pero **no** se sueltan los recursos: el ciclo vuelve a
+empezar cada vez que la banda regresa a la pantalla (propietario, 25-09-2026). Lo que impide que se dispare dos
+veces de pasada es que solo cuenta la llegada, el paso de «fuera» a «aquí», nunca el seguir estando. Y siempre
+reinicia desde cero: volver a una habitación a medio iluminar parecería un fallo, no un sol.
 
 Al terminar: se para el bucle, se limpia el lienzo y se sueltan los recursos de GPU. No se repite al volver a pasar
 por la sección; una entrada de luz que se repite cada vez que uno baja y sube deja de ser un momento y se vuelve un
@@ -252,8 +288,9 @@ tic.
   movimiento desaparece. No es una excusa para no dibujar nada.
 - **Sin WebGL, sin lienzo o si el módulo no carga:** no se dibuja nada y la sección se ve exactamente como hoy.
   Misma postura que la herradura del pie. Nada de mensajes de error al usuario.
-- **Disparo.** `IntersectionObserver` sobre la sección, una sola vez, con un umbral que espere a que la ventana del
-  aula esté realmente en pantalla. Si la sección ya estuviera visible al cargar, se dispara igual.
+- **Disparo.** `IntersectionObserver` sobre la banda, con un umbral que espere a que la ventana del aula esté
+  realmente en pantalla. Si la banda ya estuviera visible al cargar, se dispara igual. Se dispara en cada
+  llegada, no solo en la primera (ajuste 7).
 - **Coste.** Densidad de píxeles limitada (no pasar de 1,75) y ancho de lienzo con tope, porque el marco es más
   ancho que la caja visible en pantallas estrechas. Un shader, un plano, una llamada de dibujo.
 - **Fuera de pantalla.** Si la pestaña se oculta a mitad de la animación, se para el reloj y se retoma al volver:
@@ -276,20 +313,20 @@ una pegatina; pero el rótulo se lee mejor, que es lo que pidió el propietario.
 el mismo movimiento: si al verlo hiciera falta, se ajusta después, de una en una, para saber cuál de las dos cosas
 hizo el efecto. Actualizar el comentario del fichero, que hoy dice que el desenfoque iguala al de la pizarra.
 
-### E.2 — Que se escriba, en 2,5 s
+### E.2 — Que se escriba, letra a letra, en 2,5 s
 
-Las tres líneas se revelan de izquierda a derecha, una detrás de otra, como una mano que escribe.
+El propietario pidió después que no fuera línea a línea sino **letra a letra**, en el mismo tiempo. Cada letra se
+dibuja de izquierda a derecha y espera su turno en la cola.
 
-1. **Técnica.** Una máscara de degradado por línea (`mask-image` sobre cada `span`), con el borde **suave**, y se
-   anima su `mask-position`. Nada de `clip-path` con borde duro: un canto recto atravesando una letra manuscrita
-   se lee como una persiana, no como una tiza. Nada de animar `width`, que recolocaría el texto en cada
-   fotograma. La máscara se compone en GPU y no toca el diseño.
-2. **Reparto.** Tres líneas, 2,5 s en total: cada línea tarda unos 0,9 s y arranca unos 0,8 s después de la
-   anterior, de modo que la última termina en el segundo 2,5. Los números exactos salen del número real de líneas
-   que haya en la constante; si un día son dos o cuatro, el reparto se recalcula para que el total siga siendo
-   2,5 s. No escribir «3» a mano en ningún sitio: derivar el retardo del índice de la línea.
-3. **Ritmo.** Casi lineal dentro de cada línea, con una salida suave al final: es el instante en que se levanta la
-   tiza. Un `ease-in-out` completo se pararía en mitad de la palabra.
+1. **Técnica.** Un `clip-path` por letra, animado de `inset(0 100% …)` a `inset(0 0 …)`. Sobre una sola letra el
+   canto del recorte **es** la punta de la tiza, así que aquí un borde duro es lo correcto y una máscara solo
+   costaría más de componer. Nada de animar `width`, que recolocaría la línea en cada fotograma. El recorte lleva
+   el borde inferior en negativo para no cortar los rasgos que bajan ni el desenfoque que cuelga de ellos.
+2. **Reparto.** El componente numera cada letra y reparte los 2,5 s entre todas: `glyphTiming()` da cuánto dura
+   una letra y cuánto se espera entre una y la siguiente. Los espacios ocupan su turno, porque una mano también
+   tarda en cruzarlos, y se convierten en espacios duros para que una caja en línea pueda sostenerlos. Nada del
+   código sabe qué pone en la pizarra ni en cuántas líneas se parte.
+3. **Ritmo.** Lineal dentro de una letra: un trazo no tiene curva propia. El ritmo lo pone la cola.
 4. **Disparo.** El mismo instante que la luz. El componente cliente de la Phase D marca el contenedor de las capas
    con un atributo de dato cuando la sección entra en pantalla, y el CSS cuelga de ese atributo. Así la luz entra
    y la tiza se escribe a la vez, que es el momento que pidió el propietario.
@@ -299,7 +336,8 @@ Las tres líneas se revelan de izquierda a derecha, una detrás de otra, como un
    existe.
 6. **Movimiento reducido.** Bajo `prefers-reduced-motion: reduce` el rótulo aparece entero, sin escribirse. El
    desenfoque más bajo sí se conserva: eso es legibilidad, no movimiento.
-7. **Una sola vez.** No se reescribe al salir y volver a entrar en la sección.
+7. **Una sola vez.** No se reescribe al salir y volver a entrar en la sección. La luz sí vuelve (Phase D), la
+   tiza no: la tiza escrita en una pizarra no se desescribe sola.
 8. El texto sigue viniendo de la capa de contenido. Ni una palabra en el componente ni en el CSS.
 
 ## Phase F — Verificación y evidencia
