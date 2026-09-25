@@ -169,3 +169,36 @@ N/A: `GOVERNANCE.md`/`practices/INDEX.md` (router row suffices; budget); `instal
 N/A: `GOVERNANCE.md`, `practices/**`, adapters, skills router, installers, bootstrap, scaffold, tests (no rule,
 routing or install behaviour changed; the resources-index gate already covers the new leaf).
 
+
+## GOV-2026-09-25-01 — button-leather-shimmer resource promotion
+
+- Prompt base: owner request in a `web-jia` session: restyle the three primary buttons from a reference the owner
+  supplied, and — only after the owner validated the result visually — promote the pattern to the canonical kit
+  under `resources/ui-components` with a `button-*` name. Project side: `docs/prompts/[50-0]…` Phase F.
+- Incorporation / last modified: 2026-09-25. GOV-STRUCTURE.
+- Discovery: `resources/index-of-resources-and-working-patters.md` → `## frontend-patterns / ui-components` → the
+  leaf's `INDEX-AND-HOW-TO-USE-THEM.md`; also reachable by name through the glossary term `leather-shimmer`.
+  Lazy: nothing joins the always-read set.
+- Promotion (module 11): the pattern was incubated in a project (`web-jia`, prompt `[50-0]`), validated visually by
+  the owner on 2026-09-25, and only then promoted to canonical and redistributed. The owner named the destination
+  «resources/ui-components»; the real path is `resources/frontend-patterns/ui-components`, confirmed against the
+  index before writing — no parallel folder was created.
+- Third-party provenance: modelled after «Wild West Shimmer Button», by LeonKohli on Uiverse (MIT). Only the visual
+  idea was taken; the code was not copied, and the two performance defects declared in the reference's own critique
+  are documented in the how-to together with what replaces them.
+- Verification: `check-governance.sh` on a `--files-only` project fixture, `bash -n` on `init.sh` and
+  `check-governance.sh`, the local-contamination sweep, and the inherited `tests/` suite. Evidence in
+  `docs/prompts-output/REL-2026-09-25-01/`.
+- Residual risk / recovery: the leaf is CSS that can age with the palette conventions of receiving projects; it
+  carries no dependency and no build. `color-mix()` in the hover rule needs a 2023+ browser — on older ones the
+  hover gradient falls back to the resting one and the button still reads as a button. To retire it, delete the
+  leaf and its three registrations (index row, category README bullet, glossary term).
+
+| File | Action |
+|---|---|
+| `resources/frontend-patterns/ui-components/button-leather-shimmer/**` | new leaf: how-to, `css/`, `html/` |
+| `resources/index-of-resources-and-working-patters.md` | index row under `ui-components` |
+| `resources/frontend-patterns/ui-components/README.md` | bullet in "Available Components" |
+| `resources/frontend-patterns/indice-glosario-de-terminos.md` | canonical term `leather-shimmer`, aliases and boundary rule |
+| `VERSION.md`, `CHANGELOG.md` | v1.30.0 / `REL-2026-09-25-01` |
+| `README.md` | version line corrected (read v1.27.0 after two releases) |

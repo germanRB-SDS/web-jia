@@ -1,5 +1,29 @@
 # SDS Dev Governance — Changelog
 
+## v1.30.0 — 2026-09-25
+
+Change ID: `REL-2026-09-25-01`
+
+- Add `resources/frontend-patterns/ui-components/button-leather-shimmer`: material CTA button pattern promoted
+  from `web-jia` (prompt `[50-0]`) after the owner's visual validation. Diagonal leather gradient, relief built
+  from a cast shadow plus an inset bottom edge, a slanted glint that crosses in under a third of its cycle and
+  rests off-screen, lift on hover, sink on press, and an optional icon slot: plain `<svg>` children advance,
+  children marked `bls-btn__badge` spin. Pure CSS, no JS. Every colour is a custom property so it maps onto the
+  receiving project's design tokens; the shipped values are a neutral starting point, not a brand.
+- The how-to names the third-party reference it was modelled after («Wild West Shimmer Button», by LeonKohli on
+  Uiverse, MIT) and records the two performance defects of that reference, both flagged in its own published
+  critique, together with what replaces them here: the glint moves a positioned strip with `transform` instead of
+  animating `background-position` (which repaints on the CPU every frame), and state changes list their
+  properties instead of using `transition: all` (which forces layout and shadow recalculation).
+- Accessibility is part of the contract, not a note: contrast is measured against the gradient's lightest stop
+  (6.0:1 with the shipped defaults), the focus ring is verified to survive the button's own `overflow: hidden`,
+  the 48px touch target is preserved, and reduced motion stops the glint, the lift, the sink and the icons while
+  deliberately keeping the hover colour change, which is the state signal.
+- Index, category README and glossary updated in the same change: index row, `ui-components/README.md` bullet and
+  the canonical term `leather-shimmer` with its aliases and its boundary against `text-shimmer` and `border-glow`.
+- `README.md` version line corrected: it still read v1.27.0 after two releases.
+- No rule, practice, router, adapter, installer, scaffold or always-read change.
+
 ## v1.29.0 — 2026-09-19
 
 Change ID: `REL-2026-09-19-01`

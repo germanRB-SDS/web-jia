@@ -1,0 +1,136 @@
+/* Button — leather shimmer. CTA de superficie física: degradado diagonal, relieve de dos sombras
+   (una proyectada debajo y otra interior en el canto bajo) y un destello inclinado que la cruza cada
+   pocos segundos y descansa entre pasada y pasada. Se eleva al pasar el puntero y se hunde al pulsar.
+
+   El destello se mueve con `transform`, NUNCA con `background-position`: animar la posición del fondo
+   repinta en CPU en cada fotograma. Las transiciones listan sus propiedades: `transition: all` fuerza
+   recálculo de layout y sombras en cada cambio de estado.
+
+   Re-tematizable por custom properties; los valores de abajo son solo un punto de partida neutro.
+   Mapea `--bls-*` a los tokens de diseño del proyecto receptor. */
+.bls-btn {
+  --bls-c1: #703923;            /* extremo oscuro del degradado (esquina inferior izquierda) */
+  --bls-c2: #89482e;            /* extremo claro (esquina superior derecha) */
+  --bls-label: #f6eedf;         /* color del rótulo y del icono */
+  --bls-ink: 47, 24, 11;        /* RGB del relieve: el color más oscuro de la paleta, no negro puro */
+  --bls-glint: 246, 238, 223;   /* RGB de la banda de luz: el color más claro de la paleta */
+  --bls-glint-alpha: 0.26;      /* cuánto se ve el destello sobre el cuero */
+  --bls-radius: 4px;
+  --bls-speed: 5s;              /* ciclo completo: barrido + reposo */
+
+  position: relative;
+  overflow: hidden;
+  /* Abre un contexto de apilado propio para que el destello quepa entre el fondo y el rótulo. */
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  min-height: 48px;             /* área táctil mínima */
+  padding: 0.7em 1.35em;
+  border: 1.5px solid var(--bls-c1);
+  border-radius: var(--bls-radius);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.1;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--bls-label);
+  background: linear-gradient(45deg, var(--bls-c1) 0%, var(--bls-c2) 100%);
+  box-shadow:
+    0 8px 18px -6px rgb(var(--bls-ink) / 0.38),
+    inset 0 -4px 8px rgb(var(--bls-ink) / 0.22);
+  transition:
+    border-color 160ms ease-out,
+    color 160ms ease-out,
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out;
+}
+
+/* El destello: una banda de un tercio del ancho, inclinada como un haz de sol. Cruza en el 32 % del
+   ciclo y descansa fuera de cuadro el resto. Un destello, no un estrobo. */
+.bls-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: 0;
+  z-index: -1;
+  width: 34%;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgb(var(--bls-glint) / var(--bls-glint-alpha)) 50%,
+    transparent 100%);
+  transform: translateX(-170%) skewX(-18deg);
+  will-change: transform;
+  animation: bls-glint var(--bls-speed) linear infinite;
+}
+@keyframes bls-glint {
+  0%   { transform: translateX(-170%) skewX(-18deg); }
+  32%  { transform: translateX(340%) skewX(-18deg); }
+  100% { transform: translateX(340%) skewX(-18deg); }
+}
+
+/* El cuero se oscurece y la pieza se levanta. El color se reafirma porque una regla global de enlaces
+   (`a:hover { color: … }`) suele ganar por especificidad y dejaría el rótulo del color de su propio fondo. */
+.bls-btn:hover,
+.bls-btn:focus-visible {
+  color: var(--bls-label);
+  background: linear-gradient(45deg,
+    color-mix(in srgb, var(--bls-c1) 78%, rgb(var(--bls-ink))) 0%,
+    var(--bls-c1) 100%);
+  box-shadow:
+    0 14px 26px -8px rgb(var(--bls-ink) / 0.46),
+    inset 0 -4px 8px rgb(var(--bls-ink) / 0.22);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Al pulsar se hunde: la sombra proyectada se recoge y la pieza baja. */
+.bls-btn:active {
+  box-shadow:
+    0 4px 9px -4px rgb(var(--bls-ink) / 0.34),
+    inset 0 -2px 5px rgb(var(--bls-ink) / 0.26);
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Iconos. Por defecto avanzan (una flecha que apunta a donde lleva el botón). Un icono marcado como
+   `bls-btn__badge` —una chapa, un sello, una insignia— gira sobre sí mismo, que es lo que pide una
+   forma radial: una flecha girando 360° se lee como un error. */
+.bls-btn svg {
+  flex: none;
+  transition: transform 220ms ease-out;
+}
+.bls-btn:hover svg,
+.bls-btn:focus-visible svg {
+  transform: translateX(3px);
+}
+.bls-btn .bls-btn__badge {
+  transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bls-btn:hover .bls-btn__badge,
+.bls-btn:focus-visible .bls-btn__badge {
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Con movimiento reducido se va todo lo que se mueve: el destello, la elevación, el hundimiento y los
+   iconos. El cambio de color al pasar el puntero SE CONSERVA: es la señal de estado, no decoración. */
+@media (prefers-reduced-motion: reduce) {
+  .bls-btn::after {
+    animation: none;
+    opacity: 0;
+  }
+  .bls-btn:hover,
+  .bls-btn:focus-visible,
+  .bls-btn:active {
+    transform: none;
+  }
+  .bls-btn:hover svg,
+  .bls-btn:focus-visible svg,
+  .bls-btn:hover .bls-btn__badge,
+  .bls-btn:focus-visible .bls-btn__badge {
+    transform: none;
+  }
+}

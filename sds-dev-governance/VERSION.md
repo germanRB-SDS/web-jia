@@ -1,10 +1,17 @@
 # SDS Dev Governance Version
 
-Version: `v1.29.0`
+Version: `v1.30.0`
 
-Date: `2026-09-19`
+Date: `2026-09-25`
 
 Highlights:
+
+- New resource `resources/frontend-patterns/ui-components/button-leather-shimmer`: a material CTA button
+  (diagonal leather gradient, two-shadow relief, a slanted glint that crosses on a slow loop and rests, lift
+  on hover, sink on press, optional icon slot where arrows advance and badges spin). Promoted from `web-jia`
+  after the owner validated it visually. Pure CSS, re-themable through custom properties, reduced-motion safe.
+  The how-to records the two performance defects of the third-party reference it was modelled after and the
+  technique that avoids each. Glossary term `leather-shimmer`. No rule, practice, adapter or always-read change.
 
 - New resource category `resources/web-components/`: complete validated components promoted from real
   projects (working source + validated site-side integration + agent procedure). First leaf `tree-3d`: a

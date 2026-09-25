@@ -25,6 +25,7 @@ el ejemplo exportable, sus archivos y sus cautelas de integracion.
 | `border-glow` | pointer glow, card glow, halo de borde, spotlight border | Brillo que sigue el cursor sobre el borde de una superficie sin tintar el contenido. | Pseudo-elementos, coordenadas de puntero en CSS variables, gradientes y `pointer-events: none`. | `ui-animations/border-glow/` |
 | `text-shimmer` | shimmer de texto, texto con brillo, gradiente animado de texto | Banda luminosa que se desplaza por una palabra o frase corta. | `background-clip: text`, texto transparente y `background-position` animado. | `ui-animations/text-shimmer/` |
 | `carousel-motion` | transicion de carrusel, slide fade direccional, motion layer | Capa de movimiento para carruseles con direccion, fade y fallback de reduced motion. | Estados/classes de slide, `transform`, `opacity` y transiciones CSS/JS. | `ui-animations/carousel-motion/` |
+| `leather-shimmer` | boton de cuero, CTA con relieve, destello que cruza el boton, wild-west button, boton con brillo que pasa | Superficie de boton con degradado diagonal, relieve de dos sombras y una banda de luz inclinada que la cruza cada pocos segundos y descansa. | Pseudo-elemento absoluto movido con `transform` (nunca `background-position`), `isolation: isolate`, sombra proyectada mas sombra interior de canto. | `ui-components/button-leather-shimmer/` |
 | `consult-source-button` | boton consultar fuente, external-source CTA, legal CTA | CTA tipo pill que abre un documento canonico externo y combina glow, puntos flotantes e icono animado. | Link `<a>`, gradientes, particulas CSS, SVG line icon animado en hover/focus. | `ui-components/consult-source-button/` |
 | `frosted-alert-modal` | modal frost, alert glass, modal de aviso | Modal de una accion con backdrop de vidrio esmerilado. | Backdrop fijo, `backdrop-filter`, dialog surface, focus/accessibility states. | `ui-components/frosted-alert-modal/` |
 | `frosted-confirm-modal` | confirm glass, modal confirmacion frost | Dialogo de confirmacion con dos acciones sobre una superficie frosted. | Backdrop frosted, botones primario/secundario, estado opcional de peligro. | `ui-components/frosted-confirm-modal/` |
@@ -43,6 +44,8 @@ el ejemplo exportable, sus archivos y sus cautelas de integracion.
   `border-glow`.
 - Usa `svg-path-glow-trace` cuando el brillo deba seguir la geometria de un SVG concreto. Si la
   forma viene de una CSS mask, primero crea una capa SVG inline aditiva con el path a trazar.
+- Usa `leather-shimmer` cuando el brillo cruce la superficie de un boton. Si el brillo recorre texto
+  recortado, es `text-shimmer`; si sigue al cursor sobre el borde, es `border-glow`.
 - Usa `frosted-*` cuando el patron dependa de vidrio esmerilado (`backdrop-filter`) y no solo de
   transparencia.
 

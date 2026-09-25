@@ -2,7 +2,7 @@
 
 Framework portable de gobernanza de desarrollo para proyectos gestionados con agentes IA (Claude Code, Codex, etc.).
 
-Extraido de las practicas operativas del proyecto FIELDS (2026-05). Version actual: v1.27.0.
+Extraido de las practicas operativas del proyecto FIELDS (2026-05). Version actual: v1.30.0.
 
 ## Que contiene
 

@@ -10,6 +10,7 @@ HTML/CSS/JS unless a pattern depends on a library, such as SortableJS.
 - `frosted-alert-modal/` — one-action frosted alert popup.
 - `frosted-confirm-modal/` — two-action frosted confirmation popup.
 - `frosted-arrow-buttons/` — previous/next frosted navigation buttons.
+- `button-leather-shimmer/` — material CTA button with a leather gradient, relief and a slow glint.
 - `carousel/` — responsive carousel with count-based controls.
 - `drag-relocate-button/` — handle-only card relocation with SortableJS.
 - `expandable-search-filter-panel/` — collapsible bordered panel with an expanding search field and
