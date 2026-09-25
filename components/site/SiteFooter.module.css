@@ -409,3 +409,23 @@
 @media (prefers-reduced-motion: reduce) {
   .studioName { animation: none; background-position: 50% 50%; }
 }
+
+/* On a phone the studio credit introduces the footer; its flowing rule sits below it. */
+@media (max-width: 759.98px) {
+  .footer { display: flex; flex-direction: column; }
+  .bottom {
+    order: -1;
+    padding-block-start: 0;
+    padding-block-end: 1px;
+    background-position: bottom;
+  }
+  .bottom::before {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    opacity: 0.8;
+    animation: studio-rule-flow var(--sds-flow-speed) linear infinite;
+  }
+}
+@media (max-width: 759.98px) and (prefers-reduced-motion: reduce) {
+  .bottom::before { animation: none; background-position: 50% 50%; }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useId, useState } from "react";
+import { useCallback, useId, useState, type CSSProperties } from "react";
 import type { MarkKind, Media, SheetModel } from "@/lib/content";
 import { ArrowIcon, DownloadIcon } from "@/components/icons";
 import { FlipCard } from "@/components/flip-card/FlipCard";
@@ -39,6 +39,8 @@ type Props = {
       the SECTION, not to one card: every card of a grid shares its row structure, so they all take it or none does
       and their actions stay at one height. Pass it only when no item of the grid fills any of those three. */
   compact?: boolean;
+  /** Opt-in for the workshops mobile deck; other sheets keep their full captions. */
+  workshopIndex?: number;
 };
 
 /**
@@ -46,7 +48,7 @@ type Props = {
  * through a real button that opens the full sheet in a dialog. Hover is an
  * enhancement; keyboard and touch reach everything (brief §7).
  */
-export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio, flipBack, compact = false }: Props) {
+export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant = "poster", heading = "h4", mediaRatio, flipBack, compact = false, workshopIndex }: Props) {
   const Heading = heading;
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
@@ -54,7 +56,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
   const sheetPicture = <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" priority={open} />;
 
   return (
-    <article id={anchorId} className={`${styles.card} ${styles[variant]}${compact ? ` ${styles.compact}` : ""}`} aria-labelledby={titleId} data-cursor="open">
+    <article id={anchorId} className={`${styles.card} ${styles[variant]}${compact ? ` ${styles.compact}` : ""}${workshopIndex !== undefined ? ` ${styles.workshop}` : ""}`} aria-labelledby={titleId} data-cursor="open" style={workshopIndex === undefined ? undefined : { "--workshop-index": workshopIndex } as CSSProperties}>
       {/* A click on the picture opens the sheet, like "Ver ficha" (the button below is the keyboard's way in). */}
       <div className={styles.media} onClick={sheet.pending ? undefined : () => setOpen(true)} data-opens={sheet.pending ? undefined : ""}>
         {/* The picture turns towards a fine pointer (tilt-card); the pin stays where it is, on the card's frame. */}
@@ -68,7 +70,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
           </Surface>
         </TiltCard>
       </div>
-      <div className={styles.body}>
+      <div className={styles.body} data-workshop-body={workshopIndex === undefined ? undefined : ""}>
         {/* Each line is clamped to two; `title` carries the whole text for a pointer that rests on it. */}
         <Heading id={titleId} className={`${styles.title} ${styles.clamp}`} title={sheet.title}>
           {sheet.title}

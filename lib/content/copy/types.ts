@@ -125,6 +125,8 @@ export type Copy = {
       title: string;
       /** Accessible name of the track of cards on a phone, where the workshops are a carousel. */
       carouselLabel: string;
+      mobileTitle: string;
+      expandDeck: string;
       peopleLabel: string;
       themeLabel: string;
       summaryLabel: string;

@@ -150,3 +150,9 @@
   border-top: 3px solid var(--jia-terracotta);
 }
 .content { min-width: 0; }
+
+.mobileLabel { display: none; }
+@media (max-width: 759.98px) {
+  .desktopLabel { display: none; }
+  .mobileLabel { display: inline; }
+}

@@ -45,6 +45,7 @@ export function Section({ id, title, subtitle, lede, marks = [], markLabels, sho
 type SubProps = {
   id: string;
   label: string;
+  mobileLabel?: string;
   marks?: MarkKind[];
   markLabels: Record<MarkKind, string>;
   showMarks: boolean;
@@ -55,13 +56,16 @@ type SubProps = {
  * A notebook spread: the running head sits in the left margin (sticky on
  * desktop) and the content fills the page. Used for the three blocks of Jornadas.
  */
-export function SubSection({ id, label, marks = [], markLabels, showMarks, children }: SubProps) {
+export function SubSection({ id, label, mobileLabel, marks = [], markLabels, showMarks, children }: SubProps) {
   const headingId = `${id}-title`;
   return (
     <div id={id} className={styles.sub} aria-labelledby={headingId} role="region">
       <div className={styles.margin}>
         <h3 id={headingId} className={styles.subTitle}>
-          {label}
+          {mobileLabel ? <>
+            <span className={styles.desktopLabel}>{label}</span>
+            <span className={styles.mobileLabel}>{mobileLabel}</span>
+          </> : label}
         </h3>
         <Marks marks={marks} labels={markLabels} show={showMarks} />
       </div>

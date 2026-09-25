@@ -1,25 +1,22 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { Children, useId, useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ChevronIcon } from "@/components/icons";
 import styles from "./TalleresCarrusel.module.css";
 
 type Props = {
-  labels: { region: string; prev: string; next: string };
+  labels: { region: string; prev: string; next: string; expand: string };
   children: ReactNode;
 };
 
-/**
- * The workshops. From 760 px up this is the same grid of cards as always and the buttons are not
- * drawn: everything below is CSS that only exists on a phone (JIA-2026-09-20-49).
- *
- * On a phone the cards become a track that snaps, one card per view with the next one peeking, and
- * two round buttons move it one card at a time. The scroll is the platform's own, so a finger
- * drags the track without any gesture code of ours — and because the browser does not fire a click
- * after a drag, sliding the track never opens a sheet. The cards come in as `children`: this
- * component knows nothing about workshops, only how to move what it is given.
- */
+/** The same cards form a mobile fan, then unfold into a native scroll-snap track.
+ * Desktop retains the grid. A separate button owns the first tap, so it cannot open a sheet. */
 export function TalleresCarrusel({ labels, children }: Props) {
+  const trackId = useId();
+  const [mobile, setMobile] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const focusOnExpand = useRef(false);
+  const collapsed = mobile && !expanded;
   const trackRef = useRef<HTMLDivElement>(null);
   const [ends, setEnds] = useState({ start: true, end: false });
 
@@ -51,6 +48,36 @@ export function TalleresCarrusel({ labels, children }: Props) {
     };
   }, [read]);
 
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 759.98px)");
+    const update = () => setMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    read();
+    if (expanded && focusOnExpand.current) {
+      trackRef.current?.focus({ preventScroll: true });
+      focusOnExpand.current = false;
+    }
+  }, [expanded, mobile, read]);
+
+  // Programme/related links must still reach an individual workshop in a closed deck.
+  useEffect(() => {
+    const revealAnchor = () => {
+      const card = Array.from(trackRef.current?.children ?? []).find((child) => `#${child.id}` === window.location.hash);
+      if (card) {
+        setExpanded(true);
+        requestAnimationFrame(() => card.scrollIntoView({ block: "nearest", inline: "start", behavior: "instant" }));
+      }
+    };
+    revealAnchor();
+    window.addEventListener("hashchange", revealAnchor);
+    return () => window.removeEventListener("hashchange", revealAnchor);
+  }, []);
+
   // One card at a time: the step is the card's own width plus the gap between two of them.
   const move = (direction: 1 | -1) => {
     const track = trackRef.current;
@@ -63,12 +90,29 @@ export function TalleresCarrusel({ labels, children }: Props) {
   };
 
   return (
-    <>
+    <div className={styles.deck} data-expanded={expanded ? "" : undefined} style={{ "--workshop-count": Children.count(children) } as CSSProperties}>
       {/* A scrollable box needs to be reachable from the keyboard — but only while it scrolls: on a
           wide window this is a plain grid and would be one more empty stop on the way to the cards. */}
-      <div ref={trackRef} className={styles.grid} role="group" aria-label={labels.region} tabIndex={ends.start && ends.end ? undefined : 0}>
+      <div id={trackId} ref={trackRef} className={styles.grid} inert={collapsed} role="group" aria-label={labels.region} tabIndex={collapsed ? undefined : ends.start && ends.end ? -1 : 0}>
         {children}
       </div>
+      {!expanded ? (
+        <button
+          type="button"
+          className={styles.expand}
+          aria-expanded={false}
+          aria-controls={trackId}
+          onClick={(event) => {
+            focusOnExpand.current = event.detail === 0;
+            setExpanded(true);
+          }}
+          onPointerEnter={(event) => {
+            if (event.pointerType === "mouse" && window.matchMedia("(hover: hover)").matches) setExpanded(true);
+          }}
+        >
+          <span>{labels.expand}</span>
+        </button>
+      ) : null}
       <div className={styles.controls}>
         <button type="button" className={styles.arrow} onClick={() => move(-1)} disabled={ends.start} aria-label={labels.prev}>
           <ChevronIcon size={18} className={styles.prevIcon} />
@@ -77,6 +121,6 @@ export function TalleresCarrusel({ labels, children }: Props) {
           <ChevronIcon size={18} className={styles.nextIcon} />
         </button>
       </div>
-    </>
+    </div>
   );
 }

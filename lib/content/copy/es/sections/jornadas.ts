@@ -71,6 +71,8 @@ export const jornadas: Copy["jornadas"] = {
     title: "Talleres",
     /** Phone: the cards are a carousel (JIA-2026-09-20-49). */
     carouselLabel: "Talleres de la edición: desliza para ver los demás",
+    mobileTitle: "Talleres en el Saloon",
+    expandDeck: "Toca para desplegar los talleres",
     peopleLabel: "Imparte",
     themeLabel: "Temática",
     summaryLabel: "De qué trata",

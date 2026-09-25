@@ -117,17 +117,18 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
       </SubSection>
 
       {/* ---- Talleres ---- */}
-      <SubSection id={jornadas.anchors.talleres} label={jornadas.workshops.title} markLabels={markLabels} showMarks={showMarks}>
+      <SubSection id={jornadas.anchors.talleres} label={jornadas.workshops.title} mobileLabel={copy.jornadas.workshops.mobileTitle} markLabels={markLabels} showMarks={showMarks}>
         {showMarks && jornadas.workshops.marks.length ? (
           <p className={styles.hint}>
             <Marks marks={jornadas.workshops.marks} labels={markLabels} show={showMarks} />
           </p>
         ) : null}
         {jornadas.workshops.items.length ? (
-          <TalleresCarrusel labels={{ region: copy.jornadas.workshops.carouselLabel, prev: copy.buttons.workshops.prev, next: copy.buttons.workshops.next }}>
-            {jornadas.workshops.items.map((sheet) => (
+          <TalleresCarrusel labels={{ region: copy.jornadas.workshops.carouselLabel, expand: copy.jornadas.workshops.expandDeck, prev: copy.buttons.workshops.prev, next: copy.buttons.workshops.next }}>
+            {jornadas.workshops.items.map((sheet, index) => (
               <SheetCard
                 key={sheet.id}
+                workshopIndex={index}
                 sheet={sheet}
                 anchorId={`${jornadas.anchors.talleres}-${sheet.id}`}
                 labels={{ ...cardLabels, sheetOf: copy.a11y.sheetOf.replace("{title}", sheet.title) }}

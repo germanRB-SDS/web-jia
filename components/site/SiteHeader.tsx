@@ -19,12 +19,12 @@ export function SiteHeader({ nav, brand, event, copy }: Props) {
             ))}
           </span>
         </a>
-        <SiteNav items={nav.items} studio={nav.studio} labels={{ menu: copy.buttons.nav.menu, close: copy.buttons.nav.close, submenu: copy.buttons.nav.submenu, region: copy.a11y.mainNav, newTab: copy.footer.newTab }} />
         {brand.badge ? (
           <span className={styles.badge}>
             <Picture media={brand.badge} alt={copy.a11y.badge} sizes="56px" />
           </span>
         ) : null}
+        <SiteNav items={nav.items} studio={nav.studio} labels={{ menu: copy.buttons.nav.menu, close: copy.buttons.nav.close, submenu: copy.buttons.nav.submenu, region: copy.a11y.mainNav, newTab: copy.footer.newTab }} />
       </div>
     </header>
   );

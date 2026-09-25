@@ -1,0 +1,13 @@
+# Continuidad [53-0] — REL-2026-09-25-02
+
+- Base main: 5b131c948f9cdd6c724d4d826c642b86eb2fd75c, raíz limpia al iniciar. Worktree aislado `/private/tmp/jia-talleres-worktree`, rama `feat/REL-2026-09-25-02-talleres-baraja`.
+- Prompts commiteados y releídos antes de código: dcc9df7, 142a98f (añadido título Saloon).
+- Implementados: baraja móvil con cartas originales, primer tap separado de ficha, copy reducido en carrusel, título móvil, sello antes del menú. Escritorio usa reglas anteriores; alcance opt-in de SheetCard.
+- Constantes: copy/types y copy/es/sections/jornadas; configuración/medios existentes vía assemble.ts. Sin dependencias ni servicios nuevos.
+- Checks verdes: TypeScript, check:content, next build --webpack (export estático), diff --check. QA final: 54 aserciones PASS, evidencia JSON/capturas en evidence/. Las pruebas de producción esperan la hidratación antes de interactuar.
+- Vista final: localhost:3005, Python sirve out/ compilado; dependencias locales enlazadas fuera del staging. El localhost:3000 del propietario no se altera.
+- Implementación terminada y verificada. Cierre: commit de implementación, después informe/evidencia en commit separado; pendiente exclusivamente la validación visual antes de integrar/publicar.
+- Gate EXPLÍCITO del usuario: validación visual antes de integrar o publicar en main. NO push todavía.
+- Excluidos: maestra/aula/foto/luces, vídeo. Trabajo de Claude intacto en base.
+
+- Añadidos del propietario: título Saloon, sello a la izquierda del menú, sombra semitransparente y franja SDS al principio del footer móvil con línea animada debajo. Todos incluidos; escritorio comparado con main.
