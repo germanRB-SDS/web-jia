@@ -16,6 +16,7 @@ Execute from `## Status` onward. El propietario valida la baraja y autoriza guar
 - Al salir de la zona de talleres mediante scroll vertical, hacia arriba o hacia abajo, contraer la baraja y reiniciar su posición. Al regresar aparece cerrada. No contraer al deslizar horizontalmente ni mientras una ficha esté abierta.
 - Mantener escritorio, otros diálogos y añadidos ya aprobados; conservar todos los datos de cada ficha.
 - Reutilizar copy/media y tokens del proyecto, sin nuevas cadenas visibles ni dependencias.
+- Añadido del propietario: solo en móvil, reducir al 50 % la extensión vertical actual del degradado de la fotografía del hero; conservar encuadre y versión de escritorio.
 
 ## Verificación y entrega
 
