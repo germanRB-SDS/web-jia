@@ -31,6 +31,9 @@ import { edition, event, productionStudio, site } from "./site";
 
 export type MarkKind = "provisional" | "demo" | "pending";
 
+/** Icon the button wears instead of the default arrow; the component resolves the name (see primitives/Action.tsx). */
+export type ActionIcon = "sheriff-star";
+
 export type Action = {
   id: string;
   label: string;
@@ -38,6 +41,8 @@ export type Action = {
   kind: "anchor" | "external" | "unavailable";
   /** Visible explanation while unavailable. */
   note: string | null;
+  /** Declared in the section config; absent leaves the default arrow. */
+  icon?: ActionIcon;
 };
 
 export type NavItem = { key: string; label: string; href: string; children?: NavItem[]; /** The link leaves the site: a new tab, and said so to a screen reader. */ external?: boolean };
@@ -421,7 +426,7 @@ export function getLanding(locale: Locale): LandingModel {
       dateline: dateline(language),
       datelineMarks: programDays.some((d) => d.status !== "confirmed") ? ["provisional"] : [],
       actions: [
-        { id: "hero-explore", label: copy.buttons.hero.explore, href: anchor(heroConfig.actions.primary.target), kind: "anchor", note: null },
+        { id: "hero-explore", label: copy.buttons.hero.explore, href: anchor(heroConfig.actions.primary.target), kind: "anchor", note: null, icon: heroConfig.actions.primary.icon },
         { id: "hero-workshops", label: copy.buttons.hero.workshops, href: anchor(heroConfig.actions.secondary.target), kind: "anchor", note: null },
       ],
     },

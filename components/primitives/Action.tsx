@@ -1,6 +1,10 @@
-import type { Action as ActionModel } from "@/lib/content";
-import { ArrowIcon, ExternalIcon } from "@/components/icons";
+import type { Action as ActionModel, ActionIcon } from "@/lib/content";
+import { ArrowIcon, ExternalIcon, SheriffStarIcon } from "@/components/icons";
 import styles from "./Action.module.css";
+
+/** The icon names the content layer may declare (lib/content/sections/*.ts). An unknown or absent name falls back to
+    the arrow the action already earned: an external link leaves the site, anything else moves within it. */
+const ACTION_ICONS: Record<ActionIcon, typeof SheriffStarIcon> = { "sheriff-star": SheriffStarIcon };
 
 type Props = {
   action: ActionModel;
@@ -27,6 +31,7 @@ export function Action({ action, variant = "primary", className }: Props) {
     );
   }
   const external = action.kind === "external";
+  const Declared = action.icon ? ACTION_ICONS[action.icon] : undefined;
   return (
     <a
       className={cls}
@@ -35,7 +40,7 @@ export function Action({ action, variant = "primary", className }: Props) {
       rel={external ? "noopener noreferrer" : undefined}
     >
       <span>{action.label}</span>
-      {external ? <ExternalIcon /> : <ArrowIcon />}
+      {Declared ? <Declared className={styles.badge} /> : external ? <ExternalIcon /> : <ArrowIcon />}
     </a>
   );
 }

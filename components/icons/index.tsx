@@ -116,6 +116,25 @@ export function StarIcon(props: IconProps) {
   );
 }
 
+/**
+ * Sheriff's badge for the hero's primary action ([50-0]): a five-pointed star with a rounded boss on each tip, drawn
+ * on the family's 64-unit grid and filled with `currentColor`. It is not `StarIcon`, the plain star the hero already
+ * uses above the title; this one is a badge and only a button wears it.
+ */
+export function SheriffStarIcon(props: IconProps) {
+  const p = base({ size: 18, ...props });
+  return (
+    <svg {...p} stroke="none" fill="currentColor">
+      <path d="M32 7l6.2 16.5L55.8 24.3 42 35.2l4.7 17L32 42.5 17.3 52.2 22 35.2 8.2 24.3l17.6-.8L32 7Z" />
+      <circle cx="32" cy="7" r="3.4" />
+      <circle cx="55.8" cy="24.3" r="3.4" />
+      <circle cx="46.7" cy="52.2" r="3.4" />
+      <circle cx="17.3" cy="52.2" r="3.4" />
+      <circle cx="8.2" cy="24.3" r="3.4" />
+    </svg>
+  );
+}
+
 export function ExternalIcon(props: IconProps) {
   return (
     <svg {...base({ size: 16, ...props })} strokeWidth={4}>

@@ -6,7 +6,7 @@ export const buttons: Buttons = {
   sheet: { open: "Ver ficha", close: "Cerrar", viewDocument: "Ver documento original", viewPoster: "Ver cartel", downloadDossier: "Descargar dosier", dossierPending: "Dosier disponible próximamente" },
   dossiers: { consult: "Consultar material", view: "Ver dosier", download: "Descargar" },
   proposals: { present: "Dispara tu idea" },
-  host: { host: "Quiero acoger las JIA" },
+  host: { host: "Acoger las JIA" },
   nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
   route: { replay: "Repetir recorrido" },
   cube: { prev: "Tarjeta anterior", next: "Tarjeta siguiente" },

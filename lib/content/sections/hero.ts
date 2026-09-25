@@ -10,8 +10,10 @@ export const heroConfig = {
   /** The #JIA26 seal to the right of the "JIA" wordmark, as tall as it, in place of the lettering (promoter,
       JIA-2026-09-19-30: the edition's title under it already says the name); null brings the lettering back. */
   sealMediaId: "sello-jia26" as string | null,
+  /** `icon` names a member of the icon family for the button, as `waypoints` do below; without it the action keeps
+      the default arrow. Icons: sheriff-star. */
   actions: {
-    primary: { target: "jornadas" },
+    primary: { target: "jornadas", icon: "sheriff-star" },
     secondary: { target: "talleres" },
   },
   /** Ordered shortcuts under the hero. Icons: hat | cactus | compass | lantern. */
