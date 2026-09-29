@@ -1,56 +1,15 @@
 /* ---- the workshops ----
-   From 760 px up, one row of three with an arrow either side ([59-0]; until then a grid of as many per row as fit)
+   From 760 px up, the rejilla of always: as many cards per row as fit, each at least 240 px
    (these rules used to live in Jornadas.module.css, beside markup that is now this component's).
-   Below 760 px they become a track that swipes, one card per view with the next one peeking, and
+   A grid and not a scrolling row: a scroll box would clip the card that grows on hover ([59-0], tried and
+   undone). Below 760 px they become a track that swipes, one card per view with the next one peeking, and
    two round buttons underneath (JIA-2026-09-20-49). */
-.expand { display: none; }
-
-/* From 760 px ([59-0]): one row of three that slides a card at a time, a round arrow either side of it. The
-   cards keep everything they had in the grid (poster, title, subtitle, actions) and their hover. The track
-   leaves room above for the pin and the lift, and below for the shadow: a scroll box clips both. */
-@media (min-width: 760px) {
-  .deck {
-    --row-gap: clamp(1.25rem, 2.5vw, 2rem);
-    --side-gap: clamp(0.75rem, 1.5vw, 1.25rem);
-    container-type: inline-size;
-    display: grid;
-    grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem;
-    column-gap: var(--side-gap);
-    align-items: start;
-    /* One card's width, and from it the poster's height: the arrows point at the middle of the posters. */
-    --col: calc((100cqw - 2 * (2.75rem + var(--side-gap)) - 2 * var(--row-gap)) / 3);
-  }
-  .grid {
-    grid-column: 2;
-    grid-row: 1;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: var(--col);
-    column-gap: var(--row-gap);
-    padding: 12px 0 1.75rem;
-    margin: -12px 0 -1.75rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-  .grid::-webkit-scrollbar { display: none; }
-  .grid > * { scroll-snap-align: start; }
-  .grid:focus-visible { outline: 2px solid var(--jia-terracotta); outline-offset: 3px; }
-  .controls { display: contents; }
-  /* Paper under the ring: over the backdrop's dark wood a bare ring on paper would all but vanish. */
-  .controls .arrow {
-    grid-row: 1;
-    margin-top: calc(var(--col) * 2000 / 1414 / 2 - 1.375rem);
-    background: rgb(var(--jia-paper-rgb) / 0.9);
-    border-color: var(--jia-terracotta);
-  }
-  .controls .arrow:hover:not(:disabled),
-  .controls .arrow:focus-visible { background: var(--jia-terracotta); }
-  .controls .arrow:disabled { border-color: var(--jia-line); }
-  .arrow:first-child { grid-column: 1; }
-  .arrow:last-child { grid-column: 3; }
+.grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
 }
+.controls, .expand { display: none; }
 
 @media (max-width: 759.98px) {
   .deck {

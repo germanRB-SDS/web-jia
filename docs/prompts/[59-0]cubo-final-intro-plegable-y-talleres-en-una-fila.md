@@ -104,3 +104,14 @@ con los mismos 49 ficheros (es solo el archivo comprimido: no se usa ni se versi
 
 - El fondo de Talleres pasa de una opacidad del 55 % al 44 % (un 20 % menos), solo desde 760 px, donde es el único
   sitio en que se muestra (`components/site/Section.module.css`, `.backdrop`). Comprobado con captura a 1440 px.
+
+## Corrección en ejecución: Talleres sin carrusel (promotor, chat, 29-09-2026)
+
+> «Ahí no vamos a hacer carrusel: van a aparecer los 6 como estaban antes, pero con las imágenes que tienen ahora, y
+> que cuando se amplíe no se corte [la tarjeta, al pasar el ratón]. Ese efecto es muy guapo.»
+
+- Causa del corte: la fila de la fase C era una caja con scroll horizontal, y una caja con scroll recorta todo lo que
+  sobresale de ella, incluida la tarjeta que crece al pasar el ratón.
+- Se deshace la fila: desde 760 px vuelve la rejilla de antes (`TalleresCarrusel.module.css`, igual que en 2f8b8fa).
+  En la rejilla nada recorta la tarjeta. Se mantienen los carteles actuales y la mesa de fondo al 44 %. Móvil: la
+  baraja, sin cambios.
