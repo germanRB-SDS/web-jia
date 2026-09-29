@@ -88,7 +88,7 @@ Punto de rollback: `7732f31` (antes de este prompt; incluye [60-0] cerrado y los
 
 ## Status
 
-**PENDING**
+**EXECUTED** (29-09-2026); informe en [`docs/prompts-output/[61-0]/report.md`](../prompts-output/[61-0]/report.md). Implementación en `f92e290`. Push pendiente del OK del promotor.
 
 ## Alcance y autoridad
 
@@ -113,3 +113,17 @@ Tmp/scratch: N/A (una sola fase; evidencias en `docs/prompts-output/[61-0]/evide
 `npx tsc --noEmit`, `npm run check:content`, `npx next build`, Chrome por CDP a 390×844, 844×390, 768, 1440 y 2560:
 orden y encaje de los carteles, dos ciclos sin salto, opacidad 0 antes del 52 %, `scrollWidth` = ancho, visor
 (tamaño, X, cierres), foco y movimiento reducido.
+
+## Correcciones en ejecución (chat del promotor, 29-09-2026)
+
+1. «Si se arrastra el carrete hacia izquierda o derecha, que avance hacia su respectivo lado, pero más rápido; tanto
+   con el dedo en móvil como con el ratón.» → arrastre y deslizamiento con ganancia 1,6 (la tira recorre 1,6 veces
+   lo que recorre el puntero) e impulso al soltar que se apaga (≤ 1 800 px/s, constante 420 ms) antes de volver a la
+   deriva. `touch-action: pan-y`: el gesto vertical sigue desplazando la página. Un arrastre nunca abre un cartel.
+   Con movimiento reducido, el arrastre mueve la tira pero sin impulso.
+2. Título: «Ideas que ya han pasado por el aula» → «Ideas de cine que ya han pasado por el aula» (también la línea
+   del índice del hero, que repetía el título).
+3. Entradilla: «… tal y como nos muestran los compañeros ;)» → «… tal y como nos muestran nuestros compañeros de
+   cine.»
+4. «La animación del carrete, que sea en el sentido contrario.» → deriva de izquierda a derecha
+   (`FILM_REEL.direction: -1`): los carteles salen del fundido junto al aula y se van por el borde derecho.

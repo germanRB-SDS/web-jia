@@ -1,0 +1,154 @@
+{
+ "viewport": {
+  "l": 665.59375,
+  "t": 254.390625,
+  "w": 614.40625,
+  "h": 290.484375
+ },
+ "sectionW": 1280,
+ "guard": {
+  "vpLeft": 665.59375,
+  "photoGuard52": 665.6,
+  "ok": true
+ },
+ "fitsInSection": true,
+ "posters": {
+  "count": 7,
+  "labels": [
+   "Gabi Moral",
+   "Rubén López",
+   "Toni Navarro",
+   "Gonzalo Carretero",
+   "María López",
+   "Pilar Díaz",
+   "Cristina Robles / León"
+  ],
+  "srcs": "1234567",
+  "tabbable": 7,
+  "hiddenSets": 2,
+  "ids": 0
+ },
+ "alignment": {
+  "first": {
+   "l": 26.94,
+   "t": 18.67,
+   "ratio": 0.707,
+   "loaded": true,
+   "fw": 207,
+   "fh": 213.2
+  },
+  "sameEveryFrame": true,
+  "stableOverTime": true,
+  "allLoaded": true,
+  "ratio": 0.707
+ },
+ "drift": {
+  "moved3s": -42.7,
+  "expect": "≈ -54 (18 px/s, left to right)"
+ },
+ "scroll": {
+  "sw": 1290,
+  "cw": 1280,
+  "swWithoutSection": 1290
+ },
+ "loop": {
+  "period": 1449,
+  "samples": 224,
+  "wrapsByExactlyOnePeriod": 2,
+  "otherJumps": 0,
+  "jumpSample": [],
+  "uncovered": 0,
+  "dialogOpenedByDrag": false
+ },
+ "throw": {
+  "duringDrag": 281,
+  "afterRelease": 441,
+  "note": "positive = moved left (forward)"
+ },
+ "dragRight": {
+  "moved": 209,
+  "note": "negative translate change = moved right"
+ },
+ "fadeHit": "FilmReel-module__ACU16W__shield",
+ "viewer": {
+  "opened": true,
+  "expectPoster": 4,
+  "src": "4@1000",
+  "img": {
+   "l": 442,
+   "t": 127,
+   "w": 396,
+   "h": 560,
+   "ratio": 0.707
+  },
+  "x": {
+   "l": 808,
+   "t": 113,
+   "w": 44,
+   "h": 44,
+   "inView": true,
+   "name": "Cerrar imagen"
+  },
+  "focus": true,
+  "vw": 1280,
+  "vh": 800,
+  "wPctVw": 30.9,
+  "hPctVh": 70
+ },
+ "viewerPausesStrip": true,
+ "clickImageKeepsOpen": true,
+ "moveToXKeepsOpen": true,
+ "leaveStillOpenAt80ms": true,
+ "leaveClosed": true,
+ "outsideBeforeEnteringKeepsOpen": true,
+ "groundClickCloses": true,
+ "escapeCloses": true,
+ "focusBackTo": "Experiencia de éxito 4 de 7: Gonzalo Car",
+ "scrollKept": true,
+ "htmlOverflowRestored": true,
+ "keyboard": [
+  {
+   "i": "0",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "1",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "2",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "3",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "4",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "5",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "6",
+   "fv": true,
+   "clear": true
+  }
+ ],
+ "keyboardOk": true,
+ "enterOpens": true,
+ "enterFocusOnX": true,
+ "focusReturned": true,
+ "controls": [
+  "Pausar la película"
+ ],
+ "errors": []
+}

@@ -1,0 +1,130 @@
+{
+ "viewport": {
+  "l": 0,
+  "t": 308.34375,
+  "w": 767.984375,
+  "h": 408
+ },
+ "sectionW": 768,
+ "guard": {
+  "vpLeft": 0,
+  "photoGuard52": 399.36,
+  "ok": true
+ },
+ "fitsInSection": true,
+ "posters": {
+  "count": 7,
+  "labels": [
+   "Gabi Moral",
+   "Rubén López",
+   "Toni Navarro",
+   "Gonzalo Carretero",
+   "María López",
+   "Pilar Díaz",
+   "Cristina Robles / León"
+  ],
+  "srcs": "1234567",
+  "tabbable": 7,
+  "hiddenSets": 2,
+  "ids": 0
+ },
+ "alignment": {
+  "first": {
+   "l": 26.94,
+   "t": 18.67,
+   "ratio": 0.707,
+   "loaded": true,
+   "fw": 291,
+   "fh": 299.72
+  },
+  "sameEveryFrame": true,
+  "stableOverTime": true,
+  "allLoaded": true,
+  "ratio": 0.707
+ },
+ "drift": {
+  "moved3s": 1987.7,
+  "expect": "≈ -54 (18 px/s, left to right)"
+ },
+ "scroll": {
+  "sw": 768,
+  "cw": 768,
+  "swWithoutSection": 768
+ },
+ "fadeHit": "FilmReel-module__ACU16W__shield",
+ "viewer": {
+  "opened": true,
+  "expectPoster": 2,
+  "src": "2@1000",
+  "img": {
+   "l": 154,
+   "t": 193,
+   "w": 461,
+   "h": 652,
+   "ratio": 0.707
+  },
+  "x": {
+   "l": 584,
+   "t": 179,
+   "w": 44,
+   "h": 44,
+   "inView": true,
+   "name": "Cerrar imagen"
+  },
+  "focus": true,
+  "vw": 768,
+  "vh": 1024,
+  "wPctVw": 60,
+  "hPctVh": 63.6
+ },
+ "viewerPausesStrip": true,
+ "xCloses": true,
+ "groundTapCloses": true,
+ "scrollKept": true,
+ "htmlOverflowRestored": true,
+ "keyboard": [
+  {
+   "i": "0",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "1",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "2",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "3",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "4",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "5",
+   "fv": true,
+   "clear": true
+  },
+  {
+   "i": "6",
+   "fv": true,
+   "clear": true
+  }
+ ],
+ "keyboardOk": true,
+ "enterOpens": true,
+ "enterFocusOnX": true,
+ "focusReturned": true,
+ "controls": [
+  "Pausar la película"
+ ],
+ "errors": []
+}

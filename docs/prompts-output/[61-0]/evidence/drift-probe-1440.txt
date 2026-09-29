@@ -1,0 +1,16 @@
+0 translate3d(-1666px, 0px, 0px) y=5548
+0.5 translate3d(-1665.95px, 0px, 0px) y=5548
+1 translate3d(-1665.95px, 0px, 0px) y=5548
+1.5 translate3d(-1664.87px, 0px, 0px) y=5548
+2 translate3d(-1658.97px, 0px, 0px) y=5548
+2.5 translate3d(-1650.72px, 0px, 0px) y=5548
+3 translate3d(-1642.05px, 0px, 0px) y=5548
+3.5 translate3d(-1633.16px, 0px, 0px) y=5548
+4 translate3d(-1623.9px, 0px, 0px) y=5548
+4.5 translate3d(-1614.91px, 0px, 0px) y=5548
+5 translate3d(-1605.92px, 0px, 0px) y=5548
+5.5 translate3d(-1596.92px, 0px, 0px) y=5548
+6 translate3d(-1587.92px, 0px, 0px) y=5548
+6.5 translate3d(-1578.92px, 0px, 0px) y=5548
+7 translate3d(-1569.92px, 0px, 0px) y=5548
+7.5 translate3d(-1560.92px, 0px, 0px) y=5548
