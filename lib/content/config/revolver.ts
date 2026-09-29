@@ -13,7 +13,7 @@
  */
 export const REVOLVER_HORA: "ENABLED" | "DISABLED" = "ENABLED";
 
-export const REVOLVER_VISTA_PREVIA: { jornada: number; sesion: number } | null = { jornada: 2, sesion: 3 };
+export const REVOLVER_VISTA_PREVIA: { jornada: number; sesion: number } | null = null;
 
 export const REVOLVER_ZONA_HORARIA = "Europe/Madrid";
 
