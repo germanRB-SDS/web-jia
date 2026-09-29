@@ -41,7 +41,7 @@ señala en el informe.
 
 ## Status
 
-**PENDING**
+**EXECUTED** (29-09-2026); informe en [`docs/prompts-output/[60-0]/report.md`](../prompts-output/[60-0]/report.md). Push pendiente del OK del promotor.
 
 ## Alcance y autoridad
 
