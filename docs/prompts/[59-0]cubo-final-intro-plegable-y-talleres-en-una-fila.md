@@ -75,7 +75,7 @@ con los mismos 49 ficheros (es solo el archivo comprimido: no se usa ni se versi
 
 ## Status
 
-**PENDING**
+**EXECUTED** (29-09-2026): fase A 53052bf, fase B 2f8b8fa, fase C 30cbb55; informe en [`docs/prompts-output/[59-0]/report.md`](../prompts-output/[59-0]/report.md). Push pendiente del OK del promotor.
 
 ## Alcance y autoridad
 
