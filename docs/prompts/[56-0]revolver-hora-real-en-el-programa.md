@@ -84,3 +84,6 @@ material. Esta sección es memoria: **execute from `## Status` onward**.
   tramo uniforme de cañón y baqueta (x 1115–1600 del recorte) y se vuelve a poner la boca 24 px más abajo (el cañón
   sube hacia la boca), así queda un Colt de cañón corto, 1744×985 (1,77:1 en vez de 2,21:1). Además es algo más
   grande (`clamp(1.75rem, 2.8vw, 2.75rem)`; 2 rem en móvil) y está inclinado 8° con la boca hacia el numeral.
+- Móvil (promotor, chat, 29-09-2026): en vez de desplazar solo la fila marcada, el día que tiene el revólver reserva
+  su hueco en **todas** sus filas (`.sessions[data-clock]`), así los numerales quedan en una columna apunte donde
+  apunte. El otro día conserva su margen habitual.

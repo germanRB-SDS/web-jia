@@ -180,7 +180,7 @@ export function ProgramaDias({ days, clock, copy, markLabels, showMarks }: Props
                 </div>
               ) : null}
             </dl>
-            <ol className={styles.sessions}>
+            <ol className={styles.sessions} data-clock={now?.dayId === day.id && clock.icon ? "" : undefined}>
               {day.sessions.map((s) => {
                 const isNow = now?.dayId === day.id && now.sessionId === s.id;
                 return (

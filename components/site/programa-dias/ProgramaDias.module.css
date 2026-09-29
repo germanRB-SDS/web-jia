@@ -226,10 +226,11 @@
     scrollbar-width: none;
   }
   .days::-webkit-scrollbar { display: none; }
-  /* The track clips anything left of its edge, so on a phone the revolver takes its room inside the row:
-     the row it points at steps in by the gun's width. */
+  /* The track clips anything left of its edge, so on a phone the revolver takes its room inside the row. The
+     day it is on keeps that room in EVERY row (promoter, 29-09-2026), so the numerals stay in one column
+     whichever row the revolver points at; the other day keeps its usual edge. */
   .session { --revolver-w: 2rem; }
-  .session[data-now] { padding-left: calc(var(--revolver-w) + 0.4rem); }
+  .sessions[data-clock] .session { padding-left: calc(var(--revolver-w) + 0.4rem); }
   .revolver { left: 0; }
   .day { scroll-snap-align: start; scroll-snap-stop: always; }
   /* Only visually: it stays in the accessibility tree and in the outline. */
