@@ -90,7 +90,7 @@ export type IntroVideoModel = {
   aspect: number;
   autoplay: boolean;
   loop: boolean;
-  controls: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; /** Picture in picture: the video in a small floating window. */ minimize: string; exitMinimize: string; share: string };
+  controls: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; /** Picture in picture: the video in a small floating window. */ minimize: string; exitMinimize: string; share: string; seek: string; seekValue: string; unfold: string };
   /** Text sent with the page link by the share control (phones only). */
   shareText: string;
 };

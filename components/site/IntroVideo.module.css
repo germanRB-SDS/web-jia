@@ -53,6 +53,28 @@
   text-wrap: balance;
   color: var(--jia-ivory);
 }
+/* The fold ([59-0]): the frame's own height, or none. It closes at once (it does so off screen, and the page
+   is scrolled back by what it lost) and opens with a transition, from the button on the bar. */
+.fold {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 520ms var(--ease-out);
+}
+.fold[data-folded] {
+  grid-template-rows: 0fr;
+  transition: none;
+}
+.foldInner { min-height: 0; overflow: hidden; }
+/* The folded bar's button, on the right hairline (its ink ground interrupts the line, like the label's). */
+.unfold {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 0;
+  translate: 0 -50%;
+  padding: 0 var(--gutter) 0 1rem;
+  background: var(--jia-ink);
+}
 .frame {
   position: relative;
   width: 100%;
@@ -135,7 +157,64 @@
   outline: 2px solid var(--jia-ivory);
   outline-offset: 3px;
 }
-:where(:global(html[data-motion="reduce"])) .control { transition: none; }
+/* The playback bar ([59-0]), over the bottom of the video on its own ink shade: play/pause, the slider, the time. */
+.transport {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.6vw, 1.125rem);
+  padding: 2.5rem var(--gutter) clamp(0.75rem, 2vw, 1.25rem);
+  background: linear-gradient(to top, rgb(var(--jia-ink-rgb) / 0.7), rgb(var(--jia-ink-rgb) / 0));
+}
+.transport .control { flex: none; }
+.seek {
+  flex: 1;
+  min-width: 0;
+  height: 1.75rem;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  --seek-track: linear-gradient(to right, var(--jia-ivory) var(--seek-progress, 0%), rgb(var(--jia-ivory-rgb) / 0.32) var(--seek-progress, 0%));
+}
+.seek:disabled { cursor: default; opacity: 0.5; }
+.seek::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: var(--seek-track); }
+.seek::-moz-range-track { height: 4px; border-radius: 2px; background: var(--seek-track); }
+.seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--jia-ivory);
+  box-shadow: 0 0 0 3px rgb(var(--jia-ink-rgb) / 0.35);
+}
+.seek::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--jia-ivory);
+  box-shadow: 0 0 0 3px rgb(var(--jia-ink-rgb) / 0.35);
+}
+.seek:focus-visible { outline: 2px solid var(--jia-ivory); outline-offset: 4px; border-radius: 2px; }
+.time {
+  flex: none;
+  font-family: var(--f-ui);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--jia-ivory);
+}
+@media (max-width: 759.98px) {
+  .time { display: none; }
+}
+:where(:global(html[data-motion="reduce"])) .control, :where(:global(html[data-motion="reduce"])) .fold { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  :where(:global(html:not([data-motion]))) .control { transition: none; }
+  :where(:global(html:not([data-motion]))) .control, :where(:global(html:not([data-motion]))) .fold { transition: none; }
 }

@@ -21,5 +21,10 @@ export const buttons: Buttons = {
     minimize: "Ver el vídeo minimizado, en una ventana flotante",
     exitMinimize: "Devolver el vídeo a la página",
     share: "Compartir el enlace de las jornadas",
+    /** The playback bar over the video ([59-0]): the slider, and how it reads its position out. */
+    seek: "Avanzar o retroceder el vídeo",
+    seekValue: "{current} de {total}",
+    /** The button on the folded bar (from 760 px, [59-0]). */
+    unfold: "Desplegar el vídeo y reproducirlo",
   },
 };

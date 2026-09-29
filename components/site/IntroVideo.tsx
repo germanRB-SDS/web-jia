@@ -3,8 +3,10 @@
 import { isMotionReduced } from "@/lib/motion/policy";
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { flushSync } from "react-dom";
 import type { IntroVideoModel } from "@/lib/content";
-import { FullscreenExitIcon, FullscreenIcon, PauseIcon, PictureInPictureExitIcon, PictureInPictureIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
+import { format } from "@/lib/content/copy";
+import { ChevronIcon, FullscreenExitIcon, FullscreenIcon, PauseIcon, PictureInPictureExitIcon, PictureInPictureIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
 import styles from "./IntroVideo.module.css";
 
 type Props = { intro: IntroVideoModel };
@@ -19,9 +21,27 @@ type IOSVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void; webkitD
  * screen and never autoplays under prefers-reduced-motion. Round controls sit top-right:
  * share (phones only: the Web Share API with a coarse pointer), fullscreen (the frame goes full screen so the
  * controls stay; iOS uses the player's own), minimise (picture in picture, where the browser has it: the video
- * goes on playing in a floating window while the page is read), sound, play/pause. Entering fullscreen or
+ * goes on playing in a floating window while the page is read) and sound; play/pause lives on the playback bar. Entering fullscreen or
  * picture in picture enables sound; the initial in-page autoplay stays muted.
+ *
+ * Over the bottom of the video, a playback bar ([59-0]): play/pause, a slider to move through it, and the time.
+ *
+ * From 760 px the block folds ([59-0]): once the visitor has scrolled right past it, it closes to its cinema bar,
+ * the video paused where it was, and the bar gets a round button to open it again and play on. It folds while it
+ * is above the screen, and the page is scrolled back by exactly the height it lost, so what is being read does
+ * not move. On a phone it never folds.
  */
+
+const FOLD_MEDIA = "(min-width: 760px)";
+
+/** m:ss, or h:mm:ss past the hour. */
+function clock(seconds: number): string {
+  const s = Math.max(0, Math.floor(Number.isFinite(seconds) ? seconds : 0));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const ss = String(s % 60).padStart(2, "0");
+  return h ? `${h}:${String(m).padStart(2, "0")}:${ss}` : `${m}:${ss}`;
+}
 export function IntroVideo({ intro }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -37,6 +57,10 @@ export function IntroVideo({ intro }: Props) {
   const [minimized, setMinimized] = useState(false);
   const [canMinimize, setCanMinimize] = useState(false);
   const onScreen = useRef(false);
+  const foldRef = useRef<HTMLDivElement>(null);
+  const [folded, setFolded] = useState(false);
+  const foldedRef = useRef(false);
+  const [time, setTime] = useState({ current: 0, total: 0 });
 
   // Ask for the file shortly before the block shows up.
   useEffect(() => {
@@ -67,13 +91,63 @@ export function IntroVideo({ intro }: Props) {
         // Minimised (picture in picture) it goes on playing while the visitor reads the rest of the page.
         if (!visible && document.pictureInPictureElement === video) return;
         if (!visible) video.pause();
-        else if (intro.autoplay && !isMotionReduced() && !userPaused.current) video.play().catch(() => {});
+        else if (intro.autoplay && !isMotionReduced() && !userPaused.current && !foldedRef.current) video.play().catch(() => {});
       },
       { threshold: 0.35 },
     );
     io.observe(root);
     return () => io.disconnect();
   }, [load, intro.autoplay]);
+
+  // Fold once the frame has gone off the top of the screen (from 760 px, and not while it is full screen or floating).
+  useEffect(() => {
+    const fold = foldRef.current;
+    if (!fold) return;
+    const wide = window.matchMedia(FOLD_MEDIA);
+    const io = new IntersectionObserver((entries) => {
+      const entry = entries[entries.length - 1];
+      if (!entry || entry.isIntersecting || entry.boundingClientRect.bottom > 0) return;
+      if (!wide.matches || foldedRef.current || document.fullscreenElement || document.pictureInPictureElement) return;
+      const lost = fold.offsetHeight;
+      const root = document.documentElement;
+      // Our own correction, not the browser's scroll anchoring as well: the two together would scroll twice.
+      const anchoring = root.style.overflowAnchor;
+      root.style.overflowAnchor = "none";
+      videoRef.current?.pause();
+      foldedRef.current = true;
+      flushSync(() => setFolded(true));
+      window.scrollBy({ top: -(lost - fold.offsetHeight), behavior: "instant" });
+      requestAnimationFrame(() => {
+        root.style.overflowAnchor = anchoring;
+      });
+    });
+    io.observe(fold);
+    return () => io.disconnect();
+  }, []);
+
+  const unfold = useCallback(() => {
+    foldedRef.current = false;
+    setFolded(false);
+    userPaused.current = false;
+    videoRef.current?.play().catch(() => {});
+  }, []);
+
+  // The playback bar follows the video's own clock.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const sync = () => setTime({ current: video.currentTime, total: Number.isFinite(video.duration) ? video.duration : 0 });
+    const events = ["timeupdate", "durationchange", "loadedmetadata", "seeked"] as const;
+    events.forEach((e) => video.addEventListener(e, sync));
+    return () => events.forEach((e) => video.removeEventListener(e, sync));
+  }, [load]);
+
+  const seek = useCallback((value: number) => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = value;
+    setTime((t) => ({ ...t, current: value }));
+  }, []);
 
   const toggle = useCallback(() => {
     const video = videoRef.current;
@@ -191,50 +265,81 @@ export function IntroVideo({ intro }: Props) {
           {intro.title}
         </h3>
         <p className={styles.barText}>{intro.barText}</p>
+        {folded ? (
+          <span className={styles.unfold}>
+            <button type="button" className={styles.control} onClick={unfold} aria-expanded={false} aria-controls={`${intro.anchor}-frame`} aria-label={intro.controls.unfold} title={intro.controls.unfold}>
+              <ChevronIcon size={22} />
+            </button>
+          </span>
+        ) : null}
       </div>
-      <div ref={frameRef} className={styles.frame} style={intro.poster ? { backgroundImage: `url(${intro.poster})` } : undefined}>
-        {intro.src && !failed ? (
-          <video
-            ref={videoRef}
-            className={styles.video}
-            aria-label={intro.videoLabel}
-            poster={intro.poster ?? undefined}
-            preload="none"
-            muted
-            playsInline
-            loop={intro.loop}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            onError={() => setFailed(true)}
-          >
-            {load ? <source src={intro.src} type={intro.type} onError={() => setFailed(true)} /> : null}
-          </video>
-        ) : null}
-        {showControls ? (
-          <div className={styles.controls}>
-            {canShare ? (
-              <button type="button" className={styles.control} onClick={share} aria-label={intro.controls.share} title={intro.controls.share}>
-                <ShareIcon size={24} />
-              </button>
+      <div ref={foldRef} id={`${intro.anchor}-frame`} className={styles.fold} data-folded={folded ? "" : undefined} inert={folded}>
+        <div className={styles.foldInner}>
+          <div ref={frameRef} className={styles.frame} style={intro.poster ? { backgroundImage: `url(${intro.poster})` } : undefined}>
+            {intro.src && !failed ? (
+              <video
+                ref={videoRef}
+                className={styles.video}
+                aria-label={intro.videoLabel}
+                poster={intro.poster ?? undefined}
+                preload="none"
+                muted
+                playsInline
+                loop={intro.loop}
+                onPlay={() => setPlaying(true)}
+                onPause={() => setPlaying(false)}
+                onError={() => setFailed(true)}
+              >
+                {load ? <source src={intro.src} type={intro.type} onError={() => setFailed(true)} /> : null}
+              </video>
             ) : null}
-            {canFullscreen ? (
-              <button type="button" className={styles.control} onClick={toggleFullscreen} aria-label={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} title={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} aria-pressed={fullscreen}>
-                {fullscreen ? <FullscreenExitIcon size={24} /> : <FullscreenIcon size={24} />}
-              </button>
+            {showControls ? (
+              <div className={styles.controls}>
+                {canShare ? (
+                  <button type="button" className={styles.control} onClick={share} aria-label={intro.controls.share} title={intro.controls.share}>
+                    <ShareIcon size={24} />
+                  </button>
+                ) : null}
+                {canFullscreen ? (
+                  <button type="button" className={styles.control} onClick={toggleFullscreen} aria-label={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} title={fullscreen ? intro.controls.exitFullscreen : intro.controls.fullscreen} aria-pressed={fullscreen}>
+                    {fullscreen ? <FullscreenExitIcon size={24} /> : <FullscreenIcon size={24} />}
+                  </button>
+                ) : null}
+                {canMinimize ? (
+                  <button type="button" className={styles.control} onClick={toggleMinimized} aria-label={minimized ? intro.controls.exitMinimize : intro.controls.minimize} title={minimized ? intro.controls.exitMinimize : intro.controls.minimize} aria-pressed={minimized}>
+                    {minimized ? <PictureInPictureExitIcon size={24} /> : <PictureInPictureIcon size={24} />}
+                  </button>
+                ) : null}
+                <button type="button" className={styles.control} onClick={toggleSound} aria-label={muted ? intro.controls.unmute : intro.controls.mute} title={muted ? intro.controls.unmute : intro.controls.mute} aria-pressed={!muted}>
+                  {muted ? <SoundOffIcon size={24} /> : <SoundOnIcon size={24} />}
+                </button>
+              </div>
             ) : null}
-            {canMinimize ? (
-              <button type="button" className={styles.control} onClick={toggleMinimized} aria-label={minimized ? intro.controls.exitMinimize : intro.controls.minimize} title={minimized ? intro.controls.exitMinimize : intro.controls.minimize} aria-pressed={minimized}>
-                {minimized ? <PictureInPictureExitIcon size={24} /> : <PictureInPictureIcon size={24} />}
-              </button>
+            {showControls ? (
+              <div className={styles.transport}>
+                <button type="button" className={styles.control} onClick={toggle} aria-label={playing ? intro.controls.pause : intro.controls.play} title={playing ? intro.controls.pause : intro.controls.play}>
+                  {playing ? <PauseIcon size={24} /> : <PlayIcon size={24} />}
+                </button>
+                <input
+                  type="range"
+                  className={styles.seek}
+                  min={0}
+                  max={time.total || 0}
+                  step={0.1}
+                  value={Math.min(time.current, time.total || 0)}
+                  disabled={!time.total}
+                  onChange={(e) => seek(Number(e.currentTarget.value))}
+                  aria-label={intro.controls.seek}
+                  aria-valuetext={format(intro.controls.seekValue, { current: clock(time.current), total: clock(time.total) })}
+                  style={{ "--seek-progress": `${time.total ? (time.current / time.total) * 100 : 0}%` } as CSSProperties}
+                />
+                <span className={styles.time} aria-hidden="true">
+                  {clock(time.current)} / {clock(time.total)}
+                </span>
+              </div>
             ) : null}
-            <button type="button" className={styles.control} onClick={toggleSound} aria-label={muted ? intro.controls.unmute : intro.controls.mute} title={muted ? intro.controls.unmute : intro.controls.mute} aria-pressed={!muted}>
-              {muted ? <SoundOffIcon size={24} /> : <SoundOnIcon size={24} />}
-            </button>
-            <button type="button" className={styles.control} onClick={toggle} aria-label={playing ? intro.controls.pause : intro.controls.play} title={playing ? intro.controls.pause : intro.controls.play}>
-              {playing ? <PauseIcon size={24} /> : <PlayIcon size={24} />}
-            </button>
           </div>
-        ) : null}
+        </div>
       </div>
     </div>
   );
