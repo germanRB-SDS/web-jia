@@ -31,3 +31,8 @@ graphify-out/
 # Assets de vídeo en bruto (>2 GB): exceden el límite de 100 MB de GitHub y el tope de 2 GB de LFS.
 # Se quedan solo en disco; distribúyelos por Drive u otro alojamiento.
 assets/videos-website/
+
+# Paquetes de entrega y copias originales ya versionadas; conservar solo en disco.
+/assets/EXPERIENCIAS DE ÉXITO-20260929T165740Z-1-001.zip
+/assets/cube-staff-final/ASESORÍAS, TALLERISTAS, COLABORACIONES PNG-20260929T161452Z-1-001.zip
+/assets/images-staff-success-stories/originales/
