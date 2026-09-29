@@ -12,15 +12,16 @@ type Props = {
   children: ReactNode;
 };
 
-/** The cards form a fan, then unfold into a native scroll-snap track — at every width since [57-0]; it was the
- * phone's presentation and desktop kept a grid. A separate button owns the first tap, so it cannot open a sheet. */
+/** The same cards form a mobile fan, then unfold into a native scroll-snap track.
+ * Desktop retains the grid. A separate button owns the first tap, so it cannot open a sheet. */
 export function TalleresCarrusel({ labels, children }: Props) {
   const trackId = useId();
+  const [mobile, setMobile] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const focusOnExpand = useRef(false);
   const explored = useRef(false);
   const suppressHover = useRef(false);
-  const collapsed = !expanded;
+  const collapsed = mobile && !expanded;
   const trackRef = useRef<HTMLDivElement>(null);
   const [ends, setEnds] = useState({ start: true, end: false });
 
@@ -53,16 +54,24 @@ export function TalleresCarrusel({ labels, children }: Props) {
   }, [read]);
 
   useEffect(() => {
+    const query = window.matchMedia(CFG.mobileMedia);
+    const update = () => setMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
     read();
     if (expanded && focusOnExpand.current) {
       trackRef.current?.focus({ preventScroll: true });
       focusOnExpand.current = false;
     }
-  }, [expanded, read]);
+  }, [expanded, mobile, read]);
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!expanded || !track) return;
+    if (!mobile || !expanded || !track) return;
     const section = track.closest('[role="region"]') ?? track;
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting && !document.querySelector("dialog[open]") && !track.contains(document.activeElement)) {
@@ -72,13 +81,13 @@ export function TalleresCarrusel({ labels, children }: Props) {
     });
     observer.observe(section);
     return () => observer.disconnect();
-  }, [expanded]);
+  }, [mobile, expanded]);
 
   // Exploration lasts for this document. The opening gesture deliberately never reaches these listeners.
   useEffect(() => {
     const track = trackRef.current;
     const deck = track?.parentElement;
-    if (!expanded || !track || !deck) return;
+    if (!mobile || !expanded || !track || !deck) return;
     let disposed = false;
     let timer = 0;
     let visible = false;
@@ -180,7 +189,7 @@ export function TalleresCarrusel({ labels, children }: Props) {
       window.removeEventListener("blur", blur);
       window.removeEventListener("focus", refresh);
     };
-  }, [expanded]);
+  }, [mobile, expanded]);
 
   // Programme/related links must still reach an individual workshop in a closed deck.
   useEffect(() => {
@@ -213,8 +222,8 @@ export function TalleresCarrusel({ labels, children }: Props) {
 
   return (
     <div className={styles.deck} onPointerLeave={() => { suppressHover.current = false; }} data-expanded={expanded ? "" : undefined} style={{ "--workshop-count": Children.count(children), "--poster-inset": CFG.posterInset } as CSSProperties}>
-      {/* A scrollable box needs to be reachable from the keyboard — but only while it scrolls: if every card
-          already fits it would be one more empty stop on the way to them. */}
+      {/* A scrollable box needs to be reachable from the keyboard — but only while it scrolls: on a
+          wide window this is a plain grid and would be one more empty stop on the way to the cards. */}
       <div id={trackId} ref={trackRef} className={styles.grid} inert={collapsed} role="group" aria-label={labels.region} tabIndex={collapsed ? undefined : ends.start && ends.end ? -1 : 0}>
         {children}
       </div>

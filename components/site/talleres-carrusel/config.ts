@@ -1,5 +1,6 @@
-/** One owner for the workshop deck's geometry and visit interaction policy (every width since [57-0]). */
+/** One owner for the workshop deck's mobile geometry and visit interaction policy. */
 export const WORKSHOP_DECK = {
+  mobileMedia: "(max-width: 759.98px)",
   idleMs: 5000,
   gestureThresholdPx: 6,
   gestureTailMs: 750,
