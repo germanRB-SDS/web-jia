@@ -143,6 +143,14 @@ for f in assets/cep/talleres-carteles/*.png; do
   magick "$f" -resize 1000x -strip -quality 80 "public/talleres/cartel-$n-1000.webp"
 done
 
+# Workshop posters in use (1414x2000, supplied on 2026-09-29, [55-0]): one per workshop, read from the promoter's
+# inbox, where they stay. The nine above are kept, unused: originals are never overwritten.
+for f in assets/whatsapp/section-talleres/*.png; do
+  n=$(basename "$f" .png)
+  magick "$f" -resize 560x -strip -quality 80 "public/talleres/cartel-2026-09-29-$n-560.webp"
+  magick "$f" -resize 1000x -strip -quality 80 "public/talleres/cartel-2026-09-29-$n-1000.webp"
+done
+
 # Team cards (1414x2000). The «Experiencia de éxito» cards supplied on 2026-09-29 ([55-0]) are read from the
 # promoter's inbox, where they stay; their numbers do not clash with images-staff.
 for f in assets/images-staff/*.png assets/whatsapp/item-cubo/*.png; do

@@ -39,6 +39,20 @@ function poster(n: number): Media {
 /** Team cards supplied on 2026-09-29 (JIA [55-0]): read from the promoter's inbox, where they stay. */
 const CARDS_2026_09_29 = new Set([59, 60, 61, 62, 65, 66, 67]);
 
+/** The workshop posters supplied on 2026-09-29 (JIA [55-0]): one per workshop with all its people, new photographs. */
+function poster20260929(n: number): Media {
+  return {
+    id: `poster-2026-09-29-${n}`,
+    variants: [
+      { src: `/talleres/cartel-2026-09-29-${n}-560.webp`, width: 560 },
+      { src: `/talleres/cartel-2026-09-29-${n}-1000.webp`, width: 1000 },
+    ],
+    ratio: POSTER_RATIO,
+    original: `assets/whatsapp/section-talleres/${n}.png`,
+    license: "Material del CEP de Almería para las JIA (uso interno del proyecto)",
+  };
+}
+
 function card(n: number): Media {
   return {
     id: `card-${n}`,
@@ -281,6 +295,7 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Sello #JIA26 aportado por el promotor (chat, 19-09-2026)",
     },
     ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map(poster),
+    ...[1, 2, 3, 4, 5, 6].map(poster20260929),
     ...CARD_NUMBERS.map(card),
     ...COLLABORATOR_SLUGS.map(collaborator),
   ].map((m) => [m.id, m]),
