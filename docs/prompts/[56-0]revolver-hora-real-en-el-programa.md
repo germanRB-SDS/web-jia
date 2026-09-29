@@ -25,7 +25,7 @@ material. Esta sección es memoria: **execute from `## Status` onward**.
 
 ## Status
 
-**PENDING**
+**EXECUTED** (29-09-2026): commits 0dd3ed6, e5c5f5a, 106e5f6, 4420853 y 968aab4; informe en [`docs/prompts-output/[56-0]/report.md`](../prompts-output/[56-0]/report.md). Revólver validado por el promotor y oculto (sin vista previa) hasta el 16-10-2026.
 
 ## Alcance y autoridad
 
