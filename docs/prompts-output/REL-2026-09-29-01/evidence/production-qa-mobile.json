@@ -1,0 +1,136 @@
+{
+  "viewport": {
+    "l": 0,
+    "t": 289.546875,
+    "w": 390,
+    "h": 265.1875
+  },
+  "sectionW": 390,
+  "guard": {
+    "vpLeft": 0,
+    "photoGuard52": 202.8,
+    "ok": true
+  },
+  "fitsInSection": true,
+  "posters": {
+    "count": 7,
+    "labels": [
+      "Gabi Moral",
+      "Rub\u00e9n L\u00f3pez",
+      "Toni Navarro",
+      "Gonzalo Carretero",
+      "Mar\u00eda L\u00f3pez",
+      "Pilar D\u00edaz",
+      "Cristina Robles / Le\u00f3n"
+    ],
+    "srcs": "1234567",
+    "tabbable": 7,
+    "hiddenSets": 2,
+    "ids": 0
+  },
+  "alignment": {
+    "first": {
+      "l": 26.93,
+      "t": 18.67,
+      "ratio": 0.707,
+      "loaded": true,
+      "fw": 189,
+      "fh": 194.66
+    },
+    "sameEveryFrame": true,
+    "stableOverTime": true,
+    "allLoaded": true,
+    "ratio": 0.707
+  },
+  "drift": {
+    "moved3s": -54.3,
+    "expect": "\u2248 -54 (18 px/s, left to right)"
+  },
+  "scroll": {
+    "sw": 390,
+    "cw": 390,
+    "swWithoutSection": 390
+  },
+  "fadeHit": "FilmReel_shield__e3l_5",
+  "viewer": {
+    "opened": true,
+    "expectPoster": 1,
+    "src": "1@1000",
+    "img": {
+      "l": 59,
+      "t": 236,
+      "w": 273,
+      "h": 386,
+      "ratio": 0.707
+    },
+    "x": {
+      "l": 302,
+      "t": 222,
+      "w": 44,
+      "h": 44,
+      "inView": true,
+      "name": "Cerrar imagen"
+    },
+    "focus": true,
+    "vw": 390,
+    "vh": 844,
+    "wPctVw": 70,
+    "hPctVh": 45.7
+  },
+  "viewerPausesStrip": true,
+  "xCloses": true,
+  "groundTapCloses": true,
+  "scrollKept": true,
+  "htmlOverflowRestored": true,
+  "keyboard": [
+    {
+      "i": "0",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "1",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "2",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "3",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "4",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "5",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "6",
+      "fv": true,
+      "clear": true
+    }
+  ],
+  "keyboardOk": true,
+  "enterOpens": true,
+  "enterFocusOnX": true,
+  "focusReturned": true,
+  "controls": [
+    "Pausar la pel\u00edcula"
+  ],
+  "errors": [],
+  "environment": {
+    "url": "https://jornadasdeinnovacion.com/almeria-2026",
+    "release": "20260929-bf682a8",
+    "harness": "docs/prompts-output/[61-0]/evidence/qa.mjs (URL changed only)",
+    "production": true
+  }
+}

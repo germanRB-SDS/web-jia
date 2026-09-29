@@ -15,8 +15,4 @@
 
 ## Último estado verificado
 
-2026-09-25 [54-0] G: release activa releases/20260925-b1adf52, código b1adf52. Propietario renovó permiso de publicación y autenticó sudo en launcher nuevo. HTML local/origen/público SHA coincidente; 10 checks HTTP (43 recursos, vídeo206) y 27 checks de popup público PASS, incluyendo excepción Apple simulada. Caddy/configuración sin cambios; anterior releases/20260925-5ff471c conservada. Excepción SSH consumida. Ver [cierre y evidencia](../prompts-output/[54-0]/deployment-popup-closure.md).
-
-## Publicación preparada, pendiente de activar
-
-2026-09-29 REL-2026-09-29-01: GitHub actualizado; release `20260929-bf682a8` compilada y transferida, hashes verificados. Activación bloqueada por revisión automática (admisión Hostinger/custodia independiente), pese a autorización SSH del propietario. Producción conserva `releases/20260925-b1adf52`. [Estado y activación manual](../prompts-output/REL-2026-09-29-01/report.md). No repetir upload ni afirmar desplegado.
+2026-09-29 REL-2026-09-29-01: release activa `releases/20260929-bf682a8`, código bf682a8 (producto 0fa2287). El propietario ejecutó manualmente la activación preparada tras el rechazo del agente por la revisión automática de admisión/custodia Hostinger. HTML build/origen/público idéntico; 8 checks HTTP (193 recursos y vídeo206) y Chrome público 1440×900 / 390×844 PASS. Caddy/configuración/PID conservados; anterior `releases/20260925-b1adf52` retenida. [Informe final](../prompts-output/REL-2026-09-29-01/report.md) y [explicación de la activación manual](../prompts-output/REL-2026-09-29-01/por-que-activacion-manual.md). Autorización puntual consumida; no crea admisión permanente. HTTP con Python recibió 403; curl/Chrome y origen verificaron la entrega, sin cambiar controles.

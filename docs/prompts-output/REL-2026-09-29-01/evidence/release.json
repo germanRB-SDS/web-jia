@@ -20,8 +20,22 @@
   },
   "caddy_pid": 9241,
   "staging": "/home/sdsadmin/web-jia-release-review-HyREwzOk",
-  "status": "STAGED_NOT_ACTIVATED",
+  "status": "ACTIVATED_VERIFIED",
   "github_pushed_commit": "bf682a8dca14cd3f7461f1a5714e04cbecf7eba5",
   "remote_checksums": "PASS",
-  "activation_blocker": "Automatic approval review rejected sudo activation twice: Hostinger project admission and independent secret custody not established, despite scoped SSH authorization."
+  "activation_method": "Owner manually executed the prepared command in their terminal; confirmed in conversation.",
+  "activation_blocker_history": "Automatic approval review rejected sudo activation twice: Hostinger project admission and independent secret custody not established, despite scoped SSH authorization.",
+  "verification": {
+    "current": "releases/20260929-bf682a8",
+    "origin_html_sha256": "8e1c09cbcfa4b9faf047852fe061b87eb51105aa85c13f03e2abf3412c15c51b",
+    "public_html_sha256": "8e1c09cbcfa4b9faf047852fe061b87eb51105aa85c13f03e2abf3412c15c51b",
+    "caddy_configuration_unchanged": true,
+    "caddy_pid": 9241,
+    "caddy_active_enter_timestamp_monotonic": 220329065170,
+    "http_checks": 8,
+    "http_resources": 193,
+    "browser_desktop": "PASS 1440x900",
+    "browser_mobile": "PASS 390x844",
+    "python_http_client": "403 observed; retained separately; curl and Chrome public verification PASS"
+  }
 }

@@ -1,6 +1,10 @@
 # Cómo desplegar web-jia
 
-## Último despliegue comprobado — [54-0] G
+## Último despliegue comprobado — REL-2026-09-29-01
+
+29-09-2026: `current -> releases/20260929-bf682a8`; anterior `releases/20260925-b1adf52` conservada. Activación manual del propietario, verificación posterior de solo lectura. HTML build/origen/público coincidente; 8 checks HTTP, 193 recursos, vídeo206 y Chrome escritorio/móvil PASS. Caddy sin cambios. [Informe y evidencia](../../../../docs/prompts-output/REL-2026-09-29-01/report.md), [motivo de la intervención manual](../../../../docs/prompts-output/REL-2026-09-29-01/por-que-activacion-manual.md). No volver a ejecutar el comando histórico ni interpretar esta entrega como admisión permanente del agente.
+
+## Publicación anterior — [54-0] G
 
 25-09-2026: release activa `releases/20260925-b1adf52`, código `b1adf52`; previa `releases/20260925-5ff471c` conservada. El propietario renovó explícitamente permiso para publicar la revisión del popup en esta misma operación SSH y autenticó sudo en el launcher nuevo del staging `/home/sdsadmin/web-jia-release-review-uk3Txv/`. No reejecutarlo. Autorización de esta publicación consumida; no crea permiso permanente ni admisión MCP.
 

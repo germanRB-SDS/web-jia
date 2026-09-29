@@ -1,0 +1,704 @@
+{
+  "url": "https://jornadasdeinnovacion.com/almeria-2026",
+  "checks": [
+    {
+      "name": "public HTML matches built artifact",
+      "pass": false,
+      "detail": {
+        "status": 403,
+        "sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c"
+      }
+    },
+    {
+      "name": "canonical",
+      "pass": false,
+      "detail": "expected edition canonical"
+    },
+    {
+      "name": "redirect /?verify=jia",
+      "pass": false,
+      "detail": {
+        "status": 403,
+        "location": ""
+      }
+    },
+    {
+      "name": "redirect /almeria-2026/?verify=jia",
+      "pass": false,
+      "detail": {
+        "status": 403,
+        "location": ""
+      }
+    },
+    {
+      "name": "redirect /almeria-2026.html?verify=jia",
+      "pass": false,
+      "detail": {
+        "status": 403,
+        "location": ""
+      }
+    },
+    {
+      "name": "unknown URL 404",
+      "pass": false,
+      "detail": 403
+    },
+    {
+      "name": "referenced and new media resources",
+      "pass": false,
+      "detail": 128
+    },
+    {
+      "name": "video byte-range",
+      "pass": false,
+      "detail": {
+        "path": "/jornadas/intro/intro-720.mp4",
+        "status": 403,
+        "bytes": 17,
+        "type": "text/plain; charset=UTF-8"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "path": "/cubo/cubo-10-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-10-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-11-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-11-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-12-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-12-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-13-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-13-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-14-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-14-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-15-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-15-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-16-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-16-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-17-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-17-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-18-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-18-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-19-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-19-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-20-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-20-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-21-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-21-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-22-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-22-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-23-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-23-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-24-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-24-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-25-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-25-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-26-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-26-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-27-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-27-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-28-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-28-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-29-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-29-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-30-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-30-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-31-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-31-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-32-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-32-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-33-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-33-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-34-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-34-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-35-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-35-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-36-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-36-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-37-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-37-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-38-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-38-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-39-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-39-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-40-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-40-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-41-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-41-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-42-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-42-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-43-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-43-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-44-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-44-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-45-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-45-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-46-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-46-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-47-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-47-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-48-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-48-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-49-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-49-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-50-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-50-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-51-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-51-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-52-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-52-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-53-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-53-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-54-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-54-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-55-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-55-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-56-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-56-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-57-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-57-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-58-420.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/cubo/cubo-58-800.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-1-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-1-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-1-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-1-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-2-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-2-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-2-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-2-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-3-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-3-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-3-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-3-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-4-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-4-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-4-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-4-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-5-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-5-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-5-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-5-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-6-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-6-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-6-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-6-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-7-1000.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-7-1414.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-7-240.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/exito-7-480.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/fotograma-400.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    },
+    {
+      "path": "/experiencias/reel/manchas-1200.webp",
+      "status": 403,
+      "type": "text/plain; charset=UTF-8"
+    }
+  ]
+}
