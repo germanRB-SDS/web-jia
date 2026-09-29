@@ -202,7 +202,8 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 18-09-2026 (origen y licencia por confirmar)",
     },
     {
-      /** Propuestas visual column in use (JIA-2026-09-20-46): the fireside conversation about the next theme.
+      /** Propuestas visual column in use (JIA-2026-09-20-46): the fireside conversation about the next theme (second
+          version since [58-0]: same scene and framing, a different woman on the left).
           Since JIA-2026-09-20-47 the column shows it whole, with a straight edge against the band's left half
           and nothing painted over it, so the framing is the focal point's job alone. From 1280 px up the
           column's proportion is a constant 1,240 (0,53 of the window over the height of the band above), so
@@ -217,8 +218,8 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       ],
       ratio: 1672 / 941,
       focal: { x: 78, y: 40 },
-      original: "assets/images-website/hoguera-nuevos-temas.png",
-      license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
+      original: "assets/images-website/hoguera-02.png",
+      license: "Imagen aportada por el promotor el 29-09-2026, en sustitución de la del 20-09-2026 (origen y licencia por confirmar)",
     },
     {
       /** Footer ground (JIA-2026-09-19-40): a stable in half light, a horse's legs against the door and, on the right,

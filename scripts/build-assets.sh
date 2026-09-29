@@ -85,10 +85,11 @@ magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%
 magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%+0+0 +repage -strip -quality 82 "public/propuestas/camara-1059.webp"
 
 # Propuestas visual column in use: the fireside conversation about the next theme supplied by the promoter
-# (hoguera-nuevos-temas.png, 1672x941, 2026-09-20). No crop: the column's veil already decides how much of the
-# left of the frame is read. The vault stays above, unused: originals are never overwritten nor renamed.
-magick assets/images-website/hoguera-nuevos-temas.png -resize 960x -strip -quality 80 "public/propuestas/hoguera-960.webp"
-magick assets/images-website/hoguera-nuevos-temas.png -strip -quality 82 "public/propuestas/hoguera-1672.webp"
+# (hoguera-02.png, 1672x941, 2026-09-29, [58-0]: the same scene as hoguera-nuevos-temas.png of 2026-09-20, which
+# stays beside it unused, with a different woman on the left). No crop: the column's veil already decides how much
+# of the left of the frame is read. The vault stays above, unused: originals are never overwritten nor renamed.
+magick assets/images-website/hoguera-02.png -resize 960x -strip -quality 80 "public/propuestas/hoguera-960.webp"
+magick assets/images-website/hoguera-02.png -strip -quality 82 "public/propuestas/hoguera-1672.webp"
 
 # Experiencias ground: the teacher in her classroom supplied by the promoter (aula-maestra3.png, 1919x820,
 # third version, supplied on 2026-09-20 — now she faces the room). She holds the left and the right half is
