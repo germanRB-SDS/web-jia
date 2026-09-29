@@ -313,15 +313,22 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
 .compact .foot { grid-row: 3; }
 .compact .download { grid-row: 4; }
 
-/* Workshops omit the people/theme preview rows. Their full details remain in the dialog. */
-@media (min-width: 760px) {
-  .workshop { grid-row: auto; grid-template-rows: auto; row-gap: 0.25rem; }
-  .workshop .foot { grid-row: 4; margin-top: 0; }
-  .workshop .download { grid-row: 5; margin-top: 0; }
-  .workshop .title, .workshop .subtitle { min-height: 0; }
-}
+/* A workshop card is a card of the deck at every width ([57-0], it used to be the phone's only): it lays
+   itself out (no neighbour in a grid to line rows up with), and under the poster there are only its two
+   actions — the title, the subtitle, the who, the theme and the summary are all in the sheet. */
+.workshop { grid-row: auto; grid-template-rows: auto; }
+.workshop > .media,
+.workshop .foot,
+.workshop .download { grid-row: auto; }
+.workshop .body > .title,
+.workshop .body > .subtitle,
+.workshop .body > .who,
+.workshop .body > .theme,
+.workshop .reveal { display: none; }
+.workshop:hover .surface,
+.workshop:focus-within .surface { transform: none; }
 
-/* Workshops keep their full copy in the sheet; the mobile row is just posters and actions. */
+/* The workshop's sheet on a phone: full screen, the poster floated beside the copy. */
 @media (max-width: 759.98px) {
   .workshop .sheet {
     display: flow-root;
@@ -339,22 +346,13 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   .workshop .fields { display: block; }
   .workshop .field { margin-top: 1rem; }
   .workshop .related { margin-top: 1rem; }
-  .workshop .body > .title,
-  .workshop .body > .subtitle,
-  .workshop .body > .who,
-  .workshop .body > .theme,
-  .workshop .reveal { display: none; }
-  .workshop:hover .surface,
-  .workshop:focus-within .surface { transform: none; }
 }
 
 /* Reserve the unchanged workshop cell for the scaled, perspective-projected picture.
-   Only the expanded mobile track opts in; dialogs and the closed fan retain their sizes. */
-@media (max-width: 759.98px) {
-  :global([data-expanded]) .workshop > .media { aspect-ratio: 1414 / 2000; }
-  :global([data-expanded]) .workshop > .media > div {
-    position: absolute;
-    inset: var(--poster-inset);
-  }
-  :global([data-expanded]) .workshop > .media::before { top: calc(var(--poster-inset) - 6px); }
+   Only the expanded track opts in; dialogs and the closed fan retain their sizes. */
+:global([data-expanded]) .workshop > .media { aspect-ratio: 1414 / 2000; }
+:global([data-expanded]) .workshop > .media > div {
+  position: absolute;
+  inset: var(--poster-inset);
 }
+:global([data-expanded]) .workshop > .media::before { top: calc(var(--poster-inset) - 6px); }
