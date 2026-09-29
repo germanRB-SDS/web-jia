@@ -25,7 +25,7 @@ sección es memoria: **execute from `## Status` onward**.
 
 ## Status
 
-**PENDING**
+**EXECUTED** (29-09-2026): commits 27db415, 09cd9eb y 71e003e; informe en [`docs/prompts-output/[58-0]/report.md`](../prompts-output/[58-0]/report.md). Push pendiente del OK del promotor.
 
 ## Alcance y autoridad
 
