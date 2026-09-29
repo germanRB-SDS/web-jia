@@ -123,7 +123,8 @@
 .sub + .sub { border-top: 1px solid var(--jia-line); }
 /* A spread with a picture behind it ([59-0], Talleres): edge to edge (html/body clip the overflow), faded into
    the paper at the top and the bottom, only from 760 px. The spread's own content stays above it. 44 %: a fifth
-   softer than the first 55 % (promoter, 29-09-2026). */
+   softer than the first 55 % (promoter, 29-09-2026). Its height is --backdrop-block when the spread's content sets
+   it (the workshops: down to halfway between their first and second rows); otherwise the whole spread. */
 .subBacked { position: relative; isolation: isolate; }
 .backdrop { display: none; }
 @media (min-width: 760px) {
@@ -131,7 +132,10 @@
     display: block;
     position: absolute;
     z-index: -1;
-    inset: 0 calc(50% - 50vw);
+    top: 0;
+    left: calc(50% - 50vw);
+    right: calc(50% - 50vw);
+    height: var(--backdrop-block, 100%);
     overflow: hidden;
     opacity: 0.44;
     pointer-events: none;

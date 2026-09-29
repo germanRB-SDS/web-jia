@@ -53,6 +53,33 @@ export function TalleresCarrusel({ labels, children }: Props) {
     };
   }, [read]);
 
+  // The spread's backdrop (Section.module.css › .backdrop) covers the first row of the grid and no more: it ends
+  // halfway between the first row and the second (promoter, [59-0]). Its height is set on the spread as
+  // --backdrop-block, measured, because the row's height follows the text and the width. One row: all of it.
+  useEffect(() => {
+    const track = trackRef.current;
+    const spread = track?.closest<HTMLElement>('[role="region"]');
+    if (!track || !spread) return;
+    const measure = () => {
+      const cards = Array.from(track.children) as HTMLElement[];
+      const first = cards[0];
+      const next = first ? cards.find((c) => c.offsetTop > first.offsetTop) : undefined;
+      if (!first || !next) {
+        spread.style.removeProperty("--backdrop-block");
+        return;
+      }
+      const end = (first.getBoundingClientRect().bottom + next.getBoundingClientRect().top) / 2;
+      spread.style.setProperty("--backdrop-block", `${Math.round(end - spread.getBoundingClientRect().top)}px`);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(track);
+    return () => {
+      observer.disconnect();
+      spread.style.removeProperty("--backdrop-block");
+    };
+  }, []);
+
   useEffect(() => {
     const query = window.matchMedia(CFG.mobileMedia);
     const update = () => setMobile(query.matches);

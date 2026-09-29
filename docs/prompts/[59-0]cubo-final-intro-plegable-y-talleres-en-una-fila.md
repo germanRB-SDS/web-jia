@@ -115,3 +115,9 @@ con los mismos 49 ficheros (es solo el archivo comprimido: no se usa ni se versi
 - Se deshace la fila: desde 760 px vuelve la rejilla de antes (`TalleresCarrusel.module.css`, igual que en 2f8b8fa).
   En la rejilla nada recorta la tarjeta. Se mantienen los carteles actuales y la mesa de fondo al 44 %. Móvil: la
   baraja, sin cambios.
+- Ajuste (promotor, chat, 29-09-2026): la mesa de fondo, **solo detrás de la primera fila** de tarjetas; la segunda
+  va sobre el beis liso. `TalleresCarrusel` mide dónde termina la primera fila (a medio camino de la segunda) y lo
+  pasa a la subsección como `--backdrop-block`, que es la altura de `.backdrop`. Con una sola fila, o en móvil, no
+  hay variable y el fondo cubre la subsección entera, como antes. Comprobado en Chrome: a 1440 px el fondo mide 709 px
+  (primera fila hasta 689, segunda desde 729); a 1024 px, con 2 columnas, también cubre solo la primera. El hover de
+  la tarjeta de la derecha se ve entero.
