@@ -1,0 +1,3 @@
+type Media = {id: string; ratio: number; variants: {src: string; width: number}[]};
+export const media: Media[] = Array.from({length: 6}, (_, i) => ({id: `sample-${i+1}`, ratio: 400/566, variants: [{src: `/media/sample-${i+1}.svg`, width: 400}]}));
+export const content = {title: "El equipo en un cubo", items: media.map((m,i) => ({id: m.id, title: `Persona ${i+1}`, subtitle: "Equipo creativo", alt: `Composición ${i+1}`, image: {src: m.variants[0].src, width: 400, height: 566}})), labels: {region: "Equipo", prev: "Anterior", next: "Siguiente", position: "{current} de {total}", hint: "Arrastra, usa las flechas o toca el cubo", list: "Todas las personas"}};

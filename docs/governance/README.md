@@ -33,3 +33,6 @@ Una capacidad no listada con revision/modo exactos en el ledger es `NOT_EVALUATE
 - `GOV-SAFETY`: seguridad, no regresion, permisos o secretos.
 - `GOV-CONTINUITY`: checkpoints, memorias o reanudacion.
 - `GOV-AUTOMATION`: validadores, bootstrap o checks automatizados.
+
+- 2026-09-29 · GOV-STRUCTURE · REL-2026-09-29-01: exportación de Quiénes somos,
+  tira de cine y cubo como recursos opcionales; [detalle](governance-change-log.md).

@@ -1,0 +1,1 @@
+* { box-sizing: border-box; } body { margin: 0; background: var(--wc-vellum-4); color: var(--wc-ink); } main { padding-block: 2rem; } h1 { padding-inline: var(--gutter); font-family: var(--f-display); }

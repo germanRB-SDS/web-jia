@@ -1,0 +1,3 @@
+import type { Media } from "../../component/support/types";
+export const media: Media[] = Array.from({length: 6}, (_, i) => ({id: `sample-${i+1}`, ratio: 400/566, variants: [{src: `/media/sample-${i+1}.svg`, width: 400}]}));
+export const content = {id: "about", kicker: "Equipo y colaboradores", title: "Quiénes somos", text: [{kind: "text" as const, value: "Una sección configurable para presentar a las personas y entidades que hacen posible un proyecto."}], thanks: "Arrastra las tarjetas o usa las flechas del teclado. Con ratón, pasa sobre ellas para explorar su relieve.", carousel: {label: "Colaboradores", items: media.map((m,i) => ({id: m.id, name: `Colaborador ${i+1}`, logo: m, surface: "sand", link: {href: `#sample-${i+1}`, label: `Visitar colaborador ${i+1}`}}))}};

@@ -1,0 +1,42 @@
+{
+  "slug": "cube-carousel",
+  "mode": "touch",
+  "width": 390,
+  "height": 844,
+  "checks": [
+    {
+      "name": "visible images loaded",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow",
+      "pass": true
+    },
+    {
+      "name": "autoplay advances",
+      "pass": true
+    },
+    {
+      "name": "all items reachable and wrap",
+      "pass": true
+    },
+    {
+      "name": "keyboard backwards",
+      "pass": true
+    },
+    {
+      "name": "drag changes cube",
+      "pass": true
+    },
+    {
+      "name": "accessible complete list",
+      "pass": true
+    },
+    {
+      "name": "no runtime exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

@@ -1,0 +1,65 @@
+{
+  "origin": "germanRB-SDS/web-jia",
+  "commit": "46065c560c246d804979dd5a0ea0a9ec654ba38c",
+  "resource": "film-reel",
+  "files": [
+    {
+      "source": "components/site/film-reel/FilmReel.tsx",
+      "target": "component/FilmReel.tsx",
+      "source_sha256": "928b1bc6e9f62c62bf6c337cae6d6d2e4a072e07069fc90439f188d1ba4511e1",
+      "export_sha256": "2ec7074d213dc79f8fa35c9916c36bc1581ff3f2b1fba48522194e52d118b58c"
+    },
+    {
+      "source": "components/site/film-reel/FilmReel.module.css",
+      "target": "component/FilmReel.module.css",
+      "source_sha256": "e8c8704d6e1ec561dee5028f42b490fe4ebc14e6438bfc569e75de7c2adf0b8e",
+      "export_sha256": "996a58f58b9ac3640d4a64e486a1dbd53f13ccec12f2e0864c06c321c780b711"
+    },
+    {
+      "source": "components/site/film-reel/ReelViewer.tsx",
+      "target": "component/ReelViewer.tsx",
+      "source_sha256": "c21b74e4007d007d613add0dbf584014879979dd55529643fd9304a8860425e8",
+      "export_sha256": "734f3a9e5cc702cf5f4b81690d583367e4f55b1185cde33807d4307f8fc30cc9"
+    },
+    {
+      "source": "components/site/film-reel/ReelViewer.module.css",
+      "target": "component/ReelViewer.module.css",
+      "source_sha256": "53a472448e6eadd933e8f5910cb54ed4c4e21fa3688bf5111a3d9c75f5de4562",
+      "export_sha256": "db9fc996dac6be102944f58077183a8eab1035e8a034a219e0dd7592de62a0da"
+    },
+    {
+      "source": "components/site/film-reel/config.ts",
+      "target": "component/config.ts",
+      "source_sha256": "e894aa255454b80b386547ad281a0764acb0cb1c33a8abfc11af84ed2a198c69",
+      "export_sha256": "e894aa255454b80b386547ad281a0764acb0cb1c33a8abfc11af84ed2a198c69"
+    },
+    {
+      "source": "components/site/film-reel/reel-engine.ts",
+      "target": "component/reel-engine.ts",
+      "source_sha256": "db5773f9f524f8e65b82b69e22a222b4baab45a98ad7369666b97c0a035a3425",
+      "export_sha256": "dae7495be194a23d4b23f2c077269a4d83d63d0e8667d1cd313321fcbfa50f7a"
+    },
+    {
+      "source": "components/primitives/Picture.tsx",
+      "target": "component/support/Picture.tsx",
+      "source_sha256": "01b621a856a2e68280a10f62e93d85ab33e70ccee26cbd9bf49c894fc12fef88",
+      "export_sha256": "40594da34ab95bd1090fe0d7a57f46d22b6a7fb227370f308ba7cc3f10c8dc7a"
+    },
+    {
+      "source": "components/icons/index.tsx",
+      "target": "component/support/icons.tsx",
+      "source_sha256": "2aa4c4d8dddc71260ad2d3f0a7d7c1352f818bf52a19c8c843a31c73f7f6ff47",
+      "export_sha256": "ef38ce1e46ceaf56f1e402ab37ba774d41638f5931b42b9a285ad69e71c7cceb"
+    }
+  ],
+  "adaptations": [
+    "relative local imports and structural public types",
+    "--jia-* tokens renamed to --wc-*; neutral palette in integration",
+    "system motion adapter replaces site cookie/device policy",
+    "neutral demo assets; original third-party media/fonts excluded",
+    "film neutral frame retains measured 400x412 geometry; stains optional",
+    "hover scales preview 1.08; modal still opens by click/tap/Enter/Space",
+    "empty poster list renders null",
+    "viewer close timeout tracked and cancelled on unmount; only required control icons retained"
+  ]
+}

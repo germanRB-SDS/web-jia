@@ -1,0 +1,110 @@
+{
+  "origin": "germanRB-SDS/web-jia",
+  "commit": "46065c560c246d804979dd5a0ea0a9ec654ba38c",
+  "resource": "collaborators-carousel",
+  "files": [
+    {
+      "source": "components/site/Partners.tsx",
+      "target": "component/Partners.tsx",
+      "source_sha256": "ca0b685aca4ac4fb23f68f37701b3321e8b580e1e76ac21eef816b865de2de2b",
+      "export_sha256": "f682ce6e8addf701ed8efe4a04d248bae6193740543945b1ad7c3e4db32b2b92"
+    },
+    {
+      "source": "components/site/Partners.module.css",
+      "target": "component/Partners.module.css",
+      "source_sha256": "b18600cc05e4cfce02fbed6b51551ce475e85bd902a71369115a0789c9adaeed",
+      "export_sha256": "7f81859532098459716d213ddb1e1f0fbd6a1bf42ebd1ba708fa840e7406e46f"
+    },
+    {
+      "source": "components/site/collaborators-carousel/CollaboratorsCarousel.module.css",
+      "target": "component/CollaboratorsCarousel.module.css",
+      "source_sha256": "03ad48107d69667af05941c307db705adf559f1648e5b3221a77c38751884f20",
+      "export_sha256": "db00a4c406a4d5e877e85164d67286ff9a72726fd409e40ebcabd4c077b4e46d"
+    },
+    {
+      "source": "components/site/collaborators-carousel/carousel-engine.ts",
+      "target": "component/carousel-engine.ts",
+      "source_sha256": "5a3edf33294c9e6f3e8d4e9bffa03f39a936e67f417c2b22b7ff52fc0f47220c",
+      "export_sha256": "1b5af9dc18141ff8e32d93ac31dc2bb7a61960fc2b1fab24daeeeca206730c98"
+    },
+    {
+      "source": "components/site/collaborators-carousel/CollaboratorsCarousel.tsx",
+      "target": "component/CollaboratorsCarousel.tsx",
+      "source_sha256": "cfae27ef4da779e9bb90b03b5b9d6e828aa6e8828c1ea028f7141b46248b1382",
+      "export_sha256": "1cbac3098c88c0d9a5cd445ae625a4f415ca9ac75f2a1b5565c5244a9fd9910e"
+    },
+    {
+      "source": "components/site/collaborators-carousel/CollaboratorCard.tsx",
+      "target": "component/CollaboratorCard.tsx",
+      "source_sha256": "87ffc516854049af5a6ede48b9c8d6862bc903455eb706b76948bce79977b6d6",
+      "export_sha256": "c79264c10a5372c0d282d6dd85ddb8fb43f78eadc57aaddf1e0cc689bd6d06fe"
+    },
+    {
+      "source": "components/site/collaborators-carousel/config.ts",
+      "target": "component/config.ts",
+      "source_sha256": "9f895f9d22ca2d0d8901e7208376fc6eaaf06438ac82313b67af567c245eeb5f",
+      "export_sha256": "9f895f9d22ca2d0d8901e7208376fc6eaaf06438ac82313b67af567c245eeb5f"
+    },
+    {
+      "source": "components/tilt-card/TiltCard.module.css",
+      "target": "component/tilt/TiltCard.module.css",
+      "source_sha256": "1b812e8d4ab0c3b91e4ac9c8ce88d67280bc44065e5fb279b5e136833bab1d77",
+      "export_sha256": "8623e6562fe41ce76b6a055da8abace9d70bbe7d173f7276ce1513701f6e4fe7"
+    },
+    {
+      "source": "components/tilt-card/tilt-card.ts",
+      "target": "component/tilt/tilt-card.ts",
+      "source_sha256": "bed0fdc88b6719c3b57dcf2261c4782ea803602e665eeb1ff8b80e4b895aa048",
+      "export_sha256": "bed0fdc88b6719c3b57dcf2261c4782ea803602e665eeb1ff8b80e4b895aa048"
+    },
+    {
+      "source": "components/tilt-card/TiltCard.tsx",
+      "target": "component/tilt/TiltCard.tsx",
+      "source_sha256": "a7972dfb130bec2719f5f74414472e49a4a103b155f7ca586d3731ff2111f2fe",
+      "export_sha256": "e52da31a28ec2b21f183f4353a70bcd631784fd6f60a0415b948d88261b88385"
+    },
+    {
+      "source": "components/tilt-card/config.ts",
+      "target": "component/tilt/config.ts",
+      "source_sha256": "d907c1304f8dc99ed5feff6c76ba57165bb3cc7d3b3dd45f2a1fec10f9b9b5a9",
+      "export_sha256": "d907c1304f8dc99ed5feff6c76ba57165bb3cc7d3b3dd45f2a1fec10f9b9b5a9"
+    },
+    {
+      "source": "components/primitives/Surface.tsx",
+      "target": "component/support/Surface.tsx",
+      "source_sha256": "5ee3976164f6c92dddb85c1cf2177fb399390870acb6c3157fe631219032a5b3",
+      "export_sha256": "35cfbad56fa9c00a7b8c1725b182f10089ff8957f853462719e9a0aafcabc244"
+    },
+    {
+      "source": "components/primitives/Surface.module.css",
+      "target": "component/support/Surface.module.css",
+      "source_sha256": "f92a03cfe0b9fdcc2b5a77f95a0c3d5e9e8f0500fec17caa850004ede6c7d56b",
+      "export_sha256": "f469ac1075fccc1bd8029fc27ef87d9552c5977a1ee605347ee9ab71b93a22be"
+    },
+    {
+      "source": "components/primitives/Picture.tsx",
+      "target": "component/support/Picture.tsx",
+      "source_sha256": "01b621a856a2e68280a10f62e93d85ab33e70ccee26cbd9bf49c894fc12fef88",
+      "export_sha256": "40594da34ab95bd1090fe0d7a57f46d22b6a7fb227370f308ba7cc3f10c8dc7a"
+    },
+    {
+      "source": "components/icons/index.tsx",
+      "target": "component/support/icons.tsx",
+      "source_sha256": "2aa4c4d8dddc71260ad2d3f0a7d7c1352f818bf52a19c8c843a31c73f7f6ff47",
+      "export_sha256": "488de06baca927282ea2fb508920799c4ad96efd13fae71854122531e618e848"
+    },
+    {
+      "source": "lib/motion/use-motion.ts",
+      "target": "component/support/use-motion.ts",
+      "source_sha256": "347bc9e2adce939ec188a2f2960a0e3f24d159a4d49a166f7a93495f55e7168a",
+      "export_sha256": "347bc9e2adce939ec188a2f2960a0e3f24d159a4d49a166f7a93495f55e7168a"
+    }
+  ],
+  "adaptations": [
+    "relative local imports and structural public types",
+    "--jia-* tokens renamed to --wc-*; neutral palette in integration",
+    "system motion adapter replaces site cookie/device policy",
+    "neutral demo assets; original third-party media/fonts excluded",
+    "only required ChevronIcon retained"
+  ]
+}

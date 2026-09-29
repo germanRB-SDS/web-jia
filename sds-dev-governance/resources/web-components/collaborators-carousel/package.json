@@ -1,0 +1,21 @@
+{
+  "name": "sds-collaborators-carousel-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev demo --webpack",
+    "build": "next build demo --webpack",
+    "typecheck": "tsc --noEmit -p demo/tsconfig.json"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "24.13.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
+  }
+}

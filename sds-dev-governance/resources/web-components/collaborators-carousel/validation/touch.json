@@ -1,0 +1,38 @@
+{
+  "slug": "collaborators-carousel",
+  "mode": "touch",
+  "width": 390,
+  "height": 844,
+  "checks": [
+    {
+      "name": "visible images loaded",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow",
+      "pass": true
+    },
+    {
+      "name": "idle drift",
+      "pass": true
+    },
+    {
+      "name": "only real cards tabbable",
+      "pass": true
+    },
+    {
+      "name": "keyboard navigation",
+      "pass": true
+    },
+    {
+      "name": "drag changes strip",
+      "pass": true
+    },
+    {
+      "name": "no runtime exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

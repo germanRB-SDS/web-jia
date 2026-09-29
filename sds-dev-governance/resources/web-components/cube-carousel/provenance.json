@@ -1,0 +1,55 @@
+{
+  "origin": "germanRB-SDS/web-jia",
+  "commit": "46065c560c246d804979dd5a0ea0a9ec654ba38c",
+  "resource": "cube-carousel",
+  "files": [
+    {
+      "source": "components/cube-carousel/CubeCarousel.module.css",
+      "target": "component/CubeCarousel.module.css",
+      "source_sha256": "dd2f3f5a550b68fb8a329a55a141b288973f22e9923a9aa5954cd94e999f5517",
+      "export_sha256": "6206480e49df15c38bbf99ecd58b1189fd960168b22251eee34466deb2665a22"
+    },
+    {
+      "source": "components/cube-carousel/CubeCarousel.tsx",
+      "target": "component/CubeCarousel.tsx",
+      "source_sha256": "5d92bc879717a7baea7d8a358e52b16a0ffdc4357a6a13d2e228323fb9395281",
+      "export_sha256": "b095199804fe051e6f34a79280a539d7da1ee0f87ce32c527bc0eee0466a00de"
+    },
+    {
+      "source": "components/cube-carousel/index.ts",
+      "target": "component/index.ts",
+      "source_sha256": "76f1296813dd7feefc06964dd12c7d0b97c34d5dd2fac611fb7d092533de5ed1",
+      "export_sha256": "76f1296813dd7feefc06964dd12c7d0b97c34d5dd2fac611fb7d092533de5ed1"
+    },
+    {
+      "source": "components/cube-carousel/config.ts",
+      "target": "component/config.ts",
+      "source_sha256": "704ad6d3aaad0a1e905b3ec813f878d6707369abf0b1466ea4f0fd54b499cde4",
+      "export_sha256": "704ad6d3aaad0a1e905b3ec813f878d6707369abf0b1466ea4f0fd54b499cde4"
+    },
+    {
+      "source": "components/cube-carousel/cube-engine.ts",
+      "target": "component/cube-engine.ts",
+      "source_sha256": "10fee59f1655134f026c73a3d5c1d4dce5ca04d45191fa6ae1700539405dbf69",
+      "export_sha256": "10fee59f1655134f026c73a3d5c1d4dce5ca04d45191fa6ae1700539405dbf69"
+    },
+    {
+      "source": "components/primitives/BulletHole.tsx",
+      "target": "component/support/BulletHole.tsx",
+      "source_sha256": "9c1e042156737244c09c84fa6a89a3e7c3da938c86c15d1ae56a0eb48c34cd8a",
+      "export_sha256": "9c1e042156737244c09c84fa6a89a3e7c3da938c86c15d1ae56a0eb48c34cd8a"
+    },
+    {
+      "source": "components/primitives/BulletHole.module.css",
+      "target": "component/support/BulletHole.module.css",
+      "source_sha256": "b70367ab5a5d91bf770f11026a7387a8053132c56b8b64379071353bfff7f09d",
+      "export_sha256": "b7361d9d5c40b3ae42e1f08fae9a3138cb0c4c45e6ecf2302b63fae55e10e3be"
+    }
+  ],
+  "adaptations": [
+    "relative local imports and structural public types",
+    "--jia-* tokens renamed to --wc-*; neutral palette in integration",
+    "system motion adapter replaces site cookie/device policy",
+    "neutral demo assets; original third-party media/fonts excluded"
+  ]
+}

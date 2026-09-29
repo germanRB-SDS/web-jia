@@ -1,5 +1,18 @@
 # SDS Dev Governance — Changelog
 
+## v1.31.0 — 2026-09-29
+
+Change ID: `REL-2026-09-29-01`
+
+- Add independent `resources/web-components/collaborators-carousel`, `film-reel` and `cube-carousel`,
+  extracted from web-jia with local imports/types, token mapping, motion adapter, configuration,
+  neutral assets, pinned runnable demos, provenance manifests and validation evidence.
+- Preserve the original motion engines and CSS geometry. Film export adds gentle hover zoom and
+  an empty-state guard; viewer close timer is cleaned on unmount. The source website is unchanged.
+- Extend the existing resource index; add the optional knowledge recipe for portable interactive UI.
+- No kernel, practice, adapter, scaffold, bootstrap or capability-admission change.
+- Source photographs/logos/fonts/film artwork excluded; use destination-owned media and palette.
+
 ## v1.30.0 — 2026-09-25
 
 Change ID: `REL-2026-09-25-01`

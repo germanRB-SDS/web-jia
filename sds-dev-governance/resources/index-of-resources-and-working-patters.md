@@ -58,6 +58,9 @@ procedure to rebuild the same result in another project. Heavier than a pattern:
 | Resource | Path | What it is | How-to |
 |---|---|---|---|
 | tree-3d | `web-components/tree-3d` | Procedural animated 3D tree (Three.js, no model, no video): slender stems, dense lobed crown, hanging roots, flat-faced rocks, breeze sway and leaves torn off that drift towards the viewer; palette by CSS tokens; React wrapper, framework-free `mountTree` and a no-build HTML demo. Decoration behind a section's content. Aliases: `arbol 3d`, `árbol del saber`, `falling leaves`. | `web-components/tree-3d/INDEX-AND-HOW-TO-USE-THEM.md` |
+| collaborators-carousel | `web-components/collaborators-carousel` | Sección «Quiénes somos» configurable y tira infinita arrastrable con tarjetas tilt/glow; React, CSS Modules, demo independiente. Aliases: quienes somos, colaboradores, tarjetas en movimiento. | `web-components/collaborators-carousel/INDEX-AND-HOW-TO-USE-THEM.md` |
+| film-reel | `web-components/film-reel` | Tira de cine con imágenes, ampliación hover y visor nativo por tap/clic/teclado; inercia, pausa y reduced motion. Aliases: película, fotogramas, Ideas de cine. | `web-components/film-reel/INDEX-AND-HOW-TO-USE-THEM.md` |
+| cube-carousel | `web-components/cube-carousel` | Cubo CSS de seis caras con secuencia ilimitada, roll vertical, drag y GSAP; imágenes/datos configurables. Aliases: el cubo, cubo del equipo. | `web-components/cube-carousel/INDEX-AND-HOW-TO-USE-THEM.md` |
 
 ## frontend-patterns / ui-animations
 

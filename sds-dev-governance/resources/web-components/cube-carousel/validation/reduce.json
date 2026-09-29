@@ -1,0 +1,42 @@
+{
+  "slug": "cube-carousel",
+  "mode": "reduce",
+  "width": 1440,
+  "height": 1000,
+  "checks": [
+    {
+      "name": "visible images loaded",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow",
+      "pass": true
+    },
+    {
+      "name": "reduce stops autoplay",
+      "pass": true
+    },
+    {
+      "name": "all items reachable and wrap",
+      "pass": true
+    },
+    {
+      "name": "keyboard backwards",
+      "pass": true
+    },
+    {
+      "name": "drag changes cube",
+      "pass": true
+    },
+    {
+      "name": "accessible complete list",
+      "pass": true
+    },
+    {
+      "name": "no runtime exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

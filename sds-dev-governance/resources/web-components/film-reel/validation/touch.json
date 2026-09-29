@@ -1,0 +1,46 @@
+{
+  "slug": "film-reel",
+  "mode": "touch",
+  "width": 390,
+  "height": 844,
+  "checks": [
+    {
+      "name": "visible images loaded",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow",
+      "pass": true
+    },
+    {
+      "name": "idle drift",
+      "pass": true
+    },
+    {
+      "name": "tap/click opens modal",
+      "pass": true
+    },
+    {
+      "name": "scroll locked and close focused",
+      "pass": true
+    },
+    {
+      "name": "Escape closes and restores focus",
+      "pass": true
+    },
+    {
+      "name": "Enter opens viewer",
+      "pass": true
+    },
+    {
+      "name": "drag changes strip without opening modal",
+      "pass": true
+    },
+    {
+      "name": "no runtime exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

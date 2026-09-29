@@ -14,3 +14,13 @@ Rules:
 - Provenance and licence are stated in the how-to. Third-party media is never vendored.
 - These are references, lazy-loaded on request through `../index-of-resources-and-working-patters.md`. Once copied
   into a project, the copy belongs to that project.
+
+## Recursos disponibles
+
+- `tree-3d`: árbol procedural Three.js.
+- `collaborators-carousel`: sección Quiénes somos + tira + tilt/glow.
+- `film-reel`: película con carteles y visor.
+- `cube-carousel`: cubo CSS/GSAP con imágenes.
+
+Las últimas tres hojas incorporan una adaptación portable inicial trazada en `provenance.json`;
+desde esa revisión, copiar `component/` intacto y adaptar datos/tokens en integración.

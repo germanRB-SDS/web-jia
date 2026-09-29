@@ -1,0 +1,42 @@
+{
+  "slug": "collaborators-carousel",
+  "mode": "desktop",
+  "width": 1440,
+  "height": 1000,
+  "checks": [
+    {
+      "name": "visible images loaded",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow",
+      "pass": true
+    },
+    {
+      "name": "idle drift",
+      "pass": true
+    },
+    {
+      "name": "only real cards tabbable",
+      "pass": true
+    },
+    {
+      "name": "tilt and scale on hover",
+      "pass": true
+    },
+    {
+      "name": "keyboard navigation",
+      "pass": true
+    },
+    {
+      "name": "drag changes strip",
+      "pass": true
+    },
+    {
+      "name": "no runtime exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

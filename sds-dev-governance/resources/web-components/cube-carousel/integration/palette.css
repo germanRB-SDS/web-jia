@@ -1,0 +1,14 @@
+/* Integration example only. Map these roles to the target palette. */
+:root {
+ --wc-ink: #282d34; --wc-ink-rgb: 40 45 52; --wc-ivory: #faf6ed; --wc-ivory-rgb: 250 246 237;
+ --wc-card: #e8dec9; --wc-sand: #e8dec9; --wc-sand-deep: #d8ccb7; --wc-dune: #d8ccb7;
+ --wc-copper: #9b643a; --wc-olive: #6a7154; --wc-terracotta: #a7462b; --wc-terracotta-deep: #863620;
+ --wc-text: var(--wc-ink); --wc-text-muted: #626261; --wc-vellum-4: #f0e9dc;
+ --wc-gradient-cube: linear-gradient(145deg, #5c463b, #282b32);
+ --wc-gradient-cube-veil: linear-gradient(120deg, transparent, #282d3440);
+ --wc-radius-card: 14px; --wc-body-leading: 1.5;
+ --f-ui: Arial, sans-serif; --f-body: Georgia, serif; --f-display: Georgia, serif;
+ --gutter: clamp(1rem, 4vw, 4rem); --container: 76rem; --space-section: 4rem;
+ --t-h2: clamp(2rem, 5vw, 4rem); --t-body: 1.125rem; --measure: 65ch;
+ --ease-out: cubic-bezier(.2,.7,.2,1); --paper-grain: none;
+}

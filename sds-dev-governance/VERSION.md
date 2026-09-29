@@ -1,10 +1,14 @@
 # SDS Dev Governance Version
 
-Version: `v1.30.0`
+Version: `v1.31.0`
 
-Date: `2026-09-25`
+Date: `2026-09-29`
 
 Highlights:
+
+- Portable collaborators-carousel, film-reel and cube-carousel resources from web-jia: independent
+  React demos, local dependencies, neutral assets, motion policy, provenance and integration guides.
+  New knowledge recipe records the extraction architecture. No mandatory governance rule change.
 
 - New resource `resources/frontend-patterns/ui-components/button-leather-shimmer`: a material CTA button
   (diagonal leather gradient, two-shadow relief, a slanted glint that crosses on a slow loop and rests, lift
