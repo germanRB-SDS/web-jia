@@ -87,3 +87,6 @@ material. Esta sección es memoria: **execute from `## Status` onward**.
 - Móvil (promotor, chat, 29-09-2026): en vez de desplazar solo la fila marcada, el día que tiene el revólver reserva
   su hueco en **todas** sus filas (`.sessions[data-clock]`), así los numerales quedan en una columna apunte donde
   apunte. El otro día conserva su margen habitual.
+- Validación (promotor, chat, 29-09-2026): «a pantalla completa en PC, Jornada 1 validada; ahora en III de Jornada 2».
+  `REVOLVER_VISTA_PREVIA` pasa de booleano a `{ jornada, sesion } | null` (numeración de la web, desde 1) para poder
+  fijarlo en cualquier sesión; ahora `{ jornada: 2, sesion: 3 }`. En producción, `null`.

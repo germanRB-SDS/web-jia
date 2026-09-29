@@ -111,7 +111,7 @@ export type DayModel = {
 };
 
 /** The revolver that points at the session in progress ([56-0]); settings in config/revolver.ts. */
-export type ProgramClock = { enabled: boolean; preview: boolean; timeZone: string; style: "natural" | "tinta"; icon: Media | null; nowLabel: string };
+export type ProgramClock = { enabled: boolean; /** The session the preview pins it on, or null. */ preview: { dayId: string; sessionId: string } | null; timeZone: string; style: "natural" | "tinta"; icon: Media | null; nowLabel: string };
 
 export type TeamCard = { id: string; name: string; roleLabel: string; media: Media | null; alt: string; fallback: SurfaceToken };
 
@@ -225,6 +225,13 @@ function externalOrUnavailable(id: string, label: string, url: string | null, no
   return url
     ? { id, label, href: url, kind: "external", note: null }
     : { id, label, href: null, kind: "unavailable", note };
+}
+
+/** The preview's `{ jornada, sesion }` (1-based, as the page numbers them) → that session's ids; null if absent. */
+function previewAt(days: readonly DayModel[], at: { jornada: number; sesion: number } | null): { dayId: string; sessionId: string } | null {
+  const day = at ? days[at.jornada - 1] : undefined;
+  const session = at ? day?.sessions[at.sesion - 1] : undefined;
+  return day && session ? { dayId: day.id, sessionId: session.id } : null;
 }
 
 /** "16:00–17:00" → minutes from midnight at each end; anything else (no time, one end only) → null. */
@@ -472,7 +479,7 @@ export function getLanding(locale: Locale): LandingModel {
         days,
         clock: {
           enabled: REVOLVER_HORA === "ENABLED",
-          preview: REVOLVER_VISTA_PREVIA,
+          preview: previewAt(days, REVOLVER_VISTA_PREVIA),
           timeZone: REVOLVER_ZONA_HORARIA,
           style: REVOLVER_ESTILO,
           icon: getMedia("icon-revolver"),

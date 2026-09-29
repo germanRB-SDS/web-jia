@@ -34,8 +34,8 @@ type Props = {
  *
  * The revolver ([56-0]) points at the session being held right now, by the venue's clock (config/revolver.ts).
  * The site is static, so "now" is only known in the browser: the HTML carries no revolver, and it turns up
- * after mounting, on the event's two days and inside a session's hours. The preview pins it on the first
- * session of the first day, in the HTML too, so its size and colour can be judged on any date.
+ * after mounting, on the event's two days and inside a session's hours. The preview pins it on the session
+ * config/revolver.ts names, in the HTML too, so its size and colour can be judged on any date.
  */
 export function ProgramaDias({ days, clock, copy, markLabels, showMarks }: Props) {
   const trackRef = useRef<HTMLOListElement>(null);
@@ -44,7 +44,7 @@ export function ProgramaDias({ days, clock, copy, markLabels, showMarks }: Props
   const baseId = useId();
   const panelId = (i: number) => `${baseId}-dia-${i}`;
 
-  const pinned: NowAt | null = clock.enabled && clock.preview && days[0]?.sessions[0] ? { dayId: days[0].id, sessionId: days[0].sessions[0].id } : null;
+  const pinned: NowAt | null = clock.enabled ? clock.preview : null;
   const [now, setNow] = useState<NowAt | null>(pinned);
   useEffect(() => {
     if (!clock.enabled || clock.preview) return;
