@@ -36,6 +36,9 @@ function poster(n: number): Media {
   };
 }
 
+/** Team cards supplied on 2026-09-29 (JIA [55-0]): read from the promoter's inbox, where they stay. */
+const CARDS_2026_09_29 = new Set([59, 60, 61, 62, 65, 66, 67]);
+
 function card(n: number): Media {
   return {
     id: `card-${n}`,
@@ -44,7 +47,7 @@ function card(n: number): Media {
       { src: `/equipo/card-${n}-800.webp`, width: 800 },
     ],
     ratio: POSTER_RATIO,
-    original: `assets/images-staff/${n}.png`,
+    original: CARDS_2026_09_29.has(n) ? `assets/whatsapp/item-cubo/${n}.png` : `assets/images-staff/${n}.png`,
     license: "Material del CEP de Almería para las JIA (uso interno del proyecto)",
   };
 }
@@ -65,7 +68,7 @@ function collaborator(slug: string): Media {
 
 const COLLABORATOR_SLUGS = ["consejeria-educacion", "sds", "minihollywood", "leonardo", "kichi", "lagata"];
 
-const CARD_NUMBERS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 37, 39, 40, 41, 42, 43, 46];
+const CARD_NUMBERS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 37, 39, 40, 41, 42, 43, 46, ...CARDS_2026_09_29];
 
 export const MEDIA: Record<string, Media> = Object.fromEntries(
   [

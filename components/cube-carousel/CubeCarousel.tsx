@@ -56,6 +56,15 @@ export function CubeCarousel({ items, labels, className }: Props) {
   const [announce, setAnnounce] = useState(false);
   const [holes, setHoles] = useState<Record<number, Hole[]>>({});
   const shots = useRef(0);
+  // The engine counts from 0; `start` shifts every index it reports onto the item list. Picked after mounting so the
+  // static markup (item 1 first) hydrates as rendered, then changes once per page load.
+  const [start, setStart] = useState(0);
+  useEffect(() => {
+    if (CUBE_CONFIG.randomStart && count > 1) setStart(Math.floor(Math.random() * count));
+  }, [count]);
+  const startRef = useRef(0);
+  startRef.current = start;
+  const at = (i: number) => mod(i + start, count || 1);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -83,7 +92,10 @@ export function CubeCarousel({ items, labels, className }: Props) {
         onInteract: () => setAnnounce(true),
         onShot: ({ item, x, y }) => {
           const hole: Hole = { key: ++shots.current, x: x * 100, y: y * 100, turn: Math.round(Math.random() * 360) };
-          setHoles((all) => ({ ...all, [item]: [...(all[item] ?? []), hole].slice(-CUBE_CONFIG.shot.maxPerItem) }));
+          setHoles((all) => {
+            const key = mod(item + startRef.current, count);
+            return { ...all, [key]: [...(all[key] ?? []), hole].slice(-CUBE_CONFIG.shot.maxPerItem) };
+          });
         },
       });
       engineRef.current = engine;
@@ -104,19 +116,19 @@ export function CubeCarousel({ items, labels, className }: Props) {
   useEffect(() => {
     if (!count) return;
     for (let d = -CUBE_CONFIG.preloadRadius; d <= CUBE_CONFIG.preloadRadius; d++) {
-      const image = items[mod(front + d, count)].image;
+      const image = items[mod(front + d + start, count)].image;
       if (!image) continue;
       const img = new Image();
       img.sizes = sizes;
       if (image.srcSet) img.srcset = image.srcSet;
       img.src = image.src;
     }
-  }, [front, count, items]);
+  }, [front, start, count, items]);
 
-  const position = useMemo(() => labels.position.replace("{current}", String(front + 1)).replace("{total}", String(count)), [labels.position, front, count]);
+  const position = useMemo(() => labels.position.replace("{current}", String(mod(front + start, count || 1) + 1)).replace("{total}", String(count)), [labels.position, front, start, count]);
 
   if (!count) return null;
-  const current = items[front];
+  const current = items[at(front)];
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "ArrowRight") engineRef.current?.step(1);
@@ -143,10 +155,10 @@ export function CubeCarousel({ items, labels, className }: Props) {
           {/* The page-load pose is in the markup too, so the cube does not jump when the engine arrives (it writes --cube-rot from then on). */}
           <div ref={cubeRef} className={styles.cube} style={count > 1 ? ({ "--cube-rot": `${-CUBE_CONFIG.initialTurn}deg` } as CSSProperties) : undefined}>
             {FACES.map((f) => (
-              <Side key={f} kind="turn" item={items[assigned[f] ?? 0]} holes={holes[assigned[f] ?? 0]} sizes={sizes} style={{ "--cube-i": f } as CSSProperties} />
+              <Side key={f} kind="turn" item={items[at(assigned[f] ?? 0)]} holes={holes[at(assigned[f] ?? 0)]} sizes={sizes} style={{ "--cube-i": f } as CSSProperties} />
             ))}
-            <Side kind="top" item={items[cap.top] ?? items[0]} holes={holes[items[cap.top] ? cap.top : 0]} sizes={sizes} />
-            <Side kind="bottom" item={items[cap.bottom] ?? items[0]} holes={holes[items[cap.bottom] ? cap.bottom : 0]} sizes={sizes} />
+            <Side kind="top" item={items[at(cap.top)]} holes={holes[at(cap.top)]} sizes={sizes} />
+            <Side kind="bottom" item={items[at(cap.bottom)]} holes={holes[at(cap.bottom)]} sizes={sizes} />
           </div>
         </div>
         <span className={styles.shadow} />

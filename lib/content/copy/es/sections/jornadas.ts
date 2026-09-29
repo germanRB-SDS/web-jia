@@ -65,6 +65,7 @@ export const jornadas: Copy["jornadas"] = {
       coordinacion: "Coordinación",
       "coordinacion-cep": "Coordinación CEP",
       colaboracion: "Colaboración",
+      "experiencia-exito": "Experiencia de éxito",
     },
   },
   workshops: {

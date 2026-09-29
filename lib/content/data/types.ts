@@ -24,7 +24,8 @@ export type PersonRole =
   | "asesoria-cep"
   | "coordinacion"
   | "coordinacion-cep"
-  | "colaboracion";
+  | "colaboracion"
+  | "experiencia-exito";
 
 export type Person = {
   id: string;

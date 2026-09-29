@@ -2,6 +2,7 @@ import type { Person } from "./types";
 
 const POSTERS = "assets/cep/talleres-carteles";
 const CARDS = "assets/images-staff";
+const CARDS_2026_09_29 = "assets/whatsapp/item-cubo";
 
 /**
  * PEOPLE. Names are transcribed from the printed assets; nobody was identified
@@ -51,12 +52,22 @@ export const people: readonly Person[] = [
   { id: "p-raul-torres", name: "Raúl Torres Gordon", role: "colaboracion", cardRoleLabel: "Colaborador", cardMediaId: "card-42", status: "confirmed", provenance: { source: `${CARDS}/42.png` } },
   { id: "p-maria-hernandez", name: "María Hernández", role: "colaboracion", cardRoleLabel: "Colaboradora", cardMediaId: "card-43", status: "confirmed", provenance: { source: `${CARDS}/43.png` } },
   { id: "p-almudena-bernal", name: "Almudena Bernal", role: "coordinacion-cep", cardRoleLabel: "Coordinación CEP", cardMediaId: "card-46", status: "confirmed", provenance: { source: `${CARDS}/46.png` } },
+
+  // ---- «Experiencia de éxito» cards supplied on 2026-09-29 (JIA [55-0]). Order = file number. ----
+  { id: "p-gabi-moral", name: "Gabi Moral", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-59", status: "confirmed", provenance: { source: `${CARDS_2026_09_29}/59.png` } },
+  { id: "p-ruben-lopez", name: "Rubén López", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-60", status: "confirmed", provenance: { source: `${CARDS_2026_09_29}/60.png` } },
+  { id: "p-gonzalo-carretero", name: "Gonzalo Carretero", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-61", status: "confirmed", provenance: { source: `${CARDS_2026_09_29}/61.png` } },
+  { id: "p-maria-lopez", name: "María López", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-62", status: "confirmed", provenance: { source: `${CARDS_2026_09_29}/62.png` } },
+  { id: "p-pilar-diaz", name: "Pilar Díaz", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-65", status: "confirmed", provenance: { source: `${CARDS_2026_09_29}/65.png` } },
+  { id: "p-toni-navarro", name: "Toni Navarro", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-66", status: "confirmed", provenance: { source: `${CARDS_2026_09_29}/66.png` } },
+  { id: "p-cristina-robles-leon", name: "Cristina Robles / León", role: "experiencia-exito", cardRoleLabel: "Experiencia de éxito", cardMediaId: "card-67", status: "provisional", provenance: { source: `${CARDS_2026_09_29}/67.png`, note: "La tarjeta muestra a dos personas y rotula «CRISTINA ROBLES/ LEÓN». Confirmar cómo se nombran." } },
 ];
 
-/** Order in which the team strip shows people: coordination first, then advisers, then collaborators. */
+/** Order in which the team strip shows people: coordination first, then advisers, collaborators and the «Experiencia de éxito» cards. */
 export const TEAM_ROLE_ORDER: readonly Person["role"][] = [
   "coordinacion-cep",
   "coordinacion",
   "asesoria-cep",
   "colaboracion",
+  "experiencia-exito",
 ];

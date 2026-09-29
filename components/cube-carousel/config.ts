@@ -33,6 +33,8 @@ export const CUBE_CONFIG = {
     overshoot: 0.12,
     settle: 0.8,
   },
+  /** On every page load the first item shown is a random one (chosen once, after mounting); from there the sequence and its "n of total" numbering go on as usual. */
+  randomStart: true,
   /** Pose on page load only: turned this many degrees towards the next item, so two sides show. The first move of any kind squares the cube for good. */
   initialTurn: 14,
   step: { duration: STEP_SECONDS, ease: "power2.inOut" },
