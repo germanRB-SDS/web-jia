@@ -25,7 +25,9 @@ export type PersonRole =
   | "coordinacion"
   | "coordinacion-cep"
   | "colaboracion"
-  | "experiencia-exito";
+  | "experiencia-exito"
+  | "conferenciante"
+  | "creacion-web";
 
 export type Person = {
   id: string;

@@ -36,9 +36,6 @@ function poster(n: number): Media {
   };
 }
 
-/** Team cards supplied on 2026-09-29 (JIA [55-0]): read from the promoter's inbox, where they stay. */
-const CARDS_2026_09_29 = new Set([59, 60, 61, 62, 65, 66, 67]);
-
 /** The workshop posters supplied on 2026-09-29 (JIA [55-0]): one per workshop with all its people, new photographs. */
 function poster20260929(n: number): Media {
   return {
@@ -53,17 +50,25 @@ function poster20260929(n: number): Media {
   };
 }
 
-function card(n: number): Media {
+/** A card of the team cube ([59-0]): the final set, numbered 10-58 as the promoter supplied them. */
+function cubeCard(n: number): Media {
   return {
-    id: `card-${n}`,
+    id: `cubo-${n}`,
     variants: [
-      { src: `/equipo/card-${n}-420.webp`, width: 420 },
-      { src: `/equipo/card-${n}-800.webp`, width: 800 },
+      { src: `/cubo/cubo-${n}-420.webp`, width: 420 },
+      { src: `/cubo/cubo-${n}-800.webp`, width: 800 },
     ],
     ratio: POSTER_RATIO,
-    original: CARDS_2026_09_29.has(n) ? `assets/whatsapp/item-cubo/${n}.png` : `assets/images-staff/${n}.png`,
+    original: `assets/cube-staff-final/${n}.png`,
     license: "Material del CEP de Almería para las JIA (uso interno del proyecto)",
   };
+}
+
+/** The cube's order is the cards' own numbering; a card's place in it is its number. */
+export const CUBE_CARD_NUMBERS: readonly number[] = Array.from({ length: 49 }, (_, i) => 10 + i);
+export function cubeCardNumber(mediaId: string | null): number | null {
+  const m = mediaId?.match(/^cubo-(\d+)$/);
+  return m ? Number(m[1]) : null;
 }
 
 /** A collaborator's card image: its logotype on a western still, 4:3 like the slot it fills (cropped if it were not). */
@@ -82,7 +87,6 @@ function collaborator(slug: string): Media {
 
 const COLLABORATOR_SLUGS = ["consejeria-educacion", "sds", "minihollywood", "leonardo", "kichi", "lagata", "aribaldi"];
 
-const CARD_NUMBERS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 37, 39, 40, 41, 42, 43, 46, ...CARDS_2026_09_29];
 
 export const MEDIA: Record<string, Media> = Object.fromEntries(
   [
@@ -308,7 +312,7 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
     },
     ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map(poster),
     ...[1, 2, 3, 4, 5, 6].map(poster20260929),
-    ...CARD_NUMBERS.map(card),
+    ...CUBE_CARD_NUMBERS.map(cubeCard),
     ...COLLABORATOR_SLUGS.map(collaborator),
   ].map((m) => [m.id, m]),
 );

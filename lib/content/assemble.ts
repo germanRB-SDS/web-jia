@@ -9,13 +9,13 @@ import { getDictionary } from "./copy/dictionaries";
 import type { Copy } from "./copy/types";
 import { experiences } from "./data/experiences";
 import { organizations } from "./data/organizations";
-import { people, TEAM_ROLE_ORDER } from "./data/people";
+import { people } from "./data/people";
 import { programDays, sessions } from "./data/program";
 import { resources } from "./data/resources";
 import type { EditorialStatus, Organization, Person, SurfaceToken, Workshop } from "./data/types";
 import { workshops } from "./data/workshops";
 import { LANGUAGE_BY_CODE, type Language, type Locale } from "./languages";
-import { brand, getMedia, type Media } from "./media";
+import { brand, cubeCardNumber, getMedia, type Media } from "./media";
 import { acogeConfig } from "./sections/acoge";
 import { footerConfig } from "./sections/footer";
 import { dosieresConfig } from "./sections/dosieres";
@@ -383,22 +383,21 @@ export function getLanding(locale: Locale): LandingModel {
         }),
     }));
 
-  // Team strip: everyone with a card, grouped by role order, talleristas excluded (they appear on their workshop).
-  const teamCards: TeamCard[] = TEAM_ROLE_ORDER.flatMap((role) =>
-    people
-      .filter((p) => p.role === role && p.cardMediaId)
-      .map((p) => {
-        const roleLabel = p.cardRoleLabel ?? copy.jornadas.team.roles[p.role];
-        return {
-          id: p.id,
-          name: p.name,
-          roleLabel,
-          media: getMedia(p.cardMediaId),
-          alt: format(copy.a11y.cardOf, { name: p.name, role: roleLabel }),
-          fallback: "card" as SurfaceToken,
-        };
-      }),
-  );
+  // Team cube: everyone with a card of the final set ([59-0], talleristas included), in the cards' own numbering.
+  const teamCards: TeamCard[] = people
+    .filter((p) => cubeCardNumber(p.cardMediaId) !== null)
+    .sort((a, b) => (cubeCardNumber(a.cardMediaId) ?? 0) - (cubeCardNumber(b.cardMediaId) ?? 0))
+    .map((p) => {
+      const roleLabel = p.cardRoleLabel ?? copy.jornadas.team.roles[p.role];
+      return {
+        id: p.id,
+        name: p.name,
+        roleLabel,
+        media: getMedia(p.cardMediaId),
+        alt: format(copy.a11y.cardOf, { name: p.name, role: roleLabel }),
+        fallback: "card" as SurfaceToken,
+      };
+    });
 
   const visibleExperiences = experiences.filter((x) => experienciasConfig.showDemo || x.status !== "demo");
   const experienceItems = visibleExperiences.map((x) => experienceSheet(x.id, copy)).filter((s): s is SheetModel => Boolean(s));

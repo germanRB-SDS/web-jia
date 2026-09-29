@@ -170,13 +170,14 @@ for f in assets/whatsapp/section-talleres/*.png; do
   magick "$f" -resize 1000x -strip -quality 80 "public/talleres/cartel-2026-09-29-$n-1000.webp"
 done
 
-# Team cards (1414x2000). The «Experiencia de éxito» cards supplied on 2026-09-29 ([55-0]) are read from the
-# promoter's inbox, where they stay; their numbers do not clash with images-staff.
-for f in assets/images-staff/*.png assets/whatsapp/item-cubo/*.png; do
+# The team cube's cards ([59-0]): the final set of 49 (1414x2000, numbered 10-58), and nothing else. The earlier
+# cards (assets/images-staff/, assets/whatsapp/item-cubo/) stay where they are, unused. The zip beside the PNGs
+# is only their archive.
+out public/cubo/x
+for f in assets/cube-staff-final/*.png; do
   n=$(basename "$f" .png)
-  out public/equipo/x
-  magick "$f" -resize 420x -strip -quality 78 "public/equipo/card-$n-420.webp"
-  magick "$f" -resize 800x -strip -quality 80 "public/equipo/card-$n-800.webp"
+  magick "$f" -resize 420x -strip -quality 78 "public/cubo/cubo-$n-420.webp"
+  magick "$f" -resize 800x -strip -quality 80 "public/cubo/cubo-$n-800.webp"
 done
 
 echo "done: $(find public -type f | wc -l | tr -d ' ') files, $(du -sh public | cut -f1)"
