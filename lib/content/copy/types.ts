@@ -167,6 +167,21 @@ export type Copy = {
       adaptations: string;
     };
     relatedWorkshops: string;
+    /** The film reel of success-story posters ([61-0]). `{name}`, `{reward}`, `{n}`, `{total}` are filled in. */
+    reel: {
+      label: string;
+      /** Accessible name of each poster's button, and the viewer's. */
+      poster: string;
+      /** Alt text of the poster picture itself. */
+      alt: string;
+      pause: string;
+      play: string;
+      previous: string;
+      next: string;
+      close: string;
+      /** As printed on each poster. Keyed by the ids of `experienciasConfig.reelPosters`. */
+      posters: Record<string, { name: string; reward: string }>;
+    };
     status: EditorialStatus;
   };
   /** `unavailable` is the optional visible note under a disabled action; null shows the label alone. */

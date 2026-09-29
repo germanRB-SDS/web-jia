@@ -85,6 +85,22 @@ function collaborator(slug: string): Media {
   };
 }
 
+/** A success-story poster of the Experiencias reel ([61-0]): small ones for the frame, full resolution for the viewer. */
+function successPoster(n: number): Media {
+  return {
+    id: `exito-${n}`,
+    variants: [
+      { src: `/experiencias/reel/exito-${n}-240.webp`, width: 240 },
+      { src: `/experiencias/reel/exito-${n}-480.webp`, width: 480 },
+      { src: `/experiencias/reel/exito-${n}-1000.webp`, width: 1000 },
+      { src: `/experiencias/reel/exito-${n}-1414.webp`, width: 1414 },
+    ],
+    ratio: POSTER_RATIO,
+    original: `assets/images-staff-success-stories/exito-${n}.png`,
+    license: "Material del CEP de Almería para las JIA (uso interno del proyecto)",
+  };
+}
+
 const COLLABORATOR_SLUGS = ["consejeria-educacion", "sds", "minihollywood", "leonardo", "kichi", "lagata", "aribaldi"];
 
 
@@ -325,6 +341,7 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
     ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map(poster),
     ...[1, 2, 3, 4, 5, 6].map(poster20260929),
     ...CUBE_CARD_NUMBERS.map(cubeCard),
+    ...[1, 2, 3, 4, 5, 6, 7].map(successPoster),
     ...COLLABORATOR_SLUGS.map(collaborator),
   ].map((m) => [m.id, m]),
 );

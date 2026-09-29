@@ -13,6 +13,11 @@
   --aula-clear: 56%;
   /* How far left of that the content column starts, as a share of the section's width. */
   --aula-shift: 5%;
+  /* Where the photograph stops being a classroom ([61-0]): measured on aula-maestra3.png, the desks, the children
+     and the window dissolve into haze between 50 and 52 % of its width. The film reel fades out before this line
+     and never crosses it. The same number as --aula-clear: a share of the photograph, which above 1280 px is also
+     a share of the section. If the photograph changes, measure it again. */
+  --aula-guard: 52%;
   background: var(--jia-vellum-3);
   padding-top: 0;
 }
@@ -228,6 +233,49 @@
   .section header { max-width: none; margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }
   .section header p { max-width: none; text-wrap: pretty; }
   .section .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); }
+}
+/* ---- the film reel ([61-0]) ----
+   Below 1280 px the photograph is a band of its own and the reel runs across a strip of its own under the
+   heading, from edge to edge of the screen, fading out at the left. */
+.section .reel {
+  margin-inline: calc(-1 * var(--gutter));
+  --reel-controls-inset: var(--gutter);
+}
+@media (min-width: 1280px) {
+  /* The section is the reel's yardstick: `cqw` below is a share of the section, which is a share of the photograph. */
+  .withReel {
+    container: aula / inline-size;
+    --aula-clear-w: 56cqw;
+    --aula-shift-w: 5cqw;
+    --aula-guard-w: 52cqw;
+    --aula-bleed: max(var(--gutter), (100cqw - var(--container)) / 2);
+    /* One row exactly as tall as the band, so the column cannot grow past the photograph: the reel gives way. */
+    grid-template-rows: minmax(0, 1fr);
+  }
+  /* The band's own padding-block: 0 above loses to Section's `.section` (same weight, later in the cascade), which
+     leaves 120 px top and bottom; here the column carries its own padding, so it is cancelled for good. */
+  .section.withReel { padding-block: 0; }
+  /* The column fills the band's height and the reel takes what the heading leaves, up to its own size. */
+  .withReel > :not(.photo) {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: clamp(1.5rem, 2.6vw, 3rem);
+    box-sizing: border-box;
+  }
+  .withReel header { margin-bottom: clamp(0.5rem, 1vw, 1.25rem); }
+  /* Left: the reel starts where the classroom ends, if that is right of the column; the fade is inside it, so
+     opacity is 0 on that line. Right: it runs to the edge of the screen. */
+  .section .reel {
+    --reel-band: min(340px, 21cqw);
+    --reel-fade: min(22%, 160px);
+    --reel-controls-inset: var(--aula-bleed);
+    flex: 0 1 calc(var(--reel-band) * 1.36 + 44px);
+    min-height: 0;
+    margin-left: max(0px, var(--aula-guard-w) - (var(--aula-clear-w) - var(--aula-shift-w)));
+    margin-right: calc(-1 * var(--aula-bleed));
+  }
 }
 .grid {
   display: grid;

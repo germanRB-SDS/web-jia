@@ -174,7 +174,7 @@ export type LandingModel = {
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   /** `cutout` is the same photograph's subject with no background, laid back over `media` ([51-0]). */
-  experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; media: Media | null; cutout: Media | null; fallback: SurfaceToken; pictureOnly: boolean; marks: MarkKind[] };
+  experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; media: Media | null; cutout: Media | null; fallback: SurfaceToken; pictureOnly: boolean; reel: ReelModel | null; marks: MarkKind[] };
   propuestas: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; marks: MarkKind[] };
   partners: {
     id: string;
@@ -257,6 +257,31 @@ function dateline(language: Language): string | null {
   return dates.length === 1 ? fmt.format(first) : fmt.formatRange(first, last);
 }
 
+/** One experience's card; while the section shows the reel ([61-0]) there is no card, so the link lands on the section. */
+function experienceHref(id: string): string {
+  return anchor(experienciasConfig.display === "reel" ? experienciasConfig.id : `${experienciasConfig.id}-${id}`);
+}
+
+export type ReelPosterModel = { id: string; media: Media; label: string; alt: string };
+export type ReelModel = {
+  posters: ReelPosterModel[];
+  labels: { region: string; pause: string; play: string; previous: string; next: string; close: string };
+};
+
+function reelModel(copy: Copy): ReelModel | null {
+  const text = copy.experiencias.reel;
+  const total = experienciasConfig.reelPosters.length;
+  const posters = experienciasConfig.reelPosters.flatMap((p, i): ReelPosterModel[] => {
+    const media = getMedia(p.mediaId);
+    const words = text.posters[p.id];
+    if (!media || !words) return [];
+    const fill = { n: String(i + 1), total: String(total), name: words.name, reward: words.reward };
+    return [{ id: p.id, media, label: format(text.poster, fill), alt: format(text.alt, fill) }];
+  });
+  if (!posters.length) return null;
+  return { posters, labels: { region: text.label, pause: text.pause, play: text.play, previous: text.previous, next: text.next, close: text.close } };
+}
+
 function workshopSheet(w: Workshop, copy: Copy): SheetModel {
   const text = copy.entities.workshops[w.id];
   const labels = copy.jornadas.workshops;
@@ -264,7 +289,7 @@ function workshopSheet(w: Workshop, copy: Copy): SheetModel {
   const persons = w.personIds.map(personById).filter((p): p is Person => Boolean(p));
   const relatedExperiences = experiences
     .filter((x) => x.relatedWorkshopIds.includes(w.id) && (experienciasConfig.showDemo || x.status !== "demo"))
-    .map((x) => ({ label: copy.entities.experiences[x.id]?.title ?? x.id, href: anchor(`${experienciasConfig.id}-${x.id}`) }));
+    .map((x) => ({ label: copy.entities.experiences[x.id]?.title ?? x.id, href: experienceHref(x.id) }));
   const relatedResources = resources
     .filter((r) => r.relatedWorkshopIds.includes(w.id))
     .map((r) => ({ label: copy.entities.resources[r.id]?.title ?? r.id, href: anchor(`${dosieresConfig.id}-${r.id}`) }));
@@ -378,7 +403,7 @@ export function getLanding(locale: Locale): LandingModel {
           const link = w
             ? { label: w.title, href: anchor(`${jornadasConfig.anchors.talleres}-${w.id}`) }
             : x && s.experienceId
-              ? { label: x.title, href: anchor(`${experienciasConfig.id}-${s.experienceId}`) }
+              ? { label: x.title, href: experienceHref(s.experienceId) }
               : null;
           return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time ? format(copy.jornadas.program.timeFormat, { time: s.time }) : null, slot: slotOf(s.time), numbered: s.numbered ?? true, link };
         }),
@@ -511,6 +536,7 @@ export function getLanding(locale: Locale): LandingModel {
       cutout: getMedia(experienciasConfig.cutoutMediaId),
       fallback: experienciasConfig.fallbackSurface,
       pictureOnly: experienciasConfig.pictureOnly,
+      reel: experienciasConfig.display === "reel" ? reelModel(copy) : null,
       title: copy.experiencias.title,
       lede: copy.experiencias.lede,
       empty: copy.experiencias.empty,

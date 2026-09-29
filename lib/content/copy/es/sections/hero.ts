@@ -10,7 +10,7 @@ export const waypoints: Copy["waypoints"] = {
   items: {
     programa: { label: "Programa", line: "Dos jornadas, una secuencia clara." },
     talleres: { label: "Talleres", line: "Propuestas prácticas con nombre de película." },
-    experiencias: { label: "Experiencias", line: "Ideas que ya han pasado por el aula." },
+    experiencias: { label: "Experiencias", line: "Ideas de cine que ya han pasado por el aula." },
     dosieres: { label: "Dosieres", line: "Materiales a los que volver." },
   },
 };

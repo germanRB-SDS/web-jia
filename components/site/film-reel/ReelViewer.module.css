@@ -1,0 +1,108 @@
+/* The viewer is the whole screen: the dimmed ground is the dialog itself, so a click that lands on it (and on
+   nothing inside) is a click outside the poster. The poster and its X are one group, centred. */
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  /* Room for the X that sits on the poster's corner, the page's gutter and the device's safe areas. */
+  padding:
+    max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background: transparent;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  color: var(--jia-text);
+}
+.dialog[open] {
+  display: grid;
+  place-items: center;
+  animation: viewer-in 220ms var(--ease-out);
+}
+.dialog::backdrop {
+  background: rgb(var(--jia-ink-rgb) / 0.62);
+  backdrop-filter: blur(2px);
+  animation: viewer-ground-in 220ms ease-out;
+}
+.dialog[data-closing] {
+  animation: viewer-out 180ms ease-in forwards;
+}
+.dialog[data-closing]::backdrop {
+  animation: viewer-ground-out 180ms ease-in forwards;
+}
+@keyframes viewer-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes viewer-out {
+  from { opacity: 1; }
+  to { opacity: 0; transform: scale(0.99); }
+}
+@keyframes viewer-ground-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes viewer-ground-out { from { opacity: 1; } to { opacity: 0; } }
+:where(:global(html[data-motion="reduce"])) .dialog,
+:where(:global(html[data-motion="reduce"])) .dialog::backdrop { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .dialog,
+  :where(:global(html:not([data-motion]))) .dialog::backdrop { animation: none !important; }
+}
+
+/* ---- the size of the poster ----
+   Widths are targets, heights are limits, and the poster keeps its proportion: whichever binds first sets both.
+   `--x-out` is how far the X stands out of the poster's corner; it is reserved on top and on the right so the X is
+   never pushed off screen. Breakpoints are the site's own: 760 and 1280 px. */
+.stage {
+  --x-size: 44px;
+  --x-out: 14px;
+  --viewer-max-w: 70vw;
+  --viewer-max-h: 80dvh;
+  position: relative;
+  width: min(
+    var(--viewer-max-w),
+    100vw - 2 * max(1rem, env(safe-area-inset-left), env(safe-area-inset-right)) - var(--x-out),
+    (min(var(--viewer-max-h), 100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom) - var(--x-out))) * var(--viewer-ratio)
+  );
+  margin-top: var(--x-out);
+}
+@media (min-width: 760px) {
+  .stage { --viewer-max-w: min(60vw, 560px); --viewer-max-h: 75dvh; }
+}
+@media (min-width: 1280px) {
+  .stage { --viewer-max-w: min(40vw, 640px); --viewer-max-h: 70dvh; }
+}
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--viewer-ratio);
+  border-radius: 3px;
+  background: var(--jia-card);
+  box-shadow: 0 30px 70px -24px rgb(var(--jia-ink-rgb) / 0.7), 0 0 0 1px rgb(var(--jia-ink-rgb) / 0.12);
+}
+/* The X: the sheets' close button (ivory, ink rim) as a round 44 px target, on the poster's top-right corner. It is
+   inside the group, so going from the poster to it never counts as leaving. */
+.close {
+  position: absolute;
+  top: calc(-1 * var(--x-out));
+  right: calc(-1 * var(--x-out));
+  display: grid;
+  place-items: center;
+  width: var(--x-size);
+  height: var(--x-size);
+  padding: 0;
+  border: 1.5px solid var(--jia-ink);
+  border-radius: 50%;
+  background: var(--jia-ivory);
+  color: var(--jia-ink);
+  box-shadow: 0 6px 16px -6px rgb(var(--jia-ink-rgb) / 0.55);
+  cursor: pointer;
+}
+.close:hover { background: var(--jia-sand-deep); }
+.close:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 2px;
+}

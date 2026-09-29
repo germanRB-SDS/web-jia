@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { LandingModel, MarkKind } from "@/lib/content";
 import { Surface } from "@/components/primitives/Surface";
 import { SheetCard } from "@/components/primitives/SheetCard";
+import { FilmReel } from "./film-reel/FilmReel";
 import { SunRays } from "./sun-rays/SunRays";
 import { glyphTiming } from "./sun-rays/config";
 import { Section } from "./Section";
@@ -43,7 +44,7 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
       lede={experiencias.lede}
       markLabels={markLabels}
       showMarks={showMarks}
-      className={styles.section}
+      className={`${styles.section}${experiencias.reel ? ` ${styles.withReel}` : ""}`}
       backdrop={
         experiencias.media ? (
           /* The ground of the section is a stack of layers, not a photograph ([51-0]). From the back:
@@ -95,7 +96,10 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
         ) : null
       }
     >
-      {experiencias.items.length ? (
+      {experiencias.reel ? (
+        /* [61-0]: the success-story posters on a running film strip, in place of the experience cards. */
+        <FilmReel reel={experiencias.reel} className={styles.reel} />
+      ) : experiencias.items.length ? (
         <>
           <div className={styles.grid}>
             {experiencias.items.map((sheet) => (

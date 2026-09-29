@@ -186,4 +186,45 @@ for f in assets/cube-staff-final/*.png; do
   magick "$f" -resize 800x -strip -quality 80 "public/cubo/cubo-$n-800.webp"
 done
 
+# Experiencias, film reel ([61-0]). The artwork (cine-fotogramas.png, 1774x887, no alpha) is hand drawn: its four
+# windows are 370-375 px wide at a 397-402 px pitch, both ends are cut frames, and every sprocket hole shows a
+# different stain. Repeated whole, it would show a seam every 1774 px. So two layers are derived from it, and the
+# original stays as it is:
+#   - the MODULE, one frame (400x412): cut from the middle of one divider to the middle of the next (x 488 -> 888,
+#     film y 231 -> 642), so modules always meet on a divider. Its sprocket holes are all repainted with one hole of
+#     the drawing itself (x 600), at their measured centres; the hole the seam splits is then the same piece on both
+#     sides and meets itself. Window inside the module: x 14..383, y 61..350 (components/site/film-reel/config.ts).
+#   - the STAINS, the whole drawing with its paper taken to white (channel levels at the paper's own colour,
+#     rgb 243 229 211) and then white turned into transparency (colour-to-alpha: over white it gives back exactly
+#     the drawing; over the section's paper, what `multiply` would). Not a blend mode in CSS: the reel's fade is a
+#     mask, and a mask isolates its content, so a `multiply` inside it would only multiply against nothing.
+#     The film's own band is blanked in it: the moving modules cover that band, and nothing static may show under them.
+out public/experiencias/reel/x
+reel_src=assets/images-website/cine-fotogramas.png
+reel_tmp=$(mktemp -d)
+magick "$reel_src" -crop 48x38+597+243 +repage "$reel_tmp/hole-top.png"
+magick "$reel_src" -crop 48x39+595+591 +repage "$reel_tmp/hole-bottom.png"
+reel_args=()
+for c in -1 66 132 199 266 333 399; do reel_args+=("$reel_tmp/hole-top.png" -geometry "+$((c - 24))+12" -composite); done
+for c in -2 64 130 197 264 330 398; do reel_args+=("$reel_tmp/hole-bottom.png" -geometry "+$((c - 24))+360" -composite); done
+magick "$reel_src" -crop 400x412+488+231 +repage "${reel_args[@]}" "$reel_tmp/module.png"
+magick "$reel_tmp/module.png" -strip -quality 86 "public/experiencias/reel/fotograma-400.webp"
+magick "$reel_src" -fill white -draw "rectangle 0,234 1773,639" \
+  -channel R -level 0,95.3% -channel G -level 0,89.8% -channel B -level 0,82.7% +channel -resize 1200x \
+  \( +clone -fx "1-min(min(r,g),b)" \) \
+  \( -clone 0 -fx "ka=1-min(min(u.r,u.g),u.b); ka<0.004 ? 1 : 1-(1-u)/ka" \) \
+  -delete 0 +swap -alpha off -compose CopyOpacity -composite \
+  -strip -quality 74 -define webp:alpha-quality=75 "public/experiencias/reel/manchas-1200.webp"
+rm -rf "$reel_tmp"
+
+# The seven success-story posters ([61-0], 1414x2000, in their order): a small one for the frame and the full
+# resolution for the viewer, which must never enlarge the small one.
+for n in 1 2 3 4 5 6 7; do
+  f="assets/images-staff-success-stories/exito-$n.png"
+  magick "$f" -resize 240x -strip -quality 80 "public/experiencias/reel/exito-$n-240.webp"
+  magick "$f" -resize 480x -strip -quality 80 "public/experiencias/reel/exito-$n-480.webp"
+  magick "$f" -resize 1000x -strip -quality 86 "public/experiencias/reel/exito-$n-1000.webp"
+  magick "$f" -strip -quality 90 "public/experiencias/reel/exito-$n-1414.webp"
+done
+
 echo "done: $(find public -type f | wc -l | tr -d ' ') files, $(du -sh public | cut -f1)"
