@@ -1,0 +1,74 @@
+[
+  {
+    "project": "auragenda-home/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "fields-android/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "fields-web/fieldsapp-web-main/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "maryna-ventura/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "roots/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "south-desert-main-web/web-sds/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "teragenda/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "upnews/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "upnews-android/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "web-3d/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 130,
+    "preserved_existing_bytes": true
+  },
+  {
+    "project": "web-jia/sds-dev-governance",
+    "status": "APPLIED",
+    "changed_files": 1,
+    "preserved_existing_bytes": true
+  }
+]

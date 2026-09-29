@@ -1,0 +1,29 @@
+[
+  {
+    "resource": "collaborators-carousel",
+    "component_files": 18,
+    "imports": "local-or-declared",
+    "provenance": "PASS",
+    "lock": "registry-only",
+    "indexed": true,
+    "browser_scenarios": 3
+  },
+  {
+    "resource": "film-reel",
+    "component_files": 10,
+    "imports": "local-or-declared",
+    "provenance": "PASS",
+    "lock": "registry-only",
+    "indexed": true,
+    "browser_scenarios": 3
+  },
+  {
+    "resource": "cube-carousel",
+    "component_files": 8,
+    "imports": "local-or-declared",
+    "provenance": "PASS",
+    "lock": "registry-only",
+    "indexed": true,
+    "browser_scenarios": 3
+  }
+]

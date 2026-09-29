@@ -1,0 +1,5 @@
+{
+  "file": "maryna-ventura/tsconfig.json",
+  "before_sha256": "9c73cf280ef044e5b2557572af01310c7bb24a714ec22d1a7bdb85e6f152cb0b",
+  "change": "Add sds-dev-governance to exclude; optional examples are not application source."
+}

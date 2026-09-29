@@ -1,0 +1,15 @@
+version	fingerprint	head	worktree	unique_content	state	upgrade_action	missing	path
+v1.25.0	b300273862d9	066fc31	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/auragenda-home/sds-dev-governance
+v1.25.0	b300273862d9	95866ae	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/fields-android/sds-dev-governance
+v1.25.0	9d335e0e008e	6c6fefd	dirty	3	LOCAL_GOVERNANCE_DELTA	PROMOTE_FIRST	-	/Users/hrms/MAC-DEV-PROJECTS/fields-web/fieldsapp-web-main/sds-dev-governance
+v1.25.0	ea795843c8b0	fb88273	clean	6	LOCAL_GOVERNANCE_DELTA	PROMOTE_FIRST	-	/Users/hrms/MAC-DEV-PROJECTS/maryna-ventura/sds-dev-governance
+v1.28.0	cebe2470d535	c81a0af	dirty	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/roots/sds-dev-governance
+v1.30.0	0071beef4696	c63d175	dirty	563	SPLIT_VERSION	INSPECT	-	/Users/hrms/MAC-DEV-PROJECTS/sds-dev-governance
+v1.25.0	b300273862d9	ed951f3	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/south-desert-main-web/web-sds/sds-dev-governance
+v1.25.0	b300273862d9	f70b1971	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/teragenda/sds-dev-governance
+v1.25.1	15f02e35c144	9f4bba9	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/upnews/sds-dev-governance
+v1.26.0	7219b684e213	c2d4a12	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/upnews-android/sds-dev-governance
+v1.24.0	a0ae7fcf281c	4443095	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/upnews-android/upnews/sds-dev-governance
+v1.22.0	a61c200d19a1	d51d34b	clean	0	PROJECT_BEHIND_CANONICAL	INSPECT_BASELINE	-	/Users/hrms/MAC-DEV-PROJECTS/upnews_backup_16_08_2026/sds-dev-governance
+v1.27.0	17fc3bea6672	605aafc	clean	3	LOCAL_GOVERNANCE_DELTA	PROMOTE_FIRST	-	/Users/hrms/MAC-DEV-PROJECTS/web-3d/sds-dev-governance
+v1.30.0	7d3eec51029a	46065c5	dirty	900	SPLIT_VERSION	INSPECT	-	/Users/hrms/MAC-DEV-PROJECTS/web-jia/sds-dev-governance
