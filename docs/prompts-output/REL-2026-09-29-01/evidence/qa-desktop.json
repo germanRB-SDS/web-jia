@@ -1,0 +1,160 @@
+{
+  "viewport": {
+    "l": 748.78125,
+    "t": 282.875,
+    "w": 691.21875,
+    "h": 334.296875
+  },
+  "sectionW": 1440,
+  "guard": {
+    "vpLeft": 748.78125,
+    "photoGuard52": 748.8000000000001,
+    "ok": true
+  },
+  "fitsInSection": true,
+  "posters": {
+    "count": 7,
+    "labels": [
+      "Gabi Moral",
+      "Rub\u00e9n L\u00f3pez",
+      "Toni Navarro",
+      "Gonzalo Carretero",
+      "Mar\u00eda L\u00f3pez",
+      "Pilar D\u00edaz",
+      "Cristina Robles / Le\u00f3n"
+    ],
+    "srcs": "1234567",
+    "tabbable": 7,
+    "hiddenSets": 2,
+    "ids": 0
+  },
+  "alignment": {
+    "first": {
+      "l": 26.94,
+      "t": 18.68,
+      "ratio": 0.707,
+      "loaded": true,
+      "fw": 238,
+      "fh": 245.13
+    },
+    "sameEveryFrame": true,
+    "stableOverTime": true,
+    "allLoaded": true,
+    "ratio": 0.707
+  },
+  "drift": {
+    "moved3s": -54,
+    "expect": "\u2248 -54 (18 px/s, left to right)"
+  },
+  "scroll": {
+    "sw": 1440,
+    "cw": 1440,
+    "swWithoutSection": 1440
+  },
+  "loop": {
+    "period": 1666,
+    "samples": 224,
+    "wrapsByExactlyOnePeriod": 2,
+    "otherJumps": 0,
+    "jumpSample": [],
+    "uncovered": 0,
+    "dialogOpenedByDrag": false
+  },
+  "throw": {
+    "duringDrag": 240,
+    "afterRelease": 684,
+    "note": "positive = moved left (forward)"
+  },
+  "dragRight": {
+    "moved": 209,
+    "note": "negative translate change = moved right"
+  },
+  "fadeHit": "FilmReel_shield__e3l_5",
+  "viewer": {
+    "opened": true,
+    "expectPoster": 6,
+    "src": "6@1000",
+    "img": {
+      "l": 497,
+      "t": 142,
+      "w": 445,
+      "h": 630,
+      "ratio": 0.707
+    },
+    "x": {
+      "l": 913,
+      "t": 128,
+      "w": 44,
+      "h": 44,
+      "inView": true,
+      "name": "Cerrar imagen"
+    },
+    "focus": true,
+    "vw": 1440,
+    "vh": 900,
+    "wPctVw": 30.9,
+    "hPctVh": 70
+  },
+  "viewerPausesStrip": true,
+  "clickImageKeepsOpen": true,
+  "moveToXKeepsOpen": true,
+  "leaveStillOpenAt80ms": true,
+  "leaveClosed": true,
+  "outsideBeforeEnteringKeepsOpen": true,
+  "groundClickCloses": true,
+  "escapeCloses": true,
+  "focusBackTo": "Experiencia de \u00e9xito 6 de 7: Pilar D\u00edaz.",
+  "scrollKept": true,
+  "htmlOverflowRestored": true,
+  "keyboard": [
+    {
+      "i": "0",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "1",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "2",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "3",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "4",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "5",
+      "fv": true,
+      "clear": true
+    },
+    {
+      "i": "6",
+      "fv": true,
+      "clear": true
+    }
+  ],
+  "keyboardOk": true,
+  "enterOpens": true,
+  "enterFocusOnX": true,
+  "focusReturned": true,
+  "controls": [
+    "Pausar la pel\u00edcula"
+  ],
+  "errors": [],
+  "environment": {
+    "url": "http://127.0.0.1:3062/almeria-2026.html",
+    "commit": "bf682a8dca14cd3f7461f1a5714e04cbecf7eba5",
+    "harness": "docs/prompts-output/[61-0]/evidence/qa.mjs (URL changed only)",
+    "production": false
+  }
+}

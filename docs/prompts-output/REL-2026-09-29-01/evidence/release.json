@@ -1,0 +1,27 @@
+{
+  "commit": "bf682a8dca14cd3f7461f1a5714e04cbecf7eba5",
+  "release": "20260929-bf682a8",
+  "previous": "releases/20260925-b1adf52",
+  "archive": "/private/tmp/web-jia-20260929-bf682a8.tar.gz",
+  "archive_sha256": "5c116ef4e8494e0878812fd860b8f0b440d59bce6ddc847088239a02786252c5",
+  "archive_bytes": 59049642,
+  "files": 287,
+  "html_sha256": "8e1c09cbcfa4b9faf047852fe061b87eb51105aa85c13f03e2abf3412c15c51b",
+  "updater_sha256": "3092111323183328ac71797a842698a64c119988b71ede2c95e2818f7ee084eb",
+  "runtime": "Node 24.19.0",
+  "validation": {
+    "typescript": "PASS",
+    "content": "PASS: 96 media",
+    "build": "PASS: Next 16.3.4 webpack static export"
+  },
+  "caddy_config_sha256": {
+    "Caddyfile": "0ccdba9da664e38246ef711983464b2cdf40877f9b386a10359fb40511e66870",
+    "web-jia.caddy": "f684b1df89fcec318e6935bc3e6358217a8e91a1519d22c86c09ac1677b9b8b4"
+  },
+  "caddy_pid": 9241,
+  "staging": "/home/sdsadmin/web-jia-release-review-HyREwzOk",
+  "status": "STAGED_NOT_ACTIVATED",
+  "github_pushed_commit": "bf682a8dca14cd3f7461f1a5714e04cbecf7eba5",
+  "remote_checksums": "PASS",
+  "activation_blocker": "Automatic approval review rejected sudo activation twice: Hostinger project admission and independent secret custody not established, despite scoped SSH authorization."
+}
