@@ -82,6 +82,11 @@ export const SUN_RAYS = {
     holdUntil: 3.1,
     /** And gone by here. */
     total: 5,
+    /**
+     * Once the light has left through the window, the room stays dark this long and then the light comes in
+     * again, over and over while the band is on screen (promoter, 29-09-2026, [56-0]). Seconds, not a share.
+     */
+    pause: 1,
   },
 
   /** Reduced motion: one still frame at this share of full strength, and nothing moves. */

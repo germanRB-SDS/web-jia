@@ -52,6 +52,8 @@ export function SunRays() {
         const here = entries[entries.length - 1]?.isIntersecting ?? false;
         if (!here) {
           onScreen = false;
+          wanted = false;
+          scene?.stop();
           return;
         }
         if (onScreen) return;

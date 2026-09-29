@@ -118,6 +118,10 @@ export class SunRaysScene {
   private played = 0;
   private last = 0;
   private running = false;
+  /** While the band is on screen the cycle repeats, `timing.pause` apart ([56-0]). */
+  private repeat = false;
+  private pauseTimer = 0;
+  private hidden = false;
   private disposed = false;
   private readonly worldHeight: number;
   private readonly fullReach: number;
@@ -203,7 +207,8 @@ export class SunRaysScene {
 
   /**
    * The light comes in, from the top. Called every time the band comes back on screen, and it always starts
-   * the cycle over: coming back to a room half lit would look like a glitch, not like a sun.
+   * the cycle over: coming back to a room half lit would look like a glitch, not like a sun. From then on it
+   * repeats, a dark `timing.pause` between one cycle and the next, until `stop()`.
    */
   start(): void {
     if (this.disposed) return;
@@ -211,6 +216,18 @@ export class SunRaysScene {
       this.still();
       return;
     }
+    this.repeat = true;
+    this.play();
+  }
+
+  /** The band has left the screen: the cycle in course ends, and no other follows it. */
+  stop(): void {
+    this.repeat = false;
+    this.clearPause();
+  }
+
+  private play(): void {
+    this.clearPause();
     this.played = 0;
     this.last = performance.now();
     this.running = true;
@@ -219,7 +236,14 @@ export class SunRaysScene {
 
   /** A hidden tab stops the clock instead of spending the light where nobody is looking. */
   setVisible(visible: boolean): void {
-    if (this.disposed || this.reducedMotion || !this.running) return;
+    this.hidden = !visible;
+    if (this.disposed || this.reducedMotion) return;
+    if (!this.running) {
+      // Between two cycles: the dark pause waits for the tab too.
+      if (!visible) this.clearPause();
+      else if (this.repeat && !this.pauseTimer) this.schedule();
+      return;
+    }
     if (visible) {
       this.last = performance.now();
       if (!this.frame) this.frame = requestAnimationFrame(this.tick);
@@ -260,18 +284,33 @@ export class SunRaysScene {
     this.renderer.render(this.scene, this.camera);
 
     if (t >= T.total) {
-      // Spent. Clear the glass and stop asking for frames until the band comes back on screen.
+      // Spent. Clear the glass and stop asking for frames: the next cycle comes after the dark pause, if the band is still on screen.
       u.uIntensity.value = 0;
       this.renderer.render(this.scene, this.camera);
       this.running = false;
+      if (this.repeat && !this.hidden) this.schedule();
       return;
     }
     this.frame = requestAnimationFrame(this.tick);
   };
 
+  private schedule(): void {
+    this.clearPause();
+    this.pauseTimer = window.setTimeout(() => {
+      this.pauseTimer = 0;
+      if (!this.disposed && this.repeat) this.play();
+    }, CFG.timing.pause * 1000);
+  }
+
+  private clearPause(): void {
+    if (this.pauseTimer) window.clearTimeout(this.pauseTimer);
+    this.pauseTimer = 0;
+  }
+
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.clearPause();
     if (this.frame) cancelAnimationFrame(this.frame);
     this.frame = 0;
     this.geometry.dispose();
