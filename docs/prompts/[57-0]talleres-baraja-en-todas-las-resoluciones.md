@@ -27,7 +27,7 @@ sección es memoria: **execute from `## Status` onward**.
 
 ## Status
 
-**PENDING**
+**NO ADOPTADO** (29-09-2026): implementado en a732974 y revertido por [58-0] a petición del promotor («en móvil se ven como una baraja, pero en el resto de resoluciones no: como estaba»).
 
 ## Alcance y autoridad
 
