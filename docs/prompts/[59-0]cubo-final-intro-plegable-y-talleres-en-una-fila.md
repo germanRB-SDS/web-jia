@@ -97,3 +97,10 @@ con los mismos 49 ficheros (es solo el archivo comprimido: no se usa ni se versi
    teclado; a 390 px sin pliegue. Commit.
 3. **C:** fila única con flechas laterales y fondo. Capturas a 1440, 1024 y 390 px. Commit.
 4. Informe en `docs/prompts-output/[59-0]/report.md`, commit, y preguntar por el push.
+
+## Corrección en ejecución (promotor, chat, 29-09-2026)
+
+> «La imagen utilizada en TALLERES, que en escritorio se vea un 20 % menos, más suave.»
+
+- El fondo de Talleres pasa de una opacidad del 55 % al 44 % (un 20 % menos), solo desde 760 px, donde es el único
+  sitio en que se muestra (`components/site/Section.module.css`, `.backdrop`). Comprobado con captura a 1440 px.

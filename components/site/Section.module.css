@@ -122,7 +122,8 @@
 }
 .sub + .sub { border-top: 1px solid var(--jia-line); }
 /* A spread with a picture behind it ([59-0], Talleres): edge to edge (html/body clip the overflow), faded into
-   the paper at the top and the bottom, only from 760 px. The spread's own content stays above it. */
+   the paper at the top and the bottom, only from 760 px. The spread's own content stays above it. 44 %: a fifth
+   softer than the first 55 % (promoter, 29-09-2026). */
 .subBacked { position: relative; isolation: isolate; }
 .backdrop { display: none; }
 @media (min-width: 760px) {
@@ -132,7 +133,7 @@
     z-index: -1;
     inset: 0 calc(50% - 50vw);
     overflow: hidden;
-    opacity: 0.55;
+    opacity: 0.44;
     pointer-events: none;
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
