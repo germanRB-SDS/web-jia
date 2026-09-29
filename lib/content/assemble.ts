@@ -169,7 +169,8 @@ export type LandingModel = {
     program: { title: string; days: DayModel[]; clock: ProgramClock };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
-    workshops: { title: string; marks: MarkKind[]; items: SheetModel[] };
+    /** `backdrop`: the faded picture under the row of workshops from 760 px ([59-0]). */
+    workshops: { title: string; marks: MarkKind[]; items: SheetModel[]; backdrop: Media | null };
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   /** `cutout` is the same photograph's subject with no background, laid back over `media` ([51-0]). */
@@ -493,6 +494,7 @@ export function getLanding(locale: Locale): LandingModel {
         title: copy.jornadas.workshops.title,
         marks: workshops.some((w) => copy.entities.workshops[w.id]?.status === "provisional") ? ["provisional"] : [],
         items: workshops.map((w) => workshopSheet(w, copy)),
+        backdrop: getMedia("talleres-fondo"),
       },
     },
     dosieres: {

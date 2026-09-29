@@ -121,6 +121,29 @@
   scroll-margin-top: 4.5rem;
 }
 .sub + .sub { border-top: 1px solid var(--jia-line); }
+/* A spread with a picture behind it ([59-0], Talleres): edge to edge (html/body clip the overflow), faded into
+   the paper at the top and the bottom, only from 760 px. The spread's own content stays above it. */
+.subBacked { position: relative; isolation: isolate; }
+.backdrop { display: none; }
+@media (min-width: 760px) {
+  .backdrop {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    inset: 0 calc(50% - 50vw);
+    overflow: hidden;
+    opacity: 0.55;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  }
+  .backdropImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
 @media (min-width: 900px) {
   .sub {
     grid-template-columns: 200px minmax(0, 1fr);

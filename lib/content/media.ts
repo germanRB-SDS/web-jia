@@ -119,6 +119,18 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Ilustración aportada por el promotor el 29-09-2026 (origen y licencia por confirmar)",
     },
     {
+      /** Talleres backdrop ([59-0]): the saloon's round table in watercolour, faded under the workshops' row from 760 px. */
+      id: "talleres-fondo",
+      variants: [
+        { src: "/talleres/fondo-1200.webp", width: 1200 },
+        { src: "/talleres/fondo-2164.webp", width: 2164 },
+      ],
+      ratio: 2164 / 727,
+      focal: { x: 70, y: 60 },
+      original: "assets/images-website/subsection-talleres.png",
+      license: "Imagen aportada por el promotor el 29-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Hero crop without the signpost (its baked-in words were cut mid-word at 1440). */
       id: "hero-1",
       variants: [

@@ -117,7 +117,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
       </SubSection>
 
       {/* ---- Talleres ---- */}
-      <SubSection id={jornadas.anchors.talleres} label={jornadas.workshops.title} mobileLabel={copy.jornadas.workshops.mobileTitle} markLabels={markLabels} showMarks={showMarks}>
+      <SubSection id={jornadas.anchors.talleres} label={jornadas.workshops.title} mobileLabel={copy.jornadas.workshops.mobileTitle} markLabels={markLabels} showMarks={showMarks} backdrop={jornadas.workshops.backdrop}>
         {showMarks && jornadas.workshops.marks.length ? (
           <p className={styles.hint}>
             <Marks marks={jornadas.workshops.marks} labels={markLabels} show={showMarks} />

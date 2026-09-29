@@ -170,6 +170,12 @@ for f in assets/whatsapp/section-talleres/*.png; do
   magick "$f" -resize 1000x -strip -quality 80 "public/talleres/cartel-2026-09-29-$n-1000.webp"
 done
 
+# Talleres backdrop ([59-0]): the saloon's round table in watercolour, supplied by the promoter (2164x727). It sits
+# under the workshops' row from 760 px, faded, so a light WebP is enough.
+out public/talleres/x
+magick assets/images-website/subsection-talleres.png -resize 1200x -strip -quality 76 "public/talleres/fondo-1200.webp"
+magick assets/images-website/subsection-talleres.png -strip -quality 78 "public/talleres/fondo-2164.webp"
+
 # The team cube's cards ([59-0]): the final set of 49 (1414x2000, numbered 10-58), and nothing else. The earlier
 # cards (assets/images-staff/, assets/whatsapp/item-cubo/) stay where they are, unused. The zip beside the PNGs
 # is only their archive.
