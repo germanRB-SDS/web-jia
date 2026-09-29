@@ -24,6 +24,7 @@ import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
 import { jornadasIntroVideo } from "./sections/jornadas-intro-video";
 import { TALLERES, TALLERES_DOSIERES } from "./config/talleres";
+import { REVOLVER_ESTILO, REVOLVER_HORA, REVOLVER_VISTA_PREVIA, REVOLVER_ZONA_HORARIA } from "./config/revolver";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
 import { sociosConfig } from "./sections/socios";
@@ -105,8 +106,12 @@ export type DayModel = {
   hours: string[];
   marks: MarkKind[];
   provenanceNote: string | null;
-  sessions: { id: string; text: string; time: string | null; numbered: boolean; link: { label: string; href: string } | null }[];
+  /** `slot` is the session's time in minutes from midnight, local to the venue; null when it has no time. */
+  sessions: { id: string; text: string; time: string | null; slot: { start: number; end: number } | null; numbered: boolean; link: { label: string; href: string } | null }[];
 };
+
+/** The revolver that points at the session in progress ([56-0]); settings in config/revolver.ts. */
+export type ProgramClock = { enabled: boolean; preview: boolean; timeZone: string; style: "natural" | "tinta"; icon: Media | null; nowLabel: string };
 
 export type TeamCard = { id: string; name: string; roleLabel: string; media: Media | null; alt: string; fallback: SurfaceToken };
 
@@ -161,7 +166,7 @@ export type LandingModel = {
     route: RouteModel;
     /** The "Intro" video block before the programme. */
     introVideo: IntroVideoModel;
-    program: { title: string; days: DayModel[] };
+    program: { title: string; days: DayModel[]; clock: ProgramClock };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
     workshops: { title: string; marks: MarkKind[]; items: SheetModel[] };
@@ -220,6 +225,13 @@ function externalOrUnavailable(id: string, label: string, url: string | null, no
   return url
     ? { id, label, href: url, kind: "external", note: null }
     : { id, label, href: null, kind: "unavailable", note };
+}
+
+/** "16:00–17:00" → minutes from midnight at each end; anything else (no time, one end only) → null. */
+function slotOf(time: string | null | undefined): { start: number; end: number } | null {
+  const m = time?.match(/^(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})$/);
+  if (!m) return null;
+  return { start: Number(m[1]) * 60 + Number(m[2]), end: Number(m[3]) * 60 + Number(m[4]) };
 }
 
 function formatDate(iso: string | null, language: Language): string | null {
@@ -360,7 +372,7 @@ export function getLanding(locale: Locale): LandingModel {
             : x && s.experienceId
               ? { label: x.title, href: anchor(`${experienciasConfig.id}-${s.experienceId}`) }
               : null;
-          return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time ? format(copy.jornadas.program.timeFormat, { time: s.time }) : null, numbered: s.numbered ?? true, link };
+          return { id: s.id, text: copy.jornadas.program.sessions[s.id] ?? "", time: s.time ? format(copy.jornadas.program.timeFormat, { time: s.time }) : null, slot: slotOf(s.time), numbered: s.numbered ?? true, link };
         }),
     }));
 
@@ -455,7 +467,18 @@ export function getLanding(locale: Locale): LandingModel {
       },
       hashtag: event.hashtag,
       introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, shareText: copy.jornadas.introVideo.shareText, controls: copy.buttons.video },
-      program: { title: copy.jornadas.program.title, days },
+      program: {
+        title: copy.jornadas.program.title,
+        days,
+        clock: {
+          enabled: REVOLVER_HORA === "ENABLED",
+          preview: REVOLVER_VISTA_PREVIA,
+          timeZone: REVOLVER_ZONA_HORARIA,
+          style: REVOLVER_ESTILO,
+          icon: getMedia("icon-revolver"),
+          nowLabel: copy.jornadas.program.nowLabel,
+        },
+      },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length
         ? { title: copy.jornadas.team.title, lede: copy.jornadas.team.lede, cards: teamCards, cube: { region: copy.a11y.teamRegion, ...copy.buttons.cube, ...copy.jornadas.team.cube } }

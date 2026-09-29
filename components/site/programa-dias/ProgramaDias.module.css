@@ -122,6 +122,37 @@
   color: var(--jia-text-muted);
 }
 .sessionText { grid-column: 3; }
+/* The revolver ([56-0]): out in the margin, left of the numeral, its barrel at the numeral and its middle on the
+   row's first line. Absolute, so the grid of every row stays where it was. Its width leaves room before the
+   rule that parts the two days, which is 2 rem away at the narrowest spread. */
+.session { position: relative; --revolver-w: clamp(1.75rem, 2.8vw, 2.75rem); }
+.revolver {
+  position: absolute;
+  left: calc(-1 * (var(--revolver-w) + 0.35rem));
+  top: calc(0.7rem + 0.5lh);
+  width: var(--revolver-w);
+  height: auto;
+  translate: 0 -50%;
+  /* Muzzle a touch down, at the numeral: level, it read as a thing lying there, not aiming. */
+  rotate: 8deg;
+  transform-origin: 30% 60%;
+  pointer-events: none;
+}
+/* "tinta": the gun's silhouette in the palette's terracotta instead of the watercolour. */
+.revolverInk {
+  display: block;
+  background: var(--jia-terracotta);
+  mask: var(--revolver-src) center / contain no-repeat;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 .sessionLink { grid-column: 3; color: var(--jia-terracotta); font-family: var(--f-ui); }
 .provenance {
   margin: 0.75rem 0 0;
@@ -195,6 +226,11 @@
     scrollbar-width: none;
   }
   .days::-webkit-scrollbar { display: none; }
+  /* The track clips anything left of its edge, so on a phone the revolver takes its room inside the row:
+     the row it points at steps in by the gun's width. */
+  .session { --revolver-w: 2rem; }
+  .session[data-now] { padding-left: calc(var(--revolver-w) + 0.4rem); }
+  .revolver { left: 0; }
   .day { scroll-snap-align: start; scroll-snap-stop: always; }
   /* Only visually: it stays in the accessibility tree and in the outline. */
   .panelLabel {

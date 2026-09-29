@@ -63,3 +63,24 @@ material. Esta sección es memoria: **execute from `## Status` onward**.
 1. `REVOLVER_VISTA_PREVIA = false` (queda `ENABLED`: aparece solo el 16 y 17-10 en horario de sesión).
 2. Ajustes de tamaño/color que pida. Build, commit, informe en `docs/prompts-output/[56-0]/report.md`, commit del
    informe y push con `sds-dev-governance/scripts/git-safe-push.sh origin main`.
+
+## Adición en ejecución (promotor, chat, 29-09-2026)
+
+> «En la section IDEAS QUE YA HAN PASADO POR EL AULA, el efecto de la luz, cuando desaparece (por la ventana) que
+> haya 1s de inacción y luego vuelva a repetirse el efecto de iluminación.»
+
+- Aterrizaje: la luz de `components/site/sun-rays/` hace hoy un solo ciclo de 5 s cada vez que la banda entra en
+  pantalla. Pasa a **repetirse** mientras la banda siga en pantalla: al terminar el ciclo (la luz ya ha salido),
+  `timing.pause = 1` s de habitación a oscuras y vuelve a empezar. Al salir la banda de pantalla, el ciclo en curso
+  termina y no se programa otro; con la pestaña oculta la pausa espera. Movimiento reducido: sin cambios (un
+  fotograma fijo). La tiza del encerado se sigue escribiendo una sola vez.
+- Va en su propio commit, dentro de la fase A.
+
+## Corrección en ejecución (promotor, chat, 29-09-2026)
+
+> «El revólver es demasiado alargado y se ve no estético, no bonito.»
+
+- A ~40 px de ancho, el cañón largo se leía como un palo. Se acorta en el derivado (no en el original): se quita un
+  tramo uniforme de cañón y baqueta (x 1115–1600 del recorte) y se vuelve a poner la boca 24 px más abajo (el cañón
+  sube hacia la boca), así queda un Colt de cañón corto, 1744×985 (1,77:1 en vez de 2,21:1). Además es algo más
+  grande (`clamp(1.75rem, 2.8vw, 2.75rem)`; 2 rem en móvil) y está inclinado 8° con la boca hacia el numeral.

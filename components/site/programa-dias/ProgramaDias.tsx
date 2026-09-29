@@ -3,13 +3,15 @@
 import { isMotionReduced } from "@/lib/motion/policy";
 
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
-import type { LandingModel, MarkKind } from "@/lib/content";
+import type { LandingModel, MarkKind, ProgramClock } from "@/lib/content";
 import { ArrowIcon } from "@/components/icons";
 import { Marks } from "@/components/primitives/Mark";
+import { sessionAt, type NowAt } from "./clock";
 import styles from "./ProgramaDias.module.css";
 
 type Props = {
   days: LandingModel["jornadas"]["program"]["days"];
+  clock: ProgramClock;
   copy: LandingModel["copy"];
   markLabels: Record<MarkKind, string>;
   showMarks: boolean;
@@ -29,13 +31,32 @@ type Props = {
  * set hides the panels it is not showing, and here BOTH days stay reachable — a reader scrolls
  * through them, a finger drags to them — so saying "tab" would describe something the markup does
  * not do.
+ *
+ * The revolver ([56-0]) points at the session being held right now, by the venue's clock (config/revolver.ts).
+ * The site is static, so "now" is only known in the browser: the HTML carries no revolver, and it turns up
+ * after mounting, on the event's two days and inside a session's hours. The preview pins it on the first
+ * session of the first day, in the HTML too, so its size and colour can be judged on any date.
  */
-export function ProgramaDias({ days, copy, markLabels, showMarks }: Props) {
+export function ProgramaDias({ days, clock, copy, markLabels, showMarks }: Props) {
   const trackRef = useRef<HTMLOListElement>(null);
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const [active, setActive] = useState(0);
   const baseId = useId();
   const panelId = (i: number) => `${baseId}-dia-${i}`;
+
+  const pinned: NowAt | null = clock.enabled && clock.preview && days[0]?.sessions[0] ? { dayId: days[0].id, sessionId: days[0].sessions[0].id } : null;
+  const [now, setNow] = useState<NowAt | null>(pinned);
+  useEffect(() => {
+    if (!clock.enabled || clock.preview) return;
+    const tick = () => {
+      const next = sessionAt(days, new Date(), clock.timeZone);
+      setNow((current) => (current?.dayId === next?.dayId && current?.sessionId === next?.sessionId ? current : next));
+    };
+    tick();
+    const timer = window.setInterval(tick, 30_000);
+    return () => window.clearInterval(timer);
+  }, [clock.enabled, clock.preview, clock.timeZone, days]);
+  const revolver = clock.icon ? clock.icon.variants[clock.icon.variants.length - 1] : null;
 
   // Where the track is, is what the line follows. One day per view, so the page is the track's width.
   const onScroll = useCallback(() => {
@@ -160,8 +181,18 @@ export function ProgramaDias({ days, copy, markLabels, showMarks }: Props) {
               ) : null}
             </dl>
             <ol className={styles.sessions}>
-              {day.sessions.map((s) => (
-                <li key={s.id} className={styles.session} data-unnumbered={s.numbered ? undefined : ""}>
+              {day.sessions.map((s) => {
+                const isNow = now?.dayId === day.id && now.sessionId === s.id;
+                return (
+                <li key={s.id} className={styles.session} data-unnumbered={s.numbered ? undefined : ""} data-now={isNow ? "" : undefined} aria-current={isNow ? "time" : undefined}>
+                  {isNow && revolver && clock.icon ? (
+                    clock.style === "tinta" ? (
+                      <span className={`${styles.revolver} ${styles.revolverInk}`} style={{ "--revolver-src": `url(${revolver.src})`, aspectRatio: clock.icon.ratio } as CSSProperties} aria-hidden="true" />
+                    ) : (
+                      <img className={styles.revolver} src={revolver.src} srcSet={clock.icon.variants.map((v) => `${v.src} ${v.width}w`).join(", ")} sizes="2.5rem" width={revolver.width} height={Math.round(revolver.width / clock.icon.ratio)} alt="" decoding="async" />
+                    )
+                  ) : null}
+                  {isNow ? <span className={styles.srOnly}>{clock.nowLabel}: </span> : null}
                   {s.time ? <span className={styles.sessionTime}>{s.time}</span> : null}
                   <span className={styles.sessionText}>{s.text}</span>
                   {s.link ? (
@@ -170,7 +201,8 @@ export function ProgramaDias({ days, copy, markLabels, showMarks }: Props) {
                     </a>
                   ) : null}
                 </li>
-              ))}
+                );
+              })}
             </ol>
             {day.provenanceNote && showMarks ? <p className={styles.provenance}>{day.provenanceNote}</p> : null}
           </li>

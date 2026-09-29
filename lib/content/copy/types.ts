@@ -112,6 +112,8 @@ export type Copy = {
       directions: string;
       /** `{time}` */
       timeFormat: string;
+      /** Accessible text of the revolver that points at the session in progress ([56-0]). */
+      nowLabel: string;
       sessions: Record<string, string>;
     };
     how: { title: string; paragraphs: string[]; status: EditorialStatus };

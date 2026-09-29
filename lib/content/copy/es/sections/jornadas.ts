@@ -26,6 +26,8 @@ export const jornadas: Copy["jornadas"] = {
     directions: "Cómo ir",
     /** `{time}` is the slot from data/program.ts (e.g. "16:00–17:00"). */
     timeFormat: "{time} h",
+    /** Read out with the session the revolver points at ([56-0]). */
+    nowLabel: "Ahora",
     /** Headings of the programme poster of 29-09-2026 ([55-0]); the poster's longer descriptions are not transcribed. */
     sessions: {
       "s-1-1": "Registro de forajidos y docentes",

@@ -104,6 +104,17 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 20-09-2026 (origen y licencia por confirmar)",
     },
     {
+      /** The programme's revolver ([56-0]): points at the session in progress. The watercolour with its barrel shortened (see build-assets.sh), with alpha. */
+      id: "icon-revolver",
+      variants: [
+        { src: "/programa/revolver-96.webp", width: 96 },
+        { src: "/programa/revolver-192.webp", width: 192 },
+      ],
+      ratio: 1744 / 985,
+      original: "assets/icons/revolver.svg",
+      license: "Ilustración aportada por el promotor el 29-09-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Hero crop without the signpost (its baked-in words were cut mid-word at 1440). */
       id: "hero-1",
       variants: [

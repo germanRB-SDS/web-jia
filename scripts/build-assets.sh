@@ -125,6 +125,24 @@ for name in consejeria-educacion sds minihollywood leonardo kichi lagata aribald
   magick "$src" -resize 840x -strip -quality 82 "public/colaboradores/$name-840.webp"
 done
 
+# Programme revolver ([56-0]): the promoter's watercolour, vectorised into thousands of paths over a flat
+# #F4F2EE rectangle (4 MB, 1200x675). The rectangle's group is dropped so the gun keeps its own edge, then it is
+# rasterised at 2x and trimmed to the gun (2229x1009). At the size it is drawn a long barrel reads as a stick
+# (promoter, 29-09-2026), so a uniform stretch of barrel and ejector rod (x 1115-1600) is cut out and the muzzle
+# end is set back on, 24 px lower because the barrel climbs towards the muzzle: a short-barrelled Colt,
+# 1744x985. Served with alpha, drawn ~2.75rem wide: 96 covers density 1, 192 densities 2-3.
+out public/programa/x
+rev_tmp="$(mktemp -d)"
+perl -0pe 's{<g id="Background">.*?</g>}{}s' assets/icons/revolver.svg > "$rev_tmp/revolver.svg"
+magick -background none -density 192 "$rev_tmp/revolver.svg" -trim +repage "$rev_tmp/long.png"
+magick "$rev_tmp/long.png" -crop 1115x1009+0+0 +repage "$rev_tmp/grip.png"
+magick "$rev_tmp/long.png" -crop 629x1009+1600+0 +repage "$rev_tmp/muzzle.png"
+magick -size 1744x1040 xc:none "$rev_tmp/grip.png" -geometry +0+0 -composite "$rev_tmp/muzzle.png" -geometry +1115+24 -composite \
+  -trim +repage "$rev_tmp/revolver.png"
+magick "$rev_tmp/revolver.png" -resize 96x -strip -quality 88 -define webp:alpha-quality=100 "public/programa/revolver-96.webp"
+magick "$rev_tmp/revolver.png" -resize 192x -strip -quality 88 -define webp:alpha-quality=100 "public/programa/revolver-192.webp"
+rm -rf "$rev_tmp"
+
 # Official #JIA26 badge (has alpha). PNG keeps transparency for the header.
 out public/brand/x
 magick "assets/cep/logo-variantes/#jIA26 LOGO.png" -resize 320x -strip "public/brand/jia26-badge-320.png"

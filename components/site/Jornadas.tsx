@@ -88,7 +88,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
       {/* ---- Programa ---- */}
       <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks}>
-        <ProgramaDias days={jornadas.program.days} copy={copy} markLabels={markLabels} showMarks={showMarks} />
+        <ProgramaDias days={jornadas.program.days} clock={jornadas.program.clock} copy={copy} markLabels={markLabels} showMarks={showMarks} />
       </SubSection>
 
       {/* ---- Cómo funcionan ---- */}
