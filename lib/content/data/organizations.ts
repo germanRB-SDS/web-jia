@@ -20,4 +20,5 @@ export const organizations: readonly Organization[] = [
   { id: "o-leonardo", name: "Leonardo Atrezzo", relation: "colabora", url: "https://www.armerialeonardo.es/", logoMediaId: "colabora-leonardo", status: "provisional", provenance: { source: CARTEL } },
   { id: "o-kichigarcia", name: "Kichi García Films", relation: "colabora", url: "https://www.kichigarciafilms.com/", logoMediaId: "colabora-kichi", status: "provisional", provenance: { source: CARTEL, note: "Impreso como «KICHIGARCIAFILMS»; grafía por confirmar." } },
   { id: "o-gata-purpura", name: "La Gata Púrpura", relation: "colabora", url: "https://www.instagram.com/lagatapurpuraimpro", logoMediaId: "colabora-lagata", status: "provisional", provenance: { source: CARTEL } },
+  { id: "o-aribaldi", name: "Aribaldi Circus", relation: "colabora", url: "https://www.instagram.com/aribaldicircus/?hl=es", logoMediaId: "colabora-aribaldi", status: "provisional", provenance: { source: "Promotor (chat, 29-09-2026)", note: "No figura en el cartel; el promotor la añade al carrusel de «Quiénes somos» con su imagen y su enlace." } },
 ];
