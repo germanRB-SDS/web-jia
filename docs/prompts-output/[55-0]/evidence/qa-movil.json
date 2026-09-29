@@ -1,0 +1,364 @@
+{
+  "width": 390,
+  "mobile": true,
+  "loads": [
+    {
+      "caption": "Pedro L. Sánchez | ASESOR CEP | 22 DE 36",
+      "front": "card-24-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "María López | EXPERIENCIA DE ÉXITO | 33 DE 36",
+      "front": "card-62-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Yajaira Grao | ASESORA CEP | 7 DE 36",
+      "front": "card-9-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Manuel Rubia | ASESOR CEP | 17 DE 36",
+      "front": "card-19-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 36",
+      "front": "card-46-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 36",
+      "front": "card-46-800.webp",
+      "loaded": true
+    }
+  ],
+  "walk": [
+    {
+      "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 36",
+      "front": "card-46-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Alberto Romero | COORDINACIÓN | 2 DE 36",
+      "front": "card-39-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Adolfo Ariño | COORDINACIÓN | 3 DE 36",
+      "front": "card-40-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "José Luis Herrador | ASESOR CEP | 4 DE 36",
+      "front": "card-6-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Irene Castañeda | ASESORA CEP | 5 DE 36",
+      "front": "card-7-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Antonio Orellana | ASESOR CEP | 6 DE 36",
+      "front": "card-8-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Yajaira Grao | ASESORA CEP | 7 DE 36",
+      "front": "card-9-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Jacinto Barragán | ASESOR CEP | 8 DE 36",
+      "front": "card-10-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Juan Carlos Muñoz | ASESOR CEP | 9 DE 36",
+      "front": "card-11-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Enrique Brotons | ASESOR CEP | 10 DE 36",
+      "front": "card-12-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Mª Jesús López | ASESORA CEP | 11 DE 36",
+      "front": "card-13-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Julieta Pérez-Ruiz | ASESORA CEP | 12 DE 36",
+      "front": "card-14-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Clara Martínez | ASESORA CEP | 13 DE 36",
+      "front": "card-15-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "María Toledo | ASESORA CEP | 14 DE 36",
+      "front": "card-16-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Juan Rubí | ASESOR CEP | 15 DE 36",
+      "front": "card-17-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Casi López | ASESORA CEP | 16 DE 36",
+      "front": "card-18-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Manuel Rubia | ASESOR CEP | 17 DE 36",
+      "front": "card-19-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "María Sánchez | ASESORA CEP | 18 DE 36",
+      "front": "card-20-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Paqui Rodríguez | ASESORA CEP | 19 DE 36",
+      "front": "card-21-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Isa Rodríguez | ASESORA CEP | 20 DE 36",
+      "front": "card-22-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Inma Carrillo | ASESORA CEP | 21 DE 36",
+      "front": "card-23-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Pedro L. Sánchez | ASESOR CEP | 22 DE 36",
+      "front": "card-24-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "José Manuel Alonso | ASESOR CEP | 23 DE 36",
+      "front": "card-25-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Susana Castillo | ASESORA CEP | 24 DE 36",
+      "front": "card-26-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Adela Pérez | ASESORA CEP | 25 DE 36",
+      "front": "card-27-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Silvia Cruz | ASESORA CEP | 26 DE 36",
+      "front": "card-28-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Rubén Rubio Troyano | COLABORADOR | 27 DE 36",
+      "front": "card-41-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Raúl Torres Gordon | COLABORADOR | 28 DE 36",
+      "front": "card-42-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "María Hernández | COLABORADORA | 29 DE 36",
+      "front": "card-43-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Gabi Moral | EXPERIENCIA DE ÉXITO | 30 DE 36",
+      "front": "card-59-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Rubén López | EXPERIENCIA DE ÉXITO | 31 DE 36",
+      "front": "card-60-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Gonzalo Carretero | EXPERIENCIA DE ÉXITO | 32 DE 36",
+      "front": "card-61-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "María López | EXPERIENCIA DE ÉXITO | 33 DE 36",
+      "front": "card-62-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Pilar Díaz | EXPERIENCIA DE ÉXITO | 34 DE 36",
+      "front": "card-65-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Toni Navarro | EXPERIENCIA DE ÉXITO | 35 DE 36",
+      "front": "card-66-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Cristina Robles / León | EXPERIENCIA DE ÉXITO | 36 DE 36",
+      "front": "card-67-800.webp",
+      "loaded": true
+    },
+    {
+      "caption": "Almudena Bernal | COORDINACIÓN CEP | 1 DE 36",
+      "front": "card-46-800.webp",
+      "loaded": true
+    }
+  ],
+  "program": [
+    [
+      "16:00–17:00 h Registro de forajidos y docentes",
+      "17:00–18:00 h Bienvenida de los sheriffs de la educación (The Grand Theatre)",
+      "18:00–19:00 h Consejos del viajero del conocimiento: «Que la creatividad te acompañe», conferencia de Rafa Fortis",
+      "19:00–20:30 h Cabalgata de éxitos de la frontera"
+    ],
+    [
+      "10:00–11:30 h Las lecciones del Oeste (Aulario del Correo): talleres prácticos 1",
+      "11:30–12:15 h Desayuno del pionero (Cantina de Tiza Seca)",
+      "12:30–14:00 h Las lecciones del Oeste (Aulario del Correo): talleres prácticos 2",
+      "14:00–16:00 h Repostaje de víveres y agua (Cantina de Tiza Seca)",
+      "16:00–16:30 h El desafío de las seis cartas (en las calles de Tiza Seca Town)",
+      "16:30–18:30 h Las lecciones del Oeste (Aulario del Correo): talleres prácticos 3",
+      "18:30–19:30 h Juego: El duelo final (Arenal de los desafíos)",
+      "19:30–20:30 h El regreso a la frontera educativa (Saloon): clausura de las jornadas"
+    ]
+  ],
+  "workshops": [
+    {
+      "title": "Por un puñado de bloques",
+      "cardSrc": "cartel-2026-09-29-1-1000.webp",
+      "sheet": {
+        "imgs": [
+          {
+            "src": "cartel-2026-09-29-1-1000.webp",
+            "visible": true
+          },
+          {
+            "src": "sello-jia26-480.webp",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "title": "Dos renders y un destino",
+      "cardSrc": "cartel-2026-09-29-2-1000.webp",
+      "sheet": {
+        "imgs": [
+          {
+            "src": "cartel-2026-09-29-2-1000.webp",
+            "visible": true
+          },
+          {
+            "src": "sello-jia26-480.webp",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "title": "El bueno, el feo… y el plano",
+      "cardSrc": "cartel-2026-09-29-3-1000.webp",
+      "sheet": {
+        "imgs": [
+          {
+            "src": "cartel-2026-09-29-3-1000.webp",
+            "visible": true
+          },
+          {
+            "src": "sello-jia26-480.webp",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "title": "Siete legos para siete planos",
+      "cardSrc": "cartel-2026-09-29-4-1000.webp",
+      "sheet": {
+        "imgs": [
+          {
+            "src": "cartel-2026-09-29-4-1000.webp",
+            "visible": true
+          },
+          {
+            "src": "sello-jia26-480.webp",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "title": "La profe que pintó a Liberty Valance",
+      "cardSrc": "cartel-2026-09-29-5-1000.webp",
+      "sheet": {
+        "imgs": [
+          {
+            "src": "cartel-2026-09-29-5-1000.webp",
+            "visible": true
+          },
+          {
+            "src": "sello-jia26-480.webp",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "title": "La muerte tenía un micro",
+      "cardSrc": "cartel-2026-09-29-6-1000.webp",
+      "sheet": {
+        "imgs": [
+          {
+            "src": "cartel-2026-09-29-6-1000.webp",
+            "visible": true
+          },
+          {
+            "src": "sello-jia26-480.webp",
+            "visible": true
+          }
+        ]
+      }
+    }
+  ],
+  "cube": {
+    "total": 36,
+    "distinctFronts": 36,
+    "allLoaded": true,
+    "wrapsToStart": true,
+    "newCardsSeen": [
+      59,
+      60,
+      61,
+      62,
+      65,
+      66,
+      67
+    ],
+    "firstCaptions": [
+      "Pedro L. Sánchez | ASESOR CEP | 22 DE 36",
+      "María López | EXPERIENCIA DE ÉXITO | 33 DE 36",
+      "Yajaira Grao | ASESORA CEP | 7 DE 36",
+      "Manuel Rubia | ASESOR CEP | 17 DE 36",
+      "Almudena Bernal | COORDINACIÓN CEP | 1 DE 36",
+      "Almudena Bernal | COORDINACIÓN CEP | 1 DE 36"
+    ]
+  },
+  "overflowX": false,
+  "errors": []
+}

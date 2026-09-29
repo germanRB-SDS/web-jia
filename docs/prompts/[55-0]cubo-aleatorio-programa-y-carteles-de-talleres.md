@@ -36,7 +36,7 @@ material. Esta sección es memoria: **execute from `## Status` onward**.
 
 ## Status
 
-**READY TO EXECUTE** (29-09-2026). Orden del promotor: ejecutar, commit al terminar y push a `origin/main`.
+**EXECUTED** (29-09-2026): commits c361568, 723b56c y 5b2c30c; informe en [`docs/prompts-output/[55-0]/report.md`](../prompts-output/[55-0]/report.md). Orden del promotor: ejecutar, commit al terminar y push a `origin/main`.
 
 ## Alcance y autoridad
 
