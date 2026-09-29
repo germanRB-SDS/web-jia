@@ -110,6 +110,7 @@ export function Experiences({ experiencias, copy, showMarks }: Props) {
                 heading="h3"
                 sizes="(min-width: 900px) 420px, 90vw"
                 compact={compact}
+                bare={experiencias.pictureOnly}
               />
             ))}
           </div>

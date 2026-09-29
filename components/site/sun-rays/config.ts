@@ -84,9 +84,14 @@ export const SUN_RAYS = {
     total: 5,
     /**
      * Once the light has left through the window, the room stays dark this long and then the light comes in
-     * again, over and over while the band is on screen (promoter, 29-09-2026, [56-0]). Seconds, not a share.
+     * again, up to `cycles` times while the band is on screen ([56-0], [60-0]). Seconds, not a share.
      */
     pause: 1,
+    /**
+     * How many times the light comes in each time the band arrives on screen, and then it stops (promoter,
+     * 29-09-2026, [60-0]). Scroll away and come back: as many again, never more.
+     */
+    cycles: 2,
   },
 
   /** Reduced motion: one still frame at this share of full strength, and nothing moves. */

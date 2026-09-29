@@ -9,8 +9,8 @@ import styles from "../Experiences.module.css";
 /**
  * The moment the classroom wakes up ([51-0]): the sun comes in through the window and the name of the jornadas
  * is written on the blackboard. Both are fired by the same thing — the band reaching the screen. The light
- * comes in again on every return (promoter, 25-09-2026); the chalk is written once and stays written, because
- * chalk on a board does not unwrite itself.
+ * comes in again on every return (promoter, 25-09-2026), twice and no more ([60-0]); the chalk is written once
+ * and stays written, because chalk on a board does not unwrite itself.
  *
  * The two are deliberately independent underneath. The light is Three.js on a transparent canvas and needs
  * WebGL; the chalk is CSS and needs nothing. So the chalk is armed and released by this component directly,

@@ -14,4 +14,9 @@ export const experienciasConfig = {
   mediaId: "experiencias-aula" as string | null,
   cutoutMediaId: "experiencias-maestra" as string | null,
   fallbackSurface: "card" as SurfaceToken,
+  /**
+   * The cards are the picture alone ([60-0]): no title under it and no «Ver ficha». The title stays for screen
+   * readers and the picture itself is the button that opens the sheet. Set to false for the full card.
+   */
+  pictureOnly: true,
 } as const;

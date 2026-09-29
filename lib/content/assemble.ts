@@ -174,7 +174,7 @@ export type LandingModel = {
   };
   dosieres: { id: string; title: string; lede: string; empty: string; items: ResourceModel[]; marks: MarkKind[] };
   /** `cutout` is the same photograph's subject with no background, laid back over `media` ([51-0]). */
-  experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; media: Media | null; cutout: Media | null; fallback: SurfaceToken; marks: MarkKind[] };
+  experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; media: Media | null; cutout: Media | null; fallback: SurfaceToken; pictureOnly: boolean; marks: MarkKind[] };
   propuestas: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; marks: MarkKind[] };
   partners: {
     id: string;
@@ -510,6 +510,7 @@ export function getLanding(locale: Locale): LandingModel {
       media: getMedia(experienciasConfig.mediaId),
       cutout: getMedia(experienciasConfig.cutoutMediaId),
       fallback: experienciasConfig.fallbackSurface,
+      pictureOnly: experienciasConfig.pictureOnly,
       title: copy.experiencias.title,
       lede: copy.experiencias.lede,
       empty: copy.experiencias.empty,

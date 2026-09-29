@@ -8,7 +8,7 @@
  * rectangle the photograph is actually DRAWN in (see Experiences.module.css), never the section's box.
  *
  * The cycle runs whenever the band comes back on screen (promoter, 25-09-2026): scroll away, come back, and the
- * sun comes in again. Between one visit and the next nothing is drawn and no frame is asked for — the renderer
+ * sun comes in again — `timing.cycles` times per visit, and then the room stays as the photograph has it ([60-0]). Between one visit and the next nothing is drawn and no frame is asked for — the renderer
  * stays built because rebuilding it would cost far more than holding one plane and one shader. Under reduced
  * motion it paints a single still frame instead. Colour comes from a palette token; there is not one literal
  * colour in this file.
@@ -118,8 +118,10 @@ export class SunRaysScene {
   private played = 0;
   private last = 0;
   private running = false;
-  /** While the band is on screen the cycle repeats, `timing.pause` apart ([56-0]). */
+  /** While the band is on screen the cycle repeats, `timing.pause` apart ([56-0]), up to `timing.cycles` ([60-0]). */
   private repeat = false;
+  /** Cycles begun since the band last arrived. */
+  private cycle = 0;
   private pauseTimer = 0;
   private hidden = false;
   private disposed = false;
@@ -208,7 +210,7 @@ export class SunRaysScene {
   /**
    * The light comes in, from the top. Called every time the band comes back on screen, and it always starts
    * the cycle over: coming back to a room half lit would look like a glitch, not like a sun. From then on it
-   * repeats, a dark `timing.pause` between one cycle and the next, until `stop()`.
+   * repeats, a dark `timing.pause` between one cycle and the next, until `timing.cycles` have played or `stop()`.
    */
   start(): void {
     if (this.disposed) return;
@@ -217,6 +219,7 @@ export class SunRaysScene {
       return;
     }
     this.repeat = true;
+    this.cycle = 0;
     this.play();
   }
 
@@ -228,6 +231,7 @@ export class SunRaysScene {
 
   private play(): void {
     this.clearPause();
+    this.cycle += 1;
     this.played = 0;
     this.last = performance.now();
     this.running = true;
@@ -288,6 +292,7 @@ export class SunRaysScene {
       u.uIntensity.value = 0;
       this.renderer.render(this.scene, this.camera);
       this.running = false;
+      if (this.cycle >= CFG.timing.cycles) this.repeat = false;
       if (this.repeat && !this.hidden) this.schedule();
       return;
     }
