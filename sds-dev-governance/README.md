@@ -69,6 +69,7 @@ sds-dev-governance/
 │   ├── prompts/
 │   ├── outputs/
 │   └── memory/
+├── built-projects/              ← modelos visuales completos, skeleton y skills manuales inactivas
 ├── knowledge/                   ← recetas y experiencias reutilizables (ios/, android/…), bajo demanda
 ├── resources/                   ← recursos opcionales bajo demanda
 │   ├── nomenclature-explanation.md ← know-how bilingue de nomenclatura SDS
@@ -542,3 +543,10 @@ configuration staging. [MCP guide](mcp/README.md) documents safe closed gateways
 synthetic batch/custody tests and the Hostinger 1.58.0 dependency lock. Real provider
 access remains blocked pending independent secret isolation and human authorization
 infrastructure. Bootstrap copies tooling only; it never activates a global MCP.
+
+## Modelos de proyectos construidos
+
+[Catálogo built-projects](built-projects/INDEX.md): referencias completas bajo demanda, con guía
+visual, esquema reordenable, skill manual, fuentes y configuración. Primera entrada:
+[web-jia](built-projects/web-jia/INDEX.md), con 14 capturas originales y sus componentes enlazados.
+Estas skills archivadas no se instalan ni se cargan automáticamente.

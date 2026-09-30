@@ -1,0 +1,92 @@
+/* =============================================================================
+   JIA — PALETA CANÓNICA
+   Única fuente de los colores de marca. Valores tomados literalmente de
+   assets/style/JIA_IDENTIDAD_VISUAL.md §4.2 y §12. Los componentes consumen
+   estos tokens; ningún HEX de marca vive fuera de este archivo.
+   ============================================================================= */
+:root {
+  --jia-paper: #f1e7d8;            /* Papel editorial: fondo principal */
+  --jia-ivory: #f6eedf;            /* Marfil de luz: zonas luminosas, texto sobre botón oscuro */
+  --jia-sand: #edddc7;             /* Arena del hero: transición hacia fotografía */
+  --jia-card: #eee3d1;             /* Pergamino de tarjeta: superficies secundarias */
+  --jia-ink: #2f180b;              /* Tinta JIA: lettering, títulos de máxima jerarquía */
+  --jia-text: #443d37;             /* Tinta de lectura: párrafos */
+  --jia-text-muted: #71604d;       /* Tinta secundaria: metadatos (4,93:1 sobre papel) */
+  --jia-terracotta: #89482e;       /* Terracota principal: botón, iconos, acentos */
+  --jia-terracotta-deep: #703923;  /* Terracota profunda: hover y estados activos */
+  --jia-dune: #c0ac94;             /* Duna (extensión, muestreada del degradado aportado): velo sobre fotografía, lado denso */
+  --jia-dune-light: #ddccb5;       /* Duna clara (extensión): velo sobre fotografía, lado abierto */
+  --jia-sand-deep: #e2cfb2;        /* Arena profunda (extensión): superficie de hover/activo sobre papel; un paso por debajo de arena, sin llegar a línea */
+  --jia-line: #c9b79f;             /* Línea de arena: separadores decorativos */
+  --jia-copper: #ad754d;           /* Cobre mate: detalle gráfico, nunca texto pequeño */
+  --jia-olive: #72715b;            /* Oliva seco: acento muy puntual */
+  --jia-chalk: #d7c9b2;            /* Tiza (extensión, muestreada de la foto del aula): sólo el rótulo escrito sobre la pizarra */
+  --jia-sunbeam: #eedccb;          /* Luz de la ventana (extensión, muestreada del cristal de esa misma foto del aula): sólo los rayos de sol de Experiencias */
+
+  /* Canales RGB de los tokens que se usan con transparencia (máscaras del hero,
+     velos de tarjeta). Se derivan de los HEX anteriores; no son colores nuevos. */
+  --jia-paper-rgb: 241 231 216;
+  --jia-ink-rgb: 47 24 11;
+  --jia-sand-rgb: 237 221 199;
+  --jia-ivory-rgb: 246 238 223;
+  --jia-dune-rgb: 192 172 148;
+  --jia-dune-light-rgb: 221 204 181;
+  --jia-terracotta-deep-rgb: 112 57 35;
+  --jia-sunbeam-rgb: 238 220 203;
+
+  /* Degradados de «Cómo funcionan» (JIA-2026-09-18-11, extensión pedida por el promotor): un foco
+     cálido detrás del cubo del equipo y el barniz de sus caras. Solo combinan tokens anteriores. */
+  --jia-gradient-spotlight: radial-gradient(closest-side, rgb(var(--jia-ivory-rgb) / 0.95) 0%, rgb(var(--jia-dune-light-rgb) / 0.7) 46%, rgb(var(--jia-dune-rgb) / 0.22) 74%, rgb(var(--jia-dune-rgb) / 0) 100%);
+  --jia-gradient-floor: radial-gradient(closest-side, rgb(137 72 46 / 0.2), rgb(137 72 46 / 0));
+  /* Reverso de la tarjeta de taller al girar: tinta JIA (marrón oscuro) dominante, con un resplandor de terracota profunda
+     tras el sello y un destello de cobre en la esquina baja. */
+  --jia-gradient-flip-back: radial-gradient(ellipse 78% 62% at 50% 40%, color-mix(in srgb, var(--jia-terracotta-deep) 42%, transparent) 0%, transparent 72%), radial-gradient(ellipse 70% 50% at 96% 102%, color-mix(in srgb, var(--jia-copper) 26%, transparent) 0%, transparent 70%), linear-gradient(155deg, color-mix(in srgb, var(--jia-terracotta) 34%, var(--jia-ink)) 0%, var(--jia-ink) 46%, color-mix(in srgb, var(--jia-ink) 76%, black) 100%);
+  /* Botones primarios ([50-0], referencia del promotor «Wild West Shimmer Button»): el cuero de la llamada a la
+     acción. El degradado diagonal, su paso más hondo para el puntero, la banda de luz que lo recorre y el relieve en
+     tres estados (sombra proyectada + sombra interior del canto). Solo combinan tokens anteriores. */
+  --jia-gradient-leather: linear-gradient(45deg, var(--jia-terracotta-deep) 0%, var(--jia-terracotta) 100%);
+  --jia-gradient-leather-hover: linear-gradient(45deg, color-mix(in srgb, var(--jia-terracotta-deep) 78%, var(--jia-ink)) 0%, var(--jia-terracotta-deep) 100%);
+  --jia-glint: linear-gradient(90deg, transparent 0%, rgb(var(--jia-ivory-rgb) / 0.26) 50%, transparent 100%);
+  --jia-shadow-relief: 0 8px 18px -6px rgb(var(--jia-ink-rgb) / 0.38), inset 0 -4px 8px rgb(var(--jia-ink-rgb) / 0.22);
+  --jia-shadow-relief-hover: 0 14px 26px -8px rgb(var(--jia-ink-rgb) / 0.46), inset 0 -4px 8px rgb(var(--jia-ink-rgb) / 0.22);
+  --jia-shadow-relief-active: 0 4px 9px -4px rgb(var(--jia-ink-rgb) / 0.34), inset 0 -2px 5px rgb(var(--jia-ink-rgb) / 0.26);
+  --jia-gradient-cube: linear-gradient(158deg, color-mix(in srgb, var(--jia-terracotta-deep) 62%, var(--jia-ink)) 0%, var(--jia-ink) 46%, color-mix(in srgb, var(--jia-ink) 72%, black) 100%);
+  /* Velo de las caras del cubo (JIA-2026-09-18-14): casi nada sobre la tarjeta, terracota y tinta hacia las esquinas. */
+  --jia-gradient-cube-veil: radial-gradient(ellipse 74% 74% at 50% 48%, color-mix(in srgb, var(--jia-terracotta) 5%, transparent) 0%, color-mix(in srgb, var(--jia-terracotta) 7%, transparent) 42%, color-mix(in srgb, var(--jia-terracotta-deep) 26%, transparent) 72%, color-mix(in srgb, var(--jia-ink) 58%, transparent) 100%);
+
+  /* Sistema de fondos (JIA-2026-09-18-15, extensión pedida por el promotor). Una escala de pergamino de cinco
+     pasos, de más claro a más denso, y tres recetas que solo combinan esos pasos. Las superficies de papel se
+     suceden compartiendo el color de su junta (2 → 3 → 3, banda honda, 4) y la página desemboca en el paso 4, #ece2d2.
+     El paso 5 queda en reserva y nunca es fondo de texto: el texto secundario baja de 4,5:1 sobre él. */
+  --jia-vellum-1: #f6eee2;
+  --jia-vellum-2: #f3eadc;
+  --jia-vellum-3: #efe5d6;
+  --jia-vellum-4: #ece2d2;         /* punto de llegada de la página */
+  --jia-vellum-5: #e8ddcc;
+  /* La luz de esquina del hero, muy grande y muy tenue. Solo donde la junta superior no es papel (vídeo,
+     fotografía): sobre una junta de papel haría un escalón en la esquina. */
+  --jia-bg-light: radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--jia-vellum-1) 85%, transparent) 0%, color-mix(in srgb, var(--jia-vellum-1) 40%, transparent) 32%, transparent 70%);
+  /* «Abre»: el papel entra claro y se asienta. «Reposa»: respira hacia el centro y vuelve. «Hondo»: la banda de
+     «Tu propuesta JIA», más densa a propósito (arena profunda, JIA-2026-09-18-16) para que contraste con el
+     paso 4 de la sección que la sigue; va con fotografía, como las otras bandas densas de la página. */
+  --jia-bg-open: var(--jia-bg-light), linear-gradient(180deg, var(--jia-vellum-2) 0%, var(--jia-vellum-3) 100%);
+  --jia-bg-rest: linear-gradient(180deg, var(--jia-vellum-3) 0%, var(--jia-vellum-2) 46%, var(--jia-vellum-3) 100%);
+  --jia-bg-deep: linear-gradient(180deg, color-mix(in srgb, var(--jia-sand-deep) 72%, var(--jia-vellum-5)) 0%, var(--jia-sand-deep) 100%);
+  --jia-bg-arrived: var(--jia-bg-light), linear-gradient(var(--jia-vellum-4), var(--jia-vellum-4));
+
+  /* Superficies de sustitución para imágenes ausentes (config/media.ts referencia
+     estos nombres por token, p. ej. `fallback: "sand"`). */
+  --jia-surface-sand: var(--jia-sand);
+  --jia-surface-card: var(--jia-card);
+  --jia-surface-dune: var(--jia-dune);
+  --jia-surface-copper: var(--jia-copper);
+  --jia-surface-olive: var(--jia-olive);
+  --jia-surface-terracotta: var(--jia-terracotta);
+  --jia-surface-terracotta-deep: var(--jia-terracotta-deep);
+  --jia-surface-ink: var(--jia-ink);
+
+  --jia-radius-button: 4px;
+  --jia-radius-card: 10px;
+  --jia-body-leading: 1.6;
+  --jia-label-tracking: 0.12em;
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "attachment": 1,
+    "file": "01-menu.png",
+    "module": "menu",
+    "width": 3404,
+    "height": 138,
+    "bytes": 272098,
+    "sha256": "3b1d5bea241ae6089ed9b8e4521f0132b571e5f8e1c38346499ad061770517a8",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 2,
+    "file": "02-hero.png",
+    "module": "hero",
+    "width": 3410,
+    "height": 1374,
+    "bytes": 5082863,
+    "sha256": "1ad2b89ce24eb971908a1c728c21f1299cc3c2a33b350e8f8d417b8484d6e4bf",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 3,
+    "file": "03-enlaces.png",
+    "module": "waypoints",
+    "width": 3420,
+    "height": 306,
+    "bytes": 893267,
+    "sha256": "1304ba16bc1f23b3510b3773a1b864d312a9991d437467831070c84313c8bcef",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 4,
+    "file": "04-jornadas.png",
+    "module": "jornadas",
+    "width": 3398,
+    "height": 1634,
+    "bytes": 3956173,
+    "sha256": "ff63b939fde4fc828ab5974e4c054abae68da0075f9992ca19e1492e6fdc7424",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 5,
+    "file": "05-video.png",
+    "module": "video",
+    "width": 3398,
+    "height": 1758,
+    "bytes": 6311611,
+    "sha256": "2fd2066da3cbc5010b6dd36369a2f00139b30b4e50ede6b64340b7285a14552d",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 6,
+    "file": "06-programa.png",
+    "module": "program",
+    "width": 3394,
+    "height": 1762,
+    "bytes": 5306573,
+    "sha256": "eddbcf91afb6fd8a9ef96ddc2c7c34f3af6db16a0bb5bc36288d72a7d95d0b0e",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 7,
+    "file": "07-cubo.png",
+    "module": "cube",
+    "width": 2750,
+    "height": 1362,
+    "bytes": 4287453,
+    "sha256": "35366daf73f92eb22f680a6f529d9407591d27c8e2e6b39a7572de12ed029fe9",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 8,
+    "file": "08-tarjetas.png",
+    "module": "cards",
+    "width": 3398,
+    "height": 1746,
+    "bytes": 6841690,
+    "sha256": "5d8b00b5c25027b9e8f565808e0453fbbde8b576a80c737ad209bdda1513c380",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 9,
+    "file": "09-tarjetas-hover.png",
+    "module": "cards-hover",
+    "width": 2894,
+    "height": 1382,
+    "bytes": 4727725,
+    "sha256": "0dff502c626308f8dd9a2937498e0638a8fa1266d5ee43c8e706923110901609",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 10,
+    "file": "10-ficha-modal.png",
+    "module": "cards-dialog",
+    "width": 3378,
+    "height": 1714,
+    "bytes": 4492691,
+    "sha256": "bb0faf7f578103aba99aebf41ec00a94816c170264f6596c2d03bb5136e7268d",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 11,
+    "file": "11-experiencias-film.png",
+    "module": "experiences",
+    "width": 3406,
+    "height": 1462,
+    "bytes": 4468512,
+    "sha256": "a57de81215a71d9a0625e89cb050b1f9f22ded10883123007e3e5a6d4ff071d3",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 12,
+    "file": "12-propuestas-corte-recto.png",
+    "module": "split-hard",
+    "width": 3414,
+    "height": 1454,
+    "bytes": 5217626,
+    "sha256": "c0f925b9cebddda9ce70a158bdc255c53ce407b5eebc7542793a5f82013ba289",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 13,
+    "file": "13-quienes-somos.png",
+    "module": "partners",
+    "width": 3456,
+    "height": 1490,
+    "bytes": 2634954,
+    "sha256": "baae166b005f7029910765daf353cf12c2728f6b8e52a6eccaf91f257d59df7b",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  },
+  {
+    "attachment": 14,
+    "file": "14-footer.png",
+    "module": "footer",
+    "width": 3404,
+    "height": 874,
+    "bytes": 2639394,
+    "sha256": "496be3bea2974cdf9b5e418e16a7a802cba8825669a5a56cb2e9d3dac4c5ea75",
+    "source": "owner-provided screenshot; viewport/browser/zoom unrecorded"
+  }
+]

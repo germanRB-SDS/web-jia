@@ -1,0 +1,6 @@
+interface:
+  display_name: "Modelo modular web-jia"
+  short_description: "Componer webs con los bloques editoriales de web-jia"
+  default_prompt: "Usa $build-web-jia-model para adaptar los bloques elegidos a mi negocio."
+policy:
+  allow_implicit_invocation: false

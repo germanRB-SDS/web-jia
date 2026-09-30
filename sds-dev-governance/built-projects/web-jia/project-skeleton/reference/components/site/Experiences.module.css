@@ -1,0 +1,290 @@
+/* ---- the ground: the teacher in her classroom, full bleed ----
+   The photograph runs whole from the left edge to the right one. She keeps the left; the right half is clear
+   paper (#f0e3d3, a level from vellum 3) and carries the heading and the cards. On a wide screen the section
+   is exactly as tall as the photograph, so nothing ever sits above it; the type and the cards tighten to fit.
+   Narrower, the photograph is a band of its own above the heading, cropped to her. */
+.section {
+  /* The photograph's own proportion. It has to be exact, because the chalk lettering below is placed in
+     percentages of the image (until JIA-2026-09-20-45 it read 1916/821, a stale copy, and the section was
+     0,3 % taller than the image and cropped it a hair sideways). Since JIA-2026-09-20-47 the number lives in
+     globals.css, because Propuestas takes its height from the same one. */
+  --aula-ratio: var(--jia-band-aula-ratio);
+  /* Where the clear paper starts, as a share of the photograph's width. */
+  --aula-clear: 56%;
+  /* How far left of that the content column starts, as a share of the section's width. */
+  --aula-shift: 5%;
+  /* Where the photograph stops being a classroom ([61-0]): measured on aula-maestra3.png, the desks, the children
+     and the window dissolve into haze between 50 and 52 % of its width. The film reel fades out before this line
+     and never crosses it. The same number as --aula-clear: a share of the photograph, which above 1280 px is also
+     a share of the section. If the photograph changes, measure it again. */
+  --aula-guard: 52%;
+  background: var(--jia-vellum-3);
+  padding-top: 0;
+}
+.photo {
+  position: relative;
+  z-index: 0;
+  aspect-ratio: 16 / 10;
+  margin-bottom: clamp(2rem, 6vw, 3rem);
+}
+.surface {
+  position: absolute !important;
+  inset: 0;
+  aspect-ratio: auto !important;
+  height: 100%;
+  border-radius: 0;
+}
+/* ---- layer 3: the teacher, cut out of the same frame and laid back on herself ([51-0]) ----
+   It takes the same box as layer 1 (`.surface` above), and its media entry carries the same ratio and the
+   same focal point, so `object-fit: cover` can only resolve the two images in the same rectangle: no offset
+   is possible at any width. Not one length of its own here — a `left`, a `width` or a `transform` would be
+   exactly the thing that lets her drift.
+   The `background` is the one thing that has to go: `Surface` paints its fallback surface inline, and under an
+   image with transparency that fallback would be a slab of colour over the classroom. A declaration in a
+   stylesheet with `!important` wins over an inline one without it; that is the whole trick. */
+.cutout {
+  background: none !important;
+  pointer-events: none;
+  z-index: 3;
+}
+/* ---- the chalk lettering on the blackboard ----
+   The blackboard is at the back on the left, out of focus, and the teacher covers it from x 195 on. Measured on
+   the original (1919 x 820), the free, legible slate is x 45 -> 230 and y 140 -> 270: the box below, in percent.
+
+   .boardFrame is the rectangle the photograph is actually DRAWN in, which is the same rule at every width:
+   `object-fit: cover` with an image wider than its box resolves by height, and the focal point pins it to the
+   left edge (media.ts: experiencias-aula, focal x 0). So: the box's full height, its own ratio, flush left.
+   Above 1280 px the box already has that ratio and the frame simply coincides with it. Inside the frame, a
+   percentage is a percentage OF THE IMAGE, and `cqw` sizes the letters against the photograph rather than the
+   window, so the writing never grows off the slate. */
+.boardFrame {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  aspect-ratio: var(--aula-ratio);
+  container-type: size;
+  pointer-events: none;
+}
+/* ---- layer 2: the sun through the window ----
+   Same rule as the blackboard's frame, and for the same reason: this is the rectangle the photograph is really
+   drawn in, so the window of the scene stays under the window of the photograph at every width. The blend is
+   on the frame, not on the canvas: the frame is the element that makes the stacking context, and a blend
+   inside one of those never reaches the photograph. `screen` is what light does — it lifts and never dirties. */
+.lightFrame {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  height: 100%;
+  aspect-ratio: var(--aula-ratio);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  /* Where the glass is, as a share of the photograph: measured, and the same numbers the scene is given
+     (components/site/sun-rays/config.ts › glass). One place to change if the photograph is ever replaced. */
+  --window-x: 41.2%;
+  --window-y: 33.6%;
+}
+/* The room around the window is never quite dark: a wash of the same light that pours through it, at the
+   promoter's request. It reaches the left edge of the photograph and dies there — that is what the 41,2 %
+   radius is, the distance from the window to that edge. Unlike the shafts, this one does not come and go:
+   it is CSS, it needs no JavaScript and it is there from the first paint. */
+.lightFrame::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    ellipse var(--window-x) 88% at var(--window-x) var(--window-y),
+    rgb(var(--jia-sunbeam-rgb) / 0.4) 0%,
+    rgb(var(--jia-sunbeam-rgb) / 0) 100%
+  );
+}
+.lightCanvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.board {
+  position: absolute;
+  left: 2.4%;
+  top: 18.4%;
+  width: 9.2%;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  font-family: var(--f-script);
+  /* 1,28 % of the photograph's width: about 25 px over a 1920 px wide frame. The longest line then measures
+     about 160 px against the 180 px of clear slate, so the tilt and the blur still have room before the
+     wooden frame on the right. */
+  font-size: 1.28cqw;
+  line-height: 1.22;
+  text-align: center;
+  text-wrap: nowrap;
+  color: var(--jia-chalk);
+  /* Chalk dust, not paint. The board behind it is out of focus, so the lettering cannot be sharp — a crisp word
+     on a blurred slate reads as a sticker. But the promoter asked for it to be read more easily, so since
+     [51-0] the blur went from 0,12cqw to 0,07cqw: from about 2,3 px to about 1,3 px over a 1920 px frame. The
+     opacity is deliberately left where it was; if it ever needs a hand, move one of the two, not both. */
+  opacity: 0.55;
+  filter: blur(0.07cqw);
+  /* Written by a hand, not typeset. */
+  rotate: -1.1deg;
+}
+/* ---- the chalk writes itself, letter by letter ([51-0]) ----
+   Each letter is drawn left to right by its own `clip-path`, and they take their turn in the queue the
+   component gave them: two and a half seconds from the first stroke to the last. A clip and not a mask,
+   because over a single letter the edge is a pen tip and a mask would only cost more to composite; and
+   neither of them over a `width`, which would lay the line out again on every frame.
+   The bottom inset is negative so the descenders, and the blur that hangs off them, are never clipped.
+   At rest there is no clip at all: with no JavaScript, with no `data-chalk`, the name is simply written on
+   the board the way it always was. The pen only moves when the section says so. */
+.chalkLine {
+  display: block;
+  white-space: pre;
+}
+.glyph {
+  display: inline-block;
+}
+/* Armed: the client piece has mounted and is going to write. Nothing on the slate yet. */
+[data-chalk="armed"] .glyph {
+  clip-path: inset(0 100% -25% 0);
+}
+/* And writing. Linear inside a letter — a stroke has no ease of its own — with the queue doing the rhythm. */
+[data-chalk="writing"] .glyph {
+  animation: chalk-write var(--chalk-duration) linear both;
+  animation-delay: calc(var(--chalk-at) * var(--chalk-step));
+}
+@keyframes chalk-write {
+  from {
+    clip-path: inset(0 100% -25% 0);
+  }
+  to {
+    clip-path: inset(0 0 -25% 0);
+  }
+}
+/* Whoever asked for less movement gets the name whole and still. The lower blur stays: that is not
+   movement, that is being able to read it. */
+:where(:global(html[data-motion="reduce"])) [data-chalk] .glyph {
+    animation: none;
+    clip-path: none;
+  }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) [data-chalk] .glyph {
+    animation: none;
+    clip-path: none;
+  }
+}
+
+/* The band's floor melts into the ground the heading stands on. It went from level 1 to level 4 in [51-0]:
+   under the cut-out teacher it would have cut her skirt off dead against the seam. */
+.photo::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(to top, var(--jia-vellum-3), transparent);
+  pointer-events: none;
+}
+@media (min-width: 1280px) {
+  .section {
+    --t-h2: clamp(2rem, 2.7vw, 3.25rem);
+    --t-lede: clamp(1rem, 1.25vw, 1.375rem);
+    height: calc(100vw / (var(--aula-ratio)));
+    padding-block: 0;
+    display: grid;
+    align-items: center;
+  }
+  .photo {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    margin: 0;
+  }
+  .photo::before { display: none; }
+  /* The seam below: the ground of Propuestas (the section that follows) rises into the photograph's floor,
+     the same way Acoge's ground fades into its own photograph. Its ground (--jia-bg-deep) is a gradient, so
+     this takes the colour at its top edge: a gradient cannot be a stop of another one. */
+  .photo::after {
+    content: "";
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22%;
+    background: linear-gradient(to top, color-mix(in srgb, var(--jia-sand-deep) 72%, var(--jia-vellum-5)), transparent);
+    pointer-events: none;
+  }
+  /* The content column: from where the paper clears to the container's right edge. */
+  .section > :not(.photo) {
+    width: auto;
+    /* The column starts --aula-shift further left than the clear paper (promoter, JIA-2026-09-19-36) and runs to
+       the container's right edge, where the cards of the section above end (JIA-2026-09-19-39): that much wider. */
+    margin-inline: calc(var(--aula-clear) - var(--aula-shift)) max(var(--gutter), (100% - var(--container)) / 2);
+  }
+  /* The heading and the lede take the column's width: no measure of their own here. */
+  .section header { max-width: none; margin-bottom: clamp(1.25rem, 2.2vw, 2.5rem); }
+  .section header p { max-width: none; text-wrap: pretty; }
+  .section .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); }
+}
+/* ---- the film reel ([61-0]) ----
+   Below 1280 px the photograph is a band of its own and the reel runs across a strip of its own under the
+   heading, from edge to edge of the screen, fading out at the left. */
+.section .reel {
+  margin-inline: calc(-1 * var(--gutter));
+  --reel-controls-inset: var(--gutter);
+}
+@media (min-width: 1280px) {
+  /* The section is the reel's yardstick: `cqw` below is a share of the section, which is a share of the photograph. */
+  .withReel {
+    container: aula / inline-size;
+    --aula-clear-w: 56cqw;
+    --aula-shift-w: 5cqw;
+    --aula-guard-w: 52cqw;
+    --aula-bleed: max(var(--gutter), (100cqw - var(--container)) / 2);
+    /* One row exactly as tall as the band, so the column cannot grow past the photograph: the reel gives way. */
+    grid-template-rows: minmax(0, 1fr);
+  }
+  /* The band's own padding-block: 0 above loses to Section's `.section` (same weight, later in the cascade), which
+     leaves 120 px top and bottom; here the column carries its own padding, so it is cancelled for good. */
+  .section.withReel { padding-block: 0; }
+  /* The column fills the band's height and the reel takes what the heading leaves, up to its own size. */
+  .withReel > :not(.photo) {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: clamp(1.5rem, 2.6vw, 3rem);
+    box-sizing: border-box;
+  }
+  .withReel header { margin-bottom: clamp(0.5rem, 1vw, 1.25rem); }
+  /* Left: the reel starts where the classroom ends, if that is right of the column; the fade is inside it, so
+     opacity is 0 on that line. Right: it runs to the edge of the screen. */
+  .section .reel {
+    --reel-band: min(340px, 21cqw);
+    --reel-fade: min(22%, 160px);
+    --reel-controls-inset: var(--aula-bleed);
+    flex: 0 1 calc(var(--reel-band) * 1.36 + 44px);
+    min-height: 0;
+    margin-left: max(0px, var(--aula-guard-w) - (var(--aula-clear-w) - var(--aula-shift-w)));
+    margin-right: calc(-1 * var(--aula-bleed));
+  }
+}
+.grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+.empty {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 1.125rem;
+  color: var(--jia-text);
+}

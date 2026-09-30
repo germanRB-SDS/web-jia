@@ -1,0 +1,376 @@
+/* One card = seven rows of the section's grid (picture, title, subtitle, who, theme, "Ver ficha", dossier), so
+   every card in a row of cards lines its rows up with its neighbours' and the two actions sit at one height.
+   Without subgrid support the card lays its own rows out (the two-line minimums below keep them level anyway). */
+.card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 7;
+  row-gap: 0.35rem;
+  align-content: start;
+  scroll-margin-top: 6rem;
+}
+@supports not (grid-template-rows: subgrid) {
+  .card { grid-template-rows: auto; }
+}
+.media {
+  position: relative;
+  grid-row: 1;
+  margin-bottom: 0.55rem;
+}
+.media[data-opens] { cursor: pointer; }
+.surface {
+  box-shadow: 0 10px 28px -16px rgb(var(--jia-ink-rgb) / 0.45);
+  transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
+}
+.card:hover .surface,
+.card:focus-within .surface {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px -18px rgb(var(--jia-ink-rgb) / 0.55);
+}
+/* Pin: a single terracotta dot at the top, the notebook's way of holding a card. */
+.media::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--jia-terracotta);
+  box-shadow: inset 0 -2px 0 rgb(var(--jia-ink-rgb) / 0.35);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+/* An empty parchment surface brings its own pin (Surface.module.css); do not paint two. */
+.media:has([data-empty])::before { display: none; }
+/* The summary rises over the lower half of the picture, on the same ink gradient, at every width. */
+.reveal {
+  position: absolute;
+  inset: 50% 0 0 0;
+  display: grid;
+  align-content: end;
+  padding: 1.25rem 1rem 1rem;
+  background: linear-gradient(to top, rgb(var(--jia-ink-rgb) / 0.92), rgb(var(--jia-ink-rgb) / 0.75) 70%, transparent);
+  color: var(--jia-ivory);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 320ms var(--ease-out), opacity 320ms var(--ease-out);
+}
+.reveal p { margin: 0; }
+.card:hover .reveal,
+.card:focus-within .reveal {
+  transform: none;
+  opacity: 1;
+}
+@media (hover: none) {
+  .reveal { display: none; }
+}
+:where(:global(html[data-motion="reduce"])) .surface, :where(:global(html[data-motion="reduce"])) .reveal { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .surface, :where(:global(html:not([data-motion]))) .reveal { transition: none; }
+}
+/* The body's children are the card's own rows (2–7). */
+.body { display: contents; }
+/* Two lines at most, and always room for two, so the actions below never move; the whole text shows on hover/focus. */
+.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.clamp:hover,
+.clamp:focus-within { -webkit-line-clamp: unset; overflow: visible; }
+.meta {
+  margin: 0;
+  font-family: var(--f-ui);
+  font-size: 0.75rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-terracotta);
+}
+.title {
+  grid-row: 2;
+  margin: 0;
+  min-height: calc(2 * 1.1 * 1.375rem);
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.1;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
+.subtitle {
+  grid-row: 3;
+  margin: 0;
+  min-height: calc(2 * 1.35 * 1.0625rem);
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: var(--jia-text);
+}
+.people {
+  margin: 0.15rem 0 0;
+  font-family: var(--f-ui);
+  font-size: 0.9375rem;
+  color: var(--jia-text);
+  line-height: 1.35;
+}
+.who { grid-row: 4; min-height: calc(2 * 1.35 * 0.9375rem); }
+.theme { grid-row: 5; min-height: calc(2 * 1.35 * 0.9375rem); }
+.peopleLabel {
+  font-size: 0.7rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-text-muted);
+  margin-right: 0.25rem;
+}
+.foot {
+  grid-row: 6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.35rem 0.1rem;
+  border: 0;
+  background: none;
+  color: var(--jia-terracotta);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.open svg { transition: transform 220ms var(--ease-out); }
+.open:hover, .open:focus-visible { color: var(--jia-terracotta-deep); }
+.open:hover svg, .open:focus-visible svg { transform: translateX(3px); }
+/* "Descargar dosier": the same voice as "Ver ficha", one line below it. */
+.download {
+  grid-row: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  margin-top: -0.35rem;
+  padding: 0.35rem 0.1rem;
+  justify-self: start;
+  align-self: start;
+  color: var(--jia-terracotta);
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.download svg { flex: none; transition: transform 220ms var(--ease-out); }
+a.download:hover, a.download:focus-visible { color: var(--jia-terracotta-deep); }
+a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px); }
+.downloadPending {
+  color: var(--jia-text-muted);
+  cursor: not-allowed;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+:where(:global(html[data-motion="reduce"])) .download svg { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .download svg { transition: none; }
+}
+/* ---- the phone: the card lays itself out ----
+   The seven rows above exist so that cards SIDE BY SIDE line their rows up and their two actions sit at
+   one height: that is why the title, the subtitle, the who and the theme each keep room for two lines even
+   when they have one or none. On a phone there is one card per view — in «Ideas que ya han pasado por el
+   aula» one per row, in the workshops one per carousel page — so there is no neighbour to line up with,
+   and those reserves turned into 84 px of empty paper over «Ver ficha» (measured at 390 px before
+   JIA-2026-09-20-49). Here the card simply flows: each line takes the height of its own text. */
+@media (max-width: 759.98px) {
+  .card {
+    grid-template-rows: auto;
+    grid-row: auto;
+  }
+  .media,
+  .title,
+  .subtitle,
+  .who,
+  .theme,
+  .foot,
+  .download {
+    grid-row: auto;
+  }
+  .title,
+  .subtitle,
+  .who,
+  .theme {
+    min-height: 0;
+  }
+}
+
+.pending {
+  font-family: var(--f-ui);
+  font-size: 0.8125rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-text-muted);
+}
+
+/* ---- the sheet inside the dialog ---- */
+.sheet {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+@media (min-width: 900px) {
+  .sheet {
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 2.5rem;
+  }
+}
+.sheetMedia { max-width: 320px; }
+.sheetBody { display: grid; gap: 0.75rem; align-content: start; }
+.sheetMarks { font-family: var(--f-ui); }
+.sheetTitle {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
+.sheetSubtitle {
+  margin: 0;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+.fields {
+  margin: 0.5rem 0 0;
+  display: grid;
+  gap: 1rem;
+}
+.field dt {
+  font-family: var(--f-ui);
+  font-size: 0.75rem;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  color: var(--jia-terracotta);
+  margin-bottom: 0.25rem;
+}
+.field dd {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+.field ul { margin: 0; padding-left: 1.1em; }
+.related p { margin: 0 0 0.3rem; }
+.related ul { margin: 0; padding-left: 1.1em; font-family: var(--f-body); }
+.related a { color: var(--jia-terracotta); }
+.doc {
+  justify-self: start;
+  font-family: var(--f-ui);
+  font-weight: 600;
+  letter-spacing: var(--jia-label-tracking);
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  color: var(--jia-terracotta);
+}
+
+/* ---- a grid whose cards have nothing between title and action ----
+   Rows 3, 4 and 5 (subtitle, who, theme) are the card's middle. When a whole grid leaves them empty they are not
+   free: the row gap that separates one CARD from the next is also the gap between the subgrid's own rows, so three
+   empty rows spend three of them. In «Ideas que ya han pasado por el aula» that was 107 px between the title and
+   «Ver ficha», for nothing. The card then spans four rows instead of seven and the action climbs to the third.
+
+   The section grants this, never the card itself (SheetCard.tsx, `compact`): cards of one grid share their rows, so
+   a card that skipped them next to one that does not would drop its action out of line — the very thing the
+   seven-row structure exists to prevent. Below 760 px the card already flows and none of this applies. */
+.compact { grid-row: span 4; }
+.compact .foot { grid-row: 3; }
+.compact .download { grid-row: 4; }
+
+/* ---- a card that is its picture alone ([60-0]) ----
+   Two rows: the picture and, under it, the marks if the site shows any. The title is still in the DOM, for screen
+   readers only, and the picture is the button, so it carries the focus ring the «Ver ficha» used to carry. */
+@media (min-width: 760px) {
+  .bare { grid-row: span 2; }
+  .bare .foot { grid-row: 2; }
+}
+.bare .foot { margin-top: 0; }
+.bare .foot:empty { display: none; }
+.bare .media { margin-bottom: 0; }
+.bare .media:focus-visible {
+  outline: 2px solid var(--jia-terracotta);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Workshops omit the people/theme preview rows. Their full details remain in the dialog. */
+@media (min-width: 760px) {
+  .workshop { grid-row: auto; grid-template-rows: auto; row-gap: 0.25rem; }
+  .workshop .foot { grid-row: 4; margin-top: 0; }
+  .workshop .download { grid-row: 5; margin-top: 0; }
+  .workshop .title, .workshop .subtitle { min-height: 0; }
+}
+
+/* Workshops keep their full copy in the sheet; the mobile row is just posters and actions. */
+@media (max-width: 759.98px) {
+  .workshop .sheet {
+    display: flow-root;
+    padding: calc(4.5rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+  .workshop .sheetMedia {
+    float: right;
+    /* 90% of the former mobile footprint (close control + dialog/sheet gutters ≈ 13rem). */
+    width: min(18rem, calc((100vw - 13rem) * 0.9));
+    margin: 0 0 1rem 1.25rem;
+  }
+  .workshop .sheetBody { display: contents; }
+  .workshop .sheetTitle { display: block; margin-bottom: 0.75rem; text-wrap: pretty; }
+  .workshop .sheetSubtitle { margin: 0 0 0.75rem; }
+  .workshop .fields { display: block; }
+  .workshop .field { margin-top: 1rem; }
+  .workshop .related { margin-top: 1rem; }
+  .workshop .body > .title,
+  .workshop .body > .subtitle,
+  .workshop .body > .who,
+  .workshop .body > .theme,
+  .workshop .reveal { display: none; }
+  .workshop:hover .surface,
+  .workshop:focus-within .surface { transform: none; }
+}
+
+/* Reserve the unchanged workshop cell for the scaled, perspective-projected picture.
+   Only the expanded mobile track opts in; dialogs and the closed fan retain their sizes. */
+@media (max-width: 759.98px) {
+  :global([data-expanded]) .workshop > .media { aspect-ratio: 1414 / 2000; }
+  :global([data-expanded]) .workshop > .media > div {
+    position: absolute;
+    inset: var(--poster-inset);
+  }
+  :global([data-expanded]) .workshop > .media::before { top: calc(var(--poster-inset) - 6px); }
+}

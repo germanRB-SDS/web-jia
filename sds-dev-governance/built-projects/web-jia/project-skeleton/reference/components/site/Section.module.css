@@ -1,0 +1,186 @@
+.section {
+  padding-block: var(--space-section);
+  scroll-margin-top: 4.5rem;
+}
+/* Tones consume the page's ground recipes (palette.css, JIA-2026-09-18-15): neighbours share the colour
+   of their seam, so a section never starts with a step. */
+.paper { background: var(--jia-bg-rest); }
+.ivory { background: var(--jia-bg-open); }
+.sand { background: var(--jia-bg-deep); }
+.ink {
+  background: var(--jia-ink);
+  color: var(--jia-ivory);
+}
+/* With a backdrop the content rides above it. */
+.backed { position: relative; overflow: clip; }
+.backed > .inner { position: relative; z-index: 1; }
+.inner {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+.head {
+  display: grid;
+  gap: 1rem;
+  max-width: 44rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+.title {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: var(--t-h2);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
+.ink .title { color: var(--jia-ivory); }
+/* Subtitle: between the title and the lede. Alegreya italic, one clear step above the lede. */
+.subtitle {
+  margin: 0;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--t-subtitle);
+  line-height: 1.25;
+  color: var(--jia-ink);
+  text-wrap: balance;
+}
+.ink .subtitle { color: var(--jia-ivory); }
+/* Split: head and content in the left column, a visual column on the right. */
+/* Split: the section has no vertical padding of its own; the text column carries
+   it, so the visual column (45% of the section) runs the full height, bleeding
+   top, right and bottom — maryna-ventura's "Servicios" spread. */
+.section:has(> .split) { padding-block: 0; }
+.split {
+  width: 100%;
+  display: grid;
+}
+.split .head,
+.split > :not(.head):not([data-visual]) {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+.split .head { padding-top: var(--split-y, clamp(2.5rem, 5vw, 4rem)); }
+.split > :not(.head):not([data-visual]) { padding-bottom: var(--split-y, clamp(2.5rem, 5vw, 4rem)); }
+@media (min-width: 900px) {
+  .split {
+    /* The visual column is 53% (45% raised by 18%); the text column's right
+       padding is half its left one, so the copy sits close to the photograph. */
+    grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+    align-items: center;
+    /* A split can ask for a floor of its own — Propuestas matches the band above it
+       (JIA-2026-09-20-47). `align-content: center` is what makes that floor usable: the
+       two rows keep the size of their content and the whole text column centres inside
+       the taller band, instead of the head and the copy drifting apart as the rows
+       stretch. A visual column that has to fill the whole band anchors itself to the
+       section, not here: an absolutely positioned grid item with a placement of its own
+       takes its GRID AREA as containing block, which is only as tall as the rows. */
+    min-height: var(--split-min, auto);
+    align-content: center;
+  }
+  .split .head,
+  .split > :not(.head):not([data-visual]) {
+    --split-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    grid-column: 1;
+    width: auto;
+    margin-inline: 0;
+    padding-left: var(--split-left);
+    /* A sixth of the left padding: the copy runs almost to the photograph. */
+    padding-right: max(1rem, calc(var(--split-left) / 6));
+  }
+  /* Inside a split, the text column's own width is the measure: no inner caps. */
+  .split .head { max-width: none; }
+  .split .lede,
+  .split .subtitle,
+  .split > :not(.head):not([data-visual]),
+  .split > :not(.head):not([data-visual]) > * { max-width: none; }
+  .split .head { margin-bottom: 1.5rem; }
+  .split > [data-visual] { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
+}
+.lede {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: var(--t-lede);
+  line-height: 1.5;
+  color: var(--jia-text);
+  max-width: var(--measure);
+}
+.ink .lede { color: var(--jia-sand); }
+.marks { justify-self: start; }
+
+/* ---- notebook spread ---- */
+.sub {
+  display: grid;
+  gap: 1rem;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  /* border-top: 1px solid var(--jia-line); */
+  /* ↑ Hidden at the promoter's request (JIA-2026-09-18-11): it drew a rule above the first
+     spread ("Programa"). The spreads that follow keep theirs through the rule below. */
+  scroll-margin-top: 4.5rem;
+}
+.sub + .sub { border-top: 1px solid var(--jia-line); }
+/* A spread with a picture behind it ([59-0], Talleres): edge to edge (html/body clip the overflow), faded into
+   the paper at the top and the bottom, only from 760 px. The spread's own content stays above it. 44 %: a fifth
+   softer than the first 55 % (promoter, 29-09-2026). Its height is --backdrop-block when the spread's content sets
+   it (the workshops: down to halfway between their first and second rows); otherwise the whole spread. */
+.subBacked { position: relative; isolation: isolate; }
+.backdrop { display: none; }
+@media (min-width: 760px) {
+  .backdrop {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: calc(50% - 50vw);
+    right: calc(50% - 50vw);
+    height: var(--backdrop-block, 100%);
+    overflow: hidden;
+    opacity: 0.44;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  }
+  .backdropImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+@media (min-width: 900px) {
+  .sub {
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .margin {
+    position: sticky;
+    top: 5.5rem;
+    align-self: start;
+  }
+}
+.margin {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: start;
+}
+.subTitle {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: var(--t-h3);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--jia-terracotta);
+  padding-top: 0.35rem;
+  border-top: 3px solid var(--jia-terracotta);
+}
+.content { min-width: 0; }
+
+.mobileLabel { display: none; }
+@media (max-width: 759.98px) {
+  .desktopLabel { display: none; }
+  .mobileLabel { display: inline; }
+}

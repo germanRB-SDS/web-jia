@@ -1,0 +1,189 @@
+{
+  "_comment": "JIA carruaje — parámetros de generación. Unidades: metros (Blender). +Y avance, +X derecha del vehículo, +Z arriba, suelo Z=0. Colores en sRGB hex; el script los convierte a lineal.",
+  "asset_name": "jia-carruaje",
+  "scale_note": "Longitud total normalizada a ~2.9 m (caja 2.3 m). Escalar en Spline/Three según el mapa.",
+  "wheels": {
+    "track_width": 1.52,
+    "wheelbase": 1.7,
+    "front_radius": 0.35,
+    "rear_radius": 0.44,
+    "rim_width": 0.07,
+    "rim_depth": 0.055,
+    "tire_depth": 0.012,
+    "spokes": 12,
+    "spoke_radius": 0.016,
+    "hub_radius": 0.075,
+    "hub_length": 0.17,
+    "hub_cap_radius": 0.045,
+    "hub_cap_length": 0.045,
+    "ring_segments": 28,
+    "hub_segments": 16,
+    "spoke_segments": 6
+  },
+  "body": {
+    "length": 2.3,
+    "inner_width": 1.2,
+    "wall_thickness": 0.04,
+    "floor_bottom_z": 0.72,
+    "floor_thickness": 0.05,
+    "wall_height": 0.61,
+    "planks_per_wall": 4,
+    "plank_gap": 0.007,
+    "stakes_per_side": 5,
+    "stake_width": 0.06,
+    "stake_proud": 0.025,
+    "stake_overhang_top": 0.03,
+    "stake_overhang_bottom": 0.0,
+    "rail_height": 0.035,
+    "rail_width": 0.05,
+    "sill_width": 0.06,
+    "sill_height": 0.06,
+    "sill_inset_x": 0.42,
+    "front_crossbeam": {
+      "y": 0.85,
+      "depth": 0.1,
+      "height": 0.08
+    }
+  },
+  "canvas": {
+    "y_min": -1.3,
+    "y_max": 1.34,
+    "max_half_width": 0.71,
+    "top_z": 2.24,
+    "bottom_z_offset": -0.035,
+    "curl_angle_deg": 12,
+    "profile_segments": 16,
+    "stations": 32,
+    "bows": 4,
+    "bow_margin": 0.18,
+    "sag_between_bows": 0.01,
+    "end_rise": 0.015,
+    "front_pucker_scale": 0.62,
+    "front_pucker_length": 0.14,
+    "front_pucker_steps": 4,
+    "rear_pucker_scale": 0.42,
+    "rear_pucker_length": 0.12,
+    "rear_pucker_steps": 4,
+    "opening_center_z_offset": 0.08,
+    "thickness": 0.018,
+    "bow_ridge": 0.01,
+    "bow_ridge_width": 0.05
+  },
+  "driver_seat": {
+    "seat_half_width": 0.46,
+    "seat_y_min": 1.17,
+    "seat_y_max": 1.55,
+    "seat_z_max": 1.36,
+    "backrest_thickness": 0.04,
+    "backrest_top_z": 1.62,
+    "footboard_y_min": 1.19,
+    "footboard_y_max": 1.62,
+    "footboard_z": 0.94,
+    "footboard_thickness": 0.035,
+    "footboard_half_width": 0.55,
+    "rail_y_min": 1.1
+  },
+  "details": {
+    "toolbox": {
+      "x_min": 0.63,
+      "x_max": 0.82,
+      "y_min": 0.74,
+      "y_max": 1.06,
+      "z_min": 0.8,
+      "z_max": 1.03
+    },
+    "corner_strap_width": 0.035,
+    "corner_strap_thickness": 0.008,
+    "rope_hooks": true
+  },
+  "chassis": {
+    "axle_section": 0.1,
+    "spindle_radius": 0.032,
+    "reach_half_width": 0.04,
+    "reach_z_min": 0.47,
+    "reach_z_max": 0.54,
+    "bolster_half_width": 0.56,
+    "bolster_depth": 0.11,
+    "kingpin_radius": 0.04,
+    "front_bolster_height": 0.06
+  },
+  "materials": {
+    "JIA_Wood_Honey": {
+      "color": "#C48B4F",
+      "roughness": 0.72,
+      "metallic": 0.0
+    },
+    "JIA_Wood_Brown": {
+      "color": "#7B4A27",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    "JIA_Canvas_Cream": {
+      "color": "#F7EDDB",
+      "roughness": 0.88,
+      "metallic": 0.0
+    },
+    "JIA_Canvas_Shade": {
+      "color": "#D9C6A8",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    "JIA_Iron_Dark": {
+      "color": "#2F1F14",
+      "roughness": 0.55,
+      "metallic": 0.35
+    }
+  },
+  "bevel": {
+    "width": 0.006,
+    "segments": 1,
+    "angle_deg": 40
+  },
+  "cameras": {
+    "ortho_scale": 3.4,
+    "top_height": 8.0,
+    "tilt_deg": 12,
+    "review_location": [
+      4.0,
+      3.4,
+      2.6
+    ],
+    "review_target": [
+      0.0,
+      0.05,
+      0.95
+    ],
+    "review_focal_mm": 50
+  },
+  "render": {
+    "resolution_top": [
+      1000,
+      1400
+    ],
+    "resolution_review": [
+      1400,
+      1000
+    ],
+    "samples": 48,
+    "legibility_lengths_px": [
+      96,
+      160,
+      256
+    ],
+    "vehicle_length_for_legibility": 3.1,
+    "paper_color": "#F1E7D8",
+    "world_warm": "#B9A98F",
+    "world_warm_strength": 0.55,
+    "sun_warm": "#FFE9CF",
+    "sun_warm_strength": 3.2,
+    "sun_warm_rotation_deg": [
+      52,
+      0,
+      -35
+    ],
+    "fill_strength": 120,
+    "world_neutral": "#9A9A9A",
+    "world_neutral_strength": 0.7,
+    "sun_neutral_strength": 2.5
+  }
+}

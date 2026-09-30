@@ -36,3 +36,9 @@ Una capacidad no listada con revision/modo exactos en el ledger es `NOT_EVALUATE
 
 - 2026-09-29 · GOV-STRUCTURE · REL-2026-09-29-01: exportación de Quiénes somos,
   tira de cine y cubo como recursos opcionales; [detalle](governance-change-log.md).
+
+## [64-1] · 2026-09-30 · modelo web-jia
+
+GOV-STRUCTURE: catálogo opcional built-projects con guía, skill archivada no activada, fuentes y
+capturas. No cambian prácticas/kernel/adapters/bootstrap; promoción y distribución aditiva.
+[Prompt](../../sds-dev-governance/built-projects/web-jia/metainfo/prompts/[64-1]catalogar-web-jia.md).

@@ -1,0 +1,83 @@
+import type { ReactNode } from "react";
+import type { MarkKind, Media } from "@/lib/content";
+import { Marks } from "@/components/primitives/Mark";
+import { Picture } from "@/components/primitives/Picture";
+import styles from "./Section.module.css";
+
+type SectionProps = {
+  id: string;
+  title: string;
+  /** Second line under the title: between title and lede in size (the `subtitle` class). */
+  subtitle?: string | null;
+  lede?: string | null;
+  marks?: MarkKind[];
+  markLabels: Record<MarkKind, string>;
+  showMarks: boolean;
+  tone?: "paper" | "sand" | "ink" | "ivory";
+  /** "split" keeps the head inside the left column so a visual column can sit beside it. */
+  layout?: "stack" | "split";
+  /** A full-bleed layer behind the content (a photograph); the section then sizes and stacks around it. */
+  backdrop?: ReactNode;
+  className?: string;
+  children: ReactNode;
+};
+
+/** A main area: heading, optional lede, then the section's own composition. */
+export function Section({ id, title, subtitle, lede, marks = [], markLabels, showMarks, tone = "paper", layout = "stack", backdrop, className, children }: SectionProps) {
+  const headingId = `${id}-title`;
+  return (
+    <section id={id} className={[styles.section, styles[tone], backdrop ? styles.backed : "", className].filter(Boolean).join(" ")} aria-labelledby={headingId}>
+      {backdrop}
+      <div className={`${styles.inner} ${layout === "split" ? styles.split : ""}`}>
+        <header className={styles.head}>
+          <h2 id={headingId} className={styles.title}>
+            {title}
+          </h2>
+          {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
+          {lede ? <p className={styles.lede}>{lede}</p> : null}
+          <Marks marks={marks} labels={markLabels} show={showMarks} className={styles.marks} />
+        </header>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+type SubProps = {
+  id: string;
+  label: string;
+  mobileLabel?: string;
+  marks?: MarkKind[];
+  markLabels: Record<MarkKind, string>;
+  showMarks: boolean;
+  /** A faded picture behind the whole spread, edge to edge, from 760 px ([59-0]: the workshops' table). */
+  backdrop?: Media | null;
+  children: ReactNode;
+};
+
+/**
+ * A notebook spread: the running head sits in the left margin (sticky on
+ * desktop) and the content fills the page. Used for the three blocks of Jornadas.
+ */
+export function SubSection({ id, label, mobileLabel, marks = [], markLabels, showMarks, backdrop, children }: SubProps) {
+  const headingId = `${id}-title`;
+  return (
+    <div id={id} className={`${styles.sub}${backdrop ? ` ${styles.subBacked}` : ""}`} aria-labelledby={headingId} role="region">
+      {backdrop ? (
+        <div className={styles.backdrop} aria-hidden="true">
+          <Picture media={backdrop} alt="" sizes="100vw" className={styles.backdropImage} />
+        </div>
+      ) : null}
+      <div className={styles.margin}>
+        <h3 id={headingId} className={styles.subTitle}>
+          {mobileLabel ? <>
+            <span className={styles.desktopLabel}>{label}</span>
+            <span className={styles.mobileLabel}>{mobileLabel}</span>
+          </> : label}
+        </h3>
+        <Marks marks={marks} labels={markLabels} show={showMarks} />
+      </div>
+      <div className={styles.content}>{children}</div>
+    </div>
+  );
+}

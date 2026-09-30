@@ -1,5 +1,18 @@
 # SDS Dev Governance — Changelog
 
+## v1.32.0 — 2026-09-30
+
+Change ID: `REL-2026-09-30-01`
+
+- Add optional built-projects catalog and web-jia model: menu-to-footer table, style guide,
+  modular contracts, composition recipes, archived explicit-only skill and technical configuration.
+- Preserve 14 owner-provided PNG screenshots, 380 original reference files, optimized runtime
+  media and authored Blender/GLB sources with SHA-256 provenance. Reference assets retain their
+  project-specific usage scope; reusable neutral components remain owned by resources.
+- Validate isolated npm ci, TypeScript, content integrity, static build, local imports and links.
+- Add knowledge recipe for modular editorial sites; no kernel, practice, adapter, bootstrap or
+  automatic skill catalog changes. No website deployment.
+
 ## v1.31.0 — 2026-09-29
 
 Change ID: `REL-2026-09-29-01`

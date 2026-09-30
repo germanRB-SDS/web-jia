@@ -1,10 +1,13 @@
 # SDS Dev Governance Version
 
-Version: `v1.31.0`
+Version: `v1.32.0`
 
-Date: `2026-09-29`
+Date: `2026-09-30`
 
 Highlights:
+
+- Optional built-projects catalog: web-jia modular visual guide, explicit-only archived skill,
+  reconstructible source/config/media snapshot and 14 owner-provided screenshots. No skill activation.
 
 - Portable collaborators-carousel, film-reel and cube-carousel resources from web-jia: independent
   React demos, local dependencies, neutral assets, motion policy, provenance and integration guides.

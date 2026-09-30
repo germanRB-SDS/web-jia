@@ -121,3 +121,9 @@ procedure to rebuild the same result in another project. Heavier than a pattern:
   owner-requested clean-room sample leaf.
 - `mobile-sample-code/README.md` — runnable native-mobile references and their distribution-policy
   boundary.
+
+## Built projects — modelos completos opcionales
+
+| Modelo | Qué conserva | Entrada |
+|---|---|---|
+| web-jia | Guía editorial modular, skill manual inactiva, skeleton reconstruible, interacciones, 14 capturas y configuración técnica. | [Catálogo de proyectos](../built-projects/INDEX.md) · [Índice visual web-jia](../built-projects/web-jia/INDEX.md) |

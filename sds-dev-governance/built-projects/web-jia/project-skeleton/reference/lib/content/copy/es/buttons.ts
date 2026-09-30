@@ -1,0 +1,30 @@
+import type { Buttons } from "../types";
+
+/** BUTTON LABELS (es), grouped by section. Shared actions appear once. */
+export const buttons: Buttons = {
+  hero: { explore: "Explorar las jornadas", workshops: "Ver talleres" },
+  sheet: { open: "Ver ficha", close: "Cerrar", viewDocument: "Ver documento original", viewPoster: "Ver cartel", downloadDossier: "Descargar dosier", dossierPending: "Dosier disponible próximamente" },
+  dossiers: { consult: "Consultar material", view: "Ver dosier", download: "Descargar" },
+  proposals: { present: "Comunica tu idea" },
+  host: { host: "Acoger las JIA" },
+  nav: { menu: "Menú", close: "Cerrar menú", submenu: "Mostrar apartados de Jornadas" },
+  route: { replay: "Repetir recorrido" },
+  cube: { prev: "Tarjeta anterior", next: "Tarjeta siguiente" },
+  workshops: { prev: "Taller anterior", next: "Taller siguiente" },
+  video: {
+    play: "Reproducir el vídeo",
+    pause: "Pausar el vídeo",
+    mute: "Quitar el sonido",
+    unmute: "Activar el sonido",
+    fullscreen: "Ver el vídeo a pantalla completa",
+    exitFullscreen: "Salir de pantalla completa",
+    minimize: "Ver el vídeo minimizado, en una ventana flotante",
+    exitMinimize: "Devolver el vídeo a la página",
+    share: "Compartir el enlace de las jornadas",
+    /** The playback bar over the video ([59-0]): the slider, and how it reads its position out. */
+    seek: "Avanzar o retroceder el vídeo",
+    seekValue: "{current} de {total}",
+    /** The button on the folded bar (from 760 px, [59-0]). */
+    unfold: "Desplegar el vídeo y reproducirlo",
+  },
+};

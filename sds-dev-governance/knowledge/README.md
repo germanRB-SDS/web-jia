@@ -17,3 +17,5 @@ no se precargan en adapters y no autorizan ejecutar herramientas o instalar depe
 - [web-jia: despliegue del sitio existente](web-jia/how-to-deploy/README.md).
 
 - [Extraer y reutilizar componentes interactivos](web-jia/portable-interactive-components.md): carruseles, película, cubo, motion y contratos de medios.
+
+- [Modelo editorial modular web-jia](web-jia/modular-editorial-web-model.md): cómo conservar y recomponer una web terminada.

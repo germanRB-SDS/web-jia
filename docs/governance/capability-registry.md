@@ -20,6 +20,7 @@ discoverability, but that action does not add ledger rows or authorize invocatio
 <!-- SDS_CAPABILITY_LEDGER_START -->
 | Capability / mode | Effective revision / ownership / scope | Access / effects / authority | Persistence / reversal | Risk route | Status | Constraints | Evidence |
 |---|---|---|---|---|---|---|---|
+| build-web-jia-model / borrador archivado | SDS owner: propietario web-jia; revisión [64-1]; built-projects/web-jia/.skills/build-web-jia-model | Referencia local solicitada; sin invocación, instalación ni herramientas | Ficheros versionados; retirada sin impacto en runtime | Borrador; evaluación operativa aplazada hasta petición de uso/activación | QUARANTINED | No autodiscovery, no autoactivación; allow_implicit_invocation=false; no admisión de plugins/MCP | docs/prompts-output/[64-1]/evidence/skill-scope.md |
 <!-- SDS_CAPABILITY_LEDGER_END -->
 
 ## State transitions

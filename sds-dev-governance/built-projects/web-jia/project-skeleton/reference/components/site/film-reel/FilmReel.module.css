@@ -1,0 +1,178 @@
+/* ---- the film reel ([61-0]) ----
+   Knobs the section may set on `.reel` (or an ancestor):
+     --reel-band            the film's height at rest (it shrinks if the stage is given less room);
+     --reel-fade            the fade at the left end, where the strip disappears;
+     --reel-controls-inset  how far the controls stand from the reel's right edge.
+   Everything inside is measured in modules: one module is one frame of the drawing, a whole number of pixels
+   wide so modules never leave a hairline between them. Its window and the poster in it are percentages of it. */
+/* Registered, so it becomes pixels where it is SET and is inherited as pixels: a section that writes it in `cqw`
+   of its own means its own width, not the width of the reel's stage (which is a size container itself). */
+@property --reel-band {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 240px;
+}
+.reel {
+  --reel-band: clamp(170px, 50vw, 300px);
+  --reel-fade: min(16%, 72px);
+  --reel-controls-inset: var(--gutter);
+  /* Stage = film + some stain above and below it. */
+  --reel-stage-per-band: 1.36;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: calc(var(--reel-band) * var(--reel-stage-per-band));
+  container-type: size;
+}
+/* The visible window. Its left end is the fade: everything — stains, film, holes, posters — reaches opacity 0
+   there, and `overflow: clip` cuts whatever the transform takes past it. `clip` and not `hidden`: nothing can
+   scroll this box, not even focus. */
+.viewport {
+  --band: min(var(--reel-band), 100cqh / var(--reel-stage-per-band));
+  --mod-w: round(down, var(--band) * var(--reel-module-per-band), 1px);
+  --mod-h: calc(var(--mod-w) / var(--reel-module-per-band));
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  /* Horizontal gestures are the reel's (drag, swipe); vertical ones still scroll the page. */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--reel-fade));
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--reel-fade));
+}
+.viewport[data-dragging],
+.viewport[data-dragging] .poster { cursor: grabbing; }
+/* The engine reads the fade's width in pixels from this box; the CSS alone decides it. */
+.fadeProbe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--reel-fade);
+  height: 0;
+  visibility: hidden;
+}
+.shield {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--reel-fade) * 0.5);
+}
+/* The stains stay where they are and the film runs over them. The drawing is laid at the film's scale with its
+   band on the film, and fades out above and below the stage. */
+.stains {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+}
+.stains::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: calc(var(--mod-w) * var(--reel-stains-width));
+  height: calc(var(--mod-w) * var(--reel-stains-height));
+  margin-top: calc(var(--mod-h) / -2 - var(--mod-w) * var(--reel-stains-top));
+  background: url("/experiencias/reel/manchas-1200.webp") center / 100% 100% no-repeat;
+}
+.track {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: calc(var(--mod-h) / -2);
+  display: flex;
+  will-change: transform;
+}
+.set {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.frame {
+  position: relative;
+  flex: 0 0 var(--mod-w);
+  width: var(--mod-w);
+  height: var(--mod-h);
+  background: url("/experiencias/reel/fotograma-400.webp") 0 0 / 100% 100% no-repeat;
+}
+/* The poster in the window: the whole poster (contain), centred, with its own proportion. The room left at its
+   sides is the window's own paper. */
+.poster {
+  position: absolute;
+  left: var(--reel-poster-left);
+  top: var(--reel-poster-top);
+  width: var(--reel-poster-width);
+  height: var(--reel-poster-height);
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  box-shadow: 0 1px 2px rgb(var(--jia-ink-rgb) / 0.28), 0 6px 14px -8px rgb(var(--jia-ink-rgb) / 0.5);
+  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .poster:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgb(var(--jia-ink-rgb) / 0.3), 0 12px 20px -10px rgb(var(--jia-ink-rgb) / 0.55);
+  }
+}
+.poster:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 3px;
+}
+/* In the fade a poster is not really there: it takes no click. */
+.frame[data-faded] .poster { pointer-events: none; }
+.picture {
+  -webkit-user-drag: none;
+  pointer-events: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---- controls: pause / resume, and the arrows when the strip is still ---- */
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding-right: var(--reel-controls-inset);
+}
+.control {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1.5px solid rgb(var(--jia-ink-rgb) / 0.55);
+  border-radius: 50%;
+  background: rgb(var(--jia-ivory-rgb) / 0.7);
+  color: var(--jia-ink);
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.control:hover { background: var(--jia-sand-deep); border-color: var(--jia-ink); }
+.control:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 2px;
+}
+.control svg { width: 18px; height: 18px; }
+.back { transform: scaleX(-1); }
+
+:where(:global(html[data-motion="reduce"])) .poster { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .poster { transition: none; }
+}

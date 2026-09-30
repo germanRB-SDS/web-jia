@@ -72,3 +72,15 @@ Matriz de sincronización: CHANGE recursos/índices/knowledge/metadatos/logs; N/
 adapters, bootstrap/scaffold, capability ledger, validators y memoria frontend: no cambia su contrato
 ni la web en runtime. Source web-jia 46065c5; canon c63d175. El material sentinel/deployment existente
 sólo en la copia se conserva localmente; no se sustituye ni se promociona como parte de este delta.
+
+## GOV-2026-09-30-01 — modelo modular web-jia
+
+- Incorporación/última modificación: 2026-09-30; GOV-STRUCTURE; prompt [64-1].
+- Motivo: conservar diseño, código, imágenes y dependencias para reordenar/reutilizar secciones.
+- Owner: built-projects/web-jia; consumidores: índice resources, knowledge y README (enlaces).
+- Cambio: carpeta nueva, guía visual, skill archivada, snapshot y manifiestos. VERSION/CHANGELOG
+  publican v1.32.0; kernel/prácticas/adapters/scaffold/init/checker N/A sin delta normativo.
+- Uso: entrada INDEX.md, seleccionar módulos; skill fuera de descubrimiento, ledger draft QUARANTINED.
+- Verificación: instalación/build aislados, contenido, hashes/imports/links y checker SDS.
+- Riesgo: contenido de marca en snapshot histórico; no confundirlo con assets neutros.
+- Recuperación: revert de commits de paquete; preservar código vivo y evidencia del origen.
