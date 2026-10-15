@@ -99,6 +99,9 @@
   left: 50%;
   bottom: clamp(1rem, 6%, 2rem);
   translate: -50% 0;
+  /* The width of the workshop sheet's «Dosier» (its poster column, 320 px), never wider than the poster allows. */
+  justify-content: center;
+  width: min(320px, 100% - 2rem);
 }
 .download:hover svg,
 .download:focus-visible svg { transform: translateY(2px); }

@@ -42,3 +42,10 @@
 
 Textos solo en `lib/content/copy/`; colores solo con tokens de `app/theme/palette.css`; commits con rutas explícitas;
 no se sube a `origin` sin confirmación.
+
+## Hotfix on the fly 1 (2026-10-15, tras el cierre)
+
+- En cada fotograma del rollo de Experiencias, dentro del fotograma, a la derecha del cartel y abajo: un botón redondo
+  con flecha hacia abajo, del mismo tamaño y estilo que el botón «play/pausa» del rollo, que descarga el mismo PDF de
+  la experiencia de éxito que ofrece el visor.
+- El botón «Descargar» del visor, del mismo ancho que el botón «Dosier» de la ficha del taller.

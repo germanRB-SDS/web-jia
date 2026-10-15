@@ -46,3 +46,14 @@
 
 Ninguno nuevo. No se toca backend, auth, datos personales nuevos (solo nombres impresos en las tarjetas), secretos ni
 despliegue. Los PDFs son documentos aportados por el promotor para su publicación. Nada se ha subido a `origin`.
+
+## Hotfix on the fly 1
+
+- Cada fotograma del rollo lleva, a la derecha del cartel y con su pie al del cartel, el mismo control redondo de
+  44 px que «play/pausa», con la flecha hacia abajo: descarga el PDF de esa persona (nombre accesible
+  «Descargar la experiencia de éxito de … (PDF)»). Las copias del rollo lo tienen para el ratón, fuera del tabulador;
+  en la zona difuminada no recibe clics; tras un arrastre no descarga (el motor se traga ese clic).
+- «Descargar» del visor: 320 px, el ancho del «Dosier» de la ficha (en móvil, el ancho del cartel menos 2 rem: 241 px a 390).
+- Verificación: tsc PASS; next build PASS; CDP 1440/390 (`evidence/hotfix1-*.webp`).
+- Riesgo moderado: a 390 px y menos, el hueco junto al cartel mide ~44 px y el círculo lo llena, rozando el borde
+  de la ventana del fotograma. Se mantiene el tamaño pedido. Si molesta, bajarlo a 40 px solo en móvil.

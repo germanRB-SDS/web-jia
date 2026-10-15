@@ -60,6 +60,7 @@ export function reelGeometry() {
     "--reel-poster-top": pct(w.y + w.height * posterInset, m.height),
     "--reel-poster-width": pct(posterWidth, m.width),
     "--reel-poster-height": pct(posterHeight, m.height),
+    "--reel-window-right": pct(w.x + w.width, m.width),
     "--reel-stains-width": `${FILM_REEL.stains.width / m.width}`,
     "--reel-stains-height": `${FILM_REEL.stains.height / m.width}`,
     "--reel-stains-top": `${FILM_REEL.stains.bandTop / m.width}`,

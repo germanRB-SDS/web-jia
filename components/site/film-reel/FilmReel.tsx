@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { ReelModel } from "@/lib/content";
 import { subscribeMotion, isMotionReduced } from "@/lib/motion/policy";
-import { ArrowIcon, PauseIcon, PlayIcon } from "@/components/icons";
+import { ArrowIcon, DownloadIcon, PauseIcon, PlayIcon } from "@/components/icons";
 import { Picture } from "@/components/primitives/Picture";
 import { reelGeometry } from "./config";
 import { createReelEngine, type ReelEngine } from "./reel-engine";
@@ -104,6 +104,19 @@ export function FilmReel({ reel, className }: Props) {
                           <Picture media={p.media} alt="" sizes="(min-width: 1280px) 170px, 150px" className={styles.picture} eager />
                         </span>
                       )}
+                      {/* The success story, straight from the frame ([65-0]): the reel's own round control, in the paper
+                          right of the poster. Copies keep it for the mouse and stay out of the tab order. */}
+                      {p.download ? (
+                        <a
+                          className={`${styles.control} ${styles.frameDownload}`}
+                          href={p.download.href}
+                          download=""
+                          aria-label={p.download.accessibleName}
+                          tabIndex={real ? undefined : -1}
+                        >
+                          <DownloadIcon />
+                        </a>
+                      ) : null}
                     </li>
                   ))}
                 </ul>

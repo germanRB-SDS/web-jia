@@ -171,6 +171,17 @@
 }
 .control svg { width: 18px; height: 18px; }
 .back { transform: scaleX(-1); }
+/* The frame's download ([65-0]): the control above, centred in the paper between the poster and the window's right
+   edge, its foot on the poster's foot. */
+.frameDownload {
+  position: absolute;
+  left: calc((var(--reel-poster-left) + var(--reel-poster-width) + var(--reel-window-right)) / 2);
+  top: calc(var(--reel-poster-top) + var(--reel-poster-height));
+  translate: -50% -100%;
+}
+.frame[data-faded] .frameDownload { pointer-events: none; }
+/* A link: the global `a:hover` colour must not win over the control's ink. */
+.frameDownload:hover { color: var(--jia-ink); }
 
 :where(:global(html[data-motion="reduce"])) .poster { transition: none; }
 @media (prefers-reduced-motion: reduce) {
