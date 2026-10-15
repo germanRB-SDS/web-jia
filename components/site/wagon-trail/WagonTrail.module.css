@@ -29,7 +29,8 @@
 .rutTread { stroke-width: calc(var(--trail-rut) * 0.6); stroke-dasharray: 1.5 4.5; }
 .prints { fill: currentColor; }
 
-/* The pass: the ruts are unveiled along the road and each print shows when the wagon reaches it. */
+/* The pass: the ruts are unveiled along the road (WagonTrail.tsx animates the mask on the wagon's clock) and each
+   print shows when the wagon reaches it. Until then nothing; once done, or with reduced motion, all of it. */
 .reveal {
   fill: none;
   stroke: white;
@@ -39,13 +40,9 @@
   stroke-dashoffset: 1;
 }
 .prints use { opacity: 0; }
-[data-state="passing"] .reveal { animation: trail-reveal var(--trail-pass) linear forwards; }
-[data-state="passing"] .prints use {
-  animation: trail-print 420ms ease-out forwards;
-  /* The reveal runs at an even pace, so a print appears just as the ruts reach it. */
-  animation-delay: calc(var(--at) * var(--trail-pass));
-}
+[data-state="passing"] .prints use { animation: trail-print 380ms ease-out var(--delay) forwards; }
+[data-state="done"] .reveal,
 [data-state="still"] .reveal { stroke-dashoffset: 0; }
+[data-state="done"] .prints use,
 [data-state="still"] .prints use { opacity: 1; }
-@keyframes trail-reveal { to { stroke-dashoffset: 0; } }
 @keyframes trail-print { from { opacity: 0; } to { opacity: 1; } }

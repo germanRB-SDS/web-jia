@@ -24,17 +24,18 @@ export const WAGON_TRAIL = {
   /** Half the distance between the two wheel ruts, and each rut's width. */
   gauge: 21,
   rut: 6,
-  /** Two horses abreast between the ruts: their lines sit at ± this share of the gauge; each hoof steps this far to
-      either side of its horse's line, every `stride` along the way. */
-  horses: 0.42,
-  hoofSpread: 4,
-  stride: 24,
-  /** A horseshoe's width. */
+  /** One horse, on the road's centre line between the ruts ([68-0] hotfix 1). A horseshoe's width. */
   shoe: 9,
+  /** Its two gaits. At a WALK the feet fall one by one, left and right of the line, every `stride` pixels. At a
+      GALLOP they fall in quick groups of four (`beats`: distance along the group and side of the line) followed by
+      the leap: one group every `stride` pixels; the shoes land a little bigger and more askew, dug in. */
+  walk: { stride: 22, spread: 4, speed: 210, wobble: 0.1 },
+  gallop: { stride: 96, spread: 5, speed: 720, wobble: 0.06, beats: [[0, -1], [10, 1], [31, -1], [42, 1]] as ReadonlyArray<readonly [number, -1 | 1]>, scale: 1.12, turn: 15 },
+  /** Halfway across the screen (this share of the layer's width, the first time the road reaches it) the wagon
+      stops for `pause` seconds, then the horse picks up the gallop over `ramp` pixels. */
+  halt: { at: 0.5, pause: 0.5, ramp: 180 },
   /** Jitter of each print, in pixels and degrees, so the line is walked and not stamped. */
-  jitter: { offset: 1.6, turn: 9 },
+  jitter: { offset: 1.4, turn: 8 },
   /** The whole trail's strength over the paper: an impression, not a drawing. */
   opacity: 0.15,
-  /** Seconds the wagon takes to cross, once, the first time the trail comes into view. */
-  pass: 5.5,
 } as const;

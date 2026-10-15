@@ -28,3 +28,15 @@ tsc PASS · check:content PASS · next build PASS · CDP: 1440 (194 huellas, cap
 3. A 760–1024 px la sección es más alta y el camino ocupa su mitad inferior con la misma forma (puntos relativos).
 
 Severos/críticos: ninguno.
+
+## Hotfix on the fly 1
+
+- Un solo caballo, centrado entre las rodadas; el trazado no cambia.
+- Reloj propio de la carreta (`build` en `WagonTrail.tsx`, ajustes en `config.ts`): paso con ritmo que respira
+  (±10 %), parada de 0,5 s la primera vez que el camino alcanza la mitad del ancho, arranque progresivo en 180 px y
+  galope. Las rodadas se descubren con la Web Animations API sobre ese reloj y cada huella aparece en su instante.
+- Huellas: al paso, una a una alternando lado cada 22 px; al galope, grupos de cuatro pisadas seguidos del salto
+  (96 px), más grandes (×1,12) y más torcidas, y los primeros grupos más cortos mientras toma impulso.
+- Medido en Chrome a 1440: avance 8,2–9,5 %/s al paso, 500 ms quieto a los ~5,5 s, 21,7 → 31 %/s al galope;
+  pasada completa ≈ 8 s; 106 huellas (52 de galope). Un redimensionado a mitad reinicia la pasada sobre el nuevo
+  camino. tsc, next build PASS (`evidence/hotfix1-gait-*.webp`). Severos/críticos: ninguno.
