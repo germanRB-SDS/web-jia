@@ -101,6 +101,11 @@
 }
 .frame {
   position: relative;
+  /* The volley's holes ([65-0] hotfix 2): the footer's look, sized to the frame. */
+  --hole-size: calc(var(--mod-w) * 0.11);
+  --hole-ink-rgb: var(--jia-terracotta-deep-rgb);
+  --hole-paper-rgb: var(--jia-ivory-rgb);
+  --hole-fade: 320ms;
   flex: 0 0 var(--mod-w);
   width: var(--mod-w);
   height: var(--mod-h);

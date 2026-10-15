@@ -4,10 +4,12 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import type { ReelModel } from "@/lib/content";
 import { subscribeMotion, isMotionReduced } from "@/lib/motion/policy";
 import { ArrowIcon, DownloadIcon, PauseIcon, PlayIcon } from "@/components/icons";
+import { BulletHole } from "@/components/primitives/BulletHole";
 import { Picture } from "@/components/primitives/Picture";
 import { reelGeometry } from "./config";
 import { createReelEngine, type ReelEngine } from "./reel-engine";
 import { ReelViewer } from "./ReelViewer";
+import { useFrameVolley } from "./use-frame-volley";
 import styles from "./FilmReel.module.css";
 
 type Props = { reel: ReelModel; className?: string };
@@ -34,6 +36,7 @@ export function FilmReel({ reel, className }: Props) {
   const [reduced, setReduced] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const count = reel.posters.length;
+  const { volley, handlers: volleyHandlers } = useFrameVolley();
 
   useEffect(() => {
     const update = () => setReduced(isMotionReduced());
@@ -113,10 +116,14 @@ export function FilmReel({ reel, className }: Props) {
                           download=""
                           aria-label={p.download.accessibleName}
                           tabIndex={real ? undefined : -1}
+                          {...volleyHandlers(copy, index)}
                         >
                           <DownloadIcon />
                         </a>
                       ) : null}
+                      {volley && volley.copy === copy && volley.index === index
+                        ? volley.shots.map((shot) => <BulletHole key={shot.key} shot={shot} leaving={volley.leaving} />)
+                        : null}
                     </li>
                   ))}
                 </ul>

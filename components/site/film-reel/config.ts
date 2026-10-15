@@ -45,6 +45,20 @@ export const FILM_REEL = {
   leaveDelay: 150,
   /** Viewer: milliseconds of its fade in and out. */
   viewerFade: 180,
+  /** Three shots into a frame when a mouse rests on its download control ([65-0] hotfix 2), all in milliseconds:
+      how long the mouse must rest first, when each shot lands after that (two in a row, the third a moment later),
+      how long the holes stay after the last one and how long they take to fade. `tolerance` is how many pixels the
+      mouse may drift and still be resting. Holes land in `area` (percent of the frame: its window) but never on
+      `spare`, the corner right and below of which sits the control itself. */
+  volley: {
+    dwell: 220,
+    gaps: [0, 140, 560],
+    life: 3000,
+    fade: 320,
+    tolerance: 4,
+    area: { x: [10, 90], y: [20, 80] },
+    spare: { x: 72, y: 62 },
+  },
 } as const;
 
 /** The module-relative boxes the CSS needs, in percent: the poster centred in the window, with its own proportion. */

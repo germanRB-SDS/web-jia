@@ -57,3 +57,17 @@ despliegue. Los PDFs son documentos aportados por el promotor para su publicaci�
 - Verificación: tsc PASS; next build PASS; CDP 1440/390 (`evidence/hotfix1-*.webp`).
 - Riesgo moderado: a 390 px y menos, el hueco junto al cartel mide ~44 px y el círculo lo llena, rozando el borde
   de la ventana del fotograma. Se mantiene el tamaño pedido. Si molesta, bajarlo a 40 px solo en móvil.
+
+## Hotfix on the fly 2
+
+- Con ratón (puntero fino con hover; nunca en táctil ni con movimiento reducido), cuando el puntero reposa 220 ms
+  sobre la flecha de descarga de un fotograma, caen tres agujeros de bala en ese fotograma, en posiciones aleatorias
+  de su ventana y nunca sobre el propio botón: dos seguidos (0 y 140 ms) y el tercero a los 560 ms. Se van
+  3 s después del último o, antes, al mover el ratón (más de 4 px), salir del botón o hacer clic. Una ráfaga por
+  visita. Mientras el ratón está encima, el rollo ya se detenía, así que los agujeros no se desplazan.
+- Reutiliza `BulletHole` (el agujero del pie y del cubo) con su tamaño ligado al fotograma. Ajustes en
+  `components/site/film-reel/config.ts` (`volley`); lógica en `use-frame-volley.ts`.
+- Verificación: tsc PASS; next build PASS; CDP con eventos de ratón reales a 1440: 2 agujeros a ~200 ms, 3 a ~700 ms,
+  3 a 3,2 s, 0 a 4 s; segunda visita 3 y 0 tras mover el ratón (`evidence/hotfix2-disparos.webp`).
+- Riesgo moderado: un fotograma dentro del difuminado muestra los agujeros atenuados (la máscara del rollo los
+  incluye). Se considera coherente con el resto del rollo.
