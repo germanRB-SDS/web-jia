@@ -24,3 +24,8 @@ recta, como un camino que queda detrás.
 - La carreta no se dibuja a velocidad constante: ritmo orgánico, que varía ligeramente.
 - A mitad de pantalla (en ancho relativo) se para un poquito (0,5 s) y luego arranca al galope; las huellas pasan de
   paso a galope (pisadas agrupadas y zancadas largas).
+
+## Hotfix on the fly 2 (2026-10-15)
+
+- Al dibujarse, las rodadas iban por delante de las huellas. Debe ser al revés: las ruedas van detrás de las patas
+  traseras del caballo.
