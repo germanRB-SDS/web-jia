@@ -179,6 +179,9 @@ export type Copy = {
       previous: string;
       next: string;
       close: string;
+      /** The viewer's button under the poster ([65-0]) and its accessible name. */
+      download: string;
+      downloadOf: string;
       /** As printed on each poster. Keyed by the ids of `experienciasConfig.reelPosters`. */
       posters: Record<string, { name: string; reward: string }>;
     };

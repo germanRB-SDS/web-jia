@@ -1,8 +1,8 @@
 import type { Copy } from "../../types";
 
 export const experiencias: Copy["experiencias"] = {
-  title: "Ideas de cine que ya han pasado por el aula",
-  lede: "Cultiva las experiencias educativas desde la práctica. Disfruta de la experiencia tal y como nos muestran nuestros compañeros de cine.",
+  title: "Experiencias de éxito",
+  lede: "Aquí puedes descargar las experiencias de éxito (pulsando en la imagen correspondiente) que ya han pasado por el aula. Probadas a tiza. Reconocidas hasta en (Mini)Hollywood.",
   empty: "Las experiencias se publicarán cuando el profesorado participante las confirme.",
   // Escrito con tiza en la pizarra de la fotografía. El corte de línea es editorial: el hueco libre de la
   // pizarra son 185 x 130 px del original, así que el rótulo cabe en tres líneas cortas y no en dos.
@@ -19,13 +19,15 @@ export const experiencias: Copy["experiencias"] = {
   relatedWorkshops: "Talleres relacionados",
   reel: {
     label: "Experiencias de éxito",
-    poster: "Experiencia de éxito {n} de {total}: {name}. Recompensa: {reward}. Ver cartel",
+    poster: "Experiencia de éxito {n} de {total}: {name}. Recompensa: {reward}. Ver cartel y descargar la experiencia",
     alt: "Cartel «Wanted» de la experiencia de éxito de {name}. Recompensa: {reward}.",
     pause: "Pausar la película",
     play: "Reanudar la película",
     previous: "Fotograma anterior",
     next: "Fotograma siguiente",
     close: "Cerrar imagen",
+    download: "Descargar",
+    downloadOf: "Descargar la experiencia de éxito de {name} (PDF)",
     // Transcrito de cada cartel. El 1 dice «blibioteca» en la imagen; aquí va bien escrito.
     posters: {
       "gabi-moral": { name: "Gabi Moral", reward: "Pase premium para la biblioteca" },

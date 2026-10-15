@@ -262,7 +262,7 @@ function experienceHref(id: string): string {
   return anchor(experienciasConfig.display === "reel" ? experienciasConfig.id : `${experienciasConfig.id}-${id}`);
 }
 
-export type ReelPosterModel = { id: string; media: Media; label: string; alt: string };
+export type ReelPosterModel = { id: string; media: Media; label: string; alt: string; download: { href: string; label: string; accessibleName: string } | null };
 export type ReelModel = {
   posters: ReelPosterModel[];
   labels: { region: string; pause: string; play: string; previous: string; next: string; close: string };
@@ -276,7 +276,8 @@ function reelModel(copy: Copy): ReelModel | null {
     const words = text.posters[p.id];
     if (!media || !words) return [];
     const fill = { n: String(i + 1), total: String(total), name: words.name, reward: words.reward };
-    return [{ id: p.id, media, label: format(text.poster, fill), alt: format(text.alt, fill) }];
+    const download = p.pdf ? { href: p.pdf, label: text.download, accessibleName: format(text.downloadOf, fill) } : null;
+    return [{ id: p.id, media, label: format(text.poster, fill), alt: format(text.alt, fill), download }];
   });
   if (!posters.length) return null;
   return { posters, labels: { region: text.label, pause: text.pause, play: text.play, previous: text.previous, next: text.next, close: text.close } };

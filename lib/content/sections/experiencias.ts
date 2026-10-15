@@ -25,14 +25,16 @@ export const experienciasConfig = {
    * links to one experience (workshop sheets, programme) land on the section.
    */
   display: "reel" as "reel" | "cards",
-  /** The posters in the reel's frames, in this order. The names and rewards that name them are in the copy. */
+  /** The posters in the reel's frames, in this order. The names and rewards that name them are in the copy. `pdf` is
+      the success story itself ([65-0], originals in assets/experiencias-exito-pdf/): the viewer offers it under the
+      poster; null leaves the viewer without the button. */
   reelPosters: [
-    { id: "gabi-moral", mediaId: "exito-1" },
-    { id: "ruben-lopez", mediaId: "exito-2" },
-    { id: "toni-navarro", mediaId: "exito-3" },
-    { id: "gonzalo-carretero", mediaId: "exito-4" },
-    { id: "maria-lopez", mediaId: "exito-5" },
-    { id: "pilar-diaz", mediaId: "exito-6" },
-    { id: "cristina-robles-leon", mediaId: "exito-7" },
+    { id: "gabi-moral", mediaId: "exito-1", pdf: "/experiencias/descargas/experiencia-de-exito-gabi-moral.pdf" as string | null },
+    { id: "ruben-lopez", mediaId: "exito-2", pdf: "/experiencias/descargas/experiencia-de-exito-ruben-lopez.pdf" as string | null },
+    { id: "toni-navarro", mediaId: "exito-3", pdf: "/experiencias/descargas/experiencia-de-exito-toni-navarro.pdf" as string | null },
+    { id: "gonzalo-carretero", mediaId: "exito-4", pdf: "/experiencias/descargas/experiencia-de-exito-gonzalo-carretero.pdf" as string | null },
+    { id: "maria-lopez", mediaId: "exito-5", pdf: "/experiencias/descargas/experiencia-de-exito-maria-lopez.pdf" as string | null },
+    { id: "pilar-diaz", mediaId: "exito-6", pdf: "/experiencias/descargas/experiencia-de-exito-pilar-diaz.pdf" as string | null },
+    { id: "cristina-robles-leon", mediaId: "exito-7", pdf: "/experiencias/descargas/experiencia-de-exito-cristina-robles-leon.pdf" as string | null },
   ],
 } as const;

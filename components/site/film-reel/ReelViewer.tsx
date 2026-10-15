@@ -3,14 +3,15 @@
 import { useEffect, useRef, type CSSProperties } from "react";
 import type { Media } from "@/lib/content";
 import { isMotionReduced } from "@/lib/motion/policy";
-import { CloseIcon } from "@/components/icons";
+import { CloseIcon, DownloadIcon } from "@/components/icons";
 import { Picture } from "@/components/primitives/Picture";
+import actionStyles from "@/components/primitives/Action.module.css";
 import { FILM_REEL as TUNE } from "./config";
 import styles from "./ReelViewer.module.css";
 
 type Props = {
   /** The poster on show; null keeps the viewer shut. It stays set while the viewer fades out. */
-  poster: { media: Media; label: string; alt: string } | null;
+  poster: { media: Media; label: string; alt: string; download: { href: string; label: string; accessibleName: string } | null } | null;
   closeLabel: string;
   /** Called once the viewer is shut, after its fade. */
   onClose: () => void;
@@ -122,6 +123,21 @@ export function ReelViewer({ poster, closeLabel, onClose }: Props) {
             className={styles.image}
             priority
           />
+          {/* The success story itself ([65-0]): the poster's lower 40 % fades into paper and the button stands on it. */}
+          {poster.download ? (
+            <>
+              <span className={styles.shade} aria-hidden="true" />
+              <a
+                className={`${actionStyles.btn} ${actionStyles.primary} ${styles.download}`}
+                href={poster.download.href}
+                download=""
+                aria-label={poster.download.accessibleName}
+              >
+                <span>{poster.download.label}</span>
+                <DownloadIcon size={20} />
+              </a>
+            </>
+          ) : null}
           <button ref={closeButton} type="button" className={styles.close} aria-label={closeLabel} onClick={requestClose}>
             <CloseIcon />
           </button>

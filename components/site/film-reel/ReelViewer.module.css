@@ -83,6 +83,30 @@
   background: var(--jia-card);
   box-shadow: 0 30px 70px -24px rgb(var(--jia-ink-rgb) / 0.7), 0 0 0 1px rgb(var(--jia-ink-rgb) / 0.12);
 }
+/* «Descargar» ([65-0]): from the poster's foot up to 40 % of its height, solid paper melting into the picture, and
+   the site's leather button centred on it. The shade follows the picture's corners and takes no pointer, so a click
+   on it is still a click on the poster. */
+.shade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 40%;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(to top, var(--jia-ivory) 0%, var(--jia-ivory) 42%, rgb(var(--jia-ivory-rgb) / 0.82) 62%, rgb(var(--jia-ivory-rgb) / 0.35) 82%, rgb(var(--jia-ivory-rgb) / 0) 100%);
+  pointer-events: none;
+}
+.download {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 6%, 2rem);
+  translate: -50% 0;
+}
+.download:hover svg,
+.download:focus-visible svg { transform: translateY(2px); }
+.download:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 3px;
+}
+
 /* The X: the sheets' close button (ivory, ink rim) as a round 44 px target, on the poster's top-right corner. It is
    inside the group, so going from the poster to it never counts as leaving. */
 .close {
