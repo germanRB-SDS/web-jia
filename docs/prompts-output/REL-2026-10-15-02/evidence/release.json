@@ -1,0 +1,28 @@
+{
+  "commit": "7354062",
+  "release": "20261015-7354062",
+  "previous": "releases/20261015-3a723f6",
+  "archive_sha256": "b2edf29ee7a5202d7dae806793ae0b64a59dce59c701c444de1af2c7eb4039a1",
+  "archive_bytes": 99635793,
+  "files": 308,
+  "html_sha256": "a39a1f44943c94fda6e8b843addd3d6495a99afbecd23a65dc691569dae81e68",
+  "updater_sha256": "3092111323183328ac71797a842698a64c119988b71ede2c95e2818f7ee084eb",
+  "runtime": "Node 24.19.0",
+  "validation": { "typescript": "PASS", "content": "PASS: 99 media", "build": "PASS: next build --webpack static export" },
+  "staging": "/home/sdsadmin/web-jia-release-review-CRAdVzkL",
+  "remote_checksums": "PASS",
+  "activation_method": "Owner ran the prepared command in their own terminal and authenticated sudo there.",
+  "activation_output": "ACTIVATED 20261015-7354062; previous retained: releases/20261015-3a723f6; Caddy configuration and process unchanged (non-fatal cp -n warning)",
+  "status": "ACTIVATED_VERIFIED",
+  "verification": {
+    "current": "releases/20261015-7354062",
+    "origin_html_sha256": "a39a1f44943c94fda6e8b843addd3d6495a99afbecd23a65dc691569dae81e68",
+    "public_html_sha256": "a39a1f44943c94fda6e8b843addd3d6495a99afbecd23a65dc691569dae81e68",
+    "redirects": "/, /almeria-2026/, /almeria-2026.html → 302 /almeria-2026 (query kept)",
+    "not_found": 404,
+    "models": "/programa/caballo.glb 200, /jornadas/jia-carruaje.glb 200",
+    "video_range": 206,
+    "browser_desktop": "PASS 1440: wagon driver ready, 0 failed resources, 0 errors",
+    "browser_mobile": "PASS 390: wagon layer hidden, horse GLB not requested"
+  }
+}
