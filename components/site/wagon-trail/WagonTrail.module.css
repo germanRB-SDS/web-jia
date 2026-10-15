@@ -1,0 +1,51 @@
+/* The wagon trail ([68-0]): edge to edge behind the spread, faded into the paper at the top and the bottom, from
+   760 px only. One ink (the palette's deep terracotta) at a whisper; the words always come first. */
+.trail { display: none; }
+@media (min-width: 760px) {
+  .trail {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    inset: 0 calc(50% - 50vw);
+    overflow: hidden;
+    pointer-events: none;
+    color: var(--jia-terracotta-deep);
+    opacity: var(--trail-opacity);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+}
+.trail svg { display: block; }
+
+/* The ruts: a soft bed pressed into the sand and, over it, the tyre's tread. */
+.rutBed,
+.rutTread {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rutBed { stroke-width: var(--trail-rut); opacity: 0.55; }
+.rutTread { stroke-width: calc(var(--trail-rut) * 0.6); stroke-dasharray: 1.5 4.5; }
+.prints { fill: currentColor; }
+
+/* The pass: the ruts are unveiled along the road and each print shows when the wagon reaches it. */
+.reveal {
+  fill: none;
+  stroke: white;
+  stroke-width: var(--trail-gauge);
+  stroke-linecap: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+}
+.prints use { opacity: 0; }
+[data-state="passing"] .reveal { animation: trail-reveal var(--trail-pass) linear forwards; }
+[data-state="passing"] .prints use {
+  animation: trail-print 420ms ease-out forwards;
+  /* The reveal runs at an even pace, so a print appears just as the ruts reach it. */
+  animation-delay: calc(var(--at) * var(--trail-pass));
+}
+[data-state="still"] .reveal { stroke-dashoffset: 0; }
+[data-state="still"] .prints use { opacity: 1; }
+@keyframes trail-reveal { to { stroke-dashoffset: 0; } }
+@keyframes trail-print { from { opacity: 0; } to { opacity: 1; } }

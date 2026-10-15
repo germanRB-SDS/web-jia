@@ -8,6 +8,7 @@ import { SubSection } from "./Section";
 import { IntroVideo } from "./IntroVideo";
 import { JornadasRoute } from "./jornadas-route/JornadasRoute";
 import { ProgramaDias } from "./programa-dias/ProgramaDias";
+import { WagonTrail } from "./wagon-trail/WagonTrail";
 import { TalleresCarrusel } from "./talleres-carrusel/TalleresCarrusel";
 import styles from "./Jornadas.module.css";
 
@@ -87,7 +88,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
       <div className={styles.spreads}>
 
       {/* ---- Programa ---- */}
-      <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks}>
+      <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks} decor={<WagonTrail />}>
         <ProgramaDias days={jornadas.program.days} clock={jornadas.program.clock} copy={copy} markLabels={markLabels} showMarks={showMarks} />
       </SubSection>
 
