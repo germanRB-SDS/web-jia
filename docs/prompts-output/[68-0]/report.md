@@ -40,3 +40,12 @@ Severos/críticos: ninguno.
 - Medido en Chrome a 1440: avance 8,2–9,5 %/s al paso, 500 ms quieto a los ~5,5 s, 21,7 → 31 %/s al galope;
   pasada completa ≈ 8 s; 106 huellas (52 de galope). Un redimensionado a mitad reinicia la pasada sobre el nuevo
   camino. tsc, next build PASS (`evidence/hotfix1-gait-*.webp`). Severos/críticos: ninguno.
+
+## Hotfix on the fly 2
+
+- Las rodadas iban por delante de las huellas por dos motivos: el remate redondo del trazo que las descubre
+  (≈54 px de ancho) adelantaba media galga, y las ruedas no tenían retraso. Ahora el remate es recto (`butt`) y las
+  ruedas van `wheelLag` = 90 px detrás del caballo sobre el mismo reloj; la pasada dura lo justo para que salgan.
+  Cada huella aparece en 140 ms (antes 380): una pisada es instantánea y, al galope, no llega tarde.
+- Medido en Chrome a 1440 (frente de las ruedas frente a la última huella visible, sobre el camino): 77, 67, 78, 83
+  y 43 px por detrás a 1,5 / 3,5 / 5,8 / 7 / 8 s. tsc, next build PASS (`evidence/hotfix2-ruedas-detras.webp`).

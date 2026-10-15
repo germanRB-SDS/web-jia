@@ -34,6 +34,9 @@ export const WAGON_TRAIL = {
   /** Halfway across the screen (this share of the layer's width, the first time the road reaches it) the wagon
       stops for `pause` seconds, then the horse picks up the gallop over `ramp` pixels. */
   halt: { at: 0.5, pause: 0.5, ramp: 180 },
+  /** How far the wheels run behind the horse's hind hooves ([68-0] hotfix 2): the horse's body and the shafts. The
+      ruts are pressed this many pixels after the prints, never before them. */
+  wheelLag: 90,
   /** Jitter of each print, in pixels and degrees, so the line is walked and not stamped. */
   jitter: { offset: 1.4, turn: 8 },
   /** The whole trail's strength over the paper: an impression, not a drawing. */

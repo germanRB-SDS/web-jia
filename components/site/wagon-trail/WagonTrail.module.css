@@ -35,12 +35,14 @@
   fill: none;
   stroke: white;
   stroke-width: var(--trail-gauge);
-  stroke-linecap: round;
+  /* Butt, not round: a round cap on a stroke this wide would uncover the ruts half a gauge ahead of the wheels. */
+  stroke-linecap: butt;
   stroke-dasharray: 1 1;
   stroke-dashoffset: 1;
 }
 .prints use { opacity: 0; }
-[data-state="passing"] .prints use { animation: trail-print 380ms ease-out var(--delay) forwards; }
+/* A hoof lands at once: a short fade, or at a gallop a print would show up well after the wheels had gone by. */
+[data-state="passing"] .prints use { animation: trail-print 140ms ease-out var(--delay) forwards; }
 [data-state="done"] .reveal,
 [data-state="still"] .reveal { stroke-dashoffset: 0; }
 [data-state="done"] .prints use,

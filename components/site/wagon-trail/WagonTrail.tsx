@@ -78,7 +78,9 @@ function build(width: number, height: number) {
     const ds = along[i] - along[i - 1];
     time.push(time[i - 1] + ds / speed((along[i] + along[i - 1]) / 2) + (i === haltIndex ? T.halt.pause : 0));
   }
-  const total = time[time.length - 1];
+  // The horse's clock ends at `horseEnd`; the wheels, `wheelLag` behind it, need a little more to leave the road.
+  const horseEnd = time[time.length - 1];
+  const total = horseEnd + T.wheelLag / T.gallop.speed;
   const at = (s: number) => {
     let i = 1;
     while (i < along.length - 1 && along[i] < s) i++;
@@ -110,12 +112,16 @@ function build(width: number, height: number) {
     s += T.gallop.stride * reach * (0.94 + rand() * 0.12);
   }
 
-  /* The reveal on the same clock: dash offset 1 (nothing) to 0 (the whole road). Every few samples, plus the two
-     around the halt: between them the road barely moves for the whole pause, so it stands still with the wagon. */
+  /* The reveal on the same clock, for the WHEELS: when the horse is at `along[i]` they are `wheelLag` behind it, so
+     the ruts follow the prints and never lead them. Dash offset 1 (nothing) to 0 (the whole road). Every few
+     samples, plus the two around the halt: between them the road barely moves for the whole pause. */
   const every = Math.max(1, Math.floor(line.length / 160));
   const keys = new Set<number>([0, haltIndex - 1, haltIndex, line.length - 1]);
   for (let i = 0; i < line.length; i += every) keys.add(i);
-  const keyframes = [...keys].sort((p, q) => p - q).map((i) => ({ offset: time[i] / total, strokeDashoffset: 1 - along[i] / length }));
+  const keyframes = [...keys]
+    .sort((p, q) => p - q)
+    .map((i) => ({ offset: time[i] / total, strokeDashoffset: 1 - Math.max(0, along[i] - T.wheelLag) / length }));
+  keyframes.push({ offset: 1, strokeDashoffset: 0 });
 
   return { centre: toPath(line), ruts: [toPath(offset(-T.gauge)), toPath(offset(T.gauge))], prints, keyframes, total };
 }
