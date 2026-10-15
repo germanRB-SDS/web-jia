@@ -49,3 +49,9 @@ no se sube a `origin` sin confirmación.
   con flecha hacia abajo, del mismo tamaño y estilo que el botón «play/pausa» del rollo, que descarga el mismo PDF de
   la experiencia de éxito que ofrece el visor.
 - El botón «Descargar» del visor, del mismo ancho que el botón «Dosier» de la ficha del taller.
+
+## Hotfix on the fly 2 (2026-10-15)
+
+- Solo con ratón (no móvil): al dejar el puntero sobre la flecha de descarga de un fotograma, aparecen en ese
+  fotograma tres disparos en posiciones aleatorias: dos seguidos y el tercero un poco después.
+- Desaparecen a los 3 s del último disparo, o antes si se hace clic en el botón o se mueve el ratón.
