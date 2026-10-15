@@ -24,3 +24,9 @@ desde Drive. Fuente: https://drive.google.com/file/d/1QjV8iwomCHMMbeQmm51h4S8Wax
 3. Botón en una franja de tinta bajo el vídeo, dentro del pliegue; diálogo modal nativo como el visor del rollo,
    con el `iframe` de Drive en 16:9 creado solo al abrir; el clip se pausa mientras está abierto y sigue al cerrar.
 4. Verificación: `tsc`, `check:content`, `next build`, CDP a 1440 y 390 px.
+
+## Hotfix on the fly 1 (2026-10-15)
+
+- La barra superior de Intro («Intro · Jornadas de Innovación de Almería») pasa a tener la misma altura que la franja
+  inferior del botón «¡Ver el corto completo!» (hoy más alta).
+- Estepicursores animados sobre el fondo marrón de la barra, por detrás de las palabras.
