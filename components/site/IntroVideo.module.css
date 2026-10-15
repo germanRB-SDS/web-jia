@@ -3,6 +3,10 @@
    lib/content/sections/jornadas-intro-video.ts, the same limit as the rider band). The
    frame keeps the video's proportion until that limit and then shows the whole frame. */
 .intro {
+  /* The two cinema bars, above and below the clip, are one height ([66-0] hotfix 1): the lower one's, its 48 px
+     button plus this padding above and below. */
+  --intro-band-pad: clamp(0.875rem, 1.6vw, 1.25rem);
+  --intro-band: calc(48px + 2 * var(--intro-band-pad));
   position: relative;
   background: var(--jia-ink);
   color: var(--jia-ivory);
@@ -32,15 +36,53 @@
   grid-template-columns: minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr);
   align-items: center;
   gap: clamp(0.875rem, 2.5vw, 1.75rem);
-  padding: clamp(0.875rem, 1.6vw, 1.125rem) var(--gutter);
+  min-height: var(--intro-band);
+  padding: var(--intro-band-pad) var(--gutter);
   background: var(--jia-ink);
+  overflow: hidden;
 }
 .bar::before,
 .bar::after {
   content: "";
+  position: relative;
+  z-index: 1;
   height: 1px;
   background: rgb(var(--jia-ivory-rgb) / 0.28);
 }
+/* The words stand on the weeds; the label and the unfold button are already above them (absolute, z-index 2). */
+.barText { position: relative; z-index: 1; }
+/* The tumbleweeds' field: the whole bar, behind the words (tumbleweeds/tumbleweed-field.ts fills it). On ink the
+   footer's sand tones would shout, so the field as a whole is dimmed: the words always come first. */
+.weeds {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.85;
+  pointer-events: none;
+}
+/* The field's measure (the footer uses its studio mark): weeds at the front are 0.8 of this, at the back 0.15. */
+.weedScale {
+  position: absolute;
+  width: 0;
+  height: calc(var(--intro-band) * 0.6);
+  visibility: hidden;
+  pointer-events: none;
+}
+.weeds :global(.weed) {
+  position: absolute;
+  left: 0;
+  display: block;
+  will-change: transform;
+}
+.weeds :global(.weed) span,
+.weeds :global(.weed) svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.weeds :global(.weed) path[data-tone="0"] { stroke: var(--jia-copper); }
+.weeds :global(.weed) path[data-tone="1"] { stroke: var(--jia-dune); }
+.weeds :global(.weed) path[data-tone="2"] { stroke: var(--jia-line); }
 .barText {
   margin: 0;
   font-family: var(--f-body);
@@ -221,7 +263,8 @@
   grid-template-columns: minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr);
   align-items: center;
   gap: clamp(0.875rem, 2.5vw, 1.75rem);
-  padding: clamp(0.875rem, 1.6vw, 1.25rem) var(--gutter);
+  min-height: var(--intro-band);
+  padding: var(--intro-band-pad) var(--gutter);
   background: var(--jia-ink);
 }
 .credits::before,

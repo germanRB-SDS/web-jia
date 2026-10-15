@@ -36,3 +36,15 @@
 ## Riesgos severos/críticos
 
 Ninguno nuevo: sin backend, auth ni secretos. El archivo ya era público por enlace. Nada subido a `origin`.
+
+## Hotfix on the fly 1
+
+- Las dos franjas de cine de Intro miden lo mismo: la de abajo (botón de 48 px + relleno) manda; variables
+  `--intro-band-pad` / `--intro-band` en `IntroVideo.module.css`. Medido: 88/88 px a 1440, 76/76 px a 390.
+- Estepicursores en la barra superior, por detrás de las palabras: el mismo campo GSAP del pie
+  (`tumbleweeds/tumbleweed-field.ts`), cargado la primera vez que la barra entra en pantalla, parado fuera de ella,
+  nunca con movimiento reducido (también en móvil: aquí es ambiente, no depende del hover). Tamaño ligado a la
+  franja (`.weedScale`, 60 % de su altura), tonos cobre/duna/arena al 85 %. Etiqueta «Intro» y botón de desplegar
+  quedan por encima. Verificación: tsc, next build PASS; CDP 1440/390 (`evidence/hotfix1-barra-*.webp`).
+- Riesgo moderado: animación continua mientras la barra está visible (≤ 8 elementos GSAP, solo transform).
+  Destino: aceptado; se apaga fuera de pantalla y con movimiento reducido.

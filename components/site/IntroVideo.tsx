@@ -1,6 +1,7 @@
 "use client";
 
 import { isMotionReduced } from "@/lib/motion/policy";
+import { useReducedMotion } from "@/lib/motion/use-motion";
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { flushSync } from "react-dom";
@@ -9,6 +10,7 @@ import { format } from "@/lib/content/copy";
 import { ChevronIcon, FullscreenExitIcon, FullscreenIcon, PauseIcon, PictureInPictureExitIcon, PictureInPictureIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
 import actionStyles from "@/components/primitives/Action.module.css";
 import { FullShortDialog } from "./FullShortDialog";
+import type { TumbleweedField } from "./tumbleweeds/tumbleweed-field";
 import styles from "./IntroVideo.module.css";
 
 type Props = { intro: IntroVideoModel };
@@ -64,7 +66,42 @@ export function IntroVideo({ intro }: Props) {
   const foldedRef = useRef(false);
   const [time, setTime] = useState({ current: 0, total: 0 });
   const [shortOpen, setShortOpen] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
+  const weedsRef = useRef<HTMLDivElement>(null);
+  const weedSizeRef = useRef<HTMLSpanElement>(null);
+  const reduced = useReducedMotion();
   const resumeAfterShort = useRef(false);
+
+  /* Tumbleweeds on the cinema bar ([66-0] hotfix 1): the footer's field, rolling behind the words while the bar is on
+     screen; loaded the first time it shows, never under reduced motion. Their size follows `.weedScale`, a share of the bar. */
+  useEffect(() => {
+    const bar = barRef.current;
+    const stage = weedsRef.current;
+    const sizer = weedSizeRef.current;
+    if (!bar || !stage || !sizer || reduced) return;
+    let field: TumbleweedField | null = null;
+    let visible = false;
+    let disposed = false;
+    const io = new IntersectionObserver(async (entries) => {
+      visible = entries[entries.length - 1]?.isIntersecting ?? false;
+      if (!visible) {
+        field?.stop();
+        return;
+      }
+      if (!field) {
+        const { TumbleweedField } = await import("./tumbleweeds/tumbleweed-field");
+        if (disposed) return;
+        field ??= new TumbleweedField(stage, sizer);
+      }
+      if (visible) field.start();
+    });
+    io.observe(bar);
+    return () => {
+      disposed = true;
+      io.disconnect();
+      field?.dispose();
+    };
+  }, [reduced]);
 
   // Ask for the file shortly before the block shows up.
   useEffect(() => {
@@ -277,7 +314,9 @@ export function IntroVideo({ intro }: Props) {
       style={{ "--intro-max-height": intro.maxHeight, "--intro-aspect": String(intro.aspect) } as CSSProperties}
     >
       {/* The cinema bar: the rider's dune always meets solid ink, never a random frame. */}
-      <div className={styles.bar}>
+      <div ref={barRef} className={styles.bar}>
+        <div ref={weedsRef} className={styles.weeds} aria-hidden="true" />
+        <span ref={weedSizeRef} className={styles.weedScale} aria-hidden="true" />
         <h3 id={`${intro.anchor}-title`} className={styles.title}>
           {intro.title}
         </h3>
