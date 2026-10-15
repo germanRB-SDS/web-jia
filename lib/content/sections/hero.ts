@@ -16,10 +16,11 @@ export const heroConfig = {
     primary: { target: "jornadas", icon: "sheriff-star" },
     secondary: { target: "talleres" },
   },
-  /** Ordered shortcuts under the hero. Icons: hat | cactus | compass | lantern. */
+  /** Ordered shortcuts under the hero. Icons: hat | cactus | compass | lantern (the linear family) or, since [67-0],
+      the promoter's filled ones: hoofprints (two horseshoes, a horse's steps) | board (the blackboard) | lamp. */
   waypoints: [
-    { id: "programa", icon: "compass", target: "programa" },
-    { id: "talleres", icon: "hat", target: "talleres" },
-    { id: "experiencias", icon: "lantern", target: "experiencias" },
+    { id: "programa", icon: "hoofprints", target: "programa" },
+    { id: "talleres", icon: "board", target: "talleres" },
+    { id: "experiencias", icon: "lamp", target: "experiencias" },
   ] as const,
 } as const;

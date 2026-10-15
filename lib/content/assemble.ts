@@ -151,7 +151,7 @@ export type LandingModel = {
     datelineMarks: MarkKind[];
     actions: Action[];
   };
-  waypoints: { id: string; icon: "hat" | "cactus" | "compass" | "lantern"; label: string; line: string; href: string }[];
+  waypoints: { id: string; icon: "hat" | "cactus" | "compass" | "lantern" | "board" | "hoofprints" | "lamp"; label: string; line: string; href: string }[];
   jornadas: {
     id: string;
     anchors: typeof jornadasConfig.anchors;

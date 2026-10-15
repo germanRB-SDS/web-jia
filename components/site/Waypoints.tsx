@@ -1,8 +1,8 @@
 import type { LandingModel } from "@/lib/content";
-import { ArrowIcon, CactusIcon, CompassIcon, HatIcon, LanternIcon } from "@/components/icons";
+import { ArrowIcon, BoardIcon, CactusIcon, CompassIcon, HatIcon, HoofprintsIcon, LampIcon, LanternIcon } from "@/components/icons";
 import styles from "./Waypoints.module.css";
 
-const ICONS = { hat: HatIcon, cactus: CactusIcon, compass: CompassIcon, lantern: LanternIcon } as const;
+const ICONS = { hat: HatIcon, cactus: CactusIcon, compass: CompassIcon, lantern: LanternIcon, board: BoardIcon, hoofprints: HoofprintsIcon, lamp: LampIcon } as const;
 
 type Props = { waypoints: LandingModel["waypoints"]; title: string; regionLabel: string };
 
