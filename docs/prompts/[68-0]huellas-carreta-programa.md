@@ -17,3 +17,10 @@ recta, como un camino que queda detrás.
 - Tinta de la paleta muy tenue para no competir con el texto. Al entrar en pantalla el camino se «hace» una vez
   (la carreta pasa); con movimiento reducido aparece hecho.
 - Verificación: tsc, check:content, next build, CDP a 1440, 1024/768 y 390 (sin huellas).
+
+## Hotfix on the fly 1 (2026-10-15)
+
+- Un solo caballo, con sus huellas centradas entre las rodadas. El trazado del camino no cambia.
+- La carreta no se dibuja a velocidad constante: ritmo orgánico, que varía ligeramente.
+- A mitad de pantalla (en ancho relativo) se para un poquito (0,5 s) y luego arranca al galope; las huellas pasan de
+  paso a galope (pisadas agrupadas y zancadas largas).
