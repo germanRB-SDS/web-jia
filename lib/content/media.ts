@@ -50,7 +50,7 @@ function poster20260929(n: number): Media {
   };
 }
 
-/** A card of the team cube ([59-0]): the final set, numbered 10-58 as the promoter supplied them. */
+/** A card of the team cube ([59-0]): the final set, numbered 10-61 as the promoter supplied them (59-61 since [65-0]). */
 function cubeCard(n: number): Media {
   return {
     id: `cubo-${n}`,
@@ -65,7 +65,7 @@ function cubeCard(n: number): Media {
 }
 
 /** The cube's order is the cards' own numbering; a card's place in it is its number. */
-export const CUBE_CARD_NUMBERS: readonly number[] = Array.from({ length: 49 }, (_, i) => 10 + i);
+export const CUBE_CARD_NUMBERS: readonly number[] = Array.from({ length: 52 }, (_, i) => 10 + i);
 export function cubeCardNumber(mediaId: string | null): number | null {
   const m = mediaId?.match(/^cubo-(\d+)$/);
   return m ? Number(m[1]) : null;

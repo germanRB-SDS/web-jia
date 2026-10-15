@@ -46,6 +46,10 @@ export const people: readonly Person[] = [
   { id: "p-susana-castillo", name: "Susana Castillo", role: "asesoria-cep", cardRoleLabel: "Asesora CEP", cardMediaId: "cubo-30", status: "confirmed", provenance: { source: `${CUBE}/30.png` } },
   { id: "p-adela-perez", name: "Adela Pérez", role: "asesoria-cep", cardRoleLabel: "Asesora CEP", cardMediaId: "cubo-31", status: "confirmed", provenance: { source: `${CUBE}/31.png` } },
   { id: "p-silvia-cruz", name: "Silvia Cruz", role: "asesoria-cep", cardRoleLabel: "Asesora CEP", cardMediaId: "cubo-32", status: "confirmed", provenance: { source: `${CUBE}/32.png` } },
+  // Three more advisers' cards, sent as «28 (1)», «29 (1)», «30 (1)» and numbered 59-61 ([65-0]).
+  { id: "p-yolanda-garcia", name: "Yolanda García", role: "asesoria-cep", cardRoleLabel: "Asesora CEP", cardMediaId: "cubo-59", status: "confirmed", provenance: { source: `${CUBE}/59.png` } },
+  { id: "p-ana-i-garcia", name: "Ana I. García", role: "asesoria-cep", cardRoleLabel: "Asesora CEP", cardMediaId: "cubo-60", status: "confirmed", provenance: { source: `${CUBE}/60.png` } },
+  { id: "p-eli-iglesias", name: "Eli Iglesias", role: "asesoria-cep", cardRoleLabel: "Asesora CEP", cardMediaId: "cubo-61", status: "confirmed", provenance: { source: `${CUBE}/61.png` } },
   { id: "p-alberto-romero", name: "Alberto Romero", role: "coordinacion", cardRoleLabel: "Coordinación", cardMediaId: "cubo-43", status: "confirmed", provenance: { source: `${CUBE}/43.png` } },
   { id: "p-adolfo-arino", name: "Adolfo Ariño", role: "coordinacion", cardRoleLabel: "Coordinación", cardMediaId: "cubo-44", status: "confirmed", provenance: { source: `${CUBE}/44.png` } },
   { id: "p-ruben-rubio", name: "Rubén Rubio Troyano", role: "colaboracion", cardRoleLabel: "Colaborador", cardMediaId: "cubo-45", status: "confirmed", provenance: { source: `${CUBE}/45.png` } },
