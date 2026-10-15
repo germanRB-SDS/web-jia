@@ -7,7 +7,7 @@ import type { EditorialStatus, PersonRole, Resource } from "../data/types";
 
 export type Buttons = {
   hero: { explore: string; workshops: string };
-  sheet: { open: string; close: string; viewDocument: string; viewPoster: string; downloadDossier: string; dossierPending: string };
+  sheet: { open: string; close: string; viewDocument: string; viewPoster: string; downloadDossier: string; dossierPending: string; dossier: string; dossierOf: string };
   dossiers: { consult: string; view: string; download: string };
   proposals: { present: string };
   host: { host: string };

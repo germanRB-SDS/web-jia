@@ -245,6 +245,20 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   }
 }
 .sheetMedia { max-width: 320px; }
+/* «Dosier ↓» ([65-0]): the leather button of the site's primary action, the poster's width, just under it. Its
+   arrow points down and drops on hover instead of sliding sideways. */
+.sheetDossier {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.25rem;
+}
+.sheetDossier:hover svg,
+.sheetDossier:focus-visible svg { transform: translateY(2px); }
+.sheetDossier:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 3px;
+}
 .sheetBody { display: grid; gap: 0.75rem; align-content: start; }
 .sheetMarks { font-family: var(--f-ui); }
 .sheetTitle {

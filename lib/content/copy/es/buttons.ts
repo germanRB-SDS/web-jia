@@ -3,7 +3,7 @@ import type { Buttons } from "../types";
 /** BUTTON LABELS (es), grouped by section. Shared actions appear once. */
 export const buttons: Buttons = {
   hero: { explore: "Explorar las jornadas", workshops: "Ver talleres" },
-  sheet: { open: "Ver ficha", close: "Cerrar", viewDocument: "Ver documento original", viewPoster: "Ver cartel", downloadDossier: "Descargar dosier", dossierPending: "Dosier disponible próximamente" },
+  sheet: { open: "Ver ficha", close: "Cerrar", viewDocument: "Ver documento original", viewPoster: "Ver cartel", downloadDossier: "Descargar dosier", dossierPending: "Dosier disponible próximamente", dossier: "Dosier", dossierOf: "Dosier didáctico del taller {title} (PDF)" },
   dossiers: { consult: "Consultar material", view: "Ver dosier", download: "Descargar" },
   proposals: { present: "Comunica tu idea" },
   host: { host: "Acoger las JIA" },

@@ -65,7 +65,7 @@ export type SheetModel = {
   related: { label: string; items: { label: string; href: string }[] }[];
   document: { label: string; href: string } | null;
   /** "Descargar dosier" under the card's open button (workshops only); href null = link not supplied yet. */
-  download?: { label: string; href: string | null; pendingNote: string } | null;
+  download?: { label: string; href: string | null; pendingNote: string; short: string; accessibleName: string } | null;
   /** True when no sheet source exists: the card shows "ficha pendiente" and opens nothing. */
   pending: boolean;
 };
@@ -322,7 +322,13 @@ function workshopSheet(w: Workshop, copy: Copy): SheetModel {
       ...(relatedResources.length ? [{ label: labels.relatedResources, items: relatedResources }] : []),
     ],
     document: w.sheet && w.sheet.kind !== "text" ? { label: copy.buttons.sheet.viewDocument, href: w.sheet.url } : null,
-    download: { label: copy.buttons.sheet.downloadDossier, href: TALLERES_DOSIERES[workshops.indexOf(w)] ?? null, pendingNote: copy.buttons.sheet.dossierPending },
+    download: {
+      label: copy.buttons.sheet.downloadDossier,
+      href: TALLERES_DOSIERES[workshops.indexOf(w)] ?? null,
+      pendingNote: copy.buttons.sheet.dossierPending,
+      short: copy.buttons.sheet.dossier,
+      accessibleName: format(copy.buttons.sheet.dossierOf, { title: w.title }),
+    },
     pending: w.sheet === null,
   };
 }

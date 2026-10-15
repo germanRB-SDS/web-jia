@@ -9,6 +9,7 @@ import { Marks } from "./Mark";
 import { Picture } from "./Picture";
 import { SheetDialog } from "./SheetDialog";
 import { Surface } from "./Surface";
+import actionStyles from "./Action.module.css";
 import styles from "./SheetCard.module.css";
 
 type Props = {
@@ -56,6 +57,12 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
   const titleId = useId();
+  /* A path of the site is the file itself: it downloads. A URL elsewhere opens on its own tab. */
+  const dossier = sheet.download?.href
+    ? sheet.download.href.startsWith("/")
+      ? { href: sheet.download.href, download: "" }
+      : { href: sheet.download.href, target: "_blank", rel: "noopener noreferrer" }
+    : null;
   const sheetPicture = <Surface media={sheet.media} alt={sheet.alt} fallback={sheet.fallback} ratio={variant === "poster" ? 1414 / 2000 : 4 / 3} sizes="(min-width: 900px) 320px, 60vw" priority={open} />;
 
   return (
@@ -122,7 +129,7 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
         {/* Under "Ver ficha": the workshop's dossier. Without a link yet it is a plain pending label, never a dead button. */}
         {sheet.download ? (
           sheet.download.href ? (
-            <a className={styles.download} href={sheet.download.href} target="_blank" rel="noopener noreferrer">
+            <a className={styles.download} {...dossier}>
               <span>{sheet.download.label}</span>
               <DownloadIcon size={18} />
             </a>
@@ -145,6 +152,13 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
               ) : (
                 sheetPicture
               )}
+              {/* The dossier belongs to the poster: under it, the width of it, the sheet's one solid action. */}
+              {dossier && sheet.download ? (
+                <a className={`${actionStyles.btn} ${actionStyles.primary} ${styles.sheetDossier}`} {...dossier} aria-label={sheet.download.accessibleName}>
+                  <span>{sheet.download.short}</span>
+                  <DownloadIcon size={20} />
+                </a>
+              ) : null}
             </div>
             <div className={styles.sheetBody}>
               <h3 className={styles.sheetTitle}>
