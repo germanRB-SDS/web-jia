@@ -99,7 +99,7 @@ export type Copy = {
     /** The animated road under the intro (stop labels come from config/talleres.ts). */
     route: { regionLabel: string };
     /** The "Intro" block with the video, before the programme. */
-    introVideo: { title: string; videoLabel: string; /** Text that goes with the link when the video is shared from a phone. */ shareText: string };
+    introVideo: { title: string; videoLabel: string; /** Text that goes with the link when the video is shared from a phone. */ shareText: string; /** The full short ([66-0]): the button under the clip, the dialog's name, the player's title, its close button and the way out to Drive. */ fullShort: { open: string; dialog: string; frameTitle: string; close: string; fallback: string } };
     program: {
       title: string;
       /** `{n}` */

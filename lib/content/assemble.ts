@@ -22,7 +22,7 @@ import { dosieresConfig } from "./sections/dosieres";
 import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
-import { jornadasIntroVideo } from "./sections/jornadas-intro-video";
+import { JORNADAS_FULL_SHORT_ASPECT, JORNADAS_FULL_SHORT_EMBED, JORNADAS_FULL_SHORT_LINK, jornadasIntroVideo } from "./sections/jornadas-intro-video";
 import { TALLERES, TALLERES_DOSIERES } from "./config/talleres";
 import { REVOLVER_ESTILO, REVOLVER_HORA, REVOLVER_VISTA_PREVIA, REVOLVER_ZONA_HORARIA } from "./config/revolver";
 import { navStructure } from "./sections/nav";
@@ -93,6 +93,8 @@ export type IntroVideoModel = {
   controls: { play: string; pause: string; mute: string; unmute: string; fullscreen: string; exitFullscreen: string; /** Picture in picture: the video in a small floating window. */ minimize: string; exitMinimize: string; share: string; seek: string; seekValue: string; unfold: string };
   /** Text sent with the page link by the share control (phones only). */
   shareText: string;
+  /** The full short in a dialog ([66-0]); null = no button. */
+  fullShort: { embed: string; link: string | null; aspect: number; labels: { open: string; dialog: string; frameTitle: string; close: string; fallback: string } } | null;
 };
 
 export type DayModel = {
@@ -505,7 +507,10 @@ export function getLanding(locale: Locale): LandingModel {
         controls: copy.buttons.route,
       },
       hashtag: event.hashtag,
-      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, shareText: copy.jornadas.introVideo.shareText, controls: copy.buttons.video },
+      introVideo: { ...jornadasIntroVideo, title: copy.jornadas.introVideo.title, barText: edition.title, videoLabel: copy.jornadas.introVideo.videoLabel, shareText: copy.jornadas.introVideo.shareText, controls: copy.buttons.video,
+        fullShort: JORNADAS_FULL_SHORT_EMBED
+          ? { embed: JORNADAS_FULL_SHORT_EMBED, link: JORNADAS_FULL_SHORT_LINK, aspect: JORNADAS_FULL_SHORT_ASPECT, labels: copy.jornadas.introVideo.fullShort }
+          : null },
       program: {
         title: copy.jornadas.program.title,
         days,

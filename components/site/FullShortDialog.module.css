@@ -1,0 +1,131 @@
+/* The full short ([66-0]). The same ground as the reel's viewer (ReelViewer.module.css): the whole screen is the
+   dialog, dimmed ink with a little blur, and a click that lands on it is a click outside the film. */
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  padding:
+    max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background: transparent;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  color: var(--jia-ivory);
+}
+.dialog[open] {
+  display: grid;
+  place-items: center;
+  animation: short-in 220ms var(--ease-out);
+}
+.dialog::backdrop {
+  background: rgb(var(--jia-ink-rgb) / 0.82);
+  backdrop-filter: blur(3px);
+  animation: short-ground-in 220ms ease-out;
+}
+.dialog[data-closing] { animation: short-out 180ms ease-in forwards; }
+.dialog[data-closing]::backdrop { animation: short-ground-out 180ms ease-in forwards; }
+@keyframes short-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes short-out {
+  from { opacity: 1; }
+  to { opacity: 0; transform: scale(0.99); }
+}
+@keyframes short-ground-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes short-ground-out { from { opacity: 1; } to { opacity: 0; } }
+:where(:global(html[data-motion="reduce"])) .dialog,
+:where(:global(html[data-motion="reduce"])) .dialog::backdrop { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  :where(:global(html:not([data-motion]))) .dialog,
+  :where(:global(html:not([data-motion]))) .dialog::backdrop { animation: none !important; }
+}
+
+/* ---- the screen ----
+   As wide as the window allows up to 1280 px, never taller than the window minus the line under it and the room the
+   X stands out by: whichever binds first sets both, at the film's proportion. */
+.stage {
+  --x-size: 44px;
+  --x-out: 14px;
+  --under: 3rem;
+  position: relative;
+  width: min(
+    1280px,
+    100vw - 2 * max(1rem, env(safe-area-inset-left), env(safe-area-inset-right)) - var(--x-out),
+    (100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom) - var(--x-out) - var(--under)) * var(--short-ratio)
+  );
+  margin-top: var(--x-out);
+}
+/* The film on ink, framed like a print: a hairline of ivory and a deep shadow, the cinema bar's own materials. */
+.screen {
+  position: relative;
+  aspect-ratio: var(--short-ratio);
+  border-radius: 3px;
+  background: var(--jia-ink);
+  box-shadow: 0 0 0 1px rgb(var(--jia-ivory-rgb) / 0.22), 0 34px 80px -28px rgb(0 0 0 / 0.8);
+  overflow: hidden;
+}
+.player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+/* The way out to Drive: quiet, centred under the film, the bar's italic voice. */
+.fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  min-height: 44px;
+  margin: 0.25rem auto 0;
+  padding: 0 0.5rem;
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgb(var(--jia-ivory-rgb) / 0.86);
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--jia-ivory-rgb) / 0.4);
+  text-underline-offset: 0.22em;
+}
+.fallback:hover,
+.fallback:focus-visible {
+  color: var(--jia-ivory);
+  text-decoration-color: var(--jia-ivory);
+}
+.fallback:focus-visible {
+  outline: 2px solid var(--jia-ivory);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.fallback svg { flex: none; }
+/* The X: the reel viewer's, on the screen's top-right corner. */
+.close {
+  position: absolute;
+  top: calc(-1 * var(--x-out));
+  right: calc(-1 * var(--x-out));
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--x-size);
+  height: var(--x-size);
+  padding: 0;
+  border: 1.5px solid var(--jia-ink);
+  border-radius: 50%;
+  background: var(--jia-ivory);
+  color: var(--jia-ink);
+  box-shadow: 0 6px 16px -6px rgb(var(--jia-ink-rgb) / 0.55);
+  cursor: pointer;
+}
+.close:hover { background: var(--jia-sand-deep); }
+.close:focus-visible {
+  outline: 3px solid var(--jia-terracotta);
+  outline-offset: 2px;
+}

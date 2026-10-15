@@ -214,6 +214,28 @@
 @media (max-width: 759.98px) {
   .time { display: none; }
 }
+/* The closing credits ([66-0]): the top bar's ink and hairlines under the clip, the site's leather button where the
+   edition title sits above, so the block opens and closes on the same letterbox. */
+.credits {
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr);
+  align-items: center;
+  gap: clamp(0.875rem, 2.5vw, 1.75rem);
+  padding: clamp(0.875rem, 1.6vw, 1.25rem) var(--gutter);
+  background: var(--jia-ink);
+}
+.credits::before,
+.credits::after {
+  content: "";
+  height: 1px;
+  background: rgb(var(--jia-ivory-rgb) / 0.28);
+}
+/* The play triangle is filled: smaller than the arrow it replaces, and it nudges forward rather than sideways. */
+.fullShort svg { width: 0.95em; height: 0.95em; }
+.fullShort:focus-visible {
+  outline: 2px solid var(--jia-ivory);
+  outline-offset: 3px;
+}
 :where(:global(html[data-motion="reduce"])) .control, :where(:global(html[data-motion="reduce"])) .fold { transition: none; }
 @media (prefers-reduced-motion: reduce) {
   :where(:global(html:not([data-motion]))) .control, :where(:global(html:not([data-motion]))) .fold { transition: none; }

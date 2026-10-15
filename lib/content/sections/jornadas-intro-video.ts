@@ -39,6 +39,18 @@ export const JORNADAS_INTRO_VIDEO_LOOP = true;
 /** Ancla del bloque (`#intro`). */
 export const JORNADAS_INTRO_ANCHOR = "intro";
 
+/**
+ * EL CORTO COMPLETO ([66-0]). El clip de arriba es un fragmento; el corto entero está en Google Drive y se ve en una
+ * ventana emergente al pulsar «¡Ver el corto completo!», nunca solo. `EMBED` es la dirección `/preview` del archivo
+ * (la que Drive deja incrustar); `LINK` es la de siempre, para quien prefiera abrirlo en Drive o si el reproductor
+ * incrustado falla (Drive limita las reproducciones de archivos muy vistos). El archivo debe estar compartido como
+ * «Cualquier persona con el enlace». Con `EMBED` a `null` el botón desaparece.
+ */
+export const JORNADAS_FULL_SHORT_EMBED: string | null = "https://drive.google.com/file/d/1QjV8iwomCHMMbeQmm51h4S8WaxLyGUyV/preview";
+export const JORNADAS_FULL_SHORT_LINK: string | null = "https://drive.google.com/file/d/1QjV8iwomCHMMbeQmm51h4S8WaxLyGUyV/view";
+/** Proporción del corto (ancho / alto): el marco de la ventana la reserva antes de que Drive cargue. */
+export const JORNADAS_FULL_SHORT_ASPECT = 16 / 9;
+
 export const jornadasIntroVideo = {
   anchor: JORNADAS_INTRO_ANCHOR,
   src: JORNADAS_INTRO_VIDEO_URL,

@@ -14,6 +14,13 @@ export const jornadas: Copy["jornadas"] = {
     title: "Intro",
     videoLabel: "Vídeo de presentación de las jornadas",
     shareText: "Jornadas de Innovación de Almería: vídeo de presentación",
+    fullShort: {
+      open: "¡Ver el corto completo!",
+      dialog: "El corto completo",
+      frameTitle: "Reproductor del corto completo (Google Drive)",
+      close: "Cerrar el corto",
+      fallback: "¿No arranca? Ábrelo en Google Drive",
+    },
   },
   program: {
     title: "Programa",

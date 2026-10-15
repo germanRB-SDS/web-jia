@@ -7,6 +7,8 @@ import { flushSync } from "react-dom";
 import type { IntroVideoModel } from "@/lib/content";
 import { format } from "@/lib/content/copy";
 import { ChevronIcon, FullscreenExitIcon, FullscreenIcon, PauseIcon, PictureInPictureExitIcon, PictureInPictureIcon, PlayIcon, ShareIcon, SoundOffIcon, SoundOnIcon } from "@/components/icons";
+import actionStyles from "@/components/primitives/Action.module.css";
+import { FullShortDialog } from "./FullShortDialog";
 import styles from "./IntroVideo.module.css";
 
 type Props = { intro: IntroVideoModel };
@@ -61,6 +63,8 @@ export function IntroVideo({ intro }: Props) {
   const [folded, setFolded] = useState(false);
   const foldedRef = useRef(false);
   const [time, setTime] = useState({ current: 0, total: 0 });
+  const [shortOpen, setShortOpen] = useState(false);
+  const resumeAfterShort = useRef(false);
 
   // Ask for the file shortly before the block shows up.
   useEffect(() => {
@@ -250,6 +254,19 @@ export function IntroVideo({ intro }: Props) {
 
   const showControls = Boolean(intro.src) && load && !failed;
 
+  /* The full short ([66-0]): the clip rests while the film plays in its dialog, and goes on after if it was playing. */
+  const openShort = useCallback(() => {
+    const video = videoRef.current;
+    resumeAfterShort.current = Boolean(video && !video.paused);
+    video?.pause();
+    setShortOpen(true);
+  }, []);
+  const closeShort = useCallback(() => {
+    setShortOpen(false);
+    if (resumeAfterShort.current && onScreen.current && !foldedRef.current) videoRef.current?.play().catch(() => {});
+    resumeAfterShort.current = false;
+  }, []);
+
   return (
     <div
       ref={rootRef}
@@ -339,8 +356,18 @@ export function IntroVideo({ intro }: Props) {
               </div>
             ) : null}
           </div>
+          {/* The closing credits ([66-0]): a second cinema bar under the clip, the full film's way in. */}
+          {intro.fullShort ? (
+            <div className={styles.credits}>
+              <button type="button" className={`${actionStyles.btn} ${actionStyles.primary} ${styles.fullShort}`} onClick={openShort} aria-haspopup="dialog" aria-expanded={shortOpen}>
+                <span>{intro.fullShort.labels.open}</span>
+                <PlayIcon size={18} />
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
+      {intro.fullShort ? <FullShortDialog short={intro.fullShort} open={shortOpen} onClose={closeShort} /> : null}
     </div>
   );
 }
