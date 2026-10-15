@@ -29,3 +29,7 @@ recta, como un camino que queda detrás.
 
 - Al dibujarse, las rodadas iban por delante de las huellas. Debe ser al revés: las ruedas van detrás de las patas
   traseras del caballo.
+
+## Hotfix on the fly 3 (2026-10-15)
+
+- Bajar un 5 % la opacidad de las marcas que deja el carromato: rodadas del 15 % al 10 %; las herraduras siguen al 15 %.

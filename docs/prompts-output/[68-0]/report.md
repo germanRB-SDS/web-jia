@@ -49,3 +49,8 @@ Severos/críticos: ninguno.
   Cada huella aparece en 140 ms (antes 380): una pisada es instantánea y, al galope, no llega tarde.
 - Medido en Chrome a 1440 (frente de las ruedas frente a la última huella visible, sobre el camino): 77, 67, 78, 83
   y 43 px por detrás a 1,5 / 3,5 / 5,8 / 7 / 8 s. tsc, next build PASS (`evidence/hotfix2-ruedas-detras.webp`).
+
+## Hotfix on the fly 3
+
+- Rodadas del carromato del 15 % al 10 % (`rutOpacity` en `config.ts`); las herraduras siguen al 15 %. tsc, next
+  build PASS; captura a 1440 (`evidence/hotfix3-rodadas-10.webp`).

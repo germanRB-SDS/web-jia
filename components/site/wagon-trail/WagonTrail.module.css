@@ -27,6 +27,8 @@
 }
 .rutBed { stroke-width: var(--trail-rut); opacity: 0.55; }
 .rutTread { stroke-width: calc(var(--trail-rut) * 0.6); stroke-dasharray: 1.5 4.5; }
+/* The layer is at --trail-opacity (the hoofprints' strength); the ruts take this share of it. */
+.ruts { opacity: var(--trail-ruts, 1); }
 .prints { fill: currentColor; }
 
 /* The pass: the ruts are unveiled along the road (WagonTrail.tsx animates the mask on the wagon's clock) and each

@@ -41,4 +41,6 @@ export const WAGON_TRAIL = {
   jitter: { offset: 1.4, turn: 8 },
   /** The whole trail's strength over the paper: an impression, not a drawing. */
   opacity: 0.15,
+  /** The wheel ruts alone, over the paper ([68-0] hotfix 3: five points under the hoofprints). */
+  rutOpacity: 0.1,
 } as const;

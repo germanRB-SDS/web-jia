@@ -188,7 +188,7 @@ export function WagonTrail() {
       className={styles.trail}
       aria-hidden="true"
       data-state={reduced ? "still" : state}
-      style={{ "--trail-opacity": String(T.opacity), "--trail-rut": `${T.rut}px`, "--trail-gauge": `${T.gauge * 2 + T.rut * 2}px` } as CSSProperties}
+      style={{ "--trail-opacity": String(T.opacity), "--trail-ruts": String(T.rutOpacity / T.opacity), "--trail-rut": `${T.rut}px`, "--trail-gauge": `${T.gauge * 2 + T.rut * 2}px` } as CSSProperties}
     >
       {trail && size ? (
         <svg width={size.w} height={size.h} viewBox={`0 0 ${size.w} ${size.h}`} focusable="false">
