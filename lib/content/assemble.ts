@@ -168,7 +168,7 @@ export type LandingModel = {
     route: RouteModel;
     /** The "Intro" video block before the programme. */
     introVideo: IntroVideoModel;
-    program: { title: string; days: DayModel[]; clock: ProgramClock };
+    program: { title: string; days: DayModel[]; clock: ProgramClock; wagon: { wagon: string; horse: string } | null };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
     /** `backdrop`: the faded picture under the row of workshops from 760 px ([59-0]). */
@@ -522,6 +522,7 @@ export function getLanding(locale: Locale): LandingModel {
           icon: getMedia("icon-revolver"),
           nowLabel: copy.jornadas.program.nowLabel,
         },
+        wagon: jornadasConfig.programWagon,
       },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length

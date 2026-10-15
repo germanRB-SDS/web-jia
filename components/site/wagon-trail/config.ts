@@ -34,9 +34,25 @@ export const WAGON_TRAIL = {
   /** Halfway across the screen (this share of the layer's width, the first time the road reaches it) the wagon
       stops for `pause` seconds, then the horse picks up the gallop over `ramp` pixels. */
   halt: { at: 0.5, pause: 0.5, ramp: 180 },
-  /** How far the wheels run behind the horse's hind hooves ([68-0] hotfix 2): the horse's body and the shafts. The
-      ruts are pressed this many pixels after the prints, never before them. */
-  wheelLag: 90,
+  /** The wagon of «Las Jornadas» and its horse driving the road ([69-0]). Model lengths are metres, as in
+      assets/3d/carruaje and assets/3d/caballo; the wagon is scaled so that its wheel `track` spans the two ruts, and
+      the road keeps its width. `reach` is the horse (the point on the road under its belly) to the wagon's front axle,
+      along the shafts: REACH in make-caballo.py. The horse's legs run on their own rhythm, not stamp by stamp: one
+      gait cycle every `cycle` pixels of road, so they go still when the wagon halts and quicken into the gallop. */
+  vehicle: {
+    track: 1.52,
+    wheelbase: 1.7,
+    radius: { front: 0.35, rear: 0.44 },
+    reach: 2.1,
+    maxSteerDeg: 35,
+    walk: { cycle: 120, swing: 24, knee: 50 },
+    gallop: { cycle: 250, swing: 40, knee: 85 },
+    shadowOpacity: 0.22,
+    /** The camera looks down at a slant: each metre of height is drawn this many metres up the page. 0 = cenital (as
+        on the Jornadas road), where the legs hide under the body. */
+    oblique: 0.5,
+    light: { sun: 2.4, sky: 1.15 },
+  },
   /** Jitter of each print, in pixels and degrees, so the line is walked and not stamped. */
   jitter: { offset: 1.4, turn: 8 },
   /** The whole trail's strength over the paper: an impression, not a drawing. */
@@ -44,3 +60,9 @@ export const WAGON_TRAIL = {
   /** The wheel ruts alone, over the paper ([68-0] hotfix 3: five points under the hoofprints). */
   rutOpacity: 0.1,
 } as const;
+
+/** Pixels per model metre: the wagon's wheel track laid over the two ruts. */
+export const WAGON_SCALE = (WAGON_TRAIL.gauge * 2) / WAGON_TRAIL.vehicle.track;
+/** How far the front wheels run behind the horse ([68-0] hotfix 2), from the models: the shafts' reach. The ruts are
+    pressed this many pixels after the horse passes, never before. */
+export const WHEEL_LAG = WAGON_TRAIL.vehicle.reach * WAGON_SCALE;

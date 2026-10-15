@@ -10,4 +10,7 @@ export const jornadasConfig = {
   showTeam: true,
   /** The wagon exported from assets/3d/carruaje (copied to public/ by scripts/build-assets.sh); null disables the 3D road. */
   routeGlb: "/jornadas/jia-carruaje.glb" as string | null,
+  /** The same wagon and its horse (assets/3d/caballo) driving the road behind «Programa» ([69-0]); null leaves the
+      road without them (the prints and ruts stay). */
+  programWagon: { wagon: "/jornadas/jia-carruaje.glb", horse: "/programa/caballo.glb" } as { wagon: string; horse: string } | null,
 } as const;

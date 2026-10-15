@@ -3,10 +3,14 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { HORSESHOE_PATH } from "@/components/icons";
 import { useReducedMotion } from "@/lib/motion/use-motion";
-import { WAGON_TRAIL as T } from "./config";
+import { WAGON_TRAIL as T, WHEEL_LAG } from "./config";
+import type { VehicleRoad, VehicleScene } from "./vehicle-scene";
 import styles from "./WagonTrail.module.css";
 
 type Pt = { x: number; y: number };
+
+/** How long the pass waits for the wagon's models before it goes ahead without them (ms). */
+const VEHICLE_WAIT = 3000;
 type Print = { x: number; y: number; turn: number; at: number; scale: number };
 
 /** A small seeded random, so a trail redrawn after a resize keeps its walk. */
@@ -80,7 +84,7 @@ function build(width: number, height: number) {
   }
   // The horse's clock ends at `horseEnd`; the wheels, `wheelLag` behind it, need a little more to leave the road.
   const horseEnd = time[time.length - 1];
-  const total = horseEnd + T.wheelLag / T.gallop.speed;
+  const total = horseEnd + WHEEL_LAG / T.gallop.speed;
   const at = (s: number) => {
     let i = 1;
     while (i < along.length - 1 && along[i] < s) i++;
@@ -120,24 +124,34 @@ function build(width: number, height: number) {
   for (let i = 0; i < line.length; i += every) keys.add(i);
   const keyframes = [...keys]
     .sort((p, q) => p - q)
-    .map((i) => ({ offset: time[i] / total, strokeDashoffset: 1 - Math.max(0, along[i] - T.wheelLag) / length }));
+    .map((i) => ({ offset: time[i] / total, strokeDashoffset: 1 - Math.max(0, along[i] - WHEEL_LAG) / length }));
   keyframes.push({ offset: 1, strokeDashoffset: 0 });
 
-  return { centre: toPath(line), ruts: [toPath(offset(-T.gauge)), toPath(offset(T.gauge))], prints, keyframes, total };
+  const road: VehicleRoad = { line, along, time, haltIndex, halt, horseEnd, length };
+  return { centre: toPath(line), ruts: [toPath(offset(-T.gauge)), toPath(offset(T.gauge))], prints, keyframes, total, road };
 }
 
 /**
- * The wagon trail behind «Programa» ([68-0]): two wheel ruts and, between them, the prints of the two horses that
- * pulled it, along a winding road that runs under the two days. Decoration only (aria-hidden, no pointer), from
- * 760 px (the stylesheet hides it below). It is drawn for the layer's real size and redrawn when that changes. The
- * first time it comes into view the wagon goes by once and leaves the road behind it; with reduced motion the road
- * is simply there.
+ * The wagon trail behind «Programa» ([68-0]): two wheel ruts and, between them, the prints of the horse that pulled
+ * it, along a winding road that runs under the two days. Decoration only (aria-hidden, no pointer), from 760 px (the
+ * stylesheet hides it below). It is drawn for the layer's real size and redrawn when that changes. The first time it
+ * comes into view the wagon goes by once and leaves the road behind it; with reduced motion the road is simply there.
+ * Since [69-0] the wagon itself drives by, the Jornadas wagon and its horse in 3D (`models`, vehicle-scene.ts), on the
+ * prints' own clock; without WebGL or the models the road is left as before.
  */
-export function WagonTrail() {
+export function WagonTrail({ models }: { models: { wagon: string; horse: string } | null }) {
   const host = useRef<HTMLDivElement>(null);
   const reveal = useRef<SVGPathElement>(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const vehicle = useRef<VehicleScene | null>(null);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
+  const [seen, setSeen] = useState(false);
   const [state, setState] = useState<"waiting" | "passing" | "done">("waiting");
+  /* The wagon and horse: loading holds the pass back for a moment (up to `VEHICLE_WAIT`), so they start with it; if
+     they arrive later they join the pass where its clock has got to. */
+  const [driver, setDriver] = useState<"loading" | "ready" | "off">("loading");
+  const [waited, setWaited] = useState(false);
+  const passStart = useRef(0);
   const reduced = useReducedMotion();
 
   useEffect(() => {
@@ -158,7 +172,7 @@ export function WagonTrail() {
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setState("passing");
+          setSeen(true);
           io.disconnect();
         }
       },
@@ -167,6 +181,46 @@ export function WagonTrail() {
     io.observe(el);
     return () => io.disconnect();
   }, [state]);
+
+  useEffect(() => {
+    if (!seen || state !== "waiting") return;
+    if (driver !== "loading" || waited) {
+      setState("passing");
+      return;
+    }
+    const id = window.setTimeout(() => setWaited(true), VEHICLE_WAIT);
+    return () => window.clearTimeout(id);
+  }, [seen, state, driver, waited]);
+
+  // The 3D wagon: only where the trail shows (760 px and up), with motion, WebGL and both models.
+  useEffect(() => {
+    const el = canvas.current;
+    if (!el || !models || reduced || !window.matchMedia("(min-width: 760px)").matches) {
+      setDriver("off");
+      return;
+    }
+    let disposed = false;
+    setDriver("loading");
+    import("./vehicle-scene")
+      .then(async (mod) => {
+        if (disposed) return;
+        if (!mod.webglAvailable()) throw new Error("webgl");
+        const scene = new mod.VehicleScene(el);
+        vehicle.current = scene;
+        const ok = await scene.load(models);
+        if (!disposed) setDriver(ok ? "ready" : "off");
+      })
+      .catch(() => { if (!disposed) setDriver("off"); });
+    return () => {
+      disposed = true;
+      vehicle.current?.dispose();
+      vehicle.current = null;
+    };
+  }, [models, reduced]);
+
+  useEffect(() => {
+    if (size && driver === "ready") vehicle.current?.resize(size.w, size.h);
+  }, [size, driver]);
 
   const trail = useMemo(() => (size ? build(size.w, size.h) : null), [size]);
 
@@ -177,12 +231,21 @@ export function WagonTrail() {
     if (!trail || !path || state !== "passing" || reduced) return;
     const run = path.animate(trail.keyframes, { duration: trail.total * 1000, easing: "linear", fill: "forwards" });
     run.onfinish = () => setState("done");
+    passStart.current = performance.now();
+    vehicle.current?.play(trail.road, passStart.current);
     return () => run.cancel();
   }, [trail, state, reduced]);
+
+  /* Models that arrive after the pass began join it on its clock. The wagon drives on past the end of that clock
+     (state "done") until it has left the road; it is never started again after that. */
+  useEffect(() => {
+    if (driver === "ready" && trail && state === "passing" && !reduced) vehicle.current?.play(trail.road, passStart.current);
+  }, [driver]); // only when the models become ready
 
   const shoeScale = T.shoe / 116.9;
 
   return (
+    <>
     <div
       ref={host}
       className={styles.trail}
@@ -220,5 +283,9 @@ export function WagonTrail() {
         </svg>
       ) : null}
     </div>
+    <div className={styles.vehicle} aria-hidden="true" data-driver={driver}>
+      <canvas ref={canvas} />
+    </div>
+    </>
   );
 }

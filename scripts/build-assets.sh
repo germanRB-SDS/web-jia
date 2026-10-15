@@ -51,6 +51,9 @@ webp assets/images-website/sello-jia26.png public/jornadas/sello-jia26-640.webp 
 
 # Jornadas road: the wagon GLB exported from Blender (assets/3d/carruaje, JIA-2026-09-18-07), copied as is.
 cp assets/3d/carruaje/jia-carruaje.glb public/jornadas/jia-carruaje.glb
+# Programa road: the horse that pulls that wagon, with its shafts (assets/3d/caballo/make-caballo.py, [69-0]), copied as is.
+out public/programa/x
+cp assets/3d/caballo/caballo.glb public/programa/caballo.glb
 
 # Footer: the worn horseshoe built by Blender headless (assets/3d/herradura/make-herradura.py, JIA-2026-09-19-27), copied as is.
 out public/footer/x

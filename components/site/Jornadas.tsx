@@ -88,7 +88,7 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
       <div className={styles.spreads}>
 
       {/* ---- Programa ---- */}
-      <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks} decor={<WagonTrail />}>
+      <SubSection id={jornadas.anchors.programa} label={jornadas.program.title} markLabels={markLabels} showMarks={showMarks} decor={<WagonTrail models={jornadas.program.wagon} />}>
         <ProgramaDias days={jornadas.program.days} clock={jornadas.program.clock} copy={copy} markLabels={markLabels} showMarks={showMarks} />
       </SubSection>
 
