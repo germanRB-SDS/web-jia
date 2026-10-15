@@ -30,7 +30,7 @@ export const WAGON_TRAIL = {
       GALLOP they fall in quick groups of four (`beats`: distance along the group and side of the line) followed by
       the leap: one group every `stride` pixels; the shoes land a little bigger and more askew, dug in. */
   walk: { stride: 22, spread: 4, speed: 210, wobble: 0.1 },
-  gallop: { stride: 96, spread: 5, speed: 720, wobble: 0.06, beats: [[0, -1], [10, 1], [31, -1], [42, 1]] as ReadonlyArray<readonly [number, -1 | 1]>, scale: 1.12, turn: 15 },
+  gallop: { stride: 96, spread: 5, speed: 504, wobble: 0.06, beats: [[0, -1], [10, 1], [31, -1], [42, 1]] as ReadonlyArray<readonly [number, -1 | 1]>, scale: 1.12, turn: 15 },
   /** Halfway across the screen (this share of the layer's width, the first time the road reaches it) the wagon
       stops for `pause` seconds, then the horse picks up the gallop over `ramp` pixels. */
   halt: { at: 0.5, pause: 0.5, ramp: 180 },

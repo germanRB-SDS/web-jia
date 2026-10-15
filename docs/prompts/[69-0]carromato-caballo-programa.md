@@ -38,3 +38,8 @@
 4. Sin WebGL o sin modelos, las huellas siguen como en [68-0]. Movimiento reducido: solo el camino hecho.
 5. Rutas de los modelos desde `lib/content` (no en el componente).
 6. Verificación: tsc, check:content, next build, CDP a 1440 (paso, parada, galope, salida) y 390 (nada).
+
+## Hotfix on the fly 1 (2026-10-15)
+
+- Galope un 30 % más lento en lo que avanza (720 → 504 px/s). Se mantienen el espaciado de las herraduras y las
+  rodadas; el ritmo de las patas, que va por distancia recorrida, baja con él.
