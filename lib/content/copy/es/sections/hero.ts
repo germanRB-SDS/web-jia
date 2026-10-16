@@ -9,6 +9,7 @@ export const waypoints: Copy["waypoints"] = {
   title: "Por dónde empezar",
   items: {
     programa: { label: "Programa", line: "Dos jornadas, una secuencia clara." },
+    bandos: { label: "Bandos", line: "Mapa de los talleres, RRSS y más.\u00a0;)" },
     talleres: { label: "Talleres", line: "Propuestas prácticas con nombre de película." },
     experiencias: { label: "Experiencias", line: "Ideas de cine que ya han pasado por el aula." },
     dosieres: { label: "Dosieres", line: "Materiales a los que volver." },

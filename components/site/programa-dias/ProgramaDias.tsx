@@ -4,13 +4,14 @@ import { isMotionReduced } from "@/lib/motion/policy";
 
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import type { LandingModel, MarkKind, ProgramClock } from "@/lib/content";
-import { ArrowIcon } from "@/components/icons";
+import { ArrowIcon, ArrowsIcon, ExternalIcon } from "@/components/icons";
 import { Marks } from "@/components/primitives/Mark";
 import { sessionAt, type NowAt } from "./clock";
 import styles from "./ProgramaDias.module.css";
 
 type Props = {
   days: LandingModel["jornadas"]["program"]["days"];
+  bandos: LandingModel["jornadas"]["program"]["bandos"];
   clock: ProgramClock;
   copy: LandingModel["copy"];
   markLabels: Record<MarkKind, string>;
@@ -37,7 +38,7 @@ type Props = {
  * after mounting, on the event's two days and inside a session's hours. The preview pins it on the session
  * config/revolver.ts names, in the HTML too, so its size and colour can be judged on any date.
  */
-export function ProgramaDias({ days, clock, copy, markLabels, showMarks }: Props) {
+export function ProgramaDias({ days, bandos, clock, copy, markLabels, showMarks }: Props) {
   const trackRef = useRef<HTMLOListElement>(null);
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const [active, setActive] = useState(0);
@@ -114,6 +115,22 @@ export function ProgramaDias({ days, clock, copy, markLabels, showMarks }: Props
 
   return (
     <>
+      {/* The «Bandos» notice: before the days on every width, so on a phone it is read before the swipe starts.
+          The whole line is the link, like the hero's shortcuts; it leaves the site, so the arrow points out. */}
+      {bandos ? (
+        <a href={bandos.href} className={styles.bandos} target="_blank" rel="noopener noreferrer">
+          <ArrowsIcon size={34} className={styles.bandosIcon} />
+          <span className={styles.bandosText}>
+            {bandos.text}{" "}
+            <span className={styles.bandosAction}>
+              {bandos.action}
+              <ExternalIcon size={14} className={styles.bandosArrow} />
+            </span>
+            <span className={styles.srOnly}> ({bandos.newTab})</span>
+          </span>
+        </a>
+      ) : null}
+
       {/* Only on a phone (the CSS hides it from 760 px up, where each day shows its own heading). */}
       <div className={styles.strip} role="group" aria-label={copy.jornadas.program.daysRegion}>
         {days.map((day, i) => (

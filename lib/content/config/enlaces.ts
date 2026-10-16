@@ -8,4 +8,7 @@ export const ENLACES = {
   formularioPropuesta: "https://docs.google.com/forms/d/e/1FAIpQLSfI_UsxUpuS22csNSY0rQ4kPLPRir9Tmk4YLh7Dkv7d58ncRQ/viewform?usp=header",
   /** «Quiero acoger las JIA» (section «Dispara tu centro»): Google Form for centres offering to host an edition. */
   formularioAcoger: "https://docs.google.com/forms/d/e/1FAIpQLSe_J5mKeGUYmipuKeZvcBg3asMYh4cp8-9docFSTrjCijbeFw/viewform?usp=header",
+  /** «Bandos»: the Genially with the map of the workshops, the social networks, Telegram and the rest. Linked from the
+      hero's shortcuts and from the notice above the programme's days. */
+  bandos: "https://view.genially.com/6ac7aca495bddc48bfa05225",
 } as const satisfies Record<string, string | null>;

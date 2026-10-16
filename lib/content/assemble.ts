@@ -23,6 +23,7 @@ import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
 import { JORNADAS_FULL_SHORT_ASPECT, JORNADAS_FULL_SHORT_EMBED, JORNADAS_FULL_SHORT_LINK, jornadasIntroVideo } from "./sections/jornadas-intro-video";
+import { ENLACES } from "./config/enlaces";
 import { TALLERES, TALLERES_DOSIERES } from "./config/talleres";
 import { REVOLVER_ESTILO, REVOLVER_HORA, REVOLVER_VISTA_PREVIA, REVOLVER_ZONA_HORARIA } from "./config/revolver";
 import { navStructure } from "./sections/nav";
@@ -151,7 +152,8 @@ export type LandingModel = {
     datelineMarks: MarkKind[];
     actions: Action[];
   };
-  waypoints: { id: string; icon: "hat" | "cactus" | "compass" | "lantern" | "board" | "hoofprints" | "lamp"; label: string; line: string; href: string }[];
+  /** `external`: the shortcut leaves the site (config/enlaces.ts) and opens in a new tab, whose warning is `newTab`. */
+  waypoints: { id: string; icon: "hat" | "cactus" | "compass" | "lantern" | "board" | "hoofprints" | "lamp" | "arrows"; label: string; line: string; href: string; external: boolean; newTab: string }[];
   jornadas: {
     id: string;
     anchors: typeof jornadasConfig.anchors;
@@ -168,7 +170,8 @@ export type LandingModel = {
     route: RouteModel;
     /** The "Intro" video block before the programme. */
     introVideo: IntroVideoModel;
-    program: { title: string; days: DayModel[]; clock: ProgramClock; wagon: { wagon: string; horse: string } | null };
+    /** `bandos`: the notice above the days that points to the Genially (null while config/enlaces.ts has no address). */
+    program: { title: string; days: DayModel[]; clock: ProgramClock; wagon: { wagon: string; horse: string } | null; bandos: { href: string; text: string; action: string; newTab: string } | null };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
     team: { title: string; lede: string; cards: TeamCard[]; cube: { region: string; prev: string; next: string; position: string; hint: string; list: string } } | null;
     /** `backdrop`: the faded picture under the row of workshops from 760 px ([59-0]). */
@@ -484,13 +487,19 @@ export function getLanding(locale: Locale): LandingModel {
         { id: "hero-workshops", label: copy.buttons.hero.workshops, href: anchor(heroConfig.actions.secondary.target), kind: "anchor", note: null },
       ],
     },
-    waypoints: heroConfig.waypoints.map((w) => ({
-      id: w.id,
-      icon: w.icon,
-      label: copy.waypoints.items[w.id]?.label ?? w.id,
-      line: copy.waypoints.items[w.id]?.line ?? "",
-      href: anchor(w.target),
-    })),
+    waypoints: heroConfig.waypoints.flatMap((w) => {
+      const href = "link" in w ? ENLACES[w.link] : anchor(w.target);
+      if (!href) return [];
+      return [{
+        id: w.id,
+        icon: w.icon,
+        label: copy.waypoints.items[w.id]?.label ?? w.id,
+        line: copy.waypoints.items[w.id]?.line ?? "",
+        href,
+        external: "link" in w,
+        newTab: copy.footer.newTab,
+      }];
+    }),
     jornadas: {
       id: jornadasConfig.id,
       anchors: jornadasConfig.anchors,
@@ -523,6 +532,9 @@ export function getLanding(locale: Locale): LandingModel {
           nowLabel: copy.jornadas.program.nowLabel,
         },
         wagon: jornadasConfig.programWagon,
+        bandos: ENLACES.bandos
+          ? { href: ENLACES.bandos, text: copy.jornadas.program.bandos.text, action: copy.jornadas.program.bandos.action, newTab: copy.footer.newTab }
+          : null,
       },
       how: { title: copy.jornadas.how.title, paragraphs: copy.jornadas.how.paragraphs, marks: marksOf(copy.jornadas.how.status) },
       team: jornadasConfig.showTeam && teamCards.length

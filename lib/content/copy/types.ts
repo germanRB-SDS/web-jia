@@ -114,6 +114,8 @@ export type Copy = {
       timeFormat: string;
       /** Accessible text of the revolver that points at the session in progress ([56-0]). */
       nowLabel: string;
+      /** The notice above the two days that leads to the «Bandos» (the Genially): a sentence and the link's words. */
+      bandos: { text: string; action: string };
       sessions: Record<string, string>;
     };
     how: { title: string; paragraphs: string[]; status: EditorialStatus };

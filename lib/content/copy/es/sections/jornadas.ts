@@ -35,6 +35,10 @@ export const jornadas: Copy["jornadas"] = {
     timeFormat: "{time} h",
     /** Read out with the session the revolver points at ([56-0]). */
     nowLabel: "Ahora",
+    bandos: {
+      text: "Toda la información de las jornadas en un solo tablón: el mapa de las sedes y los talleres, las redes sociales, el canal de Telegram y más.",
+      action: "Ver los bandos",
+    },
     /** Headings of the programme poster of 29-09-2026 ([55-0]); the poster's longer descriptions are not transcribed. */
     sessions: {
       "s-1-1": "Registro de forajidos y docentes",

@@ -17,9 +17,12 @@ export const heroConfig = {
     secondary: { target: "talleres" },
   },
   /** Ordered shortcuts under the hero. Icons: hat | cactus | compass | lantern (the linear family) or, since [67-0],
-      the promoter's filled ones: hoofprints (two horseshoes, a horse's steps) | board (the blackboard) | lamp. */
+      the promoter's filled ones: hoofprints (two horseshoes, a horse's steps) | board (the blackboard) | lamp | arrows
+      (two arrows swapping ways). `target` is an anchor of the page; `link` names an outside address in
+      config/enlaces.ts, which opens in a new tab. */
   waypoints: [
     { id: "programa", icon: "hoofprints", target: "programa" },
+    { id: "bandos", icon: "arrows", link: "bandos" },
     { id: "talleres", icon: "board", target: "talleres" },
     { id: "experiencias", icon: "lamp", target: "experiencias" },
   ] as const,

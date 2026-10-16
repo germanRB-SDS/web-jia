@@ -73,3 +73,15 @@
 }
 .item:hover .arrow,
 .item:focus-visible .arrow { transform: translateX(4px); }
+/* The way out of the site: the arrow climbs to its corner instead of running right. */
+.item:hover .external,
+.item:focus-visible .external { transform: translate(2px, -2px); }
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
