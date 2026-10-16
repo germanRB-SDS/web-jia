@@ -47,6 +47,9 @@
   --jia-gradient-leather: linear-gradient(45deg, var(--jia-terracotta-deep) 0%, var(--jia-terracotta) 100%);
   --jia-gradient-leather-hover: linear-gradient(45deg, color-mix(in srgb, var(--jia-terracotta-deep) 78%, var(--jia-ink)) 0%, var(--jia-terracotta-deep) 100%);
   --jia-glint: linear-gradient(90deg, transparent 0%, rgb(var(--jia-ivory-rgb) / 0.26) 50%, transparent 100%);
+  /* The same glint for a piece on paper (the «Bandos» notice of Programa): ivory would not show on paper, so the light
+     is the matte copper's, faint at the edges and warmer in the middle. */
+  --jia-glint-paper: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--jia-copper) 10%, transparent) 30%, color-mix(in srgb, var(--jia-copper) 24%, transparent) 50%, color-mix(in srgb, var(--jia-copper) 10%, transparent) 70%, transparent 100%);
   --jia-shadow-relief: 0 8px 18px -6px rgb(var(--jia-ink-rgb) / 0.38), inset 0 -4px 8px rgb(var(--jia-ink-rgb) / 0.22);
   --jia-shadow-relief-hover: 0 14px 26px -8px rgb(var(--jia-ink-rgb) / 0.46), inset 0 -4px 8px rgb(var(--jia-ink-rgb) / 0.22);
   --jia-shadow-relief-active: 0 4px 9px -4px rgb(var(--jia-ink-rgb) / 0.34), inset 0 -2px 5px rgb(var(--jia-ink-rgb) / 0.26);
