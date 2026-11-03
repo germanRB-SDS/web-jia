@@ -2,9 +2,10 @@
    «Tu propuesta JIA»'s anatomy (Proposals.module.css): the copy on the section's own ground on the left, the photograph
    bleeding top, right and bottom on the right, two clean halves with nothing painted over the picture. */
 
-/* The ground: the colour «Dispara tu centro» ends on and «Quiénes somos» starts on, so the farewell sits between the
-   two with no seam. Two classes, to win over Section's own tone (same weight, earlier in the cascade). */
-.section.ground { background: var(--jia-vellum-4); }
+/* The ground (hotfix 1, promoter): a vertical gradient from the colour «Dispara tu centro» ends on (#ece2d2, vellum-4)
+   at the top down to the deep sand (#e2cfb3 asked; the palette's sand-deep is #e2cfb2, the same to the eye) at the
+   bottom. Two classes, to win over Section's own tone (same weight, earlier in the cascade). */
+.section.ground { background: linear-gradient(180deg, var(--jia-vellum-4) 0%, var(--jia-sand-deep) 100%); }
 .section { position: relative; }
 @media (min-width: 1280px) {
   .section { --split-min: calc(100vw / (var(--jia-band-aula-ratio))); }

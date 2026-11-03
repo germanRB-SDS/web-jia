@@ -50,3 +50,15 @@
 5. Verificación: `npx tsc --noEmit`, `npm run check:content`, `npx next build`; Chrome por CDP a 1440 y 390 (sección,
    costuras con Acoge y Socios, botón, nota de «no disponible» forzada).
 6. Commit de implementación + informe con commit propio. Sin push hasta la validación del promotor.
+
+## Hotfix on the fly 1 (2026-11-03)
+
+> «La imagen de la nueva section la vas a sustituir por [friends-farewell-3]. La imagen que deja de mostrarse es
+> [la primera]. Y además, esa section el color que tiene en gradient se mantiene el color actual (arriba) y el gradient
+> va a ser vertical, teniendo abajo el color #e2cfb3 y arriba #ece2d2»
+
+- Foto nueva: `assets/images-section-aftermovie/friends-farewell-3.png` (1659×795, original del promotor, versionado
+  tal cual con su carpeta) → `public/cierre/despedida-960.webp` / `despedida-1659.webp`; foco 85 % / 50 % (al 90 % el borde de la columna rozaba el hombro de la mujer de la izquierda a 1440). La primera
+  (`cierre-tizaseca.png` = `friends-farewell.png`) queda sin uso; sus webp se retiran de `public/`.
+- Fondo: degradado vertical `--jia-vellum-4` (#ece2d2, arriba) → `--jia-sand-deep` (#e2cfb2, abajo; el #e2cfb3 pedido
+  difiere en 1/255 de azul, se usa el token para no sacar un HEX fuera de la paleta).

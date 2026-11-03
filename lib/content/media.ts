@@ -266,19 +266,19 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 20-09-2026, segunda versión del establo (origen y licencia por confirmar)",
     },
     {
-      /** El cierre de Tizaseca ([71-0]): the posse of Propuestas, arm in arm, walking off into the sunset. The left
-          30 % of the original already fades to cream; the focal point at the right edge keeps the column's window on
-          the four of them and the sun (from 1280 px the column shows 69,9 % of the width: 30-100 %), so the fade's
-          tail is the column's left edge, where it meets the section's ground. */
+      /** El cierre de Tizaseca ([71-0], photo replaced in hotfix 1): the posse of Propuestas, arm in arm, walking off
+          into the sunset, in the promoter's tighter 1659×795 cut. Its left 30 % fades to cream. From 1280 px the column
+          (1,24) shows 59 % of the width; the focal point at 85 % puts that window at 35-94 %, so the woman on the left
+          (39-55 %, her arm a little further) and the man on the right (79-92 %) are whole and the fade stays out. The phone's 5:4 crop reads the same. */
       id: "cierre-tizaseca",
       variants: [
-        { src: "/cierre/cierre-960.webp", width: 960 },
-        { src: "/cierre/cierre-1672.webp", width: 1672 },
+        { src: "/cierre/despedida-960.webp", width: 960 },
+        { src: "/cierre/despedida-1659.webp", width: 1659 },
       ],
-      ratio: 1672 / 941,
-      focal: { x: 100, y: 45 },
-      original: "assets/images-website/cierre-tizaseca.png",
-      license: "Imagen aportada por el promotor el 03-11-2026 (origen y licencia por confirmar)",
+      ratio: 1659 / 795,
+      focal: { x: 85, y: 50 },
+      original: "assets/images-section-aftermovie/friends-farewell-3.png",
+      license: "Imagen aportada por el promotor el 03-11-2026, segunda versión (origen y licencia por confirmar)",
     },
     {
       /** Experiencias ground. The teacher stands on the left; the right half is clear paper for the text. */

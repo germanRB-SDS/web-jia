@@ -94,12 +94,13 @@ magick assets/images-website/propuestas-camara.png -gravity North -crop 100%x92%
 magick assets/images-website/hoguera-02.png -resize 960x -strip -quality 80 "public/propuestas/hoguera-960.webp"
 magick assets/images-website/hoguera-02.png -strip -quality 82 "public/propuestas/hoguera-1672.webp"
 
-# El cierre de Tizaseca ([71-0]): the same posse as Propuestas, arm in arm, walking off into the sunset
-# (cierre-tizaseca.png, 1672x941, supplied 2026-11-03). Its left 30 % already fades to cream; the column's focal
-# point keeps that fade at the column's left edge, where it meets the section's ground. No crop.
+# El cierre de Tizaseca ([71-0]): the same posse as Propuestas, arm in arm, walking off into the sunset. Since hotfix 1
+# the promoter's tighter, wider cut (assets/images-section-aftermovie/friends-farewell-3.png, 1659x795, 2026-11-03);
+# the first one (images-website/cierre-tizaseca.png = images-section-aftermovie/friends-farewell.png) stays unused:
+# originals are never overwritten. Its left 30 % fades to cream; the column's focal point keeps that fade out. No crop.
 out public/cierre/x
-magick assets/images-website/cierre-tizaseca.png -resize 960x -strip -quality 80 "public/cierre/cierre-960.webp"
-magick assets/images-website/cierre-tizaseca.png -strip -quality 82 "public/cierre/cierre-1672.webp"
+magick assets/images-section-aftermovie/friends-farewell-3.png -resize 960x -strip -quality 80 "public/cierre/despedida-960.webp"
+magick assets/images-section-aftermovie/friends-farewell-3.png -strip -quality 82 "public/cierre/despedida-1659.webp"
 
 # Experiencias ground: the teacher in her classroom supplied by the promoter (aula-maestra3.png, 1919x820,
 # third version, supplied on 2026-09-20 — now she faces the room). She holds the left and the right half is
