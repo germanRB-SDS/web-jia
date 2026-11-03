@@ -7,7 +7,7 @@ import type { EditorialStatus, PersonRole, Resource } from "../data/types";
 
 export type Buttons = {
   hero: { explore: string; workshops: string };
-  sheet: { open: string; close: string; viewDocument: string; viewPoster: string; downloadDossier: string; dossierPending: string; dossier: string; dossierOf: string };
+  sheet: { open: string; close: string; viewDocument: string; viewPoster: string; downloadDossier: string; dossierPending: string; dossier: string; dossierOf: string; /** [70-0] «Recursos del taller»: card label, sheet button, pending label + note, accessible name with {title}. */ resources: string; resourcesShort: string; resourcesPending: string; resourcesPendingNote: string; resourcesOf: string };
   dossiers: { consult: string; view: string; download: string };
   proposals: { present: string };
   host: { host: string };
@@ -99,6 +99,8 @@ export type Copy = {
     /** The animated road under the intro (stop labels come from config/talleres.ts). */
     route: { regionLabel: string };
     /** The "Intro" block with the video, before the programme. */
+    /** [70-0] The band under the Intro that leads to the opening ceremony on YouTube; `unavailable` explains a video gone. */
+    inauguration: { label: string; title: string; hint: string; linkLabel: string; unavailable: string; dismiss: string };
     introVideo: { title: string; videoLabel: string; /** Text that goes with the link when the video is shared from a phone. */ shareText: string; /** The full short ([66-0]): the button under the clip, the dialog's name, the player's title, its close button and the way out to Drive. */ fullShort: { open: string; dialog: string; frameTitle: string; close: string; fallback: string } };
     program: {
       title: string;

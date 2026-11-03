@@ -22,6 +22,15 @@ export const jornadas: Copy["jornadas"] = {
       fallback: "¿No arranca? Ábrelo en Google Drive",
     },
   },
+  /** The band under the Intro ([70-0]): the opening ceremony on YouTube. */
+  inauguration: {
+    label: "Vídeo",
+    title: "Inauguración de las JIA 2026",
+    hint: "Ver en YouTube",
+    linkLabel: "Ver el vídeo de la inauguración de las JIA 2026 en YouTube (se abre en otra pestaña)",
+    unavailable: "El vídeo de la inauguración no está disponible ahora mismo en YouTube: puede que se haya retirado o cambiado de sitio. Lo enlazaremos de nuevo en cuanto vuelva a estar publicado.",
+    dismiss: "Cerrar aviso",
+  },
   program: {
     title: "Programa",
     dayLabel: "Jornada {n}",

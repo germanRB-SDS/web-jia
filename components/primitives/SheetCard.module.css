@@ -177,6 +177,9 @@
 .download svg { flex: none; transition: transform 220ms var(--ease-out); }
 a.download:hover, a.download:focus-visible { color: var(--jia-terracotta-deep); }
 a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px); }
+/* «Recursos del taller» ([70-0]): one more line in the same voice; its arrow leaves the card, up and out. */
+.resources { grid-row: 8; }
+a.resources:hover svg, a.resources:focus-visible svg { transform: translate(2px, -2px); }
 .downloadPending {
   color: var(--jia-text-muted);
   cursor: not-allowed;
@@ -212,7 +215,8 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   .who,
   .theme,
   .foot,
-  .download {
+  .download,
+  .resources {
     grid-row: auto;
   }
   .title,
@@ -259,6 +263,10 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   outline: 3px solid var(--jia-terracotta);
   outline-offset: 3px;
 }
+/* Under the dossier, a step closer than the dossier is to the poster: the two belong together. */
+.sheetResources { margin-top: 0.75rem; }
+.sheetResources:hover svg,
+.sheetResources:focus-visible svg { transform: translate(2px, -2px); }
 .sheetBody { display: grid; gap: 0.75rem; align-content: start; }
 .sheetMarks { font-family: var(--f-ui); }
 .sheetTitle {
@@ -348,6 +356,13 @@ a.download:hover svg, a.download:focus-visible svg { transform: translateY(2px);
   .workshop { grid-row: auto; grid-template-rows: auto; row-gap: 0.25rem; }
   .workshop .foot { grid-row: 4; margin-top: 0; }
   .workshop .download { grid-row: 5; margin-top: 0; }
+  .workshop .resources { grid-row: 6; }
+  /* [70-0] Off the phone the three actions read as one short list: each line keeps a 32 px target (WCAG 2.5.8 asks
+     24) instead of 44, and the 4 px row gap goes, so «Ver ficha», «Descargar dosier» and «Recursos del taller» sit
+     about 16 px apart instead of 32. Below 760 px nothing changes. */
+  .workshop .open,
+  .workshop .download { min-height: 32px; padding-block: 0.2rem; }
+  .workshop .download { margin-top: -0.25rem; }
   .workshop .title, .workshop .subtitle { min-height: 0; }
 }
 

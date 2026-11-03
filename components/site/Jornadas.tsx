@@ -5,6 +5,7 @@ import { SheetCard } from "@/components/primitives/SheetCard";
 import { Surface } from "@/components/primitives/Surface";
 import { CubeCarousel, type CubeItem } from "@/components/cube-carousel";
 import { SubSection } from "./Section";
+import { InaugurationBand } from "./InaugurationBand";
 import { IntroVideo } from "./IntroVideo";
 import { JornadasRoute } from "./jornadas-route/JornadasRoute";
 import { ProgramaDias } from "./programa-dias/ProgramaDias";
@@ -84,6 +85,8 @@ export function Jornadas({ jornadas, copy, showMarks }: Props) {
 
       {/* ---- Intro: the video, edge to edge, before the programme ---- */}
       <IntroVideo intro={jornadas.introVideo} />
+      {/* ---- [70-0] The opening ceremony, on YouTube: a band that never unfolds ---- */}
+      <InaugurationBand band={jornadas.inauguration} />
 
       <div className={styles.spreads}>
 

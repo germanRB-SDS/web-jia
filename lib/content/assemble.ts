@@ -22,9 +22,10 @@ import { dosieresConfig } from "./sections/dosieres";
 import { experienciasConfig } from "./sections/experiencias";
 import { heroConfig } from "./sections/hero";
 import { jornadasConfig } from "./sections/jornadas";
+import { jornadasInauguracion } from "./sections/jornadas-inauguracion";
 import { JORNADAS_FULL_SHORT_ASPECT, JORNADAS_FULL_SHORT_EMBED, JORNADAS_FULL_SHORT_LINK, jornadasIntroVideo } from "./sections/jornadas-intro-video";
 import { ENLACES } from "./config/enlaces";
-import { TALLERES, TALLERES_DOSIERES } from "./config/talleres";
+import { TALLERES, TALLERES_DOSIERES, TALLERES_RECURSOS } from "./config/talleres";
 import { REVOLVER_ESTILO, REVOLVER_HORA, REVOLVER_VISTA_PREVIA, REVOLVER_ZONA_HORARIA } from "./config/revolver";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
@@ -67,6 +68,8 @@ export type SheetModel = {
   document: { label: string; href: string } | null;
   /** "Descargar dosier" under the card's open button (workshops only); href null = link not supplied yet. */
   download?: { label: string; href: string | null; pendingNote: string; short: string; accessibleName: string } | null;
+  /** [70-0] «Recursos del taller» under the dossier (workshops only); href null = link not supplied yet. Always external. */
+  resources?: { label: string; href: string | null; pending: string; pendingNote: string; short: string; accessibleName: string } | null;
   /** True when no sheet source exists: the card shows "ficha pendiente" and opens nothing. */
   pending: boolean;
 };
@@ -76,6 +79,19 @@ export type RouteModel = {
   regionLabel: string;
   stops: { id: string; label: string }[];
   controls: { replay: string };
+};
+
+/** [70-0] The band under the Intro: one link to the opening ceremony on YouTube; href null = explain, never a dead link. */
+export type InaugurationModel = {
+  anchor: string;
+  href: string | null;
+  youtubeId: string | null;
+  label: string;
+  title: string;
+  hint: string;
+  linkLabel: string;
+  unavailable: string;
+  dismiss: string;
 };
 
 export type IntroVideoModel = {
@@ -170,6 +186,7 @@ export type LandingModel = {
     route: RouteModel;
     /** The "Intro" video block before the programme. */
     introVideo: IntroVideoModel;
+    inauguration: InaugurationModel;
     /** `bandos`: the notice above the days that points to the Genially (null while config/enlaces.ts has no address). */
     program: { title: string; days: DayModel[]; clock: ProgramClock; wagon: { wagon: string; horse: string } | null; bandos: { href: string; text: string; action: string; newTab: string } | null };
     how: { title: string; paragraphs: string[]; marks: MarkKind[] };
@@ -334,6 +351,14 @@ function workshopSheet(w: Workshop, copy: Copy): SheetModel {
       pendingNote: copy.buttons.sheet.dossierPending,
       short: copy.buttons.sheet.dossier,
       accessibleName: format(copy.buttons.sheet.dossierOf, { title: w.title }),
+    },
+    resources: {
+      label: copy.buttons.sheet.resources,
+      href: TALLERES_RECURSOS[workshops.indexOf(w)] ?? null,
+      pending: copy.buttons.sheet.resourcesPending,
+      pendingNote: copy.buttons.sheet.resourcesPendingNote,
+      short: copy.buttons.sheet.resourcesShort,
+      accessibleName: format(copy.buttons.sheet.resourcesOf, { title: w.title }),
     },
     pending: w.sheet === null,
   };
@@ -520,6 +545,7 @@ export function getLanding(locale: Locale): LandingModel {
         fullShort: JORNADAS_FULL_SHORT_EMBED
           ? { embed: JORNADAS_FULL_SHORT_EMBED, link: JORNADAS_FULL_SHORT_LINK, aspect: JORNADAS_FULL_SHORT_ASPECT, labels: copy.jornadas.introVideo.fullShort }
           : null },
+      inauguration: { ...jornadasInauguracion, ...copy.jornadas.inauguration },
       program: {
         title: copy.jornadas.program.title,
         days,

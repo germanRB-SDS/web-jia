@@ -64,3 +64,11 @@
    (tarjetas, ficha abierta, franja en reposo/hover, nota de vídeo no disponible forzada).
 7. Commit de implementación + informe y commit del informe. Se arranca `npm run dev` para validación visual del
    promotor; **push y despliegue solo tras su visto bueno**.
+
+## Hotfix on the fly 1 (2026-11-03)
+
+> «puedes crear un nuevo color para la paleta para la section del video por si consideras que la gama que tenemos no
+> es perfecta para esa nueva section»
+
+- Token nuevo `--jia-saddle: #4b2a18` (+ `--jia-saddle-rgb`) en `app/theme/palette.css`, «cuero de silla»: un paso más
+  claro que `--jia-ink` (#2f180b) de la Intro, en la misma familia; 11,1:1 con el marfil del texto.

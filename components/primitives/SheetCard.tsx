@@ -2,7 +2,7 @@
 
 import { useCallback, useId, useState, type CSSProperties, type KeyboardEvent } from "react";
 import type { MarkKind, Media, SheetModel } from "@/lib/content";
-import { ArrowIcon, DownloadIcon } from "@/components/icons";
+import { ArrowIcon, DownloadIcon, ExternalIcon } from "@/components/icons";
 import { FlipCard } from "@/components/flip-card/FlipCard";
 import { TiltCard } from "@/components/tilt-card/TiltCard";
 import { Marks } from "./Mark";
@@ -141,6 +141,21 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
             </span>
           )
         ) : null}
+        {/* [70-0] Under the dossier: the workshop's resources, always elsewhere (a Padlet), so always a new tab. */}
+        {sheet.resources ? (
+          sheet.resources.href ? (
+            <a className={`${styles.download} ${styles.resources}`} href={sheet.resources.href} target="_blank" rel="noopener noreferrer" aria-label={sheet.resources.accessibleName}>
+              <span>{sheet.resources.label}</span>
+              <ExternalIcon size={16} />
+            </a>
+          ) : (
+            <span className={`${styles.download} ${styles.resources} ${styles.downloadPending}`} aria-disabled="true" title={sheet.resources.pendingNote}>
+              <span>{sheet.resources.pending}</span>
+              <ExternalIcon size={16} />
+              <span className={styles.srOnly}>{sheet.resources.pendingNote}</span>
+            </span>
+          )
+        ) : null}
       </div>
 
       {sheet.pending ? null : (
@@ -157,6 +172,13 @@ export function SheetCard({ sheet, anchorId, labels, showMarks, sizes, variant =
                 <a className={`${actionStyles.btn} ${actionStyles.primary} ${styles.sheetDossier}`} {...dossier} aria-label={sheet.download.accessibleName}>
                   <span>{sheet.download.short}</span>
                   <DownloadIcon size={20} />
+                </a>
+              ) : null}
+              {/* [70-0] The resources: the same leather, the same width, just under the dossier. */}
+              {sheet.resources?.href ? (
+                <a className={`${actionStyles.btn} ${actionStyles.primary} ${styles.sheetDossier} ${styles.sheetResources}`} href={sheet.resources.href} target="_blank" rel="noopener noreferrer" aria-label={sheet.resources.accessibleName}>
+                  <span>{sheet.resources.short}</span>
+                  <ExternalIcon size={18} />
                 </a>
               ) : null}
             </div>

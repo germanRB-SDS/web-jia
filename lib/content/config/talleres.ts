@@ -33,6 +33,21 @@ export const TALLER_6_DOSIER: string | null = "/talleres/dosieres/dosier-didacti
 
 export const TALLERES_DOSIERES: readonly (string | null)[] = [TALLER_1_DOSIER, TALLER_2_DOSIER, TALLER_3_DOSIER, TALLER_4_DOSIER, TALLER_5_DOSIER, TALLER_6_DOSIER];
 
+/**
+ * RECURSOS DE CADA TALLER ([70-0]): el enlace externo (Padlet del CEP) que abre «Recursos del taller», bajo «Descargar
+ * dosier» en la tarjeta y bajo «Dosier» en la ficha. Siempre se abre en otra pestaña. `null` = aún sin enlace: la
+ * tarjeta lo muestra como pendiente y la ficha no ofrece el botón. Mismo orden que TALLER_N.
+ */
+export const TALLER_1_RECURSOS: string | null = "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj";
+export const TALLER_2_RECURSOS: string | null = "https://padlet.com/CEPAl/video-s023g0eakkb3qqi2ci3c";
+export const TALLER_3_RECURSOS: string | null = "https://padlet.com/CEPAl/corto-s023g0d0yxrx7dud8rkb";
+export const TALLER_4_RECURSOS: string | null = "https://padlet.com/CEPAl/recursos-para-hacer-y-disfrutar-haciendo-stop-motion-s023g0e71jqh8aygxuxu";
+/** Pendiente: el promotor no ha facilitado aún el enlace de «La profe que pintó a Liberty Valance» ([70-0]). */
+export const TALLER_5_RECURSOS: string | null = null;
+export const TALLER_6_RECURSOS: string | null = "https://padlet.com/CEPAl/radio-s023g0f0vknebi81rtlu";
+
+export const TALLERES_RECURSOS: readonly (string | null)[] = [TALLER_1_RECURSOS, TALLER_2_RECURSOS, TALLER_3_RECURSOS, TALLER_4_RECURSOS, TALLER_5_RECURSOS, TALLER_6_RECURSOS];
+
 /** Todas las constantes en orden; el recorrido usa las `NUMERO_DE_TALLERES` primeras. */
 const TALLERES_DEFINIDOS = [TALLER_1, TALLER_2, TALLER_3, TALLER_4, TALLER_5, TALLER_6] as const;
 
