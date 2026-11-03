@@ -3,12 +3,10 @@
 import { useCallback, useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import type { InaugurationModel } from "@/lib/content";
 import { CloseIcon, ExternalIcon, PlayIcon } from "@/components/icons";
+import { useYouTubeCheck } from "@/lib/media/use-youtube-check";
 import styles from "./InaugurationBand.module.css";
 
 type Props = { band: InaugurationModel };
-
-/** What YouTube says about the video: not asked yet, asking, still there, gone, or no answer (network, blocker). */
-type Status = "idle" | "checking" | "ok" | "gone" | "unknown";
 
 /**
  * «Inauguración de las JIA 2026» ([70-0]): a second cinema bar under the Intro, in saddle leather, that never unfolds.
@@ -21,46 +19,21 @@ type Status = "idle" | "checking" | "ok" | "gone" | "unknown";
  * the check has not answered yet, or the network is blocked, the link behaves as a link.
  */
 export function InaugurationBand({ band }: Props) {
-  const [status, setStatus] = useState<Status>("idle");
-  const statusRef = useRef<Status>("idle");
+  const { check: probe, unavailable, isGone } = useYouTubeCheck(band.youtubeId, band.href);
   const [noteOpen, setNoteOpen] = useState(false);
   const [pressed, setPressed] = useState(0);
   const noteId = useId();
   const linkRef = useRef<HTMLAnchorElement>(null);
 
-  const settle = useCallback((next: Status) => {
-    statusRef.current = next;
-    setStatus(next);
-  }, []);
-
-  const probe = useCallback(() => {
-    if (statusRef.current !== "idle" || !band.href || !band.youtubeId) return;
-    settle("checking");
-    const img = new Image();
-    img.referrerPolicy = "no-referrer";
-    const timer = window.setTimeout(() => settle("unknown"), 4000);
-    img.onload = () => {
-      window.clearTimeout(timer);
-      settle(img.naturalWidth === 120 ? "gone" : "ok");
-    };
-    img.onerror = () => {
-      window.clearTimeout(timer);
-      settle("unknown");
-    };
-    img.src = `https://i.ytimg.com/vi/${encodeURIComponent(band.youtubeId)}/mqdefault.jpg`;
-  }, [band.href, band.youtubeId, settle]);
-
-  const unavailable = !band.href || status === "gone";
-
   const onClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
       setPressed((n) => n + 1);
-      if (!band.href || statusRef.current === "gone") {
+      if (isGone()) {
         e.preventDefault();
         setNoteOpen(true);
       }
     },
-    [band.href],
+    [isGone],
   );
 
   // The note closes with Escape and gives the focus back to the band.

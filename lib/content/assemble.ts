@@ -29,6 +29,7 @@ import { TALLERES, TALLERES_DOSIERES, TALLERES_RECURSOS } from "./config/tallere
 import { REVOLVER_ESTILO, REVOLVER_HORA, REVOLVER_VISTA_PREVIA, REVOLVER_ZONA_HORARIA } from "./config/revolver";
 import { navStructure } from "./sections/nav";
 import { propuestasConfig } from "./sections/propuestas";
+import { cierreConfig } from "./sections/cierre";
 import { sociosConfig } from "./sections/socios";
 import { edition, event, productionStudio, site } from "./site";
 
@@ -198,6 +199,8 @@ export type LandingModel = {
   /** `cutout` is the same photograph's subject with no background, laid back over `media` ([51-0]). */
   experiencias: { id: string; title: string; lede: string; empty: string; items: SheetModel[]; media: Media | null; cutout: Media | null; fallback: SurfaceToken; pictureOnly: boolean; reel: ReelModel | null; marks: MarkKind[] };
   propuestas: { id: string; title: string; subtitle: string; paragraphs: string[]; action: Action; media: Media | null; marks: MarkKind[] };
+  /** [71-0] «El cierre de Tizaseca»: farewell copy, the aftermovie link (null = explain, never a dead link) and the photo. */
+  cierre: { id: string; title: string; subtitle: string; paragraphs: string[]; aftermovie: { href: string | null; youtubeId: string | null; label: string; accessibleName: string; unavailable: string; dismiss: string }; media: Media | null; alt: string; marks: MarkKind[] };
   partners: {
     id: string;
     kicker: string;
@@ -602,6 +605,16 @@ export function getLanding(locale: Locale): LandingModel {
       media: getMedia(propuestasConfig.mediaId),
       action: externalOrUnavailable("proposals-present", copy.buttons.proposals.present, propuestasConfig.url, copy.propuestas.unavailable),
       marks: marksOf(copy.propuestas.status),
+    },
+    cierre: {
+      id: cierreConfig.id,
+      title: copy.cierre.title,
+      subtitle: copy.cierre.subtitle,
+      paragraphs: copy.cierre.paragraphs,
+      aftermovie: { href: cierreConfig.aftermovieUrl, youtubeId: cierreConfig.youtubeId, label: copy.cierre.aftermovie, accessibleName: copy.cierre.aftermovieOf, unavailable: copy.cierre.unavailable, dismiss: copy.cierre.dismiss },
+      media: getMedia(cierreConfig.mediaId),
+      alt: copy.cierre.alt,
+      marks: marksOf(copy.cierre.status),
     },
     partners: {
       id: sociosConfig.id,

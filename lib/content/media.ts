@@ -266,6 +266,21 @@ export const MEDIA: Record<string, Media> = Object.fromEntries(
       license: "Imagen aportada por el promotor el 20-09-2026, segunda versión del establo (origen y licencia por confirmar)",
     },
     {
+      /** El cierre de Tizaseca ([71-0]): the posse of Propuestas, arm in arm, walking off into the sunset. The left
+          30 % of the original already fades to cream; the focal point at the right edge keeps the column's window on
+          the four of them and the sun (from 1280 px the column shows 69,9 % of the width: 30-100 %), so the fade's
+          tail is the column's left edge, where it meets the section's ground. */
+      id: "cierre-tizaseca",
+      variants: [
+        { src: "/cierre/cierre-960.webp", width: 960 },
+        { src: "/cierre/cierre-1672.webp", width: 1672 },
+      ],
+      ratio: 1672 / 941,
+      focal: { x: 100, y: 45 },
+      original: "assets/images-website/cierre-tizaseca.png",
+      license: "Imagen aportada por el promotor el 03-11-2026 (origen y licencia por confirmar)",
+    },
+    {
       /** Experiencias ground. The teacher stands on the left; the right half is clear paper for the text. */
       id: "experiencias-aula",
       variants: [

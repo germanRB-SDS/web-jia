@@ -192,6 +192,8 @@ export type Copy = {
     status: EditorialStatus;
   };
   /** `unavailable` is the optional visible note under a disabled action; null shows the label alone. */
+  /** [71-0] The farewell between «Dispara tu centro» and «Quiénes somos»; `unavailable` explains an aftermovie gone. */
+  cierre: { title: string; subtitle: string; paragraphs: string[]; aftermovie: string; aftermovieOf: string; unavailable: string; dismiss: string; alt: string; status: EditorialStatus };
   propuestas: { title: string; subtitle: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
   acoge: { title: string; subtitle: string; paragraphs: string[]; unavailable: string | null; status: EditorialStatus };
   partners: { kicker: string; title: string; text: string; /** Second paragraph: the thanks to the collaborating companies. */ thanks: string; carousel: { label: string; /** `{name}` */ visit: string } };
