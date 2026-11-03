@@ -72,3 +72,18 @@
 
 - Token nuevo `--jia-saddle: #4b2a18` (+ `--jia-saddle-rgb`) en `app/theme/palette.css`, «cuero de silla»: un paso más
   claro que `--jia-ink` (#2f180b) de la Intro, en la misma familia; 11,1:1 con el marfil del texto.
+
+## Hotfix 2 — URL de recursos del taller 5 (2026-11-03) · LEVEL 1
+
+> «revisa los enlaces de RECURSOS DEL TALLER. Tanto en el botón como en el botón del popup menu. […] Para "LA PROFE QUE
+> PINTÓ A LIBERTY VALANCE", url: https://padlet.com/CEPAl/album-ilustrado-s023g0g96mjnqn374z1d […] asegúrate de que el
+> resto está con su url bien. Y lo subes a producción.» · «commit al terminar y gh push de web-jia/ (sin
+> sds-dev-governance […])»
+
+- `TALLER_5_RECURSOS` = `https://padlet.com/CEPAl/album-ilustrado-s023g0g96mjnqn374z1d`: la tarjeta deja de mostrar
+  «Recursos próximamente» y pasa a «Recursos del taller» (enlace a otra pestaña); la ficha (popup) gana el botón «Recursos».
+- Revisión de los otros cinco contra la lista del promotor (orden `workshops.ts` = `TALLER_N`): 1 bloques → scratch,
+  2 renders → video, 3 plano → corto, 4 legos → stop-motion, 6 micro → radio. Todos coinciden; sin cambios.
+- Tarjeta y ficha leen el mismo `href` (`assemble.ts` → `SheetModel.resources`), así que no hay un segundo sitio que corregir.
+- Commits solo con rutas explícitas de web-jia; `sds-dev-governance/` queda fuera (trabajo en curso de otro agente).
+- Verificación: tsc, check:content, build; publicación como REL-2026-11-03-02 con el procedimiento habitual.
