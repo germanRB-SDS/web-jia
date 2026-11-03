@@ -1,0 +1,16 @@
+import { open, sleep } from "/Users/hrms/MAC-DEV-PROJECTS/web-jia/docs/prompts-output/REL-2026-11-03-01/evidence/cdp.mjs";
+const base = process.argv[2];
+const p = await open({ width: 1440, mobile: false });
+await p.load(`${base}/almeria-2026`);
+await p.ev(`window.Image = class { constructor() { this.naturalWidth = 120; } set src(v) { setTimeout(() => this.onload?.(), 30); } }`);
+await p.ev(`document.querySelector('#inauguracion').scrollIntoView({ block: 'center', behavior: 'instant' })`);
+await sleep(800);
+await p.ev(`window.__log=[]; const a=document.querySelector('#inauguracion a'); a.addEventListener('click', e => __log.push('click defaultPrevented='+e.defaultPrevented), false); new MutationObserver(m=>__log.push('mut '+m.map(x=>x.attributeName).join())).observe(a,{attributes:true}); a.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}))`);
+await sleep(400);
+console.log(await p.ev(`({t: document.querySelector('#inauguracion a').getAttribute('target'), log: __log})`));
+await p.ev(`document.querySelector('#inauguracion a').click()`);
+await sleep(100);
+console.log(await p.ev(`({exp: document.querySelector('#inauguracion a').getAttribute('aria-expanded'), open: document.querySelector('#inauguracion [data-open]') !== null, log: __log, y: document.querySelector('#inauguracion').getBoundingClientRect().top})`));
+await sleep(900);
+console.log(await p.ev(`({exp: document.querySelector('#inauguracion a').getAttribute('aria-expanded'), log: __log})`));
+p.close();

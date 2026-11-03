@@ -1,0 +1,28 @@
+{
+  "commit": "151e382",
+  "release": "20261103-151e382",
+  "previous": "releases/20261016-40d407d",
+  "archive_sha256": "c7570f314f6cbe3cb5ae66c2095ae3b4fe28abe3eaa25abfdd06552d862618e5",
+  "archive_bytes": 99821061,
+  "files": 311,
+  "html_sha256": "dcd84d087f31b6b7c32fb7ec63eeb99c8ed8dd9d0fda65c77ff61e6efa710b06",
+  "updater_sha256": "3092111323183328ac71797a842698a64c119988b71ede2c95e2818f7ee084eb",
+  "launcher_sha256": "b98dc20cf0e7cf1892d9a23ba3ed983a30c04ac9c81ff74ca7b7ee305776618d",
+  "runtime": "Node 24.19.0",
+  "validation": { "typescript": "PASS", "content": "PASS: 100 media", "build": "PASS: next build --webpack static export (worktree at 151e382)" },
+  "staging": "/home/sdsadmin/web-jia-release-review-MK579PA6",
+  "remote_checksums": "PASS",
+  "activation_method": "Owner ran the prepared one-shot launcher in their own terminal and authenticated sudo there.",
+  "activation_output": "ACTIVATED 20261103-151e382; previous retained: releases/20261016-40d407d; Caddy configuration and process unchanged (non-fatal cp -n warning)",
+  "status": "ACTIVATED_VERIFIED",
+  "verification": {
+    "current": "releases/20261103-151e382",
+    "origin_html_sha256": "dcd84d087f31b6b7c32fb7ec63eeb99c8ed8dd9d0fda65c77ff61e6efa710b06",
+    "public_html_sha256": "dcd84d087f31b6b7c32fb7ec63eeb99c8ed8dd9d0fda65c77ff61e6efa710b06",
+    "redirects": "/, /almeria-2026/?x=1, /almeria-2026.html → 302 /almeria-2026 (query kept)",
+    "not_found": 404,
+    "images": "/cierre/despedida-1659.webp 200, /cierre/despedida-960.webp 200",
+    "video_range": 206,
+    "browser": "PASS 1440/390: order acoge → cierre → socios; 5 Padlet links + 1 pending; sheet Dosier + Recursos; card gaps 16 px (1440) / 28 px unchanged (390); YouTube links; forced «gone» notes for aftermovie and inauguration; 0 console errors"
+  }
+}
