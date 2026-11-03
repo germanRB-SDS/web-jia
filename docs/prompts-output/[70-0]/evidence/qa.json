@@ -1,0 +1,184 @@
+{
+  "390": {
+    "card": {
+      "open": {
+        "top": 611,
+        "bottom": 655,
+        "height": 44
+      },
+      "download": {
+        "top": 655,
+        "bottom": 699,
+        "height": 44
+      },
+      "resources": {
+        "top": 699,
+        "bottom": 743,
+        "height": 44
+      },
+      "resourcesHref": "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj",
+      "target": "_blank",
+      "textGapOpenDownload": 28,
+      "textGapDownloadResources": 28
+    },
+    "allResources": [
+      {
+        "id": "talleres-w-scratch",
+        "href": "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-canva",
+        "href": "https://padlet.com/CEPAl/video-s023g0eakkb3qqi2ci3c",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-corto",
+        "href": "https://padlet.com/CEPAl/corto-s023g0d0yxrx7dud8rkb",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-stopmotion",
+        "href": "https://padlet.com/CEPAl/recursos-para-hacer-y-disfrutar-haciendo-stop-motion-s023g0e71jqh8aygxuxu",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-album",
+        "href": null,
+        "pending": "Recursos próximamenteLos recursos de este taller se publicarán próximamente"
+      },
+      {
+        "id": "talleres-w-podcast",
+        "href": "https://padlet.com/CEPAl/radio-s023g0f0vknebi81rtlu",
+        "pending": "Recursos del taller"
+      }
+    ],
+    "sheet": [
+      {
+        "text": "Dosier",
+        "href": "/talleres/dosieres/dosier-didactico-por-un-punado-de-bloques.pdf",
+        "label": "Dosier didáctico del taller Por un puñado de bloques (PDF)"
+      },
+      {
+        "text": "Recursos",
+        "href": "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj",
+        "label": "Recursos del taller Por un puñado de bloques (Padlet, se abre en otra pestaña)"
+      }
+    ],
+    "band": {
+      "href": "https://www.youtube.com/watch?v=LKWcO_QzofA",
+      "target": "_blank",
+      "label": "Ver el vídeo de la inauguración de las JIA 2026 en YouTube (se abre en otra pestaña)",
+      "height": 76,
+      "bg": "rgb(75, 42, 24)",
+      "introBg": "rgb(47, 24, 11)"
+    },
+    "gone": {
+      "probed": "https://i.ytimg.com/vi/LKWcO_QzofA/mqdefault.jpg",
+      "url": "http://localhost:3070/almeria-2026",
+      "note": "El vídeo de la inauguración no está disponible ahora mismo en YouTube: puede que se haya retirado o cambiado de sitio. Lo enlazaremos de nuevo en cuanto vuelva a estar publicado.",
+      "expanded": "true",
+      "target": null
+    },
+    "center": {
+      "x": 352,
+      "y": 422.453125
+    },
+    "errors": [
+      "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    ]
+  },
+  "1440": {
+    "card": {
+      "open": {
+        "top": 696,
+        "bottom": 728,
+        "height": 32
+      },
+      "download": {
+        "top": 728,
+        "bottom": 760,
+        "height": 32
+      },
+      "resources": {
+        "top": 760,
+        "bottom": 792,
+        "height": 32
+      },
+      "resourcesHref": "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj",
+      "target": "_blank",
+      "textGapOpenDownload": 16,
+      "textGapDownloadResources": 16
+    },
+    "allResources": [
+      {
+        "id": "talleres-w-scratch",
+        "href": "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-canva",
+        "href": "https://padlet.com/CEPAl/video-s023g0eakkb3qqi2ci3c",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-corto",
+        "href": "https://padlet.com/CEPAl/corto-s023g0d0yxrx7dud8rkb",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-stopmotion",
+        "href": "https://padlet.com/CEPAl/recursos-para-hacer-y-disfrutar-haciendo-stop-motion-s023g0e71jqh8aygxuxu",
+        "pending": "Recursos del taller"
+      },
+      {
+        "id": "talleres-w-album",
+        "href": null,
+        "pending": "Recursos próximamenteLos recursos de este taller se publicarán próximamente"
+      },
+      {
+        "id": "talleres-w-podcast",
+        "href": "https://padlet.com/CEPAl/radio-s023g0f0vknebi81rtlu",
+        "pending": "Recursos del taller"
+      }
+    ],
+    "sheet": [
+      {
+        "text": "Dosier",
+        "href": "/talleres/dosieres/dosier-didactico-por-un-punado-de-bloques.pdf",
+        "label": "Dosier didáctico del taller Por un puñado de bloques (PDF)"
+      },
+      {
+        "text": "Recursos",
+        "href": "https://padlet.com/CEPAl/scratch-s023g0evjmgf8zwtzcsj",
+        "label": "Recursos del taller Por un puñado de bloques (Padlet, se abre en otra pestaña)"
+      }
+    ],
+    "band": {
+      "href": "https://www.youtube.com/watch?v=LKWcO_QzofA",
+      "target": "_blank",
+      "label": "Ver el vídeo de la inauguración de las JIA 2026 en YouTube (se abre en otra pestaña)",
+      "height": 88,
+      "bg": "rgb(75, 42, 24)",
+      "introBg": "rgb(47, 24, 11)"
+    },
+    "gone": {
+      "probed": "https://i.ytimg.com/vi/LKWcO_QzofA/mqdefault.jpg",
+      "url": "http://localhost:3070/almeria-2026",
+      "note": "El vídeo de la inauguración no está disponible ahora mismo en YouTube: puede que se haya retirado o cambiado de sitio. Lo enlazaremos de nuevo en cuanto vuelva a estar publicado.",
+      "expanded": "true",
+      "target": null
+    },
+    "center": {
+      "x": 1362,
+      "y": 449.640625
+    },
+    "errors": [
+      "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    ]
+  }
+}
