@@ -1,0 +1,54 @@
+{
+  "390": {
+    "order": [
+      "inicio",
+      "jornadas",
+      "experiencias",
+      "propuestas",
+      "acoge",
+      "cierre",
+      "socios"
+    ],
+    "section": {
+      "height": 1072,
+      "bg": "rgb(236, 226, 210)",
+      "href": "https://www.youtube.com/watch?v=wBjSQhmkqe8",
+      "target": "_blank",
+      "label": "Ver el aftermovie de las JIA 2026 en YouTube (se abre en otra pestaña)",
+      "title": "El cierre de Tizaseca"
+    },
+    "gone": {
+      "probed": "https://i.ytimg.com/vi/wBjSQhmkqe8/mqdefault.jpg",
+      "url": "http://localhost:3000/almeria-2026",
+      "note": "El aftermovie no está disponible ahora mismo en YouTube: puede que se haya retirado o cambiado de sitio. Lo enlazaremos de nuevo en cuanto vuelva a estar publicado.",
+      "expanded": "true"
+    },
+    "errors": []
+  },
+  "1440": {
+    "order": [
+      "inicio",
+      "jornadas",
+      "experiencias",
+      "propuestas",
+      "acoge",
+      "cierre",
+      "socios"
+    ],
+    "section": {
+      "height": 713,
+      "bg": "rgb(236, 226, 210)",
+      "href": "https://www.youtube.com/watch?v=wBjSQhmkqe8",
+      "target": "_blank",
+      "label": "Ver el aftermovie de las JIA 2026 en YouTube (se abre en otra pestaña)",
+      "title": "El cierre de Tizaseca"
+    },
+    "gone": {
+      "probed": "https://i.ytimg.com/vi/wBjSQhmkqe8/mqdefault.jpg",
+      "url": "http://localhost:3000/almeria-2026",
+      "note": "El aftermovie no está disponible ahora mismo en YouTube: puede que se haya retirado o cambiado de sitio. Lo enlazaremos de nuevo en cuanto vuelva a estar publicado.",
+      "expanded": "true"
+    },
+    "errors": []
+  }
+}
