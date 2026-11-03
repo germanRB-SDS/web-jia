@@ -42,8 +42,7 @@ export const TALLER_1_RECURSOS: string | null = "https://padlet.com/CEPAl/scratc
 export const TALLER_2_RECURSOS: string | null = "https://padlet.com/CEPAl/video-s023g0eakkb3qqi2ci3c";
 export const TALLER_3_RECURSOS: string | null = "https://padlet.com/CEPAl/corto-s023g0d0yxrx7dud8rkb";
 export const TALLER_4_RECURSOS: string | null = "https://padlet.com/CEPAl/recursos-para-hacer-y-disfrutar-haciendo-stop-motion-s023g0e71jqh8aygxuxu";
-/** Pendiente: el promotor no ha facilitado aún el enlace de «La profe que pintó a Liberty Valance» ([70-0]). */
-export const TALLER_5_RECURSOS: string | null = null;
+export const TALLER_5_RECURSOS: string | null = "https://padlet.com/CEPAl/album-ilustrado-s023g0g96mjnqn374z1d";
 export const TALLER_6_RECURSOS: string | null = "https://padlet.com/CEPAl/radio-s023g0f0vknebi81rtlu";
 
 export const TALLERES_RECURSOS: readonly (string | null)[] = [TALLER_1_RECURSOS, TALLER_2_RECURSOS, TALLER_3_RECURSOS, TALLER_4_RECURSOS, TALLER_5_RECURSOS, TALLER_6_RECURSOS];
